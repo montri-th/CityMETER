@@ -42,10 +42,10 @@
 - Fonts and typography: the supplied Thai display/body hierarchy remains intact; long Thai headlines wrap without clipping at 1920 × 1080 and 390 × 844. Bai Jamjuree/display treatment, weights, line height and compact icon labels were visually checked in hero, catalog and handoff captures.
 - Spacing and layout rhythm: exhibition hero measures 1905 × 1008 below the header; the media shell is 1024 × 576, keeping the requested ~30% frame share while CTA and proof rail remain visible. Desktop and mobile have no horizontal page overflow. Grid gaps, card borders, radii and section rhythm follow the existing DS-led implementation.
 - Colors and tokens: light, dark and system modes use the governed canvas/surface/text/interaction tokens. Caption surfaces maintain readable contrast over every reel scene; no contrast-obscured dataset screenshot is shipped without the limited-state treatment.
-- Image quality and asset fidelity: the exact supplied transparent horizontal Landometer artwork is used. All 38 previews are 1200 × 750 source-derived images, load successfully, and use focus crops/labels without stretching. The web hero MP4 is H.264, 960 × 540, yuv420p, 24 fps, 17.2 seconds and decodes without errors. No generated maps, placeholder dashboards, handcrafted logos or CSS-drawn product imagery are used.
+- Image quality and asset fidelity: the exact supplied transparent horizontal Landometer artwork is used. All 38 previews are 1200 × 750 source-derived images, load successfully, and use focus crops/labels without stretching. The web MP4 is 960 × 540 at 24 fps; the exhibition MP4 is 1280 × 720 at 24 fps and about 1 Mbps. Both run 17.2 seconds and decode without errors. No generated maps, placeholder dashboards, handcrafted logos or CSS-drawn product imagery are used.
 - Copy and content: reel copy follows problem awareness → previously fragmented/impractical task → closer evidence scale → risk lifecycle → invitation to apply CityMETER. Thai and English versions are siblings of the same five-beat structure. Catalog focus labels identify each dataset's selling evidence without claiming unverified 3D, nationwide, parcel-level, real-time or complete coverage.
-- Icons: language and system/light/dark controls use one consistent icon family, 27–34 px quiet controls with semantic names and pressed states; no persistent text labels remain.
-- Accessibility: semantic buttons/tabs, visible labels for assistive technology, reduced-motion poster behavior, pause/play control, alt text, focus styles and no sound-dependent information are present. Mobile preference controls remain operable without overlapping the logo.
+- Icons: language and system/light/dark controls use one consistent icon family, quiet styling and 44 px minimum hit areas with semantic names and pressed states; no persistent text labels remain.
+- Accessibility: semantic pressed-state intent buttons, visible labels for assistive technology, reduced-motion poster behavior, pause/play control, alt text, focus styles and no sound-dependent information are present. Mobile preference controls remain operable without overlapping the logo.
 
 ## Primary interactions tested
 
@@ -53,7 +53,7 @@
 - Thai → English → Thai; the H1 and document language updated correctly.
 - System, light and dark theme selection; pressed state and rendered theme updated.
 - Dataset group filter: Land returned 12 cards; resetting returned 38 cards.
-- Five decision tabs and the direct/share actions were visible and semantic.
+- Five decision choices and the direct/share actions were visible and semantic.
 - All 38 dataset images reported `complete`, natural size 1200 × 750 and zero broken sources.
 - Mobile handoff shows one 1200 × 750 image at 333 × 207 before the QR; the second desktop stacking image is intentionally hidden. No stretched perspective or incorrect aspect ratio remains.
 - Console errors checked on desktop, exhibition and mobile. No application-origin errors were observed; the only logged errors came from the cloud browser's Chrome extension origin.
@@ -90,8 +90,8 @@
 - `npm run test:sites`: passed.
 - Registry validation: 38 unique IDs; Land 12 / Location 13 / Living 13.
 - Preview validation: 38 files, 1200 × 750 each, READY 31 / LIMITED 7.
-- Video validation: H.264 High, 960 × 540, yuv420p, 24 fps, 17.2 s; full decode passed.
-- Prerender validation: the initial Thai and English HTML contains all cards and relative media paths. The lightweight handoff entry redirects to the main static showcase instead of duplicating its media payload.
+- Video validation: web H.264 High 960 × 540/24 fps and exhibition H.264 High 1280 × 720/24 fps, both 17.2 s; full decode passed.
+- Prerender validation: Thai and English initial HTML contains all cards and relative media paths; the compatibility entry is a lightweight noindex redirect to the public showcase.
 
 ## Release boundary
 
@@ -111,3 +111,7 @@ final result: passed
 - Server/prerender output is poster-first. The video is mounted only after the browser resolves motion preference, so reduced-motion and no-JS states never flash autoplay footage.
 - Ordinary web playback runs once and ends on the final CTA beat. Explicit `?display=exhibition` mode loops for the 55-inch booth screen.
 - The five visual beats have a complete static bilingual transcript and localized figure caption; the silent-video status is stated in text.
+- Hydratable SSR uses `renderToString` with the client `hydrateRoot`; fresh Thai and English loads must produce zero app-origin hydration errors.
+- The demo badge says the reel uses real CityMETER screen examples, not that it is a recorded live interaction.
+- Intent choices use ordinary pressed-state buttons in a labelled group; arrow/Home/End shortcuts supplement normal Tab navigation without imposing responsive tab orientation semantics.
+- The exhibition query serves a dedicated 1280×720 ~1 Mbps encode; normal web serves the 960×540 lightweight encode.
