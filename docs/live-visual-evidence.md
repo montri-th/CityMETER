@@ -42,20 +42,19 @@ Capture only the app viewport—no browser chrome—and use a consistent light-t
 
 ## Exact Landometer asset evidence
 
-### Public mark discovered
+### Owner-supplied horizontal lockup used by the prototype
 
 | Evidence | Verified value |
 |---|---|
-| Public URL | `https://landometer.com/v3/static/images/logo.png` |
-| Root-site equivalent | `https://landometer.com/static/images/logo.png` |
-| Local QA copy | `public/media/landometer-logo.png` |
-| Intrinsic format | PNG, RGBA, `120 × 128` px |
-| File size | `3,803` bytes |
-| SHA-256 | `8d9e5a06d9596b44bbd4a7b5090469c77bf4f4df5f334a7dd405931951856eaa` |
-| Byte comparison | The local QA copy and the live `/v3/static/images/logo.png` response produced the same SHA-256. |
-| Current live-app rendering | Symbol rendered at about `24 × 25.6` CSS px. Separate HTML wordmark observed as Bai Jamjuree `20px`, weight `600`, letter spacing `3px`, colour `#0B0E14`. |
+| Owner-supplied horizontal source | `project_sources/10-Landometer-Logo-TransparentBG.png` (workspace source; not served publicly) |
+| Web display derivative | `public/media/landometer-logo-horizontal.png` |
+| Intrinsic format | PNG, RGBA, `23,324 × 6,402` px |
+| Source file size | `903,326` bytes |
+| Source SHA-256 | `8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92` |
+| Release derivative | The public site serves the proportion-preserving 1800×494 derivative; the exact owner source remains outside the served tree. |
+| Display derivative | `1,800 × 494` px, transparent PNG; resized only, with no redrawing, recolouring, cropping or masking. |
 
-This evidence verifies the exact public **symbol file** and byte identity. It does **not** prove that this symbol is the DS-approved normal-header lockup or that its current live composition has production approval under Design System 0.8.9.
+The prototype uses this supplied horizontal artwork directly. It does not reconstruct the wordmark from HTML text and does not use the public symbol-only file as the normal-header logo.
 
 ### Assets that must not be used as the header logo
 
@@ -64,13 +63,11 @@ This evidence verifies the exact public **symbol file** and byte identity. It do
 - `https://landometer.com/static/images/icon/icon-citymeter.png` is the CityMETER product icon, not the corporate Landometer logo.
 - Favicon/touch contexts are separately delivered at `/v3/static/images/favicon/favicon-32x32.png`, `favicon-16x16.png`, `apple-touch-icon.png`, and `safari-pinned-tab.svg`. Their public presence does not grant header or social-preview approval.
 
-### Design System 0.8.9 release caveat
+### Design System 0.8.9 release note
 
 Design System 0.8.9 requires a normal header to use the exact approved transparent **horizontal Landometer lockup** with an asset ID, exact variant, SHA-256, approved surface pairing, clear-space rule, minimum delivered size, theme/backdrop scope, and current Brand identity approval. It permits the symbol alone only in an approved compact, app-icon, or favicon context and prohibits redrawing, tracing, recolouring, cropping, masking, or reconstructing the logo.
 
-The public inspection found the exact `120 × 128` symbol and social-preview canvases, but did **not** discover a separately downloadable transparent horizontal lockup with the required approval record. The current live app visually combines the public symbol with an HTML text wordmark; that observation is implementation evidence, not authority to reconstruct an official lockup.
-
-**Production status:** blocked until the Brand identity owner supplies or confirms the exact approved horizontal lockup asset, hash, clean header surface pairing, clear space, minimum CSS size, and delivery approval. For an internal prototype, the verified public symbol may be shown only as a clearly labelled temporary compact mark with the product/site label kept separate; it must not be represented as a DS-approved full corporate lockup.
+The owner supplied a transparent horizontal artwork for this revision, and the prototype preserves its exact source bytes plus a proportional web derivative. Before production cutover, record the governed asset ID, approved surface pairings, clear space and minimum CSS size in the Brand identity registry; this is a documentation gate rather than a missing-asset blocker for the current GitHub review build.
 
 ## Cross-cutting URL and release QA
 
