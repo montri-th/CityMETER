@@ -12,7 +12,7 @@
 
 ## Scope
 
-- Exhibition-first hero สำหรับจอ 55 นิ้ว อัตราส่วน 16:9 พร้อม reel 17.2 วินาทีที่พาเห็น business pattern → demand → locale → road network → flood lifecycle, caption ไทย/อังกฤษ และ pause control
+- Exhibition-first hero สำหรับจอ 55 นิ้ว อัตราส่วน 16:9 พร้อม reel 17.2 วินาทีที่พาเห็น business pattern → demand → locale → road network → flood lifecycle, caption ไทย/อังกฤษ และ pause control; โหมด exhibition ใช้ไฟล์ 1280×720 แยกจากไฟล์เว็บ 960×540
 - ภาษาไทย/อังกฤษตาม URL, preference ที่ผู้ใช้เลือก และภาษา browser พร้อม quiet icon controls
 - Theme system / light / dark โดยจำ preference ของผู้ใช้
 - 5 decision intents สำหรับการลงทุน/พัฒนา การเลือกทำเล การประเมินความเสี่ยง การวางบริการ และงานวิเคราะห์
@@ -29,8 +29,8 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 - `src/marketingCopy.js` — authored Thai/English copy
 - `src/marketingData.js` — evidence-safe feature, scope, resolution และ media registry
 - `src/previewConfig.js` — dataset-specific visual focus และสถานะภาพครบ 38 รายการ
-- `media/` — owner-supplied horizontal Landometer logo derivative, 38 focused previews และ web-optimized hero reel v2
-- `CityMETER_Landing_Page_Prototype_DS_0.8.9.html` — lightweight entry file ที่พาไปยัง static showcase หลัก
+- `media/` — owner-supplied horizontal Landometer logo derivative, 38 focused previews และ web/exhibition hero reel v2
+- `CityMETER_Landing_Page_Prototype_DS_0.8.9.html` — lightweight noindex entry file ที่พาไปยัง static showcase หลัก
 - `design-qa.md` / `qa/` — visual QA evidence ที่ 1920×1080, desktop และ mobile
 
 ## Status
