@@ -2,10 +2,10 @@
 
 หน้า landing page แบบ static สำหรับให้คน, search crawler, LLM และ agent เข้าใจว่า CityMETER มีข้อมูลและโมดูลสาธารณะอะไรบ้าง พร้อมเปิดแต่ละรายการใน CityMETER viewer ได้โดยตรง
 
-## Preview
+## Preview URLs
 
-- Landing page: https://montri-th.github.io/CityMETER/
-- Mobile QA: https://montri-th.github.io/CityMETER/mobile-qa.html
+- Landing page after GitHub Pages is enabled: https://montri-th.github.io/CityMETER/
+- Mobile QA after GitHub Pages is enabled: https://montri-th.github.io/CityMETER/mobile-qa.html
 - Production target: https://landometer.com/citymeter
 
 ## Scope
@@ -27,5 +27,6 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 
 This is a review preview aligned with Landometer Design System v0.8.9. It intentionally carries `noindex` and points its canonical URL to the production target. Unknown source, time, or definition metadata is shown as pending rather than inferred.
 
-Before production release, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and replace the generic social image with an approved CityMETER-specific asset.
+The static files are published on `main`. GitHub Pages still needs to be enabled from `Settings → Pages → Deploy from a branch → main / (root)` before the preview URLs above become live.
 
+Before production release, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and replace the generic social image with an approved CityMETER-specific asset.
