@@ -46,12 +46,12 @@ Capture only the app viewport—no browser chrome—and use a consistent light-t
 
 | Evidence | Verified value |
 |---|---|
-| Owner-supplied horizontal source | `public/media/landometer-logo-horizontal-source.png` |
+| Owner-supplied horizontal source | `project_sources/10-Landometer-Logo-TransparentBG.png` (workspace source; not served publicly) |
 | Web display derivative | `public/media/landometer-logo-horizontal.png` |
 | Intrinsic format | PNG, RGBA, `23,324 × 6,402` px |
 | Source file size | `903,326` bytes |
 | Source SHA-256 | `8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92` |
-| Byte comparison | The preserved public source copy is byte-identical to the owner-supplied attachment. |
+| Release derivative | The public site serves the proportion-preserving 1800×494 derivative; the exact owner source remains outside the served tree. |
 | Display derivative | `1,800 × 494` px, transparent PNG; resized only, with no redrawing, recolouring, cropping or masking. |
 
 The prototype uses this supplied horizontal artwork directly. It does not reconstruct the wordmark from HTML text and does not use the public symbol-only file as the normal-header logo.

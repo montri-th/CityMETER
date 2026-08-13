@@ -6,7 +6,7 @@
 
 **Build date:** 13 August 2026 (Asia/Bangkok)
 
-**Format:** 1280 × 720, 16:9, H.264 High Profile, yuv420p, 30 fps, progressive, video only
+**Format:** 960 × 540, 16:9, H.264 High Profile, yuv420p, 24 fps, progressive, video only
 
 **Duration target / actual:** 15–18 s / 17.2 s
 
@@ -32,7 +32,7 @@ The reel contains no baked language caption. The landing page owns the Thai/Engl
 - The sequence is **problem awareness → national/province comparisons → local view → multiple evidence layers → CTA runway**.
 - It does **not** document one continuous country → province → local interaction. Caption it as movement between evidence scales/views, not as a literal drill-down, unless a same-dataset live drill-down is captured later.
 - Every scene is derived from a real public CityMETER screenshot; no generative, stock, or simulated map image is used. The release keeps only the governed v2 reel/poster and card-preview derivatives.
-- Source screenshots are 1363 × 936. Each is fitted intact to a 1280 × 720 foreground, with a subdued blurred duplicate behind it to fill the 16:9 canvas. This preserves the header, map, right evidence pane, bottom legend/chart, and satellite attribution rather than cover-cropping them away.
+- Source screenshots are 1363 × 936. The edit master fits each intact to a 1280 × 720 foreground, with a subdued blurred duplicate behind it to fill the 16:9 canvas. The public web derivative is 960 × 540 to keep the static preview fast while preserving the header, map, right evidence pane, bottom legend/chart, and satellite attribution rather than cover-cropping them away.
 - Motion is editorial Ken Burns movement over still evidence. It must not be described as a recorded live interaction. Transitions are 0.20 s and total runtime is 17.2 s.
 - App overlay copy should remain short, occupy a governed safe area, and never cover the dataset heading, selected controls, map legend, source/attribution, date, limitation, or material KPI context.
 
@@ -64,9 +64,9 @@ ffprobe -v error \
   -of json public/media/reel/citymeter-proof-v2.mp4
 ```
 
-Expected essentials: H.264 High, 1280 × 720, yuv420p, 30/1 fps, progressive, duration about 17.2 s, no audio stream.
+Expected essentials: H.264 High, 960 × 540, yuv420p, 24/1 fps, progressive, duration about 17.2 s, no audio stream.
 
 **SHA-256 at build time**
 
-- MP4: `a75bc0a97823782222202c2b2e5a52abe943935ff9a9d7f8d8c97d2176431acf`
+- MP4: `89c64de275a436e4cae9743da73caa2916eb679b66145f39be3ab022cf2183d9`
 - Poster: `e1d4b3f47acb94651803f9a46d38c2462895a05e239ba0ae89cf5291fbd10d29`

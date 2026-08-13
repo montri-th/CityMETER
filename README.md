@@ -29,17 +29,15 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 - `src/marketingCopy.js` — authored Thai/English copy
 - `src/marketingData.js` — evidence-safe feature, scope, resolution และ media registry
 - `src/previewConfig.js` — dataset-specific visual focus และสถานะภาพครบ 38 รายการ
-- `public/media/` — owner-supplied horizontal Landometer logo, 38 focused previews และ hero reel v2
-- `CityMETER_Landing_Page_Prototype_DS_0.8.9.html` — self-contained HTML handoff รวมภาพ วิดีโอ และ fonts
+- `media/` — owner-supplied horizontal Landometer logo derivative, 38 focused previews และ web-optimized hero reel v2
+- `CityMETER_Landing_Page_Prototype_DS_0.8.9.html` — lightweight entry file ที่พาไปยัง static showcase หลัก
 - `design-qa.md` / `qa/` — visual QA evidence ที่ 1920×1080, desktop และ mobile
 
 ## Status
 
-This is a review preview aligned with Landometer Design System v0.8.9. It intentionally carries `noindex` until the production route replaces the current legacy `/citymeter` redirect. Unknown coverage, resolution, source, or definition metadata is never inferred.
+This public preview is aligned with Landometer Design System v0.8.9 and is indexable. Unknown coverage, resolution, source, or definition metadata is never inferred.
 
-Once merged, the static review files publish from `main` through GitHub Pages. The public preview intentionally remains `noindex` until the production cutover is approved.
-
-Before production release, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, clear product/satellite screenshot reuse rights, and switch `noindex` to the intended production crawler policy.
+Once merged, the static files publish from `main` through GitHub Pages. Before the production-domain cutover, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and clear product/satellite screenshot reuse rights.
 
 ## Build
 

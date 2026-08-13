@@ -42,7 +42,7 @@
 - Fonts and typography: the supplied Thai display/body hierarchy remains intact; long Thai headlines wrap without clipping at 1920 × 1080 and 390 × 844. Bai Jamjuree/display treatment, weights, line height and compact icon labels were visually checked in hero, catalog and handoff captures.
 - Spacing and layout rhythm: exhibition hero measures 1905 × 1008 below the header; the media shell is 1024 × 576, keeping the requested ~30% frame share while CTA and proof rail remain visible. Desktop and mobile have no horizontal page overflow. Grid gaps, card borders, radii and section rhythm follow the existing DS-led implementation.
 - Colors and tokens: light, dark and system modes use the governed canvas/surface/text/interaction tokens. Caption surfaces maintain readable contrast over every reel scene; no contrast-obscured dataset screenshot is shipped without the limited-state treatment.
-- Image quality and asset fidelity: the exact supplied transparent horizontal Landometer artwork is used. All 38 previews are 1200 × 750 source-derived images, load successfully, and use focus crops/labels without stretching. The hero MP4 is H.264, 1280 × 720, yuv420p, 30 fps, 17.2 seconds and decodes without errors. No generated maps, placeholder dashboards, handcrafted logos or CSS-drawn product imagery are used.
+- Image quality and asset fidelity: the exact supplied transparent horizontal Landometer artwork is used. All 38 previews are 1200 × 750 source-derived images, load successfully, and use focus crops/labels without stretching. The web hero MP4 is H.264, 960 × 540, yuv420p, 24 fps, 17.2 seconds and decodes without errors. No generated maps, placeholder dashboards, handcrafted logos or CSS-drawn product imagery are used.
 - Copy and content: reel copy follows problem awareness → previously fragmented/impractical task → closer evidence scale → risk lifecycle → invitation to apply CityMETER. Thai and English versions are siblings of the same five-beat structure. Catalog focus labels identify each dataset's selling evidence without claiming unverified 3D, nationwide, parcel-level, real-time or complete coverage.
 - Icons: language and system/light/dark controls use one consistent icon family, 27–34 px quiet controls with semantic names and pressed states; no persistent text labels remain.
 - Accessibility: semantic buttons/tabs, visible labels for assistive technology, reduced-motion poster behavior, pause/play control, alt text, focus styles and no sound-dependent information are present. Mobile preference controls remain operable without overlapping the logo.
@@ -90,8 +90,8 @@
 - `npm run test:sites`: passed.
 - Registry validation: 38 unique IDs; Land 12 / Location 13 / Living 13.
 - Preview validation: 38 files, 1200 × 750 each, READY 31 / LIMITED 7.
-- Video validation: H.264 High, 1280 × 720, yuv420p, 30 fps, 17.2 s; full decode passed.
-- Prerender/standalone validation: first HTML contains all cards and relative media paths; standalone output embeds the application assets.
+- Video validation: H.264 High, 960 × 540, yuv420p, 24 fps, 17.2 s; full decode passed.
+- Prerender validation: the initial Thai and English HTML contains all cards and relative media paths. The lightweight handoff entry redirects to the main static showcase instead of duplicating its media payload.
 
 ## Release boundary
 
