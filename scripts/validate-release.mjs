@@ -19,6 +19,7 @@ for (const page of ["index.html", "en/index.html"]) {
   const html = readFileSync(join(root, page), "utf8");
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
+  assert(html.includes("catalog-enhancements.js?v=5"), `${page} must load the Suan Plu cache-busted enhancement layer`);
   assert(html.includes("index-qbT50gkr-v3.js"), `${page} must load the cache-busted hero bundle`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
@@ -48,6 +49,7 @@ for (const asset of [
   "assets/catalog-enhancements.css",
   "assets/index-qbT50gkr-v3.js",
   "scripts/build-hero-reel.sh",
+  "scripts/apply-focus-copy.mjs",
   "media/gdcatalog-logo.png",
   "media/reel/citymeter-proof-v3.mp4",
   "media/reel/citymeter-proof-v3-exhibition.mp4",
@@ -56,5 +58,12 @@ for (const asset of [
 ]) {
   assert(existsSync(join(root, asset)) && statSync(join(root, asset)).size > 0, `Missing release asset: ${asset}`);
 }
+
+const thHtml = readFileSync(join(root, "index.html"), "utf8");
+const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
+assert(thHtml.includes("สวนพลู · อาคาร 3 มิติ · GFA"), "Thai page must label the Suan Plu 3D Building snapshot");
+assert(thHtml.includes("เมืองชลบุรี · ราคาประเมิน 3 มิติ"), "Thai page must label the Mueang Chonburi 3D appraisal snapshot");
+assert(enHtml.includes("Suan Plu · 3D buildings · GFA"), "English page must label the Suan Plu 3D Building snapshot");
+assert(enHtml.includes("Mueang Chonburi · 3D appraisal"), "English page must label the Mueang Chonburi 3D appraisal snapshot");
 
 console.log("CityMETER catalog release validation passed: 38 cards, 38 QR assets, 11 verified-lineage badges, 3 labelled concepts.");

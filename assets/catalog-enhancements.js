@@ -26,11 +26,27 @@
       heroQrHint: "ดูต่อบนมือถือได้ทันที",
       heroQrAlt: "QR code สำหรับเปิดหน้า CityMETER ภาษาไทย",
       examplesIntro: "เริ่มจากภาพจริงที่ทำให้เห็นโอกาสของพื้นที่ แล้วค่อยเปิดดูที่มา ขอบเขต และรายละเอียดเมื่อพร้อมตัดสินใจ",
+      visualFocus: {
+        "dataset-buildings": {
+          label: "สวนพลู · อาคาร 3 มิติ · GFA",
+          intro: "สำรวจความเข้มข้นของอาคาร GFA ความสูง และจำนวนชั้นแบบ 3 มิติในสวนพลู",
+          coverage: "ภาพตัวอย่างโฟกัสสวนพลู; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
+          unit: "ภาพแสดงอาคาร 3 มิติและตัวชี้วัดระดับพื้นที่; ความครบถ้วนของรูปทรงรายอาคารยังไม่ยืนยัน",
+          revision: "20260814-suan-plu-3d"
+        },
+        "dataset-land-appraisal": {
+          label: "เมืองชลบุรี · ราคาประเมิน 3 มิติ",
+          intro: "เห็นโครงสร้างราคาประเมินที่ดินแบบ 3 มิติในอำเภอเมืองชลบุรี พร้อมจำนวนโฉนดและการกระจายราคา",
+          coverage: "ภาพตัวอย่างโฟกัสอำเภอเมืองชลบุรี; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
+          unit: "ภาพแสดงโซนราคาประเมินแบบ 3 มิติและจำนวนโฉนด; รายละเอียดรูปแปลงรายแปลงยังไม่ยืนยัน",
+          revision: "20260814-mueang-chonburi-3d"
+        }
+      },
       chapters: [
         {
           kicker: "คน + อาคาร",
-          title: "เห็นฐานประชากรและรูปแบบการพัฒนาพร้อมกัน",
-          note: "อ่านโครงสร้างวัย ความหนาแน่น GFA ความสูง และจำนวนชั้น"
+          title: "เห็นฐานประชากรทั่วประเทศ แล้วเจาะอาคาร 3 มิติที่สวนพลู",
+          note: "อ่านโครงสร้างวัย ก่อนเจาะ GFA ความสูง และจำนวนชั้นในพื้นที่จริง"
         },
         {
           kicker: "การคลังท้องถิ่น",
@@ -68,11 +84,27 @@
       heroQrHint: "Continue on your phone",
       heroQrAlt: "QR code to open the English CityMETER page",
       examplesIntro: "Start with real views that reveal what is interesting about a place, then open the sources, scope and details when you are ready to decide.",
+      visualFocus: {
+        "dataset-buildings": {
+          label: "Suan Plu · 3D buildings · GFA",
+          intro: "Explore 3D building intensity, GFA, height and floor counts in Suan Plu",
+          coverage: "The example focuses on Suan Plu; source coverage beyond the example is not stated on the public page",
+          unit: "The view shows 3D buildings and area metrics; completeness of individual building geometry is not verified",
+          revision: "20260814-suan-plu-3d"
+        },
+        "dataset-land-appraisal": {
+          label: "Mueang Chonburi · 3D appraisal",
+          intro: "See the 3D land-appraisal pattern across Mueang Chonburi with deed counts and the price distribution",
+          coverage: "The example focuses on Mueang Chonburi; source coverage beyond the example is not stated on the public page",
+          unit: "The view shows 3D appraisal-price zones and deed counts; individual parcel geometry is not verified",
+          revision: "20260814-mueang-chonburi-3d"
+        }
+      },
       chapters: [
         {
           kicker: "People + buildings",
-          title: "Read the population base and development pattern together",
-          note: "Age structure, density, GFA, height and floor count in one opening chapter"
+          title: "Start with Thailand's population, then enter 3D Suan Plu",
+          note: "Read age structure first, then GFA, height and floor count in a real area"
         },
         {
           kicker: "Local finance",
@@ -139,7 +171,24 @@
 
   function enhanceCard(card) {
     const record = recordById.get(card.id);
-    if (!record || card.dataset.sourceReviewVersion === "2026-08-14-r2") return;
+    const visualFocus = text.visualFocus[card.id];
+    if (visualFocus) {
+      const label = card.querySelector(".preview-focus-label");
+      const intro = card.querySelector(":scope > .dataset-body > p");
+      if (label && label.textContent !== visualFocus.label) label.textContent = visualFocus.label;
+      if (intro && intro.textContent !== visualFocus.intro) intro.textContent = visualFocus.intro;
+      const evidenceValues = card.querySelectorAll(":scope > .dataset-body > .evidence-summary dd, :scope > .dataset-body > .dataset-details .evidence-summary dd");
+      if (evidenceValues[0] && evidenceValues[0].textContent !== visualFocus.coverage) evidenceValues[0].textContent = visualFocus.coverage;
+      if (evidenceValues[1] && evidenceValues[1].textContent !== visualFocus.unit) evidenceValues[1].textContent = visualFocus.unit;
+      card.querySelectorAll(".dataset-image img").forEach((image) => {
+        const url = new URL(image.src, document.baseURI);
+        if (url.searchParams.get("v") !== visualFocus.revision) {
+          url.searchParams.set("v", visualFocus.revision);
+          image.src = url.href;
+        }
+      });
+    }
+    if (!record || card.dataset.sourceReviewVersion === "2026-08-14-r3") return;
 
     const details = card.querySelector(".dataset-details");
     const openLink = card.querySelector(".dataset-open");
@@ -147,7 +196,7 @@
     if (!details || !openLink) return;
 
     card.dataset.sourceStatus = record.status;
-    card.dataset.sourceReviewVersion = "2026-08-14-r2";
+    card.dataset.sourceReviewVersion = "2026-08-14-r3";
     card.querySelectorAll(".dataset-image img").forEach((image) => {
       image.loading = "lazy";
       image.decoding = "async";
@@ -268,6 +317,15 @@
 
     const video = frame.querySelector("video");
     if (video) {
+      const reelRevision = "20260814-suan-plu-3d";
+      if (video.dataset.reelRevision !== reelRevision) {
+        const exhibition = new URLSearchParams(location.search).get("display") === "exhibition";
+        const source = video.querySelector("source");
+        if (source) source.src = `${assetBase}media/reel/citymeter-proof-v3${exhibition ? "-exhibition" : ""}.mp4?v=${reelRevision}`;
+        video.poster = `${assetBase}media/reel/citymeter-proof-v3-poster.webp?v=${reelRevision}`;
+        video.dataset.reelRevision = reelRevision;
+        video.load();
+      }
       video.loop = true;
       video.muted = true;
       video.autoplay = true;
