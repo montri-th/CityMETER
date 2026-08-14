@@ -1,7 +1,8 @@
 # CityMETER live visual evidence and capture QA
 
-**Inspection date:** 13 August 2026 (Asia/Bangkok)  
-**Scope:** Read-only visual inspection of the current public CityMETER implementation and public Landometer assets.  
+**Inspection date:** 14 August 2026 (Asia/Bangkok)
+
+**Scope:** Read-only visual inspection plus governed dark-theme recapture of the current public CityMETER implementation and public Landometer assets.
 **Purpose:** Source note for landing-page imagery, hero motion, captions, and release QA. This note does not certify dataset accuracy, rights, coverage, methodology, or production brand approval.
 
 ## Reading this note
@@ -10,6 +11,14 @@
 - **Settle time** is a conservative capture wait observed or needed on this inspection connection, not a performance SLA. Hard-load the exact URL for every take and capture only after tiles, polygons, legends, rankings, and charts stop changing.
 - A working route proves that a public view was reachable. It does not by itself prove completeness, smallest geography, geometry type, freshness, licensing, or suitability for a decision.
 - Do not use the browser title as the sole capture label. One inspected tab showed a Shopping Center URL while `document.title` still said Population. Verify the URL, visible dataset heading, selected state, and title together before every take.
+
+## 14 August governed dark capture set
+
+- All 38 direct dataset routes were hard-loaded in dark theme at 1363×936 and captured only after the map layer, legend, evidence panel and chart stopped changing.
+- The first pass exposed a real timing problem: side panels and legends often appeared several seconds before the choropleth. Those premature frames were rejected and every route was recaptured with a settled-layer gate.
+- Final card assets are 1200×750 WebP files. The full product viewport is fitted intact over a subdued blurred dark derivative so headings, legends, charts and attribution are not stretched or silently cropped away.
+- 35 cards use the settled real product capture. Fire Monitoring, Hat Yai Flood and QuakeSafe use governed conceptual illustrations because the settled live states remained too sparse to communicate the topic. Each of those cards carries the visible label “Concept illustration — not a product screen or real data” (and its Thai sibling).
+- The three-chapter hero uses only real settled screens in this order: Population + Building, Municipality, Tourism. The generated concept illustrations never appear in the hero.
 
 ## Verified visual highlights
 
@@ -30,7 +39,7 @@
 
 | Output | Recommended source state | Master capture | Required preservation |
 |---|---|---:|---|
-| Hero video | Tourism Demand: Visitors → Spending | 16:9, `1920×1080` or `1600×900`, 12–15 s maximum | Dataset heading, selected control, map legend, ranking/chart, source/attribution, and a stable first/last frame |
+| Hero video | Population + Building → Municipality → Tourism | 16:9, 1280×720 exhibition / 960×540 web, 12.958 s | Dataset heading, selected control, map legend, ranking/chart, source/attribution, and a stable first/last frame |
 | Differentiation still | Road DNA `/BKK`, default/all state | 16:10, `1600×1000` | Satellite attribution, Low Confidence note, archetype labels, and metrics |
 | Business still | Business Dynamics with one TSIC sector selected | 16:10, `1600×1000` | Selected sector and map; exclude or fix the blank selector; do not imply filtered KPI cards |
 | Retail still | Shopping Center, GLA/km² | 16:10, `1600×1000` | Metric tab, legend, sample counts, filters, and province chart |
@@ -38,7 +47,7 @@
 | Scale still | Buildings, V4 and GFA Density | 16:10, `1600×1000` | Version/date, Google Research source, map legend, and floors distribution |
 | Public-planning still | Population, `2026-07` | 16:10, `1600×1000` | Period, DOPA source text, map legend, age/sex view, and trend |
 
-Capture only the app viewport—no browser chrome—and use a consistent light-theme state. Hide the cursor in stills; show it only for the single intentional control action in motion. Do not record loading, grey placeholder, stale-title, or blank-layer frames. Provide MP4/H.264 and WebM for motion, a WebP poster, `muted`, `playsinline`, a visible pause control on the web page, and a static poster under `prefers-reduced-motion`. Do not bake explanatory copy into the video; keep a short adjacent caption/transcript in HTML.
+Capture only the app viewport—no browser chrome—and use a consistent dark-theme state. Hide the cursor in stills; show it only for the single intentional control action in motion. Do not record loading, grey placeholder, stale-title, or blank-layer frames. Provide MP4/H.264 and a WebP poster, `muted`, `playsinline`, continuous looping, one visible Pause/Play control, and a static poster under `prefers-reduced-motion`. Do not bake explanatory copy into the video; keep a short adjacent caption/transcript in HTML.
 
 ## Exact Landometer asset evidence
 

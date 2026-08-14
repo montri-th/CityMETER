@@ -1,71 +1,46 @@
-# CityMETER proof reel v2 — beat and caption-intent sheet
+# CityMETER proof reel v3 — three-chapter source and playback sheet
 
-**Web output:** `public/media/reel/citymeter-proof-v2.mp4`
-**Exhibition output:** `public/media/reel/citymeter-proof-v2-exhibition.mp4`
-**Poster:** `public/media/reel/citymeter-proof-v2-poster.webp`
-**Build date:** 13 August 2026 (Asia/Bangkok)
-**Web format:** 960 × 540, 16:9, H.264 High Profile, yuv420p, 24 fps, progressive, video only
-**Exhibition format:** 1280 × 720, 16:9, H.264 High Profile, yuv420p, 24 fps, progressive, video only, approximately 1 Mbps
-**Duration target / actual:** 15–18 s / 17.2 s
+**Build date:** 14 August 2026 (Asia/Bangkok)
 
-The reel contains no baked language caption. The landing page owns the Thai/English overlay, CTA, accessible transcript, and pause/reduced-motion behavior.
+**Web output:** `media/reel/citymeter-proof-v2.mp4`
 
-## Beat sheet
+**Exhibition output:** `media/reel/citymeter-proof-v2-exhibition.mp4`
 
-| Time | Visual source and motion | Story job | Bilingual caption intent for the app | Truth boundary |
-|---:|---|---|---|---|
-| 0.00–1.70 | `business-dynamics.jpg`; national view, slow push-in toward the map/evidence split | Problem awareness: decisions start with a spatial pattern, not a generic dashboard card | Ask which areas deserve attention first; do not state a finding | Registered branch distribution is not all operating businesses and not business performance. |
-| 1.70–3.40 | `shopping-centers.jpg`; quick cut, slow push toward GLA/map evidence | Introduce a second market lens at the same national/province-comparison scale | “Compare supply and market structure” / equivalent native Thai | Samples for GFA, GLA, and tenant counts differ. Do not imply sales, footfall, vacancy, or complete coverage. |
-| 3.40–5.10 | `tourism-demand-spending.jpg`; smooth lateral cut, push toward metric controls and province map | Country-to-province comparison context with a clear demand layer | “Read demand across provinces” / equivalent native Thai | This is a province comparison, not a selected-province drilldown; not forecast demand, occupancy, or revenue potential. |
-| 5.10–6.80 | `population-age-sex.jpg`; quick cut, push toward period/source and age/sex evidence | Add people and time as planning context | “Add population and demographic context” / equivalent native Thai | Registered population is not live/daytime population, income, migration, or a census claim. |
-| 6.80–8.50 | `locale-insights.jpg`; fast zoom transition from national scale to Bangkok local map | Geographic scale change: country/province comparison to a local spatial view | “Move from overview to a local view” / equivalent native Thai | This is an editorial sequence across different modules, not one continuous drilldown. The visible state says “Select a locale to see more insights”; do not claim a completed locale insight. |
-| 8.50–10.20 | `road-network-archetypes.jpg`; dissolve, stronger local push toward coloured archetype areas | Differentiated local proof: derived street-network signals | “See how street networks differ by area” / equivalent native Thai | Road archetypes are diagnostic signals, not objective good/bad location, traffic flow, accessibility, or parcel truth. Keep satellite/provider attribution visible. |
-| 10.20–11.90 | `flood-recurrent.jpg`; short fade through dark, national recurrent-history view | Begin risk lifecycle: historical recurrence | “Review recurrent flood history” / equivalent native Thai | Historical recurrence does not predict a specific future event or property safety. |
-| 11.90–13.60 | `flood-latest-observed.jpg`; directional cut, recent-observed state and time series | Risk lifecycle: latest observed/recorded state | “Check the latest observed layer” / equivalent native Thai | Do not call it real-time without a current timestamp/source contract. Uncoloured areas are not automatically safe. |
-| 13.60–15.30 | `flood-forecast-depth.jpg`; directional cut, forecast controls and ranking | Risk lifecycle: forecast/planning horizon | “Look ahead with a forecast layer” / equivalent native Thai | Forecast is not an observation, guarantee, emergency instruction, navigation advice, or property-specific assurance. Model/uncertainty/source must accompany any stronger claim. |
-| 15.30–17.20 | `road-network-archetypes.jpg`; quick return and gentle pull-back to a stable local proof frame | Resolution and CTA runway: one evidence-rich frame remains while the app invites the next action | Invite the user to choose the dataset or decision path that answers their question | App overlay supplies the CTA; the footage itself must not imply an export, recommendation, or decision outcome. |
+**Poster:** `media/reel/citymeter-proof-v2-poster.webp`
 
-## Editorial and capture logic
+**Duration:** 12.958 seconds
 
-- The sequence is **problem awareness → national/province comparisons → local view → multiple evidence layers → CTA runway**.
-- It does **not** document one continuous country → province → local interaction. Caption it as movement between evidence scales/views, not as a literal drill-down, unless a same-dataset live drill-down is captured later.
-- Every scene is derived from a real public CityMETER screenshot; no generative, stock, or simulated map image is used. The release keeps only the governed v2 reel/poster and card-preview derivatives.
-- Source screenshots are 1363 × 936. Each is fitted intact to a 1280 × 720 foreground, with a subdued blurred duplicate behind it to fill the 16:9 canvas. This preserves the header, map, right evidence pane, bottom legend/chart, and satellite attribution rather than cover-cropping them away.
-- Motion is editorial Ken Burns movement over still evidence. It must not be described as a recorded live interaction. Transitions are 0.20 s and total runtime is 17.2 s.
-- App overlay copy should remain short, occupy a governed safe area, and never cover the dataset heading, selected controls, map legend, source/attribution, date, limitation, or material KPI context.
+**Playback:** muted, plays inline, autoplay, continuous loop by default, one Pause/Play control
 
-## Playback contract for the app
+**Accessibility:** a reduced-motion preference keeps the static poster instead of forcing motion
 
-- Web: `muted`, `playsinline`, pause control available, no information dependent on sound.
-- Reduced motion: do not autoplay; show `citymeter-proof-v2-poster.webp`.
-- Do not use `object-fit: cover` on narrow breakpoints because it can remove the evidence pane, legends, or attribution. Prefer `contain` or the poster with an appropriate background surface.
-- Keep the bilingual caption outside the video element so Thai and English remain sibling drafts from the same beat/evidence record.
+The reel contains no baked language text. The landing page owns the Thai/English chapter copy, transcript and single playback control.
 
-## Asset limitations and release blockers
+## Final chapter order
 
-1. The reel is assembled from still captures, so apparent movement is pan/zoom—not a live product gesture, province selection, or dataset query.
-2. `locale-insights.jpg` is visually useful for the scale transition but is not a completed locale result; its right pane explicitly asks the user to select a locale.
-3. Road DNA and Locale Insights include a satellite basemap. Provider attribution remains visible, but marketing reuse still needs a separate terms/rights check.
-4. Flood frames are lifecycle context only. Their source, model, timestamp, uncertainty, validation, and no-data semantics are not fully communicated by the reel; the landing page must not make safety or emergency claims from them.
-5. Dynamic figures in screenshots are capture-time observations, not evergreen claims. Re-capture and re-verify before a major campaign or when the live interface changes.
-6. The images include the current live Landometer/CityMETER header treatment. Its presence in a screenshot is documentary product evidence, not a replacement for the landing page's separately approved DS 0.8.9 header lockup.
-7. The poster is a Road DNA frame because it is the strongest stable local proof, but the surrounding page must preserve the Low Confidence/diagnostic framing and must not turn “Good Location Ratio” into an absolute recommendation.
+| Time | Real dark-theme source | Marketing job | Evidence boundary |
+|---:|---|---|---|
+| 0.00–3.15 | `population-age-sex.webp` | Open with the people base: registered population, age–sex structure, density and time | Registered population is not daytime, resident or live population. The reference month must remain visible. |
+| 3.15–6.30 | `buildings.webp` | Complete chapter 1 by pairing population with GFA, building count, height and floors | Open Buildings is not a building register and does not prove a complete verified footprint for every structure. |
+| 6.30–9.45 | `municipal-revenue.webp` | Move from market/development context to local public-finance capacity | Per-person and per-area measures are CityMETER calculations; revenue is not service quality or fiscal health by itself. |
+| 9.45–12.95 | `tourism-demand-spending.webp` | End with an intuitive demand story: visitors, spending, seasonality and province comparison | Visitor counts are not unique people. Figures may be revised and must retain source definitions. |
 
-## Verification record
+Chapter 1 is deliberately a two-scene chapter: **Population + Building**. The page progress indicator therefore has three steps even though the video contains four source screens.
 
-Run the following against the delivered MP4 before release:
+## Editorial construction
 
-```sh
-ffprobe -v error \
-  -show_entries format=duration,size,format_name \
-  -show_entries stream=codec_name,profile,width,height,pix_fmt,r_frame_rate,avg_frame_rate,field_order \
-  -of json public/media/reel/citymeter-proof-v2.mp4
-```
+- Every frame comes from a settled, real CityMETER screen captured in dark theme on 14 August 2026.
+- Each 1363×936 screen is fitted intact over a blurred dark derivative in a 1280×720 frame; no evidence pane, legend or attribution is stretched.
+- Motion is restrained Ken Burns movement over still evidence, with 0.35-second fades. It must not be described as a recording of one continuous live drill-down.
+- The mobile page keeps the single Pause/Play button over the media and moves the real-screen label, three-step progress and chapter copy into a reserved panel below the video.
+- Ordinary web and exhibition modes both loop. No information depends on sound.
 
-Expected web essentials: H.264 High, 960 × 540, yuv420p, 24/1 fps, progressive, duration about 17.2 s, no audio stream. The exhibition encode keeps the same runtime and frame rate at 1280 × 720.
+## Verification
 
-**SHA-256 at build time**
+| Asset | Codec / size | FPS | Duration | SHA-256 |
+|---|---|---:|---:|---|
+| Web MP4 | H.264 High, 960×540, yuv420p | 24 | 12.958 s | `19e5c8cb84d11ba03a4a050e109c96e167e809b0c331dab416d551489945346d` |
+| Exhibition MP4 | H.264 High, 1280×720, yuv420p | 24 | 12.958 s | `fe80212472dc2980213674d956cae43d26149d030abc3dad388b81bc48f112fe` |
+| Poster | WebP, 1280×720 | — | — | `82a32332ebe27e33f1d355059381613ae7f39d207449e9aac4658f407bb7e361` |
 
-- Web MP4: `89c64de275a436e4cae9743da73caa2916eb679b66145f39be3ab022cf2183d9`
-- Exhibition MP4: `d2e4ca2bfe55477d2ac527eb0001aeef2f5719c30280ac831dffaf6417c306d8`
-- Poster: `e1d4b3f47acb94651803f9a46d38c2462895a05e239ba0ae89cf5291fbd10d29`
+The first poster frame is Population. Building follows within the same first chapter, so the opening promise remains Population + Building without fabricating a split-screen dashboard.
