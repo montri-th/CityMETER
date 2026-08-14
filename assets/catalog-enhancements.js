@@ -715,17 +715,27 @@
 
   async function start() {
     installResponsiveMotion();
-    applyEnhancements();
-    new MutationObserver(scheduleEnhancements).observe(document.getElementById("root") || document.body, { childList: true, subtree: true });
-    try {
-      const response = await fetch(`${assetBase}data/catalog-source-review.json`, { cache: "no-cache" });
+    const registryResult = fetch(`${assetBase}data/catalog-source-review.json`, { cache: "no-cache" }).then(async (response) => {
       if (!response.ok) throw new Error(`Source registry returned ${response.status}`);
-      const registry = await response.json();
-      recordById = new Map(registry.records.map((record) => [record.id, record]));
-      applyEnhancements();
-    } catch (error) {
-      console.error("CityMETER source-registry enhancements are unavailable", error);
-    }
+      return { registry: await response.json() };
+    }).catch((error) => ({ error }));
+
+    const enhanceAfterHydration = () => requestAnimationFrame(() => {
+      requestAnimationFrame(async () => {
+        applyEnhancements();
+        new MutationObserver(scheduleEnhancements).observe(document.getElementById("root") || document.body, { childList: true, subtree: true });
+        const { registry, error } = await registryResult;
+        if (error) {
+          console.error("CityMETER source-registry enhancements are unavailable", error);
+          return;
+        }
+        recordById = new Map(registry.records.map((record) => [record.id, record]));
+        applyEnhancements();
+      });
+    });
+
+    if (document.readyState === "complete") enhanceAfterHydration();
+    else window.addEventListener("load", enhanceAfterHydration, { once: true });
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
