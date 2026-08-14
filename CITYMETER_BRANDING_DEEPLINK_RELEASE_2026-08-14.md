@@ -10,7 +10,9 @@
 
 **Revision strict 320 px containment (`v13`) + base-font deduplication (`v2`):** Published to GitHub Pages at commit `f83115747047af83bb212b1f7e352b6d419dc22c`; automated gates และ production QA สำหรับ observable/source contracts ผ่าน โดยมีข้อจำกัดของ English `FontFaceSet` proxy ที่บันทึกไว้ด้านล่าง
 
-**Revision ปัจจุบัน — true-edge radial + scroll-end containment + concise contact heading:** local source changes prepared; ยังไม่ commit, publish หรือทำ live browser QA
+**Revision true-edge radial + scroll-end containment + concise contact heading:** Published to GitHub Pages at commit `418c591c641d28d1763dd6dfbcb3a8cbe5621dd5`; deployment run `31819904277` completed successfully และ production browser QA ผ่านตาม receipt ด้านล่าง
+
+**Revision ปัจจุบัน — Land Appraisal social share card:** เตรียม source และ local gates แล้ว; ยังไม่ publish หรือทำ production metadata/image QA
 
 ## สิ่งที่ผู้ชมเห็น
 
@@ -36,7 +38,8 @@
   - `benefitTh` และ `benefitEn` มีครบ 38 รายการและไม่ใช้ข้อความ placeholder ซ้ำกัน
   - เปลี่ยนหัวข้อภายในจากศัพท์ audit เช่น `exact public lineage` และ `candidate` เป็นภาษาที่คนทั่วไปอ่านรู้เรื่อง โดยยังเก็บขอบเขตหลักฐานและลิงก์ต้นทางไว้
   - สีของสถานะใช้ semantic token ตาม Design System และตัดค่าสีเดิม `#9F78D8`, `#D89A27` และ `#36B9CC` ออกจาก enhancement layer
-- คง Landometer เป็นแบรนด์หลักและไม่เปลี่ยนวิดีโอ ภาพ snapshot, canonical route, QR หรือไฟล์โลโก้ PNG ใน revision นี้
+- คง Landometer เป็นแบรนด์หลักและไม่เปลี่ยนวิดีโอ ภาพ preview ใน catalog, canonical route, QR หรือไฟล์โลโก้ PNG ใน revision นี้
+- เปลี่ยน Open Graph/Twitter share card ของทั้งสองภาษาเป็น `media/social/citymeter-land-appraisal-share-2026-08-14.jpg` ซึ่ง crop จากภาพหน้าจอ Land Appraisal จริงแบบ 1200 × 630 เห็นแท่งข้อมูลสามมิติบนแผนที่ โดยไม่วาดหรือเติมข้อมูลใหม่; alt text แยกภาษาไทย/อังกฤษ
 - ปรับหัวข้อส่วนติดต่อให้กระชับและตรงกับ CTA: ภาษาไทย `คุยกับทีม Landometer`; ภาษาอังกฤษ `Talk to the Landometer team`; ข้อความบนปุ่มเดิมไม่เปลี่ยน
 - เริ่ม enhancement หลัง `window.load`, รอขั้นต่ำ 1 วินาทีและช่วง DOM นิ่ง 250 ms แล้วเว้นอีกสอง animation frames ก่อนแก้ DOM เพื่อลด race กับ React hydration โดยการแสดง headline/lockup ไม่ขึ้นกับความสำเร็จของ registry fetch
 - รักษา prerendered focused-card copy ให้ตรงกับ React baseline แล้วค่อย apply ข้อความพื้นที่เฉพาะหลัง hydration เพื่อไม่ให้เกิด text-hydration warning
@@ -159,11 +162,27 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - application-origin console errors: 0; error ที่เห็นมีเฉพาะ extension metadata origin
 - Production QA result: passed for observable/source contracts, with the English `FontFaceSet` proxy limitation above
 
-### Production QA receipt for the current true-edge radial + scroll-end + contact-heading revision
+### Production QA receipt for the previous true-edge radial + scroll-end + contact-heading revision
 
-- QA target commit: pending — ยังไม่ commit หรือ publish
-- GitHub Pages run: pending — ยังไม่มี deployment run สำหรับ CSS `v14`, main bundle `v5` และ receipt `2026-08-14-radial-edge-scroll-end-cta`
-- Live browser QA: pending — ต้องตรวจหน้าไทย/อังกฤษแบบ cold load, true-edge radial ทั้ง hero/footer และ light/dark, footer geometry/elastic overscroll, contact heading ก่อนและหลัง hydration, responsive matrix และ application-origin console หลัง Pages สำเร็จ
+- QA target commit: `418c591c641d28d1763dd6dfbcb3a8cbe5621dd5`; tree `8a779adc8813b8066c9b3597ba60502ce8fe559c`
+- GitHub Pages run: `31819904277` (run number 27) — completed / success; created `2026-08-14T16:33:34Z`; updated `2026-08-14T16:34:09Z`
+- Cold load หน้าไทยและอังกฤษโหลด enhancement CSS `v14`, enhancement JS `v15`, main bundle `v5` และ receipt `2026-08-14-radial-edge-scroll-end-cta` ตรงกัน
+- ทั้งสอง route แสดงการ์ด 38, source review 38 และ benefit 38 รายการ; filter เปลี่ยนจำนวน 38 → 12 → 38 โดย review/benefit ยังเท่ากับจำนวนการ์ด และ supporter groups/cells คงที่ 2/6
+- วงกลมโลโก้ทั้ง 6 วัดได้ 112 × 112 px บน desktop ใช้ `circle closest-side` จาก white alpha `.5` ถึง `0` ที่ขอบวง ไม่มี border หรือ box-shadow และโหลด asset ครบทั้ง 6 หลัง footer lazy load
+- `html` และ `body` ใช้ `overscroll-behavior-y: none`; เมื่อเลื่อนถึงท้ายหน้า ขอบล่างของ footer อยู่ตรง maximum scroll ภายใน ±0.5 px
+- Responsive matrix 320, 390, 430, 720, 900, 901, 1120 และ 1440 px ให้ `scrollWidth == clientWidth`, footer gap อยู่ภายใน ±0.5 px และวงกลมทั้งหมดผ่าน geometry/containment check; viewport ที่ประกาศ 320 px มี usable `clientWidth` 305 px จาก classic scrollbar
+- หน้าไทยมี heading และปุ่ม `คุยกับทีม Landometer` ตรงกันและใช้ canonical Thai fonts; หน้าอังกฤษมี heading และปุ่ม `Talk to the Landometer team` ตรงกัน
+- Light/dark คง governed Measure deep hero gradient และ footer surfaces ที่ถูกต้อง
+- Production QA result: passed for the observable contracts above. Receipt นี้ไม่ได้อ้างว่าได้ทดสอบ native elastic pull ด้วย Mac/Safari; ยังแนะนำ manual Mac/Safari trackpad smoke check
+
+### Current Land Appraisal social-card release
+
+- Release receipt: `2026-08-14-land-appraisal-share`
+- Asset: `media/social/citymeter-land-appraisal-share-2026-08-14.jpg`, 1200 × 630 JPEG, deterministic SHA-256 `cadc66644987afa5abb29dbe720adc9302fe276b12d64172e794dd4e6ddabd88`
+- ทั้ง `index.html` และ `en/index.html` ใช้ asset เดียวกันครบ `og:image`, `og:image:secure_url` และ `twitter:image`; alt text เป็นภาษาของ route
+- Cache ของ base CSS `v2`, font CSS `v1`, enhancement CSS `v14`, enhancement JS `v15` และ main bundle `v5` ไม่เปลี่ยน เพราะ delta นี้อยู่ใน HTML metadata และไฟล์ภาพใหม่
+- Local validator, migration two-run idempotency, syntax checks และ deterministic image regeneration: passed
+- QA target commit, GitHub Pages run และ production metadata/image QA: pending จนกว่าจะ publish bytes ชุดนี้
 
 ## ไฟล์ส่งมอบหลัก
 
@@ -183,6 +202,7 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - `media/supporters/depa.png`
 - `media/supporters/dsure-software.png`
 - `media/supporters/digital-service-account.png`
+- `media/social/citymeter-land-appraisal-share-2026-08-14.jpg`
 - `scripts/split-supporter-logos.sh`
 - `media/qr/*.png`
 - `CITYMETER_BRANDING_DEEPLINK_RELEASE_2026-08-14.md`

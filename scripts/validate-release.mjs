@@ -46,6 +46,29 @@ function pngInfo(path) {
   };
 }
 
+function jpegInfo(path) {
+  const bytes = readFileSync(path);
+  assert(bytes[0] === 0xff && bytes[1] === 0xd8, `Not a JPEG: ${path}`);
+  const startOfFrameMarkers = new Set([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf]);
+  let offset = 2;
+  while (offset + 8 < bytes.length) {
+    while (bytes[offset] === 0xff) offset += 1;
+    const marker = bytes[offset];
+    offset += 1;
+    if (marker === 0xd9 || marker === 0xda) break;
+    const segmentLength = bytes.readUInt16BE(offset);
+    assert(segmentLength >= 2 && offset + segmentLength <= bytes.length, `Malformed JPEG segment: ${path}`);
+    if (startOfFrameMarkers.has(marker)) {
+      return {
+        width: bytes.readUInt16BE(offset + 5),
+        height: bytes.readUInt16BE(offset + 3)
+      };
+    }
+    offset += segmentLength;
+  }
+  throw new Error(`JPEG dimensions not found: ${path}`);
+}
+
 const supporterAssets = [
   {
     path: "media/supporters/depa.png",
@@ -151,9 +174,16 @@ for (const page of ["index.html", "en/index.html"]) {
   assert(html.includes("index-qbT50gkr-v3.js?v=5"), `${page} must load the concise contact-title bundle revision`);
   assert((html.match(/index-qbT50gkr-v3\.js\?v=\d+/g) || []).join() === "index-qbT50gkr-v3.js?v=5", `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes('name="citymeter:release-receipt" content="2026-08-14-radial-edge-scroll-end-cta"'), `${page} is missing the final release receipt`);
+  assert(html.includes('name="citymeter:release-receipt" content="2026-08-14-land-appraisal-share"'), `${page} is missing the final release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
-  assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
+  const socialCard = "https://montri-th.github.io/CityMETER/media/social/citymeter-land-appraisal-share-2026-08-14.jpg";
+  const socialAlt = page === "index.html"
+    ? "หน้าจอ CityMETER แสดงราคาประเมินที่ดินด้วยแท่งข้อมูลสามมิติบนแผนที่"
+    : "CityMETER Land Appraisal screen showing 3D data columns on a map";
+  assert((html.match(/citymeter-land-appraisal-share-2026-08-14\.jpg/g) || []).length === 3, `${page} must use the Land Appraisal social card for OG, secure OG and Twitter`);
+  assert(html.includes(`property="og:image"\n      content="${socialCard}"`) && html.includes(`property="og:image:secure_url" content="${socialCard}"`) && html.includes(`name="twitter:image" content="${socialCard}"`), `${page} social card URLs are incomplete`);
+  assert(html.includes(`property="og:image:alt" content="${socialAlt}"`) && html.includes(`name="twitter:image:alt" content="${socialAlt}"`), `${page} social card alt text is stale`);
+  assert(!html.includes("citymeter-share-2026-08-14.jpg"), `${page} still references the retired tourism social card`);
   assert(html.includes('property="og:image:width" content="1200"'), `${page} is missing the OG image width`);
   assert(html.includes('property="og:image:height" content="630"'), `${page} is missing the OG image height`);
   assert(html.includes('name="twitter:card" content="summary_large_image"'), `${page} is missing the Twitter card`);
@@ -234,7 +264,7 @@ for (const asset of [
   "media/reel/citymeter-proof-v3.mp4",
   "media/reel/citymeter-proof-v3-exhibition.mp4",
   "media/reel/citymeter-proof-v3-poster.webp",
-  "media/social/citymeter-share-2026-08-14.jpg"
+  "media/social/citymeter-land-appraisal-share-2026-08-14.jpg"
 ]) {
   assert(existsSync(join(root, asset)) && statSync(join(root, asset)).size > 0, `Missing release asset: ${asset}`);
 }
@@ -328,7 +358,10 @@ for (const priorVersion of [2, 3, 4]) {
     `Release migration must retain the main bundle v${priorVersion} -> v5 upgrade`
   );
 }
-assert(releaseMigration.includes("2026-08-14-radial-edge-scroll-end-cta"), "Release migration must bind the current receipt");
+assert(releaseMigration.includes("2026-08-14-land-appraisal-share"), "Release migration must bind the current receipt");
+assert(releaseMigration.includes('.replaceAll("citymeter-share-2026-08-14.jpg", "citymeter-land-appraisal-share-2026-08-14.jpg")'), "Release migration must replace the retired tourism social card");
+assert(releaseMigration.includes('หน้าจอ CityMETER แสดงราคาประเมินที่ดินด้วยแท่งข้อมูลสามมิติบนแผนที่'), "Release migration must set the Thai Land Appraisal social alt text");
+assert(releaseMigration.includes('CityMETER Land Appraisal screen showing 3D data columns on a map'), "Release migration must set the English Land Appraisal social alt text");
 assert(releaseMigration.includes('["คุยกับทีม Landometer ว่าควรเริ่มตรวจข้อมูลชุดไหน", "คุยกับทีม Landometer"]'), "Release migration must shorten the Thai contact title");
 assert(releaseMigration.includes('["Ask the Landometer team where to start", "Talk to the Landometer team"]'), "Release migration must keep the English contact title in parity");
 assert(releaseMigration.includes('<h1 id="page-title" lang="en">') && releaseMigration.includes('<a class="citymeter-label" href="#top" lang="en">'), "Release migration must preserve static language metadata");
@@ -695,6 +728,15 @@ assert(
   sha256(join(root, "media/depa-dsure-tdc-lockup.png")) === "804506f124cdb55dc14918b6eb64f7c2bd9badd29fc33fcfddeee5b62b07932c",
   "Supporter source lockup must preserve the owner-supplied PNG bytes"
 );
+assert(
+  sha256(join(root, "media/social/citymeter-land-appraisal-share-2026-08-14.jpg")) === "cadc66644987afa5abb29dbe720adc9302fe276b12d64172e794dd4e6ddabd88",
+  "Land Appraisal social card bytes changed; regenerate with the approved deterministic crop"
+);
+const landAppraisalSocialCardInfo = jpegInfo(join(root, "media/social/citymeter-land-appraisal-share-2026-08-14.jpg"));
+assert(
+  landAppraisalSocialCardInfo.width === 1200 && landAppraisalSocialCardInfo.height === 630,
+  "Land Appraisal social card must decode to 1200x630"
+);
 
 for (const asset of supporterAssets) {
   const path = join(root, asset.path);
@@ -704,4 +746,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: strict 320px iframe containment, root scroll-end containment, deduplicated base CSS v2 font declarations, canonical typography with no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe main bundle v5, exact Measure deep shell, five muted section surfaces per theme, six true-edge 50%-to-0% radial logo circles, concise bilingual contact titles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
+console.log("CityMETER release validation passed: deterministic 1200x630 Land Appraisal social card, strict 320px iframe containment, root scroll-end containment, deduplicated base CSS v2 font declarations, canonical typography with no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe main bundle v5, exact Measure deep shell, five muted section surfaces per theme, six true-edge 50%-to-0% radial logo circles, concise bilingual contact titles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");

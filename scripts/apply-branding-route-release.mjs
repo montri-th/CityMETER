@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const releaseReceipt = "2026-08-14-radial-edge-scroll-end-cta";
+const releaseReceipt = "2026-08-14-land-appraisal-share";
 
 const routes = new Map(Object.entries({
   "dataset-buildings": "https://landometer.com/v3/citymeter-3d/BKK/L/8b60964e-0c26-408e-95f6-e3f46fe37d46?d=building",
@@ -170,6 +170,9 @@ function updatePage(page) {
     .replace("Before you decide on a place,\nsee more than pins on a map", "CityMETER")
     .replace("คุยกับทีม Landometer ว่าควรเริ่มตรวจข้อมูลชุดไหน", "คุยกับทีม Landometer")
     .replace("Ask the Landometer team where to start", "Talk to the Landometer team")
+    .replaceAll("citymeter-share-2026-08-14.jpg", "citymeter-land-appraisal-share-2026-08-14.jpg")
+    .replaceAll("หน้าจอ CityMETER แสดงข้อมูลการท่องเที่ยวบนแผนที่ประเทศไทย", "หน้าจอ CityMETER แสดงราคาประเมินที่ดินด้วยแท่งข้อมูลสามมิติบนแผนที่")
+    .replaceAll("CityMETER screen showing tourism data across Thailand", "CityMETER Land Appraisal screen showing 3D data columns on a map")
     .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements.css?v=14")
     .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements.css?v=14")
     .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements.css?v=14")
@@ -286,4 +289,4 @@ updatePage("index.html");
 updatePage("en/index.html");
 updateHydratedBundle();
 
-console.log("Applied CityMETER headline, deduplicated base CSS v2 and enhancement CSS v14 cache contracts, canonical fonts, true-edge radial supporter logos, scroll-end containment, concise contact CTA, 38 canonical routes, hydration parity and benefit-first source details.");
+console.log("Applied CityMETER headline, deduplicated base CSS v2 and enhancement CSS v14 cache contracts, canonical fonts, true-edge radial supporter logos, scroll-end containment, concise contact CTA, Land Appraisal social card, 38 canonical routes, hydration parity and benefit-first source details.");

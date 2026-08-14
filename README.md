@@ -18,6 +18,7 @@
 - 5 decision intents สำหรับการลงทุน/พัฒนา การเลือกทำเล การประเมินความเสี่ยง การวางบริการ และงานวิเคราะห์
 - สีพื้นของแต่ละช่วงใช้ surface token คนละบทบาท—canvas, blue tint, beige tint, soft และ alt—ทั้ง light/dark เพื่อให้หน้าแบ่งจังหวะชัดขึ้นโดยยังคงสีเงียบและอ่านง่าย
 - Hero และ mobile handoff ใช้ Design System v0.8.9 `atmosphere.gradient.measure.deep` แบบเดียวกัน: `linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)` พร้อม foreground แบบ onDeep
+- Social share card ใช้ภาพหน้าจอ Land Appraisal จริงที่แสดงแท่งข้อมูลสามมิติบนแผนที่ ตัดเป็น 1200 × 630 แบบ crop-only โดยไม่วาดหรือเติมข้อมูลใหม่
 - ฟอนต์ใช้ canonical role แยกหน้าที่: Arvo สำหรับ display ภาษาอังกฤษ, IBM Plex Sans Thai Looped สำหรับหัวข้อไทย, Bai Jamjuree สำหรับ body และ JetBrains Mono + IBM Plex Sans Thai สำหรับ technical label; ทุก webfont subset ระบุ `unicode-range` และไม่มี Sarabun ใน shipped font contract
 - Compiled base CSS เหลือเฉพาะ Arvo และ JetBrains Mono; legacy `@font-face` ของ Bai Jamjuree/IBM Plex Sans Thai Looped ที่ไม่มี `unicode-range` ถูกตัดออก เพื่อให้ canonical font stylesheet เป็นผู้ประกาศสองตระกูลนี้เพียงชั้นเดียวและไม่ทำให้ Safari เลือก face กำกวม
 - Critical font preload แยกตาม route: หน้าไทยโหลด Arvo Latin, Bai Jamjuree Thai 400/600, JetBrains Mono Latin และ IBM Plex Sans Thai Thai 400; หน้าอังกฤษโหลด Arvo Latin, Bai Jamjuree Latin 400/600 และ JetBrains Mono Latin
@@ -42,7 +43,7 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 - `assets/citymeter-fonts.css` — canonical Design System typography roles, Thai/Latin subset coverage and line-height contract; the IBM Plex Sans Thai 400 subset assets are immutable hash-suffixed WOFF2 files
 - `assets/font-assets.manifest.json` / `assets/font-license-records.json` — six semantic face records covering 18 hash-verified webfont files and four OFL-1.1 license receipts
 - `data/catalog-source-review.json` — bilingual 38-record source ledger พร้อมข้อความ reader benefit เฉพาะรายการ reviewed on 14 August 2026
-- `media/` — owner-supplied Landometer logo, optimized GD Catalog logo, 38 dark previews, 38 QR assets, governed concept illustrations and the three-chapter web/exhibition reel
+- `media/` — owner-supplied Landometer logo, optimized GD Catalog logo, 38 dark previews, 38 QR assets, governed concept illustrations, Land Appraisal social card and the three-chapter web/exhibition reel
 - `scripts/generate-qr-assets.mjs` — reproducible dataset-URL QR generator
 - `CityMETER_Landing_Page_Prototype_DS_0.8.9.html` — lightweight noindex entry file ที่พาไปยัง static showcase หลัก
 - `design-qa.md` / `qa/` — visual QA evidence ที่ 1920×1080, desktop และ mobile
@@ -53,7 +54,11 @@ This public preview is aligned with Landometer Design System v0.8.9 and is index
 
 The previous published release was deployed from commit `f83115747047af83bb212b1f7e352b6d419dc22c` (tree `1969e8a0ec0289b8335188a243a07b7f2a4c93eb`) through successful GitHub Pages run `31814244403` (#25). Its production receipt remains historical evidence for base CSS `v2`, enhancement CSS `v13`, font CSS `v1`, enhancement JS `v15`, main bundle `v4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`.
 
-The current local release contract is base CSS `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=14`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=5`, and receipt `2026-08-14-radial-edge-scroll-end-cta`. Commit, GitHub Pages run and live browser QA are pending and must be recorded only after these exact bytes are published.
+The previous published release was deployed from commit `418c591c641d28d1763dd6dfbcb3a8cbe5621dd5` (tree `8a779adc8813b8066c9b3597ba60502ce8fe559c`) through successful GitHub Pages run `31819904277` (#27), created `2026-08-14T16:33:34Z` and updated `2026-08-14T16:34:09Z`. Its release contract retained base CSS `index-cqxdfePB.css?v=2` and font CSS `citymeter-fonts.css?v=1`; Thai and English cold loads matched enhancement CSS `catalog-enhancements.css?v=14`, enhancement JS `catalog-enhancements.js?v=15`, main bundle `v=5`, and receipt `2026-08-14-radial-edge-scroll-end-cta`.
+
+Production QA returned 38 cards, 38 source reviews and 38 benefits on both routes. Filtering changed the set from 38 to 12 and back to 38 while preserving review/benefit parity and the two supporter groups with six cells. The 320, 390, 430, 720, 900, 901, 1120 and 1440 px matrix reported `scrollWidth == clientWidth`, footer-end geometry within ±0.5 px and valid circles; the declared 320 px case had 305 px of usable width because of the classic scrollbar. All six desktop circles measured 112 × 112 px, loaded their lazy assets and preserved the `closest-side` white-alpha `.5` to `0` fade without border or shadow. Thai and English contact headings/buttons matched their approved copy, Thai used the canonical fonts, and the governed hero gradient plus light/dark footer surfaces remained unchanged. A manual Mac/Safari elastic-pull check remains recommended and is not claimed by this receipt.
+
+The current local delta changes only the social metadata/asset and release receipt to `2026-08-14-land-appraisal-share`. Both routes now reference `media/social/citymeter-land-appraisal-share-2026-08-14.jpg`, a deterministic 1200 × 630 crop of the real Land Appraisal preview. Commit, Pages run and production metadata/image QA are pending until these exact bytes are published.
 
 Once merged, the static files publish from `main` through GitHub Pages. Before the production-domain cutover, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and clear product/satellite screenshot reuse rights.
 

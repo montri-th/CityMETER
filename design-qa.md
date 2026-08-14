@@ -178,21 +178,36 @@ current hotfix result: passed for observable/source contracts; English `FontFace
 - Change each supporter plate to `circle closest-side`, preserving centre white alpha `.5` while reaching `rgba(255,255,255,0)` at the visible circular edge.
 - Preserve the existing document geometry, which already ends at the footer, and set `overscroll-behavior-y: none` on both `html` and `body` to suppress native elastic root overscroll without clipping vertical content.
 - Set `h2#contact-title` to exactly `คุยกับทีม Landometer` on the Thai route and `Talk to the Landometer team` on the English route. Keep the primary button copy unchanged and preserve static/hydrated parity.
+- Replace the tourism social preview with a deterministic 1200 × 630 crop of the real Land Appraisal screen, preserving the 3D data columns, map context and module sidebar without synthetic image edits.
 
 ### Source-level acceptance contract
 
-- Cache and receipt: Thai and English load base CSS `v2`, enhancement CSS `v14`, font CSS `v1`, enhancement JS `v15`, main bundle `v5`, and receipt `2026-08-14-radial-edge-scroll-end-cta` exactly once.
+- Cache and receipt: Thai and English load base CSS `v2`, enhancement CSS `v14`, font CSS `v1`, enhancement JS `v15`, main bundle `v5`, and receipt `2026-08-14-land-appraisal-share` exactly once.
 - Radial geometry: six equal circular cells retain the shared diameter, square aspect ratio, 50% radius, transparent PNG containment and no border/box-shadow; the exact background uses `circle closest-side` from white alpha `.5` at 0% to white alpha `0` at 100%.
 - Scroll end: `html` and `body` consume `overscroll-behavior-y: none`; `body { min-width: 0; }`, responsive footer reflow and normal vertical content flow remain intact. No `overflow-y` clipping or fixed footer/document height is introduced.
 - Contact parity: both prerendered HTML routes and active hydrated bundle contain the approved contact title, retain the existing primary CTA, and exclude the retired long title. The inactive original bundle remains provenance and is not a runtime target.
 - Migration: enhancement CSS revisions `v5` through `v13` upgrade to `v14`; active main revisions `v2` through `v4` upgrade to `v5`; both old contact titles migrate idempotently; base/font/enhancement-JS versions remain unchanged.
+- Social metadata: both routes use the Land Appraisal card exactly three times across OG, secure OG and Twitter; 1200 × 630 metadata and localized alt text match; the old tourism-card path is absent. The JPEG SHA-256 is locked to `cadc66644987afa5abb29dbe720adc9302fe276b12d64172e794dd4e6ddabd88`.
 - Carried gates: strict 320 px containment, exact Measure deep, five muted surfaces, font manifest/licenses/preloads, 38 unique bilingual benefits, benefit-first `r4`, canonical routes and immutable media/logo hashes remain enforced.
 
-### Local and production status
+### Previous production status — radial/scroll/contact revision
 
-- Local syntax, full validator, two-run migration idempotency and `git diff --check`: pending final gate after source and validator settle.
-- QA target commit: pending — not committed or published.
+- QA target commit: `418c591c641d28d1763dd6dfbcb3a8cbe5621dd5`; tree `8a779adc8813b8066c9b3597ba60502ce8fe559c`.
+- GitHub Pages deployment run `31819904277` (run number 27): completed / success; created `2026-08-14T16:33:34Z`, updated `2026-08-14T16:34:09Z`.
+- Thai and English cold loads used enhancement CSS `v14`, enhancement JS `v15`, main bundle `v5` and receipt `2026-08-14-radial-edge-scroll-end-cta`.
+- Each route produced 38 cards, 38 source reviews and 38 benefits. Filtering changed the set from 38 to 12 and restored 38 with review/benefit parity and supporter group/cell counts fixed at 2/6.
+- All six supporter assets loaded after footer lazy load. Desktop cells measured 112 × 112 px and used the exact `circle closest-side` white-alpha `.5` to `0` fade with no border or box-shadow.
+- Computed `overscroll-behavior-y` was `none` on both `html` and `body`. At maximum scroll, footer-bottom alignment remained within ±0.5 px.
+- The same-origin matrix at 320, 390, 430, 720, 900, 901, 1120 and 1440 px returned `scrollWidth == clientWidth`, footer-end gaps within ±0.5 px and valid circle geometry/containment. The declared 320 px viewport had 305 px of usable `clientWidth` because of the classic scrollbar.
+- Thai heading and primary button were exactly `คุยกับทีม Landometer` and canonical Thai fonts rendered correctly. English heading and primary button were exactly `Talk to the Landometer team`.
+- Light and dark retained the governed Measure deep hero gradient and the correct footer surfaces.
+- Remaining manual recommendation: native elastic pull was not exercised on Mac/Safari, so this receipt does not claim that platform-specific smoke pass.
+
+### Current local and production status — Land Appraisal social card
+
+- Deterministic crop regenerated twice with byte-identical SHA-256; HTML/migration/validator changes pass syntax, two-run migration idempotency, full release validation and `git diff --check`.
+- QA target commit: pending.
 - GitHub Pages deployment run: pending.
-- Live browser QA: pending. Verify cold TH/EN cache/receipt, static-to-hydrated contact-title parity, six true-edge radial cells in hero/footer across light/dark, and application-origin console/network health. At 320, 390, 430, 720, 900, 901, 1120, 1363 and 1440 px, after footer lazy images, filter/search reset and details reflow, require `abs(document.scrollingElement.scrollHeight - (footer.getBoundingClientRect().bottom + scrollY)) <= 1` and footer alignment at maximum scroll. A manual Mac trackpad pull is required to confirm native elastic overscroll suppression.
+- Production metadata and image fetch QA: pending. Confirm both routes expose receipt `2026-08-14-land-appraisal-share`, all social URLs and localized alt text, and the deployed JPEG decodes at 1200 × 630.
 
-current release result: local gates and production QA pending
+current release result: local gates passed; publish and production metadata/image QA pending
