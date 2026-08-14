@@ -22,6 +22,28 @@
   min-width: 0;
 }
 
+.dataset-card > .dataset-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataset-card .dataset-open {
+  order: 1;
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+}
+
+.dataset-card .dataset-details {
+  order: 2;
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
 .dataset-card > .dataset-image {
   height: auto !important;
   aspect-ratio: 16 / 10;
@@ -264,6 +286,88 @@
   display: contents;
 }
 
+/* Marketing actions use two silhouettes only: circles for icon-only controls,
+   capsules for every control with a text label. */
+.button,
+.share-action,
+.inline-action,
+.hero-text-link,
+.group-filters button,
+.source-link,
+.dataset-mobile-link,
+.related-records a,
+.source-summary,
+.preview-focus-label,
+.live-example-label {
+  border-radius: 999px !important;
+}
+
+.share-action,
+.inline-action,
+.hero-text-link {
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid currentColor;
+  text-decoration: none;
+}
+
+.quiet-control,
+.theme-switch button,
+.playback-control,
+.intent-tab .intent-icon {
+  border-radius: 50% !important;
+}
+
+.theme-switch {
+  border-radius: 999px !important;
+}
+
+.intent-tab {
+  border-radius: 999px;
+  padding-inline: 14px;
+}
+
+.hero-page-qr {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 20px;
+  padding: 9px 16px 9px 9px;
+  border: 1px solid rgba(255, 255, 255, .38);
+  border-radius: 18px;
+  background: rgba(7, 37, 47, .42);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .14);
+  backdrop-filter: blur(10px);
+}
+
+.hero-page-qr-image {
+  display: block;
+  width: 112px;
+  height: 112px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #fcfcfa;
+}
+
+.hero-page-qr-copy {
+  display: grid;
+  gap: 4px;
+  line-height: 1.35;
+}
+
+.hero-page-qr-copy strong {
+  font-size: .95rem;
+}
+
+.hero-page-qr-copy span {
+  color: rgba(255, 255, 255, .76);
+  font-size: .78rem;
+}
+
 @media (max-width: 1120px) {
   .dataset-grid {
     column-count: 2;
@@ -397,6 +501,16 @@
     grid-template-columns: 112px 1fr;
     gap: 13px;
     padding: 13px;
+  }
+
+  .hero-page-qr {
+    grid-template-columns: 96px minmax(0, 1fr);
+    margin-inline: auto;
+  }
+
+  .hero-page-qr-image {
+    width: 96px;
+    height: 96px;
   }
 }
 

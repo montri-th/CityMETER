@@ -46,4 +46,30 @@ for (const record of review.records) {
   }
 }
 
-console.log(`Generated ${review.records.length} dataset QR assets in ${outputDir}`);
+for (const [language, href] of [
+  ["th", "https://montri-th.github.io/CityMETER/"],
+  ["en", "https://montri-th.github.io/CityMETER/en/"]
+]) {
+  const output = join(outputDir, `citymeter-page-${language}.png`);
+  const result = spawnSync(
+    "npm",
+    [
+      "--cache", "/tmp/citymeter-qr-npm-cache",
+      "exec", "--yes", "qrcode", "--",
+      "--error", "M",
+      "--width", "512",
+      "--qzone", "4",
+      "--darkcolor", "182327ff",
+      "--lightcolor", "fcfcfaff",
+      "--output", output,
+      href
+    ],
+    { cwd: root, encoding: "utf8" }
+  );
+
+  if (result.status !== 0) {
+    throw new Error(`Page QR generation failed for ${language}: ${result.stderr || result.stdout}`);
+  }
+}
+
+console.log(`Generated ${review.records.length} dataset QR assets and two page QR assets in ${outputDir}`);

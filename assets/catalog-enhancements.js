@@ -5,8 +5,8 @@
   const language = document.documentElement.lang === "en" ? "en" : "th";
   const text = {
     th: {
-      summary: "ที่มา · วิธีอ่าน · QR",
-      verifiedSummary: "ที่มา · QR · ยืนยัน same-dataset lineage",
+      summary: "ที่มา ขอบเขต และรายละเอียด",
+      verifiedSummary: "ที่มา ขอบเขต และข้อมูลที่ยืนยันแล้ว",
       verified: "ยืนยัน same-dataset lineage",
       candidate: "candidate — ต้องมีหลักฐานเพิ่ม",
       otherSource: "แหล่งอื่นที่ระบุได้",
@@ -22,6 +22,10 @@
       lineageNote: "ป้ายนี้ยืนยันว่ามาจากชุดข้อมูลเดียวกันผ่านช่องทางทางการของเจ้าของข้อมูล ไม่ได้หมายความว่าทุกไฟล์ถูกดาวน์โหลดตรงจาก GD Catalog กลาง",
       conceptual: "ภาพประกอบแนวคิด — ไม่ใช่หน้าจอหรือข้อมูลจริง",
       realExample: "ตัวอย่างจากหน้าจอ CityMETER จริง",
+      heroQrTitle: "สแกนเพื่อเปิดหน้านี้",
+      heroQrHint: "ดูต่อบนมือถือได้ทันที",
+      heroQrAlt: "QR code สำหรับเปิดหน้า CityMETER ภาษาไทย",
+      examplesIntro: "เริ่มจากภาพจริงที่ทำให้เห็นโอกาสของพื้นที่ แล้วค่อยเปิดดูที่มา ขอบเขต และรายละเอียดเมื่อพร้อมตัดสินใจ",
       chapters: [
         {
           kicker: "คน + อาคาร",
@@ -43,8 +47,8 @@
       caption: "3 มุมมองจริง หมุนวนอัตโนมัติ · วิดีโอไม่มีเสียง"
     },
     en: {
-      summary: "Source · interpretation · QR",
-      verifiedSummary: "Source · QR · verified same-dataset lineage",
+      summary: "Sources, scope and details",
+      verifiedSummary: "Sources, scope and verified lineage",
       verified: "Verified same-dataset lineage",
       candidate: "Candidate — more evidence required",
       otherSource: "Identified non-GD source",
@@ -60,6 +64,10 @@
       lineageNote: "This badge confirms same-dataset lineage through an official owner channel. It does not mean every file was downloaded directly from the central GD Catalog.",
       conceptual: "Concept illustration — not a product screen or real data",
       realExample: "Real CityMETER screen examples",
+      heroQrTitle: "Scan to open this page",
+      heroQrHint: "Continue on your phone",
+      heroQrAlt: "QR code to open the English CityMETER page",
+      examplesIntro: "Start with real views that reveal what is interesting about a place, then open the sources, scope and details when you are ready to decide.",
       chapters: [
         {
           kicker: "People + buildings",
@@ -131,7 +139,7 @@
 
   function enhanceCard(card) {
     const record = recordById.get(card.id);
-    if (!record || card.dataset.sourceReviewVersion === "2026-08-14") return;
+    if (!record || card.dataset.sourceReviewVersion === "2026-08-14-r2") return;
 
     const details = card.querySelector(".dataset-details");
     const openLink = card.querySelector(".dataset-open");
@@ -139,7 +147,7 @@
     if (!details || !openLink) return;
 
     card.dataset.sourceStatus = record.status;
-    card.dataset.sourceReviewVersion = "2026-08-14";
+    card.dataset.sourceReviewVersion = "2026-08-14-r2";
     card.querySelectorAll(".dataset-image img").forEach((image) => {
       image.loading = "lazy";
       image.decoding = "async";
@@ -163,6 +171,12 @@
         summary.append(element("span", "source-status-dot"));
       }
       summary.append(element("span", "source-summary-copy", record.status === "verified-lineage" ? text.verifiedSummary : text.summary));
+    }
+
+    const evidence = card.querySelector(":scope > .dataset-body > .evidence-summary");
+    if (evidence && !details.contains(evidence)) {
+      evidence.classList.add("evidence-summary-in-details");
+      details.insertBefore(evidence, details.children[1] || null);
     }
 
     details.querySelector(".source-review")?.remove();
@@ -288,6 +302,26 @@
       for (const chapter of text.chapters) ordered.append(element("li", "", `${chapter.kicker}. ${chapter.title}. ${chapter.note}`));
       transcript.replaceChildren(element("p", "", text.caption), ordered);
     }
+
+    const heroCopy = document.querySelector(".hero-copy");
+    if (heroCopy && !heroCopy.querySelector(".hero-page-qr")) {
+      const qrBlock = element("div", "hero-page-qr");
+      const qr = document.createElement("img");
+      qr.className = "hero-page-qr-image";
+      qr.src = `${assetBase}media/qr/citymeter-page-${language}.png`;
+      qr.alt = text.heroQrAlt;
+      qr.width = 512;
+      qr.height = 512;
+      qr.decoding = "async";
+      const copy = element("div", "hero-page-qr-copy");
+      copy.append(element("strong", "", text.heroQrTitle));
+      copy.append(element("span", "", text.heroQrHint));
+      qrBlock.append(qr, copy);
+      heroCopy.append(qrBlock);
+    }
+
+    const examplesIntro = document.querySelector("#examples .section-heading > p:last-child");
+    if (examplesIntro && examplesIntro.textContent !== text.examplesIntro) examplesIntro.textContent = text.examplesIntro;
   }
 
   function applyEnhancements() {
