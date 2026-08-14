@@ -34,6 +34,37 @@ function sha256(path) {
   return createHash("sha256").update(readFileSync(path)).digest("hex");
 }
 
+function pngInfo(path) {
+  const bytes = readFileSync(path);
+  assert(bytes.subarray(1, 4).toString("ascii") === "PNG", `Not a PNG: ${path}`);
+  return {
+    width: bytes.readUInt32BE(16),
+    height: bytes.readUInt32BE(20),
+    colorType: bytes[25]
+  };
+}
+
+const supporterAssets = [
+  {
+    path: "media/supporters/depa.png",
+    width: 2160,
+    height: 1350,
+    sha256: "6098165e3424c8f7b4c15e26200e88f561ab0a841b8a60125b1735d1260532cd"
+  },
+  {
+    path: "media/supporters/dsure-software.png",
+    width: 1014,
+    height: 1465,
+    sha256: "d60db2a3f73abf7a5b815307027c0cf25d6c01ed3134648c094217446bc85143"
+  },
+  {
+    path: "media/supporters/digital-service-account.png",
+    width: 2298,
+    height: 1042,
+    sha256: "57c01b122575800f475cc29e958f6b1c5a7bac705cb5b6ba2365ae9bd90e3086"
+  }
+];
+
 assert(review.reviewedAt === "2026-08-14", "Unexpected review date");
 assert(ids.length === 38 && new Set(ids).size === 38, "Source registry must contain 38 unique records");
 assert(review.records.filter((record) => record.status === "verified-lineage").length === 11, "Expected 11 verified-lineage records");
@@ -51,8 +82,8 @@ for (const page of ["index.html", "en/index.html"]) {
   const html = readFileSync(join(root, page), "utf8");
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements.css?v=6"), `${page} must load the branding stylesheet revision`);
-  assert(html.includes("catalog-enhancements.js?v=10"), `${page} must load the hydration-safe canonical-route and branding enhancement layer`);
+  assert(html.includes("catalog-enhancements.css?v=7"), `${page} must load the responsive footer stylesheet revision`);
+  assert(html.includes("catalog-enhancements.js?v=11"), `${page} must load the split-logo hydration-safe enhancement layer`);
   assert(html.includes("index-qbT50gkr-v3.js?v=3"), `${page} must load the CityMETER headline bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
@@ -120,10 +151,14 @@ for (const asset of [
   "assets/catalog-enhancements.css",
   "assets/index-qbT50gkr-v3.js",
   "scripts/apply-branding-route-release.mjs",
+  "scripts/split-supporter-logos.sh",
   "scripts/build-hero-reel.sh",
   "scripts/apply-focus-copy.mjs",
   "media/gdcatalog-logo.png",
   "media/depa-dsure-tdc-lockup.png",
+  "media/supporters/depa.png",
+  "media/supporters/dsure-software.png",
+  "media/supporters/digital-service-account.png",
   "media/qr/manifest.json",
   "media/reel/citymeter-proof-v3.mp4",
   "media/reel/citymeter-proof-v3-exhibition.mp4",
@@ -136,6 +171,7 @@ for (const asset of [
 const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements.js"), "utf8");
+const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements.css"), "utf8");
 assert(thHtml.includes("GFA · ความสูง · จำนวนชั้น") && !thHtml.includes("สวนพลู · อาคาร 3 มิติ · GFA"), "Thai prerender must preserve the React hydration baseline");
 assert(enHtml.includes("GFA · height · floors") && !enHtml.includes("Suan Plu · 3D buildings · GFA"), "English prerender must preserve the React hydration baseline");
 for (const focusedCopy of [
@@ -159,8 +195,15 @@ assert(enhancementJs.includes("prefers-reduced-motion: reduce"), "Motion layer m
 assert(enhancementJs.includes("duration: 280"), "Card reflow motion must use the 280ms map-state duration");
 assert(enhancementJs.includes("record?.citymeterUrl"), "Runtime direct-route override is missing");
 assert(enhancementJs.includes(".dataset-mobile-link"), "Runtime direct-route override must cover the mobile handoff link");
-assert(enhancementJs.includes("supporter-lockup-hero") && enhancementJs.includes("supporter-lockup-footer"), "Runtime supporter lockups are missing");
-assert(enhancementJs.includes("depa-dsure-tdc-lockup.png"), "Runtime supporter logo asset is missing");
+assert(enhancementJs.includes("supporter-logos-hero") && enhancementJs.includes("supporter-logos-footer"), "Runtime split supporter groups are missing");
+for (const asset of supporterAssets) {
+  assert(enhancementJs.includes(asset.path), `Runtime supporter asset is missing: ${asset.path}`);
+}
+assert(!enhancementJs.includes("media/depa-dsure-tdc-lockup.png"), "Runtime must not use the old combined supporter lockup");
+assert(enhancementJs.includes('supporterAlt: {') && enhancementJs.includes('account: "บัญชีบริการดิจิทัล"') && enhancementJs.includes('account: "Digital Service Account"'), "Supporter logos need individual localized alt text");
+assert(enhancementCss.includes(".site-footer .footer-grid > *") && enhancementCss.includes("flex-wrap: wrap"), "Footer grid children and links must be allowed to shrink and wrap");
+assert(enhancementCss.includes("@media (max-width: 900px)") && enhancementCss.includes("grid-template-columns: 1fr"), "Footer must collapse before the former 720px overflow band");
+assert(enhancementCss.includes(".supporter-logo-depa") && enhancementCss.includes(".supporter-logo-dsure") && enhancementCss.includes(".supporter-logo-account"), "Split supporter logos need independent optical sizing");
 const runtimeStart = enhancementJs.slice(enhancementJs.indexOf("async function start()"));
 assert(runtimeStart.includes("enhanceAfterHydration") && runtimeStart.includes('window.addEventListener("load", enhanceAfterHydration'), "Branding must wait for the window load boundary");
 assert((runtimeStart.match(/requestAnimationFrame/g) || []).length >= 2, "Branding must wait two animation frames after load before mutating hydrated markup");
@@ -209,7 +252,15 @@ assert(
 );
 assert(
   sha256(join(root, "media/depa-dsure-tdc-lockup.png")) === "804506f124cdb55dc14918b6eb64f7c2bd9badd29fc33fcfddeee5b62b07932c",
-  "Supporter lockup must preserve the owner-supplied PNG bytes"
+  "Supporter source lockup must preserve the owner-supplied PNG bytes"
 );
 
-console.log("CityMETER release validation passed: CityMETER headline, two supporter lockups, 38 canonical CTA/QR/JSON-LD routes, focused deep links, 280ms state motion, reduced-motion fallback, and unchanged videos.");
+for (const asset of supporterAssets) {
+  const path = join(root, asset.path);
+  const info = pngInfo(path);
+  assert(info.width === asset.width && info.height === asset.height, `Supporter crop dimensions changed: ${asset.path}`);
+  assert(info.colorType === 6, `Supporter crop must remain RGBA with transparency: ${asset.path}`);
+  assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
+}
+
+console.log("CityMETER release validation passed: responsive footer, two three-logo supporter groups with preserved alpha, 38 canonical CTA/QR/JSON-LD routes, hydration safety, reduced-motion fallback, and unchanged videos.");

@@ -25,7 +25,12 @@
       heroQrTitle: "สแกนเพื่อเปิดหน้านี้",
       heroQrHint: "ดูต่อบนมือถือได้ทันที",
       heroQrAlt: "QR code สำหรับเปิดหน้า CityMETER ภาษาไทย",
-      supporterAlt: "depa, dSURE Software และบัญชีบริการดิจิทัล",
+      supporterLabel: "หน่วยงานและเครื่องหมายรับรองที่เกี่ยวข้อง",
+      supporterAlt: {
+        depa: "depa",
+        dsure: "dSURE Software",
+        account: "บัญชีบริการดิจิทัล"
+      },
       examplesIntro: "เริ่มจากภาพจริงที่ทำให้เห็นโอกาสของพื้นที่ แล้วค่อยเปิดดูที่มา ขอบเขต และรายละเอียดเมื่อพร้อมตัดสินใจ",
       visualFocus: {
         "dataset-buildings": {
@@ -112,7 +117,12 @@
       heroQrTitle: "Scan to open this page",
       heroQrHint: "Continue on your phone",
       heroQrAlt: "QR code to open the English CityMETER page",
-      supporterAlt: "depa, dSURE Software and Digital Service Account",
+      supporterLabel: "Related programme and certification marks",
+      supporterAlt: {
+        depa: "depa",
+        dsure: "dSURE Software",
+        account: "Digital Service Account"
+      },
       examplesIntro: "Start with real views that reveal what is interesting about a place, then open the sources, scope and details when you are ready to decide.",
       visualFocus: {
         "dataset-buildings": {
@@ -568,6 +578,49 @@
     }
   }
 
+  const supporterAssets = [
+    {
+      key: "depa",
+      path: "media/supporters/depa.png",
+      width: 2160,
+      height: 1350
+    },
+    {
+      key: "dsure",
+      path: "media/supporters/dsure-software.png",
+      width: 1014,
+      height: 1465
+    },
+    {
+      key: "account",
+      path: "media/supporters/digital-service-account.png",
+      width: 2298,
+      height: 1042
+    }
+  ];
+
+  function createSupporterLogos(placement) {
+    const group = element("div", `supporter-logos supporter-logos-${placement}`);
+    group.setAttribute("role", "group");
+    group.setAttribute("aria-label", text.supporterLabel);
+
+    for (const asset of supporterAssets) {
+      const cell = element("span", `supporter-logo-cell supporter-logo-cell-${asset.key}`);
+      const logo = document.createElement("img");
+      logo.className = `supporter-logo supporter-logo-${asset.key}`;
+      logo.src = `${assetBase}${asset.path}`;
+      logo.alt = text.supporterAlt[asset.key];
+      logo.width = asset.width;
+      logo.height = asset.height;
+      logo.decoding = "async";
+      if (placement === "footer") logo.loading = "lazy";
+      cell.append(logo);
+      group.append(cell);
+    }
+
+    return group;
+  }
+
   function enhanceHero() {
     const shell = document.querySelector(".demo-video-shell");
     if (!shell) return;
@@ -647,16 +700,10 @@
 
     const heroCopy = document.querySelector(".hero-copy");
     if (heroCopy) {
-      let supporter = heroCopy.querySelector(".supporter-lockup-hero");
+      heroCopy.querySelector(".supporter-lockup-hero")?.remove();
+      let supporter = heroCopy.querySelector(".supporter-logos-hero");
       if (!supporter) {
-        supporter = element("div", "supporter-lockup supporter-lockup-hero");
-        const logo = document.createElement("img");
-        logo.src = `${assetBase}media/depa-dsure-tdc-lockup.png`;
-        logo.alt = text.supporterAlt;
-        logo.width = 6541;
-        logo.height = 1561;
-        logo.decoding = "async";
-        supporter.append(logo);
+        supporter = createSupporterLogos("hero");
       }
       const actions = heroCopy.querySelector(".hero-actions");
       if (actions && actions.nextElementSibling !== supporter) actions.after(supporter);
@@ -685,17 +732,10 @@
   function enhanceFooterBranding() {
     const footerLead = document.querySelector(".site-footer .footer-grid > div:first-child");
     if (!footerLead) return;
-    let supporter = footerLead.querySelector(".supporter-lockup-footer");
+    footerLead.querySelector(".supporter-lockup-footer")?.remove();
+    let supporter = footerLead.querySelector(".supporter-logos-footer");
     if (!supporter) {
-      supporter = element("div", "supporter-lockup supporter-lockup-footer");
-      const logo = document.createElement("img");
-      logo.src = `${assetBase}media/depa-dsure-tdc-lockup.png`;
-      logo.alt = text.supporterAlt;
-      logo.width = 6541;
-      logo.height = 1561;
-      logo.loading = "lazy";
-      logo.decoding = "async";
-      supporter.append(logo);
+      supporter = createSupporterLogos("footer");
       footerLead.append(supporter);
     }
   }
