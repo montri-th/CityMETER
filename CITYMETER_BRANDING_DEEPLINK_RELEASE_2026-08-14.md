@@ -12,7 +12,7 @@
 
 **Revision true-edge radial + scroll-end containment + concise contact heading:** Published to GitHub Pages at commit `418c591c641d28d1763dd6dfbcb3a8cbe5621dd5`; deployment run `31819904277` completed successfully และ production browser QA ผ่านตาม receipt ด้านล่าง
 
-**Revision ปัจจุบัน — Land Appraisal social share card:** เตรียม source และ local gates แล้ว; ยังไม่ publish หรือทำ production metadata/image QA
+**Revision ปัจจุบัน — Land Appraisal social share card:** Published to GitHub Pages at commit `304233fb76e91887ab1f8ba5c8c6b10ea023a940`; deployment run `31821764440` completed successfully และ production metadata/image QA ผ่านตาม receipt ด้านล่าง
 
 ## สิ่งที่ผู้ชมเห็น
 
@@ -182,7 +182,12 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - ทั้ง `index.html` และ `en/index.html` ใช้ asset เดียวกันครบ `og:image`, `og:image:secure_url` และ `twitter:image`; alt text เป็นภาษาของ route
 - Cache ของ base CSS `v2`, font CSS `v1`, enhancement CSS `v14`, enhancement JS `v15` และ main bundle `v5` ไม่เปลี่ยน เพราะ delta นี้อยู่ใน HTML metadata และไฟล์ภาพใหม่
 - Local validator, migration two-run idempotency, syntax checks และ deterministic image regeneration: passed
-- QA target commit, GitHub Pages run และ production metadata/image QA: pending จนกว่าจะ publish bytes ชุดนี้
+- QA target commit: `304233fb76e91887ab1f8ba5c8c6b10ea023a940`; tree `4a3899cc3cd12d21675afed5e9db51e697406192`
+- GitHub Pages run: `31821764440` (run number 28) — completed / success; created `2026-08-14T16:57:35Z`; updated `2026-08-14T16:58:45Z`
+- Cold load หน้าไทยและอังกฤษแสดง receipt `2026-08-14-land-appraisal-share`; แต่ละ route มี URL ภาพใหม่ครบ OG, secure OG และ Twitter, alt text ตรงภาษา และไม่เหลือ URL ภาพท่องเที่ยวเดิม
+- ไฟล์ production เปิดได้เป็น `image/jpeg`, browser decode ได้ 1200 × 630 และ visual QA ยืนยันว่าเป็นภาพ Land Appraisal ที่มีแท่งข้อมูลสามมิติบนแผนที่พร้อม module sidebar
+- Carried regression: 38 cards, 38 source reviews, 38 benefits, supporter groups/cells 2/6, วงกลม desktop 112 × 112 px, exact closest-side radial, no horizontal overflow, footer gap ภายใน ±0.5 px, contact titles ถูกต้อง และไม่มี application-origin console error; error ที่บันทึกได้มาจาก browser extension origin เท่านั้น
+- Production QA result: passed for the social metadata/image and carried observable contracts above
 
 ## ไฟล์ส่งมอบหลัก
 

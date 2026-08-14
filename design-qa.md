@@ -206,8 +206,10 @@ current hotfix result: passed for observable/source contracts; English `FontFace
 ### Current local and production status — Land Appraisal social card
 
 - Deterministic crop regenerated twice with byte-identical SHA-256; HTML/migration/validator changes pass syntax, two-run migration idempotency, full release validation and `git diff --check`.
-- QA target commit: pending.
-- GitHub Pages deployment run: pending.
-- Production metadata and image fetch QA: pending. Confirm both routes expose receipt `2026-08-14-land-appraisal-share`, all social URLs and localized alt text, and the deployed JPEG decodes at 1200 × 630.
+- QA target commit: `304233fb76e91887ab1f8ba5c8c6b10ea023a940`; tree `4a3899cc3cd12d21675afed5e9db51e697406192`.
+- GitHub Pages deployment run `31821764440` (run number 28): completed / success; created `2026-08-14T16:57:35Z`, updated `2026-08-14T16:58:45Z`.
+- Thai and English cold loads exposed receipt `2026-08-14-land-appraisal-share`, all three social URLs, localized alt text and zero retired tourism-card references.
+- The deployed social image returned `image/jpeg`, decoded at 1200 × 630 and visually matched the approved Land Appraisal crop with the 3D columns and sidebar intact.
+- Carried checks returned 38 cards, 38 source reviews and 38 benefits; two supporter groups/six 112 × 112 cells; exact closest-side radial; no horizontal overflow; footer gap within ±0.5 px; and correct bilingual contact titles. No application-origin console error was present; observed errors were limited to a browser-extension origin.
 
-current release result: local gates passed; publish and production metadata/image QA pending
+current release result: published; production social metadata/image QA and carried observable regression checks passed
