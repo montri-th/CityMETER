@@ -753,6 +753,47 @@
     requestAnimationFrame(applyEnhancements);
   }
 
+  function waitForHydrationStability() {
+    const root = document.getElementById("root") || document.body;
+    return new Promise((resolve) => {
+      let finished = false;
+      let minimumDelayElapsed = false;
+      let quietWindowElapsed = false;
+      let quietTimer;
+      let hardTimer;
+      let minimumTimer;
+
+      const observer = new MutationObserver(() => scheduleQuietWindow());
+
+      function finish() {
+        if (finished) return;
+        finished = true;
+        observer.disconnect();
+        clearTimeout(quietTimer);
+        clearTimeout(hardTimer);
+        clearTimeout(minimumTimer);
+        resolve();
+      }
+
+      function scheduleQuietWindow() {
+        quietWindowElapsed = false;
+        clearTimeout(quietTimer);
+        quietTimer = setTimeout(() => {
+          quietWindowElapsed = true;
+          if (minimumDelayElapsed) finish();
+        }, 250);
+      }
+
+      observer.observe(root, { childList: true, subtree: true });
+      scheduleQuietWindow();
+      minimumTimer = setTimeout(() => {
+        minimumDelayElapsed = true;
+        if (quietWindowElapsed) finish();
+      }, 1000);
+      hardTimer = setTimeout(finish, 3000);
+    });
+  }
+
   async function start() {
     installResponsiveMotion();
     const registryResult = fetch(`${assetBase}data/catalog-source-review.json`, { cache: "no-cache" }).then(async (response) => {
@@ -760,19 +801,22 @@
       return { registry: await response.json() };
     }).catch((error) => ({ error }));
 
-    const enhanceAfterHydration = () => requestAnimationFrame(() => {
-      requestAnimationFrame(async () => {
-        applyEnhancements();
-        new MutationObserver(scheduleEnhancements).observe(document.getElementById("root") || document.body, { childList: true, subtree: true });
-        const { registry, error } = await registryResult;
-        if (error) {
-          console.error("CityMETER source-registry enhancements are unavailable", error);
-          return;
-        }
-        recordById = new Map(registry.records.map((record) => [record.id, record]));
-        applyEnhancements();
+    const enhanceAfterHydration = async () => {
+      await waitForHydrationStability();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(async () => {
+          applyEnhancements();
+          new MutationObserver(scheduleEnhancements).observe(document.getElementById("root") || document.body, { childList: true, subtree: true });
+          const { registry, error } = await registryResult;
+          if (error) {
+            console.error("CityMETER source-registry enhancements are unavailable", error);
+            return;
+          }
+          recordById = new Map(registry.records.map((record) => [record.id, record]));
+          applyEnhancements();
+        });
       });
-    });
+    };
 
     if (document.readyState === "complete") enhanceAfterHydration();
     else window.addEventListener("load", enhanceAfterHydration, { once: true });

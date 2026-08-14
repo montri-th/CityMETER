@@ -8,11 +8,11 @@
 
 - เปลี่ยน headline หลักทั้งภาษาไทยและอังกฤษเป็น `CityMETER`
 - แยก lockup `depa × dSURE software × บัญชีบริการดิจิทัล` เป็น PNG โปร่งใส 3 ไฟล์จากไฟล์ต้นฉบับ โดย crop อย่างเดียว ไม่วาดใหม่ ไม่ลบสีขาวภายในเครื่องหมาย และคง quiet zone 80 px
-  - ใน hero จัดเป็น 3 ส่วนบนพื้นสว่างเพื่อรักษา contrast กับ gradient
+  - ใน hero จัดเป็นการ์ดสว่าง 3 ก้อนอิสระเพื่อรักษา contrast กับ gradient โดยพื้นสว่างอยู่ใน CSS ไม่ได้ฝังในไฟล์ PNG
   - ใน footer จัดเป็น 3 ก้อนอิสระ จึงย่อและเรียงใหม่ได้โดยไม่เกิดแถบภาพยาว
 - แก้ footer ที่ล้นช่วง tablet/หน้าต่างขนาดกลาง โดยให้ grid child ย่อได้ เมนูตัดบรรทัดได้ และเปลี่ยนเป็นคอลัมน์เดียวตั้งแต่ 900 px
 - คง Landometer เป็นแบรนด์หลักและไม่เปลี่ยนวิดีโอ ภาพ snapshot หรือข้อความ lineage ในรอบนี้
-- เริ่ม enhancement หลัง `window.load` และสอง animation frames เพื่อไม่ชน React hydration โดยการแสดง headline/lockup ไม่ขึ้นกับความสำเร็จของ registry fetch
+- เริ่ม enhancement หลัง `window.load`, รอขั้นต่ำ 1 วินาทีและช่วง DOM นิ่ง 250 ms แล้วเว้นอีกสอง animation frames ก่อนแก้ DOM เพื่อลด race กับ React hydration โดยการแสดง headline/lockup ไม่ขึ้นกับความสำเร็จของ registry fetch
 - รักษา prerendered focused-card copy ให้ตรงกับ React baseline แล้วค่อย apply ข้อความพื้นที่เฉพาะหลัง hydration เพื่อไม่ให้เกิด text-hydration warning
 
 ## Canonical route contract
