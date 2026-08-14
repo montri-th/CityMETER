@@ -139,7 +139,7 @@ function updateJsonLd(html, page) {
 function updatePage(page) {
   const path = join(root, page);
   const assetPrefix = page === "index.html" ? "./" : "../";
-  const baseStylesheet = `<link rel="stylesheet" crossorigin href="${assetPrefix}assets/index-cqxdfePB.css">`;
+  const baseStylesheet = `<link rel="stylesheet" crossorigin href="${assetPrefix}assets/index-cqxdfePB.css?v=2">`;
   const fontStylesheet = `<link rel="stylesheet" href="${assetPrefix}assets/citymeter-fonts.css?v=1">`;
   const allCriticalFontPreloads = [
     "arvo-latin-700-normal-jvQUOvPP.woff2",
@@ -168,13 +168,14 @@ function updatePage(page) {
   html = html
     .replace("ก่อนตัดสินใจเรื่องพื้นที่\nดูให้เห็นมากกว่าจุดบนแผนที่", "CityMETER")
     .replace("Before you decide on a place,\nsee more than pins on a map", "CityMETER")
-    .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements.css?v=12")
-    .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements.css?v=12")
-    .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements.css?v=12")
-    .replaceAll("catalog-enhancements.css?v=8", "catalog-enhancements.css?v=12")
-    .replaceAll("catalog-enhancements.css?v=9", "catalog-enhancements.css?v=12")
-    .replaceAll("catalog-enhancements.css?v=10", "catalog-enhancements.css?v=12")
-    .replaceAll("catalog-enhancements.css?v=11", "catalog-enhancements.css?v=12")
+    .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements.css?v=13")
+    .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements.css?v=13")
+    .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements.css?v=13")
+    .replaceAll("catalog-enhancements.css?v=8", "catalog-enhancements.css?v=13")
+    .replaceAll("catalog-enhancements.css?v=9", "catalog-enhancements.css?v=13")
+    .replaceAll("catalog-enhancements.css?v=10", "catalog-enhancements.css?v=13")
+    .replaceAll("catalog-enhancements.css?v=11", "catalog-enhancements.css?v=13")
+    .replaceAll("catalog-enhancements.css?v=12", "catalog-enhancements.css?v=13")
     .replaceAll("catalog-enhancements.js?v=8", "catalog-enhancements.js?v=15")
     .replaceAll("catalog-enhancements.js?v=9", "catalog-enhancements.js?v=15")
     .replaceAll("catalog-enhancements.js?v=10", "catalog-enhancements.js?v=15")
@@ -182,6 +183,8 @@ function updatePage(page) {
     .replaceAll("catalog-enhancements.js?v=12", "catalog-enhancements.js?v=15")
     .replaceAll("catalog-enhancements.js?v=13", "catalog-enhancements.js?v=15")
     .replaceAll("catalog-enhancements.js?v=14", "catalog-enhancements.js?v=15")
+    .replaceAll("index-cqxdfePB.css?v=1", "index-cqxdfePB.css?v=2")
+    .replaceAll("index-cqxdfePB.css\"", "index-cqxdfePB.css?v=2\"")
     .replace('<h1 id="page-title">', '<h1 id="page-title" lang="en">')
     .replace('<a class="citymeter-label" href="#top">', '<a class="citymeter-label" href="#top" lang="en">')
     .replaceAll("index-qbT50gkr-v3.js?v=2", "index-qbT50gkr-v3.js?v=4")
@@ -277,4 +280,4 @@ updatePage("index.html");
 updatePage("en/index.html");
 updateHydratedBundle();
 
-console.log("Applied CityMETER headline, canonical fonts, Measure deep shell, radial equal-circle supporter logos, 38 canonical routes, hydration parity and benefit-first source details.");
+console.log("Applied CityMETER headline, deduplicated base CSS v2 and enhancement CSS v13 cache contracts, canonical fonts, Measure deep shell, radial equal-circle supporter logos, 38 canonical routes, hydration parity and benefit-first source details.");

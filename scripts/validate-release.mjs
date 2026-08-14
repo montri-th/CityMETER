@@ -116,7 +116,7 @@ for (const [id, url] of Object.entries(focusedRoutes)) {
 for (const page of ["index.html", "en/index.html"]) {
   const html = readFileSync(join(root, page), "utf8");
   const assetPrefix = page === "index.html" ? "./" : "../";
-  const baseStylesheet = `${assetPrefix}assets/index-cqxdfePB.css`;
+  const baseStylesheet = `${assetPrefix}assets/index-cqxdfePB.css?v=2`;
   const fontStylesheet = `${assetPrefix}assets/citymeter-fonts.css?v=1`;
   const expectedFontPreloads = page === "index.html"
     ? [
@@ -134,11 +134,13 @@ for (const page of ["index.html", "en/index.html"]) {
       ];
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements.css?v=12"), `${page} must load the Measure deep shell and radial-circle stylesheet revision`);
+  assert(html.includes("catalog-enhancements.css?v=13"), `${page} must load the strict-320 containment, Measure deep shell and radial-circle stylesheet revision`);
   assert(html.includes("catalog-enhancements.js?v=15"), `${page} must load the canonical-language benefit-first r4 enhancement layer`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements\.css\?v=\d+/g) || []).join() === "catalog-enhancements.css?v=12", `${page} must load exactly one enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements\.css\?v=\d+/g) || []).join() === "catalog-enhancements.css?v=13", `${page} must load exactly one enhancement stylesheet revision`);
   assert((html.match(/catalog-enhancements\.js\?v=\d+/g) || []).join() === "catalog-enhancements.js?v=15", `${page} must load exactly one enhancement script revision`);
+  const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
+  assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
   assert((html.match(/citymeter-fonts\.css\?v=\d+/g) || []).join() === "citymeter-fonts.css?v=1", `${page} must load exactly one canonical font stylesheet revision`);
   assert(html.indexOf(baseStylesheet) < html.indexOf(fontStylesheet), `${page} must load canonical font roles after the compiled base stylesheet`);
   for (const fontFile of expectedFontPreloads) {
@@ -294,10 +296,10 @@ assert(
 );
 
 const releaseMigration = readFileSync(join(root, "scripts/apply-branding-route-release.mjs"), "utf8");
-for (const priorVersion of [5, 6, 7, 8, 9, 10, 11]) {
+for (const priorVersion of [5, 6, 7, 8, 9, 10, 11, 12]) {
   assert(
-    releaseMigration.includes(`.replaceAll("catalog-enhancements.css?v=${priorVersion}", "catalog-enhancements.css?v=12")`),
-    `Release migration must retain the CSS v${priorVersion} -> v12 upgrade`
+    releaseMigration.includes(`.replaceAll("catalog-enhancements.css?v=${priorVersion}", "catalog-enhancements.css?v=13")`),
+    `Release migration must retain the CSS v${priorVersion} -> v13 upgrade`
   );
 }
 for (const priorVersion of [8, 9, 10, 11, 12, 13, 14]) {
@@ -307,6 +309,8 @@ for (const priorVersion of [8, 9, 10, 11, 12, 13, 14]) {
   );
 }
 assert(releaseMigration.includes("citymeter-fonts.css?v=1"), "Release migration must add the canonical font stylesheet");
+assert(releaseMigration.includes('.replaceAll("index-cqxdfePB.css?v=1", "index-cqxdfePB.css?v=2")'), "Release migration must upgrade base CSS v1 to v2");
+assert(releaseMigration.includes('.replaceAll("index-cqxdfePB.css\\\"", "index-cqxdfePB.css?v=2\\\"")'), "Release migration must upgrade the unversioned base CSS to v2");
 for (const fontFile of [
   "arvo-latin-700-normal-jvQUOvPP.woff2",
   "bai-jamjuree-thai-400-normal-CvLA45ZU.woff2",
@@ -362,6 +366,9 @@ function normalizedCss(value) {
   return value?.replace(/\s+/g, "").toLowerCase();
 }
 
+assert(cssValue(cssBlock("body", baseCss), "min-width") === "320px", "Compiled base body floor changed unexpectedly");
+assert(cssValue(cssBlock("body", enhancementCss), "min-width") === "0", "Enhancement layer must clear the body width floor for strict 320px iframe containment");
+
 const declaredFontSource = `${baseCss}\n${canonicalFontCss}\n${enhancementCss}`;
 assert(!declaredFontSource.toLowerCase().includes("sarabun"), "Canonical typography must not introduce Sarabun");
 for (const [asset] of canonicalFontAssets) {
@@ -375,6 +382,30 @@ const canonicalFontFaces = Array.from(
 );
 assert(canonicalFontFaces.length === 8, "Canonical font stylesheet must declare eight Thai/Latin subset faces");
 assert(canonicalFontFaces.every((face) => /unicode-range\s*:/.test(face)), "Every canonical subset face must declare unicode-range");
+
+const baseFontFaces = Array.from(
+  baseCss.matchAll(/@font-face\s*\{([\s\S]*?)\}/g),
+  (match) => match[1]
+);
+const normalizedFontFamily = (face) => cssValue(face, "font-family")?.replace(/["']/g, "").replace(/\s+/g, " ").trim();
+assert(baseFontFaces.length === 2, "Compiled base CSS must retain only its Arvo and JetBrains Mono font faces");
+assert(
+  baseFontFaces.map(normalizedFontFamily).sort().join("|") === "arvo|jetbrains mono",
+  "Compiled base CSS must not redeclare Bai Jamjuree or IBM Plex Sans Thai Looped"
+);
+const combinedFontFaces = [...baseFontFaces, ...canonicalFontFaces];
+const combinedFaceDescriptors = combinedFontFaces.map((face) => [
+  normalizedFontFamily(face),
+  cssValue(face, "font-style"),
+  cssValue(face, "font-weight"),
+  cssValue(face, "unicode-range") || "unbounded"
+].join("|"));
+assert(new Set(combinedFaceDescriptors).size === combinedFaceDescriptors.length, "Base and canonical CSS must not contain duplicate font-face descriptors");
+const combinedFontUrls = combinedFontFaces.flatMap((face) =>
+  Array.from(face.matchAll(/url\((?:["'])?\.\/([^"')]+)(?:["'])?\)/g), (match) => match[1])
+);
+assert(combinedFontUrls.length === 18, "Combined base and canonical font-face declarations must reference exactly 18 assets");
+assert(new Set(combinedFontUrls).size === combinedFontUrls.length, "A font asset URL must be declared by only one base/canonical font face");
 
 function fontFaceByFile(file) {
   const face = canonicalFontFaces.find((candidate) => candidate.includes(file));
@@ -656,4 +687,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: canonical Unicode-ranged typography with complete A11 roles and no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe main bundle v4 language metadata, exact Measure deep shell, five muted section surfaces per theme, six borderless/shadowless radial logo circles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
+console.log("CityMETER release validation passed: strict 320px iframe containment via the v13 body-floor override, deduplicated base CSS v2 font declarations, canonical Unicode-ranged typography with complete A11 roles and no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe main bundle v4 language metadata, exact Measure deep shell, five muted section surfaces per theme, six borderless/shadowless radial logo circles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");

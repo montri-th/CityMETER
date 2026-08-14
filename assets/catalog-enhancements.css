@@ -31,6 +31,12 @@
   --source-status-derived: #79d9d1;
 }
 
+/* The base bundle's 320px body floor includes neither classic scrollbars nor
+   embedded-browser gutters, so it can exceed the root's usable inline size. */
+body {
+  min-width: 0;
+}
+
 .decision-section {
   background: var(--section-surface-decision);
 }

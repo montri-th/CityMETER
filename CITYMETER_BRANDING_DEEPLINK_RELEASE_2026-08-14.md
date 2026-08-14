@@ -6,7 +6,9 @@
 
 **Revision ก่อนหน้า — วงกลมโลโก้ + muted surfaces + benefit-first copy:** Published to GitHub Pages; automated gates และ production browser QA ผ่าน
 
-**Revision ปัจจุบัน — Measure deep + radial logos + canonical fonts:** local syntax, migration idempotency, release validator และ diff checks ผ่าน; ยังไม่ commit, publish หรือทำ production QA
+**Revision Measure deep + radial logos + canonical fonts (`v12`):** Published to GitHub Pages at commit `00762648f9bc99b8271d8a4b875323834725a1a3`; deployment run `31812149466` completed successfully. ยังไม่มี production browser QA receipt สำหรับ bytes ชุดนี้
+
+**Revision ปัจจุบัน — strict 320 px containment (`v13`) + base-font deduplication (`v2`):** local syntax, migration idempotency, release validator และ diff checks ผ่าน; ยังไม่ commit, publish หรือทำ production QA
 
 ## สิ่งที่ผู้ชมเห็น
 
@@ -15,6 +17,7 @@
   - ใน hero และ footer วางบนวงกลม CSS เส้นผ่านศูนย์กลางเท่ากัน 3 วง โดยปรับเฉพาะ optical size ภายในวงกลมให้แต่ละเครื่องหมายอ่านออก
   - พื้นวงกลมเป็น radial fade จาก `rgba(255,255,255,.5)` กลางวงสู่ `rgba(255,255,255,0)` ที่ขอบ ไม่มี border หรือ box-shadow; ไฟล์เครื่องหมายยังโปร่งใสและไม่ถูก crop, mask, filter, recolor หรือวาดใหม่
 - แก้ footer ที่ล้นช่วง tablet/หน้าต่างขนาดกลาง โดยให้ grid child ย่อได้ เมนูตัดบรรทัดได้ และเปลี่ยนเป็นคอลัมน์เดียวตั้งแต่ 900 px
+- ล้าง `min-width: 320px` ของ compiled `body` ด้วย enhancement `body { min-width: 0; }` เพื่อให้ viewport/iframe กว้าง 320 px จริงยังรวม classic scrollbar หรือ embedded-browser gutter ได้โดยไม่เกิด horizontal overflow
 - แบ่งจังหวะของหน้าโดยใช้ surface สีอ่อนต่างกันในแต่ละ section จาก token ของ Design System v0.8.9 แทนการเติมสีสดหรือองค์ประกอบตกแต่ง
   - Light: canvas `#F6F7F3`, blue tint `#E2E9ED`, beige tint `#F2F1DF`, soft `#E5E9E6`, alt `#EEF1EE`
   - Dark: canvas `#11191D`, blue tint `#18333E`, beige tint `#2C2A22`, soft `#2B3534`, alt `#172126`
@@ -25,6 +28,7 @@
   - preload แยกตาม route: หน้าไทยใช้ Arvo Latin, Bai Jamjuree Thai 400/600, JetBrains Mono Latin และ IBM Plex Sans Thai Thai 400; หน้าอังกฤษใช้ Arvo Latin, Bai Jamjuree Latin 400/600 และ JetBrains Mono Latin โดยใช้ prefix `./assets/` / `../assets/` ให้ตรง route
   - static HTML และ compiled React bundle กำหนด `lang="en"` ให้ `#page-title` กับ `.citymeter-label` เพื่อตัด hydration mismatch; enhancement ยังคง guard metadata หลัง hydration
   - `font-assets.manifest.json` บันทึก 6 semantic faces และไฟล์ 18 รายการพร้อม SHA-256; `font-license-records.json` ผูก 4 license records แบบ OFL-1.1
+  - compiled base CSS เหลือ `@font-face` เฉพาะ Arvo และ JetBrains Mono; ตัด legacy Bai Jamjuree/IBM Plex Sans Thai Looped faces ที่ไม่กำหนด `unicode-range` ออก แล้วให้ canonical layer เป็นผู้ประกาศสองตระกูลนี้เพียงชั้นเดียว ลด ambiguity ใน Safari และ `FontFaceSet.check()`
 - ปรับ disclosure ของการ์ดครบ 38 records ให้ขึ้นต้นด้วยข้อความเฉพาะว่า **ข้อมูลนี้ช่วยตอบอะไร** ก่อนแสดงพื้นที่ครอบคลุม ระดับพื้นที่ สถานะ ที่มา ช่วงเวลา และสิ่งที่ควรตรวจเพิ่ม
   - `benefitTh` และ `benefitEn` มีครบ 38 รายการและไม่ใช้ข้อความ placeholder ซ้ำกัน
   - เปลี่ยนหัวข้อภายในจากศัพท์ audit เช่น `exact public lineage` และ `candidate` เป็นภาษาที่คนทั่วไปอ่านรู้เรื่อง โดยยังเก็บขอบเขตหลักฐานและลิงก์ต้นทางไว้
@@ -101,10 +105,12 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - ตรวจวงกลมโลโก้ว่าใช้ grid 3 คอลัมน์เท่ากัน, diameter token เดียวกัน, `aspect-ratio: 1`, `border-radius: 50%`, radial fade ขาว 50% → ขาวโปร่งใส 0% และไม่มี border, box-shadow หรือ mobile override ที่ย้ายเครื่องหมายที่สามลงแถวใหม่
 - ตรวจ surface token และ selector ครบ 5 section ทั้ง light/dark
 - ตรวจ hero + handoff ว่าใช้ exact `atmosphere.gradient.measure.deep` และคง onDeep foreground
+- ตรวจว่า compiled base ยังคง `body { min-width: 320px; }` และ enhancement มี override `body { min-width: 0; }` สำหรับ strict 320 px containment
 - ตรวจ canonical font/fallback/leading/number roles, exact English h2/h3/label leading, Thai technical tracking/leading, `unicode-range`, manifest 6 faces/18 files, OFL records, path/hash ของทุก required font asset, preload เฉพาะ route, static + compiled `lang="en"` และยืนยันว่าไม่มี Sarabun
+- ตรวจว่า base CSS `v2` เหลือเพียง Arvo + JetBrains Mono faces, ไม่มี Bai Jamjuree/IBM Plex Sans Thai Looped face ซ้ำ และ descriptor/asset URL ของ base + canonical `@font-face` ไม่ซ้ำกัน
 - ตรวจว่าไม่มีค่าสีสถานะเดิม `#9F78D8`, `#D89A27` หรือ `#36B9CC` เหลือใน CSS/JavaScript enhancement
 - คงการตรวจ SHA-256, มิติและ RGBA transparency ของ PNG ทั้งสาม รวมถึง hash ของไฟล์ lockup ต้นฉบับและวิดีโอเดิม
-- ตรวจ cache reference ของหน้าไทย/อังกฤษ: `catalog-enhancements.css?v=12`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4` และ receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`
+- ตรวจ cache reference ของหน้าไทย/อังกฤษ: base `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=13`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4` และ receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`
 - รัน `node scripts/validate-release.mjs`, syntax checks, migration idempotency และ `git diff --check`
 
 ### Carried checks from the published baseline
@@ -125,16 +131,24 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - Light และ dark แสดง surface 5 บทบาทต่างกันครบ; วงกลมยังเป็นพื้นขาวเพื่อรักษา contrast ของเครื่องหมายต้นฉบับ
 - application-origin console error: 0 ทั้งหน้าไทย อังกฤษ และ responsive matrix; error ที่พบมาจาก cloud-browser extension metadata เท่านั้น จึงไม่ใช่ข้อผิดพลาดของเว็บไซต์
 
-### Production QA receipt for the current revision
+### Published deployment receipt for Measure deep + radial logos + canonical fonts (`v12`)
+
+- QA target commit: `00762648f9bc99b8271d8a4b875323834725a1a3`
+- GitHub Pages run: `31812149466` (run number 24) — `pages build and deployment`, branch `main`, completed / success
+- Run timestamps: created `2026-08-14T14:58:16Z`; updated `2026-08-14T14:58:38Z`
+- Production browser QA: not recorded — deployment success ยืนยันการ publish แต่ไม่ใช้แทนหลักฐาน cold-load, visual, font หรือ responsive browser QA
+
+### Production QA receipt for the current strict-320 + base-font-deduplication revision
 
 - QA target commit: pending — ยังไม่ commit หรือ publish
-- GitHub Pages run: pending — ยังไม่มี deployment run สำหรับ bytes ชุดนี้
-- Production browser QA: pending — ต้องตรวจหน้าไทย/อังกฤษ, font loading, Measure deep, radial logos, five surfaces และ responsive matrix หลัง Pages สำเร็จ
+- GitHub Pages run: pending — ห้ามนำ run `31812149466` ของ `v12` มาอ้างว่า validate base CSS `v2` หรือ enhancement CSS `v13`
+- Production browser QA: pending — หลัง Pages สำเร็จต้องตรวจหน้าไทย/อังกฤษแบบ cold load, cache base `v2` + enhancement `v13`, receipt, font loading/`FontFaceSet.check()` โดยเฉพาะ Safari/WebKit, themes, Measure deep, five surfaces, radial logo/footer containment และ horizontal overflow ใน iframe/viewport 320 px รวมทั้ง responsive matrix 320–1440 px
 
 ## ไฟล์ส่งมอบหลัก
 
 - `index.html` — หน้าไทย
 - `en/index.html` — หน้าอังกฤษ
+- `assets/index-cqxdfePB.css` — compiled base CSS หลังตัด legacy unbounded Bai/Looped faces
 - `assets/catalog-enhancements.css`
 - `assets/catalog-enhancements.js`
 - `assets/citymeter-fonts.css`

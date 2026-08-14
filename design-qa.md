@@ -109,7 +109,7 @@ final result: passed
 
 previous revision result: passed
 
-## Current release addendum — Measure deep, radial circles and canonical typography
+## Published release addendum — Measure deep, radial circles and canonical typography (`v12`)
 
 ### Intended change
 
@@ -132,8 +132,34 @@ previous revision result: passed
 ### Local and production status
 
 - Local checks: passed against the final contract — `node --check` ผ่านสำหรับ migration, validator, enhancement JS และ main bundle; migration สองรอบเป็น no-op โดย SHA-256 ของ HTML/registry/main bundle คงเดิม; validator ครอบคลุม `v4`, route-specific preloads, six-face/18-file manifest และ four-record OFL receipt; `git diff --check` ผ่าน.
-- QA target commit: pending — not committed or published.
-- GitHub Pages deployment run: pending.
-- Production browser QA: pending for Thai/English cold loads, font loading, themes, Measure deep, five surfaces, radial logo containment and the 320–1440 px matrix.
+- QA target commit: `00762648f9bc99b8271d8a4b875323834725a1a3`.
+- GitHub Pages deployment run `31812149466` (run number 24): `pages build and deployment`, branch `main`, completed / success; created `2026-08-14T14:58:16Z`, updated `2026-08-14T14:58:38Z`.
+- Production browser QA: not recorded. The successful Pages run is deployment evidence only and is not presented as a cold-load, visual, font or responsive-browser receipt.
 
-current revision result: production QA pending
+`v12` deployment result: passed; production browser QA not recorded
+
+## Current hotfix addendum — strict 320 px containment (`v13`) and base-font deduplication (`v2`)
+
+### Intended change
+
+- Preserve the compiled base bundle and its `body { min-width: 320px; }` rule, then clear that floor in the enhancement layer with `body { min-width: 0; }`.
+- Prevent a viewport or same-origin iframe whose usable inline size is exactly 320 px from gaining horizontal overflow when classic scrollbars or embedded-browser gutters reduce the available content width.
+- Remove only the six legacy unbounded Bai Jamjuree and IBM Plex Sans Thai Looped `@font-face` blocks from the compiled base CSS. Keep its Arvo and JetBrains Mono faces, and let the canonical Unicode-ranged layer declare Bai/Looped exactly once.
+- Keep the `v12` visual, typography, content, route, asset and hydration contracts unchanged.
+
+### Source-level acceptance contract
+
+- Cache and receipt: Thai and English load base `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=13`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts` exactly once.
+- Migration: every supported enhancement CSS revision `v5` through `v12` upgrades idempotently to `v13`; font CSS, enhancement JavaScript, main bundle and receipt remain at their settled versions.
+- Width floor: validator confirms the compiled base still declares `body` `min-width: 320px` and the enhancement layer declares `body` `min-width: 0`.
+- Font deduplication: migration upgrades unversioned/base `v1` links to `v2`; base declares only Arvo 700 and JetBrains Mono 400; combined base + canonical face descriptors and all 18 font asset URLs are unique; canonical Bai/Looped faces retain their Thai/Latin `unicode-range` contract.
+- Carried gates: exact Measure deep shell, five muted section surfaces, borderless/shadowless radial logo circles, canonical font manifest/licenses/preloads, hydration language metadata, 38 unique bilingual benefits, benefit-first `r4`, direct routes and immutable asset hashes remain enforced.
+
+### Local and production status
+
+- Local checks: passed against the `v13` contract — syntax checks, two no-op migration runs with unchanged target hashes, full release validator and `git diff --check`.
+- QA target commit: pending — the `v13` bytes are not committed or published.
+- GitHub Pages deployment run: pending — run `31812149466` belongs to `v12` and does not validate the hotfix.
+- Production browser QA: pending. After the new Pages run succeeds, cold-load Thai and English with base `v2` and enhancement `v13`; verify the release receipt, computed fonts and `document.fonts.check()` for Bai Jamjuree/IBM Plex Sans Thai Looped in Safari/WebKit as well as the normal browser matrix; verify both themes and system theme; then measure at an exact 320 px same-origin iframe/content viewport that `document.documentElement.scrollWidth <= document.documentElement.clientWidth` and `document.body.scrollWidth <= document.documentElement.clientWidth`. Confirm the footer, all six logo circles and their artwork remain contained, with no horizontal scrollbar under classic-scrollbar and embedded-browser-gutter conditions. Repeat the established 320–1440 px responsive matrix and record application-origin console errors separately from extension errors.
+
+current hotfix result: production QA pending

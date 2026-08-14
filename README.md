@@ -19,7 +19,9 @@
 - สีพื้นของแต่ละช่วงใช้ surface token คนละบทบาท—canvas, blue tint, beige tint, soft และ alt—ทั้ง light/dark เพื่อให้หน้าแบ่งจังหวะชัดขึ้นโดยยังคงสีเงียบและอ่านง่าย
 - Hero และ mobile handoff ใช้ Design System v0.8.9 `atmosphere.gradient.measure.deep` แบบเดียวกัน: `linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)` พร้อม foreground แบบ onDeep
 - ฟอนต์ใช้ canonical role แยกหน้าที่: Arvo สำหรับ display ภาษาอังกฤษ, IBM Plex Sans Thai Looped สำหรับหัวข้อไทย, Bai Jamjuree สำหรับ body และ JetBrains Mono + IBM Plex Sans Thai สำหรับ technical label; ทุก webfont subset ระบุ `unicode-range` และไม่มี Sarabun ใน shipped font contract
+- Compiled base CSS เหลือเฉพาะ Arvo และ JetBrains Mono; legacy `@font-face` ของ Bai Jamjuree/IBM Plex Sans Thai Looped ที่ไม่มี `unicode-range` ถูกตัดออก เพื่อให้ canonical font stylesheet เป็นผู้ประกาศสองตระกูลนี้เพียงชั้นเดียวและไม่ทำให้ Safari เลือก face กำกวม
 - Critical font preload แยกตาม route: หน้าไทยโหลด Arvo Latin, Bai Jamjuree Thai 400/600, JetBrains Mono Latin และ IBM Plex Sans Thai Thai 400; หน้าอังกฤษโหลด Arvo Latin, Bai Jamjuree Latin 400/600 และ JetBrains Mono Latin
+- Strict 320 px iframe/mobile containment ล้าง `min-width: 320px` ที่มาจาก compiled body ด้วย enhancement `body { min-width: 0; }` เพื่อไม่ให้ classic scrollbar หรือ embedded-browser gutter ดันหน้าเกิน usable inline size
 - Snapshot dark theme ครบ 38 records/modules: ภาพจริงที่รอ map/legend/sidebar settle 35 ใบ และภาพประกอบแนวคิดที่ติดป้ายชัดเจน 3 ใบสำหรับ Fire, Hatyai Flood และ QuakeSafe
 - การ์ดทุกใบเปิดรายละเอียดด้วยข้อความเฉพาะว่าใช้ข้อมูลทำอะไรได้ แล้วจึงแสดงพื้นที่ครอบคลุม ระดับพื้นที่ ที่มา ช่วงเวลา สิ่งที่ควรตรวจเพิ่ม และ direct link; ข้อมูล benefit ภาษาไทย/อังกฤษครบและไม่ซ้ำกันทั้ง 38 records
 - 11 ใบที่ยืนยัน same-dataset lineage ผ่านช่องทางทางการแสดงโลโก้ GD Catalog โดยไม่อ้างว่าเป็น direct central-GD download
@@ -47,7 +49,7 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 
 This public preview is aligned with Landometer Design System v0.8.9 and is indexable. Unknown coverage, resolution, source, or definition metadata is never inferred. Source labels distinguish verified same-dataset lineage, candidates, other providers, derived layers and unproven public lineage.
 
-The current local release contract is `catalog-enhancements.css?v=12`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`. A new production commit and Pages run must be recorded after publication; older receipts do not validate these bytes.
+The current local release contract is deduplicated base CSS `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=13`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`. A new production commit and Pages run must be recorded after publication; the successful `v12` deployment does not validate the new base-CSS or strict-320 bytes.
 
 Once merged, the static files publish from `main` through GitHub Pages. Before the production-domain cutover, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and clear product/satellite screenshot reuse rights.
 
