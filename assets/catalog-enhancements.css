@@ -8,11 +8,30 @@
 
 .dataset-card {
   display: inline-flex !important;
+  flex-direction: column !important;
   width: 100%;
   margin: 0 0 24px !important;
   break-inside: avoid;
   page-break-inside: avoid;
   vertical-align: top;
+}
+
+.dataset-card > .dataset-image,
+.dataset-card > .dataset-body {
+  width: 100% !important;
+  min-width: 0;
+}
+
+.dataset-card > .dataset-image {
+  height: auto !important;
+  aspect-ratio: 16 / 10;
+  flex: 0 0 auto;
+}
+
+.dataset-card > .dataset-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .dataset-body h3,
