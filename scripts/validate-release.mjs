@@ -67,6 +67,18 @@ const supporterAssets = [
 
 assert(review.reviewedAt === "2026-08-14", "Unexpected review date");
 assert(ids.length === 38 && new Set(ids).size === 38, "Source registry must contain 38 unique records");
+const thaiBenefits = review.records.map((record) => record.benefitTh?.trim());
+const englishBenefits = review.records.map((record) => record.benefitEn?.trim());
+assert(
+  thaiBenefits.every((benefit) => typeof benefit === "string" && benefit.length > 24),
+  "All 38 source-review records need a concrete Thai reader benefit"
+);
+assert(
+  englishBenefits.every((benefit) => typeof benefit === "string" && benefit.length > 24),
+  "All 38 source-review records need a concrete English reader benefit"
+);
+assert(new Set(thaiBenefits).size === 38, "Thai reader benefits must be specific rather than repeated placeholders");
+assert(new Set(englishBenefits).size === 38, "English reader benefits must be specific rather than repeated placeholders");
 assert(review.records.filter((record) => record.status === "verified-lineage").length === 11, "Expected 11 verified-lineage records");
 assert(review.records.filter((record) => record.conceptualPreview).length === 3, "Expected three labelled conceptual previews");
 assert(review.records.every((record) => typeof record.citymeterUrl === "string" && record.citymeterUrl.startsWith("https://landometer.com/v3/citymeter")), "All 38 records must have a canonical CityMETER URL");
@@ -82,8 +94,8 @@ for (const page of ["index.html", "en/index.html"]) {
   const html = readFileSync(join(root, page), "utf8");
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements.css?v=8"), `${page} must load the three-card responsive footer stylesheet revision`);
-  assert(html.includes("catalog-enhancements.js?v=12"), `${page} must load the hydration-stability-gated split-logo enhancement layer`);
+  assert(html.includes("catalog-enhancements.css?v=9"), `${page} must load the equal-circle logo and muted section-surface stylesheet revision`);
+  assert(html.includes("catalog-enhancements.js?v=13"), `${page} must load the benefit-first r4 enhancement layer`);
   assert(html.includes("index-qbT50gkr-v3.js?v=3"), `${page} must load the CityMETER headline bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
@@ -172,6 +184,57 @@ const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements.js"), "utf8");
 const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements.css"), "utf8");
+const enhancementSourceLower = `${enhancementCss}\n${enhancementJs}`.toLowerCase();
+for (const retiredColor of ["#9f78d8", "#d89a27", "#36b9cc"]) {
+  assert(!enhancementSourceLower.includes(retiredColor), `Retired non-canonical status color remains: ${retiredColor}`);
+}
+
+function cssBlock(selector) {
+  const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = enhancementCss.match(new RegExp(`${escapedSelector}\\s*\\{([\\s\\S]*?)\\}`));
+  assert(match, `Missing CSS rule: ${selector}`);
+  return match[1];
+}
+
+function cssValue(block, property) {
+  const escapedProperty = property.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return block.match(new RegExp(`${escapedProperty}\\s*:\\s*([^;]+);`))?.[1].trim().toLowerCase();
+}
+
+assert(enhancementJs.includes('summary: "ใช้ข้อมูลนี้ทำอะไรได้"') && enhancementJs.includes('summary: "What you can do with this data"'), "Source disclosure must lead with reader utility in both languages");
+assert(enhancementJs.includes('benefit: "ข้อมูลนี้ช่วยตอบอะไร"') && enhancementJs.includes('benefit: "What this data helps you answer"'), "Reader-benefit headings must be present in both languages");
+assert(enhancementJs.includes('source: "ข้อมูลมาจากไหน"') && enhancementJs.includes('source: "Where the data comes from"'), "Source labels must use plain language");
+assert(enhancementJs.includes('reading: "ก่อนใช้ตัดสินใจ"') && enhancementJs.includes('reading: "Before making a decision"'), "Decision-check labels must use plain language");
+for (const [key, retiredLabel] of [
+  ["summary", "ที่มา ขอบเขต และรายละเอียด"],
+  ["verifiedSummary", "ที่มา ขอบเขต และข้อมูลที่ยืนยันแล้ว"],
+  ["verified", "ยืนยัน same-dataset lineage"],
+  ["candidate", "candidate — ต้องมีหลักฐานเพิ่ม"],
+  ["unproven", "ยังไม่ยืนยัน exact public lineage"],
+  ["reading", "อ่านอย่างไรไม่ให้เกินหลักฐาน"],
+  ["summary", "Sources, scope and details"],
+  ["verifiedSummary", "Sources, scope and verified lineage"],
+  ["verified", "Verified same-dataset lineage"],
+  ["candidate", "Candidate — more evidence required"],
+  ["unproven", "Exact public lineage not yet verified"],
+  ["reading", "How to read it within the evidence"]
+]) {
+  assert(!enhancementJs.includes(`${key}: "${retiredLabel}"`), `Retired source-review label remains: ${retiredLabel}`);
+}
+assert(enhancementJs.includes('localized(record, "benefit") || localized(record, "reading")'), "Benefit-first disclosure needs a safe fallback for stale registry records");
+const reviewStart = enhancementJs.indexOf('const review = element("div", "source-review")');
+const reviewEnd = enhancementJs.indexOf('const handoff = element("div", "dataset-qr-handoff")', reviewStart);
+const reviewConstruction = enhancementJs.slice(reviewStart, reviewEnd);
+const benefitAppend = reviewConstruction.indexOf('review.append(benefit)');
+const evidenceAppend = reviewConstruction.indexOf('if (evidence) review.append(evidence)');
+const sourceAppend = reviewConstruction.indexOf('review.append(makeLabeledCopy(text.source');
+const readingAppend = reviewConstruction.indexOf('review.append(makeLabeledCopy(text.reading');
+assert(reviewStart >= 0 && reviewEnd > reviewStart, "Source-review construction block is missing");
+assert(benefitAppend === reviewConstruction.indexOf("review.append("), "Reader benefit must be the first source-review block");
+assert(benefitAppend < evidenceAppend && evidenceAppend < sourceAppend && sourceAppend < readingAppend, "Source disclosure must render benefit before scope, source and decision checks");
+assert((enhancementJs.match(/2026-08-14-r4/g) || []).length >= 2 && !enhancementJs.includes("2026-08-14-r3"), "All source-review guards must use revision r4");
+assert(enhancementJs.includes('details.querySelector(":scope > div:not(.source-review)")?.remove()'), "Legacy limitation-first copy must be removed after hydration");
+assert(enhancementCss.includes(".source-copy-block-benefit"), "Reader-benefit copy needs a distinct quiet surface");
 assert(thHtml.includes("GFA · ความสูง · จำนวนชั้น") && !thHtml.includes("สวนพลู · อาคาร 3 มิติ · GFA"), "Thai prerender must preserve the React hydration baseline");
 assert(enHtml.includes("GFA · height · floors") && !enHtml.includes("Suan Plu · 3D buildings · GFA"), "English prerender must preserve the React hydration baseline");
 for (const focusedCopy of [
@@ -204,6 +267,29 @@ assert(enhancementJs.includes('supporterAlt: {') && enhancementJs.includes('acco
 assert(enhancementCss.includes(".site-footer .footer-grid > *") && enhancementCss.includes("flex-wrap: wrap"), "Footer grid children and links must be allowed to shrink and wrap");
 assert(enhancementCss.includes("@media (max-width: 900px)") && enhancementCss.includes("grid-template-columns: 1fr"), "Footer must collapse before the former 720px overflow band");
 assert(enhancementCss.includes(".supporter-logo-depa") && enhancementCss.includes(".supporter-logo-dsure") && enhancementCss.includes(".supporter-logo-account"), "Split supporter logos need independent optical sizing");
+const supporterGroupCss = cssBlock(".supporter-logos");
+const supporterCellCss = cssBlock(".supporter-logo-cell");
+assert(cssValue(supporterGroupCss, "grid-template-columns") === "repeat(3, var(--supporter-logo-disc))", "Supporter logos must use three equal grid columns");
+assert(cssValue(supporterCellCss, "width") === "var(--supporter-logo-disc)", "Each supporter circle must use the shared diameter token");
+assert(cssValue(supporterCellCss, "aspect-ratio") === "1", "Supporter logo plates must remain square before rounding");
+assert(cssValue(supporterCellCss, "border-radius") === "50%", "Supporter logo plates must remain circular");
+assert(!enhancementCss.includes(".supporter-logo-cell-account"), "Mobile layout must not move the Digital Service Account mark into a separate row");
+
+const lightSurfaceCss = cssBlock(":root");
+const darkSurfaceCss = cssBlock('[data-theme="dark"]');
+const sectionSurfaces = [
+  ["decision", ".decision-section", "#f6f7f3", "#11191d"],
+  ["showcase", ".showcase-section", "#e2e9ed", "#18333e"],
+  ["explorer", ".explorer-section", "#f2f1df", "#2c2a22"],
+  ["contact", ".contact-section", "#e5e9e6", "#2b3534"],
+  ["footer", ".site-footer", "#eef1ee", "#172126"]
+];
+for (const [name, selector, light, dark] of sectionSurfaces) {
+  const token = `--section-surface-${name}`;
+  assert(cssValue(lightSurfaceCss, token) === light, `Light ${name} surface token is stale`);
+  assert(cssValue(darkSurfaceCss, token) === dark, `Dark ${name} surface token is stale`);
+  assert(cssValue(cssBlock(selector), "background") === `var(${token})`, `${selector} must consume ${token}`);
+}
 const runtimeStart = enhancementJs.slice(enhancementJs.indexOf("async function start()"));
 assert(runtimeStart.includes("enhanceAfterHydration") && runtimeStart.includes('window.addEventListener("load", enhanceAfterHydration'), "Branding must wait for the window load boundary");
 assert((runtimeStart.match(/requestAnimationFrame/g) || []).length >= 2, "Branding must wait two animation frames after load before mutating hydrated markup");
@@ -265,4 +351,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: responsive footer, two three-logo supporter groups with preserved alpha, 38 canonical CTA/QR/JSON-LD routes, hydration safety, reduced-motion fallback, and unchanged videos.");
+console.log("CityMETER release validation passed: 38 unique bilingual reader benefits, benefit-first r4 disclosures, five muted section surfaces per theme, two equal-circle three-logo groups with preserved alpha, responsive footer, canonical routes, hydration safety, reduced-motion fallback, and unchanged videos.");

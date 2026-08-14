@@ -141,13 +141,15 @@ function updatePage(page) {
   html = html
     .replace("ก่อนตัดสินใจเรื่องพื้นที่\nดูให้เห็นมากกว่าจุดบนแผนที่", "CityMETER")
     .replace("Before you decide on a place,\nsee more than pins on a map", "CityMETER")
-    .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements.css?v=8")
-    .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements.css?v=8")
-    .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements.css?v=8")
-    .replaceAll("catalog-enhancements.js?v=8", "catalog-enhancements.js?v=12")
-    .replaceAll("catalog-enhancements.js?v=9", "catalog-enhancements.js?v=12")
-    .replaceAll("catalog-enhancements.js?v=10", "catalog-enhancements.js?v=12")
-    .replaceAll("catalog-enhancements.js?v=11", "catalog-enhancements.js?v=12")
+    .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements.css?v=9")
+    .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements.css?v=9")
+    .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements.css?v=9")
+    .replaceAll("catalog-enhancements.css?v=8", "catalog-enhancements.css?v=9")
+    .replaceAll("catalog-enhancements.js?v=8", "catalog-enhancements.js?v=13")
+    .replaceAll("catalog-enhancements.js?v=9", "catalog-enhancements.js?v=13")
+    .replaceAll("catalog-enhancements.js?v=10", "catalog-enhancements.js?v=13")
+    .replaceAll("catalog-enhancements.js?v=11", "catalog-enhancements.js?v=13")
+    .replaceAll("catalog-enhancements.js?v=12", "catalog-enhancements.js?v=13")
     .replaceAll("index-qbT50gkr-v3.js?v=2", "index-qbT50gkr-v3.js?v=3");
 
   for (const route of routes.values()) {
@@ -212,4 +214,4 @@ updatePage("index.html");
 updatePage("en/index.html");
 updateHydratedBundle();
 
-console.log("Applied CityMETER headline, 38 canonical routes, hydration parity, split supporter logos and responsive footer cache revisions.");
+console.log("Applied CityMETER headline, 38 canonical routes, hydration parity, benefit-first source details, equal-circle supporter logos and muted section-surface cache revisions.");

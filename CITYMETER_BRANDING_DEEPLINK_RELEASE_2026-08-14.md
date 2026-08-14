@@ -2,18 +2,39 @@
 
 **เว็บไซต์:** https://montri-th.github.io/CityMETER/
 
-**สถานะ:** Published to GitHub Pages after release validation
+**สถานะฐานก่อน revision นี้:** Published to GitHub Pages after release validation
+
+**Revision วงกลมโลโก้ + muted surfaces + benefit-first copy:** local release candidate; commit, Pages deployment และ production browser QA ยังรอดำเนินการ
 
 ## สิ่งที่ผู้ชมเห็น
 
 - เปลี่ยน headline หลักทั้งภาษาไทยและอังกฤษเป็น `CityMETER`
 - แยก lockup `depa × dSURE software × บัญชีบริการดิจิทัล` เป็น PNG โปร่งใส 3 ไฟล์จากไฟล์ต้นฉบับ โดย crop อย่างเดียว ไม่วาดใหม่ ไม่ลบสีขาวภายในเครื่องหมาย และคง quiet zone 80 px
-  - ใน hero จัดเป็นการ์ดสว่าง 3 ก้อนอิสระเพื่อรักษา contrast กับ gradient โดยพื้นสว่างอยู่ใน CSS ไม่ได้ฝังในไฟล์ PNG
-  - ใน footer จัดเป็น 3 ก้อนอิสระ จึงย่อและเรียงใหม่ได้โดยไม่เกิดแถบภาพยาว
+  - ใน hero และ footer วางบนวงกลม CSS เส้นผ่านศูนย์กลางเท่ากัน 3 วง โดยปรับเฉพาะ optical size ภายในวงกลมให้แต่ละเครื่องหมายอ่านออก
+  - พื้นขาวของวงกลมเป็น separate plate ใน layout ไม่ได้ฝังใน PNG; ไฟล์เครื่องหมายยังโปร่งใสและไม่ถูก crop, mask, filter, recolor หรือวาดใหม่
 - แก้ footer ที่ล้นช่วง tablet/หน้าต่างขนาดกลาง โดยให้ grid child ย่อได้ เมนูตัดบรรทัดได้ และเปลี่ยนเป็นคอลัมน์เดียวตั้งแต่ 900 px
-- คง Landometer เป็นแบรนด์หลักและไม่เปลี่ยนวิดีโอ ภาพ snapshot หรือข้อความ lineage ในรอบนี้
+- แบ่งจังหวะของหน้าโดยใช้ surface สีอ่อนต่างกันในแต่ละ section จาก token ของ Design System v0.8.9 แทนการเติมสีสดหรือองค์ประกอบตกแต่ง
+  - Light: canvas `#F6F7F3`, blue tint `#E2E9ED`, beige tint `#F2F1DF`, soft `#E5E9E6`, alt `#EEF1EE`
+  - Dark: canvas `#11191D`, blue tint `#18333E`, beige tint `#2C2A22`, soft `#2B3534`, alt `#172126`
+- ปรับ disclosure ของการ์ดครบ 38 records ให้ขึ้นต้นด้วยข้อความเฉพาะว่า **ข้อมูลนี้ช่วยตอบอะไร** ก่อนแสดงพื้นที่ครอบคลุม ระดับพื้นที่ สถานะ ที่มา ช่วงเวลา และสิ่งที่ควรตรวจเพิ่ม
+  - `benefitTh` และ `benefitEn` มีครบ 38 รายการและไม่ใช้ข้อความ placeholder ซ้ำกัน
+  - เปลี่ยนหัวข้อภายในจากศัพท์ audit เช่น `exact public lineage` และ `candidate` เป็นภาษาที่คนทั่วไปอ่านรู้เรื่อง โดยยังเก็บขอบเขตหลักฐานและลิงก์ต้นทางไว้
+  - สีของสถานะใช้ semantic token ตาม Design System และตัดค่าสีเดิม `#9F78D8`, `#D89A27` และ `#36B9CC` ออกจาก enhancement layer
+- คง Landometer เป็นแบรนด์หลักและไม่เปลี่ยนวิดีโอ ภาพ snapshot, canonical route, QR หรือไฟล์โลโก้ PNG ใน revision นี้
 - เริ่ม enhancement หลัง `window.load`, รอขั้นต่ำ 1 วินาทีและช่วง DOM นิ่ง 250 ms แล้วเว้นอีกสอง animation frames ก่อนแก้ DOM เพื่อลด race กับ React hydration โดยการแสดง headline/lockup ไม่ขึ้นกับความสำเร็จของ registry fetch
 - รักษา prerendered focused-card copy ให้ตรงกับ React baseline แล้วค่อย apply ข้อความพื้นที่เฉพาะหลัง hydration เพื่อไม่ให้เกิด text-hydration warning
+
+## Section surface assignment
+
+| Section | Light surface | Dark surface |
+|---|---|---|
+| Decision intents | canvas | canvas |
+| Examples | blue tint | blue tint |
+| Dataset explorer | beige tint | beige tint |
+| Contact | soft | soft |
+| Footer | alt | alt |
+
+Hero และ mobile handoff ยังคงใช้ gradient เดิมตามหน้าที่ของ section จึงไม่เพิ่ม gradient ใหม่เพื่อให้ครบจำนวนสี
 
 ## Canonical route contract
 
@@ -60,12 +81,31 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 
 ## Release validation
 
+### Automated pre-release gates
+
+- ตรวจ reader benefit ภาษาไทย/อังกฤษว่ามีครบ 38 รายการ ความยาวผ่านเกณฑ์ และไม่ซ้ำกัน
+- ตรวจ runtime disclosure ว่า benefit เป็น block แรก ใช้ source-review revision `2026-08-14-r4`, ลบ limitation block เก่า และไม่มี label audit ชุดเดิม
+- ตรวจวงกลมโลโก้ว่าใช้ grid 3 คอลัมน์เท่ากัน, diameter token เดียวกัน, `aspect-ratio: 1`, `border-radius: 50%` และไม่มี mobile override ที่ย้ายเครื่องหมายที่สามลงแถวใหม่
+- ตรวจ surface token และ selector ครบ 5 section ทั้ง light/dark
+- ตรวจว่าไม่มีค่าสีสถานะเดิม `#9F78D8`, `#D89A27` หรือ `#36B9CC` เหลือใน CSS/JavaScript enhancement
+- คงการตรวจ SHA-256, มิติและ RGBA transparency ของ PNG ทั้งสาม รวมถึง hash ของไฟล์ lockup ต้นฉบับและวิดีโอเดิม
+- ตรวจ cache reference ของหน้าไทย/อังกฤษ: `catalog-enhancements.css?v=9` และ `catalog-enhancements.js?v=13`
+- รัน `node scripts/validate-release.mjs`, syntax checks, migration idempotency และ `git diff --check`
+
+### Carried checks from the published baseline
+
 - สร้าง QR ใหม่ครบ 38 datasets จาก canonical registry และสร้าง page QR ภาษาไทย/อังกฤษ พร้อม SHA-256 manifest ที่ผูก URL กับ bytes ของทุกไฟล์
 - ตรวจว่า card image, CTA และ JSON-LD ของหน้าไทย/อังกฤษตรงกับ registry ครบ 38 รายการ
 - ตรวจ focused routes ที่ระบุในตารางแบบ exact match
-- ตรวจ headline และ supporter logo groups หลัง hydration: 2 ตำแหน่ง × 3 ไฟล์ ไม่มีการ inject ซ้ำ
-- ตรวจ footer ไม่ล้นแนวนอน, การ wrap/stack ช่วง responsive, ความชัดของโลโก้บน hero และ light/dark footer และ console จากหน้า production ทั้งภาษาไทยและอังกฤษ
-- รัน `node scripts/validate-release.mjs`, syntax checks และ `git diff --check`
+
+### Pending production QA for this revision
+
+- Commit SHA: pending
+- GitHub Pages run: pending
+- Cold-load ภาษาไทย/อังกฤษหลัง hydration gate: pending
+- 38 benefit blocks, filter/search re-render และ duplicate-injection check: pending
+- วงกลมโลโก้จริงที่ 320, 390, 430, 720, 900, 901, 1120 และ 1440 px: pending
+- สีพื้นและ contrast ทั้ง light/dark, horizontal overflow, footer และ application-origin console: pending
 
 ## ไฟล์ส่งมอบหลัก
 

@@ -1,6 +1,8 @@
-# CityMETER catalog — Design QA v3
+# CityMETER catalog — Design QA v3 + current revision addendum
 
 Verified 2026-08-14 against the immutable preview commit `5d465b611d0a24b58e7fd458afa3ae83a501127b`.
+
+The original sections below are the receipt for that published baseline. They do not claim that the later equal-circle logo, muted section-surface and benefit-first copy revision has passed production QA. The current revision status is recorded in the addendum at the end.
 
 ## Comparison targets
 
@@ -68,6 +70,39 @@ The Pinterest reference and the rendered catalog were inspected together in the 
 - The reel is editorial motion over real settled CityMETER screenshots, not a recording of one continuous live session.
 - Source wording records what was verified as of 2026-08-14; changing source packages or periods requires a new source review.
 
-## Final result
+## Published baseline result
 
 final result: passed
+
+## Current revision addendum — equal circles, quiet surface diversity and benefit-first details
+
+### Intended change
+
+- Render depa, dSURE Software and Digital Service Account as three intact transparent PNGs on equal circular CSS plates in the hero and footer.
+- Keep all three marks in one row down to the supported 320 px viewport; use one shared diameter token and logo-specific optical sizing inside each circle.
+- Give Decision, Examples, Dataset Explorer, Contact and Footer distinct muted surface roles in both light and dark themes. Hero and handoff retain their existing governed gradients.
+- Start each dataset disclosure with a specific answer to “What this data helps you answer,” then show coverage, spatial unit, source status, owner/source, period, decision checks, source links and QR.
+- Preserve the original evidence boundaries, exact routes, QR bytes, videos and transparent logo asset bytes.
+
+### Source-level acceptance contract
+
+- Registry: 38 non-empty and unique `benefitTh` values plus 38 non-empty and unique `benefitEn` values.
+- Runtime: benefit block is first, stale-registry fallback is present, source-review revision is `2026-08-14-r4`, and the terse prerendered limitation block is removed only after the hydration boundary.
+- Language: retired audit labels such as `exact public lineage`, `candidate — ต้องมีหลักฐานเพิ่ม` and `How to read it within the evidence` are absent from public runtime labels.
+- Semantic status color: the enhancement layer contains none of the retired local values `#9F78D8`, `#D89A27` or `#36B9CC`; status roles use the canonical semantic palette.
+- Logo geometry: three equal grid columns; shared width token; square cells; 50% radius; no two-plus-one mobile rearrangement.
+- Surface assignment: exact light/dark Design System v0.8.9 values for canvas, blue tint, beige tint, soft and alt are consumed by their named sections.
+- Asset integrity: the three separated logos remain RGBA PNG files with their recorded dimensions and SHA-256 values; the owner-supplied combined lockup remains unchanged as provenance.
+- Cache contract: both language entries load `catalog-enhancements.css?v=9` and `catalog-enhancements.js?v=13`.
+
+### Production checks still required
+
+- Commit SHA: pending
+- GitHub Pages deployment: pending
+- Cold-load hydration on Thai and English routes with no application-origin console errors: pending
+- Exactly 38 source reviews and benefit blocks after load, after filter/search, and after restoring all records: pending
+- No duplicate benefit, evidence or source-review blocks after MutationObserver re-entry: pending
+- Equal circles, legible marks and no horizontal overflow at 320, 390, 430, 720, 900, 901, 1120 and 1440 px: pending
+- Light/dark section rhythm, text/control contrast, footer containment and the Fuel Stations mobile disclosure: pending
+
+current revision result: pending production QA

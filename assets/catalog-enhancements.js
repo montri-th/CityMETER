@@ -5,16 +5,19 @@
   const language = document.documentElement.lang === "en" ? "en" : "th";
   const text = {
     th: {
-      summary: "ที่มา ขอบเขต และรายละเอียด",
-      verifiedSummary: "ที่มา ขอบเขต และข้อมูลที่ยืนยันแล้ว",
-      verified: "ยืนยัน same-dataset lineage",
-      candidate: "candidate — ต้องมีหลักฐานเพิ่ม",
-      otherSource: "แหล่งอื่นที่ระบุได้",
-      derived: "ผลวิเคราะห์/ชั้นข้อมูลต่อยอด",
-      unproven: "ยังไม่ยืนยัน exact public lineage",
-      source: "ที่มาและหลักฐานที่ตรวจได้",
-      period: "ขอบเขตเวลา/การเผยแพร่",
-      reading: "อ่านอย่างไรไม่ให้เกินหลักฐาน",
+      summary: "ใช้ข้อมูลนี้ทำอะไรได้",
+      verifiedSummary: "ใช้ข้อมูลนี้ทำอะไรได้",
+      verified: "ยืนยันแหล่งข้อมูลต้นทางแล้ว",
+      candidate: "พบแหล่งข้อมูลที่เกี่ยวข้อง",
+      otherSource: "ใช้แหล่งข้อมูลเฉพาะด้าน",
+      derived: "CityMETER คำนวณและสรุปต่อยอด",
+      unproven: "ข้อมูลสำรวจเบื้องต้น",
+      benefit: "ข้อมูลนี้ช่วยตอบอะไร",
+      coverage: "ดูพื้นที่ไหนได้บ้าง",
+      granularity: "ดูได้ละเอียดแค่ไหน",
+      source: "ข้อมูลมาจากไหน",
+      period: "ข้อมูลครอบคลุมช่วงไหน",
+      reading: "ก่อนใช้ตัดสินใจ",
       official: "ช่องทางทางการ",
       gd: "GD Catalog",
       qrTitle: "สแกนเพื่อเปิดข้อมูลนี้ใน CityMETER",
@@ -97,16 +100,19 @@
       caption: "3 มุมมองจริง หมุนวนอัตโนมัติ · วิดีโอไม่มีเสียง"
     },
     en: {
-      summary: "Sources, scope and details",
-      verifiedSummary: "Sources, scope and verified lineage",
-      verified: "Verified same-dataset lineage",
-      candidate: "Candidate — more evidence required",
-      otherSource: "Identified non-GD source",
-      derived: "Derived analysis or layer",
-      unproven: "Exact public lineage not yet verified",
-      source: "Source and evidence reviewed",
-      period: "Period and release scope",
-      reading: "How to read it within the evidence",
+      summary: "What you can do with this data",
+      verifiedSummary: "What you can do with this data",
+      verified: "Source dataset verified",
+      candidate: "Related source identified",
+      otherSource: "Uses a specialist data source",
+      derived: "Calculated and summarised by CityMETER",
+      unproven: "Exploratory data view",
+      benefit: "What this data helps you answer",
+      coverage: "Where you can use it",
+      granularity: "How detailed the view is",
+      source: "Where the data comes from",
+      period: "What period the data covers",
+      reading: "Before making a decision",
       official: "Official channel",
       gd: "GD Catalog",
       qrTitle: "Scan to open this view in CityMETER",
@@ -241,6 +247,70 @@
     section.append(element("h4", "source-copy-label", label));
     section.append(element("p", "source-copy-text", copy));
     return section;
+  }
+
+  function makeEvidenceActionable(evidence) {
+    if (!evidence) return;
+    const labels = evidence.querySelectorAll("dt");
+    [text.coverage, text.granularity].forEach((copy, index) => {
+      const label = labels[index];
+      if (!label) return;
+      const textNode = Array.from(label.childNodes).find((node) => node.nodeType === Node.TEXT_NODE);
+      if (textNode) textNode.textContent = copy;
+    });
+
+    const directReplacements = language === "th"
+      ? new Map([
+          ["มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ", "เริ่มดูภาพรวมประเทศไทยได้ แล้วเปิดข้อมูลต้นทางเพื่อตรวจพื้นที่ครอบคลุมก่อนเปรียบเทียบ"],
+          ["ขอบเขตพื้นที่ยังไม่ระบุบนหน้าสาธารณะ", "เริ่มจากพื้นที่ที่แสดงบนหน้าจอ แล้วเปิดข้อมูลต้นทางเพื่อตรวจพื้นที่ครอบคลุมก่อนนำไปเทียบ"],
+          ["มีหน้าสรุประดับประเทศไทยและอันดับจังหวัด; ขอบเขตข้อมูลต้นทางยังไม่ระบุ", "เทียบภาพรวมประเทศไทยและอันดับจังหวัดได้ แล้วตรวจพื้นที่ครอบคลุมจากข้อมูลต้นทางก่อนใช้"],
+          ["มีหน้าสรุประดับประเทศไทยและอันดับจังหวัด; ขอบเขตของโมเดลยังไม่ระบุ", "เทียบภาพรวมประเทศไทยและอันดับจังหวัดได้ แล้วตรวจพื้นที่ครอบคลุมของโมเดลก่อนใช้"],
+          ["ระดับพื้นที่ย่อยสุดยังไม่ยืนยันจากหน้าสาธารณะ", "ใช้ระดับพื้นที่ที่แสดงบนหน้าจอ และตรวจหน่วยย่อยจากข้อมูลต้นทางก่อนอ้างอิง"],
+          ["ยืนยันจากเส้นทางกรุงเทพฯ ที่ตรวจ; ขอบเขตพื้นที่อื่นยังไม่ยืนยัน", "เริ่มสำรวจจากเส้นทางกรุงเทพฯ ที่ตรวจแล้ว และตรวจข้อมูลต้นทางเพิ่มเติมเมื่อต้องเทียบพื้นที่อื่น"],
+          ["มีการเปรียบเทียบระดับจังหวัด; ไม่รองรับข้อสรุประดับรถรายคัน", "ใช้เปรียบเทียบระดับจังหวัดได้ ส่วนข้อมูลรถรายคันต้องใช้แหล่งข้อมูลที่ออกแบบมาสำหรับงานนั้น"],
+          ["เห็นพื้นที่สีตามรูปแบบโครงข่ายถนน แต่หน่วยวิเคราะห์พื้นฐานยังไม่มีคำอธิบายสาธารณะ", "เห็นรูปแบบโครงข่ายถนนในแต่ละพื้นที่ และควรเปิดดูวิธีสร้างหน่วยวิเคราะห์ก่อนนำไปตัดสินใจ"],
+          ["หน้าตั้งต้นอยู่ในกรุงเทพฯ; ภาพรวมความครอบคลุมทั้งหมดของ locale ยังไม่เผยแพร่", "เริ่มดูบริบทพื้นที่กรุงเทพฯ ได้ หากจะใช้กับพื้นที่อื่นให้ตรวจรายชื่อ locale ที่รองรับจากข้อมูลต้นทาง"],
+          ["locale เป็นหน่วยย่อยสุดที่เลือกได้; geometry และ crosswalk ไปขอบเขตบริการยังไม่ยืนยัน", "เลือกดูได้ถึงระดับ locale หากจะเทียบกับเขตบริการให้ตรวจรูปทรงพื้นที่และการจับคู่ขอบเขตจากข้อมูลต้นทาง"],
+          ["ยืนยันหน่วยข้อมูลระดับองค์กรปกครองส่วนท้องถิ่น; geometry ของขอบเขตยังไม่ยืนยัน", "เปรียบเทียบได้ถึงระดับองค์กรปกครองส่วนท้องถิ่น หากต้องใช้แนวเขตบนแผนที่ให้ตรวจรูปทรงขอบเขตจากข้อมูลต้นทาง"],
+          ["สถานีเซนเซอร์เป็นหน่วยย่อยสุดที่ยืนยันได้; รูปแบบ geometry บนแผนที่ยังไม่ยืนยัน", "ดูได้ถึงระดับสถานีเซนเซอร์ หากต้องใช้ตำแหน่งหรือรูปทรงบนแผนที่ให้ตรวจจากข้อมูลต้นทาง"]
+        ])
+      : new Map([
+          ["A Thailand summary view is visible; source coverage is not stated", "Start with the Thailand overview, then check source coverage before comparing places."],
+          ["Geographic coverage is not stated on the public page", "Start with the area shown, then check source coverage before comparing places."],
+          ["A Thailand summary and province ranking are visible; source coverage is not stated", "Compare the Thailand overview and province ranking, then check source coverage before use."],
+          ["A Thailand summary and province ranking are visible; model coverage is not stated", "Compare the Thailand overview and province ranking, then check model coverage before use."],
+          ["The smallest supported geography is not yet verified from the public page", "Use the geography shown on screen and check the source before citing a smaller unit."],
+          ["Evidenced on the inspected Bangkok route; broader geographic coverage is not verified", "Start with the inspected Bangkok route and check the source before comparing other areas."],
+          ["Province comparison is evidenced; individual-vehicle detail is not supported", "Use it for province comparison; vehicle-level questions require a source designed for that purpose."],
+          ["Coloured road-archetype areas are visible, but the underlying analytical unit is not publicly documented", "Compare the visible road-network patterns and review how the analytical unit was built before making a decision."],
+          ["The default page is scoped to Bangkok; the full locale coverage is not published", "Start with the Bangkok place profiles and check the supported locale list before using the view elsewhere."],
+          ["Locale is the smallest selectable unit; geometry and service-boundary crosswalks are not verified", "View individual locales, then check their shapes and boundary matching before comparing service areas."],
+          ["The local authority is the evidenced record unit; boundary geometry is not verified", "Compare individual local authorities, then check mapped boundaries against the source before spatial analysis."],
+          ["The sensor station is the smallest evidenced unit; map geometry is not verified", "View individual sensor stations, then check mapped locations against the source before spatial analysis."]
+        ]);
+
+    evidence.querySelectorAll("dd").forEach((item) => {
+      let copy = item.textContent.trim();
+      if (directReplacements.has(copy)) copy = directReplacements.get(copy);
+      if (language === "th") {
+        copy = copy
+          .replace(/; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ$/, "; ใช้พื้นที่ในภาพเป็นจุดเริ่มต้น และตรวจข้อมูลต้นทางก่อนขยายผลไปพื้นที่อื่น")
+          .replace(/; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ยืนยัน$/, "; ใช้พื้นที่ในภาพเป็นจุดเริ่มต้น และตรวจข้อมูลต้นทางก่อนขยายผลไปพื้นที่อื่น")
+          .replace(/; ([^;]+?)ยังไม่ระบุบนหน้าสาธารณะ$/, "; ก่อนนำไปเทียบพื้นที่ ให้ตรวจ$1จากข้อมูลต้นทาง")
+          .replace(/; ([^;]+?)ยังไม่ยืนยัน(?:จากหน้าสาธารณะ)?$/, "; หากต้องใช้$1 ให้ตรวจจากข้อมูลต้นทางก่อน")
+          .replace(/; ([^;]+?)ยังไม่เผยแพร่$/, "; เมื่อต้องใช้$1 ให้ตรวจจากข้อมูลต้นทางก่อน")
+          .replace(/; ([^;]+?)ยังไม่มีคำอธิบายสาธารณะ$/, "; ก่อนนำไปตัดสินใจ ให้เปิดดู$1");
+      } else {
+        copy = copy
+          .replace(/; source coverage beyond the example is not stated on the public page$/, "; use the example area as a starting point and check the source before extending the finding elsewhere.")
+          .replace(/; source coverage beyond the example is not verified$/, "; use the example area as a starting point and check the source before extending the finding elsewhere.")
+          .replace(/; ([^;]+?) (?:is|are) not stated on the public page$/, "; check $1 in the source before comparing places.")
+          .replace(/; ([^;]+?) (?:is|are) not (?:yet )?verified$/, "; check $1 against the source before relying on it.")
+          .replace(/; ([^;]+?) (?:is|are) not (?:yet )?published$/, "; check $1 in the source before relying on it.")
+          .replace(/; ([^;]+?) (?:is|are) not publicly documented$/, "; review $1 before making a decision.");
+      }
+      item.textContent = copy;
+    });
   }
 
   function visibleDatasetCards() {
@@ -479,7 +549,7 @@
         }
       });
     }
-    if (!record || card.dataset.sourceReviewVersion === "2026-08-14-r3") return;
+    if (!record || card.dataset.sourceReviewVersion === "2026-08-14-r4") return;
 
     const details = card.querySelector(".dataset-details");
     const openLink = card.querySelector(".dataset-open");
@@ -487,7 +557,7 @@
     if (!details || !openLink) return;
 
     card.dataset.sourceStatus = record.status;
-    card.dataset.sourceReviewVersion = "2026-08-14-r3";
+    card.dataset.sourceReviewVersion = "2026-08-14-r4";
     card.querySelectorAll(".dataset-image img").forEach((image) => {
       image.loading = "lazy";
       image.decoding = "async";
@@ -513,14 +583,22 @@
       summary.append(element("span", "source-summary-copy", record.status === "verified-lineage" ? text.verifiedSummary : text.summary));
     }
 
-    const evidence = card.querySelector(":scope > .dataset-body > .evidence-summary");
-    if (evidence && !details.contains(evidence)) {
+    const evidence = card.querySelector(":scope > .dataset-body > .evidence-summary, :scope > .dataset-body > .dataset-details > .evidence-summary");
+    if (evidence) {
       evidence.classList.add("evidence-summary-in-details");
-      details.insertBefore(evidence, details.children[1] || null);
+      makeEvidenceActionable(evidence);
     }
+
+    /* The prerendered bundle contains one terse limitation block. The governed
+       registry below replaces it with benefit-first copy and concrete checks. */
+    details.querySelector(":scope > div:not(.source-review)")?.remove();
 
     details.querySelector(".source-review")?.remove();
     const review = element("div", "source-review");
+    const benefit = makeLabeledCopy(text.benefit, localized(record, "benefit") || localized(record, "reading"));
+    benefit.classList.add("source-copy-block-benefit");
+    review.append(benefit);
+    if (evidence) review.append(evidence);
     review.append(element("span", `source-status source-status-${record.status}`, statusLabels[record.status] || text.unproven));
     review.append(makeLabeledCopy(text.source, `${localized(record, "owner")} — ${localized(record, "source")}`));
     if (localized(record, "period")) review.append(makeLabeledCopy(text.period, localized(record, "period")));
