@@ -46,6 +46,7 @@
     },
     {
       "id": "dataset-crop-area-output",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/PRE?d=muenRai",
       "status": "candidate",
       "ownerTh": "กลุ่มทะเบียนการผลิตพืช — กรมส่งเสริมการเกษตร (candidate)",
       "ownerEn": "Department of Agricultural Extension production registry family (candidate)",

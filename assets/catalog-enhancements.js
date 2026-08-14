@@ -445,6 +445,11 @@
 
   function enhanceCard(card) {
     const record = recordById.get(card.id);
+    if (record?.citymeterUrl) {
+      card.querySelectorAll(".dataset-image, .dataset-open, .dataset-mobile-link").forEach((link) => {
+        if (link.getAttribute("href") !== record.citymeterUrl) link.href = record.citymeterUrl;
+      });
+    }
     const visualFocus = text.visualFocus[card.id];
     if (visualFocus) {
       const label = card.querySelector(".preview-focus-label");

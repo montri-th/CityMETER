@@ -14,6 +14,12 @@
   - เปลี่ยนโจทย์การตัดสินใจ: proof panel ชุดใหม่ปรากฏจากระยะ 8 px ภายใน 200 ms
 - ไม่มี bounce, pulse, shimmer, autoplay decoration หรือ motion ที่แย่งความสนใจจากภาพข้อมูล
 - เมื่อระบบตั้ง `prefers-reduced-motion: reduce` เว็บจะแสดง state สุดท้ายทันทีและไม่เรียก Web Animations API
+- ปรับ handoff ให้ใช้ต่อได้ถาวร ไม่ผูกกับช่วงหลังจบนิทรรศการหรือการส่งให้ทีมเท่านั้น
+  - ภาษาไทย: เก็บตัวอย่างไว้ใช้เมื่อต้องตัดสินใจเรื่องพื้นที่ และเก็บลิงก์หรือส่งให้เพื่อนได้
+  - English: keep the example handy for a place decision, then save it or share it
+- ลิงก์ของ Agriculture: Crop Area & Output เปลี่ยนเป็นเส้นทางจังหวัดแพร่โดยตรงทั้งการ์ด, JSON-LD, mobile handoff และ QR: `https://landometer.com/v3/citymeter/PRE?d=muenRai`
+- Runtime enhancement จะตั้ง direct route ซ้ำเมื่อ React คืนค่า href เดิมหลังค้นหา กรอง หรือสลับภาษา
+- QR ที่สร้างใหม่มีเฉพาะ `media/qr/crop-area-output.png` (SHA-256 `6d7b4ba9bcd42f130ccb6f6c6571dab888e476de376bb1e843ad9611ac38d530`); QR อื่นไม่ได้สร้างซ้ำ
 - วิดีโอหน้าแรกและวิดีโอสำหรับจอนิทรรศการไม่ได้แก้ไขในรอบนี้
 
 ## Snapshot ที่เปลี่ยน
@@ -52,6 +58,9 @@
 - `node --check assets/catalog-enhancements.js`
 - `node --check scripts/apply-focus-copy.mjs`
 - รัน `scripts/apply-focus-copy.mjs` ซ้ำและยืนยันว่า idempotent
+- ตรวจว่า prerendered card ทั้งภาษาไทยและอังกฤษมี direct Phrae route ครบทั้งภาพและปุ่มเปิด และไม่มี generic Muen Rai route เหลือ
+- ตรวจ registry, runtime override, JSON-LD และ SHA-256 ของ Muen Rai QR
+- ตรวจ permanent handoff copy ทั้ง prerendered HTML และ hydrated bundle
 - ตรวจภาพจริงทั้งสี่ที่ 1200×750
 - ตรวจ interaction expand/collapse, filter และ search จากหน้า production
 - ตรวจว่า actionable controls ยังคงมีเพียงวงกลมและ capsule
@@ -63,4 +72,7 @@
 - `en/index.html` — หน้าอังกฤษ
 - `assets/catalog-enhancements.css`
 - `assets/catalog-enhancements.js`
+- `assets/index-qbT50gkr-v3.js`
+- `data/catalog-source-review.json`
+- `media/qr/crop-area-output.png`
 - `CITYMETER_MOTION_SNAPSHOT_RELEASE_2026-08-14.md`

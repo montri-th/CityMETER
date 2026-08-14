@@ -7,7 +7,13 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const replacements = {
   "index.html": [
     ["catalog-enhancements.css?v=4", "catalog-enhancements.css?v=5"],
-    ["catalog-enhancements.js?v=6", "catalog-enhancements.js?v=7"],
+    ["catalog-enhancements.js?v=7", "catalog-enhancements.js?v=8"],
+    ["index-qbT50gkr-v3.js\"", "index-qbT50gkr-v3.js?v=2\""],
+    ["https://landometer.com/v3/citymeter?d=muenRai", "https://landometer.com/v3/citymeter/PRE?d=muenRai"],
+    ["เก็บตัวอย่างนี้ไว้ดูหลังจบนิทรรศการ", "เก็บตัวอย่างนี้ไว้ใช้ เมื่อต้องตัดสินใจเรื่องพื้นที่"],
+    ["สแกน QR เพื่อเปิดหน้าและข้อมูลชุดเดียวกัน พร้อมเลือกโจทย์ที่ต้องการดูต่อ", "สแกน QR เพื่อเปิดบนมือถือ เก็บลิงก์ไว้ดูเอง หรือส่งให้เพื่อนที่กำลังเลือกบ้าน ทำเลธุรกิจ หรือพื้นที่ลงทุน"],
+    ["ส่งตัวอย่างนี้ให้ทีม", "เก็บลิงก์หรือส่งให้เพื่อน"],
+    ["ผู้รับจะเปิดมาที่ตัวอย่างและข้อมูลชุดเดียวกัน", "ลิงก์จะเปิดตัวอย่างและข้อมูลชุดเดียวกัน"],
     ["GFA · ความสูง · จำนวนชั้น", "สวนพลู · อาคาร 3 มิติ · GFA"],
     [
       "ใช้แผนที่เปรียบเทียบจังหวัดคู่กับ GFA ความสูง และจำนวนชั้น เพื่อเล่าความเข้มข้นของการพัฒนา",
@@ -41,7 +47,13 @@ const replacements = {
   ],
   "en/index.html": [
     ["catalog-enhancements.css?v=4", "catalog-enhancements.css?v=5"],
-    ["catalog-enhancements.js?v=6", "catalog-enhancements.js?v=7"],
+    ["catalog-enhancements.js?v=7", "catalog-enhancements.js?v=8"],
+    ["index-qbT50gkr-v3.js\"", "index-qbT50gkr-v3.js?v=2\""],
+    ["https://landometer.com/v3/citymeter?d=muenRai", "https://landometer.com/v3/citymeter/PRE?d=muenRai"],
+    ["Keep this example for after the exhibition", "Keep this example handy for a place decision"],
+    ["Scan the QR code to open the same page and data, then choose the decision you want to explore.", "Scan to open it on your phone, save it for yourself, or share it with someone choosing a home, business location, or investment area."],
+    ["Share this example with your team", "Save or share this example"],
+    ["Your recipient will land on the same example and data.", "The link opens the same example and data."],
     ["GFA · height · floors", "Suan Plu · 3D buildings · GFA"],
     [
       "Pair the province comparison map with GFA, height, and floor metrics to explain development intensity",
@@ -74,6 +86,17 @@ const replacements = {
     ]
   ]
 };
+
+const bundleReplacements = [
+  ["เก็บตัวอย่างนี้ไว้ดูหลังจบนิทรรศการ", "เก็บตัวอย่างนี้ไว้ใช้ เมื่อต้องตัดสินใจเรื่องพื้นที่"],
+  ["สแกน QR เพื่อเปิดหน้าและข้อมูลชุดเดียวกัน พร้อมเลือกโจทย์ที่ต้องการดูต่อ", "สแกน QR เพื่อเปิดบนมือถือ เก็บลิงก์ไว้ดูเอง หรือส่งให้เพื่อนที่กำลังเลือกบ้าน ทำเลธุรกิจ หรือพื้นที่ลงทุน"],
+  ["ส่งตัวอย่างนี้ให้ทีม", "เก็บลิงก์หรือส่งให้เพื่อน"],
+  ["ผู้รับจะเปิดมาที่ตัวอย่างและข้อมูลชุดเดียวกัน", "ลิงก์จะเปิดตัวอย่างและข้อมูลชุดเดียวกัน"],
+  ["Keep this example for after the exhibition", "Keep this example handy for a place decision"],
+  ["Scan the QR code to open the same page and data, then choose the decision you want to explore.", "Scan to open it on your phone, save it for yourself, or share it with someone choosing a home, business location, or investment area."],
+  ["Share this example with your team", "Save or share this example"],
+  ["Your recipient will land on the same example and data.", "The link opens the same example and data."]
+];
 
 const cardReplacements = {
   "index.html": {
@@ -131,8 +154,8 @@ const cardReplacements = {
 };
 
 function replaceIdempotently(value, from, to, scope) {
-  if (value.includes(from)) return value.replaceAll(from, to);
   if (value.includes(to)) return value;
+  if (value.includes(from)) return value.replaceAll(from, to);
   throw new Error(`${scope} is missing expected copy: ${from}`);
 }
 
@@ -140,6 +163,11 @@ for (const [relativePath, pairs] of Object.entries(replacements)) {
   const path = join(root, relativePath);
   let html = readFileSync(path, "utf8");
   if (relativePath === "en/index.html") html = html.replaceAll("Riang Thong", "Wiang Thong");
+  if (relativePath === "index.html") {
+    while (html.includes("ภาพภาพยืนยันการเปรียบเทียบระดับจังหวัด")) {
+      html = html.replaceAll("ภาพภาพยืนยันการเปรียบเทียบระดับจังหวัด", "ภาพยืนยันการเปรียบเทียบระดับจังหวัด");
+    }
+  }
   for (const [from, to] of pairs) html = replaceIdempotently(html, from, to, relativePath);
   for (const [cardId, cardPairs] of Object.entries(cardReplacements[relativePath])) {
     const start = html.indexOf(`<article class="dataset-card" id="${cardId}">`);
@@ -152,4 +180,11 @@ for (const [relativePath, pairs] of Object.entries(replacements)) {
   writeFileSync(path, html);
 }
 
-console.log("Applied focused snapshot copy and motion cache revisions to prerendered HTML.");
+const bundlePath = join(root, "assets/index-qbT50gkr-v3.js");
+let bundle = readFileSync(bundlePath, "utf8");
+for (const [from, to] of bundleReplacements) {
+  bundle = replaceIdempotently(bundle, from, to, "assets/index-qbT50gkr-v3.js");
+}
+writeFileSync(bundlePath, bundle);
+
+console.log("Applied focused snapshot copy, direct routes, permanent handoff copy, and cache revisions.");
