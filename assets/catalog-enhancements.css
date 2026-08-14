@@ -1,4 +1,13 @@
-/* CityMETER catalog source, QR, masonry and hero enhancement layer — 2026-08-14 */
+/* CityMETER catalog source, QR, responsive motion, masonry and hero enhancement layer — 2026-08-14 */
+
+:root {
+  --motion-duration-feedback: 120ms;
+  --motion-duration-state: 200ms;
+  --motion-duration-map: 280ms;
+  --motion-distance-feedback: 2px;
+  --motion-ease-state: cubic-bezier(.2, 0, 0, 1);
+  --motion-ease-enter: cubic-bezier(.16, 1, .3, 1);
+}
 
 .dataset-grid {
   display: block !important;
@@ -14,6 +23,11 @@
   break-inside: avoid;
   page-break-inside: avoid;
   vertical-align: top;
+  transition: border-color var(--motion-duration-state) var(--motion-ease-state);
+}
+
+.dataset-card:has(.dataset-details[open]) {
+  border-color: color-mix(in srgb, var(--accent) 58%, var(--border));
 }
 
 .dataset-card > .dataset-image,
@@ -77,6 +91,52 @@
   align-items: center;
   gap: 12px;
   padding-block: 8px !important;
+}
+
+.source-summary,
+.group-filters button,
+.intent-tab,
+.source-link,
+.dataset-mobile-link,
+.dataset-open,
+.button,
+.share-action,
+.inline-action,
+.hero-text-link {
+  transition:
+    color var(--motion-duration-state) var(--motion-ease-state),
+    background-color var(--motion-duration-state) var(--motion-ease-state),
+    border-color var(--motion-duration-state) var(--motion-ease-state),
+    transform var(--motion-duration-feedback) var(--motion-ease-state);
+}
+
+.source-summary:active,
+.group-filters button:active,
+.intent-tab:active,
+.source-link:active,
+.dataset-mobile-link:active,
+.dataset-open:active,
+.button:active,
+.share-action:active,
+.inline-action:active,
+.hero-text-link:active {
+  transform: translateY(var(--motion-distance-feedback));
+}
+
+.dataset-open svg,
+.button svg,
+.share-action svg,
+.inline-action svg,
+.hero-text-link svg {
+  transition: transform var(--motion-duration-state) var(--motion-ease-state);
+}
+
+.dataset-open:is(:hover, :focus-visible) svg,
+.button:is(:hover, :focus-visible) svg,
+.share-action:is(:hover, :focus-visible) svg,
+.inline-action:is(:hover, :focus-visible) svg,
+.hero-text-link:is(:hover, :focus-visible) svg {
+  transform: translateX(3px);
 }
 
 .source-summary-copy {
@@ -522,5 +582,44 @@
   .dataset-qr-image {
     width: min(190px, 100%);
     justify-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dataset-card,
+  .source-summary,
+  .group-filters button,
+  .intent-tab,
+  .source-link,
+  .dataset-mobile-link,
+  .dataset-open,
+  .button,
+  .share-action,
+  .inline-action,
+  .hero-text-link,
+  .dataset-open svg,
+  .button svg,
+  .share-action svg,
+  .inline-action svg,
+  .hero-text-link svg {
+    transition: none !important;
+  }
+
+  .source-summary:active,
+  .group-filters button:active,
+  .intent-tab:active,
+  .source-link:active,
+  .dataset-mobile-link:active,
+  .dataset-open:active,
+  .button:active,
+  .share-action:active,
+  .inline-action:active,
+  .hero-text-link:active,
+  .dataset-open:is(:hover, :focus-visible) svg,
+  .button:is(:hover, :focus-visible) svg,
+  .share-action:is(:hover, :focus-visible) svg,
+  .inline-action:is(:hover, :focus-visible) svg,
+  .hero-text-link:is(:hover, :focus-visible) svg {
+    transform: none !important;
   }
 }

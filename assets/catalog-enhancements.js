@@ -40,6 +40,34 @@
           coverage: "ภาพตัวอย่างโฟกัสอำเภอเมืองชลบุรี; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
           unit: "ภาพแสดงโซนราคาประเมินแบบ 3 มิติและจำนวนโฉนด; รายละเอียดรูปแปลงรายแปลงยังไม่ยืนยัน",
           revision: "20260814-mueang-chonburi-3d"
+        },
+        "dataset-flood-recurrent": {
+          label: "ผักไห่ · น้ำท่วมย้อนหลัง 14 ปี",
+          intro: "เห็นขอบเขตน้ำท่วมรายปีและการเกิดซ้ำในอำเภอผักไห่ พร้อมเทียบกราฟย้อนหลัง 14 ปี",
+          coverage: "ภาพตัวอย่างโฟกัสอำเภอผักไห่ พระนครศรีอยุธยา; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
+          unit: "ภาพแสดงขอบเขตอำเภอ พื้นที่น้ำท่วม และสรุประดับตำบล; ความละเอียดของข้อมูลน้ำท่วมต้นทางยังไม่ยืนยัน",
+          revision: "20260814-phak-hai-flood"
+        },
+        "dataset-road-network-archetypes": {
+          label: "ปทุมวัน · Road DNA · รูปแบบถนน",
+          intro: "สำรวจรูปแบบโครงข่ายถนนในปทุมวัน พร้อมสัดส่วนทางตัน ความหนาแน่นทางแยก และ Road DNA",
+          coverage: "ภาพตัวอย่างโฟกัสเขตปทุมวัน กรุงเทพมหานคร; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ยืนยัน",
+          unit: "ภาพแสดงพื้นที่วิเคราะห์แบบ hexagon และตัวชี้วัด Road DNA; วิธีสร้างหน่วยวิเคราะห์ยังไม่มีคำอธิบายสาธารณะ",
+          revision: "20260814-pathum-wan-road-dna"
+        },
+        "dataset-crop-area-output": {
+          label: "เวียงทอง · ผลผลิตรายเดือน",
+          intro: "ดูพื้นที่เพาะปลูกและผลผลิตรายเดือนใน อบต.เวียงทอง พร้อมแยกชนิดพืชและกราฟช่วงเวลา",
+          coverage: "ภาพตัวอย่างโฟกัส อบต.เวียงทอง จังหวัดแพร่; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
+          unit: "ภาพแสดงหน่วยหมู่บ้านและกริด hexagon พร้อมสรุปผลผลิต; วิธีแปลงข้อมูลต้นทางยังไม่ยืนยัน",
+          revision: "20260814-wiang-thong-crops"
+        },
+        "dataset-flood-forecast-flash-flood-risk": {
+          label: "24 ชั่วโมง · จังหวัดเสี่ยงน้ำท่วมฉับพลัน",
+          intro: "เห็นระดับความเสี่ยง 24 ชั่วโมงบนแผนที่ประเทศไทย พร้อมอันดับจังหวัดและเวลาออกรัน",
+          coverage: "ภาพตัวอย่างแสดงภาพรวมประเทศไทยและอันดับจังหวัด; ขอบเขตของโมเดลต้นทางยังไม่ระบุบนหน้าสาธารณะ",
+          unit: "ภาพยืนยันการเปรียบเทียบระดับจังหวัด; ความละเอียดระดับลุ่มน้ำหรือพื้นผิวโมเดลยังไม่เผยแพร่",
+          revision: "20260814-flash-flood-thailand"
         }
       },
       chapters: [
@@ -98,6 +126,34 @@
           coverage: "The example focuses on Mueang Chonburi; source coverage beyond the example is not stated on the public page",
           unit: "The view shows 3D appraisal-price zones and deed counts; individual parcel geometry is not verified",
           revision: "20260814-mueang-chonburi-3d"
+        },
+        "dataset-flood-recurrent": {
+          label: "Phak Hai · 14-year flood history",
+          intro: "See annual flood extent and recurrence in Phak Hai with a 14-year comparison chart",
+          coverage: "The example focuses on Phak Hai, Phra Nakhon Si Ayutthaya; source coverage beyond the example is not stated on the public page",
+          unit: "The view shows district extent, flooded areas and subdistrict summaries; source flood-data resolution is not verified",
+          revision: "20260814-phak-hai-flood"
+        },
+        "dataset-road-network-archetypes": {
+          label: "Pathum Wan · Road DNA · archetypes",
+          intro: "Explore Pathum Wan road-network archetypes with dead-end ratio, intersection density and Road DNA",
+          coverage: "The example focuses on Pathum Wan, Bangkok; source coverage beyond the example is not verified",
+          unit: "The view shows hexagonal analysis areas and Road DNA metrics; construction of the analytical unit is not publicly documented",
+          revision: "20260814-pathum-wan-road-dna"
+        },
+        "dataset-crop-area-output": {
+          label: "Wiang Thong · monthly output",
+          intro: "See monthly cultivated area and output in Wiang Thong TAO, separated by crop and time period",
+          coverage: "The example focuses on Wiang Thong TAO, Phrae; source coverage beyond the example is not stated on the public page",
+          unit: "The view shows village units, a hexagonal grid and output summaries; transformation from the source data is not verified",
+          revision: "20260814-wiang-thong-crops"
+        },
+        "dataset-flood-forecast-flash-flood-risk": {
+          label: "24-hour flash-flood risk by province",
+          intro: "See 24-hour risk levels across Thailand with province ranking and forecast run time",
+          coverage: "The example shows a Thailand overview and province ranking; source-model coverage is not stated on the public page",
+          unit: "Province comparison is evidenced; watershed or model-surface resolution is not published",
+          revision: "20260814-flash-flood-thailand"
         }
       },
       chapters: [
@@ -134,6 +190,12 @@
   let heroTimer = null;
   let heroVideo = null;
   let scheduled = false;
+  let motionInstalled = false;
+  let pendingLayoutMotion = null;
+  let layoutMotionFrame = 0;
+  const reducedMotion = globalThis.matchMedia
+    ? globalThis.matchMedia("(prefers-reduced-motion: reduce)")
+    : { matches: false };
 
   function element(tag, className, content) {
     const node = document.createElement(tag);
@@ -167,6 +229,197 @@
     section.append(element("h4", "source-copy-label", label));
     section.append(element("p", "source-copy-text", copy));
     return section;
+  }
+
+  function visibleDatasetCards() {
+    return Array.from(document.querySelectorAll(".dataset-card")).filter((card) => {
+      const rect = card.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    });
+  }
+
+  function cancelLayoutAnimations() {
+    if (typeof document.getAnimations !== "function") return;
+    document.getAnimations().forEach((animation) => {
+      if (animation.id?.startsWith("citymeter-layout-")) animation.cancel();
+    });
+  }
+
+  function captureCardLayout(control) {
+    if (reducedMotion.matches || typeof Element.prototype.animate !== "function") {
+      pendingLayoutMotion = null;
+      globalThis.__CITYMETER_MOTION_DEBUG__ = {
+        reason: "reduced-motion",
+        movedCards: 0,
+        duration: 0,
+        reducedMotion: true,
+        startedAt: Date.now()
+      };
+      return;
+    }
+    const reason = control.matches(".dataset-details > summary")
+      ? "details"
+      : control.matches(".search-control input")
+        ? "search"
+        : control.matches(".intent-tab")
+          ? "intent"
+          : "filter";
+    pendingLayoutMotion = {
+      control,
+      reason,
+      rects: new Map(visibleDatasetCards().map((card) => [card.id, card.getBoundingClientRect()]))
+    };
+    cancelLayoutAnimations();
+  }
+
+  function revealOpenedDetails(details) {
+    if (!details?.open || reducedMotion.matches || typeof Element.prototype.animate !== "function") return;
+    Array.from(details.children)
+      .filter((child) => child.tagName !== "SUMMARY")
+      .slice(0, 5)
+      .forEach((child, index) => {
+        const animation = child.animate(
+          [
+            { opacity: 0, transform: "translateY(-8px)" },
+            { opacity: 1, transform: "translateY(0)" }
+          ],
+          {
+            duration: 200,
+            delay: Math.min(index * 60, 240),
+            easing: "cubic-bezier(.16,1,.3,1)"
+          }
+        );
+        animation.id = "citymeter-details-reveal";
+      });
+  }
+
+  function revealIntentProof() {
+    const proof = document.querySelector(".intent-proof");
+    if (!proof || reducedMotion.matches || typeof Element.prototype.animate !== "function") return;
+    const animation = proof.animate(
+      [
+        { opacity: .72, transform: "translateY(8px)" },
+        { opacity: 1, transform: "translateY(0)" }
+      ],
+      {
+        duration: 200,
+        easing: "cubic-bezier(.16,1,.3,1)"
+      }
+    );
+    animation.id = "citymeter-intent-reveal";
+  }
+
+  function animateCapturedLayout() {
+    layoutMotionFrame = 0;
+    const snapshot = pendingLayoutMotion;
+    pendingLayoutMotion = null;
+    if (!snapshot || reducedMotion.matches || typeof Element.prototype.animate !== "function") return;
+
+    const animations = [];
+    let movedCards = 0;
+    let enteredCards = 0;
+    snapshot.rects.forEach((first, cardId) => {
+      const card = document.getElementById(cardId);
+      if (!card?.isConnected) return;
+      const last = card.getBoundingClientRect();
+      const deltaX = first.left - last.left;
+      const deltaY = first.top - last.top;
+      if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) return;
+      const animation = card.animate(
+        [
+          { transform: `translate3d(${deltaX}px, ${deltaY}px, 0)` },
+          { transform: "translate3d(0, 0, 0)" }
+        ],
+        {
+          duration: 280,
+          easing: "cubic-bezier(.2,0,0,1)"
+        }
+      );
+      animation.id = `citymeter-layout-${snapshot.reason}`;
+      animations.push(animation.finished.catch(() => {}));
+      movedCards += 1;
+    });
+
+    visibleDatasetCards()
+      .filter((card) => !snapshot.rects.has(card.id))
+      .slice(0, 5)
+      .forEach((card, index) => {
+        const animation = card.animate(
+          [
+            { opacity: 0, transform: "translateY(12px)" },
+            { opacity: 1, transform: "translateY(0)" }
+          ],
+          {
+            duration: 200,
+            delay: Math.min(index * 60, 240),
+            easing: "cubic-bezier(.16,1,.3,1)"
+          }
+        );
+        animation.id = `citymeter-layout-${snapshot.reason}-enter`;
+        animations.push(animation.finished.catch(() => {}));
+        enteredCards += 1;
+      });
+
+    if (snapshot.reason === "details") {
+      revealOpenedDetails(snapshot.control.closest(".dataset-details"));
+    }
+    if (snapshot.reason === "intent") revealIntentProof();
+
+    document.documentElement.dataset.layoutMotion = movedCards || enteredCards ? "active" : "settled";
+    globalThis.__CITYMETER_MOTION_DEBUG__ = {
+      reason: snapshot.reason,
+      movedCards,
+      enteredCards,
+      duration: 280,
+      reducedMotion: false,
+      startedAt: Date.now()
+    };
+    Promise.allSettled(animations).then(() => {
+      if (document.documentElement.dataset.layoutMotion === "active") {
+        document.documentElement.dataset.layoutMotion = "settled";
+      }
+    });
+  }
+
+  function scheduleCapturedLayout() {
+    if (!pendingLayoutMotion) return;
+    if (layoutMotionFrame) cancelAnimationFrame(layoutMotionFrame);
+    if (pendingLayoutMotion.reason === "details") {
+      layoutMotionFrame = requestAnimationFrame(animateCapturedLayout);
+      return;
+    }
+    layoutMotionFrame = requestAnimationFrame(() => {
+      layoutMotionFrame = requestAnimationFrame(animateCapturedLayout);
+    });
+  }
+
+  function installResponsiveMotion() {
+    if (motionInstalled) return;
+    motionInstalled = true;
+    document.addEventListener(
+      "click",
+      (event) => {
+        const control = event.target instanceof Element
+          ? event.target.closest(".dataset-details > summary, .group-filters button, .intent-tab")
+          : null;
+        if (!control) return;
+        captureCardLayout(control);
+        scheduleCapturedLayout();
+      },
+      true
+    );
+    document.addEventListener(
+      "input",
+      (event) => {
+        const control = event.target instanceof Element
+          ? event.target.closest(".search-control input")
+          : null;
+        if (!control) return;
+        captureCardLayout(control);
+        scheduleCapturedLayout();
+      },
+      true
+    );
   }
 
   function enhanceCard(card) {
@@ -395,6 +648,7 @@
   }
 
   async function start() {
+    installResponsiveMotion();
     try {
       const response = await fetch(`${assetBase}data/catalog-source-review.json`, { cache: "no-cache" });
       if (!response.ok) throw new Error(`Source registry returned ${response.status}`);
