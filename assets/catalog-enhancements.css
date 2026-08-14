@@ -524,7 +524,7 @@
 
 .supporter-logo-dsure {
   width: auto;
-  height: 76%;
+  height: calc(var(--supporter-logo-disc) * .68);
 }
 
 .supporter-logo-account {

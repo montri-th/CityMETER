@@ -93,7 +93,7 @@ final result: passed
 - Logo geometry: three equal grid columns; shared width token; square cells; 50% radius; no two-plus-one mobile rearrangement.
 - Surface assignment: exact light/dark Design System v0.8.9 values for canvas, blue tint, beige tint, soft and alt are consumed by their named sections.
 - Asset integrity: the three separated logos remain RGBA PNG files with their recorded dimensions and SHA-256 values; the owner-supplied combined lockup remains unchanged as provenance.
-- Cache contract: both language entries load `catalog-enhancements.css?v=10` and `catalog-enhancements.js?v=13`.
+- Cache contract: both language entries load `catalog-enhancements.css?v=11` and `catalog-enhancements.js?v=13`.
 
 ### Production checks still required
 
