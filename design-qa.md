@@ -1,117 +1,73 @@
-# CityMETER marketing landing — Design QA v2
+# CityMETER catalog — Design QA v3
 
-## Comparison target
+Verified 2026-08-14 against the immutable preview commit `5d465b611d0a24b58e7fd458afa3ae83a501127b`.
 
-- Surface: bilingual CityMETER marketing showcase for web, a 55-inch 16:9 exhibition display, and booth-to-mobile handoff.
-- Normative design source: `project_sources/09-Landometer-Design-System-v0.8.9.md`.
-- Owner-approved brand asset: `project_sources/10-Landometer-Logo-TransparentBG.png`.
-- User feedback visual truth:
-  - Hero/reel issue: `/workspace/scratch/970b805dca48/upload/01-image.png` — 3420 × 2214 px.
-  - Catalog preview issue: `/workspace/scratch/970b805dca48/upload/03-image.png` — 3420 × 2214 px.
-  - Distorted handoff image issue: `/workspace/scratch/970b805dca48/upload/10-image.png` — 3420 × 2214 px.
-- Browser-rendered implementation evidence:
-  - `qa/hero-v2-browser.png` — 1348 × 926 px content viewport.
-  - `qa/catalog-v2-browser.jpg` — 1348 × 926 px content viewport.
-  - `qa/handoff-v2-browser.jpg` — 1348 × 926 px content viewport.
-  - `qa/exhibition-v2-browser.jpg` — 1920 × 1080 CSS frame scaled into a 1363 × 936 browser capture.
-  - `qa/mobile-v2-browser.jpg` and `qa/mobile-handoff-v2-browser.jpg` — 390 × 844 CSS iframe scaled into 1363 × 936 browser captures.
-- State: Thai, light and dark themes tested; reel playing and paused; all dataset groups; desktop, exhibition and mobile layouts.
-- Density normalization: the three 3420 × 2214 user captures were center-cropped and downsampled to 1348 × 926. Implementation captures were recorded from the same cloud browser at 1348 × 926 content pixels. Browser chrome in source screenshots is treated as framing rather than page fidelity.
+## Comparison targets
 
-## Combined comparison evidence
+- Pinterest “All” reference supplied by the owner: variable-height pins with even inter-card gaps.
+- Mobile overlap reference supplied by the owner: caption, label and progress obscured most of the video.
+- Existing Landometer visual language and bilingual CityMETER page were preserved; this release changes the catalog evidence, hero media structure and responsive behavior rather than inventing a new visual system.
 
-- Full hero comparison: `qa/comparison-hero-feedback-v2.jpg` places the supplied slow/static hero on the left and the browser-rendered v2 hero on the right.
-- Full catalog comparison: `qa/comparison-catalog-feedback-v2.jpg` places the supplied repetitive overview previews on the left and the browser-rendered v2 focus-preview catalog on the right.
-- Full handoff comparison: `qa/comparison-handoff-feedback-v2.jpg` places the supplied stretched perspective composition on the left and the browser-rendered aspect-safe composition on the right.
-- Focused evidence:
-  - `qa/reel-v2-contact-sheet.jpg` shows six points across the 17.2-second reel: business pattern, tourism demand, locale, Road DNA and flood lifecycle.
-  - `public/media/previews-v2/contact-sheet.jpg` shows all 38 source-derived 1200 × 750 preview assets in one grid.
-- The focused inputs were required because motion, small map labels, limited-data states, icon controls and image geometry cannot be judged reliably from the full-page captures alone.
+The Pinterest reference and the rendered catalog were inspected together in the cloud browser. The mobile reference and a rendered 390 × 844 QA frame were also inspected together at the affected hero state.
 
-## Findings
+## Final findings
 
-- No actionable P0, P1 or P2 findings remain.
-- `[P3] Seven source views remain visually limited by the live product state.`
-  - Location: Apartment rent, Hotel market, Registered cars, Earthquake sensors, Fire monitoring, Hat Yai event and QuakeSafe cards.
-  - Evidence: the public interface showed a modal, no-data, sparse-map or unclear-scope state. Each v2 preview therefore uses the real screenshot inside a high-contrast framed `LIMITED PREVIEW` treatment; none is blank, broken or replaced with invented evidence.
-  - Impact: these seven cards communicate less product proof than the other 31, but the limitation is now explicit and does not block exploration.
-  - Follow-up: recapture only after each live dataset can be opened in a meaningful settled state and its visual/content rights are cleared.
+- No actionable P0, P1 or P2 visual findings remain.
+- A desktop QA pass initially found that the inherited side-by-side card layout left too little width for source evidence and QR copy. Cards were changed to vertical pins: 16:10 image above a full-width body and disclosure.
+- An interaction QA pass initially found that the enhancement observer could restart the reel after an explicit pause. Autoplay is now attempted only once; subsequent pause/play state belongs to the user.
 
-## Required fidelity surfaces
+## Catalog evidence
 
-- Fonts and typography: the supplied Thai display/body hierarchy remains intact; long Thai headlines wrap without clipping at 1920 × 1080 and 390 × 844. Bai Jamjuree/display treatment, weights, line height and compact icon labels were visually checked in hero, catalog and handoff captures.
-- Spacing and layout rhythm: exhibition hero measures 1905 × 1008 below the header; the media shell is 1024 × 576, keeping the requested ~30% frame share while CTA and proof rail remain visible. Desktop and mobile have no horizontal page overflow. Grid gaps, card borders, radii and section rhythm follow the existing DS-led implementation.
-- Colors and tokens: light, dark and system modes use the governed canvas/surface/text/interaction tokens. Caption surfaces maintain readable contrast over every reel scene; no contrast-obscured dataset screenshot is shipped without the limited-state treatment.
-- Image quality and asset fidelity: the exact supplied transparent horizontal Landometer artwork is used. All 38 previews are 1200 × 750 source-derived images, load successfully, and use focus crops/labels without stretching. The web MP4 is 960 × 540 at 24 fps; the exhibition MP4 is 1280 × 720 at 24 fps and about 1 Mbps. Both run 17.2 seconds and decode without errors. No generated maps, placeholder dashboards, handcrafted logos or CSS-drawn product imagery are used.
-- Copy and content: reel copy follows problem awareness → previously fragmented/impractical task → closer evidence scale → risk lifecycle → invitation to apply CityMETER. Thai and English versions are siblings of the same five-beat structure. Catalog focus labels identify each dataset's selling evidence without claiming unverified 3D, nationwide, parcel-level, real-time or complete coverage.
-- Icons: language and system/light/dark controls use one consistent icon family, quiet styling and 44 px minimum hit areas with semantic names and pressed states; no persistent text labels remain.
-- Accessibility: semantic pressed-state intent buttons, visible labels for assistive technology, reduced-motion poster behavior, pause/play control, alt text, focus styles and no sound-dependent information are present. Mobile preference controls remain operable without overlapping the logo.
+- 38 dataset cards render with 38 source-review disclosures and 38 dataset-specific QR assets.
+- 11 cards carry the optimized owner-supplied GD Catalog logo and explicit “same-dataset lineage through an official owner channel” wording.
+- Municipality links to the confirmed DLA `localincome` package and does not claim an exact central GD package.
+- Each card distinguishes verified lineage, candidate, other source, derived evidence or unproven lineage; the copy does not imply that every file came directly from central GD Catalog.
+- All enforced title, introduction and evidence clamps were removed so the real copy determines card height.
+- Desktop renders three CSS columns with 24 px column and vertical gaps; tablet renders two; mobile renders one. Cards avoid column breaks and reflow when a disclosure opens.
+- At the measured desktop state a pin was 401.5 px wide; its image was 399.5 × 249.7 px and its body used the full 399.5 px width. The expanded QR handoff used 355.5 px and remained legible.
+- The verified QR inspected in-browser loaded at 256 × 256 and the normal tap link remained available next to it.
 
-## Primary interactions tested
+## Visual evidence
 
-- Reel play/pause; caption changed from `พื้นที่ไหนควรดูต่อก่อน` to the locale/Road-DNA beat after 3.9 seconds.
-- Thai → English → Thai; the H1 and document language updated correctly.
-- System, light and dark theme selection; pressed state and rendered theme updated.
-- Dataset group filter: Land returned 12 cards; resetting returned 38 cards.
-- Five decision choices and the direct/share actions were visible and semantic.
-- All 38 dataset images reported `complete`, natural size 1200 × 750 and zero broken sources.
-- Mobile handoff shows one 1200 × 750 image at 333 × 207 before the QR; the second desktop stacking image is intentionally hidden. No stretched perspective or incorrect aspect ratio remains.
-- Console errors checked on desktop, exhibition and mobile. No application-origin errors were observed; the only logged errors came from the cloud browser's Chrome extension origin.
+- All 38 preview assets are dark-theme 1200 × 750 WebP images.
+- 35 use settled screenshots of the real product. Three weak or incomplete live states use generated conceptual art: Fire Monitoring, Hat Yai Flood and QuakeSafe.
+- Every conceptual asset has a visible bilingual label stating that it is an illustration and not a real screen or real data.
+- Card images use lazy loading and asynchronous decoding. The optimized GD logo is 240 × 304 and loads only on the 11 qualifying cards.
 
-## Comparison history
+## Hero and mobile evidence
 
-### Iteration 1 — supplied feedback state
+- Reel order is Population + Building, Municipality, Tourism.
+- Web and exhibition reels are H.264, 24 fps and 12.958 seconds. Both autoplay muted, play inline and loop in ordinary as well as exhibition mode.
+- One 44 × 44 pause/play control is the only element over the mobile media frame.
+- At 390 px QA width the video frame measured 331 × 186.2 px. The label, three-step progress and chapter copy were in a separate 331 × 211 px panel directly below it.
+- At 430 px QA width the video frame measured 371 × 208.7 px and the caption panel remained below it.
+- Explicit pause remained at exactly the same timestamp for 2.1 seconds (`pauseDrift = 0`). Resume advanced 0.674 seconds during the following 0.65-second sample.
+- The loop boundary was observed while playback remained active; the control retained its Pause state after replay.
 
-- `[P1]` Hero footage appeared static and did not progress from ICP problem to action.
-- `[P1]` Catalog cards repeated similar national/Bangkok overview maps and obscured individual dataset differentiators.
-- `[P1]` Several preview images were dark, blank, incomplete or missing.
-- `[P2]` Footer product collage distorted screenshots on mobile.
-- `[P2]` Language control was visually loud and theme controls were absent.
+## Interaction and browser checks
 
-### Iteration 2 — implemented fixes
-
-- Recut the reel to 17.2 seconds with rapid transitions and visible pan/zoom across business, demand, population, locale, Road DNA and historical/observed/forecast flood evidence; added five synchronized bilingual caption beats and a pause/reduced-motion contract.
-- Built a canonical preview config and 38 unique 1200 × 750 source-derived assets with dataset-specific focus labels, contrast treatment and explicit limited states.
-- Replaced fixed/stretched footer imagery with aspect-ratio wrappers and a single natural-ratio mobile proof image.
-- Replaced language text toggle with one translation icon and added quiet system/light/dark icons.
-- Replaced the reconstructed header mark/text with the exact owner-supplied transparent horizontal Landometer logo.
-
-### Iteration 3 — post-fix visual evidence
-
-- Combined hero, catalog and handoff comparisons show the changed hierarchy, focus imagery and corrected geometry.
-- 1920 × 1080 frame: 0 horizontal overflow; hero and CTA remain in the first frame; media shell 1024 × 576.
-- 390 × 844 frame: 0 horizontal overflow; preference controls fit; handoff image preserves the 1200:750 source ratio.
-- Catalog: 38/38 previews loaded, 0 broken, Land/Location/Living validation remains 12/13/13.
-- Reel: H.264 full decode passed; browser ready state 4; captions changed with playback.
+- All groups: 38 cards.
+- Land filter: 12 cards.
+- Search for “municipal revenue”: exactly one result, “Municipal Revenue”.
+- Search clear restored 38 cards.
+- One verified disclosure was opened and its official owner link, GD link, logo, source explanation and QR were visually inspected.
+- Browser diagnostics contained no application-origin errors. Logged errors were limited to the cloud browser extension origin.
 
 ## Automated checks
 
-- `npm run build`: passed.
-- `npm run test:sites`: passed.
-- Registry validation: 38 unique IDs; Land 12 / Location 13 / Living 13.
-- Preview validation: 38 files, 1200 × 750 each, READY 31 / LIMITED 7.
-- Video validation: web H.264 High 960 × 540/24 fps and exhibition H.264 High 1280 × 720/24 fps, both 17.2 s; full decode passed.
-- Prerender validation: Thai and English initial HTML contains all cards and relative media paths; the compatibility entry is a lightweight noindex redirect to the public showcase.
+- `node --check assets/catalog-enhancements.js`: passed.
+- `node scripts/validate-release.mjs`: passed — 38 cards, 38 QR assets, 11 verified-lineage badges and 3 labelled concepts.
+- All preview dimensions: 1200 × 750.
+- All QR dimensions: 256 × 256.
+- Full FFmpeg decode: web and exhibition MP4 passed.
+- `index.html` and `en/index.html` both load the enhancement layer.
 
 ## Release boundary
 
-- The reel uses editorial motion over real CityMETER screenshots. It communicates movement across evidence scales but must not be described as a recording of one continuous live drill-down until such a capture exists.
-- Satellite/product screenshot reuse and campaign-scale publication remain subject to owner/provider media-rights review.
-- The seven limited previews should be recaptured when meaningful live states become available.
-- Production cutover at `www.landometer.com/citymeter` still requires replacing the legacy redirect and approving one canonical host.
+- The repository exposes compiled/prerendered output but not the Vite/React authoring source named in its README. This release therefore uses a documented post-hydration enhancement layer instead of editing only SSR markup or the minified React bundle.
+- The reel is editorial motion over real settled CityMETER screenshots, not a recording of one continuous live session.
+- Source wording records what was verified as of 2026-08-14; changing source packages or periods requires a new source review.
 
 ## Final result
 
 final result: passed
-
-## Publication accessibility and indexing gate
-
-- Public HTML uses `index, follow` and keeps a large image/video preview policy.
-- Thai and English each have localized initial HTML (`/` and `/en/`), titles, descriptions, canonicals, and hreflang links.
-- Server/prerender output is poster-first. The video is mounted only after the browser resolves motion preference, so reduced-motion and no-JS states never flash autoplay footage.
-- Ordinary web playback runs once and ends on the final CTA beat. Explicit `?display=exhibition` mode loops for the 55-inch booth screen.
-- The five visual beats have a complete static bilingual transcript and localized figure caption; the silent-video status is stated in text.
-- Hydratable SSR uses `renderToString` with the client `hydrateRoot`; fresh Thai and English loads must produce zero app-origin hydration errors.
-- The demo badge says the reel uses real CityMETER screen examples, not that it is a recorded live interaction.
-- Intent choices use ordinary pressed-state buttons in a labelled group; arrow/Home/End shortcuts supplement normal Tab navigation without imposing responsive tab orientation semantics.
-- The exhibition query serves a dedicated 1280×720 ~1 Mbps encode; normal web serves the 960×540 lightweight encode.
