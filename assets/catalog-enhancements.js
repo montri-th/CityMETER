@@ -774,7 +774,12 @@
     }
 
     const pageTitle = document.querySelector("#page-title");
-    if (pageTitle && pageTitle.textContent !== "CityMETER") pageTitle.textContent = "CityMETER";
+    if (pageTitle) {
+      if (pageTitle.textContent !== "CityMETER") pageTitle.textContent = "CityMETER";
+      if (pageTitle.lang !== "en") pageTitle.lang = "en";
+    }
+    const citymeterLabel = document.querySelector(".citymeter-label");
+    if (citymeterLabel && citymeterLabel.lang !== "en") citymeterLabel.lang = "en";
 
     const heroCopy = document.querySelector(".hero-copy");
     if (heroCopy) {

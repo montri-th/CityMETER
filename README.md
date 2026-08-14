@@ -17,12 +17,15 @@
 - Theme system / light / dark โดยจำ preference ของผู้ใช้
 - 5 decision intents สำหรับการลงทุน/พัฒนา การเลือกทำเล การประเมินความเสี่ยง การวางบริการ และงานวิเคราะห์
 - สีพื้นของแต่ละช่วงใช้ surface token คนละบทบาท—canvas, blue tint, beige tint, soft และ alt—ทั้ง light/dark เพื่อให้หน้าแบ่งจังหวะชัดขึ้นโดยยังคงสีเงียบและอ่านง่าย
+- Hero และ mobile handoff ใช้ Design System v0.8.9 `atmosphere.gradient.measure.deep` แบบเดียวกัน: `linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)` พร้อม foreground แบบ onDeep
+- ฟอนต์ใช้ canonical role แยกหน้าที่: Arvo สำหรับ display ภาษาอังกฤษ, IBM Plex Sans Thai Looped สำหรับหัวข้อไทย, Bai Jamjuree สำหรับ body และ JetBrains Mono + IBM Plex Sans Thai สำหรับ technical label; ทุก webfont subset ระบุ `unicode-range` และไม่มี Sarabun ใน shipped font contract
+- Critical font preload แยกตาม route: หน้าไทยโหลด Arvo Latin, Bai Jamjuree Thai 400/600, JetBrains Mono Latin และ IBM Plex Sans Thai Thai 400; หน้าอังกฤษโหลด Arvo Latin, Bai Jamjuree Latin 400/600 และ JetBrains Mono Latin
 - Snapshot dark theme ครบ 38 records/modules: ภาพจริงที่รอ map/legend/sidebar settle 35 ใบ และภาพประกอบแนวคิดที่ติดป้ายชัดเจน 3 ใบสำหรับ Fire, Hatyai Flood และ QuakeSafe
 - การ์ดทุกใบเปิดรายละเอียดด้วยข้อความเฉพาะว่าใช้ข้อมูลทำอะไรได้ แล้วจึงแสดงพื้นที่ครอบคลุม ระดับพื้นที่ ที่มา ช่วงเวลา สิ่งที่ควรตรวจเพิ่ม และ direct link; ข้อมูล benefit ภาษาไทย/อังกฤษครบและไม่ซ้ำกันทั้ง 38 records
 - 11 ใบที่ยืนยัน same-dataset lineage ผ่านช่องทางทางการแสดงโลโก้ GD Catalog โดยไม่อ้างว่าเป็น direct central-GD download
 - QR เฉพาะ dataset ครบ 38 ใบ ซ่อนอยู่ใน source disclosure และพาไป exact CityMETER viewer URL
 - Pinterest-style masonry ใช้ความสูงจริงของ card และ reflow เมื่อเปิด source/QR
-- เครื่องหมาย depa, dSURE Software และบัญชีบริการดิจิทัลใช้ไฟล์ PNG โปร่งใสแยกกัน วางบนวงกลม CSS ขนาดเท่ากันโดยไม่ crop, mask, filter หรือเปลี่ยนสีไฟล์ต้นฉบับ
+- เครื่องหมาย depa, dSURE Software และบัญชีบริการดิจิทัลใช้ไฟล์ PNG โปร่งใสแยกกัน วางในวงกลม CSS ขนาดเท่ากันที่ไล่จากขาว 50% กลางวงสู่ขาวโปร่งใส 0% ที่ขอบ โดยไม่มี border หรือ box-shadow และไม่ crop, mask, filter หรือเปลี่ยนสีไฟล์ต้นฉบับ
 - Semantic HTML และ JSON-LD สร้างจาก registry เดียวกับหน้า visible โดยไม่มีหัวข้อเทคนิคในหน้า marketing
 
 The 38 records include datasets, derived modules, monitoring feeds, and two event archives. The preview therefore does not describe every record as a standalone dataset.
@@ -32,6 +35,8 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 - `index.html` / `en/index.html` — deployed prerendered Thai/English output
 - `assets/index-qbT50gkr.js` / `assets/index-cqxdfePB.css` — original compiled React application output (the referenced Vite `src/` files are not present in this repository)
 - `assets/catalog-enhancements.js` / `assets/catalog-enhancements.css` — maintainable post-hydration layer for source drawers, QR, masonry and the mobile hero structure
+- `assets/citymeter-fonts.css` — canonical Design System typography roles, Thai/Latin subset coverage and line-height contract; the IBM Plex Sans Thai 400 subset assets are immutable hash-suffixed WOFF2 files
+- `assets/font-assets.manifest.json` / `assets/font-license-records.json` — six semantic face records covering 18 hash-verified webfont files and four OFL-1.1 license receipts
 - `data/catalog-source-review.json` — bilingual 38-record source ledger พร้อมข้อความ reader benefit เฉพาะรายการ reviewed on 14 August 2026
 - `media/` — owner-supplied Landometer logo, optimized GD Catalog logo, 38 dark previews, 38 QR assets, governed concept illustrations and the three-chapter web/exhibition reel
 - `scripts/generate-qr-assets.mjs` — reproducible dataset-URL QR generator
@@ -41,6 +46,8 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 ## Status
 
 This public preview is aligned with Landometer Design System v0.8.9 and is indexable. Unknown coverage, resolution, source, or definition metadata is never inferred. Source labels distinguish verified same-dataset lineage, candidates, other providers, derived layers and unproven public lineage.
+
+The current local release contract is `catalog-enhancements.css?v=12`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`. A new production commit and Pages run must be recorded after publication; older receipts do not validate these bytes.
 
 Once merged, the static files publish from `main` through GitHub Pages. Before the production-domain cutover, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and clear product/satellite screenshot reuse rights.
 
@@ -54,7 +61,7 @@ node scripts/generate-qr-assets.mjs
 
 Then serve the repository root with any static HTTP server and verify both `/` and `/en/`. Do not edit only the prerendered card markup: React hydration owns the base application, while the separate enhancement layer owns this catalog revision.
 
-Run the release validator after changing copy, surface assignments, supporter-logo layout, routes or release cache revisions:
+Run the release validator after changing copy, typography roles, gradient or surface assignments, supporter-logo layout, routes or release cache revisions:
 
 ```bash
 node scripts/validate-release.mjs

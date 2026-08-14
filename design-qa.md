@@ -2,7 +2,7 @@
 
 Verified 2026-08-14 against the immutable preview commit `5d465b611d0a24b58e7fd458afa3ae83a501127b`.
 
-The original sections below are the receipt for that published baseline. They do not claim that the later equal-circle logo, muted section-surface and benefit-first copy revision has passed production QA. The current revision status is recorded in the addendum at the end.
+The original sections below are the receipt for that published baseline. Later revisions have separate addenda so a previous production receipt is never presented as evidence for newer bytes.
 
 ## Comparison targets
 
@@ -74,7 +74,7 @@ The Pinterest reference and the rendered catalog were inspected together in the 
 
 final result: passed
 
-## Current revision addendum — equal circles, quiet surface diversity and benefit-first details
+## Previous published revision addendum — equal circles, quiet surface diversity and benefit-first details
 
 ### Intended change
 
@@ -107,4 +107,33 @@ final result: passed
 - Light and dark each rendered five distinct section surfaces; the supporter plates remained white for the unaltered dark owner marks.
 - Application-origin console errors: zero on Thai, English and the responsive matrix. Repeated cloud-browser extension metadata errors were excluded because their URL was `chrome-extension://`, not the application origin.
 
-current revision result: passed
+previous revision result: passed
+
+## Current release addendum — Measure deep, radial circles and canonical typography
+
+### Intended change
+
+- Apply the exact Design System v0.8.9 `atmosphere.gradient.measure.deep` recipe to hero and handoff: `linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)`, with the existing onDeep foreground.
+- Retain five distinct muted section surfaces in both themes: Decision, Examples, Dataset Explorer, Contact and Footer.
+- Keep all six supporter cells equal and circular, but replace the opaque plate with a borderless, shadowless radial fade from 50% white at the centre to transparent white at the edge.
+- Load `assets/citymeter-fonts.css?v=1` after the compiled base CSS. Use Arvo for English display, IBM Plex Sans Thai Looped for Thai headings, Bai Jamjuree for body text, and JetBrains Mono with IBM Plex Sans Thai for technical labels. Sarabun is not part of the shipped font contract.
+- Mark both static and hydrated `CityMETER` title/label nodes as `lang="en"`, while retaining Thai/English route behavior and all prior benefit-first, route, QR and hydration guarantees.
+
+### Source-level acceptance contract
+
+- Cache and receipt: Thai and English load `catalog-enhancements.css?v=12`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts` exactly once.
+- Typography: eight canonical Thai/Latin subset faces declare `unicode-range`; the complete A11 font, fallback, number and leading roles are consumed by the expected selectors; English h2/h3/labels and Thai technical labels use exact governed leading/tracking. The six-face manifest covers 18 unique hash-verified files and references four OFL-1.1 license records. The new IBM Plex Sans Thai 400 files are `2d66381c…` (Thai) and `82ddd365…` (Latin).
+- Preload: Thai loads Arvo Latin, Bai Jamjuree Thai 400/600, JetBrains Mono Latin and IBM Plex Sans Thai Thai 400. English loads Arvo Latin, Bai Jamjuree Latin 400/600 and JetBrains Mono Latin. Each appears once with its route-correct prefix and no opposite-script Bai preload.
+- Hydration: static HTML and the compiled `v4` bundle both render `lang="en"` on `#page-title` and `.citymeter-label`; migration upgrades both old compiled patterns idempotently.
+- Shell: hero and handoff consume the exact Measure deep gradient and retain onDeep foreground; the five muted section tokens/selectors remain unchanged.
+- Logo: three equal columns, shared diameter, square cells, 50% radius, exact white-alpha radial fade, no border, no box-shadow and no two-plus-one rearrangement.
+- Carried gates: 38 unique benefits per language, benefit-first `r4`, retired label/color removal, direct routes, QR/video hashes, transparent supporter PNG hashes, hydration stability, responsive footer and reduced-motion behavior remain enforced.
+
+### Local and production status
+
+- Local checks: passed against the final contract — `node --check` ผ่านสำหรับ migration, validator, enhancement JS และ main bundle; migration สองรอบเป็น no-op โดย SHA-256 ของ HTML/registry/main bundle คงเดิม; validator ครอบคลุม `v4`, route-specific preloads, six-face/18-file manifest และ four-record OFL receipt; `git diff --check` ผ่าน.
+- QA target commit: pending — not committed or published.
+- GitHub Pages deployment run: pending.
+- Production browser QA: pending for Thai/English cold loads, font loading, themes, Measure deep, five surfaces, radial logo containment and the 320–1440 px matrix.
+
+current revision result: production QA pending

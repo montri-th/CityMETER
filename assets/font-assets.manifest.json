@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "designSystem": "Landometer Design System v0.8.9",
+  "semanticFaceCount": 6,
+  "licenseRecords": "./font-license-records.json",
+  "faces": [
+    {
+      "id": "arvo-latin-700",
+      "family": "Arvo",
+      "weight": 700,
+      "style": "normal",
+      "scripts": ["latin"],
+      "licenseRecord": "arvo-ofl-1.1",
+      "files": [
+        {"path": "./arvo-latin-700-normal-jvQUOvPP.woff2", "format": "woff2", "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"},
+        {"path": "./arvo-latin-700-normal-jkf39thv.woff", "format": "woff", "sha256": "e0b1ad10d38bed4a3538c680ee817319f0757edbf529df251f0324521065b625"}
+      ]
+    },
+    {
+      "id": "ibm-plex-sans-thai-looped-thai-latin-700",
+      "family": "IBM Plex Sans Thai Looped",
+      "weight": 700,
+      "style": "normal",
+      "scripts": ["thai", "latin"],
+      "licenseRecord": "ibm-plex-ofl-1.1",
+      "files": [
+        {"path": "./ibm-plex-sans-thai-looped-thai-700-normal-CeC2XeGp.woff2", "format": "woff2", "subset": "thai", "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"},
+        {"path": "./ibm-plex-sans-thai-looped-thai-700-normal-C75_92AR.woff", "format": "woff", "subset": "thai", "sha256": "d311e20a32a59fd5877222cdf036365a74bf654d5fa64c04d0b175eeee58a410"},
+        {"path": "./ibm-plex-sans-thai-looped-latin-700-normal-CTbTsSQg.woff2", "format": "woff2", "subset": "latin", "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"},
+        {"path": "./ibm-plex-sans-thai-looped-latin-700-normal-Bv6OPIRs.woff", "format": "woff", "subset": "latin", "sha256": "99b2df37f2ca48163e132a3aaa599d38c9c68558783810eae38386baf2daa263"}
+      ]
+    },
+    {
+      "id": "bai-jamjuree-thai-latin-400",
+      "family": "Bai Jamjuree",
+      "weight": 400,
+      "style": "normal",
+      "scripts": ["thai", "latin"],
+      "licenseRecord": "bai-jamjuree-ofl-1.1",
+      "files": [
+        {"path": "./bai-jamjuree-thai-400-normal-CvLA45ZU.woff2", "format": "woff2", "subset": "thai", "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"},
+        {"path": "./bai-jamjuree-thai-400-normal-DQvRJNNu.woff", "format": "woff", "subset": "thai", "sha256": "b0d6ff6e4ee41d92bfb4089443f009e45e6b9128d244ec270e85904fe5987461"},
+        {"path": "./bai-jamjuree-latin-400-normal-C8Ab1JOR.woff2", "format": "woff2", "subset": "latin", "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"},
+        {"path": "./bai-jamjuree-latin-400-normal-D7asZ9Ds.woff", "format": "woff", "subset": "latin", "sha256": "1f3c77498a55115c745d171a012976acca24e33cf51562c83b1b763596260e1d"}
+      ]
+    },
+    {
+      "id": "bai-jamjuree-thai-latin-600",
+      "family": "Bai Jamjuree",
+      "weight": 600,
+      "style": "normal",
+      "scripts": ["thai", "latin"],
+      "licenseRecord": "bai-jamjuree-ofl-1.1",
+      "files": [
+        {"path": "./bai-jamjuree-thai-600-normal-CzTxzpuq.woff2", "format": "woff2", "subset": "thai", "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"},
+        {"path": "./bai-jamjuree-thai-600-normal-DfF4rXK8.woff", "format": "woff", "subset": "thai", "sha256": "dc240cd2bc63dc934b7f02881fc06e99673abcedcdb237ba061d8a87e3dd795c"},
+        {"path": "./bai-jamjuree-latin-600-normal-CgeOh7Cx.woff2", "format": "woff2", "subset": "latin", "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"},
+        {"path": "./bai-jamjuree-latin-600-normal-D119NnP2.woff", "format": "woff", "subset": "latin", "sha256": "5ba7089d7b0faba0c067e13419de90bd666708f08527916474aeffb07b3828b0"}
+      ]
+    },
+    {
+      "id": "jetbrains-mono-latin-400",
+      "family": "JetBrains Mono",
+      "weight": 400,
+      "style": "normal",
+      "scripts": ["latin", "numerals"],
+      "licenseRecord": "jetbrains-mono-ofl-1.1",
+      "files": [
+        {"path": "./jetbrains-mono-latin-400-normal-V6pRDFza.woff2", "format": "woff2", "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"},
+        {"path": "./jetbrains-mono-latin-400-normal-6-qcROiO.woff", "format": "woff", "sha256": "658b9ee07b0249cf910a8d6f3d812d46c962bae81d7379a0355b1db35c61586f"}
+      ]
+    },
+    {
+      "id": "ibm-plex-sans-thai-thai-latin-400",
+      "family": "IBM Plex Sans Thai",
+      "weight": 400,
+      "style": "normal",
+      "scripts": ["thai", "latin"],
+      "licenseRecord": "ibm-plex-ofl-1.1",
+      "files": [
+        {"path": "./ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2", "format": "woff2", "subset": "thai", "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"},
+        {"path": "./ibm-plex-sans-thai-latin-400-normal-82ddd365.woff2", "format": "woff2", "subset": "latin", "sha256": "82ddd36544e4776857cce6ab26d0e509d10c1eeddf872c1b16f421489b0096a7"}
+      ]
+    }
+  ]
+}

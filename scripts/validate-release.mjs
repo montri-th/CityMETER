@@ -6,6 +6,8 @@ import { dirname, join } from "node:path";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const review = JSON.parse(readFileSync(join(root, "data/catalog-source-review.json"), "utf8"));
 const qrManifest = JSON.parse(readFileSync(join(root, "media/qr/manifest.json"), "utf8"));
+const fontManifest = JSON.parse(readFileSync(join(root, "assets/font-assets.manifest.json"), "utf8"));
+const fontLicenseRecords = JSON.parse(readFileSync(join(root, "assets/font-license-records.json"), "utf8"));
 const ids = review.records.map((record) => record.id);
 const routeById = new Map(review.records.map((record) => [record.id, record.citymeterUrl]));
 const muenRaiRoute = "https://landometer.com/v3/citymeter/PRE?d=muenRai";
@@ -65,6 +67,27 @@ const supporterAssets = [
   }
 ];
 
+const canonicalFontAssets = [
+  ["assets/arvo-latin-700-normal-jvQUOvPP.woff2", "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"],
+  ["assets/arvo-latin-700-normal-jkf39thv.woff", "e0b1ad10d38bed4a3538c680ee817319f0757edbf529df251f0324521065b625"],
+  ["assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2", "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"],
+  ["assets/jetbrains-mono-latin-400-normal-6-qcROiO.woff", "658b9ee07b0249cf910a8d6f3d812d46c962bae81d7379a0355b1db35c61586f"],
+  ["assets/bai-jamjuree-thai-400-normal-CvLA45ZU.woff2", "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"],
+  ["assets/bai-jamjuree-thai-400-normal-DQvRJNNu.woff", "b0d6ff6e4ee41d92bfb4089443f009e45e6b9128d244ec270e85904fe5987461"],
+  ["assets/bai-jamjuree-latin-400-normal-C8Ab1JOR.woff2", "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"],
+  ["assets/bai-jamjuree-latin-400-normal-D7asZ9Ds.woff", "1f3c77498a55115c745d171a012976acca24e33cf51562c83b1b763596260e1d"],
+  ["assets/bai-jamjuree-thai-600-normal-CzTxzpuq.woff2", "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"],
+  ["assets/bai-jamjuree-thai-600-normal-DfF4rXK8.woff", "dc240cd2bc63dc934b7f02881fc06e99673abcedcdb237ba061d8a87e3dd795c"],
+  ["assets/bai-jamjuree-latin-600-normal-CgeOh7Cx.woff2", "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"],
+  ["assets/bai-jamjuree-latin-600-normal-D119NnP2.woff", "5ba7089d7b0faba0c067e13419de90bd666708f08527916474aeffb07b3828b0"],
+  ["assets/ibm-plex-sans-thai-looped-thai-700-normal-CeC2XeGp.woff2", "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"],
+  ["assets/ibm-plex-sans-thai-looped-thai-700-normal-C75_92AR.woff", "d311e20a32a59fd5877222cdf036365a74bf654d5fa64c04d0b175eeee58a410"],
+  ["assets/ibm-plex-sans-thai-looped-latin-700-normal-CTbTsSQg.woff2", "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"],
+  ["assets/ibm-plex-sans-thai-looped-latin-700-normal-Bv6OPIRs.woff", "99b2df37f2ca48163e132a3aaa599d38c9c68558783810eae38386baf2daa263"],
+  ["assets/ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2", "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"],
+  ["assets/ibm-plex-sans-thai-latin-400-normal-82ddd365.woff2", "82ddd36544e4776857cce6ab26d0e509d10c1eeddf872c1b16f421489b0096a7"]
+];
+
 assert(review.reviewedAt === "2026-08-14", "Unexpected review date");
 assert(ids.length === 38 && new Set(ids).size === 38, "Source registry must contain 38 unique records");
 const thaiBenefits = review.records.map((record) => record.benefitTh?.trim());
@@ -92,19 +115,49 @@ for (const [id, url] of Object.entries(focusedRoutes)) {
 
 for (const page of ["index.html", "en/index.html"]) {
   const html = readFileSync(join(root, page), "utf8");
+  const assetPrefix = page === "index.html" ? "./" : "../";
+  const baseStylesheet = `${assetPrefix}assets/index-cqxdfePB.css`;
+  const fontStylesheet = `${assetPrefix}assets/citymeter-fonts.css?v=1`;
+  const expectedFontPreloads = page === "index.html"
+    ? [
+        "arvo-latin-700-normal-jvQUOvPP.woff2",
+        "bai-jamjuree-thai-400-normal-CvLA45ZU.woff2",
+        "bai-jamjuree-thai-600-normal-CzTxzpuq.woff2",
+        "jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+        "ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2"
+      ]
+    : [
+        "arvo-latin-700-normal-jvQUOvPP.woff2",
+        "bai-jamjuree-latin-400-normal-C8Ab1JOR.woff2",
+        "bai-jamjuree-latin-600-normal-CgeOh7Cx.woff2",
+        "jetbrains-mono-latin-400-normal-V6pRDFza.woff2"
+      ];
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements.css?v=11"), `${page} must load the contained fixed-diameter circle logo and muted section-surface stylesheet revision`);
-  assert(html.includes("catalog-enhancements.js?v=14"), `${page} must load the observer-stable benefit-first r4 enhancement layer`);
-  assert(html.includes("index-qbT50gkr-v3.js?v=3"), `${page} must load the CityMETER headline bundle revision`);
+  assert(html.includes("catalog-enhancements.css?v=12"), `${page} must load the Measure deep shell and radial-circle stylesheet revision`);
+  assert(html.includes("catalog-enhancements.js?v=15"), `${page} must load the canonical-language benefit-first r4 enhancement layer`);
+  assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
+  assert((html.match(/catalog-enhancements\.css\?v=\d+/g) || []).join() === "catalog-enhancements.css?v=12", `${page} must load exactly one enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements\.js\?v=\d+/g) || []).join() === "catalog-enhancements.js?v=15", `${page} must load exactly one enhancement script revision`);
+  assert((html.match(/citymeter-fonts\.css\?v=\d+/g) || []).join() === "citymeter-fonts.css?v=1", `${page} must load exactly one canonical font stylesheet revision`);
+  assert(html.indexOf(baseStylesheet) < html.indexOf(fontStylesheet), `${page} must load canonical font roles after the compiled base stylesheet`);
+  for (const fontFile of expectedFontPreloads) {
+    const preload = `<link rel="preload" as="font" type="font/woff2" href="${assetPrefix}assets/${fontFile}" crossorigin />`;
+    assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
+  }
+  assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
+  assert(html.includes("index-qbT50gkr-v3.js?v=4"), `${page} must load the hydration-safe CityMETER language bundle revision`);
+  assert((html.match(/index-qbT50gkr-v3\.js\?v=\d+/g) || []).join() === "index-qbT50gkr-v3.js?v=4", `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes('name="citymeter:release-receipt" content="2026-08-14-benefit-first-circles-surfaces"'), `${page} is missing the final release receipt`);
+  assert(html.includes('name="citymeter:release-receipt" content="2026-08-14-brand-blue-shell-radial-logos-canonical-fonts"'), `${page} is missing the final release receipt`);
+  assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
   assert(html.includes('property="og:image:width" content="1200"'), `${page} is missing the OG image width`);
   assert(html.includes('property="og:image:height" content="630"'), `${page} is missing the OG image height`);
   assert(html.includes('name="twitter:card" content="summary_large_image"'), `${page} is missing the Twitter card`);
   assert(!html.includes('rel="preload" as="image" href="./media/previews-v2/') && !html.includes('rel="preload" as="image" href="../media/previews-v2/'), `${page} must not preload the full preview catalog`);
-  assert(html.includes('<h1 id="page-title">CityMETER</h1>'), `${page} must use CityMETER as the hero headline`);
+  assert(html.includes('<h1 id="page-title" lang="en">CityMETER</h1>'), `${page} must identify the CityMETER hero name as English`);
+  assert(html.includes('<a class="citymeter-label" href="#top" lang="en">CityMETER</a>'), `${page} must identify the CityMETER header label as English`);
   assert(!html.includes("ก่อนตัดสินใจเรื่องพื้นที่") && !html.includes("Before you decide on a place"), `${page} still contains the retired hero headline`);
 
   for (const record of review.records) {
@@ -162,6 +215,9 @@ for (const asset of [
   "CITYMETER_BRANDING_DEEPLINK_RELEASE_2026-08-14.md",
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
+  "assets/citymeter-fonts.css",
+  "assets/font-assets.manifest.json",
+  "assets/font-license-records.json",
   "assets/index-qbT50gkr-v3.js",
   "scripts/apply-branding-route-release.mjs",
   "scripts/split-supporter-logos.sh",
@@ -181,6 +237,98 @@ for (const asset of [
   assert(existsSync(join(root, asset)) && statSync(join(root, asset)).size > 0, `Missing release asset: ${asset}`);
 }
 
+for (const [asset, expectedHash] of canonicalFontAssets) {
+  const path = join(root, asset);
+  assert(existsSync(path) && statSync(path).size > 0, `Missing or empty canonical font asset: ${asset}`);
+  assert(sha256(path) === expectedHash, `Canonical font bytes changed: ${asset}`);
+}
+
+const expectedFontFaces = [
+  { id: "arvo-latin-700", family: "Arvo", weight: 700, scripts: ["latin"], licenseRecord: "arvo-ofl-1.1", fileCount: 2 },
+  { id: "ibm-plex-sans-thai-looped-thai-latin-700", family: "IBM Plex Sans Thai Looped", weight: 700, scripts: ["thai", "latin"], licenseRecord: "ibm-plex-ofl-1.1", fileCount: 4 },
+  { id: "bai-jamjuree-thai-latin-400", family: "Bai Jamjuree", weight: 400, scripts: ["thai", "latin"], licenseRecord: "bai-jamjuree-ofl-1.1", fileCount: 4 },
+  { id: "bai-jamjuree-thai-latin-600", family: "Bai Jamjuree", weight: 600, scripts: ["thai", "latin"], licenseRecord: "bai-jamjuree-ofl-1.1", fileCount: 4 },
+  { id: "jetbrains-mono-latin-400", family: "JetBrains Mono", weight: 400, scripts: ["latin", "numerals"], licenseRecord: "jetbrains-mono-ofl-1.1", fileCount: 2 },
+  { id: "ibm-plex-sans-thai-thai-latin-400", family: "IBM Plex Sans Thai", weight: 400, scripts: ["thai", "latin"], licenseRecord: "ibm-plex-ofl-1.1", fileCount: 2 }
+];
+assert(fontManifest.schemaVersion === "1.0", "Font manifest schema version is stale");
+assert(fontManifest.designSystem === "Landometer Design System v0.8.9", "Font manifest Design System binding is stale");
+assert(fontManifest.semanticFaceCount === 6 && fontManifest.faces?.length === 6, "Font manifest must contain six semantic faces");
+assert(fontManifest.licenseRecords === "./font-license-records.json", "Font manifest license-record link is stale");
+assert(fontLicenseRecords.schemaVersion === "1.0" && fontLicenseRecords.recordedAt === "2026-08-14", "Font license receipt is stale");
+assert(fontLicenseRecords.records?.length === 4, "Font license receipt must contain four records");
+const licenseById = new Map(fontLicenseRecords.records.map((record) => [record.id, record]));
+assert(licenseById.size === 4, "Font license record IDs must be unique");
+for (const id of ["arvo-ofl-1.1", "bai-jamjuree-ofl-1.1", "ibm-plex-ofl-1.1", "jetbrains-mono-ofl-1.1"]) {
+  const record = licenseById.get(id);
+  assert(record?.spdx === "OFL-1.1", `Font license must use OFL-1.1: ${id}`);
+  assert(Array.isArray(record.families) && record.families.length >= 1, `Font license families are missing: ${id}`);
+  assert(typeof record.copyright === "string" && record.copyright.length > 12, `Font license copyright is missing: ${id}`);
+  assert(/^https?:\/\//.test(record.licenseUrl) && typeof record.evidence === "string" && record.evidence.length > 20, `Font license evidence is incomplete: ${id}`);
+}
+const canonicalFontHashByAsset = new Map(canonicalFontAssets);
+const manifestedFontAssets = [];
+for (const contract of expectedFontFaces) {
+  const face = fontManifest.faces.find((candidate) => candidate.id === contract.id);
+  assert(face, `Font manifest face is missing: ${contract.id}`);
+  assert(face.family === contract.family && face.weight === contract.weight && face.style === "normal", `Font manifest role is stale: ${contract.id}`);
+  assert(JSON.stringify(face.scripts) === JSON.stringify(contract.scripts), `Font manifest scripts are stale: ${contract.id}`);
+  assert(face.licenseRecord === contract.licenseRecord && licenseById.has(face.licenseRecord), `Font manifest license reference is stale: ${contract.id}`);
+  assert(licenseById.get(face.licenseRecord).families.includes(face.family), `Font license does not cover manifest family: ${contract.id}`);
+  assert(face.files?.length === contract.fileCount, `Font manifest file coverage is stale: ${contract.id}`);
+  for (const file of face.files) {
+    assert(/^\.\/[a-z0-9_-]+\.(?:woff2?|woff)$/i.test(file.path), `Font manifest path is unsafe: ${file.path}`);
+    const asset = `assets/${file.path.slice(2)}`;
+    const expectedHash = canonicalFontHashByAsset.get(asset);
+    assert(expectedHash && file.sha256 === expectedHash, `Font manifest hash is stale: ${asset}`);
+    assert(file.format === (file.path.endsWith(".woff2") ? "woff2" : "woff"), `Font manifest format is stale: ${asset}`);
+    if (file.subset) assert(face.scripts.includes(file.subset), `Font manifest subset is not declared by its semantic face: ${asset}`);
+    assert(sha256(join(root, asset)) === file.sha256, `Font manifest bytes do not match: ${asset}`);
+    manifestedFontAssets.push(asset);
+  }
+}
+assert(new Set(manifestedFontAssets).size === 18 && manifestedFontAssets.length === 18, "Font manifest must cover 18 unique font files");
+assert(
+  [...canonicalFontHashByAsset.keys()].sort().join("\n") === [...manifestedFontAssets].sort().join("\n"),
+  "Font manifest and immutable font asset contract must cover the same files"
+);
+
+const releaseMigration = readFileSync(join(root, "scripts/apply-branding-route-release.mjs"), "utf8");
+for (const priorVersion of [5, 6, 7, 8, 9, 10, 11]) {
+  assert(
+    releaseMigration.includes(`.replaceAll("catalog-enhancements.css?v=${priorVersion}", "catalog-enhancements.css?v=12")`),
+    `Release migration must retain the CSS v${priorVersion} -> v12 upgrade`
+  );
+}
+for (const priorVersion of [8, 9, 10, 11, 12, 13, 14]) {
+  assert(
+    releaseMigration.includes(`.replaceAll("catalog-enhancements.js?v=${priorVersion}", "catalog-enhancements.js?v=15")`),
+    `Release migration must retain the JS v${priorVersion} -> v15 upgrade`
+  );
+}
+assert(releaseMigration.includes("citymeter-fonts.css?v=1"), "Release migration must add the canonical font stylesheet");
+for (const fontFile of [
+  "arvo-latin-700-normal-jvQUOvPP.woff2",
+  "bai-jamjuree-thai-400-normal-CvLA45ZU.woff2",
+  "bai-jamjuree-thai-600-normal-CzTxzpuq.woff2",
+  "bai-jamjuree-latin-400-normal-C8Ab1JOR.woff2",
+  "bai-jamjuree-latin-600-normal-CgeOh7Cx.woff2",
+  "jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+  "ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2"
+]) {
+  assert(releaseMigration.includes(fontFile), `Release migration must manage route-specific preload: ${fontFile}`);
+}
+for (const priorVersion of [2, 3]) {
+  assert(
+    releaseMigration.includes(`.replaceAll("index-qbT50gkr-v3.js?v=${priorVersion}", "index-qbT50gkr-v3.js?v=4")`),
+    `Release migration must retain the main bundle v${priorVersion} -> v4 upgrade`
+  );
+}
+assert(releaseMigration.includes("2026-08-14-brand-blue-shell-radial-logos-canonical-fonts"), "Release migration must bind the current receipt");
+assert(releaseMigration.includes('<h1 id="page-title" lang="en">') && releaseMigration.includes('<a class="citymeter-label" href="#top" lang="en">'), "Release migration must preserve static language metadata");
+assert(releaseMigration.includes('id:\"page-title\",children:c.hero.title') && releaseMigration.includes('id:\"page-title\",lang:\"en\",children:c.hero.title'), "Release migration must upgrade the compiled page-title language metadata");
+assert(releaseMigration.includes('className:\"citymeter-label\",href:\"#top\",children:\"CityMETER\"') && releaseMigration.includes('className:\"citymeter-label\",href:\"#top\",lang:\"en\",children:\"CityMETER\"'), "Release migration must upgrade the compiled header-label language metadata");
+
 const responsiveHarness = readFileSync(join(root, "mobile-qa.html"), "utf8");
 for (const width of [320, 390, 430, 720, 900, 901, 1120, 1440]) {
   assert(responsiveHarness.includes(`data-width="${width}"`), `Responsive QA harness is missing ${width}px`);
@@ -189,24 +337,141 @@ assert(responsiveHarness.includes("box-sizing: content-box"), "Responsive iframe
 
 const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
+const baseCss = readFileSync(join(root, "assets/index-cqxdfePB.css"), "utf8");
 const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements.js"), "utf8");
 const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements.css"), "utf8");
+const canonicalFontCss = readFileSync(join(root, "assets/citymeter-fonts.css"), "utf8");
 const enhancementSourceLower = `${enhancementCss}\n${enhancementJs}`.toLowerCase();
 for (const retiredColor of ["#9f78d8", "#d89a27", "#36b9cc"]) {
   assert(!enhancementSourceLower.includes(retiredColor), `Retired non-canonical status color remains: ${retiredColor}`);
 }
 
-function cssBlock(selector) {
+function cssBlock(selector, source = enhancementCss) {
   const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const match = enhancementCss.match(new RegExp(`${escapedSelector}\\s*\\{([\\s\\S]*?)\\}`));
+  const match = source.match(new RegExp(`${escapedSelector}\\s*\\{([\\s\\S]*?)\\}`));
   assert(match, `Missing CSS rule: ${selector}`);
   return match[1];
 }
 
 function cssValue(block, property) {
   const escapedProperty = property.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return block.match(new RegExp(`${escapedProperty}\\s*:\\s*([^;]+);`))?.[1].trim().toLowerCase();
+  return block.match(new RegExp(`${escapedProperty}\\s*:\\s*([^;}]+)(?:;|$)`))?.[1].trim().toLowerCase();
 }
+
+function normalizedCss(value) {
+  return value?.replace(/\s+/g, "").toLowerCase();
+}
+
+const declaredFontSource = `${baseCss}\n${canonicalFontCss}\n${enhancementCss}`;
+assert(!declaredFontSource.toLowerCase().includes("sarabun"), "Canonical typography must not introduce Sarabun");
+for (const [asset] of canonicalFontAssets) {
+  const file = asset.split("/").at(-1);
+  assert(declaredFontSource.includes(file), `Canonical typography does not declare required font asset: ${file}`);
+}
+
+const canonicalFontFaces = Array.from(
+  canonicalFontCss.matchAll(/@font-face\s*\{([\s\S]*?)\}/g),
+  (match) => match[1]
+);
+assert(canonicalFontFaces.length === 8, "Canonical font stylesheet must declare eight Thai/Latin subset faces");
+assert(canonicalFontFaces.every((face) => /unicode-range\s*:/.test(face)), "Every canonical subset face must declare unicode-range");
+
+function fontFaceByFile(file) {
+  const face = canonicalFontFaces.find((candidate) => candidate.includes(file));
+  assert(face, `Missing canonical font face for ${file}`);
+  return face.toLowerCase();
+}
+
+for (const file of [
+  "bai-jamjuree-thai-400-normal-CvLA45ZU.woff2",
+  "bai-jamjuree-thai-600-normal-CzTxzpuq.woff2",
+  "ibm-plex-sans-thai-looped-thai-700-normal-CeC2XeGp.woff2",
+  "ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2"
+]) {
+  const face = fontFaceByFile(file);
+  assert(face.includes("u+0e01-0e3a") && face.includes("u+0e3f-0e5b"), `Thai Unicode coverage is incomplete for ${file}`);
+}
+for (const file of [
+  "bai-jamjuree-latin-400-normal-C8Ab1JOR.woff2",
+  "bai-jamjuree-latin-600-normal-CgeOh7Cx.woff2",
+  "ibm-plex-sans-thai-looped-latin-700-normal-CTbTsSQg.woff2",
+  "ibm-plex-sans-thai-latin-400-normal-82ddd365.woff2"
+]) {
+  const face = fontFaceByFile(file);
+  assert(face.includes("u+0020") && !face.includes("u+0e01"), `Latin subset coverage is stale for ${file}`);
+}
+for (const file of [
+  "ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2",
+  "ibm-plex-sans-thai-latin-400-normal-82ddd365.woff2"
+]) {
+  const face = fontFaceByFile(file);
+  assert(face.includes('font-family: "ibm plex sans thai"') && face.includes("font-weight: 400"), `IBM Plex Sans Thai 400 role is stale for ${file}`);
+  assert(face.includes("size-adjust: 102%"), `IBM Plex Sans Thai 400 size adjustment is stale for ${file}`);
+}
+
+const fontRoleCss = cssBlock(":root", canonicalFontCss);
+const canonicalFontRoles = [
+  ["--font-display-en-fallback", 'georgia, cambria, "times new roman", serif'],
+  ["--font-display-th-fallback", '"noto sans thai looped", "leelawadee ui", tahoma, sans-serif'],
+  ["--font-body-fallback", '"noto sans thai", "leelawadee ui", tahoma, sans-serif'],
+  ["--font-number-fallback", '"sfmono-regular", consolas, "liberation mono", monospace'],
+  ["--font-display-en", '"arvo", var(--font-display-en-fallback)'],
+  ["--font-display-th", '"ibm plex sans thai looped", var(--font-display-th-fallback)'],
+  ["--font-ui-heading-en", '"arvo", var(--font-display-en-fallback)'],
+  ["--font-ui-heading-th", '"ibm plex sans thai looped", var(--font-display-th-fallback)'],
+  ["--font-body", '"bai jamjuree", var(--font-body-fallback)'],
+  ["--font-technical-latin", '"jetbrains mono", var(--font-number-fallback)'],
+  ["--font-technical-th", '"ibm plex sans thai", var(--font-body-fallback)'],
+  ["--font-technical", '"jetbrains mono", "ibm plex sans thai", "sfmono-regular", consolas, monospace'],
+  ["--font-number", "var(--font-technical-latin)"]
+];
+for (const [role, value] of canonicalFontRoles) {
+  assert(cssValue(fontRoleCss, role) === value, `Canonical Design System font role is stale: ${role}`);
+}
+for (const [role, value] of [
+  ["--leading-display-en", "1.02"],
+  ["--leading-display-th", "1.16"],
+  ["--leading-editorial-en", "1.15"],
+  ["--leading-ui-heading-en", "1.22"],
+  ["--leading-ui-heading-th", "1.32"],
+  ["--leading-body", "1.60"],
+  ["--leading-body-compact", "1.45"],
+  ["--leading-label", "1.35"],
+  ["--leading-number", "1.25"]
+]) {
+  assert(cssValue(fontRoleCss, role) === value, `Canonical Design System leading role is stale: ${role}`);
+}
+assert(cssValue(cssBlock("body", canonicalFontCss), "font-family") === "var(--font-body)", "Body must consume the canonical body role");
+assert(/h1,\s*h2,\s*h3\s*\{[\s\S]*?font-family:\s*var\(--font-display-th\)/.test(canonicalFontCss), "Thai headings must consume the canonical Thai display role");
+assert(/html\[lang="en"\] h1,\s*html\[lang="en"\] h2,\s*html\[lang="en"\] h3\s*\{[\s\S]*?font-family:\s*var\(--font-display-en\)/.test(canonicalFontCss), "English headings must consume the canonical English display role");
+assert(cssValue(cssBlock('html[lang="en"] h2', canonicalFontCss), "line-height") === "var(--leading-editorial-en)", "English h2 must consume the editorial leading role");
+assert(cssValue(cssBlock('html[lang="en"] h3', canonicalFontCss), "line-height") === "var(--leading-ui-heading-en)", "English h3 must consume the UI-heading leading role");
+assert(cssValue(cssBlock("#page-title", canonicalFontCss), "font-family") === "var(--font-display-en)", "CityMETER page title must consume the English display role");
+assert(cssValue(cssBlock(".citymeter-label", canonicalFontCss), "font-family") === "var(--font-technical-latin)", "CityMETER header label must consume the Latin technical role");
+assert(cssValue(cssBlock(".citymeter-label", canonicalFontCss), "line-height") === "var(--leading-label)", "CityMETER header label must consume the label leading role");
+const technicalRuleStart = canonicalFontCss.indexOf(".eyebrow,\n");
+const technicalRuleOpen = canonicalFontCss.indexOf("{", technicalRuleStart);
+const technicalRuleClose = canonicalFontCss.indexOf("}", technicalRuleOpen);
+assert(technicalRuleStart >= 0 && technicalRuleClose > technicalRuleOpen, "Canonical technical-label rule is missing");
+const technicalSelectors = canonicalFontCss.slice(technicalRuleStart, technicalRuleOpen);
+const technicalRuleCss = canonicalFontCss.slice(technicalRuleOpen + 1, technicalRuleClose);
+for (const selector of [".eyebrow", ".demo-story-caption span", ".demo-figure figcaption span:first-child", ".record-group", ".dataset-kicker", ".group-filters button span", ".results-line strong", ".footer-grid small"]) {
+  assert(technicalSelectors.includes(selector), `Canonical technical-label selector is missing: ${selector}`);
+}
+assert(cssValue(technicalRuleCss, "font-family") === "var(--font-technical)" && cssValue(technicalRuleCss, "font-weight") === "400", "Technical labels must consume the bilingual technical role at weight 400");
+assert(cssValue(technicalRuleCss, "line-height") === "var(--leading-label)", "Technical labels must consume the label leading role");
+const thaiTechnicalRuleStart = canonicalFontCss.indexOf('html[lang="th"] .eyebrow,');
+const thaiTechnicalRuleOpen = canonicalFontCss.indexOf("{", thaiTechnicalRuleStart);
+const thaiTechnicalRuleClose = canonicalFontCss.indexOf("}", thaiTechnicalRuleOpen);
+assert(thaiTechnicalRuleStart >= 0 && thaiTechnicalRuleClose > thaiTechnicalRuleOpen, "Thai technical-label rule is missing");
+const thaiTechnicalSelectors = canonicalFontCss.slice(thaiTechnicalRuleStart, thaiTechnicalRuleOpen);
+const thaiTechnicalRuleCss = canonicalFontCss.slice(thaiTechnicalRuleOpen + 1, thaiTechnicalRuleClose);
+for (const selector of [".eyebrow", ".demo-story-caption span", ".demo-figure figcaption span:first-child", ".record-group", ".dataset-kicker", ".group-filters button span", ".results-line strong", ".footer-grid small"]) {
+  assert(thaiTechnicalSelectors.includes(`html[lang="th"] ${selector}`), `Thai technical-label selector is missing: ${selector}`);
+}
+assert(cssValue(thaiTechnicalRuleCss, "letter-spacing") === ".008em" && cssValue(thaiTechnicalRuleCss, "line-height") === "1.48", "All Thai technical labels must use canonical tracking and leading");
+assert(cssValue(cssBlock(".results-line strong", canonicalFontCss), "line-height") === "var(--leading-number)", "Technical result numbers must consume the number leading role");
+assert(cssValue(cssBlock('html[lang="th"] .results-line strong', canonicalFontCss), "line-height") === "1.48", "Thai technical result numbers must retain Thai leading");
 
 assert(enhancementJs.includes('summary: "ใช้ข้อมูลนี้ทำอะไรได้"') && enhancementJs.includes('summary: "What you can do with this data"'), "Source disclosure must lead with reader utility in both languages");
 assert(enhancementJs.includes('benefit: "ข้อมูลนี้ช่วยตอบอะไร"') && enhancementJs.includes('benefit: "What this data helps you answer"'), "Reader-benefit headings must be present in both languages");
@@ -272,6 +537,8 @@ for (const asset of supporterAssets) {
 }
 assert(!enhancementJs.includes("media/depa-dsure-tdc-lockup.png"), "Runtime must not use the old combined supporter lockup");
 assert(enhancementJs.includes('supporterAlt: {') && enhancementJs.includes('account: "บัญชีบริการดิจิทัล"') && enhancementJs.includes('account: "Digital Service Account"'), "Supporter logos need individual localized alt text");
+assert(enhancementJs.includes('if (pageTitle.lang !== "en") pageTitle.lang = "en"'), "Runtime must preserve the English language metadata on the CityMETER page title");
+assert(enhancementJs.includes('if (citymeterLabel && citymeterLabel.lang !== "en") citymeterLabel.lang = "en"'), "Runtime must preserve the English language metadata on the CityMETER header label");
 assert(enhancementCss.includes(".site-footer .footer-grid > *") && enhancementCss.includes("flex-wrap: wrap"), "Footer grid children and links must be allowed to shrink and wrap");
 assert(enhancementCss.includes("@media (max-width: 900px)") && enhancementCss.includes("grid-template-columns: 1fr"), "Footer must collapse before the former 720px overflow band");
 assert(enhancementCss.includes(".supporter-logo-depa") && enhancementCss.includes(".supporter-logo-dsure") && enhancementCss.includes(".supporter-logo-account"), "Split supporter logos need independent optical sizing");
@@ -283,7 +550,31 @@ assert(cssValue(supporterCellCss, "width") === "var(--supporter-logo-disc)", "Ea
 assert(cssValue(supporterCellCss, "height") === "var(--supporter-logo-disc)", "Each supporter circle must lock height to the shared diameter token");
 assert(cssValue(supporterCellCss, "aspect-ratio") === "1", "Supporter logo plates must remain square before rounding");
 assert(cssValue(supporterCellCss, "border-radius") === "50%", "Supporter logo plates must remain circular");
+assert(cssValue(supporterCellCss, "border") === "0", "Supporter logo plates must not reintroduce an edge border");
+assert(
+  normalizedCss(cssValue(supporterCellCss, "background")) === "radial-gradient(circleatcenter,rgba(255,255,255,.5)0%,rgba(255,255,255,0)100%)",
+  "Supporter logo plates must fade from 50% white at the centre to transparent white at the edge"
+);
+const supporterCellRules = Array.from(
+  enhancementCss.matchAll(/([^{}]*\.supporter-logo-cell[^{}]*)\{([^{}]*)\}/g),
+  (match) => match[2]
+);
+assert(supporterCellRules.length >= 1, "Supporter logo cell rules are missing");
+assert(supporterCellRules.every((block) => !/box-shadow\s*:/.test(block)), "Supporter logo cells must not reintroduce a box shadow");
+assert(
+  supporterCellRules.every((block) => !/border\s*:/.test(block) || cssValue(block, "border") === "0"),
+  "Supporter logo cells must not reintroduce a placement-specific border"
+);
 assert(!enhancementCss.includes(".supporter-logo-cell-account"), "Mobile layout must not move the Digital Service Account mark into a separate row");
+
+const brandBlueShellMatch = enhancementCss.match(/\.hero\s*,\s*\.handoff-section\s*\{([\s\S]*?)\}/);
+assert(brandBlueShellMatch, "Measure deep hero and handoff shell rule is missing");
+assert(
+  normalizedCss(cssValue(brandBlueShellMatch[1], "background")) === "linear-gradient(135deg,#1d44970%,#176b8254%,#08756f100%)",
+  "Hero and handoff must use the exact Design System v0.8.9 atmosphere.gradient.measure.deep recipe"
+);
+assert(cssValue(cssBlock(".hero", baseCss), "color") === "#fff", "Hero foreground must retain the onDeep color");
+assert(cssValue(cssBlock(".handoff-section", baseCss), "color") === "#fff", "Handoff foreground must retain the onDeep color");
 
 const lightSurfaceCss = cssBlock(":root");
 const darkSurfaceCss = cssBlock('[data-theme="dark"]');
@@ -318,6 +609,10 @@ assert(enHtml.includes("Save or share this example"), "English page is missing t
 assert(enHtml.includes("The link opens the same example and data."), "English page is missing the permanent handoff note");
 
 const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v3.js"), "utf8");
+assert(mainBundle.includes('id:"page-title",lang:"en",children:c.hero.title'), "Compiled bundle must render the CityMETER page title with English language metadata");
+assert(mainBundle.includes('className:"citymeter-label",href:"#top",lang:"en",children:"CityMETER"'), "Compiled bundle must render the CityMETER header label with English language metadata");
+assert(!mainBundle.includes('id:"page-title",children:c.hero.title'), "Compiled bundle still contains the hydration-unsafe page-title pattern");
+assert(!mainBundle.includes('className:"citymeter-label",href:"#top",children:"CityMETER"'), "Compiled bundle still contains the hydration-unsafe CityMETER label pattern");
 for (const record of review.records) {
   const bundleId = record.id.replace(/^dataset-events-/, "events/").replace(/^dataset-/, "");
   const marker = `id:"${bundleId}",`;
@@ -361,4 +656,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: 38 unique bilingual reader benefits, benefit-first r4 disclosures, five muted section surfaces per theme, two equal-circle three-logo groups with preserved alpha, responsive footer, canonical routes, hydration safety, reduced-motion fallback, and unchanged videos.");
+console.log("CityMETER release validation passed: canonical Unicode-ranged typography with complete A11 roles and no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe main bundle v4 language metadata, exact Measure deep shell, five muted section surfaces per theme, six borderless/shadowless radial logo circles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");

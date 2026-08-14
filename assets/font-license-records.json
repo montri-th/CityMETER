@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "recordedAt": "2026-08-14",
+  "records": [
+    {
+      "id": "arvo-ofl-1.1",
+      "families": ["Arvo"],
+      "spdx": "OFL-1.1",
+      "copyright": "Copyright (c) 2010 by Anton Koovit.",
+      "licenseUrl": "http://www.korkork.com/license/arvo/",
+      "evidence": "Embedded font name-table records in the delivered Arvo webfont."
+    },
+    {
+      "id": "bai-jamjuree-ofl-1.1",
+      "families": ["Bai Jamjuree"],
+      "spdx": "OFL-1.1",
+      "copyright": "Copyright 2018 Bai Jamjuree (https://github.com/cadsondemak/Bai-Jamjuree)",
+      "licenseUrl": "http://scripts.sil.org/OFL",
+      "evidence": "Embedded font name-table records in the delivered Bai Jamjuree webfonts."
+    },
+    {
+      "id": "ibm-plex-ofl-1.1",
+      "families": ["IBM Plex Sans Thai Looped", "IBM Plex Sans Thai"],
+      "spdx": "OFL-1.1",
+      "copyright": "Copyright 2019 IBM Corp. All rights reserved.",
+      "licenseUrl": "http://scripts.sil.org/OFL",
+      "evidence": "Embedded font name-table records in the delivered IBM Plex webfonts."
+    },
+    {
+      "id": "jetbrains-mono-ofl-1.1",
+      "families": ["JetBrains Mono"],
+      "spdx": "OFL-1.1",
+      "copyright": "Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)",
+      "licenseUrl": "https://scripts.sil.org/OFL",
+      "evidence": "Embedded font name-table records in the delivered JetBrains Mono webfonts."
+    }
+  ]
+}

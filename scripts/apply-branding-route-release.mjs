@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const releaseReceipt = "2026-08-14-brand-blue-shell-radial-logos-canonical-fonts";
 
 const routes = new Map(Object.entries({
   "dataset-buildings": "https://landometer.com/v3/citymeter-3d/BKK/L/8b60964e-0c26-408e-95f6-e3f46fe37d46?d=building",
@@ -137,29 +138,79 @@ function updateJsonLd(html, page) {
 
 function updatePage(page) {
   const path = join(root, page);
+  const assetPrefix = page === "index.html" ? "./" : "../";
+  const baseStylesheet = `<link rel="stylesheet" crossorigin href="${assetPrefix}assets/index-cqxdfePB.css">`;
+  const fontStylesheet = `<link rel="stylesheet" href="${assetPrefix}assets/citymeter-fonts.css?v=1">`;
+  const allCriticalFontPreloads = [
+    "arvo-latin-700-normal-jvQUOvPP.woff2",
+    "bai-jamjuree-thai-400-normal-CvLA45ZU.woff2",
+    "bai-jamjuree-thai-600-normal-CzTxzpuq.woff2",
+    "bai-jamjuree-latin-400-normal-C8Ab1JOR.woff2",
+    "bai-jamjuree-latin-600-normal-CgeOh7Cx.woff2",
+    "jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+    "ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2"
+  ];
+  const criticalFontPreloads = page === "index.html"
+    ? [
+        "arvo-latin-700-normal-jvQUOvPP.woff2",
+        "bai-jamjuree-thai-400-normal-CvLA45ZU.woff2",
+        "bai-jamjuree-thai-600-normal-CzTxzpuq.woff2",
+        "jetbrains-mono-latin-400-normal-V6pRDFza.woff2",
+        "ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2"
+      ]
+    : [
+        "arvo-latin-700-normal-jvQUOvPP.woff2",
+        "bai-jamjuree-latin-400-normal-C8Ab1JOR.woff2",
+        "bai-jamjuree-latin-600-normal-CgeOh7Cx.woff2",
+        "jetbrains-mono-latin-400-normal-V6pRDFza.woff2"
+      ];
   let html = readFileSync(path, "utf8");
   html = html
     .replace("ก่อนตัดสินใจเรื่องพื้นที่\nดูให้เห็นมากกว่าจุดบนแผนที่", "CityMETER")
     .replace("Before you decide on a place,\nsee more than pins on a map", "CityMETER")
-    .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements.css?v=11")
-    .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements.css?v=11")
-    .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements.css?v=11")
-    .replaceAll("catalog-enhancements.css?v=8", "catalog-enhancements.css?v=11")
-    .replaceAll("catalog-enhancements.css?v=9", "catalog-enhancements.css?v=11")
-    .replaceAll("catalog-enhancements.css?v=10", "catalog-enhancements.css?v=11")
-    .replaceAll("catalog-enhancements.js?v=8", "catalog-enhancements.js?v=14")
-    .replaceAll("catalog-enhancements.js?v=9", "catalog-enhancements.js?v=14")
-    .replaceAll("catalog-enhancements.js?v=10", "catalog-enhancements.js?v=14")
-    .replaceAll("catalog-enhancements.js?v=11", "catalog-enhancements.js?v=14")
-    .replaceAll("catalog-enhancements.js?v=12", "catalog-enhancements.js?v=14")
-    .replaceAll("catalog-enhancements.js?v=13", "catalog-enhancements.js?v=14")
-    .replaceAll("index-qbT50gkr-v3.js?v=2", "index-qbT50gkr-v3.js?v=3");
+    .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements.css?v=12")
+    .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements.css?v=12")
+    .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements.css?v=12")
+    .replaceAll("catalog-enhancements.css?v=8", "catalog-enhancements.css?v=12")
+    .replaceAll("catalog-enhancements.css?v=9", "catalog-enhancements.css?v=12")
+    .replaceAll("catalog-enhancements.css?v=10", "catalog-enhancements.css?v=12")
+    .replaceAll("catalog-enhancements.css?v=11", "catalog-enhancements.css?v=12")
+    .replaceAll("catalog-enhancements.js?v=8", "catalog-enhancements.js?v=15")
+    .replaceAll("catalog-enhancements.js?v=9", "catalog-enhancements.js?v=15")
+    .replaceAll("catalog-enhancements.js?v=10", "catalog-enhancements.js?v=15")
+    .replaceAll("catalog-enhancements.js?v=11", "catalog-enhancements.js?v=15")
+    .replaceAll("catalog-enhancements.js?v=12", "catalog-enhancements.js?v=15")
+    .replaceAll("catalog-enhancements.js?v=13", "catalog-enhancements.js?v=15")
+    .replaceAll("catalog-enhancements.js?v=14", "catalog-enhancements.js?v=15")
+    .replace('<h1 id="page-title">', '<h1 id="page-title" lang="en">')
+    .replace('<a class="citymeter-label" href="#top">', '<a class="citymeter-label" href="#top" lang="en">')
+    .replaceAll("index-qbT50gkr-v3.js?v=2", "index-qbT50gkr-v3.js?v=4")
+    .replaceAll("index-qbT50gkr-v3.js?v=3", "index-qbT50gkr-v3.js?v=4");
 
-  if (!html.includes('name="citymeter:release-receipt"')) {
+  if (html.includes('name="citymeter:release-receipt"')) {
+    html = html.replace(
+      /(<meta name="citymeter:release-receipt" content=")[^"]*(" \/>)/,
+      `$1${releaseReceipt}$2`
+    );
+  } else {
     html = html.replace(
       '<meta name="citymeter:catalog-version" content="2026-08-14" />',
-      '<meta name="citymeter:catalog-version" content="2026-08-14" />\n    <meta name="citymeter:release-receipt" content="2026-08-14-benefit-first-circles-surfaces" />'
+      `<meta name="citymeter:catalog-version" content="2026-08-14" />\n    <meta name="citymeter:release-receipt" content="${releaseReceipt}" />`
     );
+  }
+
+  if (!html.includes(fontStylesheet)) {
+    if (!html.includes(baseStylesheet)) throw new Error(`Base stylesheet not found in ${page}`);
+    html = html.replace(baseStylesheet, `${baseStylesheet}\n    ${fontStylesheet}`);
+  }
+  for (const fontFile of allCriticalFontPreloads) {
+    if (criticalFontPreloads.includes(fontFile)) continue;
+    const preload = `<link rel="preload" as="font" type="font/woff2" href="${assetPrefix}assets/${fontFile}" crossorigin />`;
+    html = html.replaceAll(`    ${preload}\n`, "").replaceAll(preload, "");
+  }
+  for (const fontFile of criticalFontPreloads) {
+    const preload = `<link rel="preload" as="font" type="font/woff2" href="${assetPrefix}assets/${fontFile}" crossorigin />`;
+    if (!html.includes(preload)) html = html.replace("    <title>", `    ${preload}\n    <title>`);
   }
 
   for (const route of routes.values()) {
@@ -196,7 +247,9 @@ function updateHydratedBundle() {
     [`ก่อนตัดสินใจเรื่องพื้นที่
 ดูให้เห็นมากกว่าจุดบนแผนที่`, "CityMETER"],
     [`Before you decide on a place,
-see more than pins on a map`, "CityMETER"]
+see more than pins on a map`, "CityMETER"],
+    ['id:"page-title",children:c.hero.title', 'id:"page-title",lang:"en",children:c.hero.title'],
+    ['className:"citymeter-label",href:"#top",children:"CityMETER"', 'className:"citymeter-label",href:"#top",lang:"en",children:"CityMETER"']
   ];
   for (const [from, to] of replacements) {
     if (source.includes(from)) source = source.replace(from, to);
@@ -224,4 +277,4 @@ updatePage("index.html");
 updatePage("en/index.html");
 updateHydratedBundle();
 
-console.log("Applied CityMETER headline, 38 canonical routes, hydration parity, benefit-first source details, equal-circle supporter logos and muted section-surface cache revisions.");
+console.log("Applied CityMETER headline, canonical fonts, Measure deep shell, radial equal-circle supporter logos, 38 canonical routes, hydration parity and benefit-first source details.");

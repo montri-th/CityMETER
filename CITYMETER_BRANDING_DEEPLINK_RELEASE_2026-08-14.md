@@ -4,18 +4,27 @@
 
 **สถานะฐานก่อน revision นี้:** Published to GitHub Pages after release validation
 
-**Revision วงกลมโลโก้ + muted surfaces + benefit-first copy:** Published to GitHub Pages; automated gates และ production browser QA ผ่าน
+**Revision ก่อนหน้า — วงกลมโลโก้ + muted surfaces + benefit-first copy:** Published to GitHub Pages; automated gates และ production browser QA ผ่าน
+
+**Revision ปัจจุบัน — Measure deep + radial logos + canonical fonts:** local syntax, migration idempotency, release validator และ diff checks ผ่าน; ยังไม่ commit, publish หรือทำ production QA
 
 ## สิ่งที่ผู้ชมเห็น
 
 - เปลี่ยน headline หลักทั้งภาษาไทยและอังกฤษเป็น `CityMETER`
 - แยก lockup `depa × dSURE software × บัญชีบริการดิจิทัล` เป็น PNG โปร่งใส 3 ไฟล์จากไฟล์ต้นฉบับ โดย crop อย่างเดียว ไม่วาดใหม่ ไม่ลบสีขาวภายในเครื่องหมาย และคง quiet zone 80 px
   - ใน hero และ footer วางบนวงกลม CSS เส้นผ่านศูนย์กลางเท่ากัน 3 วง โดยปรับเฉพาะ optical size ภายในวงกลมให้แต่ละเครื่องหมายอ่านออก
-  - พื้นขาวของวงกลมเป็น separate plate ใน layout ไม่ได้ฝังใน PNG; ไฟล์เครื่องหมายยังโปร่งใสและไม่ถูก crop, mask, filter, recolor หรือวาดใหม่
+  - พื้นวงกลมเป็น radial fade จาก `rgba(255,255,255,.5)` กลางวงสู่ `rgba(255,255,255,0)` ที่ขอบ ไม่มี border หรือ box-shadow; ไฟล์เครื่องหมายยังโปร่งใสและไม่ถูก crop, mask, filter, recolor หรือวาดใหม่
 - แก้ footer ที่ล้นช่วง tablet/หน้าต่างขนาดกลาง โดยให้ grid child ย่อได้ เมนูตัดบรรทัดได้ และเปลี่ยนเป็นคอลัมน์เดียวตั้งแต่ 900 px
 - แบ่งจังหวะของหน้าโดยใช้ surface สีอ่อนต่างกันในแต่ละ section จาก token ของ Design System v0.8.9 แทนการเติมสีสดหรือองค์ประกอบตกแต่ง
   - Light: canvas `#F6F7F3`, blue tint `#E2E9ED`, beige tint `#F2F1DF`, soft `#E5E9E6`, alt `#EEF1EE`
   - Dark: canvas `#11191D`, blue tint `#18333E`, beige tint `#2C2A22`, soft `#2B3534`, alt `#172126`
+- ใช้ Design System v0.8.9 `atmosphere.gradient.measure.deep` กับ hero และ mobile handoff แบบ exact recipe `linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)` พร้อม foreground แบบ onDeep สำหรับจังหวะ entry, direction และ closure
+- เพิ่ม `assets/citymeter-fonts.css` เป็น canonical typography layer หลัง compiled base CSS
+  - English display: Arvo 700; Thai display/UI heading: IBM Plex Sans Thai Looped 700; body: Bai Jamjuree 400/600; technical Thai fallback: IBM Plex Sans Thai 400; technical Latin: JetBrains Mono
+  - Thai/Latin subsets ระบุ `unicode-range`; IBM Plex Sans Thai 400 ใช้ไฟล์ hash-suffixed แยก Thai/Latin และ `size-adjust: 102%`; shipped font contract ไม่มี Sarabun
+  - preload แยกตาม route: หน้าไทยใช้ Arvo Latin, Bai Jamjuree Thai 400/600, JetBrains Mono Latin และ IBM Plex Sans Thai Thai 400; หน้าอังกฤษใช้ Arvo Latin, Bai Jamjuree Latin 400/600 และ JetBrains Mono Latin โดยใช้ prefix `./assets/` / `../assets/` ให้ตรง route
+  - static HTML และ compiled React bundle กำหนด `lang="en"` ให้ `#page-title` กับ `.citymeter-label` เพื่อตัด hydration mismatch; enhancement ยังคง guard metadata หลัง hydration
+  - `font-assets.manifest.json` บันทึก 6 semantic faces และไฟล์ 18 รายการพร้อม SHA-256; `font-license-records.json` ผูก 4 license records แบบ OFL-1.1
 - ปรับ disclosure ของการ์ดครบ 38 records ให้ขึ้นต้นด้วยข้อความเฉพาะว่า **ข้อมูลนี้ช่วยตอบอะไร** ก่อนแสดงพื้นที่ครอบคลุม ระดับพื้นที่ สถานะ ที่มา ช่วงเวลา และสิ่งที่ควรตรวจเพิ่ม
   - `benefitTh` และ `benefitEn` มีครบ 38 รายการและไม่ใช้ข้อความ placeholder ซ้ำกัน
   - เปลี่ยนหัวข้อภายในจากศัพท์ audit เช่น `exact public lineage` และ `candidate` เป็นภาษาที่คนทั่วไปอ่านรู้เรื่อง โดยยังเก็บขอบเขตหลักฐานและลิงก์ต้นทางไว้
@@ -34,7 +43,7 @@
 | Contact | soft | soft |
 | Footer | alt | alt |
 
-Hero และ mobile handoff ยังคงใช้ gradient เดิมตามหน้าที่ของ section จึงไม่เพิ่ม gradient ใหม่เพื่อให้ครบจำนวนสี
+Hero และ mobile handoff อยู่นอก muted surface set และใช้ `atmosphere.gradient.measure.deep` เดียวกันตาม exact recipe ข้างต้น ส่วน 5 section ในตารางยังใช้ surface role แยกกันครบทั้ง light/dark
 
 ## Canonical route contract
 
@@ -78,6 +87,10 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 | `media/supporters/digital-service-account.png` | PNG RGBA 2298×1042; SHA-256 `57c01b122575800f475cc29e958f6b1c5a7bac705cb5b6ba2365ae9bd90e3086` |
 | `media/reel/citymeter-proof-v3.mp4` | ไม่เปลี่ยน; SHA-256 `9b075ee35eaa9c9d41dacb8e0580a5dbb07b26076d723c4185810678f1520bf5` |
 | `media/reel/citymeter-proof-v3-exhibition.mp4` | ไม่เปลี่ยน; SHA-256 `bd4962bc88f66d5e0c5c14530f35628165d3f7879b35abd033a3a7039c7ada2f` |
+| `assets/ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2` | Thai technical subset; SHA-256 `2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056` |
+| `assets/ibm-plex-sans-thai-latin-400-normal-82ddd365.woff2` | Latin technical subset; SHA-256 `82ddd36544e4776857cce6ab26d0e509d10c1eeddf872c1b16f421489b0096a7` |
+| `assets/font-assets.manifest.json` | 6 semantic faces, 18 unique files; path/format/subset/SHA-256 ผูกกับ bytes จริง |
+| `assets/font-license-records.json` | 4 unique OFL-1.1 records สำหรับ Arvo, Bai Jamjuree, IBM Plex และ JetBrains Mono |
 
 ## Release validation
 
@@ -85,11 +98,13 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 
 - ตรวจ reader benefit ภาษาไทย/อังกฤษว่ามีครบ 38 รายการ ความยาวผ่านเกณฑ์ และไม่ซ้ำกัน
 - ตรวจ runtime disclosure ว่า benefit เป็น block แรก ใช้ source-review revision `2026-08-14-r4`, ลบ limitation block เก่า และไม่มี label audit ชุดเดิม
-- ตรวจวงกลมโลโก้ว่าใช้ grid 3 คอลัมน์เท่ากัน, diameter token เดียวกัน, `aspect-ratio: 1`, `border-radius: 50%` และไม่มี mobile override ที่ย้ายเครื่องหมายที่สามลงแถวใหม่
+- ตรวจวงกลมโลโก้ว่าใช้ grid 3 คอลัมน์เท่ากัน, diameter token เดียวกัน, `aspect-ratio: 1`, `border-radius: 50%`, radial fade ขาว 50% → ขาวโปร่งใส 0% และไม่มี border, box-shadow หรือ mobile override ที่ย้ายเครื่องหมายที่สามลงแถวใหม่
 - ตรวจ surface token และ selector ครบ 5 section ทั้ง light/dark
+- ตรวจ hero + handoff ว่าใช้ exact `atmosphere.gradient.measure.deep` และคง onDeep foreground
+- ตรวจ canonical font/fallback/leading/number roles, exact English h2/h3/label leading, Thai technical tracking/leading, `unicode-range`, manifest 6 faces/18 files, OFL records, path/hash ของทุก required font asset, preload เฉพาะ route, static + compiled `lang="en"` และยืนยันว่าไม่มี Sarabun
 - ตรวจว่าไม่มีค่าสีสถานะเดิม `#9F78D8`, `#D89A27` หรือ `#36B9CC` เหลือใน CSS/JavaScript enhancement
 - คงการตรวจ SHA-256, มิติและ RGBA transparency ของ PNG ทั้งสาม รวมถึง hash ของไฟล์ lockup ต้นฉบับและวิดีโอเดิม
-- ตรวจ cache reference ของหน้าไทย/อังกฤษ: `catalog-enhancements.css?v=11` และ `catalog-enhancements.js?v=14`
+- ตรวจ cache reference ของหน้าไทย/อังกฤษ: `catalog-enhancements.css?v=12`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4` และ receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`
 - รัน `node scripts/validate-release.mjs`, syntax checks, migration idempotency และ `git diff --check`
 
 ### Carried checks from the published baseline
@@ -98,7 +113,7 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - ตรวจว่า card image, CTA และ JSON-LD ของหน้าไทย/อังกฤษตรงกับ registry ครบ 38 รายการ
 - ตรวจ focused routes ที่ระบุในตารางแบบ exact match
 
-### Production QA receipt for this revision
+### Production QA receipt for the previous published revision
 
 - QA target commit: `778b609dbb5f15b455bc3f4f5b7ee6b17eba5fbc`
 - GitHub Pages run: `31804694135` — completed / success
@@ -110,12 +125,23 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - Light และ dark แสดง surface 5 บทบาทต่างกันครบ; วงกลมยังเป็นพื้นขาวเพื่อรักษา contrast ของเครื่องหมายต้นฉบับ
 - application-origin console error: 0 ทั้งหน้าไทย อังกฤษ และ responsive matrix; error ที่พบมาจาก cloud-browser extension metadata เท่านั้น จึงไม่ใช่ข้อผิดพลาดของเว็บไซต์
 
+### Production QA receipt for the current revision
+
+- QA target commit: pending — ยังไม่ commit หรือ publish
+- GitHub Pages run: pending — ยังไม่มี deployment run สำหรับ bytes ชุดนี้
+- Production browser QA: pending — ต้องตรวจหน้าไทย/อังกฤษ, font loading, Measure deep, radial logos, five surfaces และ responsive matrix หลัง Pages สำเร็จ
+
 ## ไฟล์ส่งมอบหลัก
 
 - `index.html` — หน้าไทย
 - `en/index.html` — หน้าอังกฤษ
 - `assets/catalog-enhancements.css`
 - `assets/catalog-enhancements.js`
+- `assets/citymeter-fonts.css`
+- `assets/ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2`
+- `assets/ibm-plex-sans-thai-latin-400-normal-82ddd365.woff2`
+- `assets/font-assets.manifest.json`
+- `assets/font-license-records.json`
 - `assets/index-qbT50gkr-v3.js`
 - `data/catalog-source-review.json`
 - `media/depa-dsure-tdc-lockup.png` — source provenance
