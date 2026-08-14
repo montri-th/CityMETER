@@ -29,9 +29,9 @@ Chapter 1 is deliberately a two-scene chapter: **Population + Building**. The pa
 
 ## Editorial construction
 
-- Every frame comes from a settled, real CityMETER screen captured in dark theme on 14 August 2026.
-- Each 1363×936 screen is fitted intact over a blurred dark derivative in a 1280×720 frame; no evidence pane, legend or attribution is stretched.
-- Motion is restrained Ken Burns movement over still evidence, with 0.35-second fades. It must not be described as a recording of one continuous live drill-down.
+- Every frame comes from a settled, real CityMETER screen captured in dark theme on 14 August 2026. Population was recaptured after the layer had fully rendered so no missing rectangular geometry remains.
+- Each screen is prepared as a 1280×720 scene with the map, evidence pane and legend kept legible; no evidence pane, legend or attribution is stretched.
+- Motion is limited to 0.35-second fades between still evidence screens. It must not be described as a recording of one continuous live drill-down.
 - The mobile page keeps the single Pause/Play button over the media and moves the real-screen label, three-step progress and chapter copy into a reserved panel below the video.
 - Ordinary web and exhibition modes both loop. No information depends on sound.
 
@@ -39,8 +39,8 @@ Chapter 1 is deliberately a two-scene chapter: **Population + Building**. The pa
 
 | Asset | Codec / size | FPS | Duration | SHA-256 |
 |---|---|---:|---:|---|
-| Web MP4 | H.264 High, 960×540, yuv420p | 24 | 12.958 s | `19e5c8cb84d11ba03a4a050e109c96e167e809b0c331dab416d551489945346d` |
-| Exhibition MP4 | H.264 High, 1280×720, yuv420p | 24 | 12.958 s | `fe80212472dc2980213674d956cae43d26149d030abc3dad388b81bc48f112fe` |
-| Poster | WebP, 1280×720 | — | — | `82a32332ebe27e33f1d355059381613ae7f39d207449e9aac4658f407bb7e361` |
+| Web MP4 | H.264 High, 960×540, yuv420p | 24 | 12.958 s | `d4ca720c67966560aa28dd624a2f66a0b5eb4fcf6432acdba5c8e760b4ab6678` |
+| Exhibition MP4 | H.264 High, 1280×720, yuv420p | 24 | 12.958 s | `16b655a0011e9ae89d107b8e36753cb9d9462f20a05712951fb8325e7095921e` |
+| Poster | WebP, 1280×720 | — | — | `fd526a398b83db3b9e8ead7af2abcd7f9f83cde91cbb3b8547deb272f22ae650` |
 
 The first poster frame is Population. Building follows within the same first chapter, so the opening promise remains Population + Building without fabricating a split-screen dashboard.

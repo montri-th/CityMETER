@@ -47,6 +47,7 @@ for (const asset of [
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
   "assets/index-qbT50gkr-v3.js",
+  "scripts/build-hero-reel.sh",
   "media/gdcatalog-logo.png",
   "media/reel/citymeter-proof-v3.mp4",
   "media/reel/citymeter-proof-v3-exhibition.mp4",
