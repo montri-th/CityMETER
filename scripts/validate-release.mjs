@@ -19,6 +19,7 @@ for (const page of ["index.html", "en/index.html"]) {
   const html = readFileSync(join(root, page), "utf8");
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
+  assert(html.includes("index-qbT50gkr-v3.js"), `${page} must load the cache-busted hero bundle`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
 }
 
@@ -33,10 +34,11 @@ for (const record of review.records) {
 for (const asset of [
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
+  "assets/index-qbT50gkr-v3.js",
   "media/gdcatalog-logo.png",
-  "media/reel/citymeter-proof-v2.mp4",
-  "media/reel/citymeter-proof-v2-exhibition.mp4",
-  "media/reel/citymeter-proof-v2-poster.webp"
+  "media/reel/citymeter-proof-v3.mp4",
+  "media/reel/citymeter-proof-v3-exhibition.mp4",
+  "media/reel/citymeter-proof-v3-poster.webp"
 ]) {
   assert(existsSync(join(root, asset)) && statSync(join(root, asset)).size > 0, `Missing release asset: ${asset}`);
 }
