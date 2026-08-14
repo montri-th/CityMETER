@@ -25,7 +25,7 @@ for (const page of ["index.html", "en/index.html"]) {
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
   assert(html.includes("catalog-enhancements.css?v=5"), `${page} must load the motion cache-busted stylesheet`);
-  assert(html.includes("catalog-enhancements.js?v=6"), `${page} must load the motion cache-busted enhancement layer`);
+  assert(html.includes("catalog-enhancements.js?v=7"), `${page} must load the motion cache-busted enhancement layer`);
   assert(html.includes("index-qbT50gkr-v3.js"), `${page} must load the cache-busted hero bundle`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);

@@ -7,7 +7,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const replacements = {
   "index.html": [
     ["catalog-enhancements.css?v=4", "catalog-enhancements.css?v=5"],
-    ["catalog-enhancements.js?v=5", "catalog-enhancements.js?v=6"],
+    ["catalog-enhancements.js?v=6", "catalog-enhancements.js?v=7"],
     ["GFA · ความสูง · จำนวนชั้น", "สวนพลู · อาคาร 3 มิติ · GFA"],
     [
       "ใช้แผนที่เปรียบเทียบจังหวัดคู่กับ GFA ความสูง และจำนวนชั้น เพื่อเล่าความเข้มข้นของการพัฒนา",
@@ -41,7 +41,7 @@ const replacements = {
   ],
   "en/index.html": [
     ["catalog-enhancements.css?v=4", "catalog-enhancements.css?v=5"],
-    ["catalog-enhancements.js?v=5", "catalog-enhancements.js?v=6"],
+    ["catalog-enhancements.js?v=6", "catalog-enhancements.js?v=7"],
     ["GFA · height · floors", "Suan Plu · 3D buildings · GFA"],
     [
       "Pair the province comparison map with GFA, height, and floor metrics to explain development intensity",

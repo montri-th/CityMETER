@@ -269,6 +269,7 @@
       reason,
       rects: new Map(visibleDatasetCards().map((card) => [card.id, card.getBoundingClientRect()]))
     };
+    document.documentElement.dataset.motionCaptured = reason;
     cancelLayoutAnimations();
   }
 
@@ -366,6 +367,8 @@
     if (snapshot.reason === "intent") revealIntentProof();
 
     document.documentElement.dataset.layoutMotion = movedCards || enteredCards ? "active" : "settled";
+    document.documentElement.dataset.motionMoved = String(movedCards);
+    document.documentElement.dataset.motionEntered = String(enteredCards);
     globalThis.__CITYMETER_MOTION_DEBUG__ = {
       reason: snapshot.reason,
       movedCards,
@@ -396,14 +399,32 @@
   function installResponsiveMotion() {
     if (motionInstalled) return;
     motionInstalled = true;
+    const controlFromEvent = (event) => event.target instanceof Element
+      ? event.target.closest(".dataset-details > summary, .group-filters button, .intent-tab")
+      : null;
+    document.addEventListener(
+      "pointerdown",
+      (event) => {
+        const control = controlFromEvent(event);
+        if (control) captureCardLayout(control);
+      },
+      true
+    );
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const control = controlFromEvent(event);
+        if (control) captureCardLayout(control);
+      },
+      true
+    );
     document.addEventListener(
       "click",
       (event) => {
-        const control = event.target instanceof Element
-          ? event.target.closest(".dataset-details > summary, .group-filters button, .intent-tab")
-          : null;
+        const control = controlFromEvent(event);
         if (!control) return;
-        captureCardLayout(control);
+        if (!pendingLayoutMotion || pendingLayoutMotion.control !== control) captureCardLayout(control);
         scheduleCapturedLayout();
       },
       true
