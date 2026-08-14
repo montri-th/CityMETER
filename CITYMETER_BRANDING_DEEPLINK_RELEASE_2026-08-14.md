@@ -12,6 +12,7 @@
   - ใน footer วางซ้ำในคอลัมน์แบรนด์
 - คง Landometer เป็นแบรนด์หลักและไม่เปลี่ยนวิดีโอ ภาพ snapshot หรือข้อความ lineage ในรอบนี้
 - เริ่ม enhancement หลัง `window.load` และสอง animation frames เพื่อไม่ชน React hydration โดยการแสดง headline/lockup ไม่ขึ้นกับความสำเร็จของ registry fetch
+- รักษา prerendered focused-card copy ให้ตรงกับ React baseline แล้วค่อย apply ข้อความพื้นที่เฉพาะหลัง hydration เพื่อไม่ให้เกิด text-hydration warning
 
 ## Canonical route contract
 

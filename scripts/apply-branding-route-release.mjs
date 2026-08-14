@@ -47,6 +47,61 @@ const routes = new Map(Object.entries({
 
 if (routes.size !== 38) throw new Error(`Expected 38 route records; found ${routes.size}`);
 
+const hydrationParity = {
+  "index.html": [
+    ["สวนพลู · อาคาร 3 มิติ · GFA", "GFA · ความสูง · จำนวนชั้น"],
+    ["สำรวจความเข้มข้นของอาคาร GFA ความสูง และจำนวนชั้นแบบ 3 มิติในสวนพลู", "ใช้แผนที่เปรียบเทียบจังหวัดคู่กับ GFA ความสูง และจำนวนชั้น เพื่อเล่าความเข้มข้นของการพัฒนา"],
+    ["ภาพตัวอย่างโฟกัสสวนพลู; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ", "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ"],
+    ["ภาพแสดงอาคาร 3 มิติและตัวชี้วัดระดับพื้นที่; ความครบถ้วนของรูปทรงรายอาคารยังไม่ยืนยัน", "ยืนยันแผนที่เปรียบเทียบระดับจังหวัดและตัวชี้วัดอาคาร; รูปทรงแผนที่ระดับอาคารยังไม่ยืนยัน"],
+    ["เมืองชลบุรี · ราคาประเมิน 3 มิติ", "ราคาประเมิน · จำนวนโฉนด"],
+    ["เห็นโครงสร้างราคาประเมินที่ดินแบบ 3 มิติในอำเภอเมืองชลบุรี พร้อมจำนวนโฉนดและการกระจายราคา", "ใช้แผนที่ราคาประเมินระดับจังหวัดคู่กับจำนวนโฉนดและการกระจายราคา"],
+    ["ภาพตัวอย่างโฟกัสอำเภอเมืองชลบุรี; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ", "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ"],
+    ["ภาพแสดงโซนราคาประเมินแบบ 3 มิติและจำนวนโฉนด; รายละเอียดรูปแปลงรายแปลงยังไม่ยืนยัน", "ยืนยันแผนที่เปรียบเทียบระดับจังหวัดและจำนวนโฉนด; รายละเอียดรูปแปลงยังไม่ยืนยัน"],
+    ["ผักไห่ · น้ำท่วมย้อนหลัง 14 ปี", "14 ปี · การเกิดซ้ำ · ปีหนักสุด"],
+    ["เห็นขอบเขตน้ำท่วมรายปีและการเกิดซ้ำในอำเภอผักไห่ พร้อมเทียบกราฟย้อนหลัง 14 ปี", "ใช้เส้นเวลา 14 ปี จำนวนปีที่เกิดซ้ำ และปีที่หนักที่สุดเป็นภาพตั้งต้นของความเสี่ยงย้อนหลัง"],
+    ["ภาพตัวอย่างโฟกัสอำเภอผักไห่ พระนครศรีอยุธยา; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ", "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ"],
+    ["ภาพแสดงขอบเขตอำเภอ พื้นที่น้ำท่วม และสรุประดับตำบล; ความละเอียดของข้อมูลน้ำท่วมต้นทางยังไม่ยืนยัน", "ระดับพื้นที่ย่อยสุดยังไม่ยืนยันจากหน้าสาธารณะ"],
+    ["ปทุมวัน · Road DNA · รูปแบบถนน", "รูปแบบถนน · ทางตัน · ทางแยก"],
+    ["สำรวจรูปแบบโครงข่ายถนนในปทุมวัน พร้อมสัดส่วนทางตัน ความหนาแน่นทางแยก และ Road DNA", "ใช้พื้นที่สีบนแผนที่ดาวเทียมคู่กับสัดส่วนทางตันและความหนาแน่นทางแยก"],
+    ["ภาพตัวอย่างโฟกัสเขตปทุมวัน กรุงเทพมหานคร; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ยืนยัน", "ยืนยันจากเส้นทางกรุงเทพฯ ที่ตรวจ; ขอบเขตพื้นที่อื่นยังไม่ยืนยัน"],
+    ["ภาพแสดงพื้นที่วิเคราะห์แบบ hexagon และตัวชี้วัด Road DNA; วิธีสร้างหน่วยวิเคราะห์ยังไม่มีคำอธิบายสาธารณะ", "เห็นพื้นที่สีตามรูปแบบโครงข่ายถนน แต่หน่วยวิเคราะห์พื้นฐานยังไม่มีคำอธิบายสาธารณะ"],
+    ["เวียงทอง · ผลผลิตรายเดือน", "พื้นที่เพาะปลูก · ผลผลิต"],
+    ["ดูพื้นที่เพาะปลูกและผลผลิตรายเดือนใน อบต.เวียงทอง พร้อมแยกชนิดพืชและกราฟช่วงเวลา", "ใช้ชนิดพืช พื้นที่เพาะปลูก ผลผลิต และช่วงเวลาเล่าบริบทการใช้ที่ดินเกษตร"],
+    ["ภาพตัวอย่างโฟกัส อบต.เวียงทอง จังหวัดแพร่; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ", "ขอบเขตพื้นที่ยังไม่ระบุบนหน้าสาธารณะ"],
+    ["ภาพแสดงหน่วยหมู่บ้านและกริด hexagon พร้อมสรุปผลผลิต; วิธีแปลงข้อมูลต้นทางยังไม่ยืนยัน", "ระดับพื้นที่ย่อยสุดยังไม่ยืนยันจากหน้าสาธารณะ"],
+    ["24 ชั่วโมง · จังหวัดเสี่ยงน้ำท่วมฉับพลัน", "สัญญาณความเสี่ยง 24 ชั่วโมง"],
+    ["เห็นระดับความเสี่ยง 24 ชั่วโมงบนแผนที่ประเทศไทย พร้อมอันดับจังหวัดและเวลาออกรัน", "ใช้ระดับความเสี่ยง 24 ชั่วโมง อันดับจังหวัด และเวลาออกรันเป็นภาพเฝ้าระวัง"],
+    ["ภาพตัวอย่างแสดงภาพรวมประเทศไทยและอันดับจังหวัด; ขอบเขตของโมเดลต้นทางยังไม่ระบุบนหน้าสาธารณะ", "มีหน้าสรุประดับประเทศไทยและอันดับจังหวัด; ขอบเขตของโมเดลยังไม่ระบุ"],
+    ["ภาพยืนยันการเปรียบเทียบระดับจังหวัด; ความละเอียดระดับลุ่มน้ำหรือพื้นผิวโมเดลยังไม่เผยแพร่", "ยืนยันการเปรียบเทียบระดับจังหวัด; ความละเอียดระดับลุ่มน้ำหรือพื้นผิวโมเดลยังไม่เผยแพร่"]
+  ],
+  "en/index.html": [
+    ["Suan Plu · 3D buildings · GFA", "GFA · height · floors"],
+    ["Explore 3D building intensity, GFA, height and floor counts in Suan Plu", "Pair the province comparison map with GFA, height, and floor metrics to explain development intensity"],
+    ["The example focuses on Suan Plu; source coverage beyond the example is not stated on the public page", "A Thailand summary view is visible; source coverage is not stated"],
+    ["The view shows 3D buildings and area metrics; completeness of individual building geometry is not verified", "A province comparison map and building metrics are visible; building-level map geometry is not verified"],
+    ["Mueang Chonburi · 3D appraisal", "Appraisal · deed counts"],
+    ["See the 3D land-appraisal pattern across Mueang Chonburi with deed counts and the price distribution", "Pair the province appraisal map with title-deed counts and price distribution"],
+    ["The example focuses on Mueang Chonburi; source coverage beyond the example is not stated on the public page", "A Thailand summary view is visible; source coverage is not stated"],
+    ["The view shows 3D appraisal-price zones and deed counts; individual parcel geometry is not verified", "A province comparison map and title-deed counts are visible; individual plot geometry is not verified"],
+    ["Phak Hai · 14-year flood history", "14 years · recurrence · worst year"],
+    ["See annual flood extent and recurrence in Phak Hai with a 14-year comparison chart", "Use the 14-year timeline, recurrence count, and worst year as the historical risk baseline"],
+    ["The example focuses on Phak Hai, Phra Nakhon Si Ayutthaya; source coverage beyond the example is not stated on the public page", "A Thailand summary view is visible; source coverage is not stated"],
+    ["The view shows district extent, flooded areas and subdistrict summaries; source flood-data resolution is not verified", "The smallest supported geography is not yet verified from the public page"],
+    ["Pathum Wan · Road DNA · archetypes", "Road types · dead ends · intersections"],
+    ["Explore Pathum Wan road-network archetypes with dead-end ratio, intersection density and Road DNA", "Pair coloured archetype areas on the satellite map with dead-end and intersection metrics"],
+    ["The example focuses on Pathum Wan, Bangkok; source coverage beyond the example is not verified", "Evidenced on the inspected Bangkok route; broader geographic coverage is not verified"],
+    ["The view shows hexagonal analysis areas and Road DNA metrics; construction of the analytical unit is not publicly documented", "Coloured road-archetype areas are visible, but the underlying analytical unit is not publicly documented"],
+    ["Wiang Thong · monthly output", "Crop area · output"],
+    ["See monthly cultivated area and output in Wiang Thong TAO, separated by crop and time period", "Use crop type, cultivated area, output, and period to explain agricultural land context"],
+    ["The example focuses on Wiang Thong TAO, Phrae; source coverage beyond the example is not stated on the public page", "Geographic coverage is not stated on the public page"],
+    ["The view shows village units, a hexagonal grid and output summaries; transformation from the source data is not verified", "The smallest supported geography is not yet verified from the public page"],
+    ["24-hour flash-flood risk by province", "24-hour risk signal"],
+    ["See 24-hour risk levels across Thailand with province ranking and forecast run time", "Use the 24-hour risk levels, province ranking, and run time as a monitoring story"],
+    ["The example shows a Thailand overview and province ranking; source-model coverage is not stated on the public page", "A Thailand summary and province ranking are visible; model coverage is not stated"],
+    ["Province comparison is evidenced; watershed or model-surface resolution is not published", "Province comparison is evidenced; watershed or model-surface resolution is not published"]
+  ]
+};
+
 function updateRegistry() {
   const path = join(root, "data/catalog-source-review.json");
   let source = readFileSync(path, "utf8");
@@ -112,6 +167,9 @@ function updatePage(page) {
   }
 
   html = updateJsonLd(html, page);
+  for (const [focusedCopy, hydrationBaseline] of hydrationParity[page]) {
+    html = html.replaceAll(focusedCopy, hydrationBaseline);
+  }
   writeFileSync(path, html);
 }
 

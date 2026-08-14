@@ -136,18 +136,24 @@ for (const asset of [
 const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements.js"), "utf8");
-assert(thHtml.includes("สวนพลู · อาคาร 3 มิติ · GFA"), "Thai page must label the Suan Plu 3D Building snapshot");
-assert(thHtml.includes("เมืองชลบุรี · ราคาประเมิน 3 มิติ"), "Thai page must label the Mueang Chonburi 3D appraisal snapshot");
-assert(thHtml.includes("ผักไห่ · น้ำท่วมย้อนหลัง 14 ปี"), "Thai page must label the focused Phak Hai flood snapshot");
-assert(thHtml.includes("ปทุมวัน · Road DNA · รูปแบบถนน"), "Thai page must label the focused Pathum Wan Road DNA snapshot");
-assert(thHtml.includes("เวียงทอง · ผลผลิตรายเดือน"), "Thai page must label the focused Wiang Thong crop snapshot");
-assert(thHtml.includes("24 ชั่วโมง · จังหวัดเสี่ยงน้ำท่วมฉับพลัน"), "Thai page must label the focused flash-flood snapshot");
-assert(enHtml.includes("Suan Plu · 3D buildings · GFA"), "English page must label the Suan Plu 3D Building snapshot");
-assert(enHtml.includes("Mueang Chonburi · 3D appraisal"), "English page must label the Mueang Chonburi 3D appraisal snapshot");
-assert(enHtml.includes("Phak Hai · 14-year flood history"), "English page must label the focused Phak Hai flood snapshot");
-assert(enHtml.includes("Pathum Wan · Road DNA · archetypes"), "English page must label the focused Pathum Wan Road DNA snapshot");
-assert(enHtml.includes("Wiang Thong · monthly output"), "English page must label the focused Wiang Thong crop snapshot");
-assert(enHtml.includes("24-hour flash-flood risk by province"), "English page must label the focused flash-flood snapshot");
+assert(thHtml.includes("GFA · ความสูง · จำนวนชั้น") && !thHtml.includes("สวนพลู · อาคาร 3 มิติ · GFA"), "Thai prerender must preserve the React hydration baseline");
+assert(enHtml.includes("GFA · height · floors") && !enHtml.includes("Suan Plu · 3D buildings · GFA"), "English prerender must preserve the React hydration baseline");
+for (const focusedCopy of [
+  "สวนพลู · อาคาร 3 มิติ · GFA",
+  "เมืองชลบุรี · ราคาประเมิน 3 มิติ",
+  "ผักไห่ · น้ำท่วมย้อนหลัง 14 ปี",
+  "ปทุมวัน · Road DNA · รูปแบบถนน",
+  "เวียงทอง · ผลผลิตรายเดือน",
+  "24 ชั่วโมง · จังหวัดเสี่ยงน้ำท่วมฉับพลัน",
+  "Suan Plu · 3D buildings · GFA",
+  "Mueang Chonburi · 3D appraisal",
+  "Phak Hai · 14-year flood history",
+  "Pathum Wan · Road DNA · archetypes",
+  "Wiang Thong · monthly output",
+  "24-hour flash-flood risk by province"
+]) {
+  assert(enhancementJs.includes(focusedCopy), `Runtime focused copy is missing: ${focusedCopy}`);
+}
 assert(enhancementJs.includes("__CITYMETER_MOTION_DEBUG__"), "Motion debug receipt is missing");
 assert(enhancementJs.includes("prefers-reduced-motion: reduce"), "Motion layer must respect reduced motion");
 assert(enhancementJs.includes("duration: 280"), "Card reflow motion must use the 280ms map-state duration");
