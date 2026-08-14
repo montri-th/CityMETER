@@ -1,0 +1,247 @@
+{
+  "version": "2026-08-14",
+  "datasets": [
+    {
+      "id": "dataset-buildings",
+      "url": "https://landometer.com/v3/citymeter-3d/BKK/L/8b60964e-0c26-408e-95f6-e3f46fe37d46?d=building",
+      "file": "media/qr/buildings.png",
+      "sha256": "67d22e4a481ecf4a3448ee022b16b3d96fe5c9322030cab7edc7c1e5f00699c5"
+    },
+    {
+      "id": "dataset-registered-housing-estates",
+      "url": "https://landometer.com/v3/citymeter?d=estate",
+      "file": "media/qr/registered-housing-estates.png",
+      "sha256": "8dac54091bdaa195c5f59331600a46687cc89baad908f785e778e362a8b4e5b5"
+    },
+    {
+      "id": "dataset-eia-projects",
+      "url": "https://landometer.com/v3/citymeter?d=eiaReport",
+      "file": "media/qr/eia-projects.png",
+      "sha256": "f0c22f082fc85fc44d3bfc00a257ce713d2d209e93bfdfe3ce5b874bc6f93aa4"
+    },
+    {
+      "id": "dataset-crop-area-output",
+      "url": "https://landometer.com/v3/citymeter/PRE?d=muenRai",
+      "file": "media/qr/crop-area-output.png",
+      "sha256": "6d7b4ba9bcd42f130ccb6f6c6571dab888e476de376bb1e843ad9611ac38d530"
+    },
+    {
+      "id": "dataset-land-appraisal",
+      "url": "https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed",
+      "file": "media/qr/land-appraisal.png",
+      "sha256": "17e738c83fc9d6ca9dfccf1d7d3641396f65ce63f5919d795fd867541eda42e1"
+    },
+    {
+      "id": "dataset-land-listing-prices",
+      "url": "https://landometer.com/v3/citymeter?d=landoffer",
+      "file": "media/qr/land-listing-prices.png",
+      "sha256": "a41903e6d3f7c95acafeeefcd48147a21d2cc3ad1577ce6f56b0f8032a3b1ad6"
+    },
+    {
+      "id": "dataset-apartment-rent",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=apartment",
+      "file": "media/qr/apartment-rent.png",
+      "sha256": "86710f639d6e6b199d1fa50c4cafcdc478b42223d91aa241f8eaaf807f41b13c"
+    },
+    {
+      "id": "dataset-condo-appraisal",
+      "url": "https://landometer.com/v3/citymeter?d=condo",
+      "file": "media/qr/condo-appraisal.png",
+      "sha256": "3d9ae076dc76f717015c535433a75de7fc999d64524674a738adb89a81871470"
+    },
+    {
+      "id": "dataset-condo-listing-prices",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=condoOffer",
+      "file": "media/qr/condo-listing-prices.png",
+      "sha256": "16da0e307eeef11fab23cd3794123a7c1ff76aee9ec6923ccc4f627ad06182aa"
+    },
+    {
+      "id": "dataset-detached-listing-prices",
+      "url": "https://landometer.com/v3/citymeter?d=detachedhouse",
+      "file": "media/qr/detached-listing-prices.png",
+      "sha256": "99cc3b12513ef16b50607db8a70c9b5532b95c701e35e40bc72a515ce9fe44a6"
+    },
+    {
+      "id": "dataset-townhouse-listing-prices",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=townhouse",
+      "file": "media/qr/townhouse-listing-prices.png",
+      "sha256": "a5dc2453a255fa5ae845a402748dd6a4d9c6b6e6bc419d51d12e93e2aa3da4f1"
+    },
+    {
+      "id": "dataset-condo-rent-yield",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=rentWise",
+      "file": "media/qr/condo-rent-yield.png",
+      "sha256": "9bb59aeb75cf45819dce8759cb79f8802439102acd4d15cccce2394a270b351f"
+    },
+    {
+      "id": "dataset-registered-companies-status-capital",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=company",
+      "file": "media/qr/registered-companies-status-capital.png",
+      "sha256": "189a585f44b5b54a23b093ae0e3aab15b9361842409c809f464bb2a5b9012918"
+    },
+    {
+      "id": "dataset-business-dynamics",
+      "url": "https://landometer.com/v3/citymeter?d=businessDynamics",
+      "file": "media/qr/business-dynamics.png",
+      "sha256": "9cc3e5ab2cc80fbbaa14eb4d3b4837b3176ddaaa5d3e9f302f63990a18f6d592"
+    },
+    {
+      "id": "dataset-factories-workers-investment",
+      "url": "https://landometer.com/v3/citymeter?d=factory",
+      "file": "media/qr/factories-workers-investment.png",
+      "sha256": "8dedf9957b0cf10c9c524bc6bc3ab476a0d9a1c8028ba2770a8e6ed2ee3ec18b"
+    },
+    {
+      "id": "dataset-office-buildings-rent",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=office",
+      "file": "media/qr/office-buildings-rent.png",
+      "sha256": "58d7c341af56ae17a57b32fe8494e123428a25857835d81fbc69b6c35ced4a2b"
+    },
+    {
+      "id": "dataset-restaurants",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=restaurant",
+      "file": "media/qr/restaurants.png",
+      "sha256": "8820ede4197e6def3a2082743f6958e6f42a550bea0222081742feff0fd2ead0"
+    },
+    {
+      "id": "dataset-shopping-centers",
+      "url": "https://landometer.com/v3/citymeter?d=shoppingCenter",
+      "file": "media/qr/shopping-centers.png",
+      "sha256": "6d9c76823a96b4ef39027a8caac4ed774ab20321247d8d85ae6292faf605e8a4"
+    },
+    {
+      "id": "dataset-hotel-market",
+      "url": "https://landometer.com/v3/citymeter?d=hotel",
+      "file": "media/qr/hotel-market.png",
+      "sha256": "ea1daeeb5f57d00402b029e201660103f240f7cbdfe5eb17e91bddb24fd5a94b"
+    },
+    {
+      "id": "dataset-tourism-demand-spending",
+      "url": "https://landometer.com/v3/citymeter?d=tourism",
+      "file": "media/qr/tourism-demand-spending.png",
+      "sha256": "92e9263b70902648365d0e34122a7b063988b9de7d67537649def7fb5fd5f0b4"
+    },
+    {
+      "id": "dataset-fuel-stations",
+      "url": "https://landometer.com/v3/citymeter?d=gasStation",
+      "file": "media/qr/fuel-stations.png",
+      "sha256": "9cf275fdf94e59a2fe499eaeb39c27dee106c24f201921d611e688ae80a8607b"
+    },
+    {
+      "id": "dataset-registered-cars",
+      "url": "https://landometer.com/v3/citymeter?d=cars",
+      "file": "media/qr/registered-cars.png",
+      "sha256": "b1a94f5f6740c7fa4805b2bd4e6cba45ef7e96ffbe7672ba65aec56f2afc4823"
+    },
+    {
+      "id": "dataset-road-network-archetypes",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=roadDna",
+      "file": "media/qr/road-network-archetypes.png",
+      "sha256": "d0c0aa58d57381aa1b36eb0654c99c620c1bc90d726a004950acd44201f180de"
+    },
+    {
+      "id": "dataset-traffic-congestion-speed",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=traffic",
+      "file": "media/qr/traffic-congestion-speed.png",
+      "sha256": "e19ab22a9dd0a4904a0e6657dcc9cd348cb7990f1a66f5fbc52f219870aee477"
+    },
+    {
+      "id": "dataset-locale-insights",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=localeInsights",
+      "file": "media/qr/locale-insights.png",
+      "sha256": "b20186a291db3ef6d5f5cd131aafc5cd50dc7a17c493a508d14a633eb7db38f8"
+    },
+    {
+      "id": "dataset-population-age-sex",
+      "url": "https://landometer.com/v3/citymeter?d=population",
+      "file": "media/qr/population-age-sex.png",
+      "sha256": "b06d203f5863f7db4e98595f649872306b22e1479d9f8e28e6f1f824262c14f6"
+    },
+    {
+      "id": "dataset-schools-students-teachers",
+      "url": "https://landometer.com/v3/citymeter?d=school",
+      "file": "media/qr/schools-students-teachers.png",
+      "sha256": "b66fecdc49c07664dbbb3a22341d182d9f69719833c365d5c0affd129a0684f7"
+    },
+    {
+      "id": "dataset-municipal-revenue",
+      "url": "https://landometer.com/v3/citymeter?d=municipality",
+      "file": "media/qr/municipal-revenue.png",
+      "sha256": "c190c6946d2ca3298e0e9e9626390ac1540606dc910ddf7466adca4328fce9e5"
+    },
+    {
+      "id": "dataset-government-agencies-workforce",
+      "url": "https://landometer.com/v3/citymeter?d=governmentOfficer",
+      "file": "media/qr/government-agencies-workforce.png",
+      "sha256": "9c5481013734b522ff1e4d12c41f4b38691d028ac7da5aeaca67a9c028a7797d"
+    },
+    {
+      "id": "dataset-flood-recurrent",
+      "url": "https://landometer.com/v3/citymeter/AYA/D/1408?d=floodimpact",
+      "file": "media/qr/flood-recurrent.png",
+      "sha256": "8ddc528690fb0b7fffcb477e7c29cd65b205a6aceeff4f0a326012cb66941aa5"
+    },
+    {
+      "id": "dataset-flood-latest-observed",
+      "url": "https://landometer.com/v3/citymeter?d=floodrecent",
+      "file": "media/qr/flood-latest-observed.png",
+      "sha256": "e7c47d0bfaaac50afb38e641b2eb49dbe357b42d3fe0fb4c784e6275cfbc05fe"
+    },
+    {
+      "id": "dataset-flood-forecast-depth",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=flood-forecast-depth",
+      "file": "media/qr/flood-forecast-depth.png",
+      "sha256": "42fecb476086c3bf7d931bac84d4355734292f0dbe65cb9d4f9be8f0c25669bf"
+    },
+    {
+      "id": "dataset-flood-forecast-flash-flood-risk",
+      "url": "https://landometer.com/v3/citymeter?d=flash-flood-risk",
+      "file": "media/qr/flood-forecast-flash-flood-risk.png",
+      "sha256": "3b1bbc39b75538c2c8b0ed19327fda0cee2932bca6a7196fdcd298d67f14677f"
+    },
+    {
+      "id": "dataset-earthquake-sensors",
+      "url": "https://landometer.com/v3/citymeter?d=quake",
+      "file": "media/qr/earthquake-sensors.png",
+      "sha256": "4036df465b95c5c581f0b1e1931a245d2f4419e74820a0681cc85c4077f1522a"
+    },
+    {
+      "id": "dataset-fire-monitoring",
+      "url": "https://landometer.com/v3/citymeter?d=fire",
+      "file": "media/qr/fire-monitoring.png",
+      "sha256": "dc8df9981af8bcf2d137abc8af141e3c96aef95fc98237b768fa2bf6d88727ca"
+    },
+    {
+      "id": "dataset-disaster-historical-impacts",
+      "url": "https://landometer.com/v3/citymeter?d=disaster",
+      "file": "media/qr/disaster-historical-impacts.png",
+      "sha256": "dc3adabf201350e393b57583ad6768ba1487d3e49fa1b57472f4afb2bcae6d70"
+    },
+    {
+      "id": "dataset-events-hat-yai-flood-2025-11",
+      "url": "https://landometer.com/v3/citymeter/SKA/D/9011?d=hatyaiflood",
+      "file": "media/qr/events-hat-yai-flood-2025-11.png",
+      "sha256": "3b148d991c68c848bcccb183f37cdf8ca4ebb7142cb5ab7b607dd09c8b97e239"
+    },
+    {
+      "id": "dataset-events-quake-building-inspection",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=quakeSafe",
+      "file": "media/qr/events-quake-building-inspection.png",
+      "sha256": "9ec5751ee79d47738321f92fa6c61dc072ce6ac85fa25c39ecd1f4abaaea75d9"
+    }
+  ],
+  "pages": [
+    {
+      "language": "th",
+      "url": "https://montri-th.github.io/CityMETER/",
+      "file": "media/qr/citymeter-page-th.png",
+      "sha256": "f5e74b12a2fef1ce3bccb4deb51e91167301d4e9a74638ccfb82bf9ac5398a98"
+    },
+    {
+      "language": "en",
+      "url": "https://montri-th.github.io/CityMETER/en/",
+      "file": "media/qr/citymeter-page-en.png",
+      "sha256": "0d474ec33c3959c37716fcbcb03a7234d61688d847856acc65ad2105df04c7e9"
+    }
+  ]
+}

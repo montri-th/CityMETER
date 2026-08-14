@@ -5,9 +5,26 @@ import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const review = JSON.parse(readFileSync(join(root, "data/catalog-source-review.json"), "utf8"));
+const qrManifest = JSON.parse(readFileSync(join(root, "media/qr/manifest.json"), "utf8"));
 const ids = review.records.map((record) => record.id);
+const routeById = new Map(review.records.map((record) => [record.id, record.citymeterUrl]));
 const muenRaiRoute = "https://landometer.com/v3/citymeter/PRE?d=muenRai";
 const oldMuenRaiRoute = "https://landometer.com/v3/citymeter?d=muenRai";
+const focusedRoutes = {
+  "dataset-buildings": "https://landometer.com/v3/citymeter-3d/BKK/L/8b60964e-0c26-408e-95f6-e3f46fe37d46?d=building",
+  "dataset-land-appraisal": "https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed",
+  "dataset-apartment-rent": "https://landometer.com/v3/citymeter/BKK?d=apartment",
+  "dataset-condo-listing-prices": "https://landometer.com/v3/citymeter/BKK?d=condoOffer",
+  "dataset-townhouse-listing-prices": "https://landometer.com/v3/citymeter/BKK?d=townhouse",
+  "dataset-condo-rent-yield": "https://landometer.com/v3/citymeter/BKK?d=rentWise",
+  "dataset-registered-companies-status-capital": "https://landometer.com/v3/citymeter/BKK?d=company",
+  "dataset-restaurants": "https://landometer.com/v3/citymeter/BKK?d=restaurant",
+  "dataset-road-network-archetypes": "https://landometer.com/v3/citymeter/BKK?d=roadDna",
+  "dataset-flood-recurrent": "https://landometer.com/v3/citymeter/AYA/D/1408?d=floodimpact",
+  "dataset-flood-forecast-depth": "https://landometer.com/v3/citymeter/BKK?d=flood-forecast-depth",
+  "dataset-events-hat-yai-flood-2025-11": "https://landometer.com/v3/citymeter/SKA/D/9011?d=hatyaiflood",
+  "dataset-events-quake-building-inspection": "https://landometer.com/v3/citymeter/BKK?d=quakeSafe"
+};
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -21,31 +38,52 @@ assert(review.reviewedAt === "2026-08-14", "Unexpected review date");
 assert(ids.length === 38 && new Set(ids).size === 38, "Source registry must contain 38 unique records");
 assert(review.records.filter((record) => record.status === "verified-lineage").length === 11, "Expected 11 verified-lineage records");
 assert(review.records.filter((record) => record.conceptualPreview).length === 3, "Expected three labelled conceptual previews");
+assert(review.records.every((record) => typeof record.citymeterUrl === "string" && record.citymeterUrl.startsWith("https://landometer.com/v3/citymeter")), "All 38 records must have a canonical CityMETER URL");
 assert(
   review.records.find((record) => record.id === "dataset-crop-area-output")?.citymeterUrl === muenRaiRoute,
   "Muen Rai registry record must use the direct Phrae route"
 );
+for (const [id, url] of Object.entries(focusedRoutes)) {
+  assert(routeById.get(id) === url, `Focused route is stale for ${id}`);
+}
 
 for (const page of ["index.html", "en/index.html"]) {
   const html = readFileSync(join(root, page), "utf8");
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements.css?v=5"), `${page} must load the motion cache-busted stylesheet`);
-  assert(html.includes("catalog-enhancements.js?v=8"), `${page} must load the direct-route enhancement layer`);
-  assert(html.includes("index-qbT50gkr-v3.js?v=2"), `${page} must load the permanent-handoff bundle revision`);
+  assert(html.includes("catalog-enhancements.css?v=6"), `${page} must load the branding stylesheet revision`);
+  assert(html.includes("catalog-enhancements.js?v=9"), `${page} must load the canonical-route and branding enhancement layer`);
+  assert(html.includes("index-qbT50gkr-v3.js?v=3"), `${page} must load the CityMETER headline bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
   assert(html.includes('property="og:image:width" content="1200"'), `${page} is missing the OG image width`);
   assert(html.includes('property="og:image:height" content="630"'), `${page} is missing the OG image height`);
   assert(html.includes('name="twitter:card" content="summary_large_image"'), `${page} is missing the Twitter card`);
   assert(!html.includes('rel="preload" as="image" href="./media/previews-v2/') && !html.includes('rel="preload" as="image" href="../media/previews-v2/'), `${page} must not preload the full preview catalog`);
-  const cropStart = html.indexOf('<article class="dataset-card" id="dataset-crop-area-output">');
-  const cropEnd = html.indexOf("</article>", cropStart) + "</article>".length;
-  assert(cropStart >= 0 && cropEnd >= "</article>".length, `${page} is missing the Muen Rai card`);
-  const cropCard = html.slice(cropStart, cropEnd);
-  assert(cropCard.split(muenRaiRoute).length - 1 === 2, `${page} must use the direct Phrae route for both Muen Rai card links`);
-  const jsonLd = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] || "";
-  assert(jsonLd.includes(muenRaiRoute), `${page} JSON-LD must use the direct Phrae route`);
+  assert(html.includes('<h1 id="page-title">CityMETER</h1>'), `${page} must use CityMETER as the hero headline`);
+  assert(!html.includes("ก่อนตัดสินใจเรื่องพื้นที่") && !html.includes("Before you decide on a place"), `${page} still contains the retired hero headline`);
+
+  for (const record of review.records) {
+    const start = html.indexOf(`<article class="dataset-card" id="${record.id}"`);
+    const end = html.indexOf("</article>", start) + "</article>".length;
+    assert(start >= 0 && end >= "</article>".length, `${page} is missing ${record.id}`);
+    const card = html.slice(start, end);
+    const links = Array.from(card.matchAll(/<a class="dataset-(?:image|open)" href="([^"]+)"/g), (match) => match[1].replaceAll("&amp;", "&"));
+    assert(links.length === 2 && links.every((href) => href === record.citymeterUrl), `${page} card links do not match the registry for ${record.id}`);
+  }
+  for (const route of Object.values(focusedRoutes)) {
+    const datasetKey = new URL(route).searchParams.get("d");
+    assert(!html.includes(`https://landometer.com/v3/citymeter?d=${datasetKey}`), `${page} still contains a generic route for focused dataset ${datasetKey}`);
+  }
+
+  const jsonLdText = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] || "";
+  const jsonLd = JSON.parse(jsonLdText);
+  const catalog = jsonLd["@graph"]?.find((entry) => entry["@type"] === "DataCatalog");
+  assert(catalog?.dataset?.length === 38, `${page} JSON-LD must expose 38 datasets`);
+  for (const dataset of catalog.dataset) {
+    const id = dataset["@id"]?.split("#").at(-1);
+    assert(dataset.subjectOf?.url === routeById.get(id), `${page} JSON-LD route does not match the registry for ${id}`);
+  }
   assert(!html.includes(oldMuenRaiRoute), `${page} still contains the generic Muen Rai route`);
 }
 
@@ -54,6 +92,8 @@ assert(readFileSync(join(root, "en/index.html"), "utf8").includes('property="og:
 for (const language of ["th", "en"]) {
   const qr = join(root, "media/qr", `citymeter-page-${language}.png`);
   assert(existsSync(qr) && statSync(qr).size > 1000, `Missing or empty page QR: ${language}`);
+  const manifestEntry = qrManifest.pages.find((entry) => entry.language === language);
+  assert(manifestEntry?.sha256 === sha256(qr), `Page QR manifest is stale for ${language}`);
 }
 
 assert(
@@ -66,16 +106,25 @@ for (const record of review.records) {
   const qr = join(root, "media/qr", `${slug}.png`);
   const preview = join(root, "media/previews-v2", `${slug}.webp`);
   assert(existsSync(qr) && statSync(qr).size > 1000, `Missing or empty QR: ${slug}`);
+  const manifestEntry = qrManifest.datasets.find((entry) => entry.id === record.id);
+  assert(manifestEntry?.url === record.citymeterUrl, `QR manifest route is stale for ${record.id}`);
+  assert(manifestEntry?.file === `media/qr/${slug}.png`, `QR manifest path is stale for ${record.id}`);
+  assert(manifestEntry?.sha256 === sha256(qr), `QR bytes do not match the manifest for ${record.id}`);
   assert(existsSync(preview) && statSync(preview).size > 10000, `Missing or empty preview: ${slug}`);
 }
+assert(qrManifest.version === "2026-08-14" && qrManifest.datasets.length === 38 && qrManifest.pages.length === 2, "QR manifest coverage is incomplete");
 
 for (const asset of [
+  "CITYMETER_BRANDING_DEEPLINK_RELEASE_2026-08-14.md",
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
   "assets/index-qbT50gkr-v3.js",
+  "scripts/apply-branding-route-release.mjs",
   "scripts/build-hero-reel.sh",
   "scripts/apply-focus-copy.mjs",
   "media/gdcatalog-logo.png",
+  "media/depa-dsure-tdc-lockup.png",
+  "media/qr/manifest.json",
   "media/reel/citymeter-proof-v3.mp4",
   "media/reel/citymeter-proof-v3-exhibition.mp4",
   "media/reel/citymeter-proof-v3-poster.webp",
@@ -104,6 +153,11 @@ assert(enhancementJs.includes("prefers-reduced-motion: reduce"), "Motion layer m
 assert(enhancementJs.includes("duration: 280"), "Card reflow motion must use the 280ms map-state duration");
 assert(enhancementJs.includes("record?.citymeterUrl"), "Runtime direct-route override is missing");
 assert(enhancementJs.includes(".dataset-mobile-link"), "Runtime direct-route override must cover the mobile handoff link");
+assert(enhancementJs.includes("supporter-lockup-hero") && enhancementJs.includes("supporter-lockup-footer"), "Runtime supporter lockups are missing");
+assert(enhancementJs.includes("depa-dsure-tdc-lockup.png"), "Runtime supporter logo asset is missing");
+const runtimeStart = enhancementJs.slice(enhancementJs.indexOf("async function start()"));
+assert(runtimeStart.indexOf("applyEnhancements();") < runtimeStart.indexOf("await fetch("), "Branding must render before the source-registry fetch");
+assert(runtimeStart.indexOf("new MutationObserver(scheduleEnhancements)") < runtimeStart.indexOf("await fetch("), "Hydration observer must start before the source-registry fetch");
 assert(thHtml.includes("ดูต่อบนมือถือ"), "Thai page is missing the permanent handoff eyebrow");
 assert(thHtml.includes("เก็บตัวอย่างนี้ไว้ใช้ เมื่อต้องตัดสินใจเรื่องพื้นที่"), "Thai page is missing the permanent handoff title");
 assert(thHtml.includes("สแกน QR เพื่อเปิดบนมือถือ เก็บลิงก์ไว้ดูเอง หรือส่งให้เพื่อนที่กำลังเลือกบ้าน ทำเลธุรกิจ หรือพื้นที่ลงทุน"), "Thai page is missing the permanent handoff support copy");
@@ -116,6 +170,17 @@ assert(enHtml.includes("Save or share this example"), "English page is missing t
 assert(enHtml.includes("The link opens the same example and data."), "English page is missing the permanent handoff note");
 
 const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v3.js"), "utf8");
+for (const record of review.records) {
+  const bundleId = record.id.replace(/^dataset-events-/, "events/").replace(/^dataset-/, "");
+  const marker = `id:"${bundleId}",`;
+  const recordStart = mainBundle.indexOf(marker);
+  const nextRecord = mainBundle.indexOf("},{id:", recordStart);
+  const hrefStart = mainBundle.indexOf("href:", recordStart);
+  assert(recordStart >= 0 && hrefStart >= 0 && (nextRecord < 0 || hrefStart < nextRecord), `Hydrated dataset route is missing for ${record.id}`);
+  assert(mainBundle.slice(hrefStart, hrefStart + record.citymeterUrl.length + 9).includes(JSON.stringify(record.citymeterUrl)), `Hydrated dataset route is stale for ${record.id}`);
+}
+assert(!mainBundle.includes("ก่อนตัดสินใจเรื่องพื้นที่\\nดูให้เห็นมากกว่าจุดบนแผนที่"), "Hydrated Thai hero headline is stale");
+assert(!mainBundle.includes("Before you decide on a place,\\nsee more than pins on a map"), "Hydrated English hero headline is stale");
 assert(mainBundle.includes("เก็บตัวอย่างนี้ไว้ใช้ เมื่อต้องตัดสินใจเรื่องพื้นที่"), "Hydrated Thai handoff title is stale");
 assert(mainBundle.includes("สแกน QR เพื่อเปิดบนมือถือ เก็บลิงก์ไว้ดูเอง หรือส่งให้เพื่อนที่กำลังเลือกบ้าน ทำเลธุรกิจ หรือพื้นที่ลงทุน"), "Hydrated Thai handoff support copy is stale");
 assert(mainBundle.includes("เก็บลิงก์หรือส่งให้เพื่อน"), "Hydrated Thai handoff CTA is stale");
@@ -132,8 +197,12 @@ assert(
   "Web video changed in a snapshot-only release"
 );
 assert(
-  sha256(join(root, "media/reel/citymeter-proof-v3-exhibition.mp4")) === "eb382551b5b2778dad5a0db7045a311b42823121f23c0380a234261b7ceedd2e",
+  sha256(join(root, "media/reel/citymeter-proof-v3-exhibition.mp4")) === "bd4962bc88f66d5e0c5c14530f35628165d3f7879b35abd033a3a7039c7ada2f",
   "Exhibition video changed in a snapshot-only release"
 );
+assert(
+  sha256(join(root, "media/depa-dsure-tdc-lockup.png")) === "804506f124cdb55dc14918b6eb64f7c2bd9badd29fc33fcfddeee5b62b07932c",
+  "Supporter lockup must preserve the owner-supplied PNG bytes"
+);
 
-console.log("CityMETER release validation passed: 38 cards, direct Phrae Muen Rai route, permanent handoff copy, focused snapshots, 280ms state motion, reduced-motion fallback, and unchanged videos.");
+console.log("CityMETER release validation passed: CityMETER headline, two supporter lockups, 38 canonical CTA/QR/JSON-LD routes, focused deep links, 280ms state motion, reduced-motion fallback, and unchanged videos.");

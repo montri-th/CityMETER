@@ -42,7 +42,7 @@
 | Output | ขนาด | FPS | ระยะเวลา | SHA-256 |
 |---|---:|---:|---:|---|
 | Web MP4 | 960×540 | 24 | 12.958 s | `9b075ee35eaa9c9d41dacb8e0580a5dbb07b26076d723c4185810678f1520bf5` |
-| Exhibition MP4 | 1280×720 | 24 | 12.958 s | `eb382551b5b2778dad5a0db7045a311b42823121f23c0380a234261b7ceedd2e` |
+| Exhibition MP4 | 1280×720 | 24 | 12.958 s | `bd4962bc88f66d5e0c5c14530f35628165d3f7879b35abd033a3a7039c7ada2f` |
 | Poster | 1280×720 WebP | — | — | `fd526a398b83db3b9e8ead7af2abcd7f9f83cde91cbb3b8547deb272f22ae650` |
 
 วิดีโอ muted, autoplay, plays inline, loop และมีปุ่ม Pause/Play เพียงจุดเดียว โหมด reduced motion ใช้โปสเตอร์นิ่ง
@@ -71,4 +71,3 @@
 - `media/reel/citymeter-proof-v3-exhibition.mp4`
 - `media/social/citymeter-share-2026-08-14.jpg`
 - `docs/video-beats-v3.md`
-

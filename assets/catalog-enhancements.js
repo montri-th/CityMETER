@@ -25,6 +25,7 @@
       heroQrTitle: "สแกนเพื่อเปิดหน้านี้",
       heroQrHint: "ดูต่อบนมือถือได้ทันที",
       heroQrAlt: "QR code สำหรับเปิดหน้า CityMETER ภาษาไทย",
+      supporterAlt: "depa, dSURE Software และบัญชีบริการดิจิทัล",
       examplesIntro: "เริ่มจากภาพจริงที่ทำให้เห็นโอกาสของพื้นที่ แล้วค่อยเปิดดูที่มา ขอบเขต และรายละเอียดเมื่อพร้อมตัดสินใจ",
       visualFocus: {
         "dataset-buildings": {
@@ -111,6 +112,7 @@
       heroQrTitle: "Scan to open this page",
       heroQrHint: "Continue on your phone",
       heroQrAlt: "QR code to open the English CityMETER page",
+      supporterAlt: "depa, dSURE Software and Digital Service Account",
       examplesIntro: "Start with real views that reveal what is interesting about a place, then open the sources, scope and details when you are ready to decide.",
       visualFocus: {
         "dataset-buildings": {
@@ -640,7 +642,26 @@
       transcript.replaceChildren(element("p", "", text.caption), ordered);
     }
 
+    const pageTitle = document.querySelector("#page-title");
+    if (pageTitle && pageTitle.textContent !== "CityMETER") pageTitle.textContent = "CityMETER";
+
     const heroCopy = document.querySelector(".hero-copy");
+    if (heroCopy) {
+      let supporter = heroCopy.querySelector(".supporter-lockup-hero");
+      if (!supporter) {
+        supporter = element("div", "supporter-lockup supporter-lockup-hero");
+        const logo = document.createElement("img");
+        logo.src = `${assetBase}media/depa-dsure-tdc-lockup.png`;
+        logo.alt = text.supporterAlt;
+        logo.width = 6541;
+        logo.height = 1561;
+        logo.decoding = "async";
+        supporter.append(logo);
+      }
+      const actions = heroCopy.querySelector(".hero-actions");
+      if (actions && actions.nextElementSibling !== supporter) actions.after(supporter);
+    }
+
     if (heroCopy && !heroCopy.querySelector(".hero-page-qr")) {
       const qrBlock = element("div", "hero-page-qr");
       const qr = document.createElement("img");
@@ -661,9 +682,28 @@
     if (examplesIntro && examplesIntro.textContent !== text.examplesIntro) examplesIntro.textContent = text.examplesIntro;
   }
 
+  function enhanceFooterBranding() {
+    const footerLead = document.querySelector(".site-footer .footer-grid > div:first-child");
+    if (!footerLead) return;
+    let supporter = footerLead.querySelector(".supporter-lockup-footer");
+    if (!supporter) {
+      supporter = element("div", "supporter-lockup supporter-lockup-footer");
+      const logo = document.createElement("img");
+      logo.src = `${assetBase}media/depa-dsure-tdc-lockup.png`;
+      logo.alt = text.supporterAlt;
+      logo.width = 6541;
+      logo.height = 1561;
+      logo.loading = "lazy";
+      logo.decoding = "async";
+      supporter.append(logo);
+      footerLead.append(supporter);
+    }
+  }
+
   function applyEnhancements() {
     scheduled = false;
     enhanceHero();
+    enhanceFooterBranding();
     document.querySelectorAll(".dataset-card").forEach(enhanceCard);
   }
 
@@ -675,15 +715,16 @@
 
   async function start() {
     installResponsiveMotion();
+    applyEnhancements();
+    new MutationObserver(scheduleEnhancements).observe(document.getElementById("root") || document.body, { childList: true, subtree: true });
     try {
       const response = await fetch(`${assetBase}data/catalog-source-review.json`, { cache: "no-cache" });
       if (!response.ok) throw new Error(`Source registry returned ${response.status}`);
       const registry = await response.json();
       recordById = new Map(registry.records.map((record) => [record.id, record]));
       applyEnhancements();
-      new MutationObserver(scheduleEnhancements).observe(document.getElementById("root") || document.body, { childList: true, subtree: true });
     } catch (error) {
-      console.error("CityMETER catalog enhancements could not start", error);
+      console.error("CityMETER source-registry enhancements are unavailable", error);
     }
   }
 

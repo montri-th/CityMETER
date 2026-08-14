@@ -7,6 +7,7 @@
   "records": [
     {
       "id": "dataset-buildings",
+      "citymeterUrl": "https://landometer.com/v3/citymeter-3d/BKK/L/8b60964e-0c26-408e-95f6-e3f46fe37d46?d=building",
       "status": "other-source",
       "ownerTh": "Google Research — Open Buildings",
       "ownerEn": "Google Research — Open Buildings",
@@ -18,6 +19,7 @@
     },
     {
       "id": "dataset-registered-housing-estates",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=estate",
       "status": "verified-lineage",
       "ownerTh": "กรมที่ดิน",
       "ownerEn": "Department of Lands",
@@ -32,6 +34,7 @@
     },
     {
       "id": "dataset-eia-projects",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=eiaReport",
       "status": "verified-lineage",
       "ownerTh": "สผ. / ONEP",
       "ownerEn": "ONEP",
@@ -57,6 +60,7 @@
     },
     {
       "id": "dataset-land-appraisal",
+      "citymeterUrl": "https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed",
       "status": "verified-lineage",
       "ownerTh": "กรมที่ดิน / กรมธนารักษ์",
       "ownerEn": "Department of Lands / Treasury Department",
@@ -71,6 +75,7 @@
     },
     {
       "id": "dataset-land-listing-prices",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=landoffer",
       "status": "unproven",
       "ownerTh": "แหล่งประกาศเอกชน — ยังไม่พบ public lineage ที่ยืนยันได้",
       "ownerEn": "Private listing layer — public lineage not yet verified",
@@ -81,6 +86,7 @@
     },
     {
       "id": "dataset-apartment-rent",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=apartment",
       "status": "unproven",
       "ownerTh": "ยังไม่ยืนยันแหล่งต้นทางสาธารณะ",
       "ownerEn": "Public source lineage not yet verified",
@@ -91,6 +97,7 @@
     },
     {
       "id": "dataset-condo-appraisal",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=condo",
       "status": "verified-lineage",
       "ownerTh": "กรมธนารักษ์",
       "ownerEn": "Treasury Department",
@@ -105,6 +112,7 @@
     },
     {
       "id": "dataset-condo-listing-prices",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=condoOffer",
       "status": "candidate",
       "ownerTh": "ราคาเสนอขายเอกชน + candidate benchmark จากกรมธนารักษ์",
       "ownerEn": "Private asking-price layer + candidate Treasury benchmark",
@@ -116,6 +124,7 @@
     },
     {
       "id": "dataset-detached-listing-prices",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=detachedhouse",
       "status": "unproven",
       "ownerTh": "แหล่งประกาศเอกชน — ยังไม่พบ public lineage ที่ยืนยันได้",
       "ownerEn": "Private listing layer — public lineage not yet verified",
@@ -126,6 +135,7 @@
     },
     {
       "id": "dataset-townhouse-listing-prices",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=townhouse",
       "status": "unproven",
       "ownerTh": "แหล่งประกาศเอกชน — ยังไม่พบ public lineage ที่ยืนยันได้",
       "ownerEn": "Private listing layer — public lineage not yet verified",
@@ -136,6 +146,7 @@
     },
     {
       "id": "dataset-condo-rent-yield",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=rentWise",
       "status": "other-source",
       "ownerTh": "LivingInsider / ข้อมูลประกาศเอกชน",
       "ownerEn": "LivingInsider / private listings",
@@ -147,6 +158,7 @@
     },
     {
       "id": "dataset-registered-companies-status-capital",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=company",
       "status": "verified-lineage",
       "ownerTh": "กรมพัฒนาธุรกิจการค้า",
       "ownerEn": "Department of Business Development",
@@ -161,6 +173,7 @@
     },
     {
       "id": "dataset-business-dynamics",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=businessDynamics",
       "status": "verified-lineage",
       "ownerTh": "กรมสรรพากร",
       "ownerEn": "Revenue Department",
@@ -175,6 +188,7 @@
     },
     {
       "id": "dataset-factories-workers-investment",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=factory",
       "status": "candidate",
       "ownerTh": "ทะเบียนโรงงานอุตสาหกรรม (candidate ความเชื่อมโยงสูง)",
       "ownerEn": "Industrial factory register (high-confidence candidate)",
@@ -186,6 +200,7 @@
     },
     {
       "id": "dataset-office-buildings-rent",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=office",
       "status": "unproven",
       "ownerTh": "commercial inventory — ยังไม่พบ public lineage ที่ยืนยันได้",
       "ownerEn": "Commercial inventory — public lineage not yet verified",
@@ -196,6 +211,7 @@
     },
     {
       "id": "dataset-restaurants",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=restaurant",
       "status": "unproven",
       "ownerTh": "แหล่งร้าน/รีวิวเอกชน — ยังไม่ยืนยัน public lineage",
       "ownerEn": "Private place/review source — public lineage not yet verified",
@@ -206,6 +222,7 @@
     },
     {
       "id": "dataset-shopping-centers",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=shoppingCenter",
       "status": "unproven",
       "ownerTh": "commercial inventory — ยังไม่พบ government package ที่ตรง",
       "ownerEn": "Commercial inventory — no matching government package verified",
@@ -216,6 +233,7 @@
     },
     {
       "id": "dataset-hotel-market",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=hotel",
       "status": "candidate",
       "ownerTh": "การท่องเที่ยวแห่งประเทศไทย — TAT Accommodation (candidate)",
       "ownerEn": "Tourism Authority of Thailand — Accommodation (candidate)",
@@ -227,6 +245,7 @@
     },
     {
       "id": "dataset-tourism-demand-spending",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=tourism",
       "status": "verified-lineage",
       "ownerTh": "กระทรวงการท่องเที่ยวและกีฬา / การท่องเที่ยวแห่งประเทศไทย",
       "ownerEn": "Ministry of Tourism and Sports / Tourism Authority of Thailand",
@@ -241,6 +260,7 @@
     },
     {
       "id": "dataset-fuel-stations",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=gasStation",
       "status": "unproven",
       "ownerTh": "ยังไม่พบ official package ที่ตรงกับ fuel mix",
       "ownerEn": "No official package yet matches the displayed fuel mix",
@@ -251,6 +271,7 @@
     },
     {
       "id": "dataset-registered-cars",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=cars",
       "status": "verified-lineage",
       "ownerTh": "กรมการขนส่งทางบก",
       "ownerEn": "Department of Land Transport",
@@ -265,6 +286,7 @@
     },
     {
       "id": "dataset-road-network-archetypes",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=roadDna",
       "status": "derived",
       "ownerTh": "CityMETER derived model",
       "ownerEn": "CityMETER derived model",
@@ -275,6 +297,7 @@
     },
     {
       "id": "dataset-traffic-congestion-speed",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=traffic",
       "status": "unproven",
       "ownerTh": "current/7-day traffic feed — ยังไม่ยืนยัน public source contract",
       "ownerEn": "Current/7-day traffic feed — public source contract not yet verified",
@@ -285,6 +308,7 @@
     },
     {
       "id": "dataset-locale-insights",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=localeInsights",
       "status": "derived",
       "ownerTh": "CityMETER derived / LLM-assisted contextual layer",
       "ownerEn": "CityMETER derived / LLM-assisted contextual layer",
@@ -295,6 +319,7 @@
     },
     {
       "id": "dataset-population-age-sex",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=population",
       "status": "verified-lineage",
       "ownerTh": "สำนักบริหารการทะเบียน กรมการปกครอง",
       "ownerEn": "Bureau of Registration Administration, Department of Provincial Administration",
@@ -309,6 +334,7 @@
     },
     {
       "id": "dataset-schools-students-teachers",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=school",
       "status": "candidate",
       "ownerTh": "กระทรวงศึกษาธิการ (candidate)",
       "ownerEn": "Ministry of Education (candidate)",
@@ -320,6 +346,7 @@
     },
     {
       "id": "dataset-municipal-revenue",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=municipality",
       "status": "verified-lineage",
       "ownerTh": "กรมส่งเสริมการปกครองท้องถิ่น",
       "ownerEn": "Department of Local Administration",
@@ -334,6 +361,7 @@
     },
     {
       "id": "dataset-government-agencies-workforce",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=governmentOfficer",
       "status": "unproven",
       "ownerTh": "composite layer — ยังไม่พบ package เดียวที่ตรง",
       "ownerEn": "Composite layer — no single matching package verified",
@@ -344,6 +372,7 @@
     },
     {
       "id": "dataset-flood-recurrent",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/AYA/D/1408?d=floodimpact",
       "status": "candidate",
       "ownerTh": "GISTDA disaster layers (candidate)",
       "ownerEn": "GISTDA disaster layers (candidate)",
@@ -355,6 +384,7 @@
     },
     {
       "id": "dataset-flood-latest-observed",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=floodrecent",
       "status": "candidate",
       "ownerTh": "GISTDA flood boundary (candidate)",
       "ownerEn": "GISTDA flood boundary (candidate)",
@@ -366,6 +396,7 @@
     },
     {
       "id": "dataset-flood-forecast-depth",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=flood-forecast-depth",
       "status": "unproven",
       "ownerTh": "กรมทรัพยากรน้ำ — forecast layer; exact public package ยังไม่ยืนยัน",
       "ownerEn": "Department of Water Resources forecast layer; exact public package not yet verified",
@@ -376,6 +407,7 @@
     },
     {
       "id": "dataset-flood-forecast-flash-flood-risk",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=flash-flood-risk",
       "status": "other-source",
       "ownerTh": "Google Flood Forecasting",
       "ownerEn": "Google Flood Forecasting",
@@ -387,6 +419,7 @@
     },
     {
       "id": "dataset-earthquake-sensors",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=quake",
       "status": "other-source",
       "ownerTh": "TMD event feed ร่วมกับ RUGON / USGS",
       "ownerEn": "TMD event feed with RUGON / USGS",
@@ -398,6 +431,7 @@
     },
     {
       "id": "dataset-fire-monitoring",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=fire",
       "status": "other-source",
       "ownerTh": "NASA VIIRS / FIRMS",
       "ownerEn": "NASA VIIRS / FIRMS",
@@ -410,6 +444,7 @@
     },
     {
       "id": "dataset-disaster-historical-impacts",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=disaster",
       "status": "verified-lineage",
       "ownerTh": "กรมป้องกันและบรรเทาสาธารณภัย",
       "ownerEn": "Department of Disaster Prevention and Mitigation",
@@ -424,6 +459,7 @@
     },
     {
       "id": "dataset-events-hat-yai-flood-2025-11",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/SKA/D/9011?d=hatyaiflood",
       "status": "other-source",
       "ownerTh": "Thai PBS / ThaiHelp case reports",
       "ownerEn": "Thai PBS / ThaiHelp case reports",
@@ -435,6 +471,7 @@
     },
     {
       "id": "dataset-events-quake-building-inspection",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=quakeSafe",
       "status": "unproven",
       "ownerTh": "BMA Building Inspection Dashboard — exact record lineage ยังไม่ยืนยัน",
       "ownerEn": "BMA Building Inspection Dashboard — exact record lineage not yet verified",

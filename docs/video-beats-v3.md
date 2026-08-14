@@ -40,7 +40,7 @@ Chapter 1 is deliberately a two-scene chapter: **Population + Building**. The pa
 | Asset | Codec / size | FPS | Duration | SHA-256 |
 |---|---|---:|---:|---|
 | Web MP4 | H.264 High, 960×540, yuv420p | 24 | 12.958 s | `9b075ee35eaa9c9d41dacb8e0580a5dbb07b26076d723c4185810678f1520bf5` |
-| Exhibition MP4 | H.264 High, 1280×720, yuv420p | 24 | 12.958 s | `eb382551b5b2778dad5a0db7045a311b42823121f23c0380a234261b7ceedd2e` |
+| Exhibition MP4 | H.264 High, 1280×720, yuv420p | 24 | 12.958 s | `bd4962bc88f66d5e0c5c14530f35628165d3f7879b35abd033a3a7039c7ada2f` |
 | Poster | WebP, 1280×720 | — | — | `fd526a398b83db3b9e8ead7af2abcd7f9f83cde91cbb3b8547deb272f22ae650` |
 
 The first poster frame is Population. Building follows within the same first chapter, so the opening promise remains Population + Building without fabricating a split-screen dashboard.

@@ -1,4 +1,5 @@
-import { mkdirSync, readFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -19,10 +20,13 @@ if (hrefById.size !== 38 || review.records.length !== 38) {
 
 const outputDir = join(root, "media/qr");
 mkdirSync(outputDir, { recursive: true });
+const manifestDatasets = [];
 
 for (const record of review.records) {
-  const href = hrefById.get(record.id);
-  if (!href) throw new Error(`No CityMETER URL found for ${record.id}`);
+  const href = record.citymeterUrl;
+  const htmlHref = hrefById.get(record.id);
+  if (!href) throw new Error(`No canonical CityMETER URL found for ${record.id}`);
+  if (htmlHref !== href) throw new Error(`HTML and registry routes differ for ${record.id}: ${htmlHref} !== ${href}`);
 
   const output = join(outputDir, `${record.id.replace(/^dataset-/, "")}.png`);
   const result = spawnSync(
@@ -44,8 +48,15 @@ for (const record of review.records) {
   if (result.status !== 0) {
     throw new Error(`QR generation failed for ${record.id}: ${result.stderr || result.stdout}`);
   }
+  manifestDatasets.push({
+    id: record.id,
+    url: href,
+    file: `media/qr/${record.id.replace(/^dataset-/, "")}.png`,
+    sha256: createHash("sha256").update(readFileSync(output)).digest("hex")
+  });
 }
 
+const manifestPages = [];
 for (const [language, href] of [
   ["th", "https://montri-th.github.io/CityMETER/"],
   ["en", "https://montri-th.github.io/CityMETER/en/"]
@@ -70,6 +81,17 @@ for (const [language, href] of [
   if (result.status !== 0) {
     throw new Error(`Page QR generation failed for ${language}: ${result.stderr || result.stdout}`);
   }
+  manifestPages.push({
+    language,
+    url: href,
+    file: `media/qr/citymeter-page-${language}.png`,
+    sha256: createHash("sha256").update(readFileSync(output)).digest("hex")
+  });
 }
 
-console.log(`Generated ${review.records.length} dataset QR assets and two page QR assets in ${outputDir}`);
+writeFileSync(
+  join(outputDir, "manifest.json"),
+  `${JSON.stringify({ version: "2026-08-14", datasets: manifestDatasets, pages: manifestPages }, null, 2)}\n`
+);
+
+console.log(`Generated ${review.records.length} dataset QR assets, two page QR assets and their SHA-256 manifest in ${outputDir}`);

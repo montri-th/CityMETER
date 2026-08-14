@@ -50,7 +50,7 @@
 | Output | SHA-256 |
 |---|---|
 | `media/reel/citymeter-proof-v3.mp4` | `9b075ee35eaa9c9d41dacb8e0580a5dbb07b26076d723c4185810678f1520bf5` |
-| `media/reel/citymeter-proof-v3-exhibition.mp4` | `eb382551b5b2778dad5a0db7045a311b42823121f23c0380a234261b7ceedd2e` |
+| `media/reel/citymeter-proof-v3-exhibition.mp4` | `bd4962bc88f66d5e0c5c14530f35628165d3f7879b35abd033a3a7039c7ada2f` |
 
 ## Release validation
 
