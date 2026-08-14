@@ -138,7 +138,7 @@ previous revision result: passed
 
 `v12` deployment result: passed; production browser QA not recorded
 
-## Current hotfix addendum — strict 320 px containment (`v13`) and base-font deduplication (`v2`)
+## Published hotfix addendum — strict 320 px containment (`v13`) and base-font deduplication (`v2`)
 
 ### Intended change
 
@@ -170,3 +170,29 @@ previous revision result: passed
 - Application-origin console errors: zero. Observed errors were extension metadata origin only.
 
 current hotfix result: passed for observable/source contracts; English `FontFaceSet` proxy limitation recorded and manual Safari/WebKit font smoke recommended
+
+## Current release addendum — true-edge radial, scroll-end containment and concise contact heading
+
+### Intended change
+
+- Change each supporter plate to `circle closest-side`, preserving centre white alpha `.5` while reaching `rgba(255,255,255,0)` at the visible circular edge.
+- Preserve the existing document geometry, which already ends at the footer, and set `overscroll-behavior-y: none` on both `html` and `body` to suppress native elastic root overscroll without clipping vertical content.
+- Set `h2#contact-title` to exactly `คุยกับทีม Landometer` on the Thai route and `Talk to the Landometer team` on the English route. Keep the primary button copy unchanged and preserve static/hydrated parity.
+
+### Source-level acceptance contract
+
+- Cache and receipt: Thai and English load base CSS `v2`, enhancement CSS `v14`, font CSS `v1`, enhancement JS `v15`, main bundle `v5`, and receipt `2026-08-14-radial-edge-scroll-end-cta` exactly once.
+- Radial geometry: six equal circular cells retain the shared diameter, square aspect ratio, 50% radius, transparent PNG containment and no border/box-shadow; the exact background uses `circle closest-side` from white alpha `.5` at 0% to white alpha `0` at 100%.
+- Scroll end: `html` and `body` consume `overscroll-behavior-y: none`; `body { min-width: 0; }`, responsive footer reflow and normal vertical content flow remain intact. No `overflow-y` clipping or fixed footer/document height is introduced.
+- Contact parity: both prerendered HTML routes and active hydrated bundle contain the approved contact title, retain the existing primary CTA, and exclude the retired long title. The inactive original bundle remains provenance and is not a runtime target.
+- Migration: enhancement CSS revisions `v5` through `v13` upgrade to `v14`; active main revisions `v2` through `v4` upgrade to `v5`; both old contact titles migrate idempotently; base/font/enhancement-JS versions remain unchanged.
+- Carried gates: strict 320 px containment, exact Measure deep, five muted surfaces, font manifest/licenses/preloads, 38 unique bilingual benefits, benefit-first `r4`, canonical routes and immutable media/logo hashes remain enforced.
+
+### Local and production status
+
+- Local syntax, full validator, two-run migration idempotency and `git diff --check`: pending final gate after source and validator settle.
+- QA target commit: pending — not committed or published.
+- GitHub Pages deployment run: pending.
+- Live browser QA: pending. Verify cold TH/EN cache/receipt, static-to-hydrated contact-title parity, six true-edge radial cells in hero/footer across light/dark, and application-origin console/network health. At 320, 390, 430, 720, 900, 901, 1120, 1363 and 1440 px, after footer lazy images, filter/search reset and details reflow, require `abs(document.scrollingElement.scrollHeight - (footer.getBoundingClientRect().bottom + scrollY)) <= 1` and footer alignment at maximum scroll. A manual Mac trackpad pull is required to confirm native elastic overscroll suppression.
+
+current release result: local gates and production QA pending

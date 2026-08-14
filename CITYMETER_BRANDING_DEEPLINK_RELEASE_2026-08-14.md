@@ -8,16 +8,19 @@
 
 **Revision Measure deep + radial logos + canonical fonts (`v12`):** Published to GitHub Pages at commit `00762648f9bc99b8271d8a4b875323834725a1a3`; deployment run `31812149466` completed successfully. ยังไม่มี production browser QA receipt สำหรับ bytes ชุดนี้
 
-**Revision ปัจจุบัน — strict 320 px containment (`v13`) + base-font deduplication (`v2`):** Published to GitHub Pages at commit `f83115747047af83bb212b1f7e352b6d419dc22c`; automated gates และ production QA สำหรับ observable/source contracts ผ่าน โดยมีข้อจำกัดของ English `FontFaceSet` proxy ที่บันทึกไว้ด้านล่าง
+**Revision strict 320 px containment (`v13`) + base-font deduplication (`v2`):** Published to GitHub Pages at commit `f83115747047af83bb212b1f7e352b6d419dc22c`; automated gates และ production QA สำหรับ observable/source contracts ผ่าน โดยมีข้อจำกัดของ English `FontFaceSet` proxy ที่บันทึกไว้ด้านล่าง
+
+**Revision ปัจจุบัน — true-edge radial + scroll-end containment + concise contact heading:** local source changes prepared; ยังไม่ commit, publish หรือทำ live browser QA
 
 ## สิ่งที่ผู้ชมเห็น
 
 - เปลี่ยน headline หลักทั้งภาษาไทยและอังกฤษเป็น `CityMETER`
 - แยก lockup `depa × dSURE software × บัญชีบริการดิจิทัล` เป็น PNG โปร่งใส 3 ไฟล์จากไฟล์ต้นฉบับ โดย crop อย่างเดียว ไม่วาดใหม่ ไม่ลบสีขาวภายในเครื่องหมาย และคง quiet zone 80 px
   - ใน hero และ footer วางบนวงกลม CSS เส้นผ่านศูนย์กลางเท่ากัน 3 วง โดยปรับเฉพาะ optical size ภายในวงกลมให้แต่ละเครื่องหมายอ่านออก
-  - พื้นวงกลมเป็น radial fade จาก `rgba(255,255,255,.5)` กลางวงสู่ `rgba(255,255,255,0)` ที่ขอบ ไม่มี border หรือ box-shadow; ไฟล์เครื่องหมายยังโปร่งใสและไม่ถูก crop, mask, filter, recolor หรือวาดใหม่
+  - พื้นวงกลมใช้ `radial-gradient(circle closest-side at center, rgba(255,255,255,.5) 0%, rgba(255,255,255,0) 100%)` จึงไล่จากขาว alpha `.5` กลางวงสู่ขาว alpha `0` ที่ขอบวงกลมที่มองเห็นจริง ไม่มี border หรือ box-shadow; ไฟล์เครื่องหมายยังโปร่งใสและไม่ถูก crop, mask, filter, recolor หรือวาดใหม่
 - แก้ footer ที่ล้นช่วง tablet/หน้าต่างขนาดกลาง โดยให้ grid child ย่อได้ เมนูตัดบรรทัดได้ และเปลี่ยนเป็นคอลัมน์เดียวตั้งแต่ 900 px
 - ล้าง `min-width: 320px` ของ compiled `body` ด้วย enhancement `body { min-width: 0; }` เพื่อให้ viewport/iframe กว้าง 320 px จริงยังรวม classic scrollbar หรือ embedded-browser gutter ได้โดยไม่เกิด horizontal overflow
+- geometry ของเอกสารจบตรง footer อยู่แล้ว; เพิ่ม `html, body { overscroll-behavior-y: none; }` เพื่อหยุด native elastic overscroll ที่เผยพื้น root ต่อจาก footer โดยไม่ตัดหรือซ่อนเนื้อหาแนวตั้ง
 - แบ่งจังหวะของหน้าโดยใช้ surface สีอ่อนต่างกันในแต่ละ section จาก token ของ Design System v0.8.9 แทนการเติมสีสดหรือองค์ประกอบตกแต่ง
   - Light: canvas `#F6F7F3`, blue tint `#E2E9ED`, beige tint `#F2F1DF`, soft `#E5E9E6`, alt `#EEF1EE`
   - Dark: canvas `#11191D`, blue tint `#18333E`, beige tint `#2C2A22`, soft `#2B3534`, alt `#172126`
@@ -34,6 +37,7 @@
   - เปลี่ยนหัวข้อภายในจากศัพท์ audit เช่น `exact public lineage` และ `candidate` เป็นภาษาที่คนทั่วไปอ่านรู้เรื่อง โดยยังเก็บขอบเขตหลักฐานและลิงก์ต้นทางไว้
   - สีของสถานะใช้ semantic token ตาม Design System และตัดค่าสีเดิม `#9F78D8`, `#D89A27` และ `#36B9CC` ออกจาก enhancement layer
 - คง Landometer เป็นแบรนด์หลักและไม่เปลี่ยนวิดีโอ ภาพ snapshot, canonical route, QR หรือไฟล์โลโก้ PNG ใน revision นี้
+- ปรับหัวข้อส่วนติดต่อให้กระชับและตรงกับ CTA: ภาษาไทย `คุยกับทีม Landometer`; ภาษาอังกฤษ `Talk to the Landometer team`; ข้อความบนปุ่มเดิมไม่เปลี่ยน
 - เริ่ม enhancement หลัง `window.load`, รอขั้นต่ำ 1 วินาทีและช่วง DOM นิ่ง 250 ms แล้วเว้นอีกสอง animation frames ก่อนแก้ DOM เพื่อลด race กับ React hydration โดยการแสดง headline/lockup ไม่ขึ้นกับความสำเร็จของ registry fetch
 - รักษา prerendered focused-card copy ให้ตรงกับ React baseline แล้วค่อย apply ข้อความพื้นที่เฉพาะหลัง hydration เพื่อไม่ให้เกิด text-hydration warning
 
@@ -102,7 +106,7 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 
 - ตรวจ reader benefit ภาษาไทย/อังกฤษว่ามีครบ 38 รายการ ความยาวผ่านเกณฑ์ และไม่ซ้ำกัน
 - ตรวจ runtime disclosure ว่า benefit เป็น block แรก ใช้ source-review revision `2026-08-14-r4`, ลบ limitation block เก่า และไม่มี label audit ชุดเดิม
-- ตรวจวงกลมโลโก้ว่าใช้ grid 3 คอลัมน์เท่ากัน, diameter token เดียวกัน, `aspect-ratio: 1`, `border-radius: 50%`, radial fade ขาว 50% → ขาวโปร่งใส 0% และไม่มี border, box-shadow หรือ mobile override ที่ย้ายเครื่องหมายที่สามลงแถวใหม่
+- ตรวจวงกลมโลโก้ว่าใช้ grid 3 คอลัมน์เท่ากัน, diameter token เดียวกัน, `aspect-ratio: 1`, `border-radius: 50%`, `circle closest-side` radial fade ขาว alpha `.5` → `rgba(255,255,255,0)` ที่ขอบวงกลมจริง และไม่มี border, box-shadow หรือ mobile override ที่ย้ายเครื่องหมายที่สามลงแถวใหม่
 - ตรวจ surface token และ selector ครบ 5 section ทั้ง light/dark
 - ตรวจ hero + handoff ว่าใช้ exact `atmosphere.gradient.measure.deep` และคง onDeep foreground
 - ตรวจว่า compiled base ยังคง `body { min-width: 320px; }` และ enhancement มี override `body { min-width: 0; }` สำหรับ strict 320 px containment
@@ -110,7 +114,9 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - ตรวจว่า base CSS `v2` เหลือเพียง Arvo + JetBrains Mono faces, ไม่มี Bai Jamjuree/IBM Plex Sans Thai Looped face ซ้ำ และ descriptor/asset URL ของ base + canonical `@font-face` ไม่ซ้ำกัน
 - ตรวจว่าไม่มีค่าสีสถานะเดิม `#9F78D8`, `#D89A27` หรือ `#36B9CC` เหลือใน CSS/JavaScript enhancement
 - คงการตรวจ SHA-256, มิติและ RGBA transparency ของ PNG ทั้งสาม รวมถึง hash ของไฟล์ lockup ต้นฉบับและวิดีโอเดิม
-- ตรวจ cache reference ของหน้าไทย/อังกฤษ: base `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=13`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4` และ receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`
+- ตรวจ `html`/`body` ว่าใช้ `overscroll-behavior-y: none` โดยคง `body { min-width: 0; }` และไม่เพิ่มการ clip หรือซ่อนเนื้อหาแนวตั้ง
+- ตรวจ static HTML และ hydrated bundle ว่าหัวข้อ contact เป็น `คุยกับทีม Landometer` / `Talk to the Landometer team`, ปุ่มยังใช้ข้อความเดิม และไม่มีหัวข้อเก่าเหลือใน active bundle
+- ตรวจ cache reference ของหน้าไทย/อังกฤษ: base `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=14`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=5` และ receipt `2026-08-14-radial-edge-scroll-end-cta`
 - รัน `node scripts/validate-release.mjs`, syntax checks, migration idempotency และ `git diff --check`
 
 ### Carried checks from the published baseline
@@ -138,7 +144,7 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - Run timestamps: created `2026-08-14T14:58:16Z`; updated `2026-08-14T14:58:38Z`
 - Production browser QA: not recorded — deployment success ยืนยันการ publish แต่ไม่ใช้แทนหลักฐาน cold-load, visual, font หรือ responsive browser QA
 
-### Production QA receipt for the current strict-320 + base-font-deduplication revision
+### Production QA receipt for the published strict-320 + base-font-deduplication revision
 
 - QA target commit: `f83115747047af83bb212b1f7e352b6d419dc22c`; tree `1969e8a0ec0289b8335188a243a07b7f2a4c93eb`
 - GitHub Pages run: `31814244403` (run number 25) — completed / success; created `2026-08-14T15:23:29Z`; updated `2026-08-14T15:23:54Z`
@@ -152,6 +158,12 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - ข้อจำกัดที่บันทึกไว้: reduced English browser `FontFaceSet` proxy รายงาน false สำหรับ Bai Jamjuree/IBM Plex Sans Thai Looped แม้ใช้ Latin probe ขณะที่ computed roles, glyph metrics และ network/decode ปกติ จึงเป็นข้อจำกัดของ probe ไม่ใช่ visual fallback, application error หรือผล Safari pass; ยังแนะนำ manual Safari/WebKit font smoke test
 - application-origin console errors: 0; error ที่เห็นมีเฉพาะ extension metadata origin
 - Production QA result: passed for observable/source contracts, with the English `FontFaceSet` proxy limitation above
+
+### Production QA receipt for the current true-edge radial + scroll-end + contact-heading revision
+
+- QA target commit: pending — ยังไม่ commit หรือ publish
+- GitHub Pages run: pending — ยังไม่มี deployment run สำหรับ CSS `v14`, main bundle `v5` และ receipt `2026-08-14-radial-edge-scroll-end-cta`
+- Live browser QA: pending — ต้องตรวจหน้าไทย/อังกฤษแบบ cold load, true-edge radial ทั้ง hero/footer และ light/dark, footer geometry/elastic overscroll, contact heading ก่อนและหลัง hydration, responsive matrix และ application-origin console หลัง Pages สำเร็จ
 
 ## ไฟล์ส่งมอบหลัก
 

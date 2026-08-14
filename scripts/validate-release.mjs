@@ -134,10 +134,10 @@ for (const page of ["index.html", "en/index.html"]) {
       ];
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements.css?v=13"), `${page} must load the strict-320 containment, Measure deep shell and radial-circle stylesheet revision`);
+  assert(html.includes("catalog-enhancements.css?v=14"), `${page} must load the true-edge radial and scroll-end containment stylesheet revision`);
   assert(html.includes("catalog-enhancements.js?v=15"), `${page} must load the canonical-language benefit-first r4 enhancement layer`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements\.css\?v=\d+/g) || []).join() === "catalog-enhancements.css?v=13", `${page} must load exactly one enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements\.css\?v=\d+/g) || []).join() === "catalog-enhancements.css?v=14", `${page} must load exactly one enhancement stylesheet revision`);
   assert((html.match(/catalog-enhancements\.js\?v=\d+/g) || []).join() === "catalog-enhancements.js?v=15", `${page} must load exactly one enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
@@ -148,10 +148,10 @@ for (const page of ["index.html", "en/index.html"]) {
     assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
   }
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
-  assert(html.includes("index-qbT50gkr-v3.js?v=4"), `${page} must load the hydration-safe CityMETER language bundle revision`);
-  assert((html.match(/index-qbT50gkr-v3\.js\?v=\d+/g) || []).join() === "index-qbT50gkr-v3.js?v=4", `${page} must load exactly one main bundle revision`);
+  assert(html.includes("index-qbT50gkr-v3.js?v=5"), `${page} must load the concise contact-title bundle revision`);
+  assert((html.match(/index-qbT50gkr-v3\.js\?v=\d+/g) || []).join() === "index-qbT50gkr-v3.js?v=5", `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes('name="citymeter:release-receipt" content="2026-08-14-brand-blue-shell-radial-logos-canonical-fonts"'), `${page} is missing the final release receipt`);
+  assert(html.includes('name="citymeter:release-receipt" content="2026-08-14-radial-edge-scroll-end-cta"'), `${page} is missing the final release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
   assert(html.includes('property="og:image:width" content="1200"'), `${page} is missing the OG image width`);
@@ -296,10 +296,10 @@ assert(
 );
 
 const releaseMigration = readFileSync(join(root, "scripts/apply-branding-route-release.mjs"), "utf8");
-for (const priorVersion of [5, 6, 7, 8, 9, 10, 11, 12]) {
+for (const priorVersion of [5, 6, 7, 8, 9, 10, 11, 12, 13]) {
   assert(
-    releaseMigration.includes(`.replaceAll("catalog-enhancements.css?v=${priorVersion}", "catalog-enhancements.css?v=13")`),
-    `Release migration must retain the CSS v${priorVersion} -> v13 upgrade`
+    releaseMigration.includes(`.replaceAll("catalog-enhancements.css?v=${priorVersion}", "catalog-enhancements.css?v=14")`),
+    `Release migration must retain the CSS v${priorVersion} -> v14 upgrade`
   );
 }
 for (const priorVersion of [8, 9, 10, 11, 12, 13, 14]) {
@@ -322,13 +322,15 @@ for (const fontFile of [
 ]) {
   assert(releaseMigration.includes(fontFile), `Release migration must manage route-specific preload: ${fontFile}`);
 }
-for (const priorVersion of [2, 3]) {
+for (const priorVersion of [2, 3, 4]) {
   assert(
-    releaseMigration.includes(`.replaceAll("index-qbT50gkr-v3.js?v=${priorVersion}", "index-qbT50gkr-v3.js?v=4")`),
-    `Release migration must retain the main bundle v${priorVersion} -> v4 upgrade`
+    releaseMigration.includes(`.replaceAll("index-qbT50gkr-v3.js?v=${priorVersion}", "index-qbT50gkr-v3.js?v=5")`),
+    `Release migration must retain the main bundle v${priorVersion} -> v5 upgrade`
   );
 }
-assert(releaseMigration.includes("2026-08-14-brand-blue-shell-radial-logos-canonical-fonts"), "Release migration must bind the current receipt");
+assert(releaseMigration.includes("2026-08-14-radial-edge-scroll-end-cta"), "Release migration must bind the current receipt");
+assert(releaseMigration.includes('["คุยกับทีม Landometer ว่าควรเริ่มตรวจข้อมูลชุดไหน", "คุยกับทีม Landometer"]'), "Release migration must shorten the Thai contact title");
+assert(releaseMigration.includes('["Ask the Landometer team where to start", "Talk to the Landometer team"]'), "Release migration must keep the English contact title in parity");
 assert(releaseMigration.includes('<h1 id="page-title" lang="en">') && releaseMigration.includes('<a class="citymeter-label" href="#top" lang="en">'), "Release migration must preserve static language metadata");
 assert(releaseMigration.includes('id:\"page-title\",children:c.hero.title') && releaseMigration.includes('id:\"page-title\",lang:\"en\",children:c.hero.title'), "Release migration must upgrade the compiled page-title language metadata");
 assert(releaseMigration.includes('className:\"citymeter-label\",href:\"#top\",children:\"CityMETER\"') && releaseMigration.includes('className:\"citymeter-label\",href:\"#top\",lang:\"en\",children:\"CityMETER\"'), "Release migration must upgrade the compiled header-label language metadata");
@@ -357,6 +359,13 @@ function cssBlock(selector, source = enhancementCss) {
   return match[1];
 }
 
+function exactCssBlock(selector, source = enhancementCss) {
+  const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = source.match(new RegExp(`(?:^|})\\s*${escapedSelector}\\s*\\{([\\s\\S]*?)\\}`));
+  assert(match, `Missing exact CSS rule: ${selector}`);
+  return match[1];
+}
+
 function cssValue(block, property) {
   const escapedProperty = property.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   return block.match(new RegExp(`${escapedProperty}\\s*:\\s*([^;}]+)(?:;|$)`))?.[1].trim().toLowerCase();
@@ -366,8 +375,8 @@ function normalizedCss(value) {
   return value?.replace(/\s+/g, "").toLowerCase();
 }
 
-assert(cssValue(cssBlock("body", baseCss), "min-width") === "320px", "Compiled base body floor changed unexpectedly");
-assert(cssValue(cssBlock("body", enhancementCss), "min-width") === "0", "Enhancement layer must clear the body width floor for strict 320px iframe containment");
+assert(cssValue(exactCssBlock("body", baseCss), "min-width") === "320px", "Compiled base body floor changed unexpectedly");
+assert(cssValue(exactCssBlock("body", enhancementCss), "min-width") === "0", "Enhancement layer must clear the body width floor for strict 320px iframe containment");
 
 const declaredFontSource = `${baseCss}\n${canonicalFontCss}\n${enhancementCss}`;
 assert(!declaredFontSource.toLowerCase().includes("sarabun"), "Canonical typography must not introduce Sarabun");
@@ -572,6 +581,7 @@ assert(enhancementJs.includes('if (pageTitle.lang !== "en") pageTitle.lang = "en
 assert(enhancementJs.includes('if (citymeterLabel && citymeterLabel.lang !== "en") citymeterLabel.lang = "en"'), "Runtime must preserve the English language metadata on the CityMETER header label");
 assert(enhancementCss.includes(".site-footer .footer-grid > *") && enhancementCss.includes("flex-wrap: wrap"), "Footer grid children and links must be allowed to shrink and wrap");
 assert(enhancementCss.includes("@media (max-width: 900px)") && enhancementCss.includes("grid-template-columns: 1fr"), "Footer must collapse before the former 720px overflow band");
+assert(normalizedCss(enhancementCss).includes("html,body{overscroll-behavior-y:none;}"), "Root scrolling must suppress elastic over-scroll beyond the footer");
 assert(enhancementCss.includes(".supporter-logo-depa") && enhancementCss.includes(".supporter-logo-dsure") && enhancementCss.includes(".supporter-logo-account"), "Split supporter logos need independent optical sizing");
 assert(enhancementCss.includes("height: calc(var(--supporter-logo-disc) * .68)"), "Tall dSURE artwork must fit inside the fixed circle without percentage-track expansion");
 const supporterGroupCss = cssBlock(".supporter-logos");
@@ -583,8 +593,8 @@ assert(cssValue(supporterCellCss, "aspect-ratio") === "1", "Supporter logo plate
 assert(cssValue(supporterCellCss, "border-radius") === "50%", "Supporter logo plates must remain circular");
 assert(cssValue(supporterCellCss, "border") === "0", "Supporter logo plates must not reintroduce an edge border");
 assert(
-  normalizedCss(cssValue(supporterCellCss, "background")) === "radial-gradient(circleatcenter,rgba(255,255,255,.5)0%,rgba(255,255,255,0)100%)",
-  "Supporter logo plates must fade from 50% white at the centre to transparent white at the edge"
+  normalizedCss(cssValue(supporterCellCss, "background")) === "radial-gradient(circleclosest-sideatcenter,rgba(255,255,255,.5)0%,rgba(255,255,255,0)100%)",
+  "Supporter logo plates must fade from 50% white at the centre to zero alpha at the visible circle edge"
 );
 const supporterCellRules = Array.from(
   enhancementCss.matchAll(/([^{}]*\.supporter-logo-cell[^{}]*)\{([^{}]*)\}/g),
@@ -665,6 +675,13 @@ assert(mainBundle.includes("Save or share this example"), "Hydrated English hand
 assert(mainBundle.includes("The link opens the same example and data."), "Hydrated English handoff note is stale");
 assert(!mainBundle.includes("after the exhibition"), "Hydrated bundle still contains exhibition-only handoff copy");
 assert(!mainBundle.includes("ส่งตัวอย่างนี้ให้ทีม"), "Hydrated bundle still contains team-only handoff copy");
+assert(thHtml.includes('<h2 id="contact-title">คุยกับทีม Landometer</h2>'), "Thai prerender must use the concise contact title");
+assert(enHtml.includes('<h2 id="contact-title">Talk to the Landometer team</h2>'), "English prerender must use the concise contact title");
+assert(!thHtml.includes("คุยกับทีม Landometer ว่าควรเริ่มตรวจข้อมูลชุดไหน"), "Thai prerender still contains the retired contact title");
+assert(!enHtml.includes("Ask the Landometer team where to start"), "English prerender still contains the retired contact title");
+assert(mainBundle.includes('title:"คุยกับทีม Landometer"'), "Hydrated Thai contact title is stale");
+assert(mainBundle.includes('title:"Talk to the Landometer team"'), "Hydrated English contact title is stale");
+assert(!mainBundle.includes("คุยกับทีม Landometer ว่าควรเริ่มตรวจข้อมูลชุดไหน") && !mainBundle.includes("Ask the Landometer team where to start"), "Hydrated bundle still contains a retired contact title");
 
 assert(
   sha256(join(root, "media/reel/citymeter-proof-v3.mp4")) === "9b075ee35eaa9c9d41dacb8e0580a5dbb07b26076d723c4185810678f1520bf5",
@@ -687,4 +704,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: strict 320px iframe containment via the v13 body-floor override, deduplicated base CSS v2 font declarations, canonical Unicode-ranged typography with complete A11 roles and no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe main bundle v4 language metadata, exact Measure deep shell, five muted section surfaces per theme, six borderless/shadowless radial logo circles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
+console.log("CityMETER release validation passed: strict 320px iframe containment, root scroll-end containment, deduplicated base CSS v2 font declarations, canonical typography with no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe main bundle v5, exact Measure deep shell, five muted section surfaces per theme, six true-edge 50%-to-0% radial logo circles, concise bilingual contact titles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");

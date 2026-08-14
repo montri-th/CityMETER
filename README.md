@@ -22,12 +22,14 @@
 - Compiled base CSS เหลือเฉพาะ Arvo และ JetBrains Mono; legacy `@font-face` ของ Bai Jamjuree/IBM Plex Sans Thai Looped ที่ไม่มี `unicode-range` ถูกตัดออก เพื่อให้ canonical font stylesheet เป็นผู้ประกาศสองตระกูลนี้เพียงชั้นเดียวและไม่ทำให้ Safari เลือก face กำกวม
 - Critical font preload แยกตาม route: หน้าไทยโหลด Arvo Latin, Bai Jamjuree Thai 400/600, JetBrains Mono Latin และ IBM Plex Sans Thai Thai 400; หน้าอังกฤษโหลด Arvo Latin, Bai Jamjuree Latin 400/600 และ JetBrains Mono Latin
 - Strict 320 px iframe/mobile containment ล้าง `min-width: 320px` ที่มาจาก compiled body ด้วย enhancement `body { min-width: 0; }` เพื่อไม่ให้ classic scrollbar หรือ embedded-browser gutter ดันหน้าเกิน usable inline size
+- หน้าเดิมจบตรง footer อยู่แล้ว; enhancement เพิ่ม `overscroll-behavior-y: none` ให้ทั้ง `html` และ `body` เพื่อไม่ให้ native elastic overscroll เผยพื้น root ต่อจาก footer
 - Snapshot dark theme ครบ 38 records/modules: ภาพจริงที่รอ map/legend/sidebar settle 35 ใบ และภาพประกอบแนวคิดที่ติดป้ายชัดเจน 3 ใบสำหรับ Fire, Hatyai Flood และ QuakeSafe
 - การ์ดทุกใบเปิดรายละเอียดด้วยข้อความเฉพาะว่าใช้ข้อมูลทำอะไรได้ แล้วจึงแสดงพื้นที่ครอบคลุม ระดับพื้นที่ ที่มา ช่วงเวลา สิ่งที่ควรตรวจเพิ่ม และ direct link; ข้อมูล benefit ภาษาไทย/อังกฤษครบและไม่ซ้ำกันทั้ง 38 records
 - 11 ใบที่ยืนยัน same-dataset lineage ผ่านช่องทางทางการแสดงโลโก้ GD Catalog โดยไม่อ้างว่าเป็น direct central-GD download
 - QR เฉพาะ dataset ครบ 38 ใบ ซ่อนอยู่ใน source disclosure และพาไป exact CityMETER viewer URL
 - Pinterest-style masonry ใช้ความสูงจริงของ card และ reflow เมื่อเปิด source/QR
-- เครื่องหมาย depa, dSURE Software และบัญชีบริการดิจิทัลใช้ไฟล์ PNG โปร่งใสแยกกัน วางในวงกลม CSS ขนาดเท่ากันที่ไล่จากขาว 50% กลางวงสู่ขาวโปร่งใส 0% ที่ขอบ โดยไม่มี border หรือ box-shadow และไม่ crop, mask, filter หรือเปลี่ยนสีไฟล์ต้นฉบับ
+- เครื่องหมาย depa, dSURE Software และบัญชีบริการดิจิทัลใช้ไฟล์ PNG โปร่งใสแยกกัน วางในวงกลม CSS ขนาดเท่ากันด้วย `circle closest-side`: ขาว alpha `.5` กลางวงสู่ `rgba(255,255,255,0)` ที่ขอบวงกลมที่มองเห็นจริง โดยไม่มี border หรือ box-shadow และไม่ crop, mask, filter หรือเปลี่ยนสีไฟล์ต้นฉบับ
+- หัวข้อส่วนติดต่อใช้ข้อความตรงกับ CTA: `คุยกับทีม Landometer` ในภาษาไทย และ `Talk to the Landometer team` ในภาษาอังกฤษ
 - Semantic HTML และ JSON-LD สร้างจาก registry เดียวกับหน้า visible โดยไม่มีหัวข้อเทคนิคในหน้า marketing
 
 The 38 records include datasets, derived modules, monitoring feeds, and two event archives. The preview therefore does not describe every record as a standalone dataset.
@@ -49,7 +51,9 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 
 This public preview is aligned with Landometer Design System v0.8.9 and is indexable. Unknown coverage, resolution, source, or definition metadata is never inferred. Source labels distinguish verified same-dataset lineage, candidates, other providers, derived layers and unproven public lineage.
 
-The current release is deployed from commit `f83115747047af83bb212b1f7e352b6d419dc22c` (tree `1969e8a0ec0289b8335188a243a07b7f2a4c93eb`) through successful GitHub Pages run `31814244403` (#25). Production cold loads confirmed deduplicated base CSS `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=13`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts` on both routes. Observable/source contracts, themes, responsive containment and Thai font checks passed. The reduced English browser's `FontFaceSet` proxy returned false for Bai Jamjuree and IBM Plex Sans Thai Looped even for a Latin probe despite correct computed roles and no font decode/network errors. Rendered English glyph widths match the bundled Bai Jamjuree 400/600 metrics, so this is recorded as a probe limitation rather than visual fallback; a manual Safari/WebKit font smoke test is still recommended.
+The previous published release was deployed from commit `f83115747047af83bb212b1f7e352b6d419dc22c` (tree `1969e8a0ec0289b8335188a243a07b7f2a4c93eb`) through successful GitHub Pages run `31814244403` (#25). Its production receipt remains historical evidence for base CSS `v2`, enhancement CSS `v13`, font CSS `v1`, enhancement JS `v15`, main bundle `v4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`.
+
+The current local release contract is base CSS `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=14`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=5`, and receipt `2026-08-14-radial-edge-scroll-end-cta`. Commit, GitHub Pages run and live browser QA are pending and must be recorded only after these exact bytes are published.
 
 Once merged, the static files publish from `main` through GitHub Pages. Before the production-domain cutover, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and clear product/satellite screenshot reuse rights.
 
