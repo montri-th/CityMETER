@@ -4,10 +4,10 @@
 
 ## Preview URLs
 
-- Landing page after GitHub Pages is enabled: https://montri-th.github.io/CityMETER/
+- Landing page on GitHub Pages: https://montri-th.github.io/CityMETER/
 - English initial HTML: https://montri-th.github.io/CityMETER/en/
 - Exhibition loop mode: https://montri-th.github.io/CityMETER/?display=exhibition
-- Mobile QA after GitHub Pages is enabled: https://montri-th.github.io/CityMETER/mobile-qa.html
+- Mobile QA on GitHub Pages: https://montri-th.github.io/CityMETER/mobile-qa.html
 - Production target: https://www.landometer.com/citymeter
 
 ## Scope
@@ -49,7 +49,7 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 
 This public preview is aligned with Landometer Design System v0.8.9 and is indexable. Unknown coverage, resolution, source, or definition metadata is never inferred. Source labels distinguish verified same-dataset lineage, candidates, other providers, derived layers and unproven public lineage.
 
-The current local release contract is deduplicated base CSS `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=13`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`. A new production commit and Pages run must be recorded after publication; the successful `v12` deployment does not validate the new base-CSS or strict-320 bytes.
+The current release is deployed from commit `f83115747047af83bb212b1f7e352b6d419dc22c` (tree `1969e8a0ec0289b8335188a243a07b7f2a4c93eb`) through successful GitHub Pages run `31814244403` (#25). Production cold loads confirmed deduplicated base CSS `index-cqxdfePB.css?v=2`, `catalog-enhancements.css?v=13`, `citymeter-fonts.css?v=1`, `catalog-enhancements.js?v=15`, main bundle `v=4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts` on both routes. Observable/source contracts, themes, responsive containment and Thai font checks passed. The reduced English browser's `FontFaceSet` proxy returned false for Bai Jamjuree and IBM Plex Sans Thai Looped even for a Latin probe despite correct computed roles and no font decode/network errors. Rendered English glyph widths match the bundled Bai Jamjuree 400/600 metrics, so this is recorded as a probe limitation rather than visual fallback; a manual Safari/WebKit font smoke test is still recommended.
 
 Once merged, the static files publish from `main` through GitHub Pages. Before the production-domain cutover, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and clear product/satellite screenshot reuse rights.
 

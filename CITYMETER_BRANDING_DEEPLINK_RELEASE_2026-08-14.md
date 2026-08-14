@@ -8,7 +8,7 @@
 
 **Revision Measure deep + radial logos + canonical fonts (`v12`):** Published to GitHub Pages at commit `00762648f9bc99b8271d8a4b875323834725a1a3`; deployment run `31812149466` completed successfully. ยังไม่มี production browser QA receipt สำหรับ bytes ชุดนี้
 
-**Revision ปัจจุบัน — strict 320 px containment (`v13`) + base-font deduplication (`v2`):** local syntax, migration idempotency, release validator และ diff checks ผ่าน; ยังไม่ commit, publish หรือทำ production QA
+**Revision ปัจจุบัน — strict 320 px containment (`v13`) + base-font deduplication (`v2`):** Published to GitHub Pages at commit `f83115747047af83bb212b1f7e352b6d419dc22c`; automated gates และ production QA สำหรับ observable/source contracts ผ่าน โดยมีข้อจำกัดของ English `FontFaceSet` proxy ที่บันทึกไว้ด้านล่าง
 
 ## สิ่งที่ผู้ชมเห็น
 
@@ -140,9 +140,18 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 
 ### Production QA receipt for the current strict-320 + base-font-deduplication revision
 
-- QA target commit: pending — ยังไม่ commit หรือ publish
-- GitHub Pages run: pending — ห้ามนำ run `31812149466` ของ `v12` มาอ้างว่า validate base CSS `v2` หรือ enhancement CSS `v13`
-- Production browser QA: pending — หลัง Pages สำเร็จต้องตรวจหน้าไทย/อังกฤษแบบ cold load, cache base `v2` + enhancement `v13`, receipt, font loading/`FontFaceSet.check()` โดยเฉพาะ Safari/WebKit, themes, Measure deep, five surfaces, radial logo/footer containment และ horizontal overflow ใน iframe/viewport 320 px รวมทั้ง responsive matrix 320–1440 px
+- QA target commit: `f83115747047af83bb212b1f7e352b6d419dc22c`; tree `1969e8a0ec0289b8335188a243a07b7f2a4c93eb`
+- GitHub Pages run: `31814244403` (run number 25) — completed / success; created `2026-08-14T15:23:29Z`; updated `2026-08-14T15:23:54Z`
+- Cold load หน้าไทยและอังกฤษโหลด base `v2`, font CSS `v1`, enhancement CSS `v13`, enhancement JS `v15`, main `v4` และ receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts` ตรงกัน
+- Hero และ handoff ใช้ exact Measure deep; light/dark แสดง muted surfaces ครบ 5 บทบาท
+- พบ supporter 2 groups รวม 6 วงเท่ากัน ใช้ radial fade และขนาดภาพธรรมชาติถูกต้อง (`depa` 2160×1350, `dSURE` 1014×1465, `บัญชีบริการดิจิทัล` 2298×1042); ทุกภาพอยู่ในวง และโลโก้ footer แบบ lazy โหลดสำเร็จหลังเลื่อนถึงส่วนท้าย
+- การ์ด/source review/benefit/source-review `r4` ครบ 38; ค้นหาลดเหลือ 5 แล้วล้างกลับเป็น 38 หลัง observer settle โดยไม่มี benefit, review หรือ evidence block ซ้ำ
+- Responsive same-origin matrix 320, 390, 430, 720, 900, 901, 1120 และ 1440 px ไม่มี horizontal overflow; footer, วงกลมทั้ง 6 และภาพทั้งหมดอยู่ในขอบ ที่กรอบ 320 px วัด `innerWidth=320`, `clientWidth=305` จาก classic scrollbar และ document/body/footer กว้าง 305 px เท่ากัน
+- หน้าไทย `document.fonts.check()` เป็น true สำหรับ Bai Jamjuree 400/600, IBM Plex Sans Thai Looped, IBM Plex Sans Thai technical, Arvo และ JetBrains Mono; computed font roles ของไทย/อังกฤษถูกต้อง และไม่พบ font decode/network error
+- หลักฐานการ render ภาษาอังกฤษตรงกับ bundled Bai Jamjuree: `.dataset-open` น้ำหนัก 600 ข้อความ `Open in CityMETER` วัดเนื้อข้อความได้ 128.21875 px หลังหัก padding/border/icon/gap เทียบกับ bundled Bai Jamjuree 600 `hmtx` ที่ 14 px = 128.296 px; `.feature-tags span` น้ำหนัก 400 ข้อความ `HQ–branch network` วัดได้ 90.984375 px หลังหัก padding/border เทียบกับ bundled Bai Jamjuree 400 `hmtx` ที่ 10 px = 91.32 px โดยส่วนต่างเล็กน้อยสอดคล้องกับ kerning/hinting
+- ข้อจำกัดที่บันทึกไว้: reduced English browser `FontFaceSet` proxy รายงาน false สำหรับ Bai Jamjuree/IBM Plex Sans Thai Looped แม้ใช้ Latin probe ขณะที่ computed roles, glyph metrics และ network/decode ปกติ จึงเป็นข้อจำกัดของ probe ไม่ใช่ visual fallback, application error หรือผล Safari pass; ยังแนะนำ manual Safari/WebKit font smoke test
+- application-origin console errors: 0; error ที่เห็นมีเฉพาะ extension metadata origin
+- Production QA result: passed for observable/source contracts, with the English `FontFaceSet` proxy limitation above
 
 ## ไฟล์ส่งมอบหลัก
 
