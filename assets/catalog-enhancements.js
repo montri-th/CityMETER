@@ -260,7 +260,10 @@
       video.playsInline = true;
       video.setAttribute("playsinline", "");
       video.preload = "metadata";
-      if (!matchMedia("(prefers-reduced-motion: reduce)").matches && video.paused) video.play().catch(() => {});
+      if (video.dataset.catalogAutoplayTried !== "true") {
+        video.dataset.catalogAutoplayTried = "true";
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches && video.paused) video.play().catch(() => {});
+      }
       renderHeroChapter(shell, video);
       if (video !== heroVideo) {
         heroVideo = video;
