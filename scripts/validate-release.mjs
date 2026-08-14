@@ -98,6 +98,7 @@ for (const page of ["index.html", "en/index.html"]) {
   assert(html.includes("catalog-enhancements.js?v=14"), `${page} must load the observer-stable benefit-first r4 enhancement layer`);
   assert(html.includes("index-qbT50gkr-v3.js?v=3"), `${page} must load the CityMETER headline bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
+  assert(html.includes('name="citymeter:release-receipt" content="2026-08-14-benefit-first-circles-surfaces"'), `${page} is missing the final release receipt`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
   assert(html.includes('property="og:image:width" content="1200"'), `${page} is missing the OG image width`);
   assert(html.includes('property="og:image:height" content="630"'), `${page} is missing the OG image height`);

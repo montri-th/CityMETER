@@ -155,6 +155,13 @@ function updatePage(page) {
     .replaceAll("catalog-enhancements.js?v=13", "catalog-enhancements.js?v=14")
     .replaceAll("index-qbT50gkr-v3.js?v=2", "index-qbT50gkr-v3.js?v=3");
 
+  if (!html.includes('name="citymeter:release-receipt"')) {
+    html = html.replace(
+      '<meta name="citymeter:catalog-version" content="2026-08-14" />',
+      '<meta name="citymeter:catalog-version" content="2026-08-14" />\n    <meta name="citymeter:release-receipt" content="2026-08-14-benefit-first-circles-surfaces" />'
+    );
+  }
+
   for (const route of routes.values()) {
     const datasetKey = new URL(route).searchParams.get("d");
     const genericRoute = `https://landometer.com/v3/citymeter?d=${datasetKey}`;
