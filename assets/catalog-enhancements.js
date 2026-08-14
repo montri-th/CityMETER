@@ -39,43 +39,43 @@
         "dataset-buildings": {
           label: "สวนพลู · อาคาร 3 มิติ · GFA",
           intro: "สำรวจความเข้มข้นของอาคาร GFA ความสูง และจำนวนชั้นแบบ 3 มิติในสวนพลู",
-          coverage: "ภาพตัวอย่างโฟกัสสวนพลู; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
-          unit: "ภาพแสดงอาคาร 3 มิติและตัวชี้วัดระดับพื้นที่; ความครบถ้วนของรูปทรงรายอาคารยังไม่ยืนยัน",
+          coverage: "เริ่มจากตัวอย่างสวนพลู แล้วตรวจพื้นที่ครอบคลุมจากข้อมูลต้นทางก่อนนำผลไปเทียบพื้นที่อื่น",
+          unit: "ดูอาคาร 3 มิติและตัวชี้วัดระดับพื้นที่ได้ หากต้องใช้รูปทรงรายอาคารให้ตรวจความครบถ้วนจากข้อมูลต้นทาง",
           revision: "20260814-suan-plu-3d"
         },
         "dataset-land-appraisal": {
           label: "เมืองชลบุรี · ราคาประเมิน 3 มิติ",
           intro: "เห็นโครงสร้างราคาประเมินที่ดินแบบ 3 มิติในอำเภอเมืองชลบุรี พร้อมจำนวนโฉนดและการกระจายราคา",
-          coverage: "ภาพตัวอย่างโฟกัสอำเภอเมืองชลบุรี; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
-          unit: "ภาพแสดงโซนราคาประเมินแบบ 3 มิติและจำนวนโฉนด; รายละเอียดรูปแปลงรายแปลงยังไม่ยืนยัน",
+          coverage: "เริ่มจากตัวอย่างอำเภอเมืองชลบุรี แล้วตรวจพื้นที่ครอบคลุมจากข้อมูลต้นทางก่อนนำผลไปเทียบพื้นที่อื่น",
+          unit: "ดูโซนราคาประเมิน 3 มิติและจำนวนโฉนดได้ หากต้องใช้รูปแปลงรายแปลงให้ตรวจจากข้อมูลต้นทาง",
           revision: "20260814-mueang-chonburi-3d"
         },
         "dataset-flood-recurrent": {
           label: "ผักไห่ · น้ำท่วมย้อนหลัง 14 ปี",
           intro: "เห็นขอบเขตน้ำท่วมรายปีและการเกิดซ้ำในอำเภอผักไห่ พร้อมเทียบกราฟย้อนหลัง 14 ปี",
-          coverage: "ภาพตัวอย่างโฟกัสอำเภอผักไห่ พระนครศรีอยุธยา; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
-          unit: "ภาพแสดงขอบเขตอำเภอ พื้นที่น้ำท่วม และสรุประดับตำบล; ความละเอียดของข้อมูลน้ำท่วมต้นทางยังไม่ยืนยัน",
+          coverage: "เริ่มจากตัวอย่างอำเภอผักไห่ พระนครศรีอยุธยา แล้วตรวจพื้นที่ครอบคลุมก่อนนำผลไปเทียบพื้นที่อื่น",
+          unit: "ดูขอบเขตอำเภอ พื้นที่น้ำท่วม และสรุประดับตำบลได้ หากต้องใช้พื้นที่ย่อยกว่านี้ให้ตรวจความละเอียดจากข้อมูลต้นทาง",
           revision: "20260814-phak-hai-flood"
         },
         "dataset-road-network-archetypes": {
           label: "ปทุมวัน · Road DNA · รูปแบบถนน",
           intro: "สำรวจรูปแบบโครงข่ายถนนในปทุมวัน พร้อมสัดส่วนทางตัน ความหนาแน่นทางแยก และ Road DNA",
-          coverage: "ภาพตัวอย่างโฟกัสเขตปทุมวัน กรุงเทพมหานคร; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ยืนยัน",
-          unit: "ภาพแสดงพื้นที่วิเคราะห์แบบ hexagon และตัวชี้วัด Road DNA; วิธีสร้างหน่วยวิเคราะห์ยังไม่มีคำอธิบายสาธารณะ",
+          coverage: "เริ่มเปรียบเทียบรูปแบบถนนจากตัวอย่างเขตปทุมวัน แล้วตรวจข้อมูลต้นทางเมื่อต้องใช้กับพื้นที่อื่น",
+          unit: "ดูพื้นที่วิเคราะห์และตัวชี้วัด Road DNA ได้ ก่อนตัดสินใจให้เปิดดูวิธีสร้างหน่วยวิเคราะห์",
           revision: "20260814-pathum-wan-road-dna"
         },
         "dataset-crop-area-output": {
           label: "เวียงทอง · ผลผลิตรายเดือน",
           intro: "ดูพื้นที่เพาะปลูกและผลผลิตรายเดือนใน อบต.เวียงทอง พร้อมแยกชนิดพืชและกราฟช่วงเวลา",
-          coverage: "ภาพตัวอย่างโฟกัส อบต.เวียงทอง จังหวัดแพร่; ขอบเขตข้อมูลต้นทางนอกพื้นที่ตัวอย่างยังไม่ระบุบนหน้าสาธารณะ",
-          unit: "ภาพแสดงหน่วยหมู่บ้านและกริด hexagon พร้อมสรุปผลผลิต; วิธีแปลงข้อมูลต้นทางยังไม่ยืนยัน",
+          coverage: "เริ่มจากตัวอย่าง อบต.เวียงทอง จังหวัดแพร่ แล้วตรวจพื้นที่ครอบคลุมก่อนนำผลไปเทียบพื้นที่อื่น",
+          unit: "ดูผลผลิตระดับหมู่บ้านและกริดพื้นที่ได้ หากจะเทียบหรือรวมผลให้ตรวจวิธีแปลงข้อมูลต้นทางก่อน",
           revision: "20260814-wiang-thong-crops"
         },
         "dataset-flood-forecast-flash-flood-risk": {
           label: "24 ชั่วโมง · จังหวัดเสี่ยงน้ำท่วมฉับพลัน",
           intro: "เห็นระดับความเสี่ยง 24 ชั่วโมงบนแผนที่ประเทศไทย พร้อมอันดับจังหวัดและเวลาออกรัน",
-          coverage: "ภาพตัวอย่างแสดงภาพรวมประเทศไทยและอันดับจังหวัด; ขอบเขตของโมเดลต้นทางยังไม่ระบุบนหน้าสาธารณะ",
-          unit: "ภาพยืนยันการเปรียบเทียบระดับจังหวัด; ความละเอียดระดับลุ่มน้ำหรือพื้นผิวโมเดลยังไม่เผยแพร่",
+          coverage: "เทียบภาพรวมประเทศไทยและอันดับจังหวัดในตัวอย่างได้ แล้วตรวจพื้นที่ครอบคลุมของโมเดลก่อนใช้",
+          unit: "เปรียบเทียบระดับจังหวัดได้ หากต้องใช้ระดับลุ่มน้ำหรือพื้นผิวโมเดลให้ตรวจความละเอียดจากข้อมูลต้นทาง",
           revision: "20260814-flash-flood-thailand"
         }
       },
@@ -134,43 +134,43 @@
         "dataset-buildings": {
           label: "Suan Plu · 3D buildings · GFA",
           intro: "Explore 3D building intensity, GFA, height and floor counts in Suan Plu",
-          coverage: "The example focuses on Suan Plu; source coverage beyond the example is not stated on the public page",
-          unit: "The view shows 3D buildings and area metrics; completeness of individual building geometry is not verified",
+          coverage: "Start with the Suan Plu example, then check source coverage before comparing other places.",
+          unit: "View 3D buildings and area metrics, then check source completeness before relying on individual-building geometry.",
           revision: "20260814-suan-plu-3d"
         },
         "dataset-land-appraisal": {
           label: "Mueang Chonburi · 3D appraisal",
           intro: "See the 3D land-appraisal pattern across Mueang Chonburi with deed counts and the price distribution",
-          coverage: "The example focuses on Mueang Chonburi; source coverage beyond the example is not stated on the public page",
-          unit: "The view shows 3D appraisal-price zones and deed counts; individual parcel geometry is not verified",
+          coverage: "Start with the Mueang Chonburi example, then check source coverage before comparing other places.",
+          unit: "View 3D appraisal zones and deed counts, then check the source before relying on individual parcel shapes.",
           revision: "20260814-mueang-chonburi-3d"
         },
         "dataset-flood-recurrent": {
           label: "Phak Hai · 14-year flood history",
           intro: "See annual flood extent and recurrence in Phak Hai with a 14-year comparison chart",
-          coverage: "The example focuses on Phak Hai, Phra Nakhon Si Ayutthaya; source coverage beyond the example is not stated on the public page",
-          unit: "The view shows district extent, flooded areas and subdistrict summaries; source flood-data resolution is not verified",
+          coverage: "Start with the Phak Hai example, then check source coverage before comparing other places.",
+          unit: "View district extent, flooded areas and subdistrict summaries, then check source resolution before using a smaller area.",
           revision: "20260814-phak-hai-flood"
         },
         "dataset-road-network-archetypes": {
           label: "Pathum Wan · Road DNA · archetypes",
           intro: "Explore Pathum Wan road-network archetypes with dead-end ratio, intersection density and Road DNA",
-          coverage: "The example focuses on Pathum Wan, Bangkok; source coverage beyond the example is not verified",
-          unit: "The view shows hexagonal analysis areas and Road DNA metrics; construction of the analytical unit is not publicly documented",
+          coverage: "Start with the Pathum Wan road-pattern example and check the source before comparing other places.",
+          unit: "View the analysis areas and Road DNA metrics, then review how the analytical unit was built before making a decision.",
           revision: "20260814-pathum-wan-road-dna"
         },
         "dataset-crop-area-output": {
           label: "Wiang Thong · monthly output",
           intro: "See monthly cultivated area and output in Wiang Thong TAO, separated by crop and time period",
-          coverage: "The example focuses on Wiang Thong TAO, Phrae; source coverage beyond the example is not stated on the public page",
-          unit: "The view shows village units, a hexagonal grid and output summaries; transformation from the source data is not verified",
+          coverage: "Start with the Wiang Thong TAO example, then check source coverage before comparing other places.",
+          unit: "View village-level output and the area grid, then review the source transformation before comparing or aggregating results.",
           revision: "20260814-wiang-thong-crops"
         },
         "dataset-flood-forecast-flash-flood-risk": {
           label: "24-hour flash-flood risk by province",
           intro: "See 24-hour risk levels across Thailand with province ranking and forecast run time",
-          coverage: "The example shows a Thailand overview and province ranking; source-model coverage is not stated on the public page",
-          unit: "Province comparison is evidenced; watershed or model-surface resolution is not published",
+          coverage: "Compare the Thailand overview and province ranking, then check model coverage before use.",
+          unit: "Compare provinces, then check watershed or model-surface resolution before using a smaller area.",
           revision: "20260814-flash-flood-thailand"
         }
       },

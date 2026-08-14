@@ -89,7 +89,7 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - ตรวจ surface token และ selector ครบ 5 section ทั้ง light/dark
 - ตรวจว่าไม่มีค่าสีสถานะเดิม `#9F78D8`, `#D89A27` หรือ `#36B9CC` เหลือใน CSS/JavaScript enhancement
 - คงการตรวจ SHA-256, มิติและ RGBA transparency ของ PNG ทั้งสาม รวมถึง hash ของไฟล์ lockup ต้นฉบับและวิดีโอเดิม
-- ตรวจ cache reference ของหน้าไทย/อังกฤษ: `catalog-enhancements.css?v=11` และ `catalog-enhancements.js?v=13`
+- ตรวจ cache reference ของหน้าไทย/อังกฤษ: `catalog-enhancements.css?v=11` และ `catalog-enhancements.js?v=14`
 - รัน `node scripts/validate-release.mjs`, syntax checks, migration idempotency และ `git diff --check`
 
 ### Carried checks from the published baseline

@@ -95,7 +95,7 @@ for (const page of ["index.html", "en/index.html"]) {
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
   assert(html.includes("catalog-enhancements.css?v=11"), `${page} must load the contained fixed-diameter circle logo and muted section-surface stylesheet revision`);
-  assert(html.includes("catalog-enhancements.js?v=13"), `${page} must load the benefit-first r4 enhancement layer`);
+  assert(html.includes("catalog-enhancements.js?v=14"), `${page} must load the observer-stable benefit-first r4 enhancement layer`);
   assert(html.includes("index-qbT50gkr-v3.js?v=3"), `${page} must load the CityMETER headline bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
   assert(html.includes("media/social/citymeter-share-2026-08-14.jpg"), `${page} must use the dedicated social card`);
@@ -222,6 +222,7 @@ for (const [key, retiredLabel] of [
   assert(!enhancementJs.includes(`${key}: "${retiredLabel}"`), `Retired source-review label remains: ${retiredLabel}`);
 }
 assert(enhancementJs.includes('localized(record, "benefit") || localized(record, "reading")'), "Benefit-first disclosure needs a safe fallback for stale registry records");
+assert(enhancementJs.includes('coverage: "เริ่มจากตัวอย่างสวนพลู') && enhancementJs.includes('coverage: "Start with the Suan Plu example'), "Focused examples must own actionable coverage copy in both languages");
 const reviewStart = enhancementJs.indexOf('const review = element("div", "source-review")');
 const reviewEnd = enhancementJs.indexOf('const handoff = element("div", "dataset-qr-handoff")', reviewStart);
 const reviewConstruction = enhancementJs.slice(reviewStart, reviewEnd);

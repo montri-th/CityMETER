@@ -147,11 +147,12 @@ function updatePage(page) {
     .replaceAll("catalog-enhancements.css?v=8", "catalog-enhancements.css?v=11")
     .replaceAll("catalog-enhancements.css?v=9", "catalog-enhancements.css?v=11")
     .replaceAll("catalog-enhancements.css?v=10", "catalog-enhancements.css?v=11")
-    .replaceAll("catalog-enhancements.js?v=8", "catalog-enhancements.js?v=13")
-    .replaceAll("catalog-enhancements.js?v=9", "catalog-enhancements.js?v=13")
-    .replaceAll("catalog-enhancements.js?v=10", "catalog-enhancements.js?v=13")
-    .replaceAll("catalog-enhancements.js?v=11", "catalog-enhancements.js?v=13")
-    .replaceAll("catalog-enhancements.js?v=12", "catalog-enhancements.js?v=13")
+    .replaceAll("catalog-enhancements.js?v=8", "catalog-enhancements.js?v=14")
+    .replaceAll("catalog-enhancements.js?v=9", "catalog-enhancements.js?v=14")
+    .replaceAll("catalog-enhancements.js?v=10", "catalog-enhancements.js?v=14")
+    .replaceAll("catalog-enhancements.js?v=11", "catalog-enhancements.js?v=14")
+    .replaceAll("catalog-enhancements.js?v=12", "catalog-enhancements.js?v=14")
+    .replaceAll("catalog-enhancements.js?v=13", "catalog-enhancements.js?v=14")
     .replaceAll("index-qbT50gkr-v3.js?v=2", "index-qbT50gkr-v3.js?v=3");
 
   for (const route of routes.values()) {
