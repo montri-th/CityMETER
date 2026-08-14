@@ -499,8 +499,10 @@
   display: grid;
   place-items: center;
   width: var(--supporter-logo-disc);
+  height: var(--supporter-logo-disc);
   aspect-ratio: 1;
   min-width: 0;
+  min-height: 0;
   padding: 12px;
   border: 1px solid rgba(24, 35, 39, .14);
   border-radius: 50%;
@@ -512,6 +514,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 

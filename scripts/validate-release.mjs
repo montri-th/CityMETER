@@ -94,7 +94,7 @@ for (const page of ["index.html", "en/index.html"]) {
   const html = readFileSync(join(root, page), "utf8");
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements.css?v=9"), `${page} must load the equal-circle logo and muted section-surface stylesheet revision`);
+  assert(html.includes("catalog-enhancements.css?v=10"), `${page} must load the fixed-diameter equal-circle logo and muted section-surface stylesheet revision`);
   assert(html.includes("catalog-enhancements.js?v=13"), `${page} must load the benefit-first r4 enhancement layer`);
   assert(html.includes("index-qbT50gkr-v3.js?v=3"), `${page} must load the CityMETER headline bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
@@ -271,6 +271,7 @@ const supporterGroupCss = cssBlock(".supporter-logos");
 const supporterCellCss = cssBlock(".supporter-logo-cell");
 assert(cssValue(supporterGroupCss, "grid-template-columns") === "repeat(3, var(--supporter-logo-disc))", "Supporter logos must use three equal grid columns");
 assert(cssValue(supporterCellCss, "width") === "var(--supporter-logo-disc)", "Each supporter circle must use the shared diameter token");
+assert(cssValue(supporterCellCss, "height") === "var(--supporter-logo-disc)", "Each supporter circle must lock height to the shared diameter token");
 assert(cssValue(supporterCellCss, "aspect-ratio") === "1", "Supporter logo plates must remain square before rounding");
 assert(cssValue(supporterCellCss, "border-radius") === "50%", "Supporter logo plates must remain circular");
 assert(!enhancementCss.includes(".supporter-logo-cell-account"), "Mobile layout must not move the Digital Service Account mark into a separate row");
