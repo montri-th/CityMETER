@@ -180,6 +180,12 @@ for (const asset of [
   assert(existsSync(join(root, asset)) && statSync(join(root, asset)).size > 0, `Missing release asset: ${asset}`);
 }
 
+const responsiveHarness = readFileSync(join(root, "mobile-qa.html"), "utf8");
+for (const width of [320, 390, 430, 720, 900, 901, 1120, 1440]) {
+  assert(responsiveHarness.includes(`data-width="${width}"`), `Responsive QA harness is missing ${width}px`);
+}
+assert(responsiveHarness.includes("box-sizing: content-box"), "Responsive iframe width must equal its content viewport");
+
 const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements.js"), "utf8");
