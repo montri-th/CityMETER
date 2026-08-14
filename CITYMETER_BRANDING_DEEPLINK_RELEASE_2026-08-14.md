@@ -4,7 +4,7 @@
 
 **สถานะฐานก่อน revision นี้:** Published to GitHub Pages after release validation
 
-**Revision วงกลมโลโก้ + muted surfaces + benefit-first copy:** local release candidate; commit, Pages deployment และ production browser QA ยังรอดำเนินการ
+**Revision วงกลมโลโก้ + muted surfaces + benefit-first copy:** Published to GitHub Pages; automated gates และ production browser QA ผ่าน
 
 ## สิ่งที่ผู้ชมเห็น
 
@@ -98,14 +98,17 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - ตรวจว่า card image, CTA และ JSON-LD ของหน้าไทย/อังกฤษตรงกับ registry ครบ 38 รายการ
 - ตรวจ focused routes ที่ระบุในตารางแบบ exact match
 
-### Pending production QA for this revision
+### Production QA receipt for this revision
 
-- Commit SHA: pending
-- GitHub Pages run: pending
-- Cold-load ภาษาไทย/อังกฤษหลัง hydration gate: pending
-- 38 benefit blocks, filter/search re-render และ duplicate-injection check: pending
-- วงกลมโลโก้จริงที่ 320, 390, 430, 720, 900, 901, 1120 และ 1440 px: pending
-- สีพื้นและ contrast ทั้ง light/dark, horizontal overflow, footer และ application-origin console: pending
+- QA target commit: `778b609dbb5f15b455bc3f4f5b7ee6b17eba5fbc`
+- GitHub Pages run: `31804694135` — completed / success
+- Cold-load ภาษาไทยและอังกฤษหลัง hydration gate: การ์ด 38, source review 38, benefit 38 และ `data-source-review-version="2026-08-14-r4"` ครบ 38
+- ตรวจสถานะตัวอย่างครบ `verified-lineage`, `candidate`, `other-source`, `derived` และ `unproven`; Fuel Stations เปิดด้วยประโยชน์ที่ใช้ได้จริงก่อนแสดงแหล่งที่มาและสิ่งที่ต้องตรวจ
+- ค้นหา `น้ำท่วม` เหลือ 5 รายการ แล้วล้างคำค้นกลับเป็น 38 รายการได้โดยไม่มี source review, benefit หรือ evidence ซ้ำ; focused copy 6 ใบไม่ย้อนกลับหลัง MutationObserver ทำงาน
+- responsive production matrix ผ่านที่ 320, 390, 430, 720, 900, 901, 1120 และ 1440 px: ไม่มี horizontal overflow เกิน viewport, footer child อยู่ในขอบ, วงกลมทั้ง 6 เป็นสี่เหลี่ยมจัตุรัสรัศมี 50% และ artwork อยู่ภายในวง
+- ขนาดวงกลมที่วัดได้: 88 px ที่ 320; 93.59 px ที่ 390; 103.19 px ที่ 430; 112 px ตั้งแต่ 720–1440
+- Light และ dark แสดง surface 5 บทบาทต่างกันครบ; วงกลมยังเป็นพื้นขาวเพื่อรักษา contrast ของเครื่องหมายต้นฉบับ
+- application-origin console error: 0 ทั้งหน้าไทย อังกฤษ และ responsive matrix; error ที่พบมาจาก cloud-browser extension metadata เท่านั้น จึงไม่ใช่ข้อผิดพลาดของเว็บไซต์
 
 ## ไฟล์ส่งมอบหลัก
 

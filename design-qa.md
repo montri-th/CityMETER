@@ -95,14 +95,16 @@ final result: passed
 - Asset integrity: the three separated logos remain RGBA PNG files with their recorded dimensions and SHA-256 values; the owner-supplied combined lockup remains unchanged as provenance.
 - Cache contract: both language entries load `catalog-enhancements.css?v=11` and `catalog-enhancements.js?v=14`.
 
-### Production checks still required
+### Production QA receipt
 
-- Commit SHA: pending
-- GitHub Pages deployment: pending
-- Cold-load hydration on Thai and English routes with no application-origin console errors: pending
-- Exactly 38 source reviews and benefit blocks after load, after filter/search, and after restoring all records: pending
-- No duplicate benefit, evidence or source-review blocks after MutationObserver re-entry: pending
-- Equal circles, legible marks and no horizontal overflow at 320, 390, 430, 720, 900, 901, 1120 and 1440 px: pending
-- Light/dark section rhythm, text/control contrast, footer containment and the Fuel Stations mobile disclosure: pending
+- QA target commit: `778b609dbb5f15b455bc3f4f5b7ee6b17eba5fbc`
+- GitHub Pages deployment run `31804694135`: completed / success.
+- Thai and English cold loads each produced 38 cards, 38 source reviews, 38 benefit blocks and 38 `2026-08-14-r4` receipts, with no duplicate benefit, evidence or source-review blocks.
+- Search reduced the catalog to five flood records; clearing the input restored all 38. Observer re-entry preserved the six actionable focused coverage/unit texts.
+- Five source states were inspected, including the Fuel Stations unproven record. Every inspected disclosure led with a concrete benefit before coverage, status, source and decision checks.
+- The same-origin production iframe matrix measured 320, 390, 430, 720, 900, 901, 1120 and 1440 px. Every viewport kept the footer inside the page and reported no horizontal overflow beyond its declared viewport.
+- All six supporter plates were square and 50% radius at every width; all PNG rectangles remained inside their plate. Measured diameters were 88 px at 320, 93.59 px at 390, 103.19 px at 430 and 112 px from 720 upward.
+- Light and dark each rendered five distinct section surfaces; the supporter plates remained white for the unaltered dark owner marks.
+- Application-origin console errors: zero on Thai, English and the responsive matrix. Repeated cloud-browser extension metadata errors were excluded because their URL was `chrome-extension://`, not the application origin.
 
-current revision result: pending production QA
+current revision result: passed
