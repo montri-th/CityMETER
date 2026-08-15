@@ -220,3 +220,4 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - Active immutable assets: `assets/catalog-enhancements-v15.css` and `assets/index-qbT50gkr-v4.js`.
 - Land Appraisal social image and all three metadata references remain unchanged and hash-locked; the older Tourism preview observed in LINE is platform cache, not current served HTML.
 - Local migration idempotency, JavaScript syntax, full validator and diff whitespace gate: passed. Production receipt is recorded in `CITYMETER_PILLAR_SURFACES_RELEASE_2026-08-15.md` after deployment.
+- Implementation commit `0bc8b3165a95be7a6bc44780e1646b5d69e490fa`, tree `47dcf68d7c924c83ca4a97977378f9322abd83da`; GitHub Pages run `31860734132` (#30): completed / success. CDN bytes, exact light/dark surfaces, bilingual counts, filter parity and the 320–1440 responsive matrix passed production verification.

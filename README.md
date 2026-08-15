@@ -65,6 +65,8 @@ The current release was deployed from commit `304233fb76e91887ab1f8ba5c8c6b10ea0
 
 Thai and English production pages each reference `media/social/citymeter-land-appraisal-share-2026-08-14.jpg` exactly three times across OG, secure OG and Twitter metadata, expose localized alt text, and contain no retired tourism-card URL. The deployed asset returned `image/jpeg`, decoded at 1200 × 630 and visually matched the approved Land Appraisal crop with 3D columns. Carried production checks still returned 38 cards/reviews/benefits, two supporter groups with six 112 × 112 circles, exact closest-side radial fade, no horizontal overflow, footer-end geometry within ±0.5 px, concise bilingual contact titles and no application-origin console errors. The only logged errors came from a browser extension origin.
 
+The quiet pillar-card release was deployed from implementation commit `0bc8b3165a95be7a6bc44780e1646b5d69e490fa` (tree `47dcf68d7c924c83ca4a97977378f9322abd83da`) through successful GitHub Pages run `31860734132` (#30). Production verified exact Land / Location / Living light/dark surfaces on both routes, 12 / 13 / 13 dataset parity, 1 / 3 / 2 showcase parity, filter re-render parity and no horizontal overflow across the 320–1440 px responsive harness. Served HTML, CSS, JavaScript and Land Appraisal image hashes matched the release bytes.
+
 Once merged, the static files publish from `main` through GitHub Pages. Before the production-domain cutover, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and clear product/satellite screenshot reuse rights.
 
 ## Build

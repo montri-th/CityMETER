@@ -77,6 +77,15 @@ Production ก่อน release นี้มีภาพที่ผู้ขอ
 
 ## Production receipt
 
-- Implementation revision: _pending publish_
-- GitHub Pages run: _pending publish_
-- Production verification: _pending publish_
+- Implementation revision: `0bc8b3165a95be7a6bc44780e1646b5d69e490fa`; tree `47dcf68d7c924c83ca4a97977378f9322abd83da`
+- GitHub Pages run: `31860734132` (run number 30), `completed / success`; created `2026-08-15T03:01:45Z`, updated `2026-08-15T03:02:15Z`
+- Served bytes matched the pre-publish SHA-256 records for Thai HTML, English HTML, immutable CSS and hydrated bundle. The Land Appraisal JPEG remained byte-identical at 158,874 bytes.
+- Thai cold load: receipt, CSS and bundle paths correct; dataset 12 / 13 / 13; showcase 1 / 3 / 2; source-status attributes 38.
+- Light backgrounds: Land `rgb(242, 241, 223)`, Location `rgb(226, 233, 237)`, Living `rgb(229, 233, 230)`.
+- Dark backgrounds: Land `rgb(44, 42, 34)`, Location `rgb(24, 51, 62)`, Living `rgb(43, 53, 52)`; primary text on all three `rgb(241, 244, 239)`.
+- Filter path returned 38 → 12 → 13 → 13 → 38 and retained semantic pillar attributes after every re-render.
+- English cold load retained 38 cards, exact 12 / 13 / 13 + 1 / 3 / 2 parity and localized Land Appraisal alt text.
+- Same-origin responsive harness passed at 320, 390, 430, 720, 900, 901, 1120 and 1440 px: `scrollWidth == clientWidth`, all 38 pillar attributes present and footer-end gap stayed within ±0.469 px. The 320 px frame had 305 px usable client width because of the classic scrollbar.
+- Application-origin console errors: 0. Logged errors were limited to the cloud-browser extension origin and were excluded from product findings.
+
+Production release result: **passed** for repository, workflow, CDN byte parity, light/dark card behavior, bilingual routes and responsive observable contracts.

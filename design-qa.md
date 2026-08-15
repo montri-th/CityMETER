@@ -222,4 +222,9 @@ current release result: published; production social metadata/image QA and carri
 - Local foreground contracts use exact v0.8.9 primary, secondary, metadata, hairline, border, interaction, raised and alt values in both themes.
 - Land Appraisal social image is retained byte-for-byte at 1200 × 630, SHA-256 `cadc66644987afa5abb29dbe720adc9302fe276b12d64172e794dd4e6ddabd88`; no Tourism metadata reference remains.
 - Migration two-run idempotency, syntax checks, full validator and `git diff --check`: passed.
-- Production/browser receipt: pending deployment.
+- Implementation revision `0bc8b3165a95be7a6bc44780e1646b5d69e490fa`, tree `47dcf68d7c924c83ca4a97977378f9322abd83da`; GitHub Pages run `31860734132` (#30): completed / success.
+- Production light/dark backgrounds matched all six exact values; Thai and English counts matched 12 / 13 / 13 plus 1 / 3 / 2; filtering returned 38 → 12 → 13 → 13 → 38.
+- Production responsive harness at 320, 390, 430, 720, 900, 901, 1120 and 1440 px returned `scrollWidth == clientWidth`, 38 semantic pillar cards and footer gaps within ±0.469 px.
+- Served HTML, CSS, bundle and Land Appraisal image SHA-256 values matched local release bytes. Application-origin console errors: 0; extension-origin metadata errors excluded.
+
+2026-08-15 quiet pillar-card release result: published; production repository/workflow/CDN/browser checks passed.
