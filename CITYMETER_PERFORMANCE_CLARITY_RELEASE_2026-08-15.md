@@ -52,4 +52,22 @@ The generic `check-experience-contracts.mjs` fixture is specific to the Design S
 
 ## Production receipt
 
-Pending branch/PR merge and GitHub Pages build verification.
+- Pull request: [#6 — Improve CityMETER performance and content clarity](https://github.com/montri-th/CityMETER/pull/6)
+- Reviewed implementation SHA: `ec9b05428213ef2fe186267bcabec707ea0c81d4`
+- Squash-merge SHA on `main`: `10776bd2f5a5f331eebe229805261420e8b98227`
+- GitHub Pages build: `1152635520` — `built` for exact merge SHA; created `2026-08-15T08:38:24Z`, completed `2026-08-15T08:38:48Z`
+- Pages deployment workflow: `31874972187` — `success`
+- Live routes: [Thai](https://montri-th.github.io/CityMETER/) and [English](https://montri-th.github.io/CityMETER/en/)
+- Both live HTML routes expose release receipt `2026-08-15-performance-clarity-v16` and load the immutable v5/v16 assets.
+
+Production files were downloaded after the successful Pages deployment and were byte-identical to the reviewed merge contents:
+
+| Production file | SHA-256 |
+|---|---|
+| `index.html` | `4f9139d8f421a4ba3c8ec47393bcc2590a9dd49f4189f9de55247486688a591f` |
+| `en/index.html` | `11020fa1f08eb56776bd7e744500385bb97c307f05a4f85ce866225a6b5714b4` |
+| `assets/index-qbT50gkr-v5.js` | `d7788b9bac9b160ec32c3765282ba1f58b4806b53499ecd3bdd7183fe06f7a0f` |
+| `assets/catalog-enhancements-v16.css` | `835f4f7bb3760149554d45202b2533766ffd84f7ab56b0f7eb5e63e09dbb3064` |
+| `assets/catalog-enhancements-v16.js` | `be1861e3c6d5efa95646a31cc272e401584cac5ec2dfab5c53572606ed334021` |
+
+The in-app visual browser could not access either localhost or the public GitHub Pages origin because its admin-enforced security policy could not be verified. No security control was bypassed. Visual automation is therefore recorded as unavailable; source validation, TH/EN static-hydration parity, exact production byte verification, Pages build identity and the release contracts above all passed.
