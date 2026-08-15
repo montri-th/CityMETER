@@ -175,12 +175,12 @@ for (const page of ["index.html", "en/index.html"]) {
     JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
     `${page} showcase pillar contract must remain 1 / 3 / 2`
   );
-  assert(html.includes("catalog-enhancements-v16.css") && html.includes("catalog-enhancements-v16.js"), `${page} is missing the performance and clarity enhancement layer`);
-  assert(html.includes("catalog-enhancements-v16.css"), `${page} must load the immutable categorical-pillar stylesheet revision`);
-  assert(html.includes("catalog-enhancements-v16.js"), `${page} must load the deferred performance enhancement layer`);
+  assert(html.includes("catalog-enhancements-v17.css") && html.includes("catalog-enhancements-v17.js"), `${page} is missing the atmosphere and scroll-end enhancement layer`);
+  assert(html.includes("catalog-enhancements-v17.css"), `${page} must load the immutable governed-atmosphere stylesheet revision`);
+  assert(html.includes("catalog-enhancements-v17.js"), `${page} must load the touch-safe enhancement revision`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v16.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v16.js", `${page} must load exactly one immutable enhancement script revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v17.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v17.js", `${page} must load exactly one immutable enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
   assert((html.match(/citymeter-fonts\.css\?v=\d+/g) || []).join() === "citymeter-fonts.css?v=1", `${page} must load exactly one canonical font stylesheet revision`);
@@ -190,11 +190,18 @@ for (const page of ["index.html", "en/index.html"]) {
     assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
   }
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
-  assert(html.includes("index-qbT50gkr-v5.js"), `${page} must load the lazy-image and full-frame hero bundle revision`);
-  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v5.js", `${page} must load exactly one main bundle revision`);
+  assert(html.includes("index-qbT50gkr-v6.js"), `${page} must load the stable-footer and atmosphere-band bundle revision`);
+  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v6.js", `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes('name="citymeter:release-receipt" content="2026-08-15-performance-clarity-v16"'), `${page} is missing the performance-clarity release receipt`);
+  assert(html.includes('name="citymeter:release-receipt" content="2026-08-15-atmosphere-scroll-v17"'), `${page} is missing the atmosphere-scroll release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
+  assert((html.match(/class="showcase-atmosphere"/g) || []).length === 1, `${page} must expose exactly one Ground orientation band`);
+  assert(html.includes('<div class="wide-container showcase-content"><div class="showcase-grid">'), `${page} must keep showcase cards on the flat evidence surface outside the Ground band`);
+  assert((html.match(/class="supporter-logos supporter-logos-footer"/g) || []).length === 1, `${page} must prerender exactly one stable footer supporter group`);
+  assert(html.includes('<div class="footer-meta"><nav aria-label="Footer">'), `${page} must group footer navigation and legal copy without an artificial trailing grid row`);
+  const footerEnd = html.lastIndexOf("</footer>");
+  const rootEnd = html.lastIndexOf("</div>");
+  assert(footerEnd > 0 && rootEnd > footerEnd && html.slice(footerEnd + "</footer>".length, rootEnd).trim() === "", `${page} must not contain layout content after the footer`);
   const socialCard = "https://montri-th.github.io/CityMETER/media/social/citymeter-land-appraisal-share-2026-08-14.jpg";
   const socialAlt = page === "index.html"
     ? "หน้าจอ CityMETER แสดงราคาประเมินที่ดินด้วยแท่งข้อมูลสามมิติบนแผนที่"
@@ -286,19 +293,24 @@ assert(qrManifest.version === "2026-08-14" && qrManifest.datasets.length === 38 
 for (const asset of [
   "CITYMETER_BRANDING_DEEPLINK_RELEASE_2026-08-14.md",
   "CITYMETER_PERFORMANCE_CLARITY_RELEASE_2026-08-15.md",
+  "CITYMETER_ATMOSPHERE_SCROLL_RELEASE_2026-08-15.md",
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
   "assets/catalog-enhancements-v15.css",
   "assets/catalog-enhancements-v16.css",
   "assets/catalog-enhancements-v16.js",
+  "assets/catalog-enhancements-v17.css",
+  "assets/catalog-enhancements-v17.js",
   "assets/citymeter-fonts.css",
   "assets/font-assets.manifest.json",
   "assets/font-license-records.json",
   "assets/index-qbT50gkr-v3.js",
   "assets/index-qbT50gkr-v4.js",
   "assets/index-qbT50gkr-v5.js",
+  "assets/index-qbT50gkr-v6.js",
   "scripts/apply-branding-route-release.mjs",
   "scripts/apply-performance-clarity-release.mjs",
+  "scripts/apply-atmosphere-scroll-release.mjs",
   "scripts/split-supporter-logos.sh",
   "scripts/build-hero-reel.sh",
   "scripts/apply-focus-copy.mjs",
@@ -314,6 +326,15 @@ for (const asset of [
   "media/social/citymeter-land-appraisal-share-2026-08-14.jpg"
 ]) {
   assert(existsSync(join(root, asset)) && statSync(join(root, asset)).size > 0, `Missing release asset: ${asset}`);
+}
+
+for (const [asset, expectedHash] of [
+  ["assets/index-qbT50gkr-v6.js", "b78332185bf7b86a3534e53c568b8b684d475e68c783ac0e7534066006aad4c6"],
+  ["assets/catalog-enhancements-v17.css", "8f4c95eb631b64b41d1beb6554265189474fff8dde419b0c0d4b46f985b8ff3a"],
+  ["assets/catalog-enhancements-v17.js", "8838d5e11340db1e6ce460e4f4e2190ae1fa27edcce358ba7a987b7014a2db4d"],
+  ["scripts/apply-atmosphere-scroll-release.mjs", "0c0d266f636c01902c3f66973892d7bddd72f4220d80f889b2714ef96ba37684"]
+]) {
+  assert(sha256(join(root, asset)) === expectedHash, `Immutable atmosphere-scroll release bytes changed: ${asset}`);
 }
 
 for (const [asset, expectedHash] of canonicalFontAssets) {
@@ -435,6 +456,27 @@ for (const contract of [
   assert(performanceMigration.includes(contract), `Performance-clarity migration is missing: ${contract}`);
 }
 
+const atmosphereMigration = readFileSync(join(root, "scripts/apply-atmosphere-scroll-release.mjs"), "utf8");
+for (const contract of [
+  "2026-08-15-atmosphere-scroll-v17",
+  "index-qbT50gkr-v6.js",
+  "catalog-enhancements-v17.css",
+  "catalog-enhancements-v17.js",
+  "showcase-atmosphere",
+  "supporter-logos-footer",
+  "footer-meta",
+  "(pointer: coarse)",
+  "safe-area-inset-bottom",
+  "--atmosphere-measure",
+  "--atmosphere-ground",
+  "--atmosphere-cultivate"
+]) {
+  assert(atmosphereMigration.includes(contract), `Atmosphere-scroll migration is missing: ${contract}`);
+}
+const atmosphereRelease = readFileSync(join(root, "CITYMETER_ATMOSPHERE_SCROLL_RELEASE_2026-08-15.md"), "utf8");
+assert((atmosphereRelease.match(/`deletionTest: improves`/g) || []).length === 3, "Every rendered atmosphere moment needs a completed improving deletion test");
+assert((atmosphereRelease.match(/`evidenceRef:/g) || []).length === 3, "Every rendered atmosphere deletion test needs an evidence reference");
+
 const responsiveHarness = readFileSync(join(root, "mobile-qa.html"), "utf8");
 for (const width of [320, 390, 430, 720, 900, 901, 1120, 1440]) {
   assert(responsiveHarness.includes(`data-width="${width}"`), `Responsive QA harness is missing ${width}px`);
@@ -444,8 +486,8 @@ assert(responsiveHarness.includes("box-sizing: content-box"), "Responsive iframe
 const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const baseCss = readFileSync(join(root, "assets/index-cqxdfePB.css"), "utf8");
-const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v16.js"), "utf8");
-const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v16.css"), "utf8");
+const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v17.js"), "utf8");
+const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v17.css"), "utf8");
 const canonicalFontCss = readFileSync(join(root, "assets/citymeter-fonts.css"), "utf8");
 const enhancementSourceLower = `${enhancementCss}\n${enhancementJs}`.toLowerCase();
 for (const retiredColor of ["#9f78d8", "#d89a27", "#36b9cc"]) {
@@ -473,6 +515,40 @@ function cssValue(block, property) {
 
 function normalizedCss(value) {
   return value?.replace(/\s+/g, "").toLowerCase();
+}
+
+function hexRgb(hex) {
+  return [1, 3, 5].map((offset) => Number.parseInt(hex.slice(offset, offset + 2), 16));
+}
+
+function relativeLuminance(hex) {
+  const channels = hexRgb(hex).map((channel) => {
+    const value = channel / 255;
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+function contrastRatio(first, second) {
+  const luminances = [relativeLuminance(first), relativeLuminance(second)].sort((a, b) => b - a);
+  return (luminances[0] + 0.05) / (luminances[1] + 0.05);
+}
+
+function interpolateHex(first, second, progress) {
+  const start = hexRgb(first);
+  const end = hexRgb(second);
+  return `#${start.map((channel, index) => Math.round(channel + (end[index] - channel) * progress).toString(16).padStart(2, "0")).join("")}`;
+}
+
+function minimumGradientContrast(stops, offsets, foreground) {
+  let minimum = Number.POSITIVE_INFINITY;
+  for (let sample = 0; sample <= 1000; sample += 1) {
+    const position = sample / 1000;
+    const segment = position <= offsets[1] ? 0 : 1;
+    const progress = (position - offsets[segment]) / (offsets[segment + 1] - offsets[segment]);
+    minimum = Math.min(minimum, contrastRatio(interpolateHex(stops[segment], stops[segment + 1], progress), foreground));
+  }
+  return minimum;
 }
 
 assert(cssValue(exactCssBlock("body", baseCss), "min-width") === "320px", "Compiled base body floor changed unexpectedly");
@@ -671,7 +747,7 @@ assert(enhancementJs.includes("prefers-reduced-motion: reduce"), "Motion layer m
 assert(enhancementJs.includes("duration: 280"), "Card reflow motion must use the 280ms map-state duration");
 assert(enhancementJs.includes("record?.citymeterUrl"), "Runtime direct-route override is missing");
 assert(enhancementJs.includes(".dataset-mobile-link"), "Runtime direct-route override must cover the mobile handoff link");
-assert(enhancementJs.includes("supporter-logos-hero") && enhancementJs.includes("supporter-logos-footer"), "Runtime split supporter groups are missing");
+assert(enhancementJs.includes("supporter-logos-hero"), "Runtime hero supporter group is missing");
 for (const asset of supporterAssets) {
   assert(enhancementJs.includes(asset.path), `Runtime supporter asset is missing: ${asset.path}`);
 }
@@ -681,7 +757,12 @@ assert(enhancementJs.includes('if (pageTitle.lang !== "en") pageTitle.lang = "en
 assert(enhancementJs.includes('if (citymeterLabel && citymeterLabel.lang !== "en") citymeterLabel.lang = "en"'), "Runtime must preserve the English language metadata on the CityMETER header label");
 assert(enhancementCss.includes(".site-footer .footer-grid > *") && enhancementCss.includes("flex-wrap: wrap"), "Footer grid children and links must be allowed to shrink and wrap");
 assert(enhancementCss.includes("@media (max-width: 900px)") && enhancementCss.includes("grid-template-columns: 1fr"), "Footer must collapse before the former 720px overflow band");
-assert(normalizedCss(enhancementCss).includes("html,body{overscroll-behavior-y:none;}"), "Root scrolling must suppress elastic over-scroll beyond the footer");
+assert(enhancementCss.includes(".site-footer .footer-meta") && enhancementCss.includes("justify-items: end"), "Footer navigation and legal copy must share one stable metadata column");
+assert(!enhancementJs.includes("function enhanceFooterBranding") && !enhancementJs.includes("enhanceFooterBranding();"), "Footer supporters must not be injected after hydration");
+assert(enhancementJs.includes('globalThis.matchMedia("(pointer: coarse)")') && enhancementJs.includes("coarsePointer.matches"), "Coarse pointers must bypass transformed card-layout motion that can pollute WebKit scroll overflow");
+assert(normalizedCss(enhancementCss).includes("html,body{overscroll-behavior-y:none;}"), "Root scrolling must retain the available overscroll boundary hint");
+assert(normalizedCss(enhancementCss).includes("html,body,#root{background:var(--section-surface-footer);}"), "The exposed root canvas must continue the footer surface on iOS elastic pull");
+assert(enhancementCss.includes("env(safe-area-inset-bottom, 0px)"), "Footer must account for the iPhone bottom safe area without a fixed spacer");
 assert(enhancementCss.includes(".supporter-logo-depa") && enhancementCss.includes(".supporter-logo-dsure") && enhancementCss.includes(".supporter-logo-account"), "Split supporter logos need independent optical sizing");
 assert(enhancementCss.includes("height: calc(var(--supporter-logo-disc) * .68)"), "Tall dSURE artwork must fit inside the fixed circle without percentage-track expansion");
 const supporterGroupCss = cssBlock(".supporter-logos");
@@ -708,17 +789,58 @@ assert(
 );
 assert(!enhancementCss.includes(".supporter-logo-cell-account"), "Mobile layout must not move the Digital Service Account mark into a separate row");
 
-const brandBlueShellMatch = enhancementCss.match(/\.hero\s*,\s*\.handoff-section\s*\{([\s\S]*?)\}/);
-assert(brandBlueShellMatch, "Measure deep hero and handoff shell rule is missing");
-assert(
-  normalizedCss(cssValue(brandBlueShellMatch[1], "background")) === "linear-gradient(135deg,#1d44970%,#176b8254%,#08756f100%)",
-  "Hero and handoff must use the exact Design System v0.8.9 atmosphere.gradient.measure.deep recipe"
-);
-assert(cssValue(cssBlock(".hero", baseCss), "color") === "#fff", "Hero foreground must retain the onDeep color");
-assert(cssValue(cssBlock(".handoff-section", baseCss), "color") === "#fff", "Handoff foreground must retain the onDeep color");
-
 const lightSurfaceCss = cssBlock(":root");
 const darkSurfaceCss = cssBlock('[data-theme="dark"]');
+for (const [token, light, dark] of [
+  ["--atmosphere-measure", "linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)", "linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%)"],
+  ["--atmosphere-ground", "linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%)", "linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%)"],
+  ["--atmosphere-cultivate", "linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%)", "linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%)"]
+]) {
+  assert(normalizedCss(cssValue(lightSurfaceCss, token)) === normalizedCss(light), `Light atmosphere recipe is stale: ${token}`);
+  assert(normalizedCss(cssValue(darkSurfaceCss, token)) === normalizedCss(dark), `Dark atmosphere recipe is stale: ${token}`);
+}
+for (const [family, lightPrimary, lightSecondary, darkPrimary, darkSecondary] of [
+  ["measure", "#ffffff", "#f1f4ef", "#182327", "#293337"],
+  ["ground", "#182327", "#293337", "#ffffff", "#f1f4ef"],
+  ["cultivate", "#182327", "#293337", "#182327", "#293337"]
+]) {
+  assert(cssValue(lightSurfaceCss, `--atmosphere-${family}-primary`) === lightPrimary, `Light ${family} primary foreground is stale`);
+  assert(cssValue(lightSurfaceCss, `--atmosphere-${family}-secondary`) === lightSecondary, `Light ${family} secondary foreground is stale`);
+  assert(cssValue(darkSurfaceCss, `--atmosphere-${family}-primary`) === darkPrimary, `Dark ${family} primary foreground is stale`);
+  assert(cssValue(darkSurfaceCss, `--atmosphere-${family}-secondary`) === darkSecondary, `Dark ${family} secondary foreground is stale`);
+}
+for (const [name, stops, offsets, primary, secondary] of [
+  ["Measure Deep", ["#1D4497", "#176B82", "#08756F"], [0, 0.54, 1], "#FFFFFF", "#F1F4EF"],
+  ["Measure Luminous", ["#89CEF6", "#5ECAD6", "#6CD5B3"], [0, 0.5, 1], "#182327", "#293337"],
+  ["Ground Mist", ["#C4E0EE", "#B2E2E2", "#CCE6D0"], [0, 0.5, 1], "#182327", "#293337"],
+  ["Ground Current", ["#0F5773", "#006A6A", "#1F744F"], [0, 0.5, 1], "#FFFFFF", "#F1F4EF"],
+  ["Cultivate Glow", ["#EB8182", "#F5A06F", "#EBC573"], [0, 0.5, 1], "#182327", "#293337"],
+  ["Cultivate Mist", ["#F7CBC7", "#FBD1B6", "#F1E0B4"], [0, 0.5, 1], "#182327", "#293337"]
+]) {
+  assert(minimumGradientContrast(stops, offsets, primary) >= 4.5, `${name} primary foreground falls below 4.5:1`);
+  assert(minimumGradientContrast(stops, offsets, secondary) >= 4.5, `${name} secondary foreground falls below 4.5:1`);
+}
+assert(cssValue(cssBlock(".hero"), "background") === "var(--atmosphere-measure)", "Hero must consume the Measure entry atmosphere");
+assert(cssValue(cssBlock(".showcase-atmosphere"), "background") === "var(--atmosphere-ground)", "Examples orientation band must consume Ground atmosphere");
+assert(cssValue(cssBlock(".handoff-section"), "background") === "var(--atmosphere-cultivate)", "Handoff must consume Cultivate closure atmosphere");
+const heroQrCss = exactCssBlock(".hero-page-qr");
+assert(cssValue(heroQrCss, "background") === "#11191d" && cssValue(heroQrCss, "color") === "#ffffff", "Hero QR must own an opaque onDeep surface contract");
+assert(cssValue(heroQrCss, "backdrop-filter") === "none" && cssValue(heroQrCss, "-webkit-backdrop-filter") === "none", "Hero QR must not restore a translucent blur over Measure Luminous");
+assert(cssValue(exactCssBlock(".hero-page-qr-copy span"), "color") === "#f1f4ef", "Hero QR secondary copy must use the onDeep foreground contract");
+const handoffQrCss = exactCssBlock(".handoff-section .qr-card");
+for (const [token, expected] of [
+  ["--text", "#182327"],
+  ["--text-secondary", "#293337"],
+  ["--text-meta", "#293337"],
+  ["--accent", "#176b82"],
+  ["--card", "#ffffff"],
+  ["--border", "#7d877f"]
+]) {
+  assert(cssValue(handoffQrCss, token) === expected, `Handoff QR local foreground contract is stale: ${token}`);
+}
+assert(cssValue(handoffQrCss, "background") === "var(--card)" && cssValue(handoffQrCss, "color") === "var(--text)", "Handoff QR must consume its component-owned surface and foreground tokens");
+assert(!/data-pillar[^{}]*gradient|gradient[^{}]*data-pillar/i.test(enhancementCss), "Atmosphere gradients must never encode Land, Location or Living");
+assert(!/animation[^{}]*gradient|background-attachment\s*:\s*fixed/i.test(enhancementCss), "Atmosphere gradients must remain static and bounded");
 const sectionSurfaces = [
   ["decision", ".decision-section", "#f6f7f3", "#11191d"],
   ["showcase", ".showcase-section", "#eef1ee", "#172126"],
@@ -730,7 +852,7 @@ for (const [name, selector, light, dark] of sectionSurfaces) {
   const token = `--section-surface-${name}`;
   assert(cssValue(lightSurfaceCss, token) === light, `Light ${name} surface token is stale`);
   assert(cssValue(darkSurfaceCss, token) === dark, `Dark ${name} surface token is stale`);
-  assert(cssValue(cssBlock(selector), "background") === `var(${token})`, `${selector} must consume ${token}`);
+  assert(cssValue(exactCssBlock(selector), "background") === `var(${token})`, `${selector} must consume ${token}`);
 }
 const pillarSurfaces = [
   ["land", "#f2f1df", "#2c2a22", "#846100", "#f4c44e"],
@@ -777,7 +899,7 @@ assert((runtimeStart.match(/requestAnimationFrame/g) || []).length >= 2, "Brandi
 assert(enhancementJs.includes("waitForHydrationStability") && enhancementJs.includes("minimumDelayElapsed") && enhancementJs.includes("quietWindowElapsed"), "Branding must wait for a quiet hydration boundary before DOM mutation");
 assert(enhancementJs.includes("}, 1000)") && enhancementJs.includes("}, 250)") && enhancementJs.includes("setTimeout(finish, 3000)"), "Hydration stability timing contract is stale");
 assert(runtimeStart.includes("registryResult") && runtimeStart.includes(".catch((error) => ({ error }))"), "Branding must remain available when the source registry fails");
-assert(runtimeStart.includes("catalog-source-review.json?v=20260815-performance-clarity-v16") && runtimeStart.includes('cache: "force-cache"'), "Source registry must be deferred and bound to the immutable release cache key");
+assert(runtimeStart.includes("catalog-source-review.json?v=20260815-atmosphere-scroll-v17") && runtimeStart.includes('cache: "force-cache"'), "Source registry must be deferred and bound to the immutable release cache key");
 for (const retiredRuntime of ["renderHeroChapter", "heroTimer", "heroVideo", "video.load()", 'url.searchParams.set("v"']) {
   assert(!enhancementJs.includes(retiredRuntime), `Retired duplicate-load or hero-timer behavior remains: ${retiredRuntime}`);
 }
@@ -794,11 +916,14 @@ assert(enHtml.includes("Scan to open it on your phone, save it for yourself, or 
 assert(enHtml.includes("Save or share this example"), "English page is missing the permanent handoff share CTA");
 assert(enHtml.includes("The link opens the same example and data."), "English page is missing the permanent handoff note");
 
-const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v5.js"), "utf8");
+const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v6.js"), "utf8");
 assert(mainBundle.includes('id:"page-title",lang:"en",children:c.hero.title'), "Compiled bundle must render the CityMETER page title with English language metadata");
 assert(mainBundle.includes('className:"citymeter-label",href:"#top",lang:"en",children:"CityMETER"'), "Compiled bundle must render the CityMETER header label with English language metadata");
 assert(mainBundle.includes('className:d<2?"showcase-card showcase-card-wide":"showcase-card","data-pillar":s.group,children:'), "Compiled bundle must render semantic showcase pillars before hydration");
 assert(mainBundle.includes('className:"dataset-card","data-pillar":c.group,id:'), "Compiled bundle must render semantic dataset pillars before hydration");
+assert(mainBundle.includes('className:"showcase-atmosphere"') && mainBundle.includes('className:"wide-container showcase-content"'), "Compiled bundle must separate the Ground orientation band from flat showcase cards");
+assert(mainBundle.includes('className:"supporter-logos supporter-logos-footer"') && mainBundle.includes('className:"footer-meta"'), "Compiled bundle must render the complete footer before hydration");
+assert(mainBundle.includes('p.jsx(K6,{text:E,language:f})'), "Compiled footer must receive the active language for localized supporter metadata");
 assert(!mainBundle.includes('id:"page-title",children:c.hero.title'), "Compiled bundle still contains the hydration-unsafe page-title pattern");
 assert(!mainBundle.includes('className:"citymeter-label",href:"#top",children:"CityMETER"'), "Compiled bundle still contains the hydration-unsafe CityMETER label pattern");
 assert(mainBundle.includes('loading:"lazy",decoding:"async"'), "Compiled bundle must lazy-load and asynchronously decode deferred previews");
@@ -884,4 +1009,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: deterministic 1200x630 Land Appraisal social card, semantic Land/Location/Living parity across six showcase and 38 dataset cards, component-local Vivid Civic category rails and chips, neutral section separation, complete light/dark foreground contracts, 38 dataset previews plus six showcase and one intent preview lazy-loaded with hydration parity, full-frame silent hero media without visible captions, accurate four-screen reel v3 transcripts, metadata-only video preload, no runtime preview/video cache-busting, deferred registry fetch, strict 320px iframe containment, root scroll-end containment, canonical typography, hydration-safe immutable main bundle v5, exact Measure deep shell, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
+console.log("CityMETER release validation passed: deterministic 1200x630 Land Appraisal social card, semantic Land/Location/Living parity across six showcase and 38 dataset cards, component-local Vivid Civic category rails and chips, exact Measure/Ground/Cultivate theme-paired atmosphere cadence with complete foreground contracts, flat evidence separation, 38 dataset previews plus six showcase and one intent preview lazy-loaded with hydration parity, full-frame silent hero media without visible captions, accurate four-screen reel v3 transcripts, metadata-only video preload, no runtime preview/video cache-busting, deferred registry fetch, strict 320px iframe containment, iPhone root-canvas continuation and safe-area footer treatment, coarse-pointer layout-motion guard, hydration-stable footer supporters, canonical typography, immutable main bundle v6, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
