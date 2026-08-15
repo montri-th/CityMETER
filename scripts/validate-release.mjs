@@ -175,12 +175,12 @@ for (const page of ["index.html", "en/index.html"]) {
     JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
     `${page} showcase pillar contract must remain 1 / 3 / 2`
   );
-  assert(html.includes("catalog-enhancements-v15.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements-v15.css"), `${page} must load the immutable quiet-pillar surface stylesheet revision`);
-  assert(html.includes("catalog-enhancements.js?v=15"), `${page} must load the canonical-language benefit-first r4 enhancement layer`);
+  assert(html.includes("catalog-enhancements-v16.css") && html.includes("catalog-enhancements-v16.js"), `${page} is missing the performance and clarity enhancement layer`);
+  assert(html.includes("catalog-enhancements-v16.css"), `${page} must load the immutable categorical-pillar stylesheet revision`);
+  assert(html.includes("catalog-enhancements-v16.js"), `${page} must load the deferred performance enhancement layer`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v15.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
-  assert((html.match(/catalog-enhancements\.js\?v=\d+/g) || []).join() === "catalog-enhancements.js?v=15", `${page} must load exactly one enhancement script revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v16.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v16.js", `${page} must load exactly one immutable enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
   assert((html.match(/citymeter-fonts\.css\?v=\d+/g) || []).join() === "citymeter-fonts.css?v=1", `${page} must load exactly one canonical font stylesheet revision`);
@@ -190,10 +190,10 @@ for (const page of ["index.html", "en/index.html"]) {
     assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
   }
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
-  assert(html.includes("index-qbT50gkr-v4.js"), `${page} must load the semantic pillar bundle revision`);
-  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v4.js", `${page} must load exactly one main bundle revision`);
+  assert(html.includes("index-qbT50gkr-v5.js"), `${page} must load the lazy-image and full-frame hero bundle revision`);
+  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v5.js", `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes('name="citymeter:release-receipt" content="2026-08-15-pillar-card-surfaces"'), `${page} is missing the quiet-pillar release receipt`);
+  assert(html.includes('name="citymeter:release-receipt" content="2026-08-15-performance-clarity-v16"'), `${page} is missing the performance-clarity release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
   const socialCard = "https://montri-th.github.io/CityMETER/media/social/citymeter-land-appraisal-share-2026-08-14.jpg";
   const socialAlt = page === "index.html"
@@ -207,6 +207,27 @@ for (const page of ["index.html", "en/index.html"]) {
   assert(html.includes('property="og:image:height" content="630"'), `${page} is missing the OG image height`);
   assert(html.includes('name="twitter:card" content="summary_large_image"'), `${page} is missing the Twitter card`);
   assert(!html.includes('rel="preload" as="image" href="./media/previews-v2/') && !html.includes('rel="preload" as="image" href="../media/previews-v2/'), `${page} must not preload the full preview catalog`);
+  const datasetPreviewImages = html.match(/<a class="dataset-image"[^>]*><img[^>]*>/g) || [];
+  assert(datasetPreviewImages.length === 38, `${page} must render 38 dataset preview images`);
+  assert(datasetPreviewImages.every((image) => image.includes('loading="lazy"') && image.includes('decoding="async"')), `${page} dataset previews must be lazy and asynchronously decoded before hydration`);
+  const showcasePreviewImages = (html.match(/<article class="showcase-card[\s\S]*?<\/article>/g) || [])
+    .map((card) => card.match(/<img[^>]*>/)?.[0] || "");
+  assert(showcasePreviewImages.length === 6, `${page} must render six showcase preview images`);
+  assert(showcasePreviewImages.every((image) => image.includes('loading="lazy"') && image.includes('decoding="async"')), `${page} showcase previews must be lazy and asynchronously decoded before hydration`);
+  const intentPreviewImage = html.match(/<div class="intent-proof-visual"><img[^>]*>/)?.[0] || "";
+  assert(intentPreviewImage.includes('loading="lazy"') && intentPreviewImage.includes('decoding="async"'), `${page} intent preview must be lazy and asynchronously decoded before hydration`);
+  assert(!html.includes('decoding="async" decoding="async"'), `${page} contains a duplicate decoding attribute`);
+  assert(!html.includes('class="demo-story-caption"') && !html.includes('class="demo-progress"'), `${page} still renders the retired hero caption overlay`);
+  const heroFigure = html.match(/<figure class="demo-figure">[\s\S]*?<\/figure>/)?.[0] || "";
+  assert(heroFigure && !heroFigure.includes("<figcaption>"), `${page} still renders the retired visible hero figcaption`);
+  assert(html.includes('id="demo-transcript" class="visually-hidden"'), `${page} must retain the accessible hero transcript`);
+  const transcript = heroFigure.match(/<div id="demo-transcript" class="visually-hidden">[\s\S]*?<\/ol><\/div>/)?.[0] || "";
+  const expectedTranscriptTerms = page === "index.html"
+    ? ["ประชากรจดทะเบียน", "อาคาร 3 มิติที่สวนพลู", "รายได้องค์กรปกครองส่วนท้องถิ่น", "อุปสงค์การท่องเที่ยว"]
+    : ["Registered population", "3D buildings in Suan Plu", "Municipal revenue", "Tourism demand"];
+  assert((transcript.match(/<li>/g) || []).length === 4, `${page} hero transcript must describe the four reel v3 source screens`);
+  assert(expectedTranscriptTerms.every((term) => transcript.includes(term)), `${page} hero transcript does not match the reel v3 source order`);
+  assert(!transcript.includes("รูปแบบโครงข่ายถนน") && !transcript.includes("street-network patterns"), `${page} hero transcript still describes the retired reel`);
   assert(html.includes('<h1 id="page-title" lang="en">CityMETER</h1>'), `${page} must identify the CityMETER hero name as English`);
   assert(html.includes('<a class="citymeter-label" href="#top" lang="en">CityMETER</a>'), `${page} must identify the CityMETER header label as English`);
   assert(!html.includes("ก่อนตัดสินใจเรื่องพื้นที่") && !html.includes("Before you decide on a place"), `${page} still contains the retired hero headline`);
@@ -264,15 +285,20 @@ assert(qrManifest.version === "2026-08-14" && qrManifest.datasets.length === 38 
 
 for (const asset of [
   "CITYMETER_BRANDING_DEEPLINK_RELEASE_2026-08-14.md",
+  "CITYMETER_PERFORMANCE_CLARITY_RELEASE_2026-08-15.md",
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
   "assets/catalog-enhancements-v15.css",
+  "assets/catalog-enhancements-v16.css",
+  "assets/catalog-enhancements-v16.js",
   "assets/citymeter-fonts.css",
   "assets/font-assets.manifest.json",
   "assets/font-license-records.json",
   "assets/index-qbT50gkr-v3.js",
   "assets/index-qbT50gkr-v4.js",
+  "assets/index-qbT50gkr-v5.js",
   "scripts/apply-branding-route-release.mjs",
+  "scripts/apply-performance-clarity-release.mjs",
   "scripts/split-supporter-logos.sh",
   "scripts/build-hero-reel.sh",
   "scripts/apply-focus-copy.mjs",
@@ -391,6 +417,24 @@ assert(releaseMigration.includes('<h1 id="page-title" lang="en">') && releaseMig
 assert(releaseMigration.includes('id:\"page-title\",children:c.hero.title') && releaseMigration.includes('id:\"page-title\",lang:\"en\",children:c.hero.title'), "Release migration must upgrade the compiled page-title language metadata");
 assert(releaseMigration.includes('className:\"citymeter-label\",href:\"#top\",children:\"CityMETER\"') && releaseMigration.includes('className:\"citymeter-label\",href:\"#top\",lang:\"en\",children:\"CityMETER\"'), "Release migration must upgrade the compiled header-label language metadata");
 
+const performanceMigration = readFileSync(join(root, "scripts/apply-performance-clarity-release.mjs"), "utf8");
+for (const contract of [
+  "2026-08-15-performance-clarity-v16",
+  "index-qbT50gkr-v5.js",
+  "catalog-enhancements-v16.css",
+  "catalog-enhancements-v16.js",
+  'loading:"lazy",decoding:"async"',
+  'preload:"metadata"',
+  "ประชากรจดทะเบียน",
+  "Registered population",
+  "--pillar-accent-land",
+  "--pillar-accent-location",
+  "--pillar-accent-living",
+  'cache: "force-cache"'
+]) {
+  assert(performanceMigration.includes(contract), `Performance-clarity migration is missing: ${contract}`);
+}
+
 const responsiveHarness = readFileSync(join(root, "mobile-qa.html"), "utf8");
 for (const width of [320, 390, 430, 720, 900, 901, 1120, 1440]) {
   assert(responsiveHarness.includes(`data-width="${width}"`), `Responsive QA harness is missing ${width}px`);
@@ -400,8 +444,8 @@ assert(responsiveHarness.includes("box-sizing: content-box"), "Responsive iframe
 const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const baseCss = readFileSync(join(root, "assets/index-cqxdfePB.css"), "utf8");
-const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements.js"), "utf8");
-const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v15.css"), "utf8");
+const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v16.js"), "utf8");
+const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v16.css"), "utf8");
 const canonicalFontCss = readFileSync(join(root, "assets/citymeter-fonts.css"), "utf8");
 const enhancementSourceLower = `${enhancementCss}\n${enhancementJs}`.toLowerCase();
 for (const retiredColor of ["#9f78d8", "#d89a27", "#36b9cc"]) {
@@ -677,8 +721,8 @@ const lightSurfaceCss = cssBlock(":root");
 const darkSurfaceCss = cssBlock('[data-theme="dark"]');
 const sectionSurfaces = [
   ["decision", ".decision-section", "#f6f7f3", "#11191d"],
-  ["showcase", ".showcase-section", "#e2e9ed", "#18333e"],
-  ["explorer", ".explorer-section", "#f2f1df", "#2c2a22"],
+  ["showcase", ".showcase-section", "#eef1ee", "#172126"],
+  ["explorer", ".explorer-section", "#f6f7f3", "#11191d"],
   ["contact", ".contact-section", "#e5e9e6", "#2b3534"],
   ["footer", ".site-footer", "#eef1ee", "#172126"]
 ];
@@ -689,18 +733,21 @@ for (const [name, selector, light, dark] of sectionSurfaces) {
   assert(cssValue(cssBlock(selector), "background") === `var(${token})`, `${selector} must consume ${token}`);
 }
 const pillarSurfaces = [
-  ["land", "#f2f1df", "#2c2a22"],
-  ["location", "#e2e9ed", "#18333e"],
-  ["living", "#e5e9e6", "#2b3534"]
+  ["land", "#f2f1df", "#2c2a22", "#846100", "#f4c44e"],
+  ["location", "#e2e9ed", "#18333e", "#1f629b", "#4c99d5"],
+  ["living", "#e5e9e6", "#2b3534", "#007a58", "#3bd19b"]
 ];
-for (const [pillar, light, dark] of pillarSurfaces) {
+for (const [pillar, light, dark, lightAccent, darkAccent] of pillarSurfaces) {
   const token = `--pillar-surface-${pillar}`;
+  const accentToken = `--pillar-accent-${pillar}`;
   assert(cssValue(lightSurfaceCss, token) === light, `Light ${pillar} pillar surface is stale`);
   assert(cssValue(darkSurfaceCss, token) === dark, `Dark ${pillar} pillar surface is stale`);
+  assert(cssValue(lightSurfaceCss, accentToken) === lightAccent, `Light ${pillar} categorical accent is stale`);
+  assert(cssValue(darkSurfaceCss, accentToken) === darkAccent, `Dark ${pillar} categorical accent is stale`);
   const normalizedSource = normalizedCss(enhancementCss);
   assert(
-    normalizedSource.includes(`.dataset-card[data-pillar="${pillar}"],.showcase-card[data-pillar="${pillar}"]{--pillar-surface:var(${token});}`),
-    `${pillar} cards must consume ${token}`
+    normalizedSource.includes(`.dataset-card[data-pillar="${pillar}"],.showcase-card[data-pillar="${pillar}"]{--pillar-surface:var(${token});--pillar-accent:var(${accentToken});}`),
+    `${pillar} cards must consume ${token} and ${accentToken}`
   );
 }
 for (const [token, light, dark] of [
@@ -709,23 +756,33 @@ for (const [token, light, dark] of [
   ["--pillar-text-metadata", "#686354", "#a6b5b1"],
   ["--pillar-border-hairline", "#dce1dd", "#33403d"],
   ["--pillar-border-default", "#c9d0cb", "#46524f"],
+  ["--pillar-border-emphasis", "#7d877f", "#7c8a84"],
   ["--pillar-interaction-accent", "#176b82", "#68c4e2"],
   ["--pillar-surface-raised", "#ffffff", "#293337"],
-  ["--pillar-surface-alt", "#eef1ee", "#172126"]
+  ["--pillar-surface-alt", "#eef1ee", "#172126"],
+  ["--pillar-accent-ink", "#ffffff", "#182327"]
 ]) {
   assert(cssValue(lightSurfaceCss, token) === light, `Light local pillar contract is stale: ${token}`);
   assert(cssValue(darkSurfaceCss, token) === dark, `Dark local pillar contract is stale: ${token}`);
 }
 assert(
-  normalizedCss(enhancementCss).includes(".dataset-card[data-pillar],.showcase-card[data-pillar]{--text:var(--pillar-text-primary);--text-secondary:var(--pillar-text-secondary);--text-meta:var(--pillar-text-metadata);--hairline:var(--pillar-border-hairline);--border:var(--pillar-border-default);--accent:var(--pillar-interaction-accent);--raised:var(--pillar-surface-raised);--canvas-soft:var(--pillar-surface-alt);--card:var(--pillar-surface);color:var(--text);background:var(--pillar-surface);}"),
+  normalizedCss(enhancementCss).includes(".dataset-card[data-pillar],.showcase-card[data-pillar]{--text:var(--pillar-text-primary);--text-secondary:var(--pillar-text-secondary);--text-meta:var(--pillar-text-metadata);--hairline:var(--pillar-border-hairline);--border:var(--pillar-border-emphasis);--accent:var(--pillar-interaction-accent);--raised:var(--pillar-surface-raised);--canvas-soft:var(--pillar-surface-alt);--card:var(--pillar-surface);color:var(--text);background:var(--pillar-surface);border-color:var(--border);border-block-start:5pxsolidvar(--pillar-accent);}"),
   "Pillar cards must resolve the complete local foreground contract"
 );
+assert(enhancementCss.includes(".dataset-kicker > span:first-child") && enhancementCss.includes(".record-group"), "Pillar cards must retain a visible category label cue");
+assert(enhancementCss.includes("background: var(--pillar-accent)") && enhancementCss.includes("color: var(--pillar-accent-ink)"), "Pillar category chips must use the governed local accent contract");
 const runtimeStart = enhancementJs.slice(enhancementJs.indexOf("async function start()"));
 assert(runtimeStart.includes("enhanceAfterHydration") && runtimeStart.includes('window.addEventListener("load", enhanceAfterHydration'), "Branding must wait for the window load boundary");
 assert((runtimeStart.match(/requestAnimationFrame/g) || []).length >= 2, "Branding must wait two animation frames after load before mutating hydrated markup");
 assert(enhancementJs.includes("waitForHydrationStability") && enhancementJs.includes("minimumDelayElapsed") && enhancementJs.includes("quietWindowElapsed"), "Branding must wait for a quiet hydration boundary before DOM mutation");
 assert(enhancementJs.includes("}, 1000)") && enhancementJs.includes("}, 250)") && enhancementJs.includes("setTimeout(finish, 3000)"), "Hydration stability timing contract is stale");
 assert(runtimeStart.includes("registryResult") && runtimeStart.includes(".catch((error) => ({ error }))"), "Branding must remain available when the source registry fails");
+assert(runtimeStart.includes("catalog-source-review.json?v=20260815-performance-clarity-v16") && runtimeStart.includes('cache: "force-cache"'), "Source registry must be deferred and bound to the immutable release cache key");
+for (const retiredRuntime of ["renderHeroChapter", "heroTimer", "heroVideo", "video.load()", 'url.searchParams.set("v"']) {
+  assert(!enhancementJs.includes(retiredRuntime), `Retired duplicate-load or hero-timer behavior remains: ${retiredRuntime}`);
+}
+assert(enhancementJs.includes('video.preload = "metadata"'), "Hero enhancement must preserve metadata-only preload");
+assert(enhancementJs.includes('shell.querySelectorAll(".demo-story-caption, .demo-progress").forEach((node) => node.remove())'), "Hero enhancement must remove stale visible caption overlays");
 assert(thHtml.includes("ดูต่อบนมือถือ"), "Thai page is missing the permanent handoff eyebrow");
 assert(thHtml.includes("เก็บตัวอย่างนี้ไว้ใช้ เมื่อต้องตัดสินใจเรื่องพื้นที่"), "Thai page is missing the permanent handoff title");
 assert(thHtml.includes("สแกน QR เพื่อเปิดบนมือถือ เก็บลิงก์ไว้ดูเอง หรือส่งให้เพื่อนที่กำลังเลือกบ้าน ทำเลธุรกิจ หรือพื้นที่ลงทุน"), "Thai page is missing the permanent handoff support copy");
@@ -737,13 +794,37 @@ assert(enHtml.includes("Scan to open it on your phone, save it for yourself, or 
 assert(enHtml.includes("Save or share this example"), "English page is missing the permanent handoff share CTA");
 assert(enHtml.includes("The link opens the same example and data."), "English page is missing the permanent handoff note");
 
-const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v4.js"), "utf8");
+const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v5.js"), "utf8");
 assert(mainBundle.includes('id:"page-title",lang:"en",children:c.hero.title'), "Compiled bundle must render the CityMETER page title with English language metadata");
 assert(mainBundle.includes('className:"citymeter-label",href:"#top",lang:"en",children:"CityMETER"'), "Compiled bundle must render the CityMETER header label with English language metadata");
 assert(mainBundle.includes('className:d<2?"showcase-card showcase-card-wide":"showcase-card","data-pillar":s.group,children:'), "Compiled bundle must render semantic showcase pillars before hydration");
 assert(mainBundle.includes('className:"dataset-card","data-pillar":c.group,id:'), "Compiled bundle must render semantic dataset pillars before hydration");
 assert(!mainBundle.includes('id:"page-title",children:c.hero.title'), "Compiled bundle still contains the hydration-unsafe page-title pattern");
 assert(!mainBundle.includes('className:"citymeter-label",href:"#top",children:"CityMETER"'), "Compiled bundle still contains the hydration-unsafe CityMETER label pattern");
+assert(mainBundle.includes('loading:"lazy",decoding:"async"'), "Compiled bundle must lazy-load and asynchronously decode deferred previews");
+assert(mainBundle.includes('preload:"metadata"'), "Compiled hero video must request metadata before autoplay");
+assert(!mainBundle.includes('className:"demo-story-caption"') && !mainBundle.includes('className:"demo-progress"'), "Compiled hero still renders the retired caption overlay");
+assert(!mainBundle.includes('p.jsxs("figcaption",{children:[p.jsx("span",{children:c.hero.demoJourney})'), "Compiled hero still renders the retired visible figcaption");
+assert(mainBundle.includes('id:"demo-transcript",className:"visually-hidden"'), "Compiled hero must retain the accessible transcript");
+const compiledTranscriptBlocks = mainBundle.match(/videoBeats:\[.*?\]\},featureProofs:/g) || [];
+const compiledTranscript = compiledTranscriptBlocks.join("\n");
+assert(compiledTranscriptBlocks.length === 2, "Compiled bundle must contain one Thai and one English reel transcript");
+assert(compiledTranscriptBlocks.every((block) => (block.match(/\{start:/g) || []).length === 4), "Each compiled reel transcript must describe four source screens");
+for (const transcriptTerm of [
+  "ประชากรจดทะเบียน",
+  "อาคาร 3 มิติที่สวนพลู",
+  "รายได้องค์กรปกครองส่วนท้องถิ่น",
+  "อุปสงค์การท่องเที่ยว",
+  "Registered population",
+  "3D buildings in Suan Plu",
+  "Municipal revenue",
+  "Tourism demand"
+]) {
+  assert(compiledTranscript.includes(transcriptTerm), `Compiled reel v3 transcript is missing: ${transcriptTerm}`);
+}
+for (const retiredTranscriptTerm of ["โจทย์ที่ทีมทำเลเจอทุกวัน", "A question every location team faces", "Risk is never one layer"]) {
+  assert(!compiledTranscript.includes(retiredTranscriptTerm), `Compiled hero still contains retired transcript copy: ${retiredTranscriptTerm}`);
+}
 for (const record of review.records) {
   const bundleId = record.id.replace(/^dataset-events-/, "events/").replace(/^dataset-/, "");
   const marker = `id:"${bundleId}",`;
@@ -803,4 +884,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: deterministic 1200x630 Land Appraisal social card, semantic Land/Location/Living parity across six showcase and 38 dataset cards, exact quiet pillar surfaces with complete light/dark foreground contracts, strict 320px iframe containment, root scroll-end containment, deduplicated base CSS v2 font declarations, canonical typography with no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe immutable main bundle v4, exact Measure deep shell, five muted section surfaces per theme, six true-edge 50%-to-0% radial logo circles, concise bilingual contact titles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
+console.log("CityMETER release validation passed: deterministic 1200x630 Land Appraisal social card, semantic Land/Location/Living parity across six showcase and 38 dataset cards, component-local Vivid Civic category rails and chips, neutral section separation, complete light/dark foreground contracts, 38 dataset previews plus six showcase and one intent preview lazy-loaded with hydration parity, full-frame silent hero media without visible captions, accurate four-screen reel v3 transcripts, metadata-only video preload, no runtime preview/video cache-busting, deferred registry fetch, strict 320px iframe containment, root scroll-end containment, canonical typography, hydration-safe immutable main bundle v5, exact Measure deep shell, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
