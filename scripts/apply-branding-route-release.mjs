@@ -1,9 +1,9 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const releaseReceipt = "2026-08-14-land-appraisal-share";
+const releaseReceipt = "2026-08-15-pillar-card-surfaces";
 
 const routes = new Map(Object.entries({
   "dataset-buildings": "https://landometer.com/v3/citymeter-3d/BKK/L/8b60964e-0c26-408e-95f6-e3f46fe37d46?d=building",
@@ -136,6 +136,35 @@ function updateJsonLd(html, page) {
   return html.replace(pattern, `<script type="application/ld+json">${JSON.stringify(json)}</script>`);
 }
 
+function updateShowcasePillars(html, page) {
+  let cursor = 0;
+  let count = 0;
+  const counts = { land: 0, location: 0, living: 0 };
+
+  while (true) {
+    const start = html.indexOf('<article class="showcase-card', cursor);
+    if (start < 0) break;
+    const end = html.indexOf("</article>", start) + "</article>".length;
+    if (end < "</article>".length) throw new Error(`Unclosed showcase card in ${page}`);
+    const card = html.slice(start, end);
+    const group = card.match(/<span class="record-group">(LAND|LOCATION|LIVING)<\/span>/)?.[1]?.toLowerCase();
+    if (!group) throw new Error(`Showcase pillar not found in ${page} at index ${start}`);
+    const updated = card.replace(
+      /(<article class="showcase-card[^"]*")(?: data-pillar="[^"]+")?/,
+      `$1 data-pillar="${group}"`
+    );
+    html = html.slice(0, start) + updated + html.slice(end);
+    cursor = start + updated.length;
+    counts[group] += 1;
+    count += 1;
+  }
+
+  if (count !== 6 || counts.land !== 1 || counts.location !== 3 || counts.living !== 2) {
+    throw new Error(`Unexpected showcase pillar counts in ${page}: ${JSON.stringify(counts)}`);
+  }
+  return html;
+}
+
 function updatePage(page) {
   const path = join(root, page);
   const assetPrefix = page === "index.html" ? "./" : "../";
@@ -173,15 +202,16 @@ function updatePage(page) {
     .replaceAll("citymeter-share-2026-08-14.jpg", "citymeter-land-appraisal-share-2026-08-14.jpg")
     .replaceAll("หน้าจอ CityMETER แสดงข้อมูลการท่องเที่ยวบนแผนที่ประเทศไทย", "หน้าจอ CityMETER แสดงราคาประเมินที่ดินด้วยแท่งข้อมูลสามมิติบนแผนที่")
     .replaceAll("CityMETER screen showing tourism data across Thailand", "CityMETER Land Appraisal screen showing 3D data columns on a map")
-    .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements.css?v=14")
-    .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements.css?v=14")
-    .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements.css?v=14")
-    .replaceAll("catalog-enhancements.css?v=8", "catalog-enhancements.css?v=14")
-    .replaceAll("catalog-enhancements.css?v=9", "catalog-enhancements.css?v=14")
-    .replaceAll("catalog-enhancements.css?v=10", "catalog-enhancements.css?v=14")
-    .replaceAll("catalog-enhancements.css?v=11", "catalog-enhancements.css?v=14")
-    .replaceAll("catalog-enhancements.css?v=12", "catalog-enhancements.css?v=14")
-    .replaceAll("catalog-enhancements.css?v=13", "catalog-enhancements.css?v=14")
+    .replaceAll("catalog-enhancements.css?v=5", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=6", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=7", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=8", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=9", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=10", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=11", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=12", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=13", "catalog-enhancements-v15.css")
+    .replaceAll("catalog-enhancements.css?v=14", "catalog-enhancements-v15.css")
     .replaceAll("catalog-enhancements.js?v=8", "catalog-enhancements.js?v=15")
     .replaceAll("catalog-enhancements.js?v=9", "catalog-enhancements.js?v=15")
     .replaceAll("catalog-enhancements.js?v=10", "catalog-enhancements.js?v=15")
@@ -193,9 +223,10 @@ function updatePage(page) {
     .replaceAll("index-cqxdfePB.css\"", "index-cqxdfePB.css?v=2\"")
     .replace('<h1 id="page-title">', '<h1 id="page-title" lang="en">')
     .replace('<a class="citymeter-label" href="#top">', '<a class="citymeter-label" href="#top" lang="en">')
-    .replaceAll("index-qbT50gkr-v3.js?v=2", "index-qbT50gkr-v3.js?v=5")
-    .replaceAll("index-qbT50gkr-v3.js?v=3", "index-qbT50gkr-v3.js?v=5")
-    .replaceAll("index-qbT50gkr-v3.js?v=4", "index-qbT50gkr-v3.js?v=5");
+    .replaceAll("index-qbT50gkr-v3.js?v=2", "index-qbT50gkr-v4.js")
+    .replaceAll("index-qbT50gkr-v3.js?v=3", "index-qbT50gkr-v4.js")
+    .replaceAll("index-qbT50gkr-v3.js?v=4", "index-qbT50gkr-v4.js")
+    .replaceAll("index-qbT50gkr-v3.js?v=5", "index-qbT50gkr-v4.js");
 
   if (html.includes('name="citymeter:release-receipt"')) {
     html = html.replace(
@@ -234,15 +265,23 @@ function updatePage(page) {
     const end = html.indexOf("</article>", start) + "</article>".length;
     if (start < 0 || end < "</article>".length) throw new Error(`Card not found in ${page}: ${id}`);
     const card = html.slice(start, end);
+    const group = card.match(/<div class="dataset-kicker"><span>(land|location|living)<\/span>/)?.[1];
+    if (!group) throw new Error(`Dataset pillar not found in ${page}: ${id}`);
     let replacements = 0;
-    const updated = card.replace(/(<a class="dataset-(?:image|open)" href=")[^"]+("[^>]*>)/g, (_match, before, after) => {
-      replacements += 1;
-      return `${before}${route}${after}`;
-    });
+    const updated = card
+      .replace(
+        new RegExp(`(<article class="dataset-card" id="${id}")(?: data-pillar="[^"]+")?`),
+        `$1 data-pillar="${group}"`
+      )
+      .replace(/(<a class="dataset-(?:image|open)" href=")[^"]+("[^>]*>)/g, (_match, before, after) => {
+        replacements += 1;
+        return `${before}${route}${after}`;
+      });
     if (replacements !== 2) throw new Error(`Expected two primary links for ${id} in ${page}; found ${replacements}`);
     html = html.slice(0, start) + updated + html.slice(end);
   }
 
+  html = updateShowcasePillars(html, page);
   html = updateJsonLd(html, page);
   for (const [focusedCopy, hydrationBaseline] of hydrationParity[page]) {
     html = html.replaceAll(focusedCopy, hydrationBaseline);
@@ -251,8 +290,9 @@ function updatePage(page) {
 }
 
 function updateHydratedBundle() {
-  const path = join(root, "assets/index-qbT50gkr-v3.js");
-  let source = readFileSync(path, "utf8");
+  const priorPath = join(root, "assets/index-qbT50gkr-v3.js");
+  const path = join(root, "assets/index-qbT50gkr-v4.js");
+  let source = readFileSync(existsSync(path) ? path : priorPath, "utf8");
   const replacements = [
     [`ก่อนตัดสินใจเรื่องพื้นที่
 ดูให้เห็นมากกว่าจุดบนแผนที่`, "CityMETER"],
@@ -261,7 +301,9 @@ see more than pins on a map`, "CityMETER"],
     ["คุยกับทีม Landometer ว่าควรเริ่มตรวจข้อมูลชุดไหน", "คุยกับทีม Landometer"],
     ["Ask the Landometer team where to start", "Talk to the Landometer team"],
     ['id:"page-title",children:c.hero.title', 'id:"page-title",lang:"en",children:c.hero.title'],
-    ['className:"citymeter-label",href:"#top",children:"CityMETER"', 'className:"citymeter-label",href:"#top",lang:"en",children:"CityMETER"']
+    ['className:"citymeter-label",href:"#top",children:"CityMETER"', 'className:"citymeter-label",href:"#top",lang:"en",children:"CityMETER"'],
+    ['className:d<2?"showcase-card showcase-card-wide":"showcase-card",children:', 'className:d<2?"showcase-card showcase-card-wide":"showcase-card","data-pillar":s.group,children:'],
+    ['className:"dataset-card",id:', 'className:"dataset-card","data-pillar":c.group,id:']
   ];
   for (const [from, to] of replacements) {
     if (source.includes(from)) source = source.replace(from, to);
@@ -289,4 +331,4 @@ updatePage("index.html");
 updatePage("en/index.html");
 updateHydratedBundle();
 
-console.log("Applied CityMETER headline, deduplicated base CSS v2 and enhancement CSS v14 cache contracts, canonical fonts, true-edge radial supporter logos, scroll-end containment, concise contact CTA, Land Appraisal social card, 38 canonical routes, hydration parity and benefit-first source details.");
+console.log("Applied CityMETER headline, immutable enhancement CSS v15 and hydrated bundle v4, canonical fonts, true-edge radial supporter logos, scroll-end containment, concise contact CTA, Land Appraisal social card, exact quiet Land/Location/Living card surfaces, 38 canonical routes, hydration parity and benefit-first source details.");

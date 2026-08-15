@@ -213,3 +213,13 @@ current hotfix result: passed for observable/source contracts; English `FontFace
 - Carried checks returned 38 cards, 38 source reviews and 38 benefits; two supporter groups/six 112 × 112 cells; exact closest-side radial; no horizontal overflow; footer gap within ±0.5 px; and correct bilingual contact titles. No application-origin console error was present; observed errors were limited to a browser-extension origin.
 
 current release result: published; production social metadata/image QA and carried observable regression checks passed
+
+## 2026-08-15 quiet pillar-card surfaces — pre-release gate
+
+- Scope: color-only surface differentiation for Land / Location / Living across 6 showcase cards and 38 dataset cards; card geometry, images, content, evidence states and direct routes remain unchanged.
+- Exact mapping: Land `#F2F1DF / #2C2A22`; Location `#E2E9ED / #18333E`; Living `#E5E9E6 / #2B3534`.
+- Static counts per route: dataset 12 / 13 / 13; showcase 1 / 3 / 2. The active compiled bundle emits the same semantic `data-pillar` contract.
+- Local foreground contracts use exact v0.8.9 primary, secondary, metadata, hairline, border, interaction, raised and alt values in both themes.
+- Land Appraisal social image is retained byte-for-byte at 1200 × 630, SHA-256 `cadc66644987afa5abb29dbe720adc9302fe276b12d64172e794dd4e6ddabd88`; no Tourism metadata reference remains.
+- Migration two-run idempotency, syntax checks, full validator and `git diff --check`: passed.
+- Production/browser receipt: pending deployment.

@@ -156,11 +156,30 @@ for (const page of ["index.html", "en/index.html"]) {
         "jetbrains-mono-latin-400-normal-V6pRDFza.woff2"
       ];
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
-  assert(html.includes("catalog-enhancements.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
-  assert(html.includes("catalog-enhancements.css?v=14"), `${page} must load the true-edge radial and scroll-end containment stylesheet revision`);
+  const datasetPillars = Array.from(
+    html.matchAll(/<article class="dataset-card" id="[^"]+" data-pillar="(land|location|living)"/g),
+    (match) => match[1]
+  );
+  const showcasePillars = Array.from(
+    html.matchAll(/<article class="showcase-card[^"]*" data-pillar="(land|location|living)"/g),
+    (match) => match[1]
+  );
+  const countPillars = (pillars) => Object.fromEntries(
+    ["land", "location", "living"].map((pillar) => [pillar, pillars.filter((candidate) => candidate === pillar).length])
+  );
+  assert(
+    JSON.stringify(countPillars(datasetPillars)) === JSON.stringify({ land: 12, location: 13, living: 13 }),
+    `${page} dataset pillar contract must remain 12 / 13 / 13`
+  );
+  assert(
+    JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
+    `${page} showcase pillar contract must remain 1 / 3 / 2`
+  );
+  assert(html.includes("catalog-enhancements-v15.css") && html.includes("catalog-enhancements.js"), `${page} is missing the enhancement layer`);
+  assert(html.includes("catalog-enhancements-v15.css"), `${page} must load the immutable quiet-pillar surface stylesheet revision`);
   assert(html.includes("catalog-enhancements.js?v=15"), `${page} must load the canonical-language benefit-first r4 enhancement layer`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements\.css\?v=\d+/g) || []).join() === "catalog-enhancements.css?v=14", `${page} must load exactly one enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v15.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
   assert((html.match(/catalog-enhancements\.js\?v=\d+/g) || []).join() === "catalog-enhancements.js?v=15", `${page} must load exactly one enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
@@ -171,10 +190,10 @@ for (const page of ["index.html", "en/index.html"]) {
     assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
   }
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
-  assert(html.includes("index-qbT50gkr-v3.js?v=5"), `${page} must load the concise contact-title bundle revision`);
-  assert((html.match(/index-qbT50gkr-v3\.js\?v=\d+/g) || []).join() === "index-qbT50gkr-v3.js?v=5", `${page} must load exactly one main bundle revision`);
+  assert(html.includes("index-qbT50gkr-v4.js"), `${page} must load the semantic pillar bundle revision`);
+  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v4.js", `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes('name="citymeter:release-receipt" content="2026-08-14-land-appraisal-share"'), `${page} is missing the final release receipt`);
+  assert(html.includes('name="citymeter:release-receipt" content="2026-08-15-pillar-card-surfaces"'), `${page} is missing the quiet-pillar release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
   const socialCard = "https://montri-th.github.io/CityMETER/media/social/citymeter-land-appraisal-share-2026-08-14.jpg";
   const socialAlt = page === "index.html"
@@ -247,10 +266,12 @@ for (const asset of [
   "CITYMETER_BRANDING_DEEPLINK_RELEASE_2026-08-14.md",
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
+  "assets/catalog-enhancements-v15.css",
   "assets/citymeter-fonts.css",
   "assets/font-assets.manifest.json",
   "assets/font-license-records.json",
   "assets/index-qbT50gkr-v3.js",
+  "assets/index-qbT50gkr-v4.js",
   "scripts/apply-branding-route-release.mjs",
   "scripts/split-supporter-logos.sh",
   "scripts/build-hero-reel.sh",
@@ -326,10 +347,10 @@ assert(
 );
 
 const releaseMigration = readFileSync(join(root, "scripts/apply-branding-route-release.mjs"), "utf8");
-for (const priorVersion of [5, 6, 7, 8, 9, 10, 11, 12, 13]) {
+for (const priorVersion of [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]) {
   assert(
-    releaseMigration.includes(`.replaceAll("catalog-enhancements.css?v=${priorVersion}", "catalog-enhancements.css?v=14")`),
-    `Release migration must retain the CSS v${priorVersion} -> v14 upgrade`
+    releaseMigration.includes(`.replaceAll("catalog-enhancements.css?v=${priorVersion}", "catalog-enhancements-v15.css")`),
+    `Release migration must retain the CSS v${priorVersion} -> immutable v15 upgrade`
   );
 }
 for (const priorVersion of [8, 9, 10, 11, 12, 13, 14]) {
@@ -352,13 +373,15 @@ for (const fontFile of [
 ]) {
   assert(releaseMigration.includes(fontFile), `Release migration must manage route-specific preload: ${fontFile}`);
 }
-for (const priorVersion of [2, 3, 4]) {
+for (const priorVersion of [2, 3, 4, 5]) {
   assert(
-    releaseMigration.includes(`.replaceAll("index-qbT50gkr-v3.js?v=${priorVersion}", "index-qbT50gkr-v3.js?v=5")`),
-    `Release migration must retain the main bundle v${priorVersion} -> v5 upgrade`
+    releaseMigration.includes(`.replaceAll("index-qbT50gkr-v3.js?v=${priorVersion}", "index-qbT50gkr-v4.js")`),
+    `Release migration must retain the main bundle v3 query ${priorVersion} -> immutable v4 upgrade`
   );
 }
-assert(releaseMigration.includes("2026-08-14-land-appraisal-share"), "Release migration must bind the current receipt");
+assert(releaseMigration.includes("2026-08-15-pillar-card-surfaces"), "Release migration must bind the quiet-pillar receipt");
+assert(releaseMigration.includes('data-pillar="${group}"'), "Release migration must add semantic pillar attributes to prerendered cards");
+assert(releaseMigration.includes('"data-pillar":s.group') && releaseMigration.includes('"data-pillar":c.group'), "Release migration must add semantic pillar attributes to hydrated cards");
 assert(releaseMigration.includes('.replaceAll("citymeter-share-2026-08-14.jpg", "citymeter-land-appraisal-share-2026-08-14.jpg")'), "Release migration must replace the retired tourism social card");
 assert(releaseMigration.includes('หน้าจอ CityMETER แสดงราคาประเมินที่ดินด้วยแท่งข้อมูลสามมิติบนแผนที่'), "Release migration must set the Thai Land Appraisal social alt text");
 assert(releaseMigration.includes('CityMETER Land Appraisal screen showing 3D data columns on a map'), "Release migration must set the English Land Appraisal social alt text");
@@ -378,7 +401,7 @@ const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const baseCss = readFileSync(join(root, "assets/index-cqxdfePB.css"), "utf8");
 const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements.js"), "utf8");
-const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements.css"), "utf8");
+const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v15.css"), "utf8");
 const canonicalFontCss = readFileSync(join(root, "assets/citymeter-fonts.css"), "utf8");
 const enhancementSourceLower = `${enhancementCss}\n${enhancementJs}`.toLowerCase();
 for (const retiredColor of ["#9f78d8", "#d89a27", "#36b9cc"]) {
@@ -665,6 +688,38 @@ for (const [name, selector, light, dark] of sectionSurfaces) {
   assert(cssValue(darkSurfaceCss, token) === dark, `Dark ${name} surface token is stale`);
   assert(cssValue(cssBlock(selector), "background") === `var(${token})`, `${selector} must consume ${token}`);
 }
+const pillarSurfaces = [
+  ["land", "#f2f1df", "#2c2a22"],
+  ["location", "#e2e9ed", "#18333e"],
+  ["living", "#e5e9e6", "#2b3534"]
+];
+for (const [pillar, light, dark] of pillarSurfaces) {
+  const token = `--pillar-surface-${pillar}`;
+  assert(cssValue(lightSurfaceCss, token) === light, `Light ${pillar} pillar surface is stale`);
+  assert(cssValue(darkSurfaceCss, token) === dark, `Dark ${pillar} pillar surface is stale`);
+  const normalizedSource = normalizedCss(enhancementCss);
+  assert(
+    normalizedSource.includes(`.dataset-card[data-pillar="${pillar}"],.showcase-card[data-pillar="${pillar}"]{--pillar-surface:var(${token});}`),
+    `${pillar} cards must consume ${token}`
+  );
+}
+for (const [token, light, dark] of [
+  ["--pillar-text-primary", "#182327", "#f1f4ef"],
+  ["--pillar-text-secondary", "#5f635a", "#c4ceca"],
+  ["--pillar-text-metadata", "#686354", "#a6b5b1"],
+  ["--pillar-border-hairline", "#dce1dd", "#33403d"],
+  ["--pillar-border-default", "#c9d0cb", "#46524f"],
+  ["--pillar-interaction-accent", "#176b82", "#68c4e2"],
+  ["--pillar-surface-raised", "#ffffff", "#293337"],
+  ["--pillar-surface-alt", "#eef1ee", "#172126"]
+]) {
+  assert(cssValue(lightSurfaceCss, token) === light, `Light local pillar contract is stale: ${token}`);
+  assert(cssValue(darkSurfaceCss, token) === dark, `Dark local pillar contract is stale: ${token}`);
+}
+assert(
+  normalizedCss(enhancementCss).includes(".dataset-card[data-pillar],.showcase-card[data-pillar]{--text:var(--pillar-text-primary);--text-secondary:var(--pillar-text-secondary);--text-meta:var(--pillar-text-metadata);--hairline:var(--pillar-border-hairline);--border:var(--pillar-border-default);--accent:var(--pillar-interaction-accent);--raised:var(--pillar-surface-raised);--canvas-soft:var(--pillar-surface-alt);--card:var(--pillar-surface);color:var(--text);background:var(--pillar-surface);}"),
+  "Pillar cards must resolve the complete local foreground contract"
+);
 const runtimeStart = enhancementJs.slice(enhancementJs.indexOf("async function start()"));
 assert(runtimeStart.includes("enhanceAfterHydration") && runtimeStart.includes('window.addEventListener("load", enhanceAfterHydration'), "Branding must wait for the window load boundary");
 assert((runtimeStart.match(/requestAnimationFrame/g) || []).length >= 2, "Branding must wait two animation frames after load before mutating hydrated markup");
@@ -682,9 +737,11 @@ assert(enHtml.includes("Scan to open it on your phone, save it for yourself, or 
 assert(enHtml.includes("Save or share this example"), "English page is missing the permanent handoff share CTA");
 assert(enHtml.includes("The link opens the same example and data."), "English page is missing the permanent handoff note");
 
-const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v3.js"), "utf8");
+const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v4.js"), "utf8");
 assert(mainBundle.includes('id:"page-title",lang:"en",children:c.hero.title'), "Compiled bundle must render the CityMETER page title with English language metadata");
 assert(mainBundle.includes('className:"citymeter-label",href:"#top",lang:"en",children:"CityMETER"'), "Compiled bundle must render the CityMETER header label with English language metadata");
+assert(mainBundle.includes('className:d<2?"showcase-card showcase-card-wide":"showcase-card","data-pillar":s.group,children:'), "Compiled bundle must render semantic showcase pillars before hydration");
+assert(mainBundle.includes('className:"dataset-card","data-pillar":c.group,id:'), "Compiled bundle must render semantic dataset pillars before hydration");
 assert(!mainBundle.includes('id:"page-title",children:c.hero.title'), "Compiled bundle still contains the hydration-unsafe page-title pattern");
 assert(!mainBundle.includes('className:"citymeter-label",href:"#top",children:"CityMETER"'), "Compiled bundle still contains the hydration-unsafe CityMETER label pattern");
 for (const record of review.records) {
@@ -746,4 +803,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: deterministic 1200x630 Land Appraisal social card, strict 320px iframe containment, root scroll-end containment, deduplicated base CSS v2 font declarations, canonical typography with no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe main bundle v5, exact Measure deep shell, five muted section surfaces per theme, six true-edge 50%-to-0% radial logo circles, concise bilingual contact titles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
+console.log("CityMETER release validation passed: deterministic 1200x630 Land Appraisal social card, semantic Land/Location/Living parity across six showcase and 38 dataset cards, exact quiet pillar surfaces with complete light/dark foreground contracts, strict 320px iframe containment, root scroll-end containment, deduplicated base CSS v2 font declarations, canonical typography with no Sarabun, six semantic font faces across 18 immutable files with four OFL receipts, route-specific critical preloads, hydration-safe immutable main bundle v4, exact Measure deep shell, five muted section surfaces per theme, six true-edge 50%-to-0% radial logo circles, concise bilingual contact titles, 38 unique bilingual benefits, benefit-first r4 disclosures, canonical routes, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");

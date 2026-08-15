@@ -211,3 +211,12 @@ dataset อื่นยังใช้ national route เพราะภาพ�
 - `scripts/split-supporter-logos.sh`
 - `media/qr/*.png`
 - `CITYMETER_BRANDING_DEEPLINK_RELEASE_2026-08-14.md`
+
+## Current release addendum — quiet Land / Location / Living card surfaces (`2026-08-15`)
+
+- Receipt: `2026-08-15-pillar-card-surfaces`.
+- Exact v0.8.9 surface assignment: Land → `surface.beigeTint`, Location → `surface.blueTint`, Living → `surface.soft`, with exact light/dark values and complete local foreground contracts.
+- Scope covers both card systems: showcase 1 / 3 / 2 and dataset catalog 12 / 13 / 13. Static HTML and hydrated bundle share semantic `data-pillar` attributes; filtering does not infer color from position or text.
+- Active immutable assets: `assets/catalog-enhancements-v15.css` and `assets/index-qbT50gkr-v4.js`.
+- Land Appraisal social image and all three metadata references remain unchanged and hash-locked; the older Tourism preview observed in LINE is platform cache, not current served HTML.
+- Local migration idempotency, JavaScript syntax, full validator and diff whitespace gate: passed. Production receipt is recorded in `CITYMETER_PILLAR_SURFACES_RELEASE_2026-08-15.md` after deployment.

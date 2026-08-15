@@ -17,6 +17,7 @@
 - Theme system / light / dark โดยจำ preference ของผู้ใช้
 - 5 decision intents สำหรับการลงทุน/พัฒนา การเลือกทำเล การประเมินความเสี่ยง การวางบริการ และงานวิเคราะห์
 - สีพื้นของแต่ละช่วงใช้ surface token คนละบทบาท—canvas, blue tint, beige tint, soft และ alt—ทั้ง light/dark เพื่อให้หน้าแบ่งจังหวะชัดขึ้นโดยยังคงสีเงียบและอ่านง่าย
+- การ์ด Land / Location / Living ใช้ quiet surface คนละบทบาททั้ง 6 featured cards และ 38 dataset cards: beige tint, blue tint และ soft ตามลำดับ พร้อม semantic `data-pillar` ที่ตรงกันก่อนและหลัง hydration
 - Hero และ mobile handoff ใช้ Design System v0.8.9 `atmosphere.gradient.measure.deep` แบบเดียวกัน: `linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)` พร้อม foreground แบบ onDeep
 - Social share card ใช้ภาพหน้าจอ Land Appraisal จริงที่แสดงแท่งข้อมูลสามมิติบนแผนที่ ตัดเป็น 1200 × 630 แบบ crop-only โดยไม่วาดหรือเติมข้อมูลใหม่
 - ฟอนต์ใช้ canonical role แยกหน้าที่: Arvo สำหรับ display ภาษาอังกฤษ, IBM Plex Sans Thai Looped สำหรับหัวข้อไทย, Bai Jamjuree สำหรับ body และ JetBrains Mono + IBM Plex Sans Thai สำหรับ technical label; ทุก webfont subset ระบุ `unicode-range` และไม่มี Sarabun ใน shipped font contract
@@ -40,6 +41,7 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 - `index.html` / `en/index.html` — deployed prerendered Thai/English output
 - `assets/index-qbT50gkr.js` / `assets/index-cqxdfePB.css` — original compiled React application output (the referenced Vite `src/` files are not present in this repository)
 - `assets/catalog-enhancements.js` / `assets/catalog-enhancements.css` — maintainable post-hydration layer for source drawers, QR, masonry and the mobile hero structure
+- `assets/catalog-enhancements-v15.css` / `assets/index-qbT50gkr-v4.js` — immutable quiet-pillar stylesheet และ hydrated semantic pillar bundle สำหรับ release 15 August 2026
 - `assets/citymeter-fonts.css` — canonical Design System typography roles, Thai/Latin subset coverage and line-height contract; the IBM Plex Sans Thai 400 subset assets are immutable hash-suffixed WOFF2 files
 - `assets/font-assets.manifest.json` / `assets/font-license-records.json` — six semantic face records covering 18 hash-verified webfont files and four OFL-1.1 license receipts
 - `data/catalog-source-review.json` — bilingual 38-record source ledger พร้อมข้อความ reader benefit เฉพาะรายการ reviewed on 14 August 2026
@@ -47,6 +49,7 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 - `scripts/generate-qr-assets.mjs` — reproducible dataset-URL QR generator
 - `CityMETER_Landing_Page_Prototype_DS_0.8.9.html` — lightweight noindex entry file ที่พาไปยัง static showcase หลัก
 - `design-qa.md` / `qa/` — visual QA evidence ที่ 1920×1080, desktop และ mobile
+- `CITYMETER_PILLAR_SURFACES_RELEASE_2026-08-15.md` — release contract, exact surface mapping, social-card state และ production receipt
 
 ## Status
 
