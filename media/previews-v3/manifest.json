@@ -1,0 +1,365 @@
+{
+  "files": [
+    {
+      "height": 500,
+      "name": "apartment-rent.webp",
+      "outputBytes": 55682,
+      "outputSha256": "7760256342475fa6e377ee0a56f49748f54f02407de99e8987b5e05ab85d26c3",
+      "sourceBytes": 208336,
+      "sourceSha256": "22213e46fbce9fc0ac25faefe27df1560e5cc28ad9e51934ba531a87d215fa4b",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "buildings.webp",
+      "outputBytes": 57306,
+      "outputSha256": "5fa081b1cf2a8abb377da74d65fca42ae6a8c1ee177e7f10a07a7deb679a2c98",
+      "sourceBytes": 114794,
+      "sourceSha256": "5cb7caa670625d283ad339526238f97fa17a9063ae63dd932a64839c28a8395b",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "business-dynamics.webp",
+      "outputBytes": 27486,
+      "outputSha256": "6ad7d43769178b2f8cba65ac64c3edba86e371fac4909ae8ead821e5f84dadcb",
+      "sourceBytes": 58840,
+      "sourceSha256": "d162e011fd845c01c6c4c282371ca8a8833377f27f83d84943cbda18a61dec5c",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "condo-appraisal.webp",
+      "outputBytes": 17138,
+      "outputSha256": "6a756a10e6d9657a3fa6394daa9eaeaa3f0d3e6e2f96ab8459b7c388dcfc74eb",
+      "sourceBytes": 37778,
+      "sourceSha256": "b06400e71c03ba89942d3945fc39a9930fefffb1f34bae0cbcbaafe309e19ff7",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "condo-listing-prices.webp",
+      "outputBytes": 57018,
+      "outputSha256": "7b0c3c1be7ace5c51ce1f5b2f41993c055062e871accd50b0abfc1aeab536cbf",
+      "sourceBytes": 206144,
+      "sourceSha256": "442639faf942d6995f45065886132c4dba4af244e91413ac9c46b25079e9cb63",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "condo-rent-yield.webp",
+      "outputBytes": 63882,
+      "outputSha256": "2a90184959153264aced49b99e625bb9403d1626c8c08e637e0f79e0878d4430",
+      "sourceBytes": 221686,
+      "sourceSha256": "ed451ea8b02d43ff4bfa514ad76cbf3635437d526058f9deed6bbff79e3083c4",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "crop-area-output.webp",
+      "outputBytes": 30746,
+      "outputSha256": "f066d4d10384e43d610487915b6fc0dd2c1d234e043a7c260acb29a78bbdb83c",
+      "sourceBytes": 60010,
+      "sourceSha256": "65e5f026df703be3a5a6d09dd9582bd9ec1de2ed299e9c5f89f80e76d7f9b205",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "detached-listing-prices.webp",
+      "outputBytes": 22642,
+      "outputSha256": "454b271f1053edf8b3c3febccf6294f26f236beb4d686357a8c6bcdca6420472",
+      "sourceBytes": 48580,
+      "sourceSha256": "3c9301f7ea7390880238a3a69b499543a8d7ebe6602c0f15bbb84d4d3e9559fc",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "disaster-historical-impacts.webp",
+      "outputBytes": 22874,
+      "outputSha256": "f55421496fe2daa969fdc4de06728b49a6b2cfbc8ada861eec4445840f40572d",
+      "sourceBytes": 46692,
+      "sourceSha256": "bed5f4158ade448ff725dda96c3638403dbf208b61b52699392ed2eea915661f",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "earthquake-sensors.webp",
+      "outputBytes": 19314,
+      "outputSha256": "787d3f074377131980ad7c0b89e8d5d7f76a76bb17f5a38ef2c8fbf531450dc9",
+      "sourceBytes": 39236,
+      "sourceSha256": "dbd453dcd6385fe7a40b86eded68bd189e9b4c60b0601590b9f4fac580288077",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "eia-projects.webp",
+      "outputBytes": 16194,
+      "outputSha256": "dad5aeb4a5ce5647ef0788eaefea82d176db65b731d86a1366a170fbfc3c3eda",
+      "sourceBytes": 35750,
+      "sourceSha256": "69dfebee023d7a60e61c397a25f2b301037c5be81119ff07d6d18c35d275a93e",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "events-hat-yai-flood-2025-11.webp",
+      "outputBytes": 71580,
+      "outputSha256": "efdabbeeff4c41cefe104adc611bf42bdf6574b6f8d0c7634a59dd64d179e291",
+      "sourceBytes": 162766,
+      "sourceSha256": "21ed5aa1068b1d01a603d2e276ea7edddf40ce33df5449274a450f1032eca470",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "events-quake-building-inspection.webp",
+      "outputBytes": 61678,
+      "outputSha256": "626107b5fc9481bfcb4c22a1907e8133fcaa6162fb67d5845331544effe4a5c5",
+      "sourceBytes": 144046,
+      "sourceSha256": "023d2c7c245cf6f5e7de63efcb67f927e957b559111acf31a8406a8d2d9b3a35",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "factories-workers-investment.webp",
+      "outputBytes": 20542,
+      "outputSha256": "1e56b69f6167a6e42838ca3cfc9b37df99913e91d57a742c31236428f9497091",
+      "sourceBytes": 44510,
+      "sourceSha256": "05ff1553eb4edc295a69a4e2dc88c180680856110a82d54a647ff5a72a824bce",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "fire-monitoring.webp",
+      "outputBytes": 32004,
+      "outputSha256": "fb5a0e6dbce10b378d0965f16d6394ddc06f6bee19e52d1f35f18520146e7342",
+      "sourceBytes": 80742,
+      "sourceSha256": "fac72be0c38d07f289d7cc2354bcfa91bae211ab7971c3b533c290629b7ae4fb",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "flood-forecast-depth.webp",
+      "outputBytes": 67504,
+      "outputSha256": "e683cf7431c09a16faaf185fb7f87cd412560257960e7a7aede554fac3b758e7",
+      "sourceBytes": 244954,
+      "sourceSha256": "8709fd3400f382608cf40f19a42b1198e0f11332c5b8749778246943dfb3545b",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "flood-forecast-flash-flood-risk.webp",
+      "outputBytes": 22730,
+      "outputSha256": "902e30be7f4d74444f447c5ce9092730505689cf719dab879528714c458439b1",
+      "sourceBytes": 43724,
+      "sourceSha256": "bd51b77b35c133daf69981580bd3c3bdfaefdbb250c40f2a2eafb0c0a7cbed95",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "flood-latest-observed.webp",
+      "outputBytes": 24518,
+      "outputSha256": "870024af8e4c8b26d64e6537436cd5fa16b591683849a5f1007d6d6e09edf95a",
+      "sourceBytes": 50742,
+      "sourceSha256": "b4eaee4507fb60f1d62724cae36370c1a1f1e297f8eb2892a4da8bd8ded8872d",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "flood-recurrent.webp",
+      "outputBytes": 38960,
+      "outputSha256": "b617740d5f59b823e9bbd69373b8f5a8d51f858b8dfbf1f885fafad6b430f1da",
+      "sourceBytes": 76736,
+      "sourceSha256": "9690c74aaab939da5afc43c6cbae1244b00babea3b5d7f77a12c64ca54b5754f",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "fuel-stations.webp",
+      "outputBytes": 20552,
+      "outputSha256": "ed0ccb7f7261c29ea566e8c3655303b03a3ceb48a7d626c53ceeb320b83d5a3b",
+      "sourceBytes": 44360,
+      "sourceSha256": "a6e36b5d8bd246408c05c2a8141aa87122e9f085f248f4f1bf948b524d79164d",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "government-agencies-workforce.webp",
+      "outputBytes": 23608,
+      "outputSha256": "9dae7c2668037567d461ea734d13e8073e99c58c21c6f50efca1ed33dbc50e6f",
+      "sourceBytes": 49648,
+      "sourceSha256": "1e2c1939cc27891423160a584d922dd42d45324e354e9cb277287460feabbf0f",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "hotel-market.webp",
+      "outputBytes": 25414,
+      "outputSha256": "e5f6d291c7834cb8bc9a054a2c108f329805a7c0ca5dfd64c98e0a65bd5e0183",
+      "sourceBytes": 53662,
+      "sourceSha256": "befa5ce6d3064d35cab84c1fee98e358b2416da050f35433110189fd7416601a",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "land-appraisal.webp",
+      "outputBytes": 42808,
+      "outputSha256": "c16c672449f8f0caa5ec560e2dff63f55c739cdf0f2781f99a6ce365ff48fc28",
+      "sourceBytes": 84004,
+      "sourceSha256": "46b494a24fc7833ff3109a05306a53904e2fe512eaac49797b78ca4c9895c3e1",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "land-listing-prices.webp",
+      "outputBytes": 21306,
+      "outputSha256": "8d5153c68cc5d2209699bda59097ebc9aa6b7d7e7c4c0e99fe1fc7d2db322387",
+      "sourceBytes": 46094,
+      "sourceSha256": "a134d5704e1e628998b87dc9232ce2f379e99cca9b7056244a759103895360cf",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "locale-insights.webp",
+      "outputBytes": 52488,
+      "outputSha256": "e3bf5db005aeef7d77edf84fd52bda1471b3fa5f10d64a4db7c9b4342d60958e",
+      "sourceBytes": 117094,
+      "sourceSha256": "691a21a5550a1da0599abbe1b5e111d27cc4cbdf0fe286eba370d8357b3b56ca",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "municipal-revenue.webp",
+      "outputBytes": 21544,
+      "outputSha256": "9a80fd6897b847b6e7663e7f071a91aa111f79d877d4a2369492a7dbecfc1c57",
+      "sourceBytes": 46830,
+      "sourceSha256": "7273495a08dbcddaab0443faf78879e920603a1b22523ea11b806052c1bc6e88",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "office-buildings-rent.webp",
+      "outputBytes": 33684,
+      "outputSha256": "bc87af8da12a418a838f376b1aca09fdcfd366002cc79c7ea5f1cb2713f1ec9c",
+      "sourceBytes": 73692,
+      "sourceSha256": "24f7ba5687c28c2a2e63cc2035e6c797d5c9097dd190c639dfbeae85271c89e2",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "population-age-sex.webp",
+      "outputBytes": 31594,
+      "outputSha256": "73a0c3ee2af68fe6f51e32ce868553f9cd38089a32ea0129370ece33e4ce37dc",
+      "sourceBytes": 120826,
+      "sourceSha256": "50f9d80e8d67727a5651debe9e1181d3e16db10f701fecdf5b37b33d9d799810",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "registered-cars.webp",
+      "outputBytes": 18198,
+      "outputSha256": "7c2e05d8f7d0fab6c7d94b405f16800f29e8270493385d876d895cd84f3ce888",
+      "sourceBytes": 37478,
+      "sourceSha256": "8e65cbe67670e19c9e3ba4084765a0a8dc72682d1a0b766dd41fe60a3c2a29f3",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "registered-companies-status-capital.webp",
+      "outputBytes": 68760,
+      "outputSha256": "2c52a59b425a350c18dcbb63c53e9f9e267a5f0aafa0d12e065e2057fc593f04",
+      "sourceBytes": 238214,
+      "sourceSha256": "082fed1089c943b740ff805a073f2d6747b769f20cb6cf6e2aa3b6429d85dca5",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "registered-housing-estates.webp",
+      "outputBytes": 16590,
+      "outputSha256": "8ce821c892f5f8bc8c61ebfdf74f3edd9470a99305eff5b0bf59451a3c913c20",
+      "sourceBytes": 37512,
+      "sourceSha256": "0130d3f3ce5bcf5dd4a7fecf214b683f30cdf19c2ff1d11e07277b2b7f7491d2",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "restaurants.webp",
+      "outputBytes": 82486,
+      "outputSha256": "b8f09d31e5b500d229612963105f5286ea0727d64d2d0e0365996a5ec5106dec",
+      "sourceBytes": 279918,
+      "sourceSha256": "7b1d8d8d6d461d6b52425cf267e1cd59e52c8c1f155c741a8cca4f6d8ec95db1",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "road-network-archetypes.webp",
+      "outputBytes": 45328,
+      "outputSha256": "d882eb475d1a93d51db0480300a5b3efd1f4eb3cfe3ff8567a9520cbba35d2de",
+      "sourceBytes": 91110,
+      "sourceSha256": "009a6c3cc19b81260d8e9a4a6a6ea0644e7e9dd2727a210ac4d70204e56e8d75",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "schools-students-teachers.webp",
+      "outputBytes": 24754,
+      "outputSha256": "e3d6d383aed08bb5ad59b9d06fa025326735981615a9ac9717162ef4cf2c63bf",
+      "sourceBytes": 51212,
+      "sourceSha256": "ee0f4601dadacabcf062dd8e5aab18449a82b70a3a539bc23935e79315241c03",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "shopping-centers.webp",
+      "outputBytes": 25074,
+      "outputSha256": "a6a76c78b44ce5dbb86d33a24a41b937122f04f604e72d55a9e7dcb1e247da94",
+      "sourceBytes": 51978,
+      "sourceSha256": "01213f1c5aba4400281381043eb8c8629661d78ab5faa359c25357f953f52819",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "tourism-demand-spending.webp",
+      "outputBytes": 24394,
+      "outputSha256": "50ea7ccb1780af188d0c5fde3b5784747ec6f0c993e6eb986941bc0ae9cc441c",
+      "sourceBytes": 48786,
+      "sourceSha256": "9fdf39e309b97c898e476a0ea556b01a6931b5c1715d2d078cb8f77bba77aadc",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "townhouse-listing-prices.webp",
+      "outputBytes": 62530,
+      "outputSha256": "6e2fe8573c5d0959ad8f2f0c2bcbd8a78b8d94f38ff59e76a73243ec6a2d66fd",
+      "sourceBytes": 226608,
+      "sourceSha256": "57d87bd4e74e97fbddf5fb66d6cbcbfcdbbd7a0eca3c60e67cf4424ccdec5477",
+      "width": 800
+    },
+    {
+      "height": 500,
+      "name": "traffic-congestion-speed.webp",
+      "outputBytes": 51056,
+      "outputSha256": "450b7ed8571739386e59f638102bc2946f030503316163ffa02b7ce1a3c5329c",
+      "sourceBytes": 111538,
+      "sourceSha256": "b2cf8d39b0dc3e730ace8fe5b192c6c028ff41753c62d9e43eca51a2dfd1cc55",
+      "width": 800
+    }
+  ],
+  "generator": {
+    "height": 500,
+    "libwebp": "1.6.0",
+    "method": 6,
+    "pillow": "12.3.0",
+    "quality": 75,
+    "resampling": "LANCZOS",
+    "script": "scripts/build-card-previews.py",
+    "width": 800
+  },
+  "outputDirectory": "media/previews-v3",
+  "revision": "2026-08-16-preview-v3",
+  "sourceDirectory": "media/previews-v2",
+  "totals": {
+    "files": 38,
+    "outputBytes": 1421966,
+    "reductionPercent": 61.9,
+    "sourceBytes": 3736630
+  }
+}

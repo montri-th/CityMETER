@@ -6,6 +6,7 @@ import { dirname, join } from "node:path";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const review = JSON.parse(readFileSync(join(root, "data/catalog-source-review.json"), "utf8"));
 const qrManifest = JSON.parse(readFileSync(join(root, "media/qr/manifest.json"), "utf8"));
+const previewManifest = JSON.parse(readFileSync(join(root, "media/previews-v3/manifest.json"), "utf8"));
 const fontManifest = JSON.parse(readFileSync(join(root, "assets/font-assets.manifest.json"), "utf8"));
 const fontLicenseRecords = JSON.parse(readFileSync(join(root, "assets/font-license-records.json"), "utf8"));
 const ids = review.records.map((record) => record.id);
@@ -36,6 +37,7 @@ const analysisBriefRecordOrder = 'recordIds:["business-dynamics","buildings","po
 const catalogStoryRelease = "2026-08-16-catalog-story-qr-v20";
 const catalogStructureRelease = "2026-08-16-catalog-structure-simple-v21";
 const motionSocialRelease = "2026-08-16-motion-social-v22";
+const motionImagePerformanceRelease = "2026-08-16-motion-image-performance-v23";
 const landAppraisalRoute = "https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed";
 const landAppraisalQrHash = "eeb68384e9327bf46b1a0c0d3fdad4b9206c5886e950ba31e20b642513a0f483";
 const landAppraisalSvgHash = "9f02e5f265a7b8e58ea0d00a190ae457ca33406c52463413cb6149ed375344ba";
@@ -85,6 +87,33 @@ function jpegInfo(path) {
     offset += segmentLength;
   }
   throw new Error(`JPEG dimensions not found: ${path}`);
+}
+
+function webpInfo(path) {
+  const bytes = readFileSync(path);
+  assert(bytes.subarray(0, 4).toString("ascii") === "RIFF" && bytes.subarray(8, 12).toString("ascii") === "WEBP", `Not a WebP: ${path}`);
+  let offset = 12;
+  while (offset + 8 <= bytes.length) {
+    const chunk = bytes.subarray(offset, offset + 4).toString("ascii");
+    const size = bytes.readUInt32LE(offset + 4);
+    const data = offset + 8;
+    if (chunk === "VP8 ") {
+      assert(bytes[data + 3] === 0x9d && bytes[data + 4] === 0x01 && bytes[data + 5] === 0x2a, `Invalid VP8 frame: ${path}`);
+      return { width: bytes.readUInt16LE(data + 6) & 0x3fff, height: bytes.readUInt16LE(data + 8) & 0x3fff };
+    }
+    if (chunk === "VP8L") {
+      const bits = bytes.readUInt32LE(data + 1);
+      return { width: (bits & 0x3fff) + 1, height: ((bits >> 14) & 0x3fff) + 1 };
+    }
+    if (chunk === "VP8X") {
+      return {
+        width: 1 + bytes[data + 4] + (bytes[data + 5] << 8) + (bytes[data + 6] << 16),
+        height: 1 + bytes[data + 7] + (bytes[data + 8] << 8) + (bytes[data + 9] << 16)
+      };
+    }
+    offset = data + size + (size % 2);
+  }
+  throw new Error(`WebP dimensions not found: ${path}`);
 }
 
 const supporterAssets = [
@@ -193,12 +222,12 @@ for (const page of ["index.html", "en/index.html"]) {
     JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
     `${page} showcase pillar contract must remain 1 / 3 / 2`
   );
-  assert(html.includes("catalog-enhancements-v20.css") && html.includes("catalog-enhancements-v18.js"), `${page} is missing the social-footer stylesheet or ripple-motion enhancement layer`);
-  assert(html.includes("catalog-enhancements-v20.css"), `${page} must load the immutable motion/social stylesheet revision`);
-  assert(html.includes("catalog-enhancements-v18.js"), `${page} must load the immutable ripple-motion enhancement revision`);
+  assert(html.includes("catalog-enhancements-v21.css") && html.includes("catalog-enhancements-v19.js"), `${page} is missing the v23 groove or image-performance layer`);
+  assert(html.includes("catalog-enhancements-v21.css"), `${page} must load the immutable v23 stylesheet revision`);
+  assert(html.includes("catalog-enhancements-v19.js"), `${page} must load the immutable v23 enhancement revision`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v20.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v18.js", `${page} must load exactly one immutable enhancement script revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v21.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v19.js", `${page} must load exactly one immutable enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
   assert((html.match(/citymeter-fonts\.css\?v=\d+/g) || []).join() === "citymeter-fonts.css?v=1", `${page} must load exactly one canonical font stylesheet revision`);
@@ -208,10 +237,10 @@ for (const page of ["index.html", "en/index.html"]) {
     assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
   }
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
-  assert(html.includes("index-qbT50gkr-v11.js"), `${page} must load the social-footer bundle revision`);
-  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v11.js", `${page} must load exactly one main bundle revision`);
+  assert(html.includes("index-qbT50gkr-v12.js"), `${page} must load the v23 image-performance bundle revision`);
+  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v12.js", `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes(`name="citymeter:release-receipt" content="${motionSocialRelease}"`), `${page} is missing the motion/social release receipt`);
+  assert(html.includes(`name="citymeter:release-receipt" content="${motionImagePerformanceRelease}"`), `${page} is missing the motion/image-performance release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
   const catalogDiagramMatches = html.match(/<figure class="catalog-structure"[\s\S]*?<\/figure>/g) || [];
   assert(catalogDiagramMatches.length === 1, `${page} must prerender exactly one catalog-structure diagram`);
@@ -281,12 +310,16 @@ for (const page of ["index.html", "en/index.html"]) {
   const datasetPreviewImages = html.match(/<a class="dataset-image"[^>]*><img[^>]*>/g) || [];
   assert(datasetPreviewImages.length === 38, `${page} must render 38 dataset preview images`);
   assert(datasetPreviewImages.every((image) => image.includes('loading="lazy"') && image.includes('decoding="async"')), `${page} dataset previews must be lazy and asynchronously decoded before hydration`);
+  assert(datasetPreviewImages.every((image) => image.includes("media/previews-v3/") && image.includes('width="800" height="500"')), `${page} dataset cards must use the 800x500 preview-v3 presentation set`);
+  assert(datasetPreviewImages.every((image) => !image.includes("media/previews-v2/")), `${page} dataset cards must not reselect the heavyweight evidence capture`);
   const showcasePreviewImages = (html.match(/<article class="showcase-card[\s\S]*?<\/article>/g) || [])
     .map((card) => card.match(/<img[^>]*>/)?.[0] || "");
   assert(showcasePreviewImages.length === 6, `${page} must render six showcase preview images`);
   assert(showcasePreviewImages.every((image) => image.includes('loading="lazy"') && image.includes('decoding="async"')), `${page} showcase previews must be lazy and asynchronously decoded before hydration`);
+  assert(showcasePreviewImages.every((image) => image.includes("media/previews-v2/") && image.includes('width="1200" height="750"')), `${page} showcase proof must retain the high-resolution evidence capture`);
   const intentPreviewImage = html.match(/<div class="intent-proof-visual"><img[^>]*>/)?.[0] || "";
   assert(intentPreviewImage.includes('loading="lazy"') && intentPreviewImage.includes('decoding="async"'), `${page} intent preview must be lazy and asynchronously decoded before hydration`);
+  assert(intentPreviewImage.includes("media/previews-v2/") && intentPreviewImage.includes('width="1200" height="750"'), `${page} intent proof must retain the high-resolution evidence capture`);
   assert(!html.includes('decoding="async" decoding="async"'), `${page} contains a duplicate decoding attribute`);
   assert(!html.includes('class="demo-story-caption"') && !html.includes('class="demo-progress"'), `${page} still renders the retired hero caption overlay`);
   const heroFigure = html.match(/<figure class="demo-figure">[\s\S]*?<\/figure>/)?.[0] || "";
@@ -352,6 +385,26 @@ for (const record of review.records) {
   assert(manifestEntry?.sha256 === sha256(qr), `QR bytes do not match the manifest for ${record.id}`);
   assert(existsSync(preview) && statSync(preview).size > 10000, `Missing or empty preview: ${slug}`);
 }
+assert(previewManifest.revision === "2026-08-16-preview-v3", "Preview-v3 manifest revision is stale");
+assert(previewManifest.generator?.pillow === "12.3.0" && previewManifest.generator?.libwebp === "1.6.0", "Preview-v3 encoder contract is stale");
+assert(previewManifest.generator?.width === 800 && previewManifest.generator?.height === 500 && previewManifest.generator?.quality === 75 && previewManifest.generator?.method === 6, "Preview-v3 render settings are stale");
+assert(previewManifest.files?.length === 38 && new Set(previewManifest.files.map((file) => file.name)).size === 38, "Preview-v3 manifest must contain 38 unique records");
+let previewV2Bytes = 0;
+let previewV3Bytes = 0;
+for (const file of previewManifest.files) {
+  const source = join(root, "media/previews-v2", file.name);
+  const output = join(root, "media/previews-v3", file.name);
+  assert(existsSync(source) && existsSync(output), `Preview-v3 pair is missing: ${file.name}`);
+  assert(file.sourceSha256 === sha256(source) && file.sourceBytes === statSync(source).size, `Preview-v3 source evidence is stale: ${file.name}`);
+  assert(file.outputSha256 === sha256(output) && file.outputBytes === statSync(output).size, `Preview-v3 generated bytes are stale: ${file.name}`);
+  const dimensions = webpInfo(output);
+  assert(file.width === 800 && file.height === 500 && dimensions.width === 800 && dimensions.height === 500, `Preview-v3 dimensions are stale: ${file.name}`);
+  previewV2Bytes += file.sourceBytes;
+  previewV3Bytes += file.outputBytes;
+}
+assert(previewV2Bytes === 3736630, "Preview-v2 source byte baseline changed");
+assert(previewV3Bytes === previewManifest.totals.outputBytes && previewV3Bytes <= 1450000, "Preview-v3 must stay within the 1.45 MB catalog thumbnail budget");
+assert(previewManifest.totals.sourceBytes === previewV2Bytes && previewManifest.totals.reductionPercent >= 60, "Preview-v3 manifest must record at least a 60% byte reduction");
 assert(qrManifest.version === "2026-08-16" && qrManifest.datasets.length === 38 && qrManifest.pages.length === 2, "QR manifest coverage or revision is incomplete");
 const landAppraisalQr = join(root, "media/qr/land-appraisal.png");
 const landAppraisalQrInfo = pngInfo(landAppraisalQr);
@@ -372,6 +425,8 @@ for (const asset of [
   "CITYMETER_CATALOG_STORY_QR_RELEASE_2026-08-16.md",
   "CITYMETER_CATALOG_STRUCTURE_SIMPLIFICATION_RELEASE_2026-08-16.md",
   "CITYMETER_MOTION_SOCIAL_RELEASE_2026-08-16.md",
+  "CITYMETER_MOTION_IMAGE_PERFORMANCE_RELEASE_2026-08-16.md",
+  "CITYMETER_REBUILD_BRIEF.md",
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
   "assets/catalog-enhancements-v15.css",
@@ -381,8 +436,10 @@ for (const asset of [
   "assets/catalog-enhancements-v18.css",
   "assets/catalog-enhancements-v19.css",
   "assets/catalog-enhancements-v20.css",
+  "assets/catalog-enhancements-v21.css",
   "assets/catalog-enhancements-v17.js",
   "assets/catalog-enhancements-v18.js",
+  "assets/catalog-enhancements-v19.js",
   "assets/citymeter-fonts.css",
   "assets/font-assets.manifest.json",
   "assets/font-license-records.json",
@@ -393,12 +450,15 @@ for (const asset of [
   "assets/index-qbT50gkr-v9.js",
   "assets/index-qbT50gkr-v10.js",
   "assets/index-qbT50gkr-v11.js",
+  "assets/index-qbT50gkr-v12.js",
   "scripts/apply-branding-route-release.mjs",
   "scripts/apply-performance-clarity-release.mjs",
   "scripts/apply-atmosphere-scroll-release.mjs",
   "scripts/apply-catalog-story-qr-release.mjs",
   "scripts/apply-catalog-structure-simplification-release.mjs",
   "scripts/apply-motion-social-release.mjs",
+  "scripts/apply-motion-image-performance-release.mjs",
+  "scripts/build-card-previews.py",
   "scripts/generate-qr-assets.mjs",
   "scripts/split-supporter-logos.sh",
   "scripts/build-hero-reel.sh",
@@ -410,6 +470,7 @@ for (const asset of [
   "media/supporters/digital-service-account.png",
   "media/qr/manifest.json",
   "media/qr/land-appraisal.svg",
+  "media/previews-v3/manifest.json",
   "media/reel/citymeter-proof-v3.mp4",
   "media/reel/citymeter-proof-v3-exhibition.mp4",
   "media/reel/citymeter-proof-v3-poster.webp",
@@ -423,16 +484,21 @@ for (const [asset, expectedHash] of [
   ["assets/index-qbT50gkr-v9.js", "8f857fe4f6fb9e6dd39460eec3a841ba9338e54d1f479b8964fb410c197b0116"],
   ["assets/index-qbT50gkr-v10.js", "7946213bc8edefccf8ff2a2ca594903b548c51d11399dd0ea408295e71ab27ea"],
   ["assets/index-qbT50gkr-v11.js", "09a4e3dcf3048027692a08daae8cd5761fea23f924d7a9ed38a8f624403f9967"],
+  ["assets/index-qbT50gkr-v12.js", "f8d0f7d2f9fb5a643be4fce0310d025ab7559a458e04651580371cff03265600"],
   ["assets/catalog-enhancements-v17.css", "8f4c95eb631b64b41d1beb6554265189474fff8dde419b0c0d4b46f985b8ff3a"],
   ["assets/catalog-enhancements-v18.css", "5661979c5ca33a332c3f57fc5dd233daa468875e7d0b32d0684ed3846bfc592a"],
   ["assets/catalog-enhancements-v19.css", "e40c56eaf79c115349746c4ca721450342c5bba404e327e3882d25cb3ef7be95"],
   ["assets/catalog-enhancements-v20.css", "a8e2af8c2896907e61c4a0c8750efbe630f6f10e334dbcc0cac45899a1203743"],
+  ["assets/catalog-enhancements-v21.css", "e34d4384f49c9d16b00f6746758ce93a4c04d2128f04f8e9cd905a7a03ab6f7a"],
   ["assets/catalog-enhancements-v17.js", "8838d5e11340db1e6ce460e4f4e2190ae1fa27edcce358ba7a987b7014a2db4d"],
   ["assets/catalog-enhancements-v18.js", "4ce3e722bf6c6e21e28db8f08a84fc05cbaeabcc0864a345c31987fac9215fb2"],
+  ["assets/catalog-enhancements-v19.js", "43324277a611d0a79c488c13355e63418703168cd2d2844f7f3438195ea00ea3"],
   ["scripts/apply-atmosphere-scroll-release.mjs", "0c0d266f636c01902c3f66973892d7bddd72f4220d80f889b2714ef96ba37684"],
   ["scripts/apply-catalog-story-qr-release.mjs", "67056fe888b79cfb7e20b53bc7ca53f8155c6a7321c11812815ef6c04195b2a1"],
   ["scripts/apply-catalog-structure-simplification-release.mjs", "b9b2fcef8e3a7661b5621428a0d488f2529cd83a4ffe807f7bc6392bfba78701"],
   ["scripts/apply-motion-social-release.mjs", "e6dc51ff4910916678f88e61b0efabc4994486057bd0d49f8795b19aebf552f2"],
+  ["scripts/apply-motion-image-performance-release.mjs", "31c537077449fe82bbb093f08bc6172c89ecb4b3161c45a952f0f447a4c42cc2"],
+  ["scripts/build-card-previews.py", "31004c77cf5d530934e1f90857f319a4739b8a360b0ffc8afec0fd7469b75708"],
   ["scripts/generate-qr-assets.mjs", "67d0b0869e4faa377ab78611f4f80d996d0ecd491c4bba8b0b2f0c745f1369c3"]
 ]) {
   assert(sha256(join(root, asset)) === expectedHash, `Immutable release bytes changed: ${asset}`);
@@ -632,18 +698,21 @@ assert(responsiveHarness.includes("box-sizing: content-box"), "Responsive iframe
 const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const baseCss = readFileSync(join(root, "assets/index-cqxdfePB.css"), "utf8");
-const previousEnhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v17.js"), "utf8");
-const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v18.js"), "utf8");
+const motionSocialEnhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v18.js"), "utf8");
+const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v19.js"), "utf8");
 const previousEnhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v17.css"), "utf8");
 const catalogStoryCss = readFileSync(join(root, "assets/catalog-enhancements-v18.css"), "utf8");
 const catalogStructureCss = readFileSync(join(root, "assets/catalog-enhancements-v19.css"), "utf8");
-const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v20.css"), "utf8");
+const motionSocialCss = readFileSync(join(root, "assets/catalog-enhancements-v20.css"), "utf8");
+const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v21.css"), "utf8");
 const canonicalFontCss = readFileSync(join(root, "assets/citymeter-fonts.css"), "utf8");
 assert(catalogStoryCss.startsWith(previousEnhancementCss.trimEnd()), "Historical catalog CSS v18 must preserve immutable v17 before its scoped diagram block");
 assert(catalogStructureCss.startsWith(previousEnhancementCss.trimEnd()), "Catalog CSS v19 must preserve immutable v17 before the simplified diagram block");
-assert(enhancementCss.startsWith(catalogStructureCss.trimEnd()), "Motion/social CSS v20 must preserve immutable v19 before its scoped release block");
+assert(motionSocialCss.startsWith(catalogStructureCss.trimEnd()), "Motion/social CSS v20 must preserve immutable v19 before its scoped release block");
+assert(enhancementCss.startsWith(motionSocialCss.trimEnd()), "V23 CSS must preserve immutable v20 before its scoped groove block");
 const catalogCssDelta = catalogStructureCss.slice(previousEnhancementCss.trimEnd().length);
-const motionSocialCssDelta = enhancementCss.slice(catalogStructureCss.trimEnd().length);
+const motionSocialCssDelta = motionSocialCss.slice(catalogStructureCss.trimEnd().length);
+const v23CssDelta = enhancementCss.slice(motionSocialCss.trimEnd().length);
 for (const required of [
   ".explorer-section .catalog-structure",
   "width: min(100%, 1180px)",
@@ -683,6 +752,17 @@ for (const required of [
 }
 for (const prohibited of ["transition: all", "animation:", "position: fixed", "background-attachment: fixed", "backdrop-filter"]) {
   assert(!motionSocialCssDelta.includes(prohibited), `Motion/social CSS contains a prohibited behavior: ${prohibited}`);
+}
+for (const required of [
+  ".intent-tab .intent-icon",
+  ".intent-tab > svg",
+  ".site-footer .footer-social a:focus-visible",
+  "@media (hover: hover) and (pointer: fine)"
+]) {
+  assert(v23CssDelta.includes(required), `V23 groove CSS is missing: ${required}`);
+}
+for (const prohibited of ["transition: all", "animation:", "position: fixed", "background-attachment: fixed", "backdrop-filter", "will-change"]) {
+  assert(!v23CssDelta.includes(prohibited), `V23 groove CSS contains a prohibited behavior: ${prohibited}`);
 }
 const enhancementSourceLower = `${enhancementCss}\n${enhancementJs}`.toLowerCase();
 for (const retiredColor of ["#9f78d8", "#d89a27", "#36b9cc"]) {
@@ -940,8 +1020,8 @@ for (const focusedCopy of [
 }
 assert(enhancementJs.includes("__CITYMETER_MOTION_DEBUG__"), "Motion debug receipt is missing");
 assert(enhancementJs.includes("prefers-reduced-motion: reduce"), "Motion layer must respect reduced motion");
-assert(enhancementJs.includes("duration: 280"), "Card reflow motion must use the 280ms map-state duration");
-assert(enhancementJs !== previousEnhancementJs, "Enhancement v18 must contain the approved motion refinement");
+assert(enhancementJs.includes('const duration = snapshot.reason === "search" ? 200 : 280'), "Card reflow motion must preserve the 280ms state duration and faster search acknowledgement");
+assert(enhancementJs !== motionSocialEnhancementJs, "Enhancement v19 must contain the approved groove and image-performance refinement");
 assert(enhancementJs.includes('animation.id === "citymeter-intent-reveal"'), "Starting a new interaction must cancel any in-flight intent reveal");
 const captureOwnerStart = enhancementJs.indexOf("  function captureCardLayout(control)");
 const captureOwnerEnd = enhancementJs.indexOf("  function revealOpenedDetails(details)", captureOwnerStart);
@@ -956,20 +1036,43 @@ assert(reducedBranch >= 0 && reducedCancel > reducedBranch && reducedCancel < re
 assert(rectCapture >= 0 && continuityCancel > rectCapture && snapshotAssignment > continuityCancel, "Rapid interaction continuity requires visual rect capture before canceling the previous ripple");
 for (const contract of [
   "layoutMotionSequence",
-  'const stagger = snapshot.reason === "details" ? 28 : 18',
-  'const delayCap = snapshot.reason === "details" ? 168 : 108',
+  "details: [0, 40, 64, 104, 128, 168]",
+  "filter: [0, 28, 44, 72, 88, 108]",
+  "search: [0, 24, 40, 64, 80, 96]",
+  "intent: [0, 32, 52, 84, 104]",
+  "const duration = snapshot.reason === \"search\" ? 200 : 280",
+  'animation.id === "citymeter-results-ack"',
+  "const entryDelays = [0, 44, 68, 112, 136]",
+  "const delays = [0, 48, 72, 120, 144]",
+  "index * 48",
   "snapshot.sequence !== layoutMotionSequence",
   "Math.abs(globalThis.scrollY - snapshot.scrollY) > 4",
   "isNearViewport",
   'fill: "backwards"',
   "abortedForScroll: scrollChanged",
-  "layoutEnabled = !coarsePointer.matches"
+  "layoutEnabled = !coarsePointer.matches",
+  'reducedMotion.addEventListener?.("change", settleReducedMotion)',
+  "layoutMotionSequence += 1"
 ]) {
-  assert(enhancementJs.includes(contract), `Ripple-motion contract is missing: ${contract}`);
+  assert(enhancementJs.includes(contract), `Groove-motion contract is missing: ${contract}`);
 }
-for (const prohibited of ["scrollIntoView", "transition: all", "max-height", "height.animate"] ) {
-  assert(!enhancementJs.includes(prohibited), `Ripple motion contains a prohibited layout or scroll behavior: ${prohibited}`);
+for (const prohibited of ["scrollIntoView", "scrollTo(", "transition: all", "max-height", "height.animate", "commitStyles", "iterations: Infinity"] ) {
+  assert(!enhancementJs.includes(prohibited), `Groove motion contains a prohibited layout or scroll behavior: ${prohibited}`);
 }
+for (const performanceContract of [
+  "function installDatasetPreviewWarmup()",
+  'rootMargin: "1000px 0px"',
+  '.slice(0, 3)',
+  'image.loading = "eager"',
+  'image.fetchPriority = "high"',
+  '"skipped-data-saver"',
+  "function loadSourceRegistry()",
+  "20260816-motion-image-performance-v23",
+  "const registryResultPromise = loadSourceRegistry()"
+]) {
+  assert(enhancementJs.includes(performanceContract), `Image-performance contract is missing: ${performanceContract}`);
+}
+assert(!enhancementJs.includes("querySelectorAll(\".dataset-card .dataset-image img\")).forEach") && !enhancementJs.includes("preloadAll"), "V23 must not eagerly warm the full 38-card catalog");
 assert(enhancementJs.includes("record?.citymeterUrl"), "Runtime direct-route override is missing");
 assert(enhancementJs.includes(".dataset-mobile-link"), "Runtime direct-route override must cover the mobile handoff link");
 assert(enhancementJs.includes("supporter-logos-hero"), "Runtime hero supporter group is missing");
@@ -1123,12 +1226,19 @@ assert(runtimeStart.includes("enhanceAfterHydration") && runtimeStart.includes('
 assert((runtimeStart.match(/requestAnimationFrame/g) || []).length >= 2, "Branding must wait two animation frames after load before mutating hydrated markup");
 assert(enhancementJs.includes("waitForHydrationStability") && enhancementJs.includes("minimumDelayElapsed") && enhancementJs.includes("quietWindowElapsed"), "Branding must wait for a quiet hydration boundary before DOM mutation");
 assert(enhancementJs.includes("}, 1000)") && enhancementJs.includes("}, 250)") && enhancementJs.includes("setTimeout(finish, 3000)"), "Hydration stability timing contract is stale");
-assert(runtimeStart.includes("registryResult") && runtimeStart.includes(".catch((error) => ({ error }))"), "Branding must remain available when the source registry fails");
-assert(runtimeStart.includes("catalog-source-review.json?v=20260815-atmosphere-scroll-v17") && runtimeStart.includes('cache: "force-cache"'), "Source registry must be deferred and bound to the immutable release cache key");
+assert(runtimeStart.includes("registryResultPromise") && enhancementJs.includes(".catch((error) => ({ error }))"), "Branding must remain available when the source registry fails");
+assert(enhancementJs.includes("catalog-source-review.json?v=20260816-motion-image-performance-v23") && enhancementJs.includes('cache: "force-cache"'), "Source registry must start concurrently and remain bound to the immutable v23 cache key");
+assert(runtimeStart.indexOf("const registryResultPromise = loadSourceRegistry()") < runtimeStart.indexOf("await waitForHydrationStability()"), "Registry fetch must begin before the hydration quiet wait");
+assert(runtimeStart.indexOf("enhanceHero();") < runtimeStart.indexOf("await registryResultPromise"), "Hero enhancement must not wait for the source registry");
 for (const retiredRuntime of ["renderHeroChapter", "heroTimer", "heroVideo", "video.load()", 'url.searchParams.set("v"']) {
   assert(!enhancementJs.includes(retiredRuntime), `Retired duplicate-load or hero-timer behavior remains: ${retiredRuntime}`);
 }
 assert(enhancementJs.includes('video.preload = "metadata"'), "Hero enhancement must preserve metadata-only preload");
+const enhanceHeroStart = enhancementJs.indexOf("  function enhanceHero()");
+const enhanceHeroEnd = enhancementJs.indexOf("  function applyEnhancements()", enhanceHeroStart);
+assert(enhanceHeroStart >= 0 && enhanceHeroEnd > enhanceHeroStart, "Hero enhancement owner cannot be resolved");
+const enhanceHeroOwner = enhancementJs.slice(enhanceHeroStart, enhanceHeroEnd);
+assert(!enhanceHeroOwner.includes(".play(") && !enhanceHeroOwner.includes(".autoplay = true") && !enhanceHeroOwner.includes("catalogAutoplayTried"), "Enhancer must not override the React-owned viewport and network autoplay policy");
 assert(enhancementJs.includes('shell.querySelectorAll(".demo-story-caption, .demo-progress").forEach((node) => node.remove())'), "Hero enhancement must remove stale visible caption overlays");
 assert(thHtml.includes("ดูต่อบนมือถือ"), "Thai page is missing the permanent handoff eyebrow");
 assert(thHtml.includes("เก็บตัวอย่างนี้ไว้ใช้ เมื่อต้องตัดสินใจเรื่องพื้นที่"), "Thai page is missing the permanent handoff title");
@@ -1143,9 +1253,35 @@ assert(enHtml.includes("The link opens the same example and data."), "English pa
 
 const previousMainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v9.js"), "utf8");
 const catalogStructureMainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v10.js"), "utf8");
-const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v11.js"), "utf8");
+const motionSocialMainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v11.js"), "utf8");
+const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v12.js"), "utf8");
 assert(catalogStructureMainBundle !== previousMainBundle, "Main bundle v10 must contain the governed catalog simplification");
-assert(mainBundle !== catalogStructureMainBundle, "Main bundle v11 must contain the hydration-owned social footer");
+assert(motionSocialMainBundle !== catalogStructureMainBundle, "Main bundle v11 must contain the hydration-owned social footer");
+assert(mainBundle !== motionSocialMainBundle, "Main bundle v12 must contain the dataset-thumbnail and hero-network policy");
+const oldDatasetImageOwner = 'p.jsx("img",{src:ca(s.previewPath),alt:"",width:"1200",height:"750",loading:"lazy",decoding:"async"})';
+const newDatasetImageOwner = 'p.jsx("img",{src:ca(s.previewPath.replace("media/previews-v2/","media/previews-v3/")),alt:"",width:"800",height:"500",loading:"lazy",decoding:"async"})';
+const oldHeroStart = motionSocialMainBundle.indexOf("function U6(");
+const oldHeroEnd = motionSocialMainBundle.indexOf("function B6(", oldHeroStart);
+const newHeroStart = mainBundle.indexOf("function U6(");
+const newHeroEnd = mainBundle.indexOf("function B6(", newHeroStart);
+assert(oldHeroStart >= 0 && oldHeroEnd > oldHeroStart && newHeroStart >= 0 && newHeroEnd > newHeroStart, "Hero owner transaction cannot be resolved");
+const oldHeroOwner = motionSocialMainBundle.slice(oldHeroStart, oldHeroEnd);
+const newHeroOwner = mainBundle.slice(newHeroStart, newHeroEnd);
+const oldSchemaStart = motionSocialMainBundle.indexOf("function L6()");
+const oldSchemaEnd = motionSocialMainBundle.indexOf("function _f()", oldSchemaStart);
+const newSchemaStart = mainBundle.indexOf("function L6()");
+const newSchemaEnd = mainBundle.indexOf("function _f()", newSchemaStart);
+assert(oldSchemaStart >= 0 && oldSchemaEnd > oldSchemaStart && newSchemaStart >= 0 && newSchemaEnd > newSchemaStart, "JSON-LD owner transaction cannot be resolved");
+const oldSchemaOwner = motionSocialMainBundle.slice(oldSchemaStart, oldSchemaEnd);
+const newSchemaOwner = mainBundle.slice(newSchemaStart, newSchemaEnd);
+assert((motionSocialMainBundle.split(oldDatasetImageOwner).length - 1) === 1 && (mainBundle.split(newDatasetImageOwner).length - 1) === 1, "Dataset preview owner transaction must be exact");
+const oldHydrationTranscriptItem = 'p.jsxs("li",{children:[Z.kicker,". ",Z.title,". ",Z.note]},Z.start)';
+const newHydrationTranscriptItem = 'p.jsx("li",{children:Z.kicker+". "+Z.title+". "+Z.note},Z.start)';
+assert(mainBundle.includes(newHydrationTranscriptItem) && !mainBundle.includes(oldHydrationTranscriptItem), "Hero transcript must hydrate each static list item as one text node");
+assert(mainBundle.includes('if(typeof IntersectionObserver!=="function"){X(!1);return}') && !mainBundle.includes('if(typeof IntersectionObserver!=="function"){X(!0);return}'), "Hero autoplay must fail closed when viewport observation is unavailable");
+assert(newSchemaOwner.includes('link[rel="canonical"]') && newSchemaOwner.includes('.replace(/\\/en\\/?$/,"/")') && !newSchemaOwner.includes("url:Da"), "Hydrated JSON-LD must derive its root URL from the route canonical instead of the runtime share base");
+const normalizedV12 = mainBundle.replace(newDatasetImageOwner, oldDatasetImageOwner).replace(newHeroOwner, oldHeroOwner).replace(newSchemaOwner, oldSchemaOwner);
+assert(normalizedV12 === motionSocialMainBundle, "Bundle v12 may differ from v11 only in the dataset preview, hero media and canonical JSON-LD owners");
 assert(mainBundle.split(analysisBriefOldThai).length === 2, "Hydrated Thai analysis-brief must preserve the approved concise description exactly once");
 assert(mainBundle.split(analysisBriefOldEnglish).length === 2, "Hydrated English analysis-brief must preserve the approved concise description exactly once");
 assert(!mainBundle.includes(analysisBriefRejectedThai) && !mainBundle.includes(analysisBriefRejectedEnglish), "Hydrated bundle must not restore the rejected long analysis-brief copy");
@@ -1233,6 +1369,22 @@ assert(!mainBundle.includes('id:"page-title",children:c.hero.title'), "Compiled 
 assert(!mainBundle.includes('className:"citymeter-label",href:"#top",children:"CityMETER"'), "Compiled bundle still contains the hydration-unsafe CityMETER label pattern");
 assert(mainBundle.includes('loading:"lazy",decoding:"async"'), "Compiled bundle must lazy-load and asynchronously decode deferred previews");
 assert(mainBundle.includes('preload:"metadata"'), "Compiled hero video must request metadata before autoplay");
+assert(mainBundle.includes('s.previewPath.replace("media/previews-v2/","media/previews-v3/")') && mainBundle.includes('width:"800",height:"500"'), "Compiled dataset cards must use the preview-v3 presentation set");
+assert((mainBundle.match(/previewPath\.replace\("media\/previews-v2\/","media\/previews-v3\/"\)/g) || []).length === 1, "Only the hydrated dataset-card owner may switch to preview-v3");
+for (const heroContract of [
+  "navigator.connection||navigator.mozConnection||navigator.webkitConnection",
+  '["slow-2g","2g"]',
+  'rootMargin:"160px 0px"',
+  "threshold:.12",
+  'preload:"metadata"'
+]) {
+  assert(mainBundle.includes(heroContract), `Compiled hero network policy is missing: ${heroContract}`);
+}
+const heroComponentStart = mainBundle.indexOf("function U6(");
+const heroComponentEnd = mainBundle.indexOf("function B6(", heroComponentStart);
+const heroComponent = mainBundle.slice(heroComponentStart, heroComponentEnd);
+assert(heroComponentStart >= 0 && heroComponentEnd > heroComponentStart, "Compiled hero media owner is missing");
+assert(!heroComponent.includes("autoPlay:!0") && heroComponent.includes("IntersectionObserver"), "Hero video must be intersection-driven rather than unconditional autoplay");
 assert(!mainBundle.includes('className:"demo-story-caption"') && !mainBundle.includes('className:"demo-progress"'), "Compiled hero still renders the retired caption overlay");
 assert(!mainBundle.includes('p.jsxs("figcaption",{children:[p.jsx("span",{children:c.hero.demoJourney})'), "Compiled hero still renders the retired visible figcaption");
 assert(mainBundle.includes('id:"demo-transcript",className:"visually-hidden"'), "Compiled hero must retain the accessible transcript");
@@ -1314,4 +1466,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: simplified Land + Living leading to Location, CityMETER and Landometer/Local Decisions reading path without benefit labels or repeated caveat copy, static-hydrated v11 parity, distance-ordered disclosure/filter/search motion with reduced-motion and coarse-pointer safeguards, four hydration-stable localized social footer links with inline SVGs, standalone Land Appraisal SVG QR bound to the exact Chonburi deed route, 1180px bounded desktop diagram and single-column mobile reflow, preserved concise analysis-brief descriptions with first-five Land/Location/Living evidence coverage, preserved Business Dynamics proof and CTA, preserved 38 source-review records and GD Catalog lineage treatment, independently decodable 512px Land Appraisal PNG QR with the exact deed route, unchanged remaining QR bytes, deterministic 1200x630 Land Appraisal social card, semantic Land/Location/Living parity across six showcase and 38 dataset cards, component-local Vivid Civic category rails and chips, exact Measure/Ground/Cultivate theme-paired atmosphere cadence with complete foreground contracts, flat evidence separation, 38 dataset previews plus six showcase and one intent preview lazy-loaded with hydration parity, full-frame silent hero media without visible captions, accurate four-screen reel v3 transcripts, metadata-only video preload, no runtime preview/video cache-busting, deferred registry fetch, strict 320px iframe containment, iPhone root-canvas continuation and safe-area footer treatment, hydration-stable footer supporters, canonical typography, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
+console.log("CityMETER release validation passed: v23 static-hydrated v12 parity, deterministic 800x500 preview-v3 dataset thumbnails within the 1.45 MB budget, preserved high-resolution intent/showcase evidence, first-row dataset warmup with Save-Data/2G safeguards, intersection-driven metadata-only hero video, concurrent source-registry fetch, syncopated disclosure/filter/search/intent motion with interruption/reduced-motion/coarse-pointer safeguards, simplified Land + Living leading to Location story, four localized social footer links, exact Land Appraisal QR routes, 38 source-review records and 11 GD Catalog lineage marks, governed Land/Location/Living surfaces and atmosphere cadence, responsive footer containment, canonical typography, and unchanged evidence, QR, social-card and reel bytes.");
