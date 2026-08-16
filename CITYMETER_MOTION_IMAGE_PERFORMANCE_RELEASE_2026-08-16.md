@@ -59,7 +59,18 @@ Release identity: `2026-08-16-motion-image-performance-v23`
 
 ## Production receipt
 
-- Reviewed head SHA: pending
-- Merge/deployed SHA: pending
-- GitHub Pages run/deployment ID: pending
-- Live TH/EN/assets status, MIME and hashes: pending
+- Reviewed implementation SHA: `59a81ce135e6516a36affe1e35b9295ca2454c21`
+- Merge/deployed SHA: `fc6534db5077d7dbbf4051eac71ffab274243c84`
+- GitHub Pages run: `31956197371` — success
+- GitHub Pages deployment: `5932559251` — success
+- Checked at: `2026-08-16T22:39:01+07:00`
+- Live status/MIME: TH/EN `200 text/html`; v12/v19 `200 application/javascript`; v21 `200 text/css`; manifest `200 application/json`; sample preview `200 image/webp`; rebuild brief `200 text/markdown`
+- Live SHA-256 matched reviewed bytes exactly:
+  - TH: `100f990f08b5f53271c72202bece53a8fc92060f96784ad95264ad9e1c6e71d4`
+  - EN: `2ce628e4148e512cb6f521da456efc91337155b358d239046caddaae140f90ff`
+  - v12: `f8d0f7d2f9fb5a643be4fce0310d025ab7559a458e04651580371cff03265600`
+  - v21: `e34d4384f49c9d16b00f6746758ce93a4c04d2128f04f8e9cd905a7a03ab6f7a`
+  - v19: `43324277a611d0a79c488c13355e63418703168cd2d2844f7f3438195ea00ea3`
+  - preview manifest: `e9430d86a03d800d456faad510b546f07332a0bfd94092bc9f2a768582ff614e`
+  - Land Appraisal preview sample: `c16c672449f8f0caa5ec560e2dff63f55c739cdf0f2781f99a6ce365ff48fc28`
+  - rebuild brief: `2795b3c9eb06d31085303f85172a7f87ac721243e4b57aae4868708c8c7d0e3e`
