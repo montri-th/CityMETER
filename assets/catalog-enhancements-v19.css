@@ -1,0 +1,1091 @@
+/* CityMETER governed atmosphere cadence and iPhone scroll-end layer — 2026-08-15 */
+
+:root {
+  /* Canonical atmosphere recipes and complete foreground contracts from
+     Landometer Design System v0.8.9. These describe journey moments only;
+     they never encode Land / Location / Living or any data state. */
+  --atmosphere-measure: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
+  --atmosphere-measure-primary: #ffffff;
+  --atmosphere-measure-secondary: #f1f4ef;
+  --atmosphere-measure-separator: #f1f4ef;
+  --atmosphere-measure-focus-inner: #182327;
+  --atmosphere-measure-focus-outer: #ffffff;
+  --atmosphere-ground: linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
+  --atmosphere-ground-primary: #182327;
+  --atmosphere-ground-secondary: #293337;
+  --atmosphere-ground-separator: #182327;
+  --atmosphere-ground-focus-inner: #ffffff;
+  --atmosphere-ground-focus-outer: #182327;
+  --atmosphere-cultivate: linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%);
+  --atmosphere-cultivate-primary: #182327;
+  --atmosphere-cultivate-secondary: #293337;
+  --atmosphere-cultivate-separator: #182327;
+  --atmosphere-cultivate-focus-inner: #ffffff;
+  --atmosphere-cultivate-focus-outer: #182327;
+  --motion-duration-feedback: 120ms;
+  --motion-duration-state: 200ms;
+  --motion-duration-map: 280ms;
+  --motion-distance-feedback: 2px;
+  --motion-ease-state: cubic-bezier(.2, 0, 0, 1);
+  --motion-ease-enter: cubic-bezier(.16, 1, .3, 1);
+  /* Canonical v0.8.9 surface roles: varied by section, quiet in saturation. */
+  --section-surface-decision: #f6f7f3;
+  --section-surface-showcase: #eef1ee;
+  --section-surface-explorer: #f6f7f3;
+  --section-surface-contact: #e5e9e6;
+  --section-surface-footer: #eef1ee;
+  /* Exact flat foundation surfaces from Landometer DS v0.8.9. Color is
+     redundant with the visible Land / Location / Living label. */
+  --pillar-surface-land: #f2f1df;
+  --pillar-surface-location: #e2e9ed;
+  --pillar-surface-living: #e5e9e6;
+  --pillar-accent-land: #846100;
+  --pillar-accent-location: #1f629b;
+  --pillar-accent-living: #007a58;
+  --pillar-accent-ink: #ffffff;
+  --pillar-text-primary: #182327;
+  --pillar-text-secondary: #5f635a;
+  --pillar-text-metadata: #686354;
+  --pillar-border-hairline: #dce1dd;
+  --pillar-border-default: #c9d0cb;
+  --pillar-border-emphasis: #7d877f;
+  --pillar-interaction-accent: #176b82;
+  --pillar-surface-raised: #ffffff;
+  --pillar-surface-alt: #eef1ee;
+  --source-status-candidate: #795300;
+  --source-status-other: #176b82;
+  --source-status-derived: #176c67;
+  --supporter-logo-disc: clamp(88px, 24vw, 112px);
+  --supporter-logo-gap: clamp(8px, 1.2vw, 14px);
+}
+
+[data-theme="dark"] {
+  --atmosphere-measure: linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%);
+  --atmosphere-measure-primary: #182327;
+  --atmosphere-measure-secondary: #293337;
+  --atmosphere-measure-separator: #182327;
+  --atmosphere-measure-focus-inner: #ffffff;
+  --atmosphere-measure-focus-outer: #182327;
+  --atmosphere-ground: linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%);
+  --atmosphere-ground-primary: #ffffff;
+  --atmosphere-ground-secondary: #f1f4ef;
+  --atmosphere-ground-separator: #f1f4ef;
+  --atmosphere-ground-focus-inner: #182327;
+  --atmosphere-ground-focus-outer: #ffffff;
+  --atmosphere-cultivate: linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
+  --atmosphere-cultivate-primary: #182327;
+  --atmosphere-cultivate-secondary: #293337;
+  --atmosphere-cultivate-separator: #182327;
+  --atmosphere-cultivate-focus-inner: #ffffff;
+  --atmosphere-cultivate-focus-outer: #182327;
+  --section-surface-decision: #11191d;
+  --section-surface-showcase: #172126;
+  --section-surface-explorer: #11191d;
+  --section-surface-contact: #2b3534;
+  --section-surface-footer: #172126;
+  --pillar-surface-land: #2c2a22;
+  --pillar-surface-location: #18333e;
+  --pillar-surface-living: #2b3534;
+  --pillar-accent-land: #f4c44e;
+  --pillar-accent-location: #4c99d5;
+  --pillar-accent-living: #3bd19b;
+  --pillar-accent-ink: #182327;
+  --pillar-text-primary: #f1f4ef;
+  --pillar-text-secondary: #c4ceca;
+  --pillar-text-metadata: #a6b5b1;
+  --pillar-border-hairline: #33403d;
+  --pillar-border-default: #46524f;
+  --pillar-border-emphasis: #7c8a84;
+  --pillar-interaction-accent: #68c4e2;
+  --pillar-surface-raised: #293337;
+  --pillar-surface-alt: #172126;
+  --source-status-candidate: #f5c15c;
+  --source-status-other: #68c4e2;
+  --source-status-derived: #79d9d1;
+}
+
+/* The base bundle's 320px body floor includes neither classic scrollbars nor
+   embedded-browser gutters, so it can exceed the root's usable inline size. */
+html,
+body {
+  overscroll-behavior-y: none;
+}
+
+/* iOS can expose the root canvas during native elastic pull even when the
+   document ends exactly at the footer. Paint that canvas with the footer
+   surface, and keep normal document scrolling, sticky headers and anchors. */
+html,
+body,
+#root {
+  background: var(--section-surface-footer);
+}
+
+body {
+  min-width: 0;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > main {
+  flex: 1 0 auto;
+}
+
+#root > .site-footer {
+  flex: 0 0 auto;
+}
+
+.decision-section {
+  background: var(--section-surface-decision);
+}
+
+.showcase-section {
+  background: var(--section-surface-showcase);
+}
+
+.explorer-section {
+  background: var(--section-surface-explorer);
+}
+
+.contact-section {
+  background: var(--section-surface-contact);
+}
+
+/* The three pillar surfaces are intentionally quiet: one exact flat DS token
+   per pillar, with the full local foreground contract resolved on the card.
+   Images remain documentary proof and are not recolored. */
+.dataset-card[data-pillar],
+.showcase-card[data-pillar] {
+  --text: var(--pillar-text-primary);
+  --text-secondary: var(--pillar-text-secondary);
+  --text-meta: var(--pillar-text-metadata);
+  --hairline: var(--pillar-border-hairline);
+  --border: var(--pillar-border-emphasis);
+  --accent: var(--pillar-interaction-accent);
+  --raised: var(--pillar-surface-raised);
+  --canvas-soft: var(--pillar-surface-alt);
+  --card: var(--pillar-surface);
+  color: var(--text);
+  background: var(--pillar-surface);
+  border-color: var(--border);
+  border-block-start: 5px solid var(--pillar-accent);
+}
+
+.dataset-card[data-pillar="land"],
+.showcase-card[data-pillar="land"] {
+  --pillar-surface: var(--pillar-surface-land);
+  --pillar-accent: var(--pillar-accent-land);
+}
+
+.dataset-card[data-pillar="location"],
+.showcase-card[data-pillar="location"] {
+  --pillar-surface: var(--pillar-surface-location);
+  --pillar-accent: var(--pillar-accent-location);
+}
+
+.dataset-card[data-pillar="living"],
+.showcase-card[data-pillar="living"] {
+  --pillar-surface: var(--pillar-surface-living);
+  --pillar-accent: var(--pillar-accent-living);
+}
+
+.dataset-card[data-pillar] .dataset-kicker > span:first-child,
+.showcase-card[data-pillar] .record-group {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 26px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--pillar-accent);
+  color: var(--pillar-accent-ink);
+  font-weight: 600;
+}
+
+.dataset-card[data-pillar] .source-link,
+.dataset-card[data-pillar] .dataset-mobile-link,
+.dataset-card[data-pillar] .feature-tags span,
+.showcase-card[data-pillar] .feature-tags span {
+  background: var(--raised);
+}
+
+.dataset-card[data-pillar] :is(a, button, summary, input):focus-visible,
+.showcase-card[data-pillar] :is(a, button, summary, input):focus-visible {
+  outline-color: var(--accent);
+}
+
+/* Three major atmosphere records across a long route: Measure for entry,
+   Ground for orientation and Cultivate for closure. Flat evidence-led scenes
+   separate every moment; cards remain opaque local surfaces. */
+.hero {
+  background: var(--atmosphere-measure);
+  color: var(--atmosphere-measure-primary);
+}
+
+.hero :is(h1, .brand-promise, .hero-text-link) {
+  color: var(--atmosphere-measure-primary);
+}
+
+.hero :is(.hero-support, .eyebrow-on-dark) {
+  color: var(--atmosphere-measure-secondary);
+}
+
+.hero :is(a, button):focus-visible {
+  outline-color: var(--atmosphere-measure-focus-outer);
+  box-shadow: 0 0 0 2px var(--atmosphere-measure-focus-inner);
+}
+
+/* The proof rail is an opaque nested surface, independent of the Measure
+   theme pair. */
+.hero-proof-rail {
+  border-color: #7c8a84;
+  background: #11191d;
+}
+
+.hero-proof-item {
+  background: #172126;
+}
+
+.showcase-section.section {
+  padding-block: 0;
+  background: var(--section-surface-showcase);
+}
+
+.showcase-atmosphere {
+  background: var(--atmosphere-ground);
+  color: var(--atmosphere-ground-primary);
+  padding-block: clamp(82px, 9vw, 132px) clamp(50px, 5vw, 76px);
+}
+
+.showcase-atmosphere .section-heading {
+  margin-bottom: 0;
+}
+
+.showcase-atmosphere :is(h2, .eyebrow) {
+  color: var(--atmosphere-ground-primary);
+}
+
+.showcase-atmosphere .section-heading > p:last-child {
+  color: var(--atmosphere-ground-secondary);
+}
+
+.showcase-content {
+  padding-block: clamp(50px, 6vw, 92px) clamp(82px, 9vw, 156px);
+}
+
+.handoff-section {
+  background: var(--atmosphere-cultivate);
+  color: var(--atmosphere-cultivate-primary);
+}
+
+.handoff-section :is(.handoff-copy h2, .eyebrow-on-dark) {
+  color: var(--atmosphere-cultivate-primary);
+}
+
+.handoff-copy > p:not(.eyebrow):not(.share-feedback),
+.handoff-section .share-feedback {
+  color: var(--atmosphere-cultivate-secondary);
+}
+
+.handoff-shot {
+  border-color: var(--atmosphere-cultivate-separator);
+}
+
+.handoff-section .qr-card {
+  --text: #182327;
+  --text-secondary: #293337;
+  --text-meta: #293337;
+  --accent: #176b82;
+  --card: #ffffff;
+  --border: #7d877f;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+}
+
+.handoff-section .qr-card figcaption {
+  color: var(--text);
+}
+
+.handoff-section .qr-card figcaption svg {
+  color: var(--accent);
+}
+
+.handoff-section :is(a, button):focus-visible {
+  outline-color: var(--atmosphere-cultivate-focus-outer);
+  box-shadow: 0 0 0 2px var(--atmosphere-cultivate-focus-inner);
+}
+
+.dataset-grid {
+  display: block !important;
+  column-count: 3;
+  column-gap: 24px;
+}
+
+.dataset-card {
+  display: inline-flex !important;
+  flex-direction: column !important;
+  width: 100%;
+  margin: 0 0 24px !important;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  vertical-align: top;
+  transition: border-color var(--motion-duration-state) var(--motion-ease-state);
+}
+
+.dataset-card:has(.dataset-details[open]) {
+  border-color: color-mix(in srgb, var(--accent) 58%, var(--border));
+}
+
+.dataset-card > .dataset-image,
+.dataset-card > .dataset-body {
+  width: 100% !important;
+  min-width: 0;
+}
+
+.dataset-card > .dataset-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataset-card .dataset-open {
+  order: 1;
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+}
+
+.dataset-card .dataset-details {
+  order: 2;
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.dataset-card > .dataset-image {
+  height: auto !important;
+  aspect-ratio: 16 / 10;
+  flex: 0 0 auto;
+}
+
+.dataset-card > .dataset-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dataset-body h3,
+.dataset-body > p,
+.evidence-summary dd {
+  min-height: 0 !important;
+  max-height: none !important;
+  display: block !important;
+  overflow: visible !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+}
+
+.dataset-card[data-source-status="verified-lineage"] {
+  box-shadow: inset 0 3px 0 color-mix(in srgb, var(--brand-blue) 76%, #42bdd2);
+}
+
+.source-summary {
+  min-height: 64px;
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  padding-block: 8px !important;
+}
+
+.source-summary,
+.group-filters button,
+.intent-tab,
+.source-link,
+.dataset-mobile-link,
+.dataset-open,
+.button,
+.share-action,
+.inline-action,
+.hero-text-link {
+  transition:
+    color var(--motion-duration-state) var(--motion-ease-state),
+    background-color var(--motion-duration-state) var(--motion-ease-state),
+    border-color var(--motion-duration-state) var(--motion-ease-state),
+    transform var(--motion-duration-feedback) var(--motion-ease-state);
+}
+
+.source-summary:active,
+.group-filters button:active,
+.intent-tab:active,
+.source-link:active,
+.dataset-mobile-link:active,
+.dataset-open:active,
+.button:active,
+.share-action:active,
+.inline-action:active,
+.hero-text-link:active {
+  transform: translateY(var(--motion-distance-feedback));
+}
+
+.dataset-open svg,
+.button svg,
+.share-action svg,
+.inline-action svg,
+.hero-text-link svg {
+  transition: transform var(--motion-duration-state) var(--motion-ease-state);
+}
+
+.dataset-open:is(:hover, :focus-visible) svg,
+.button:is(:hover, :focus-visible) svg,
+.share-action:is(:hover, :focus-visible) svg,
+.inline-action:is(:hover, :focus-visible) svg,
+.hero-text-link:is(:hover, :focus-visible) svg {
+  transform: translateX(3px);
+}
+
+.source-summary-copy {
+  min-width: 0;
+  flex: 1;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.gd-lineage-logo {
+  width: 42px;
+  height: auto;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.source-status-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--text-meta);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--text-meta) 14%, transparent);
+}
+
+.dataset-card[data-source-status="candidate"] .source-status-dot {
+  background: var(--source-status-candidate);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--source-status-candidate) 16%, transparent);
+}
+
+.dataset-card[data-source-status="other-source"] .source-status-dot {
+  background: var(--source-status-other);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--source-status-other) 16%, transparent);
+}
+
+.dataset-card[data-source-status="derived"] .source-status-dot {
+  background: var(--source-status-derived);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--source-status-derived) 16%, transparent);
+}
+
+.source-review {
+  display: grid;
+  gap: 16px;
+  padding: 2px 0 4px;
+}
+
+.source-status {
+  justify-self: start;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--canvas-soft);
+  color: var(--text-secondary);
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.source-status-verified-lineage {
+  color: color-mix(in srgb, var(--brand-blue) 78%, var(--text));
+  border-color: color-mix(in srgb, var(--brand-blue) 38%, var(--border));
+  background: color-mix(in srgb, var(--brand-blue) 9%, var(--card));
+}
+
+[data-theme="dark"] .source-status-verified-lineage {
+  color: #8ed9eb;
+}
+
+.source-status-candidate {
+  color: #795300;
+  border-color: color-mix(in srgb, #795300 34%, var(--border));
+  background: #fff1d1;
+}
+
+[data-theme="dark"] .source-status-candidate {
+  color: #f5c15c;
+  border-color: color-mix(in srgb, #f5c15c 34%, var(--border));
+  background: #3b2e16;
+}
+
+.source-copy-block {
+  display: grid;
+  gap: 6px;
+}
+
+.source-copy-block-benefit {
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 7%, var(--card));
+}
+
+.source-copy-block-benefit .source-copy-label {
+  color: var(--accent);
+}
+
+.source-copy-block-benefit .source-copy-text {
+  color: var(--text);
+  font-size: .94rem;
+  line-height: 1.7;
+}
+
+.source-copy-label,
+.source-copy-text {
+  margin: 0;
+}
+
+.source-copy-label {
+  color: var(--text);
+  font: 600 .82rem/1.35 "Bai Jamjuree", sans-serif;
+}
+
+.dataset-details .source-copy-text,
+.dataset-details .lineage-definition {
+  color: var(--text-secondary);
+  font-size: .88rem;
+  line-height: 1.65;
+}
+
+.dataset-details .lineage-definition {
+  margin: 0;
+  padding: 12px 14px;
+  border-left: 3px solid color-mix(in srgb, var(--brand-blue) 68%, #42bdd2);
+  background: color-mix(in srgb, var(--brand-blue) 6%, var(--canvas-soft));
+}
+
+.source-link-group {
+  display: grid;
+  gap: 7px;
+}
+
+.source-link-label {
+  color: var(--text-meta);
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.source-link,
+.dataset-mobile-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 7px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--card);
+  font-size: .79rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.source-link:hover,
+.dataset-mobile-link:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent);
+}
+
+.dataset-qr-handoff {
+  display: grid;
+  grid-template-columns: minmax(116px, 148px) 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--canvas-soft);
+}
+
+.dataset-qr-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 4px;
+  border-radius: 10px;
+  background: #fcfcfa;
+}
+
+.dataset-qr-copy {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  min-width: 0;
+  color: var(--text);
+  font-size: .86rem;
+  line-height: 1.5;
+}
+
+.dataset-details .dataset-qr-copy > strong {
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.45;
+}
+
+.conceptual-preview-label {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  width: fit-content;
+  max-width: calc(100% - 28px);
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 999px;
+  color: #f7fbfc;
+  background: rgba(5, 7, 10, .82);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+  backdrop-filter: blur(10px);
+  font-size: .72rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.demo-video-frame,
+.demo-caption-panel {
+  display: contents;
+}
+
+/* Marketing actions use two silhouettes only: circles for icon-only controls,
+   capsules for every control with a text label. */
+.button,
+.share-action,
+.inline-action,
+.hero-text-link,
+.group-filters button,
+.source-link,
+.dataset-mobile-link,
+.related-records a,
+.source-summary,
+.preview-focus-label,
+.live-example-label {
+  border-radius: 999px !important;
+}
+
+.share-action,
+.inline-action,
+.hero-text-link {
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid currentColor;
+  text-decoration: none;
+}
+
+.quiet-control,
+.theme-switch button,
+.playback-control,
+.intent-tab .intent-icon {
+  border-radius: 50% !important;
+}
+
+.theme-switch {
+  border-radius: 999px !important;
+}
+
+.intent-tab {
+  border-radius: 999px;
+  padding-inline: 14px;
+}
+
+.hero-page-qr {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 20px;
+  padding: 9px 16px 9px 9px;
+  border: 1px solid #7c8a84;
+  border-radius: 18px;
+  background: #11191d;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .14);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.hero-page-qr-image {
+  display: block;
+  width: 112px;
+  height: 112px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #fcfcfa;
+}
+
+.hero-page-qr-copy {
+  display: grid;
+  gap: 4px;
+  line-height: 1.35;
+}
+
+.hero-page-qr-copy strong {
+  font-size: .95rem;
+}
+
+.hero-page-qr-copy span {
+  color: #f1f4ef;
+  font-size: .78rem;
+}
+
+.supporter-logos {
+  display: grid;
+  grid-template-columns: repeat(3, var(--supporter-logo-disc));
+  align-items: center;
+  gap: var(--supporter-logo-gap);
+  width: max-content;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.supporter-logo-cell {
+  display: grid;
+  place-items: center;
+  width: var(--supporter-logo-disc);
+  height: var(--supporter-logo-disc);
+  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side at center, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.supporter-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.supporter-logo-depa {
+  width: 76%;
+}
+
+.supporter-logo-dsure {
+  width: auto;
+  height: calc(var(--supporter-logo-disc) * .68);
+}
+
+.supporter-logo-account {
+  width: 82%;
+}
+
+.supporter-logos-hero {
+  margin-top: 18px;
+}
+
+.supporter-logos-footer {
+  margin-top: 16px;
+}
+
+.site-footer {
+  overflow-x: clip;
+  background: var(--section-surface-footer);
+  padding-block-start: 34px;
+  padding-block-end: max(34px, env(safe-area-inset-bottom, 0px));
+}
+
+.site-footer .footer-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, auto);
+  align-items: start;
+  column-gap: clamp(32px, 6vw, 84px);
+  max-width: 1120px;
+}
+
+.site-footer .footer-grid > * {
+  min-width: 0;
+}
+
+.site-footer .footer-meta {
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+
+.site-footer .footer-grid nav {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  max-width: 420px;
+}
+
+.site-footer .footer-meta > small {
+  justify-self: end;
+}
+
+@media (max-width: 1120px) {
+  .dataset-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .site-footer .footer-meta {
+    justify-items: start;
+  }
+
+  .site-footer .footer-grid nav {
+    justify-content: flex-start;
+  }
+
+  .site-footer .footer-meta > small {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .dataset-grid {
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .dataset-card {
+    margin-bottom: 20px !important;
+  }
+
+  .dataset-body h3 {
+    font-size: clamp(1.25rem, 6vw, 1.6rem);
+  }
+
+  .demo-video-shell.is-catalog-enhanced {
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+    display: block !important;
+    border-radius: 0;
+    background: #05070a;
+  }
+
+  .demo-video-shell.is-catalog-enhanced > video,
+  .demo-video-shell.is-catalog-enhanced > .demo-poster {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .demo-video-shell.is-catalog-enhanced > .live-example-label {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    margin: 0 !important;
+  }
+
+  .demo-video-shell.is-catalog-enhanced > .playback-control {
+    position: absolute !important;
+    right: 11px !important;
+    bottom: 10px !important;
+    z-index: 5;
+  }
+
+  .dataset-qr-handoff {
+    grid-template-columns: 112px 1fr;
+    gap: 13px;
+    padding: 13px;
+  }
+
+  .hero-page-qr {
+    grid-template-columns: 96px minmax(0, 1fr);
+    margin-inline: auto;
+  }
+
+  .hero-page-qr-image {
+    width: 96px;
+    height: 96px;
+  }
+
+  .supporter-logos-hero {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .dataset-qr-handoff {
+    grid-template-columns: 1fr;
+  }
+
+  .dataset-qr-image {
+    width: min(190px, 100%);
+    justify-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dataset-card,
+  .source-summary,
+  .group-filters button,
+  .intent-tab,
+  .source-link,
+  .dataset-mobile-link,
+  .dataset-open,
+  .button,
+  .share-action,
+  .inline-action,
+  .hero-text-link,
+  .dataset-open svg,
+  .button svg,
+  .share-action svg,
+  .inline-action svg,
+  .hero-text-link svg {
+    transition: none !important;
+  }
+
+  .source-summary:active,
+  .group-filters button:active,
+  .intent-tab:active,
+  .source-link:active,
+  .dataset-mobile-link:active,
+  .dataset-open:active,
+  .button:active,
+  .share-action:active,
+  .inline-action:active,
+  .hero-text-link:active,
+  .dataset-open:is(:hover, :focus-visible) svg,
+  .button:is(:hover, :focus-visible) svg,
+  .share-action:is(:hover, :focus-visible) svg,
+  .inline-action:is(:hover, :focus-visible) svg,
+  .hero-text-link:is(:hover, :focus-visible) svg {
+    transform: none !important;
+  }
+}
+/* CityMETER catalog structure simplification — release v21.
+   Five primary marks form one reading path: Land + Living → Location,
+   CityMETER, then Landometer to Local Decisions. Category surfaces stay flat. */
+.explorer-section .catalog-structure {
+  --catalog-simple-surface: #eef1ee;
+  --catalog-simple-panel: #ffffff;
+  --catalog-simple-text: #182327;
+  --catalog-simple-secondary: #5f635a;
+  --catalog-simple-border: #7d877f;
+  width: min(100%, 1180px);
+  margin: 0 auto clamp(24px, 3vw, 36px);
+  padding: clamp(20px, 2.5vw, 30px);
+  color: var(--catalog-simple-text);
+  background: var(--catalog-simple-surface);
+  border: 1px solid var(--catalog-simple-border);
+  border-radius: 20px;
+}
+[data-theme="dark"] .explorer-section .catalog-structure {
+  --catalog-simple-surface: #172126;
+  --catalog-simple-panel: #11191d;
+  --catalog-simple-text: #f1f4ef;
+  --catalog-simple-secondary: #c4ceca;
+  --catalog-simple-border: #7c8a84;
+}
+.explorer-section .catalog-structure-caption { max-width: 64ch; }
+.explorer-section .catalog-structure-caption h3 {
+  margin: 7px 0 8px;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+}
+.explorer-section .catalog-structure-caption > p:last-child { color: var(--catalog-simple-secondary); }
+.explorer-section .catalog-structure-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(10px, 1.5vw, 18px);
+  margin-top: clamp(20px, 2.5vw, 28px);
+}
+.explorer-section .catalog-structure-step {
+  --catalog-step-surface: var(--pillar-surface-alt);
+  --catalog-step-accent: var(--pillar-interaction-accent);
+  min-width: 0;
+  padding: clamp(14px, 1.7vw, 18px);
+  color: var(--pillar-text-primary);
+  background: var(--catalog-step-surface);
+  border: 1px solid var(--pillar-border-emphasis);
+  border-block-start: 5px solid var(--catalog-step-accent);
+  border-radius: 14px;
+}
+.explorer-section .catalog-structure-step[data-group="land"] { --catalog-step-surface: var(--pillar-surface-land); --catalog-step-accent: var(--pillar-accent-land); }
+.explorer-section .catalog-structure-step[data-group="living"] { --catalog-step-surface: var(--pillar-surface-living); --catalog-step-accent: var(--pillar-accent-living); }
+.explorer-section .catalog-structure-step[data-group="location"] { --catalog-step-surface: var(--pillar-surface-location); --catalog-step-accent: var(--pillar-accent-location); }
+.explorer-section .catalog-structure-step-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.explorer-section .catalog-structure-step-heading > span {
+  padding: 3px 9px;
+  color: var(--pillar-accent-ink);
+  background: var(--catalog-step-accent);
+  border-radius: 999px;
+  font-weight: 700;
+}
+.explorer-section .catalog-structure-step-heading small { color: var(--pillar-text-metadata); font-weight: 600; }
+.explorer-section .catalog-structure-step > p { margin: 12px 0 0; color: var(--pillar-text-secondary); }
+.explorer-section .catalog-structure-operator {
+  align-self: center;
+  color: var(--catalog-simple-text);
+  font-family: Arvo, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.explorer-section .catalog-structure-citymeter,
+.explorer-section .catalog-structure-outcome {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: 14px;
+  padding: clamp(14px, 1.8vw, 18px);
+  background: var(--catalog-simple-panel);
+  border: 1px solid var(--catalog-simple-border);
+  border-radius: 14px;
+}
+.explorer-section .catalog-structure-citymeter { border-inline-start: 5px solid var(--pillar-interaction-accent); }
+.explorer-section .catalog-structure-citymeter > strong,
+.explorer-section .catalog-structure-outcome-route { color: var(--catalog-simple-text); font-weight: 700; }
+.explorer-section .catalog-structure-citymeter > p,
+.explorer-section .catalog-structure-outcome p { margin: 3px 0 0; color: var(--catalog-simple-secondary); }
+.explorer-section .catalog-structure-outcome { border-inline-start: 5px solid var(--pillar-interaction-accent); }
+.explorer-section .catalog-structure-outcome-route { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.explorer-section .catalog-structure-outcome-route b { color: var(--catalog-simple-text); }
+@media (max-width: 720px) {
+  .explorer-section .catalog-structure-flow { grid-template-columns: 1fr; gap: 8px; }
+  .explorer-section .catalog-structure-operator { justify-self: center; line-height: 1; }
+  .explorer-section .catalog-structure-citymeter,
+  .explorer-section .catalog-structure-outcome { grid-template-columns: 1fr; gap: 10px; }
+}
+@media (max-width: 430px) {
+  .explorer-section .catalog-structure { padding: 16px; border-radius: 16px; }
+}
