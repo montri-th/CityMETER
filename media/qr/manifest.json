@@ -1,5 +1,5 @@
 {
-  "version": "2026-08-14",
+  "version": "2026-08-16",
   "datasets": [
     {
       "id": "dataset-buildings",
@@ -29,7 +29,7 @@
       "id": "dataset-land-appraisal",
       "url": "https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed",
       "file": "media/qr/land-appraisal.png",
-      "sha256": "17e738c83fc9d6ca9dfccf1d7d3641396f65ce63f5919d795fd867541eda42e1"
+      "sha256": "eeb68384e9327bf46b1a0c0d3fdad4b9206c5886e950ba31e20b642513a0f483"
     },
     {
       "id": "dataset-land-listing-prices",

@@ -27,6 +27,15 @@ const focusedRoutes = {
   "dataset-events-hat-yai-flood-2025-11": "https://landometer.com/v3/citymeter/SKA/D/9011?d=hatyaiflood",
   "dataset-events-quake-building-inspection": "https://landometer.com/v3/citymeter/BKK?d=quakeSafe"
 };
+const analysisBriefOldThai = "เทียบพื้นที่จากแหล่งเดียวกัน แล้วส่งลิงก์กลับไปยังหลักฐานที่คนรับตรวจต่อได้";
+const analysisBriefRejectedThai = "เมืองไม่ได้มีแค่ที่ดินและอาคาร Land คือฐานกายภาพของพื้นที่ Living คือผู้คน บริการ ความเสี่ยง และชีวิตที่เกิดขึ้น เมื่อมองสองด้านนี้ร่วมกัน Location จะช่วยให้เห็นว่าพื้นที่นั้นทำงานอย่างไร—มีธุรกิจ การเดินทาง และความต้องการแบบไหน รวมถึงบางเรื่องที่เปลี่ยนไปตามวัน เดือน หรือปี CityMETER จัดภาพที่ซับซ้อนนี้ให้คนทั่วไปค้น เทียบ และเปิดแหล่งที่มาตรวจต่อได้ง่าย";
+const analysisBriefOldEnglish = "Compare places from the same sources and link every handoff back to evidence the recipient can inspect.";
+const analysisBriefRejectedEnglish = "A city is more than land and buildings. Land is the physical base of a place. Living covers people, services, risk and everyday life. Viewed together, Location shows how the place works—through business, movement and demand, including changes that some records reveal over days, months or years. CityMETER organises this complexity so anyone can find, compare and open the sources to check the evidence.";
+const analysisBriefOldRecordOrder = 'recordIds:["business-dynamics","buildings","road-network-archetypes","factories-workers-investment","locale-insights","population-age-sex"]';
+const analysisBriefRecordOrder = 'recordIds:["business-dynamics","buildings","population-age-sex","road-network-archetypes","factories-workers-investment","locale-insights"]';
+const catalogStoryRelease = "2026-08-16-catalog-story-qr-v20";
+const landAppraisalRoute = "https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed";
+const landAppraisalQrHash = "eeb68384e9327bf46b1a0c0d3fdad4b9206c5886e950ba31e20b642513a0f483";
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -175,11 +184,11 @@ for (const page of ["index.html", "en/index.html"]) {
     JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
     `${page} showcase pillar contract must remain 1 / 3 / 2`
   );
-  assert(html.includes("catalog-enhancements-v17.css") && html.includes("catalog-enhancements-v17.js"), `${page} is missing the atmosphere and scroll-end enhancement layer`);
-  assert(html.includes("catalog-enhancements-v17.css"), `${page} must load the immutable governed-atmosphere stylesheet revision`);
+  assert(html.includes("catalog-enhancements-v18.css") && html.includes("catalog-enhancements-v17.js"), `${page} is missing the catalog-story stylesheet or touch-safe enhancement layer`);
+  assert(html.includes("catalog-enhancements-v18.css"), `${page} must load the immutable catalog-story stylesheet revision`);
   assert(html.includes("catalog-enhancements-v17.js"), `${page} must load the touch-safe enhancement revision`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v17.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v18.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
   assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v17.js", `${page} must load exactly one immutable enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
@@ -190,11 +199,31 @@ for (const page of ["index.html", "en/index.html"]) {
     assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
   }
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
-  assert(html.includes("index-qbT50gkr-v6.js"), `${page} must load the stable-footer and atmosphere-band bundle revision`);
-  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v6.js", `${page} must load exactly one main bundle revision`);
+  assert(html.includes("index-qbT50gkr-v9.js"), `${page} must load the catalog-structure bundle revision`);
+  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v9.js", `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes('name="citymeter:release-receipt" content="2026-08-15-atmosphere-scroll-v17"'), `${page} is missing the atmosphere-scroll release receipt`);
+  assert(html.includes(`name="citymeter:release-receipt" content="${catalogStoryRelease}"`), `${page} is missing the catalog-story and QR release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
+  const catalogDiagramMatches = html.match(/<figure class="catalog-structure"[\s\S]*?<\/figure>/g) || [];
+  assert(catalogDiagramMatches.length === 1, `${page} must prerender exactly one catalog-structure diagram`);
+  const catalogDiagram = catalogDiagramMatches[0];
+  const explorerHeadingIndex = html.indexOf('id="datasets-title"');
+  const catalogDiagramIndex = html.indexOf('<figure class="catalog-structure"');
+  const explorerToolbarIndex = html.indexOf('<div class="explorer-toolbar"');
+  assert(explorerHeadingIndex >= 0 && explorerHeadingIndex < catalogDiagramIndex && catalogDiagramIndex < explorerToolbarIndex, `${page} catalog diagram must remain between the heading and filters`);
+  assert(catalogDiagram.includes('aria-labelledby="catalog-structure-title"') && catalogDiagram.includes('aria-describedby="catalog-structure-description"'), `${page} catalog diagram needs an explicit accessible name and description`);
+  assert((catalogDiagram.match(/id="catalog-structure-title"/g) || []).length === 1 && (catalogDiagram.match(/id="catalog-structure-description"/g) || []).length === 1, `${page} catalog diagram ids must be unique`);
+  const catalogGroups = Array.from(catalogDiagram.matchAll(/<li class="catalog-structure-group" data-group="(land|location|living)">/g), (match) => match[1]);
+  assert(JSON.stringify(catalogGroups) === JSON.stringify(["land", "location", "living"]), `${page} catalog diagram must explain Land, Location and Living in order`);
+  const expectedDiagramCounts = page === "index.html" ? ["12 รายการ", "13 รายการ", "13 รายการ"] : ["12 views", "13 views", "13 views"];
+  for (const countLabel of expectedDiagramCounts) assert(catalogDiagram.includes(`<strong>${countLabel}</strong>`), `${page} catalog diagram is missing ${countLabel}`);
+  const expectedDiagramCopy = page === "index.html"
+    ? ["ข้อมูลเมืองซับซ้อน แต่การใช้งานไม่ควรซับซ้อน", "ทั้ง 3 แกนทำงานร่วมกัน", "ทำไมต้อง CityMETER", "ทำไมต้อง Landometer", "ผลลัพธ์จากข้อมูล—ไม่ใช่หมวดที่สี่", "ไม่ใช่ทุกรายการจะเปลี่ยนตามเวลา", "ควรเปิดตรวจรายละเอียดของแต่ละรายการก่อนใช้"]
+    : ["City data is complex. Using it should not be.", "Three lenses work together", "Why CityMETER", "Why Landometer", "An outcome layer—not a fourth data category", "not every view is time-dynamic", "Inspect each record before use"];
+  for (const copy of expectedDiagramCopy) assert(catalogDiagram.includes(copy), `${page} catalog diagram is missing localized copy: ${copy}`);
+  assert(catalogDiagram.includes('<span class="catalog-structure-outcome-label" lang="en">Local Decisions</span>'), `${page} must identify the English Local Decisions label`);
+  assert(!/<(?:img|video|canvas|iframe|a|button|input)\b/i.test(catalogDiagram), `${page} catalog diagram must remain semantic, static and request-free`);
+  assert(!catalogDiagram.includes("data-pillar"), `${page} catalog explainer must not enter the governed card-pillar count contract`);
   assert((html.match(/class="showcase-atmosphere"/g) || []).length === 1, `${page} must expose exactly one Ground orientation band`);
   assert(html.includes('<div class="wide-container showcase-content"><div class="showcase-grid">'), `${page} must keep showcase cards on the flat evidence surface outside the Ground band`);
   assert((html.match(/class="supporter-logos supporter-logos-footer"/g) || []).length === 1, `${page} must prerender exactly one stable footer supporter group`);
@@ -288,18 +317,26 @@ for (const record of review.records) {
   assert(manifestEntry?.sha256 === sha256(qr), `QR bytes do not match the manifest for ${record.id}`);
   assert(existsSync(preview) && statSync(preview).size > 10000, `Missing or empty preview: ${slug}`);
 }
-assert(qrManifest.version === "2026-08-14" && qrManifest.datasets.length === 38 && qrManifest.pages.length === 2, "QR manifest coverage is incomplete");
+assert(qrManifest.version === "2026-08-16" && qrManifest.datasets.length === 38 && qrManifest.pages.length === 2, "QR manifest coverage or revision is incomplete");
+const landAppraisalQr = join(root, "media/qr/land-appraisal.png");
+const landAppraisalQrInfo = pngInfo(landAppraisalQr);
+const landAppraisalManifest = qrManifest.datasets.find((entry) => entry.id === "dataset-land-appraisal");
+assert(landAppraisalManifest?.url === landAppraisalRoute, "Land Appraisal QR manifest must retain the Chonburi title-deed destination");
+assert(landAppraisalManifest?.sha256 === landAppraisalQrHash && sha256(landAppraisalQr) === landAppraisalQrHash, "Land Appraisal QR must use the rescanned v20 bytes");
+assert(landAppraisalQrInfo.width === 512 && landAppraisalQrInfo.height === 512 && landAppraisalQrInfo.colorType === 6, "Land Appraisal QR must remain a 512px RGBA PNG");
 
 for (const asset of [
   "CITYMETER_BRANDING_DEEPLINK_RELEASE_2026-08-14.md",
   "CITYMETER_PERFORMANCE_CLARITY_RELEASE_2026-08-15.md",
   "CITYMETER_ATMOSPHERE_SCROLL_RELEASE_2026-08-15.md",
+  "CITYMETER_CATALOG_STORY_QR_RELEASE_2026-08-16.md",
   "assets/catalog-enhancements.js",
   "assets/catalog-enhancements.css",
   "assets/catalog-enhancements-v15.css",
   "assets/catalog-enhancements-v16.css",
   "assets/catalog-enhancements-v16.js",
   "assets/catalog-enhancements-v17.css",
+  "assets/catalog-enhancements-v18.css",
   "assets/catalog-enhancements-v17.js",
   "assets/citymeter-fonts.css",
   "assets/font-assets.manifest.json",
@@ -308,9 +345,12 @@ for (const asset of [
   "assets/index-qbT50gkr-v4.js",
   "assets/index-qbT50gkr-v5.js",
   "assets/index-qbT50gkr-v6.js",
+  "assets/index-qbT50gkr-v9.js",
   "scripts/apply-branding-route-release.mjs",
   "scripts/apply-performance-clarity-release.mjs",
   "scripts/apply-atmosphere-scroll-release.mjs",
+  "scripts/apply-catalog-story-qr-release.mjs",
+  "scripts/generate-qr-assets.mjs",
   "scripts/split-supporter-logos.sh",
   "scripts/build-hero-reel.sh",
   "scripts/apply-focus-copy.mjs",
@@ -330,11 +370,15 @@ for (const asset of [
 
 for (const [asset, expectedHash] of [
   ["assets/index-qbT50gkr-v6.js", "b78332185bf7b86a3534e53c568b8b684d475e68c783ac0e7534066006aad4c6"],
+  ["assets/index-qbT50gkr-v9.js", "8f857fe4f6fb9e6dd39460eec3a841ba9338e54d1f479b8964fb410c197b0116"],
   ["assets/catalog-enhancements-v17.css", "8f4c95eb631b64b41d1beb6554265189474fff8dde419b0c0d4b46f985b8ff3a"],
+  ["assets/catalog-enhancements-v18.css", "5661979c5ca33a332c3f57fc5dd233daa468875e7d0b32d0684ed3846bfc592a"],
   ["assets/catalog-enhancements-v17.js", "8838d5e11340db1e6ce460e4f4e2190ae1fa27edcce358ba7a987b7014a2db4d"],
-  ["scripts/apply-atmosphere-scroll-release.mjs", "0c0d266f636c01902c3f66973892d7bddd72f4220d80f889b2714ef96ba37684"]
+  ["scripts/apply-atmosphere-scroll-release.mjs", "0c0d266f636c01902c3f66973892d7bddd72f4220d80f889b2714ef96ba37684"],
+  ["scripts/apply-catalog-story-qr-release.mjs", "67056fe888b79cfb7e20b53bc7ca53f8155c6a7321c11812815ef6c04195b2a1"],
+  ["scripts/generate-qr-assets.mjs", "67d0b0869e4faa377ab78611f4f80d996d0ecd491c4bba8b0b2f0c745f1369c3"]
 ]) {
-  assert(sha256(join(root, asset)) === expectedHash, `Immutable atmosphere-scroll release bytes changed: ${asset}`);
+  assert(sha256(join(root, asset)) === expectedHash, `Immutable release bytes changed: ${asset}`);
 }
 
 for (const [asset, expectedHash] of canonicalFontAssets) {
@@ -473,6 +517,32 @@ for (const contract of [
 ]) {
   assert(atmosphereMigration.includes(contract), `Atmosphere-scroll migration is missing: ${contract}`);
 }
+
+const catalogStoryMigration = readFileSync(join(root, "scripts/apply-catalog-story-qr-release.mjs"), "utf8");
+for (const contract of [
+  catalogStoryRelease,
+  "index-qbT50gkr-v6.js",
+  "index-qbT50gkr-v9.js",
+  analysisBriefRecordOrder,
+  "catalog-enhancements-v17.css",
+  "catalog-enhancements-v18.css",
+  "CatalogStructureDiagram",
+  "catalog-structure-groups",
+  "catalog-structure-whys",
+  "data-group",
+  "Why CityMETER",
+  "Why Landometer"
+]) {
+  assert(catalogStoryMigration.includes(contract), `Catalog-story migration is missing: ${contract}`);
+}
+const qrGenerator = readFileSync(join(root, "scripts/generate-qr-assets.mjs"), "utf8");
+for (const contract of ["--only", "dataset-land-appraisal", 'args.length === 2', 'args[1].length > 0', 'onlyId !== null', 'qrcode@1.5.4', 'isLandAppraisal ? "Q" : "M"', 'isLandAppraisal ? "512" : "256"', "2026-08-16"]) {
+  assert(qrGenerator.includes(contract), `QR generator is missing the one-asset Land Appraisal contract: ${contract}`);
+}
+const catalogStoryReceipt = readFileSync(join(root, "CITYMETER_CATALOG_STORY_QR_RELEASE_2026-08-16.md"), "utf8");
+for (const contract of [catalogStoryRelease, landAppraisalRoute, landAppraisalQrHash, "Land", "Location", "Living", "Local Decisions", "Why CityMETER", "Why Landometer"]) {
+  assert(catalogStoryReceipt.includes(contract), `Catalog-story QR release receipt is missing: ${contract}`);
+}
 const atmosphereRelease = readFileSync(join(root, "CITYMETER_ATMOSPHERE_SCROLL_RELEASE_2026-08-15.md"), "utf8");
 assert((atmosphereRelease.match(/`deletionTest: improves`/g) || []).length === 3, "Every rendered atmosphere moment needs a completed improving deletion test");
 assert((atmosphereRelease.match(/`evidenceRef:/g) || []).length === 3, "Every rendered atmosphere deletion test needs an evidence reference");
@@ -487,8 +557,26 @@ const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const baseCss = readFileSync(join(root, "assets/index-cqxdfePB.css"), "utf8");
 const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v17.js"), "utf8");
-const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v17.css"), "utf8");
+const previousEnhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v17.css"), "utf8");
+const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v18.css"), "utf8");
 const canonicalFontCss = readFileSync(join(root, "assets/citymeter-fonts.css"), "utf8");
+assert(enhancementCss.startsWith(previousEnhancementCss.trimEnd()), "Catalog CSS v18 must preserve immutable v17 before the scoped diagram block");
+const catalogCssDelta = enhancementCss.slice(previousEnhancementCss.trimEnd().length);
+for (const required of [
+  ".explorer-section .catalog-structure",
+  "repeat(3, minmax(0, 1fr))",
+  'data-group="land"',
+  'data-group="location"',
+  'data-group="living"',
+  "@media (max-width: 720px)",
+  "@media (max-width: 430px)"
+]) {
+  assert(catalogCssDelta.includes(required), `Catalog diagram CSS is missing: ${required}`);
+}
+for (const prohibited of ["overflow-x: auto", "background-attachment: fixed", "backdrop-filter", "animation:", "position: fixed", "position: sticky"]) {
+  assert(!catalogCssDelta.includes(prohibited), `Catalog diagram CSS contains a prohibited behavior: ${prohibited}`);
+}
+assert(!/data-group[^{}]*gradient|gradient[^{}]*data-group/i.test(catalogCssDelta), "Catalog groups must use flat surfaces, not atmosphere gradients");
 const enhancementSourceLower = `${enhancementCss}\n${enhancementJs}`.toLowerCase();
 for (const retiredColor of ["#9f78d8", "#d89a27", "#36b9cc"]) {
   assert(!enhancementSourceLower.includes(retiredColor), `Retired non-canonical status color remains: ${retiredColor}`);
@@ -723,6 +811,7 @@ assert(benefitAppend === reviewConstruction.indexOf("review.append("), "Reader b
 assert(benefitAppend < evidenceAppend && evidenceAppend < sourceAppend && sourceAppend < readingAppend, "Source disclosure must render benefit before scope, source and decision checks");
 assert((enhancementJs.match(/2026-08-14-r4/g) || []).length >= 2 && !enhancementJs.includes("2026-08-14-r3"), "All source-review guards must use revision r4");
 assert(enhancementJs.includes('details.querySelector(":scope > div:not(.source-review)")?.remove()'), "Legacy limitation-first copy must be removed after hydration");
+assert(enhancementJs.includes('logo.className = "gd-lineage-logo"') && enhancementJs.includes('logo.src = `${assetBase}media/gdcatalog-logo.png`'), "Verified GD Catalog lineage must keep its governed logo treatment");
 assert(enhancementCss.includes(".source-copy-block-benefit"), "Reader-benefit copy needs a distinct quiet surface");
 assert(thHtml.includes("GFA · ความสูง · จำนวนชั้น") && !thHtml.includes("สวนพลู · อาคาร 3 มิติ · GFA"), "Thai prerender must preserve the React hydration baseline");
 assert(enHtml.includes("GFA · height · floors") && !enHtml.includes("Suan Plu · 3D buildings · GFA"), "English prerender must preserve the React hydration baseline");
@@ -916,7 +1005,70 @@ assert(enHtml.includes("Scan to open it on your phone, save it for yourself, or 
 assert(enHtml.includes("Save or share this example"), "English page is missing the permanent handoff share CTA");
 assert(enHtml.includes("The link opens the same example and data."), "English page is missing the permanent handoff note");
 
-const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v6.js"), "utf8");
+const previousMainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v6.js"), "utf8");
+const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v9.js"), "utf8");
+assert(mainBundle !== previousMainBundle, "Main bundle v9 must contain the governed catalog release changes");
+assert(mainBundle.split(analysisBriefOldThai).length === 2, "Hydrated Thai analysis-brief must preserve the approved concise description exactly once");
+assert(mainBundle.split(analysisBriefOldEnglish).length === 2, "Hydrated English analysis-brief must preserve the approved concise description exactly once");
+assert(!mainBundle.includes(analysisBriefRejectedThai) && !mainBundle.includes(analysisBriefRejectedEnglish), "Hydrated bundle must not restore the rejected long analysis-brief copy");
+assert(mainBundle.includes('title:"จะทำ analysis หรือ brief ให้ทีมใช้ต่ออย่างไร"'), "Thai analysis-brief title changed outside scope");
+assert(mainBundle.includes('title:"How can an analysis or brief stay useful to the next team?"'), "English analysis-brief title changed outside scope");
+assert(mainBundle.includes('"analysis-brief":"business-dynamics"'), "Analysis-brief must keep the Business Dynamics proof image and CTA owner");
+assert(mainBundle.includes("h.recordIds.slice(0,5)"), "Analysis-brief must keep the five-link rendering contract");
+assert(mainBundle.split(analysisBriefRecordOrder).length === 2, "Analysis-brief related-record order must appear exactly once");
+const analysisOrderMatch = mainBundle.match(/\{id:"analysis-brief",number:"05",icon:"analysis-brief",anchor:"intent-analysis-brief",recordIds:\[([^\]]+)\]\}/);
+assert(analysisOrderMatch, "Compiled analysis-brief intent record is missing");
+const analysisOrder = JSON.parse(`[${analysisOrderMatch[1]}]`);
+assert(
+  JSON.stringify(analysisOrder) === JSON.stringify(["business-dynamics", "buildings", "population-age-sex", "road-network-archetypes", "factories-workers-investment", "locale-insights"]),
+  "Analysis-brief related records must preserve all six records and move population to third"
+);
+const visibleAnalysisGroups = analysisOrder.slice(0, 5).map((id) => {
+  const group = mainBundle.match(new RegExp(`id:"${id}",group:"([^"]+)"`))?.[1];
+  assert(group, `Compiled group is missing for analysis-brief record: ${id}`);
+  return group;
+});
+assert(
+  JSON.stringify(visibleAnalysisGroups) === JSON.stringify(["location", "land", "living", "location", "location"]),
+  "The first five analysis-brief links must visibly cover Location, Land and Living"
+);
+const catalogComponentStart = mainBundle.indexOf("function CatalogStructureDiagram(");
+const catalogComponentEnd = mainBundle.indexOf("function Q6(", catalogComponentStart);
+assert(catalogComponentStart >= 0 && catalogComponentEnd > catalogComponentStart, "Compiled catalog structure component is missing");
+const catalogComponent = mainBundle.slice(catalogComponentStart, catalogComponentEnd);
+for (const contract of [
+  'className:"catalog-structure"',
+  'className:"catalog-structure-groups"',
+  'className:"catalog-structure-whys"',
+  'className:"catalog-structure-boundary"',
+  'className:"catalog-structure-outcome-label",lang:"en"',
+  '"data-group":v.id',
+  "p6.map",
+  'lang:"en"'
+]) {
+  assert(catalogComponent.includes(contract), `Compiled catalog structure component is missing: ${contract}`);
+}
+assert(!/(?:img|video|canvas|iframe)|fetch\(|new Image/i.test(catalogComponent), "Compiled catalog diagram must remain request-free and static");
+for (const copy of [
+  "ข้อมูลเมืองซับซ้อน แต่การใช้งานไม่ควรซับซ้อน",
+  "City data is complex. Using it should not be.",
+  "ทำไมต้อง CityMETER",
+  "Why CityMETER",
+  "ทำไมต้อง Landometer",
+  "Why Landometer",
+  "ผลลัพธ์จากข้อมูล—ไม่ใช่หมวดที่สี่",
+  "An outcome layer—not a fourth data category"
+]) {
+  assert(mainBundle.includes(copy), `Compiled catalog story is missing localized copy: ${copy}`);
+}
+const explorerComponentEnd = mainBundle.indexOf("function X6(", catalogComponentEnd);
+const explorerComponent = mainBundle.slice(catalogComponentEnd, explorerComponentEnd);
+const explorerHeadingOwner = explorerComponent.indexOf('id:"datasets-title"');
+const diagramOwner = explorerComponent.indexOf("p.jsx(CatalogStructureDiagram,{language:c,text:f})");
+const toolbarOwner = explorerComponent.indexOf('className:"explorer-toolbar"');
+assert(explorerHeadingOwner >= 0 && explorerHeadingOwner < diagramOwner && diagramOwner < toolbarOwner, "Hydrated catalog diagram must remain between the heading and filters");
+assert(explorerComponent.includes("Gl.length") && explorerComponent.includes("p6.map"), "Hydrated explorer must continue deriving catalog and pillar counts from canonical runtime data");
+assert(mainBundle.includes("text:O.description,url:B"), "Native share must continue to use the active intent description and URL");
 assert(mainBundle.includes('id:"page-title",lang:"en",children:c.hero.title'), "Compiled bundle must render the CityMETER page title with English language metadata");
 assert(mainBundle.includes('className:"citymeter-label",href:"#top",lang:"en",children:"CityMETER"'), "Compiled bundle must render the CityMETER header label with English language metadata");
 assert(mainBundle.includes('className:d<2?"showcase-card showcase-card-wide":"showcase-card","data-pillar":s.group,children:'), "Compiled bundle must render semantic showcase pillars before hydration");
@@ -1009,4 +1161,4 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: deterministic 1200x630 Land Appraisal social card, semantic Land/Location/Living parity across six showcase and 38 dataset cards, component-local Vivid Civic category rails and chips, exact Measure/Ground/Cultivate theme-paired atmosphere cadence with complete foreground contracts, flat evidence separation, 38 dataset previews plus six showcase and one intent preview lazy-loaded with hydration parity, full-frame silent hero media without visible captions, accurate four-screen reel v3 transcripts, metadata-only video preload, no runtime preview/video cache-busting, deferred registry fetch, strict 320px iframe containment, iPhone root-canvas continuation and safe-area footer treatment, coarse-pointer layout-motion guard, hydration-stable footer supporters, canonical typography, immutable main bundle v6, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
+console.log("CityMETER release validation passed: plain-language Land/Location/Living catalog structure diagram, Deep/Clear/Easy and CityMETER/Landometer role boundaries, static-hydrated v9 parity, preserved concise analysis-brief descriptions with first-five Land/Location/Living evidence coverage, preserved Business Dynamics proof and CTA, preserved 38 source-review records and GD Catalog lineage treatment, independently decodable 512px Land Appraisal QR with the exact deed route, unchanged remaining QR bytes, deterministic 1200x630 Land Appraisal social card, semantic Land/Location/Living parity across six showcase and 38 dataset cards, component-local Vivid Civic category rails and chips, exact Measure/Ground/Cultivate theme-paired atmosphere cadence with complete foreground contracts, flat evidence separation, 38 dataset previews plus six showcase and one intent preview lazy-loaded with hydration parity, full-frame silent hero media without visible captions, accurate four-screen reel v3 transcripts, metadata-only video preload, no runtime preview/video cache-busting, deferred registry fetch, strict 320px iframe containment, iPhone root-canvas continuation and safe-area footer treatment, coarse-pointer layout-motion guard, hydration-stable footer supporters, canonical typography, immutable main bundle v9, responsive footer, reduced-motion fallback, preserved PNG alpha, and unchanged videos.");
