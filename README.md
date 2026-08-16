@@ -2,6 +2,14 @@
 
 หน้า marketing landing page สำหรับ prospect ที่ต้องการเห็นตัวอย่าง implementation จริงของ CityMETER ก่อนเลือกโจทย์ พื้นที่ และข้อมูลที่จะเปิดดูต่อ
 
+## Current release
+
+- Receipt: `2026-08-16-motion-image-performance-v23`
+- Active runtime: `assets/index-qbT50gkr-v12.js`, `assets/catalog-enhancements-v21.css`, `assets/catalog-enhancements-v19.js`
+- Dataset-card thumbnails: `media/previews-v3/` (38 files, 800×500, 1.42 MB total); high-value intent/showcase evidence remains in `media/previews-v2/`
+- Team rebuild guide: `CITYMETER_REBUILD_BRIEF.md`
+- Release evidence: `CITYMETER_MOTION_IMAGE_PERFORMANCE_RELEASE_2026-08-16.md`
+
 ## Preview URLs
 
 - Landing page on GitHub Pages: https://montri-th.github.io/CityMETER/
@@ -45,6 +53,9 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 - `assets/citymeter-fonts.css` — canonical Design System typography roles, Thai/Latin subset coverage and line-height contract; the IBM Plex Sans Thai 400 subset assets are immutable hash-suffixed WOFF2 files
 - `assets/font-assets.manifest.json` / `assets/font-license-records.json` — six semantic face records covering 18 hash-verified webfont files and four OFL-1.1 license receipts
 - `data/catalog-source-review.json` — bilingual 38-record source ledger พร้อมข้อความ reader benefit เฉพาะรายการ reviewed on 14 August 2026
+- `media/previews-v2/` / `media/previews-v3/` — immutable 1200×750 evidence captures และ deterministic 800×500 card thumbnails
+- `scripts/build-card-previews.py` — pinned Pillow/libwebp thumbnail builder พร้อม SHA-256 manifest
+- `CITYMETER_REBUILD_BRIEF.md` — step-by-step brief สำหรับทีมที่ต้อง rebuild หน้าเต็มจาก repository
 - `media/` — owner-supplied Landometer logo, optimized GD Catalog logo, 38 dark previews, 38 QR assets, governed concept illustrations, Land Appraisal social card and the three-chapter web/exhibition reel
 - `scripts/generate-qr-assets.mjs` — reproducible dataset-URL QR generator
 - `CityMETER_Landing_Page_Prototype_DS_0.8.9.html` — lightweight noindex entry file ที่พาไปยัง static showcase หลัก
