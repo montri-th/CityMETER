@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0-p6-candidate",
+  "candidateId": "p6-shared-kit-foundation-2026-08-25",
+  "consumerRepository": "citymeter-repo",
+  "activationStatus": "gated",
+  "runtimeActivated": false,
+  "source": {
+    "repository": "landometer-root-repo",
+    "repositoryHead": "d82ac775ab9d35a84cfb0dc77bc0ae804a7a0665",
+    "packageManifestPath": "deployment/machine/v0.9.0/package.json",
+    "packageManifestBytes": 12381,
+    "packageManifestSha256": "0b4b8bfd9abcf403cfebdc8fe9b3299a821eb6e2e96d0d5c9495f1627f206e47",
+    "buildKitRoot": "deployment/machine/v0.9.0/build-kit",
+    "dsVersion": "0.9.0",
+    "authoringRevision": "v0.9.0-r7",
+    "packageRevision": "v0.9.0-mp1",
+    "kitVersion": "lds-kit-0.9.0-r4",
+    "colorSetId": "color-srgb-05",
+    "tokenSchemaVersion": 6,
+    "manifestVersion": "2.1",
+    "referenceArtifactBuildId": "ui-20260821-05",
+    "tokenRegistry": {
+      "path": "deployment/machine/v0.9.0/tokens.json",
+      "bytes": 10749,
+      "sha256": "5afa9a93bafa8f2e5edb7e929d4924bc548a415098377ad53e18097c56980287"
+    }
+  },
+  "vendoredFiles": [
+    {
+      "role": "authoritative_tokens_css",
+      "path": "lds-tokens.css",
+      "sourcePath": "deployment/machine/v0.9.0/build-kit/lds-tokens.css",
+      "bytes": 11392,
+      "sha256": "aa834b08c6ecd00704a0c3580da83d291237738815a8e2e408aba12bb9551323"
+    },
+    {
+      "role": "authoritative_base_css",
+      "path": "lds-base.css",
+      "sourcePath": "deployment/machine/v0.9.0/build-kit/lds-base.css",
+      "bytes": 10718,
+      "sha256": "47eb23f0b2a06bd6882080bcc693384f5d59791b434045e7281b98fa2831903c"
+    }
+  ],
+  "openGates": [
+    "upstream_skeleton_color_set_defect",
+    "upstream_material_symbols_package_missing",
+    "browser_visual_and_manual_qa",
+    "product_artifact_receipts"
+  ],
+  "boundaries": [
+    "Candidate custody only; no stylesheet or runtime import is activated by this manifest.",
+    "skeleton.html is intentionally not vendored.",
+    "The Design System reference artifact build is provenance only and must not be used as a product artifact receipt.",
+    "Activation remains fail-closed until every open gate is closed with product-specific evidence."
+  ]
+}

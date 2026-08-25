@@ -1,0 +1,245 @@
+/* ============================================================
+   Landometer Design System v0.9.0 — lds-tokens.css
+   Kit lds-kit-0.9.0-r4 · Color Set color-srgb-05 · Token Schema 6
+   Copy verbatim. Do not edit values. [TOKEN-01]
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  /* Brand and energy (A1) */
+  --brand-blue: #1D4497;            /* protected; identical in dark */
+  --brand-beige: #F2F1DF;
+  --energy-sky: #59D2FE;
+  --energy-mint: #0AD69C;
+  --energy-coral: #FF5A5F;
+  --energy-yellow: #FFBC1F;
+
+  /* Foundation (A2) — light */
+  --surface-canvas: #F6F7F3;
+  --surface-alt: #EEF1EE;
+  --surface-card: #FCFCFA;
+  --surface-raised: #FFFFFF;
+  --surface-soft: #E5E9E6;
+  --surface-blue-tint: #E2E9ED;
+  --surface-beige-tint: #F2F1DF;
+  --text-primary: #182327;
+  --text-secondary: #5F635A;
+  --text-metadata: #5C6A61;
+  --text-muted: #7B877D;
+  --text-disabled: #A7B3A9;
+  --border-hairline: #DCE1DD;
+  --border-default: #C9D0CB;
+  --border-emphasis: #7D877F;
+  --interaction-accent: #176B82;
+  --interaction-focus-ring: #176B82;
+
+  /* Semantic states (A3) — light */
+  --semantic-success-fill: #E2F4E5;  --semantic-success-ink: #126B49;
+  --semantic-warning-fill: #FFF1D1;  --semantic-warning-ink: #A64A00;
+  --semantic-danger-fill: #FCE5DF;   --semantic-danger-ink: #B43A3A;
+  --semantic-info-fill: #E8EEF0;     --semantic-info-ink: #176B82;
+  --semantic-neutral-fill: #ECE4D2;  --semantic-neutral-ink: #5F635A;
+  --semantic-pending-fill: #F3EEDB;  --semantic-pending-ink: #5C6A61;
+  --semantic-assisted-fill: #DFF3F1; --semantic-assisted-ink: #176C67;
+
+  /* Source-status aliases (A2.1 — derived, no new raw values) */
+  --status-source-candidate: var(--semantic-warning-ink);
+  --status-source-derived: var(--semantic-assisted-ink);
+  --status-source-other: var(--interaction-accent);
+  --status-source-verified-bar: var(--brand-blue);
+
+  /* Overlay glass (A2.1 — dark canvas at opacity.strong; theme-invariant) */
+  --overlay-glass: rgba(17, 25, 29, 0.88);
+  --overlay-glass-ink: #FFFFFF;
+  --overlay-glass-ink2: #F1F4EF;
+  --overlay-glass-border: rgba(241, 244, 239, 0.24);
+
+  /* Atmosphere recipes (A4 — exact stops; never edit) */
+  --atmosphere-measure-deep: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
+  --atmosphere-measure-luminous: linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%);
+  --atmosphere-ground-current: linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%);
+  --atmosphere-ground-mist: linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
+  --atmosphere-cultivate-glow: linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%);
+  --atmosphere-cultivate-mist: linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
+  --atmosphere-diversity-spectrum: linear-gradient(135deg, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%);
+
+  /* Product identity gradients (A4) — only inside the owning product */
+  --product-citymeter-gradient: linear-gradient(135deg, #12669B 0%, #36BCE4 100%);
+  --product-citywiki-gradient: linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
+  --product-citychat-gradient: linear-gradient(135deg, #007A58 0%, #007E79 100%);
+  --product-ijji-gradient: linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
+
+  /* Local foreground contracts (A4.1 — exact) */
+  --fg-on-deep-primary: #FFFFFF;
+  --fg-on-deep-secondary: #F1F4EF;
+  --fg-on-light-primary: #182327;
+  --fg-on-light-secondary: #293337;
+  --fg-interactive-surface: #FFFFFF;   /* interactive surface/ink pair holds on every recipe */
+  --fg-interactive-ink: #182327;
+
+  /* Theme-resolved atmosphere aliases + their contracts (A4.1) */
+  --surface-atmosphere-measure: var(--atmosphere-measure-deep);
+  --on-atmosphere-measure: var(--fg-on-deep-primary);
+  --on-atmosphere-measure-2: var(--fg-on-deep-secondary);
+  --surface-atmosphere-ground: var(--atmosphere-ground-mist);
+  --on-atmosphere-ground: var(--fg-on-light-primary);
+  --on-atmosphere-ground-2: var(--fg-on-light-secondary);
+  --surface-atmosphere-cultivate: var(--atmosphere-cultivate-glow);
+  --on-atmosphere-cultivate: var(--fg-on-light-primary);
+  --on-atmosphere-cultivate-2: var(--fg-on-light-secondary);
+  --surface-atmosphere-diversity: var(--atmosphere-diversity-spectrum);
+  --on-atmosphere-diversity: var(--fg-on-light-primary);
+  --on-atmosphere-diversity-2: var(--fg-on-light-secondary);
+
+  /* Vivid Civic 10 categorical (A5) — assign by category ID, color-only stops at six */
+  --series-01: #C33F55; --series-02: #C52C00; --series-03: #A87B00;
+  --series-04: #5D7400; --series-05: #007A58; --series-06: #007E79;
+  --series-07: #147A9F; --series-08: #1F629B; --series-09: #536B70;
+  --series-10: #B23F74;
+  --dataviz-no-data-fill: #D5DAD6;   /* diagonal pattern + label; never part of a ramp */
+  --dataviz-zero-outline: #7D877F;
+  /* Sequential/diverging analytical colors come ONLY from the generated
+     41-stop LUT files with scaleVersion (A6); never interpolate at runtime. */
+
+  /* Map and interface (A7) — light */
+  --map-active-layer: #347DA8;
+  --map-hover-stroke: #347DA8;
+  --map-hover-fill: rgba(52, 125, 168, 0.16);
+  --map-selected-stroke: #176B82;
+  --map-selected-fill: rgba(23, 107, 130, 0.18);
+  --map-focus-stroke: #176B82;
+  --marker-halo: #FFFFFF;
+  --marker-stroke: #182327;
+
+  /* z-index roles (A7) */
+  --z-base: 0; --z-raised: 10; --z-sticky: 100; --z-dropdown: 200;
+  --z-overlay: 400; --z-modal: 500; --z-toast: 600; --z-tooltip: 700;
+
+  /* Opacity registry (A7) — never the only carrier of meaning */
+  --opacity-solid: 1.00; --opacity-strong: 0.88; --opacity-medium: 0.72;
+  --opacity-soft: 0.56; --opacity-subtle: 0.40; --opacity-ghost: 0.24;
+  --opacity-watermark: 0.12; --opacity-trace: 0.06;
+
+  /* Type scale (A8) */
+  --type-caption: .75rem;
+  --type-label: .8125rem;
+  --type-body-sm: .875rem;
+  --type-body: 1rem;
+  --type-body-lg: 1.125rem;
+  --type-h3: clamp(1.35rem, 2vw, 1.75rem);
+  --type-h2: clamp(2rem, 4vw, 3.25rem);
+  --type-h1-en: clamp(3.25rem, 7vw, 6.5rem);
+  --type-h1-th: clamp(2.5rem, 6vw, 5rem);
+
+  /* Spacing, radius, container, elevation (A9) */
+  --space-0: 0; --space-1: 4px; --space-2: 8px; --space-3: 12px;
+  --space-4: 16px; --space-5: 24px; --space-6: 32px;
+  --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+  --radius-xs: 6px; --radius-sm: 10px; --radius-md: 16px;
+  --radius-lg: 24px; --radius-xl: 32px; --radius-pill: 999px;
+  --container-reading: 760px; --container-default: 1120px; --container-wide: 1280px;
+  --gutter-mobile: 16px; --gutter-tablet: 24px; --gutter-desktop: 32px;
+  --elevation-none: none;
+  --elevation-xs: 0 1px 2px rgba(30,34,48,.08);
+  --elevation-sm: 0 4px 12px rgba(30,34,48,.10);
+  --elevation-md: 0 12px 32px rgba(30,34,48,.14);
+  --elevation-lg: 0 24px 64px rgba(30,34,48,.18);
+
+  /* Motion (A10) */
+  --motion-duration-feedback: 120ms;
+  --motion-duration-state: 200ms;
+  --motion-duration-map: 280ms;
+  --motion-duration-chart: 360ms;
+  --motion-duration-reveal: 640ms;
+  --motion-duration-emphasis: 560ms;
+  --motion-delay-stagger: 120ms;
+  --motion-delay-stagger-cap: 600ms;
+  --motion-distance-feedback: 2px;
+  --motion-distance-reveal: 20px;
+  --motion-ease-state: cubic-bezier(.2,0,0,1);
+  --motion-ease-enter: cubic-bezier(.16,1,.3,1);
+  --motion-ease-settle: cubic-bezier(.2,.9,.25,1.08);
+  --motion-ease-press: cubic-bezier(.3,0,.6,1);
+
+  /* Typography delivery (A11) */
+  --leading-display-en: 1.02;
+  --leading-display-th: 1.16;
+  --leading-editorial-en: 1.15;
+  --leading-ui-heading-en: 1.22;
+  --leading-ui-heading-th: 1.32;
+  --leading-body: 1.60;
+  --leading-body-compact: 1.45;
+  --leading-label: 1.35;
+  --leading-number: 1.25;
+  --font-display-en-fallback: Georgia, Cambria, "Times New Roman", serif;
+  --font-display-th-fallback: "Noto Sans Thai Looped", "Leelawadee UI", Tahoma, sans-serif;
+  --font-body-fallback: "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif;
+  --font-number-fallback: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-display-en: "Arvo", var(--font-display-en-fallback);
+  --font-display-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
+  --font-ui-heading-en: "Arvo", var(--font-display-en-fallback);
+  --font-ui-heading-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
+  --font-body: "Bai Jamjuree", var(--font-body-fallback);
+  --font-technical-latin: "JetBrains Mono", var(--font-number-fallback);
+  --font-technical-th: "IBM Plex Sans Thai", var(--font-body-fallback);
+  --font-technical: "JetBrains Mono", "IBM Plex Sans Thai", "SFMono-Regular", Consolas, monospace;
+  --font-number: var(--font-technical-latin);
+  font-synthesis: none;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --brand-beige: #D8CFB2;            /* dark.brand.beige — warm accent, not default text */
+  --surface-canvas: #11191D;
+  --surface-alt: #172126;
+  --surface-card: #20292D;
+  --surface-raised: #293337;
+  --surface-soft: #2B3534;
+  --surface-blue-tint: #18333E;
+  --surface-beige-tint: #2C2A22;
+  --text-primary: #F1F4EF;
+  --text-secondary: #C4CECA;
+  --text-metadata: #A6B5B1;
+  --text-muted: #8D9D99;
+  --text-disabled: #71817D;
+  --border-hairline: #33403D;
+  --border-default: #46524F;
+  --border-emphasis: #7C8A84;
+  --interaction-accent: #68C4E2;
+  --interaction-focus-ring: #68C4E2;
+  --semantic-success-fill: #17362D;  --semantic-success-ink: #72E8C4;
+  --semantic-warning-fill: #3B2E16;  --semantic-warning-ink: #F5C15C;
+  --semantic-danger-fill: #3A1F21;   --semantic-danger-ink: #FF7C72;
+  --semantic-info-fill: #18333E;     --semantic-info-ink: #68C4E2;
+  --semantic-neutral-fill: #2B3534;  --semantic-neutral-ink: #C4CECA;
+  --semantic-pending-fill: #2C2A22;  --semantic-pending-ink: #D8CFB2;
+  --semantic-assisted-fill: #163331; --semantic-assisted-ink: #79D9D1;
+  --status-source-verified-bar: var(--interaction-accent); /* alias choice, not a Brand Blue recolor */
+  --surface-atmosphere-measure: var(--atmosphere-measure-luminous);
+  --on-atmosphere-measure: var(--fg-on-light-primary);
+  --on-atmosphere-measure-2: var(--fg-on-light-secondary);
+  --surface-atmosphere-ground: var(--atmosphere-ground-current);
+  --on-atmosphere-ground: var(--fg-on-deep-primary);
+  --on-atmosphere-ground-2: var(--fg-on-deep-secondary);
+  --surface-atmosphere-cultivate: var(--atmosphere-cultivate-mist);
+  --on-atmosphere-cultivate: var(--fg-on-light-primary);
+  --on-atmosphere-cultivate-2: var(--fg-on-light-secondary);
+  --product-citymeter-gradient: linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);
+  --product-citywiki-gradient: linear-gradient(135deg, #F2F1DF 0%, #E0B443 100%);
+  --product-citychat-gradient: linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%);
+  --product-ijji-gradient: linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);
+  --series-01: #FF6B7F; --series-02: #FF8A4C; --series-03: #F4C44E;
+  --series-04: #B5E34E; --series-05: #3BD19B; --series-06: #3BD3CB;
+  --series-07: #59C7E8; --series-08: #4C99D5; --series-09: #A9C4C7;
+  --series-10: #F06FA6;
+  --dataviz-no-data-fill: #404844;
+  --dataviz-zero-outline: #93A398;
+  --map-active-layer: #65B6DB;
+  --map-hover-stroke: #65B6DB;
+  --map-hover-fill: rgba(101, 182, 219, 0.18);
+  --map-selected-stroke: #68C4E2;
+  --map-selected-fill: rgba(104, 196, 226, 0.22);
+  --map-focus-stroke: #68C4E2;
+  --marker-halo: #101318;
+  --marker-stroke: #F1F4EF;
+}

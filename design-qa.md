@@ -228,3 +228,67 @@ current release result: published; production social metadata/image QA and carri
 - Served HTML, CSS, bundle and Land Appraisal image SHA-256 values matched local release bytes. Application-origin console errors: 0; extension-origin metadata errors excluded.
 
 2026-08-15 quiet pillar-card release result: published; production repository/workflow/CDN/browser checks passed.
+
+## Current v27 addendum — compact contributor portraits and expanded attribution
+
+**Findings**
+
+- [P0] Browser-rendered implementation evidence is unavailable
+  Location: CityMETER dataset cards in collapsed and expanded states.
+  Evidence: the user-provided source screenshot opened successfully, but the Codex in-app browser denied both the live GitHub Pages URL and the sanitized local public preview because its admin-enforced browser security policy could not be verified. No implementation screenshot was produced.
+  Impact: fonts, spacing, colors, portrait crop/quality, wrapping, responsive behavior, and the visual transition between collapsed and expanded states cannot be compared from browser-rendered evidence.
+  Fix: repeat the comparison when the in-app browser security check is available; capture the collapsed card and the same card with its native details expanded at the matching desktop viewport, then compare both captures against the source visual.
+
+**Comparison Target**
+
+- Source visual truth: user-provided Codex attachment
+- Source pixels: `3316 × 1772`
+- Implementation target attempted: sanitized public-only local preview containing `index.html`, `en/`, `assets/`, `media/`, and `data/`
+- Implementation screenshot path: unavailable — browser security verification blocked navigation
+- Implementation pixels / CSS viewport / device scale factor: unavailable
+- Intended viewport and state: desktop, dark theme, dataset cards in both collapsed and expanded states
+- Density normalization: not performed because no implementation capture exists
+
+**Required Fidelity Surfaces**
+
+- Fonts and typography: blocked pending rendered capture.
+- Spacing and layout rhythm: blocked pending rendered capture.
+- Colors and visual tokens: blocked pending rendered capture.
+- Image quality and asset fidelity: blocked pending rendered capture.
+- Copy and content: source-level validation passed for 38 Thai and 38 English cards; visual comparison remains blocked.
+
+**Full-view Comparison Evidence**
+
+- Source visual was opened and inspected.
+- No browser-rendered implementation capture is available, so no valid full-view comparison was performed.
+
+**Focused Region Comparison Evidence**
+
+- Required focus regions are the action row with compact contributor portraits and the expanded contributor detail block.
+- No valid focused comparison was performed because the implementation could not be captured.
+
+**Comparison History**
+
+- Iteration 1: source visual inspected; implementation capture blocked before comparison. No visual P0/P1/P2 finding was fixed or cleared because rendered evidence is unavailable.
+
+**Primary Interactions and Console**
+
+- Static/hydrated contracts and native-details structure passed automated validation.
+- Browser interaction testing, responsive states, image-error presentation, hydration console checks, and visual regression checks were not run because browser navigation was blocked.
+
+**Open Questions**
+
+- None about product intent. The only open gate is browser-rendered visual verification.
+
+**Implementation Checklist**
+
+- Retry the in-app browser when its admin security check is available.
+- Capture collapsed and expanded cards at the source-matched desktop viewport.
+- Verify responsive wrapping at mobile breakpoints, both themes, 200% zoom, keyboard disclosure behavior, portrait fallback, and console output.
+- Update this report with the paired visual evidence and either clear or fix all P0/P1/P2 findings.
+
+**Follow-up Polish**
+
+- None proposed without rendered evidence; avoid speculative visual changes to the approved design.
+
+final result: blocked
