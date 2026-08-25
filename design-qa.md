@@ -292,3 +292,11 @@ current release result: published; production social metadata/image QA and carri
 - None proposed without rendered evidence; avoid speculative visual changes to the approved design.
 
 final result: blocked
+
+## Current v28 addendum — contributor note removal
+
+- Scope is limited to removing the owner-directed note from the Thai and English expanded contributor details.
+- Static HTML, the hydrated application, and the transitional enhancer no longer emit the note paragraph, its ID, or the associated `aria-describedby` reference.
+- Existing layout, portrait chips, names, links, native details, nested `+N` behavior, registry data, structured data, and visual styling are unchanged.
+- Source-level generation, contributor, release, P0 contract, and shared-kit validators passed.
+- The browser-rendered comparison gate recorded above remains open until the in-app browser security check allows a fresh capture; no speculative visual change was made.

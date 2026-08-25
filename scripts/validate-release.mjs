@@ -9,30 +9,30 @@ const qrManifest = JSON.parse(readFileSync(join(root, "media/qr/manifest.json"),
 const previewManifest = JSON.parse(readFileSync(join(root, "media/previews-v3/manifest.json"), "utf8"));
 const fontManifest = JSON.parse(readFileSync(join(root, "assets/font-assets.manifest.json"), "utf8"));
 const fontLicenseRecords = JSON.parse(readFileSync(join(root, "assets/font-license-records.json"), "utf8"));
-const expectedContributorManifestRef = "data/citymeter-contributor-release-p1-d5d089845ca8.json";
-const expectedContributorRelease = "2026-08-25-contributors-compact-details-v27";
+const expectedContributorManifestRef = "data/citymeter-contributor-release-p1-cf7e7b55a7a1.json";
+const expectedContributorRelease = "2026-08-25-contributor-note-removal-v28";
 const expectedContributorRenderOwners = {
   thaiPrerender: "index.html",
   englishPrerender: "en/index.html",
-  hydratedBundle: "assets/index-qbT50gkr-v16.js",
-  transitionalEnhancer: "assets/catalog-enhancements-v23.js",
+  hydratedBundle: "assets/index-qbT50gkr-v17.js",
+  transitionalEnhancer: "assets/catalog-enhancements-v24.js",
   styles: "assets/catalog-enhancements-v25.css"
 };
 const expectedContributorReleaseAuthority = {
   authority: "site_owner",
   authorizedAt: "2026-08-25",
-  scope: "Publish the completed CityMETER P2-P6 contributor presentation to the existing GitHub Pages site while preserving approved live content"
+  scope: "Publish the CityMETER contributor note removal to the existing GitHub Pages site while preserving approved live content"
 };
 const contributorShellHtml = readFileSync(join(root, "index.html"), "utf8");
 const contributorManifestRef = contributorShellHtml.match(/<meta name="citymeter:contributor-release-manifest" content="(data\/citymeter-contributor-release-p1-[a-f0-9]{12}\.json)" \/>/)?.[1];
 assert(contributorManifestRef, "Active P1 contributor manifest pointer is missing from index.html");
-assert(contributorManifestRef === expectedContributorManifestRef, "Active contributor manifest pointer is not the authorized v27 manifest");
+assert(contributorManifestRef === expectedContributorManifestRef, "Active contributor manifest pointer is not the authorized v28 manifest");
 const contributorManifest = JSON.parse(readFileSync(join(root, contributorManifestRef), "utf8"));
-assert(contributorManifest.releaseReceipt === expectedContributorRelease, "Active contributor receipt is not the authorized v27 receipt");
+assert(contributorManifest.releaseReceipt === expectedContributorRelease, "Active contributor receipt is not the authorized v28 receipt");
 assert(contributorManifest.releaseStatus === "approved_for_publication", "Active contributor release is not approved for publication");
 assert(JSON.stringify(contributorManifest.releaseAuthority) === JSON.stringify(expectedContributorReleaseAuthority), "Active contributor site-owner authority drifted");
 assert(contributorManifest.publishable === true && contributorManifest.mustNotDeploy === false, "Active contributor release must remain publishable and deployable");
-assert(JSON.stringify(contributorManifest.renderOwners) === JSON.stringify(expectedContributorRenderOwners), "Active contributor render-owner set drifted from v27");
+assert(JSON.stringify(contributorManifest.renderOwners) === JSON.stringify(expectedContributorRenderOwners), "Active contributor render-owner set drifted from v28");
 const contributorP1Release = contributorManifest.releaseReceipt;
 const contributorBundleName = contributorManifest.renderOwners.hydratedBundle.split("/").at(-1);
 const contributorEnhancerName = contributorManifest.renderOwners.transitionalEnhancer.split("/").at(-1);
@@ -283,11 +283,11 @@ for (const page of ["index.html", "en/index.html"]) {
   assert(html.includes(contributorBundleName), `${page} must load the hardened P1 contributor bundle revision`);
   assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === contributorBundleName, `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes(`name="citymeter:release-receipt" content="${contributorP1Release}"`), `${page} is missing the authorized v27 release receipt`);
+  assert(html.includes(`name="citymeter:release-receipt" content="${contributorP1Release}"`), `${page} is missing the authorized v28 release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
-  assert(html.includes(`name="citymeter:contributor-candidate-build" content="${contributorP1Release}"`), `${page} is missing the v27 contributor build receipt`);
+  assert(html.includes(`name="citymeter:contributor-candidate-build" content="${contributorP1Release}"`), `${page} is missing the v28 contributor build receipt`);
   assert((html.match(/name="citymeter:contributor-candidate-build"/g) || []).length === 1, `${page} must expose exactly one contributor build receipt`);
-  assert(html.includes(`name="citymeter:contributor-release-manifest" content="${expectedContributorManifestRef}"`), `${page} is not bound to the authorized v27 contributor manifest`);
+  assert(html.includes(`name="citymeter:contributor-release-manifest" content="${expectedContributorManifestRef}"`), `${page} is not bound to the authorized v28 contributor manifest`);
   assert((html.match(/name="citymeter:contributor-release-manifest"/g) || []).length === 1, `${page} must expose exactly one contributor manifest pointer`);
   assert(count(html, 'class="dataset-card-actions"') === contributorManifest.projectionSummary.records, `${page} must prerender one contributor action row per dataset card`);
   assert(count(html, 'class="citymeter-contributors-compact"') === contributorManifest.projectionSummary.records, `${page} must prerender one compact contributor group per dataset card`);

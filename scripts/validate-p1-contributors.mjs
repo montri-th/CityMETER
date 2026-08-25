@@ -545,7 +545,12 @@ for (const page of pages) {
   assert(count(html, 'data-citymeter-record-id="dataset-') === manifest.projectionSummary.records, `${page.path} must expose every stable record hook`);
   assert(count(html, 'data-module-slug="dataset-') === manifest.projectionSummary.records, `${page.path} must expose every module hook`);
   assert(count(html, 'data-contributor-disclosure') === manifest.projectionSummary.expandedRecords, `${page.path} disclosure count differs from the projection`);
-  assert(count(html, page.language === "th" ? "ผู้ร่วมพัฒนา CityMETER view นี้ ไม่ใช่เจ้าของหรือผู้รับรองข้อมูลต้นทาง" : "Contributors to this CityMETER view, not owners or endorsers of the source data") === manifest.projectionSummary.records, `${page.path} contributor semantics drifted`);
+  for (const removedCopy of [
+    "ผู้ร่วมพัฒนา CityMETER view นี้ ไม่ใช่เจ้าของหรือผู้รับรองข้อมูลต้นทาง",
+    "Contributors to this CityMETER view, not owners or endorsers of the source data"
+  ]) assert(!html.includes(removedCopy), `${page.path} still contains removed contributor disclaimer copy`);
+  assert(count(html, 'class="citymeter-contributors-note"') === 0, `${page.path} must not retain contributor disclaimer elements`);
+  assert(!html.includes("-contributors-note"), `${page.path} must not retain removed contributor disclaimer IDs or references`);
 
   const cardParts = html.split('<article class="dataset-card"').slice(1);
   assert(cardParts.length === manifest.projectionSummary.records, `${page.path} must contain every canonical dataset card`);
@@ -588,7 +593,8 @@ for (const page of pages) {
     const expectedPeople = record.contributors.map((person) => person.personId);
     assert(JSON.stringify(compactMatches.map((match) => match[1])) === JSON.stringify(expectedPeople), `${page.path}/${datasetId} compact contributor order differs from the projection`);
     assert(count(full, 'class="citymeter-contributor"') === record.contributors.length, `${page.path}/${datasetId} full contributor count differs from projection`);
-    assert(full.includes(page.language === "th" ? "ผู้ร่วมพัฒนา CityMETER view นี้ ไม่ใช่เจ้าของหรือผู้รับรองข้อมูลต้นทาง" : "Contributors to this CityMETER view, not owners or endorsers of the source data"), `${page.path}/${datasetId} full contributor attribution note drifted`);
+    assert(!full.includes("citymeter-contributors-note") && !full.includes("-contributors-note") && !full.includes("aria-describedby"), `${page.path}/${datasetId} removed contributor disclaimer semantics must not remain`);
+    assert(full.includes(`<h4 id="${datasetId}-contributors-title">`) && full.includes('class="citymeter-contributor-list"'), `${page.path}/${datasetId} contributor heading and list must remain after note removal`);
     const peopleInDom = [...full.matchAll(/data-contributor-person-id="([SPI][0-9]{4})"/g)].map((match) => match[1]);
     assert(JSON.stringify(peopleInDom) === JSON.stringify(record.contributors.map((person) => person.personId)), `${page.path}/${datasetId} contributor order differs from projection`);
     for (const [personIndex, person] of record.contributors.entries()) {
@@ -623,7 +629,7 @@ for (const page of pages) {
       const showLabel = page.language === "th" ? "แสดงผู้ร่วมพัฒนาที่เหลือ" : "Show remaining contributors";
       const groupLabel = page.language === "th" ? "ผู้ร่วมพัฒนาเพิ่มเติม" : "Additional contributors";
       const closeLabel = page.language === "th" ? "ปิดรายชื่อเพิ่มเติม" : "Close additional contributors";
-      assert(count(full, 'class="citymeter-contributors-more" data-contributor-disclosure') === 1, `${page.path}/${datasetId} full attribution must expose one nested disclosure`);
+      assert(count(full, 'class="citymeter-contributors-more" data-contributor-disclosure') === 1, `${page.path}/${datasetId} full contributor list must expose one nested disclosure`);
       assert(full.includes(`<summary aria-controls="${moreListId}" data-contributor-more-count="${remaining}"`), `${page.path}/${datasetId} disclosure control binding drifted`);
       assert(full.includes(`aria-label="${showLabel} ${remaining}">+${remaining}</summary>`), `${page.path}/${datasetId} disclosure accessible name drifted`);
       assert(full.includes(`<div class="citymeter-contributors-more-list" id="${moreListId}" role="group" aria-label="${groupLabel}">`), `${page.path}/${datasetId} disclosure list semantics drifted`);
@@ -686,13 +692,20 @@ const assetFiles = readdirSync(join(root, "assets"));
 const p1Bundles = assetFiles.filter((name) => /^index-qbT50gkr-v(\d+)\.js$/.test(name) && Number(name.match(/-v(\d+)\.js$/)[1]) >= 13).sort();
 const p1Enhancers = assetFiles.filter((name) => /^catalog-enhancements-v(\d+)\.js$/.test(name) && Number(name.match(/-v(\d+)\.js$/)[1]) >= 20).sort();
 const p1Styles = assetFiles.filter((name) => /^catalog-enhancements-v(\d+)\.css$/.test(name) && Number(name.match(/-v(\d+)\.css$/)[1]) >= 22).sort();
-assert(JSON.stringify(p1Bundles) === JSON.stringify([activeBundleName]), "Exactly one active post-v12 P1 hydrated owner must remain");
-assert(JSON.stringify(p1Enhancers) === JSON.stringify([activeEnhancerName]), "Exactly one active post-v19 P1 enhancer owner must remain");
+assert(JSON.stringify(p1Bundles) === JSON.stringify(["index-qbT50gkr-v16.js", activeBundleName]), "Only the prior published and active post-v12 P1 hydrated owners may remain");
+assert(JSON.stringify(p1Enhancers) === JSON.stringify(["catalog-enhancements-v23.js", activeEnhancerName]), "Only the prior published and active post-v19 P1 enhancer owners may remain");
 assert(JSON.stringify(p1Styles) === JSON.stringify([activeStylesName]), "Exactly one active post-v21 P1 stylesheet owner must remain");
 
 const bundle = readFileSync(join(root, manifest.renderOwners.hydratedBundle), "utf8");
 const enhancer = readFileSync(join(root, manifest.renderOwners.transitionalEnhancer), "utf8");
 const css = readFileSync(join(root, manifest.renderOwners.styles), "utf8");
+for (const [owner, source] of [["Hydrated bundle", bundle], ["Enhancer", enhancer]]) {
+  for (const removedCopy of [
+    "ผู้ร่วมพัฒนา CityMETER view นี้ ไม่ใช่เจ้าของหรือผู้รับรองข้อมูลต้นทาง",
+    "Contributors to this CityMETER view, not owners or endorsers of the source data"
+  ]) assert(!source.includes(removedCopy), `${owner} still contains removed contributor disclaimer copy`);
+  assert(!source.includes("citymeter-contributors-note") && !source.includes("-contributors-note"), `${owner} still contains removed contributor disclaimer structure`);
+}
 for (const contract of [
   "CitymeterP1Data",
   "CitymeterP1Record",
@@ -763,4 +776,4 @@ for (const selector of [
 ]) assert(css.includes(selector), `P1 stylesheet is missing ${selector}`);
 assert(css.includes("min-height: 44px") && css.includes("width: 32px") && css.includes("height: 32px"), "Contributor target/avatar geometry drifted");
 
-console.log(`CityMETER P1 contributor validation passed: ${manifest.projectionSummary.records}/${manifest.projectionSummary.records} cards with decorative compact portrait-only action rows and full attribution inside native details, ${assignmentCount} assignments, ${uniquePeople.size} unique people, ${portraitPeople.size} portrait identities with governed 1x/2x renditions, ${fallbackPeople.size} neutral fallback identities, ${manifest.projectionSummary.datasetRecords} Dataset + ${manifest.projectionSummary.eventRecords} CreativeWork JSON-LD parity, gate-resolved same-origin person links, accessible nested +N disclosure/focus/Escape and broken-image fallback contracts, strict public additionalProperties=false privacy, and exact immutable directory sets.`);
+console.log(`CityMETER P1 contributor validation passed: ${manifest.projectionSummary.records}/${manifest.projectionSummary.records} cards with decorative compact portrait-only action rows and full contributor lists inside native details, ${assignmentCount} assignments, ${uniquePeople.size} unique people, ${portraitPeople.size} portrait identities with governed 1x/2x renditions, ${fallbackPeople.size} neutral fallback identities, ${manifest.projectionSummary.datasetRecords} Dataset + ${manifest.projectionSummary.eventRecords} CreativeWork JSON-LD parity, gate-resolved same-origin person links, accessible nested +N disclosure/focus/Escape and broken-image fallback contracts, strict public additionalProperties=false privacy, and exact immutable directory sets.`);
