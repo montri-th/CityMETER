@@ -1,0 +1,1060 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.com/schemas/common-public-snapshot-p0.json",
+  "title": "Landometer Common Public Snapshot P0",
+  "description": "Strict public-only contract. Private source hashes, candidate mappings, approval state, raw record-work mappings, and private provenance are outside this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "snapshotId",
+    "generatedAt",
+    "contentHash",
+    "release",
+    "catalog",
+    "people"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^p0(?:\\.[0-9]+)+$"
+    },
+    "snapshotId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{11,127}$"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "contentHash": {
+      "description": "SHA-256 of the canonical public snapshot payload under the release hashing convention; it is not a private-source hash.",
+      "$ref": "#/$defs/sha256"
+    },
+    "release": {
+      "$ref": "#/$defs/release"
+    },
+    "catalog": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/catalogRecord"
+      }
+    },
+    "people": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/person"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "localPath": {
+      "description": "A same-origin absolute path with no scheme, authority, query, or fragment.",
+      "type": "string",
+      "pattern": "^/(?!/)(?!.*[?#]).+$"
+    },
+    "localImagePath": {
+      "description": "A same-origin image path. External and protocol-relative asset URLs are not allowed.",
+      "type": "string",
+      "pattern": "^/(?!/)(?!.*[?#]).+\\.(?:avif|webp|jpe?g|png)$"
+    },
+    "bilingualText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["th", "en"],
+      "properties": {
+        "th": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "en": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "releaseId",
+        "publicInputHash",
+        "dsPackageVersion",
+        "uiKitVersion",
+        "artifactBuilds"
+      ],
+      "properties": {
+        "releaseId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"
+        },
+        "publicInputHash": {
+          "description": "SHA-256 computed only from the redacted public build input. It must never be copied from a private source snapshot or private ledger.",
+          "$ref": "#/$defs/sha256"
+        },
+        "dsPackageVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uiKitVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifactBuilds": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "artifact": {
+                    "const": "root"
+                  }
+                },
+                "required": ["artifact"]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "artifact": {
+                    "const": "citymeter"
+                  }
+                },
+                "required": ["artifact"]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "artifact": {
+                    "const": "landom"
+                  }
+                },
+                "required": ["artifact"]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ],
+          "items": {
+            "$ref": "#/$defs/artifactBuild"
+          }
+        }
+      }
+    },
+    "artifactBuild": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact", "sourceSha", "artifactHash", "builtAt"],
+      "properties": {
+        "artifact": {
+          "enum": ["root", "citymeter", "landom"]
+        },
+        "sourceSha": {
+          "description": "Pinned source commit SHA.",
+          "type": "string",
+          "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+        },
+        "artifactHash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "builtAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "catalogRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "datasetId",
+        "moduleSlug",
+        "resourceClass",
+        "layerType",
+        "status",
+        "lifecycle",
+        "publicSlug",
+        "mapKey",
+        "aliases",
+        "canonicalPathTh",
+        "canonicalPathEn",
+        "publicNameTh",
+        "publicNameEn",
+        "pillar",
+        "sortOrder",
+        "oneLineAnswerTh",
+        "oneLineAnswerEn",
+        "spatialCoverage",
+        "temporalCoverage",
+        "granularity",
+        "freshness",
+        "method",
+        "variables",
+        "definitions",
+        "units",
+        "completeness",
+        "limitations",
+        "license",
+        "publicSources",
+        "contributors"
+      ],
+      "properties": {
+        "datasetId": {
+          "type": "string",
+          "pattern": "^dataset-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "moduleSlug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "resourceClass": {
+          "enum": [
+            "data_layer",
+            "public_dataset_record",
+            "market_layer",
+            "derived_insight",
+            "derived_model",
+            "monitoring_feed",
+            "forecast_layer",
+            "event"
+          ]
+        },
+        "layerType": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+        },
+        "status": {
+          "enum": ["active", "withdrawn"]
+        },
+        "lifecycle": {
+          "enum": ["active", "archived_event", "withdrawn"]
+        },
+        "publicSlug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "mapKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "canonicalPathTh": {
+          "$ref": "#/$defs/localPath"
+        },
+        "canonicalPathEn": {
+          "$ref": "#/$defs/localPath"
+        },
+        "publicNameTh": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "publicNameEn": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "pillar": {
+          "enum": ["land", "location", "living"]
+        },
+        "sortOrder": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "oneLineAnswerTh": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "oneLineAnswerEn": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "spatialCoverage": {
+          "$ref": "#/$defs/spatialCoverage"
+        },
+        "temporalCoverage": {
+          "$ref": "#/$defs/temporalCoverage"
+        },
+        "granularity": {
+          "$ref": "#/$defs/granularity"
+        },
+        "freshness": {
+          "$ref": "#/$defs/freshness"
+        },
+        "method": {
+          "$ref": "#/$defs/method"
+        },
+        "variables": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/variable"
+          }
+        },
+        "definitions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/definition"
+          }
+        },
+        "units": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/unit"
+          }
+        },
+        "completeness": {
+          "$ref": "#/$defs/completeness"
+        },
+        "limitations": {
+          "$ref": "#/$defs/limitations"
+        },
+        "license": {
+          "$ref": "#/$defs/license"
+        },
+        "publicSources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/publicSource"
+          }
+        },
+        "contributors": {
+          "description": "Public, derived contributor credits only. Raw work mappings, candidate status, approval fields, and private relationship evidence are prohibited.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/contributor"
+          }
+        },
+        "localeGovernance": {
+          "$ref": "#/$defs/localeGovernance"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "datasetId": {
+                "const": "dataset-locale-insights"
+              }
+            },
+            "required": ["datasetId"]
+          },
+          "then": {
+            "required": ["localeGovernance"]
+          }
+        }
+      ],
+      "$comment": "Publication validation must also enforce unique datasetId and must not reintroduce mapping, consent-ledger, approval, or private-provenance fields."
+    },
+    "spatialCoverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "boundaryTypes"],
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "boundaryTypes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "country",
+              "region",
+              "province",
+              "district",
+              "subdistrict",
+              "municipality",
+              "community",
+              "service_boundary",
+              "site",
+              "grid",
+              "point",
+              "road_segment",
+              "parcel",
+              "building",
+              "other"
+            ]
+          }
+        }
+      }
+    },
+    "temporalCoverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "start", "end", "asOf"],
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "start": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(?:T.*)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "end": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(?:T.*)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "asOf": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(?:T.*)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "granularity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["spatial", "temporal", "unitOfObservation"],
+      "properties": {
+        "spatial": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "temporal": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "unitOfObservation": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "asOf", "refreshCadence", "note"],
+      "properties": {
+        "status": {
+          "enum": ["current", "stale", "unknown", "not_applicable"]
+        },
+        "asOf": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(?:T.*)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "refreshCadence": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "note": {
+          "$ref": "#/$defs/bilingualText"
+        }
+      }
+    },
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "summary"],
+      "properties": {
+        "type": {
+          "enum": [
+            "official_record",
+            "administrative_record",
+            "municipal_record",
+            "field_observation",
+            "survey",
+            "monitoring",
+            "derived",
+            "modelled",
+            "mixed",
+            "event_record",
+            "other"
+          ]
+        },
+        "summary": {
+          "$ref": "#/$defs/bilingualText"
+        }
+      }
+    },
+    "variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["variableId", "label", "description", "dataType"],
+      "properties": {
+        "variableId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "label": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "description": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "dataType": {
+          "enum": ["string", "integer", "number", "boolean", "date", "datetime", "geometry", "category", "other"]
+        },
+        "unitId": {
+          "type": ["string", "null"],
+          "pattern": "^[a-z][a-z0-9_]*$"
+        }
+      }
+    },
+    "definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["term", "definition"],
+      "properties": {
+        "term": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "definition": {
+          "$ref": "#/$defs/bilingualText"
+        }
+      }
+    },
+    "unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unitId", "label", "symbol", "appliesToVariables"],
+      "properties": {
+        "unitId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "label": {
+          "$ref": "#/$defs/bilingualText"
+        },
+        "symbol": {
+          "type": ["string", "null"]
+        },
+        "appliesToVariables": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        }
+      }
+    },
+    "completeness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "coveragePercent", "note"],
+      "properties": {
+        "status": {
+          "enum": ["complete", "partial", "unknown", "not_applicable"]
+        },
+        "coveragePercent": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "note": {
+          "$ref": "#/$defs/bilingualText"
+        }
+      }
+    },
+    "limitations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["th", "en"],
+      "properties": {
+        "th": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "en": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        }
+      }
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "note"],
+      "properties": {
+        "status": {
+          "enum": ["known", "unknown", "not_applicable"]
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "identifier": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "note": {
+          "$ref": "#/$defs/bilingualText"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "known"
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "required": ["name"]
+          },
+          "else": {
+            "properties": {
+              "name": false,
+              "identifier": false,
+              "url": false
+            }
+          }
+        }
+      ]
+    },
+    "publisher": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "type": {
+          "enum": [
+            "government",
+            "municipal",
+            "academic",
+            "commercial",
+            "civil_society",
+            "landometer",
+            "other"
+          ]
+        },
+        "homepage": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        }
+      }
+    },
+    "publicSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["labelTh", "labelEn", "url", "publisher", "sourceRole", "retrievedAt"],
+      "properties": {
+        "labelTh": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "labelEn": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "publisher": {
+          "$ref": "#/$defs/publisher"
+        },
+        "sourceRole": {
+          "enum": ["primary", "contextual", "supplementary", "methodology", "license"]
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "contributor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["personId", "profilePublicationStatus", "roles", "displayOrder"],
+      "properties": {
+        "personId": {
+          "type": "string",
+          "pattern": "^[SPI][0-9]{4}$"
+        },
+        "profilePublicationStatus": {
+          "description": "Only publishable profiles may be credited in a public record.",
+          "const": "publishable"
+        },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "displayOrder": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "$comment": "A publication validator must additionally resolve personId and reject any contributor reference whose matching person is not profilePublicationStatus=publishable; JSON Schema cannot perform this cross-array join."
+    },
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "personId",
+        "profilePublicationStatus",
+        "portraitPublicationStatus",
+        "portrait"
+      ],
+      "properties": {
+        "personId": {
+          "description": "Opaque public identifier; it must not encode a name, email address, or other personal data.",
+          "type": "string",
+          "pattern": "^[SPI][0-9]{4}$"
+        },
+        "profilePublicationStatus": {
+          "enum": ["publishable", "withdrawn"]
+        },
+        "portraitPublicationStatus": {
+          "enum": ["published", "fallback", "withdrawn"]
+        },
+        "displayNameTh": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "displayNameEn": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "profilePathTh": {
+          "$ref": "#/$defs/localPath"
+        },
+        "profilePathEn": {
+          "$ref": "#/$defs/localPath"
+        },
+        "portrait": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/portraitAsset"
+            },
+            {
+              "$ref": "#/$defs/neutralFallback"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "profilePublicationStatus": {
+                "const": "publishable"
+              }
+            },
+            "required": ["profilePublicationStatus"]
+          },
+          "then": {
+            "required": ["displayNameTh", "displayNameEn", "profilePathTh", "profilePathEn"]
+          },
+          "else": {
+            "properties": {
+              "profilePublicationStatus": {
+                "const": "withdrawn"
+              },
+              "portraitPublicationStatus": {
+                "const": "withdrawn"
+              },
+              "displayNameTh": false,
+              "displayNameEn": false,
+              "profilePathTh": false,
+              "profilePathEn": false,
+              "portrait": {
+                "$ref": "#/$defs/neutralFallback"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "portraitPublicationStatus": {
+                "const": "published"
+              }
+            },
+            "required": ["portraitPublicationStatus"]
+          },
+          "then": {
+            "properties": {
+              "portrait": {
+                "$ref": "#/$defs/portraitAsset"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "portrait": {
+                "$ref": "#/$defs/neutralFallback"
+              }
+            }
+          }
+        }
+      ],
+      "$comment": "A fully withdrawn profile is an identity-free tombstone: no names, profile paths, or identifying portrait are permitted. It must also have no catalog contributor reference; that cross-array invariant is enforced by the publication validator. A publishable profile with a withdrawn portrait may retain its profile and use only the neutral fallback."
+    },
+    "portraitAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "assetId", "renditions", "altTh", "altEn"],
+      "properties": {
+        "kind": {
+          "const": "portrait"
+        },
+        "assetId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"
+        },
+        "renditions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["oneX", "twoX"],
+          "properties": {
+            "oneX": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/portraitRendition"
+                },
+                {
+                  "properties": {
+                    "density": {
+                      "const": "1x"
+                    }
+                  }
+                }
+              ]
+            },
+            "twoX": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/portraitRendition"
+                },
+                {
+                  "properties": {
+                    "density": {
+                      "const": "2x"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "altTh": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "altEn": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "credit": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "portraitRendition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["density", "path", "sha256", "mimeType", "width", "height"],
+      "properties": {
+        "density": {
+          "enum": ["1x", "2x"]
+        },
+        "path": {
+          "$ref": "#/$defs/localImagePath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "mimeType": {
+          "enum": ["image/avif", "image/webp", "image/jpeg", "image/png"]
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "neutralFallback": {
+      "description": "A neutral UI token with no person-specific text, URL, asset, or other identifying signal.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "fallbackToken", "identityDisclosure"],
+      "properties": {
+        "kind": {
+          "const": "neutral_fallback"
+        },
+        "fallbackToken": {
+          "const": "neutral-person"
+        },
+        "identityDisclosure": {
+          "const": "none"
+        }
+      }
+    },
+    "localeGovernance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "useClassification",
+        "allowedUses",
+        "notFor",
+        "crosswalk",
+        "primaryEvidence"
+      ],
+      "properties": {
+        "useClassification": {
+          "const": "contextual_prior_only"
+        },
+        "allowedUses": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "service_planning",
+              "field_validation",
+              "engagement",
+              "prioritization"
+            ]
+          }
+        },
+        "notFor": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "official_population",
+              "eligibility_rule",
+              "statutory_boundary",
+              "risk_determination",
+              "observed_behavior"
+            ]
+          }
+        },
+        "crosswalk": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sourceKey",
+            "targetBoundaryTypes",
+            "verificationStatus",
+            "verificationReceiptHash",
+            "requiredBeforeAggregation"
+          ],
+          "properties": {
+            "sourceKey": {
+              "const": "locale_id"
+            },
+            "targetBoundaryTypes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": ["municipality", "community", "service_boundary"]
+              }
+            },
+            "verificationStatus": {
+              "const": "verified"
+            },
+            "verificationReceiptHash": {
+              "description": "Hash of a redacted verification receipt; no private locator or relationship evidence is permitted.",
+              "$ref": "#/$defs/sha256"
+            },
+            "requiredBeforeAggregation": {
+              "const": true
+            }
+          }
+        },
+        "primaryEvidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["categories", "precedenceRule"],
+          "properties": {
+            "categories": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "official_administrative_data",
+                  "verified_municipal_records",
+                  "hazard_and_risk_data",
+                  "live_operational_evidence"
+                ]
+              }
+            },
+            "precedenceRule": {
+              "const": "primary_within_scope"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,34 @@ const qrManifest = JSON.parse(readFileSync(join(root, "media/qr/manifest.json"),
 const previewManifest = JSON.parse(readFileSync(join(root, "media/previews-v3/manifest.json"), "utf8"));
 const fontManifest = JSON.parse(readFileSync(join(root, "assets/font-assets.manifest.json"), "utf8"));
 const fontLicenseRecords = JSON.parse(readFileSync(join(root, "assets/font-license-records.json"), "utf8"));
+const expectedContributorManifestRef = "data/citymeter-contributor-release-p1-d5d089845ca8.json";
+const expectedContributorRelease = "2026-08-25-contributors-compact-details-v27";
+const expectedContributorRenderOwners = {
+  thaiPrerender: "index.html",
+  englishPrerender: "en/index.html",
+  hydratedBundle: "assets/index-qbT50gkr-v16.js",
+  transitionalEnhancer: "assets/catalog-enhancements-v23.js",
+  styles: "assets/catalog-enhancements-v25.css"
+};
+const expectedContributorReleaseAuthority = {
+  authority: "site_owner",
+  authorizedAt: "2026-08-25",
+  scope: "Publish the completed CityMETER P2-P6 contributor presentation to the existing GitHub Pages site while preserving approved live content"
+};
+const contributorShellHtml = readFileSync(join(root, "index.html"), "utf8");
+const contributorManifestRef = contributorShellHtml.match(/<meta name="citymeter:contributor-release-manifest" content="(data\/citymeter-contributor-release-p1-[a-f0-9]{12}\.json)" \/>/)?.[1];
+assert(contributorManifestRef, "Active P1 contributor manifest pointer is missing from index.html");
+assert(contributorManifestRef === expectedContributorManifestRef, "Active contributor manifest pointer is not the authorized v27 manifest");
+const contributorManifest = JSON.parse(readFileSync(join(root, contributorManifestRef), "utf8"));
+assert(contributorManifest.releaseReceipt === expectedContributorRelease, "Active contributor receipt is not the authorized v27 receipt");
+assert(contributorManifest.releaseStatus === "approved_for_publication", "Active contributor release is not approved for publication");
+assert(JSON.stringify(contributorManifest.releaseAuthority) === JSON.stringify(expectedContributorReleaseAuthority), "Active contributor site-owner authority drifted");
+assert(contributorManifest.publishable === true && contributorManifest.mustNotDeploy === false, "Active contributor release must remain publishable and deployable");
+assert(JSON.stringify(contributorManifest.renderOwners) === JSON.stringify(expectedContributorRenderOwners), "Active contributor render-owner set drifted from v27");
+const contributorP1Release = contributorManifest.releaseReceipt;
+const contributorBundleName = contributorManifest.renderOwners.hydratedBundle.split("/").at(-1);
+const contributorEnhancerName = contributorManifest.renderOwners.transitionalEnhancer.split("/").at(-1);
+const contributorStylesName = contributorManifest.renderOwners.styles.split("/").at(-1);
 const ids = review.records.map((record) => record.id);
 const routeById = new Map(review.records.map((record) => [record.id, record.citymeterUrl]));
 const muenRaiRoute = "https://landometer.com/v3/citymeter/PRE?d=muenRai";
@@ -37,7 +65,6 @@ const analysisBriefRecordOrder = 'recordIds:["business-dynamics","buildings","po
 const catalogStoryRelease = "2026-08-16-catalog-story-qr-v20";
 const catalogStructureRelease = "2026-08-16-catalog-structure-simple-v21";
 const motionSocialRelease = "2026-08-16-motion-social-v22";
-const motionImagePerformanceRelease = "2026-08-16-motion-image-performance-v23";
 const landAppraisalRoute = "https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed";
 const landAppraisalQrHash = "eeb68384e9327bf46b1a0c0d3fdad4b9206c5886e950ba31e20b642513a0f483";
 const landAppraisalSvgHash = "9f02e5f265a7b8e58ea0d00a190ae457ca33406c52463413cb6149ed375344ba";
@@ -50,6 +77,22 @@ const socialProfiles = [
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
+}
+
+function count(source, token) {
+  return source.split(token).length - 1;
+}
+
+function matchingElementEnd(source, startIndex, tagName, label) {
+  assert(startIndex >= 0, `${label} start is missing`);
+  const tagPattern = new RegExp(`<\\/?${tagName}\\b[^>]*>`, "g");
+  tagPattern.lastIndex = startIndex;
+  let depth = 0;
+  for (let match = tagPattern.exec(source); match; match = tagPattern.exec(source)) {
+    depth += match[0].startsWith(`</${tagName}`) ? -1 : 1;
+    if (depth === 0) return tagPattern.lastIndex;
+  }
+  throw new Error(`${label} closing tag is missing`);
 }
 
 function sha256(path) {
@@ -204,7 +247,7 @@ for (const page of ["index.html", "en/index.html"]) {
       ];
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   const datasetPillars = Array.from(
-    html.matchAll(/<article class="dataset-card" id="[^"]+" data-pillar="(land|location|living)"/g),
+    html.matchAll(/<article class="dataset-card" id="[^"]+" data-citymeter-record-id="[^"]+" data-module-slug="[^"]+" data-pillar="(land|location|living)"/g),
     (match) => match[1]
   );
   const showcasePillars = Array.from(
@@ -222,12 +265,12 @@ for (const page of ["index.html", "en/index.html"]) {
     JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
     `${page} showcase pillar contract must remain 1 / 3 / 2`
   );
-  assert(html.includes("catalog-enhancements-v21.css") && html.includes("catalog-enhancements-v19.js"), `${page} is missing the v23 groove or image-performance layer`);
-  assert(html.includes("catalog-enhancements-v21.css"), `${page} must load the immutable v23 stylesheet revision`);
-  assert(html.includes("catalog-enhancements-v19.js"), `${page} must load the immutable v23 enhancement revision`);
+  assert(html.includes(contributorStylesName) && html.includes(contributorEnhancerName), `${page} is missing the hardened P1 contributor layer`);
+  assert(html.includes(contributorStylesName), `${page} must load the immutable P1 stylesheet revision`);
+  assert(html.includes(contributorEnhancerName), `${page} must load the immutable hardened P1 enhancement revision`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v21.css", `${page} must load exactly one immutable enhancement stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === "catalog-enhancements-v19.js", `${page} must load exactly one immutable enhancement script revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === contributorStylesName, `${page} must load exactly one immutable enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === contributorEnhancerName, `${page} must load exactly one immutable enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
   assert((html.match(/citymeter-fonts\.css\?v=\d+/g) || []).join() === "citymeter-fonts.css?v=1", `${page} must load exactly one canonical font stylesheet revision`);
@@ -237,11 +280,44 @@ for (const page of ["index.html", "en/index.html"]) {
     assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
   }
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
-  assert(html.includes("index-qbT50gkr-v12.js"), `${page} must load the v23 image-performance bundle revision`);
-  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === "index-qbT50gkr-v12.js", `${page} must load exactly one main bundle revision`);
+  assert(html.includes(contributorBundleName), `${page} must load the hardened P1 contributor bundle revision`);
+  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === contributorBundleName, `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes(`name="citymeter:release-receipt" content="${motionImagePerformanceRelease}"`), `${page} is missing the motion/image-performance release receipt`);
+  assert(html.includes(`name="citymeter:release-receipt" content="${contributorP1Release}"`), `${page} is missing the authorized v27 release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
+  assert(html.includes(`name="citymeter:contributor-candidate-build" content="${contributorP1Release}"`), `${page} is missing the v27 contributor build receipt`);
+  assert((html.match(/name="citymeter:contributor-candidate-build"/g) || []).length === 1, `${page} must expose exactly one contributor build receipt`);
+  assert(html.includes(`name="citymeter:contributor-release-manifest" content="${expectedContributorManifestRef}"`), `${page} is not bound to the authorized v27 contributor manifest`);
+  assert((html.match(/name="citymeter:contributor-release-manifest"/g) || []).length === 1, `${page} must expose exactly one contributor manifest pointer`);
+  assert(count(html, 'class="dataset-card-actions"') === contributorManifest.projectionSummary.records, `${page} must prerender one contributor action row per dataset card`);
+  assert(count(html, 'class="citymeter-contributors-compact"') === contributorManifest.projectionSummary.records, `${page} must prerender one compact contributor group per dataset card`);
+  assert(count(html, 'class="citymeter-contributors"') === contributorManifest.projectionSummary.records, `${page} must prerender one full contributor block per dataset card`);
+  const contributorCardParts = html.split('<article class="dataset-card"').slice(1);
+  assert(contributorCardParts.length === contributorManifest.projectionSummary.records, `${page} contributor structure must cover all dataset cards`);
+  for (const [cardIndex, part] of contributorCardParts.entries()) {
+    const cardEnd = part.indexOf("</article>");
+    assert(cardEnd >= 0, `${page} dataset card ${cardIndex + 1} closing tag is missing`);
+    const card = `<article class="dataset-card"${part.slice(0, cardEnd + "</article>".length)}`;
+    const datasetId = card.match(/data-citymeter-record-id="([^"]+)"/)?.[1] || `card-${cardIndex + 1}`;
+    const actionStart = card.indexOf('<div class="dataset-card-actions">');
+    const compactStart = card.indexOf('<div class="citymeter-contributors-compact"');
+    const detailsStart = card.indexOf('<details class="dataset-details">');
+    const fullStart = card.indexOf('<section class="citymeter-contributors"');
+    assert(count(card, 'class="dataset-card-actions"') === 1, `${page}/${datasetId} must contain exactly one action row`);
+    assert(count(card, 'class="citymeter-contributors-compact"') === 1, `${page}/${datasetId} must contain exactly one compact contributor group`);
+    assert(count(card, 'class="dataset-details"') === 1, `${page}/${datasetId} must contain exactly one outer dataset-details disclosure`);
+    assert(count(card, 'class="citymeter-contributors"') === 1, `${page}/${datasetId} must contain exactly one full contributor block`);
+    const actionEnd = matchingElementEnd(card, actionStart, "div", `${page}/${datasetId} action row`);
+    const detailsEnd = matchingElementEnd(card, detailsStart, "details", `${page}/${datasetId} outer dataset-details`);
+    const outerDetails = card.slice(detailsStart, detailsEnd);
+    const outsideDetails = card.slice(0, detailsStart) + card.slice(detailsEnd);
+    assert(actionStart < compactStart && compactStart < actionEnd, `${page}/${datasetId} compact contributor group must be nested inside the action row`);
+    assert(actionEnd <= detailsStart, `${page}/${datasetId} action row must precede the outer dataset-details disclosure`);
+    assert(fullStart > detailsStart && fullStart < detailsEnd, `${page}/${datasetId} full contributor block must be nested inside outer dataset-details`);
+    assert(fullStart > card.indexOf("</summary>", detailsStart), `${page}/${datasetId} full contributor block must follow the outer details summary`);
+    assert(count(outerDetails, 'class="citymeter-contributors"') === 1, `${page}/${datasetId} outer dataset-details must own the full contributor block`);
+    assert(count(outsideDetails, 'class="citymeter-contributors"') === 0, `${page}/${datasetId} full contributor attribution must not appear outside outer dataset-details`);
+  }
   const catalogDiagramMatches = html.match(/<figure class="catalog-structure"[\s\S]*?<\/figure>/g) || [];
   assert(catalogDiagramMatches.length === 1, `${page} must prerender exactly one catalog-structure diagram`);
   const catalogDiagram = catalogDiagramMatches[0];
@@ -352,10 +428,15 @@ for (const page of ["index.html", "en/index.html"]) {
   const jsonLdText = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] || "";
   const jsonLd = JSON.parse(jsonLdText);
   const catalog = jsonLd["@graph"]?.find((entry) => entry["@type"] === "DataCatalog");
-  assert(catalog?.dataset?.length === 38, `${page} JSON-LD must expose 38 datasets`);
-  for (const dataset of catalog.dataset) {
-    const id = dataset["@id"]?.split("#").at(-1);
-    assert(dataset.subjectOf?.url === routeById.get(id), `${page} JSON-LD route does not match the registry for ${id}`);
+  assert(catalog?.numberOfItems === contributorManifest.projectionSummary.datasetRecords && catalog?.dataset?.length === contributorManifest.projectionSummary.datasetRecords, `${page} JSON-LD Dataset branch differs from the contributor projection`);
+  assert(catalog?.hasPart?.length === contributorManifest.projectionSummary.eventRecords, `${page} JSON-LD event CreativeWork branch differs from the contributor projection`);
+  const structuredRecords = [...catalog.dataset, ...catalog.hasPart];
+  assert(structuredRecords.length === contributorManifest.projectionSummary.records && new Set(structuredRecords.map((entry) => entry["@id"])).size === contributorManifest.projectionSummary.records, `${page} JSON-LD must cover the contributor projection exactly once`);
+  assert(catalog.dataset.every((entry) => entry["@type"] === "Dataset"), `${page} JSON-LD dataset branch contains a non-Dataset record`);
+  assert(catalog.hasPart.every((entry) => entry["@type"] === "CreativeWork"), `${page} JSON-LD event branch contains a non-CreativeWork record`);
+  for (const entry of structuredRecords) {
+    const id = entry["@id"]?.split("#").at(-1);
+    assert(entry.subjectOf?.url === routeById.get(id), `${page} JSON-LD route does not match the registry for ${id}`);
   }
   assert(!html.includes(oldMuenRaiRoute), `${page} still contains the generic Muen Rai route`);
 }
@@ -699,17 +780,17 @@ const thHtml = readFileSync(join(root, "index.html"), "utf8");
 const enHtml = readFileSync(join(root, "en/index.html"), "utf8");
 const baseCss = readFileSync(join(root, "assets/index-cqxdfePB.css"), "utf8");
 const motionSocialEnhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v18.js"), "utf8");
-const enhancementJs = readFileSync(join(root, "assets/catalog-enhancements-v19.js"), "utf8");
+const enhancementJs = readFileSync(join(root, contributorManifest.renderOwners.transitionalEnhancer), "utf8");
 const previousEnhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v17.css"), "utf8");
 const catalogStoryCss = readFileSync(join(root, "assets/catalog-enhancements-v18.css"), "utf8");
 const catalogStructureCss = readFileSync(join(root, "assets/catalog-enhancements-v19.css"), "utf8");
 const motionSocialCss = readFileSync(join(root, "assets/catalog-enhancements-v20.css"), "utf8");
-const enhancementCss = readFileSync(join(root, "assets/catalog-enhancements-v21.css"), "utf8");
+const enhancementCss = readFileSync(join(root, contributorManifest.renderOwners.styles), "utf8");
 const canonicalFontCss = readFileSync(join(root, "assets/citymeter-fonts.css"), "utf8");
 assert(catalogStoryCss.startsWith(previousEnhancementCss.trimEnd()), "Historical catalog CSS v18 must preserve immutable v17 before its scoped diagram block");
 assert(catalogStructureCss.startsWith(previousEnhancementCss.trimEnd()), "Catalog CSS v19 must preserve immutable v17 before the simplified diagram block");
 assert(motionSocialCss.startsWith(catalogStructureCss.trimEnd()), "Motion/social CSS v20 must preserve immutable v19 before its scoped release block");
-assert(enhancementCss.startsWith(motionSocialCss.trimEnd()), "V23 CSS must preserve immutable v20 before its scoped groove block");
+assert(enhancementCss.startsWith(motionSocialCss.trimEnd()), "Active P1 CSS must preserve immutable v20 before its scoped contributor block");
 const catalogCssDelta = catalogStructureCss.slice(previousEnhancementCss.trimEnd().length);
 const motionSocialCssDelta = motionSocialCss.slice(catalogStructureCss.trimEnd().length);
 const v23CssDelta = enhancementCss.slice(motionSocialCss.trimEnd().length);
@@ -1254,33 +1335,35 @@ assert(enHtml.includes("The link opens the same example and data."), "English pa
 const previousMainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v9.js"), "utf8");
 const catalogStructureMainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v10.js"), "utf8");
 const motionSocialMainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v11.js"), "utf8");
-const mainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v12.js"), "utf8");
+const imagePerformanceMainBundle = readFileSync(join(root, "assets/index-qbT50gkr-v12.js"), "utf8");
+const mainBundle = readFileSync(join(root, contributorManifest.renderOwners.hydratedBundle), "utf8");
 assert(catalogStructureMainBundle !== previousMainBundle, "Main bundle v10 must contain the governed catalog simplification");
 assert(motionSocialMainBundle !== catalogStructureMainBundle, "Main bundle v11 must contain the hydration-owned social footer");
-assert(mainBundle !== motionSocialMainBundle, "Main bundle v12 must contain the dataset-thumbnail and hero-network policy");
+assert(imagePerformanceMainBundle !== motionSocialMainBundle, "Main bundle v12 must contain the dataset-thumbnail and hero-network policy");
+assert(mainBundle !== imagePerformanceMainBundle, "Active main bundle must contain the hardened P1 contributor owners");
 const oldDatasetImageOwner = 'p.jsx("img",{src:ca(s.previewPath),alt:"",width:"1200",height:"750",loading:"lazy",decoding:"async"})';
 const newDatasetImageOwner = 'p.jsx("img",{src:ca(s.previewPath.replace("media/previews-v2/","media/previews-v3/")),alt:"",width:"800",height:"500",loading:"lazy",decoding:"async"})';
 const oldHeroStart = motionSocialMainBundle.indexOf("function U6(");
 const oldHeroEnd = motionSocialMainBundle.indexOf("function B6(", oldHeroStart);
-const newHeroStart = mainBundle.indexOf("function U6(");
-const newHeroEnd = mainBundle.indexOf("function B6(", newHeroStart);
+const newHeroStart = imagePerformanceMainBundle.indexOf("function U6(");
+const newHeroEnd = imagePerformanceMainBundle.indexOf("function B6(", newHeroStart);
 assert(oldHeroStart >= 0 && oldHeroEnd > oldHeroStart && newHeroStart >= 0 && newHeroEnd > newHeroStart, "Hero owner transaction cannot be resolved");
 const oldHeroOwner = motionSocialMainBundle.slice(oldHeroStart, oldHeroEnd);
-const newHeroOwner = mainBundle.slice(newHeroStart, newHeroEnd);
+const newHeroOwner = imagePerformanceMainBundle.slice(newHeroStart, newHeroEnd);
 const oldSchemaStart = motionSocialMainBundle.indexOf("function L6()");
 const oldSchemaEnd = motionSocialMainBundle.indexOf("function _f()", oldSchemaStart);
-const newSchemaStart = mainBundle.indexOf("function L6()");
-const newSchemaEnd = mainBundle.indexOf("function _f()", newSchemaStart);
+const newSchemaStart = imagePerformanceMainBundle.indexOf("function L6()");
+const newSchemaEnd = imagePerformanceMainBundle.indexOf("function _f()", newSchemaStart);
 assert(oldSchemaStart >= 0 && oldSchemaEnd > oldSchemaStart && newSchemaStart >= 0 && newSchemaEnd > newSchemaStart, "JSON-LD owner transaction cannot be resolved");
 const oldSchemaOwner = motionSocialMainBundle.slice(oldSchemaStart, oldSchemaEnd);
-const newSchemaOwner = mainBundle.slice(newSchemaStart, newSchemaEnd);
-assert((motionSocialMainBundle.split(oldDatasetImageOwner).length - 1) === 1 && (mainBundle.split(newDatasetImageOwner).length - 1) === 1, "Dataset preview owner transaction must be exact");
+const newSchemaOwner = imagePerformanceMainBundle.slice(newSchemaStart, newSchemaEnd);
+assert((motionSocialMainBundle.split(oldDatasetImageOwner).length - 1) === 1 && (imagePerformanceMainBundle.split(newDatasetImageOwner).length - 1) === 1, "Dataset preview owner transaction must be exact");
 const oldHydrationTranscriptItem = 'p.jsxs("li",{children:[Z.kicker,". ",Z.title,". ",Z.note]},Z.start)';
 const newHydrationTranscriptItem = 'p.jsx("li",{children:Z.kicker+". "+Z.title+". "+Z.note},Z.start)';
-assert(mainBundle.includes(newHydrationTranscriptItem) && !mainBundle.includes(oldHydrationTranscriptItem), "Hero transcript must hydrate each static list item as one text node");
-assert(mainBundle.includes('if(typeof IntersectionObserver!=="function"){X(!1);return}') && !mainBundle.includes('if(typeof IntersectionObserver!=="function"){X(!0);return}'), "Hero autoplay must fail closed when viewport observation is unavailable");
+assert(imagePerformanceMainBundle.includes(newHydrationTranscriptItem) && !imagePerformanceMainBundle.includes(oldHydrationTranscriptItem), "Hero transcript must hydrate each static list item as one text node");
+assert(imagePerformanceMainBundle.includes('if(typeof IntersectionObserver!=="function"){X(!1);return}') && !imagePerformanceMainBundle.includes('if(typeof IntersectionObserver!=="function"){X(!0);return}'), "Hero autoplay must fail closed when viewport observation is unavailable");
 assert(newSchemaOwner.includes('link[rel="canonical"]') && newSchemaOwner.includes('.replace(/\\/en\\/?$/,"/")') && !newSchemaOwner.includes("url:Da"), "Hydrated JSON-LD must derive its root URL from the route canonical instead of the runtime share base");
-const normalizedV12 = mainBundle.replace(newDatasetImageOwner, oldDatasetImageOwner).replace(newHeroOwner, oldHeroOwner).replace(newSchemaOwner, oldSchemaOwner);
+const normalizedV12 = imagePerformanceMainBundle.replace(newDatasetImageOwner, oldDatasetImageOwner).replace(newHeroOwner, oldHeroOwner).replace(newSchemaOwner, oldSchemaOwner);
 assert(normalizedV12 === motionSocialMainBundle, "Bundle v12 may differ from v11 only in the dataset preview, hero media and canonical JSON-LD owners");
 assert(mainBundle.split(analysisBriefOldThai).length === 2, "Hydrated Thai analysis-brief must preserve the approved concise description exactly once");
 assert(mainBundle.split(analysisBriefOldEnglish).length === 2, "Hydrated English analysis-brief must preserve the approved concise description exactly once");
@@ -1466,4 +1549,6 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-console.log("CityMETER release validation passed: v23 static-hydrated v12 parity, deterministic 800x500 preview-v3 dataset thumbnails within the 1.45 MB budget, preserved high-resolution intent/showcase evidence, first-row dataset warmup with Save-Data/2G safeguards, intersection-driven metadata-only hero video, concurrent source-registry fetch, syncopated disclosure/filter/search/intent motion with interruption/reduced-motion/coarse-pointer safeguards, simplified Land + Living leading to Location story, four localized social footer links, exact Land Appraisal QR routes, 38 source-review records and 11 GD Catalog lineage marks, governed Land/Location/Living surfaces and atmosphere cadence, responsive footer containment, canonical typography, and unchanged evidence, QR, social-card and reel bytes.");
+await import("./validate-p1-contributors.mjs");
+
+console.log(`CityMETER release validation passed: hardened P1 static-hydrated ${contributorBundleName} contributor parity on ${contributorManifest.projectionSummary.records} Thai/English cards, ${contributorManifest.projectionSummary.datasetRecords} Dataset + ${contributorManifest.projectionSummary.eventRecords} CreativeWork schema parity, plus the preserved v23 performance, catalog, evidence, QR, social-card, typography, motion, responsive and media contracts.`);
