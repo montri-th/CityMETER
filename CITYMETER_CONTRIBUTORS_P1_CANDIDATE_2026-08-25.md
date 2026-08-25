@@ -4,17 +4,17 @@ Status: `approved_for_publication` / `ready_with_open_manual_gate`
 
 This receipt covers the CityMETER contributor-consumption lane only. On 2026-08-25 the site owner authorized publication of this completed lane to the existing CityMETER GitHub Pages site while preserving the approved live content. The active manifest therefore states `publishable: true` and `mustNotDeploy: false`. This scoped CityMETER authority does not change the separate common atomic-release state.
 
-The page-level and contributor-build receipts now both identify the authorized release `2026-08-25-contributors-compact-details-v27`. Its active manifest records `releaseStatus: approved_for_publication`, `releaseAuthority.authority: site_owner`, `publishable: true`, and `mustNotDeploy: false`.
+The page-level and contributor-build receipts now both identify the authorized release `2026-08-25-contributor-note-removal-v28`. Its active manifest records `releaseStatus: approved_for_publication`, `releaseAuthority.authority: site_owner`, `publishable: true`, and `mustNotDeploy: false`.
 
 ## Scope and result
 
-- Baseline CityMETER revision: `e37924762a97ee6e2262c8f11f19fbf8ba09848a`
+- Baseline CityMETER revision: `c6067ec648f64c3620a301b4114b9f05cc2c2b77`
 - Common public snapshot: `landom-sheet-20260825-9a5e5cc19e2a`
 - Routes checked: `/` (`th`) and `/en/` (`en`)
 - Coverage: 38 cards per locale, 51 contributor assignments, 29 unique contributors
-- Collapsed-card presentation: only the small contributor portraits are shown; contributor names and explanatory attribution remain inside the native expanded details
+- Collapsed-card presentation: only the small contributor portraits are shown; contributor names and profile links remain inside the native expanded details
 - Portrait handling: 23 contributor identities with governed 1x/2x WebP renditions; 6 identities use the neutral non-borrowing fallback
-- Semantics: contributor identity is explicitly separate from source ownership and endorsement
+- Owner-directed copy change: the contributor disclaimer paragraph and its obsolete accessibility reference are removed from both locales; contributor identity remains typed as `Person` contributor data in the registry and JSON-LD
 - Person link contract: the registry retains canonical `/landom/people/{personId}` and `/en/landom/people/{personId}` fields, while the open `canonical_person_routes_activation` gate deterministically resolves current links to the approved same-origin `/Landom/?person={personId}&lang=th` and `/Landom/en/?person={personId}&lang=en` compatibility routes
 - Structured data: 36 `Dataset` records plus 2 event archives as `hasPart` `CreativeWork`, with 51 `Person` contributor assignments per locale
 - Accessibility: each Thai and English contributor link has an exact decoded accessible name derived from the visible card title; encoded-title input cannot produce a double-escaped name; the two projected `+N` disclosures have a 44px control, visible enhanced close control, Escape handling, focus containment and return, while native `details` remains usable without JavaScript
@@ -35,20 +35,20 @@ The page-level and contributor-build receipts now both identify the authorized r
 | Owner | Active artifact | SHA-256 |
 | --- | --- | --- |
 | Public contributor registry | `data/citymeter-contributors-p1-d8a4a6682493.json` | `d8a4a66824933f72040e599b25f406e0aa6f5b6c49642c54c9a38401e3f9844b` |
-| Authorized v27 manifest | `data/citymeter-contributor-release-p1-d5d089845ca8.json` | `d5d089845ca80e4a63094fb97ab18e3efd3ef917a8ab58620aa13727895476a9` |
-| Hydrated owner | `assets/index-qbT50gkr-v16.js` | `63e005915ef4ccfa2d208fb5339967ba23f17f1a45ef768074f5015dd0ed7bcc` |
-| Transitional enhancer | `assets/catalog-enhancements-v23.js` | `e1dca698172e5795fbd28318b032b6e494c56ce4f481ad7695f0c60e76d3c6ab` |
+| Authorized v28 manifest | `data/citymeter-contributor-release-p1-cf7e7b55a7a1.json` | `cf7e7b55a7a14666cb98a6af6a9280638b1c0c150344fde076c60842f7a9b8b2` |
+| Hydrated owner | `assets/index-qbT50gkr-v17.js` | `23d79ee191a447fcbfbfeee2b1514604882a9085e1bb9d1ed3361e89ec778b26` |
+| Transitional enhancer | `assets/catalog-enhancements-v24.js` | `ccdb8806de93b797a4938666c6917fa5fee30e40fd55dfadd240d5719aa8c3db` |
 | Contributor styles | `assets/catalog-enhancements-v25.css` | `d37b1d43f6c582e0be32167f69e9ab48e58feada6633ff0f9c1aea82691482e7` |
-| Thai prerender | `index.html` | `4a9d5f343aaebabc8f5fbfc21beb5528ab83c338a07a1bfd0849fc6a57818525` |
-| English prerender | `en/index.html` | `12ba3f26d097804f3cfc5574c9ea53fc8bb1923046974d8f13fbb401ec3a2f34` |
+| Thai prerender | `index.html` | `1cfb7088f8718032125a52944394516e88fce09073e59f363a7e768fef790e55` |
+| English prerender | `en/index.html` | `7bf72cce91bd6cbc220a7d4f16b4e3a8a36e93f3117c15cb8de4448c8db47c40` |
 
-Both locale documents reference exactly these three v27 render owners, the active public registry, and the one authorized v27 manifest. Build Card generation binds these settled bytes to the append-only CityMETER artifact build `ui-20260825-04`; the pre-final `ui-20260825-03` receipt and earlier `ui-20260825-01` receipt remain historical evidence and are not rewritten. The approved pre-P1 source owners remain untouched.
+Both locale documents reference exactly these three v28 render owners, the active public registry, and the one authorized v28 manifest. Build Card generation binds these settled bytes to the append-only CityMETER artifact build `ui-20260825-05`; the published `ui-20260825-04` receipt and earlier receipts remain historical evidence and are not rewritten. The approved pre-P1 source owners remain untouched.
 
 Design-system identity: package `v0.9.0-mp1`, UI kit `lds-kit-0.9.0-r4`, manifest `2.1`, color set `color-srgb-05`, authority source `d82ac775ab9d35a84cfb0dc77bc0ae804a7a0665`.
 
 ## Verification evidence
 
-- Deterministic migration re-run produced byte-identical HTML, registry, manifest, v27 render owners, and 46 copied portrait files.
+- Deterministic migration re-run produced byte-identical HTML, registry, manifest, v28 render owners, and 46 copied portrait files.
 - `node scripts/validate-release.mjs`: pass.
 - `node scripts/validate-p1-contributors.mjs`: pass.
 - `node scripts/validate-p0-contract.mjs`: pass; the private P0 contract was read-only.
@@ -65,4 +65,4 @@ The 46 copied WebP files have content-addressed names, declared dimensions, lazy
 
 ## Remaining release gates
 
-The frozen common release manifest remains `draft`, `publishable: false`, and `mustNotDeploy: true`. Those common values govern the still-unfinished cross-product atomic set; they do not revoke the site owner's narrower authorization to publish CityMETER v27 to the existing Pages site. The common manifest records nine open atomic-set/operational gates, including catalog taxonomy approval, canonical CityMETER route approval, canonical person-route activation, portrait derivative visual review, root/CityMETER/Landom build receipts, scheduled Sheet refresh configuration, and atomic release-set attestation. The City lane additionally retains the fresh interactive browser hydration/console/state-change check as an explicit manual gate. `localeAggregation.performed` is `false`; there are no aggregation outputs, so the Locale crosswalk rule is retained as a prerequisite only if future Locale aggregation is performed, not as an unconditional P1 release gate.
+The frozen common release manifest remains `draft`, `publishable: false`, and `mustNotDeploy: true`. Those common values govern the still-unfinished cross-product atomic set; they do not revoke the site owner's narrower authorization to publish CityMETER v28 to the existing Pages site. The common manifest records nine open atomic-set/operational gates, including catalog taxonomy approval, canonical CityMETER route approval, canonical person-route activation, portrait derivative visual review, root/CityMETER/Landom build receipts, scheduled Sheet refresh configuration, and atomic release-set attestation. The City lane additionally retains the fresh interactive browser hydration/console/state-change check as an explicit manual gate. `localeAggregation.performed` is `false`; there are no aggregation outputs, so the Locale crosswalk rule is retained as a prerequisite only if future Locale aggregation is performed, not as an unconditional P1 release gate.

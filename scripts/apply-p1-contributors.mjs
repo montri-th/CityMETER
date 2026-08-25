@@ -13,18 +13,18 @@ const sourceSnapshotPath = join(landomRoot, "data/generated/common-public-snapsh
 const sourceContributorsPath = join(landomRoot, "data/generated/citymeter/contributors.json");
 const sourcePortraitManifestPath = join(landomRoot, "data/generated/portrait-derivatives.json");
 const sourceReleaseManifestPath = join(landomRoot, "data/generated/release-manifest.json");
-const releaseReceipt = "2026-08-25-contributors-compact-details-v27";
-const previousCandidateReceipt = "2026-08-25-contributors-p1-candidate-v26";
+const releaseReceipt = "2026-08-25-contributor-note-removal-v28";
+const previousCandidateReceipt = "2026-08-25-contributors-compact-details-v27";
 const previousReleaseReceipt = "2026-08-16-motion-image-performance-v23";
 const sourceBundle = "index-qbT50gkr-v12.js";
-const previousTargetBundle = "index-qbT50gkr-v15.js";
-const targetBundle = "index-qbT50gkr-v16.js";
+const previousTargetBundle = "index-qbT50gkr-v16.js";
+const targetBundle = "index-qbT50gkr-v17.js";
 const sourceCss = "catalog-enhancements-v21.css";
 const previousTargetCss = "catalog-enhancements-v24.css";
 const targetCss = "catalog-enhancements-v25.css";
 const sourceEnhancement = "catalog-enhancements-v19.js";
-const previousTargetEnhancement = "catalog-enhancements-v22.js";
-const targetEnhancement = "catalog-enhancements-v23.js";
+const previousTargetEnhancement = "catalog-enhancements-v23.js";
+const targetEnhancement = "catalog-enhancements-v24.js";
 const checkOnly = process.argv.slice(2).includes("--check");
 
 const expectedHashes = {
@@ -372,6 +372,23 @@ function previousContributorCompactBlock(record, language, recordName, prefix, s
 
 function contributorBlock(record, language, recordName, prefix, snapshotId, linkResolution) {
   const title = language === "th" ? "ผู้ร่วมพัฒนา" : "Contributors";
+  const showLabel = language === "th" ? "แสดงผู้ร่วมพัฒนาที่เหลือ" : "Show remaining contributors";
+  const hideLabel = language === "th" ? "ซ่อนผู้ร่วมพัฒนาเพิ่มเติม" : "Hide additional contributors";
+  const groupLabel = language === "th" ? "ผู้ร่วมพัฒนาเพิ่มเติม" : "Additional contributors";
+  const closeLabel = language === "th" ? "ปิดรายชื่อเพิ่มเติม" : "Close additional contributors";
+  const visible = record.contributors.slice(0, CONTRIBUTOR_VISIBLE_LIMIT).map((contributor) => contributorAnchor(contributor, language, recordName, prefix, linkResolution)).join("");
+  const hidden = record.contributors.slice(CONTRIBUTOR_VISIBLE_LIMIT).map((contributor) => contributorAnchor(contributor, language, recordName, prefix, linkResolution)).join("");
+  const remaining = record.contributors.length - CONTRIBUTOR_VISIBLE_LIMIT;
+  const moreListId = `${record.datasetId}-contributors-more-list`;
+  const more = hidden
+    ? `<details class="citymeter-contributors-more" data-contributor-disclosure><summary aria-controls="${moreListId}" data-contributor-more-count="${remaining}" data-contributor-more-show-label="${escapeHtml(showLabel)}" data-contributor-more-hide-label="${escapeHtml(hideLabel)}" aria-label="${escapeHtml(`${showLabel} ${remaining}`)}">+${remaining}</summary><div class="citymeter-contributors-more-list" id="${moreListId}" role="group" aria-label="${escapeHtml(groupLabel)}">${hidden}<button type="button" class="citymeter-contributors-more-close" data-contributor-more-close hidden>${escapeHtml(closeLabel)}</button></div></details>`
+    : "";
+  const headingId = `${record.datasetId}-contributors-title`;
+  return `<section class="citymeter-contributors" data-contributor-snapshot-id="${escapeHtml(snapshotId)}" aria-labelledby="${headingId}"><h4 id="${headingId}">${title}</h4><div class="citymeter-contributor-list">${visible}${more}</div></section>`;
+}
+
+function previousContributorBlockV27(record, language, recordName, prefix, snapshotId, linkResolution) {
+  const title = language === "th" ? "ผู้ร่วมพัฒนา" : "Contributors";
   const note = language === "th"
     ? "ผู้ร่วมพัฒนา CityMETER view นี้ ไม่ใช่เจ้าของหรือผู้รับรองข้อมูลต้นทาง"
     : "Contributors to this CityMETER view, not owners or endorsers of the source data";
@@ -463,6 +480,8 @@ function updateCards(html, page, registry) {
         previousDoubleEscapedBlock,
         contributorBlock(record, language, decodedRecordName, prefix, currentSnapshotId, registry.linkResolution),
         contributorBlock(record, language, encodedRecordName, prefix, currentSnapshotId, registry.linkResolution),
+        previousContributorBlockV27(record, language, decodedRecordName, prefix, currentSnapshotId, registry.linkResolution),
+        previousContributorBlockV27(record, language, encodedRecordName, prefix, currentSnapshotId, registry.linkResolution),
         previousContributorBlock(record, language, decodedRecordName, prefix, currentSnapshotId),
         previousContributorBlock(record, language, encodedRecordName, prefix, currentSnapshotId)
       ]);
@@ -564,7 +583,7 @@ const hydratedCard = `function G6({record:c,language:f,text:g}){const s=sc(c),d=
 
 const hydratedSchema = `function L6(){const c=typeof document<"u"?((document.querySelector('link[rel="canonical"]')?.href??"https://montri-th.github.io/CityMETER/").replace(/\\/en\\/?$/,"/")):"https://montri-th.github.io/CityMETER/",f=typeof document<"u"&&document.documentElement.lang==="en"?"en":"th",A=new URL(c).origin,g=Gl.filter(s=>CitymeterP1Record(s.id)?.resourceClass!=="event"),d=Gl.filter(s=>CitymeterP1Record(s.id)?.resourceClass==="event"),h={"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":c+"#page",url:c,name:"CityMETER — See the place before you decide",alternateName:"CityMETER — เห็นข้อมูลพื้นที่ก่อนตัดสินใจ",description:"A visual showcase of CityMETER implementations for land, location, business, people, services and risk decisions.",inLanguage:["th","en"],mainEntity:{"@id":c+"#catalog"}},{"@type":"DataCatalog","@id":c+"#catalog",name:"CityMETER public data views and modules",numberOfItems:g.length,dataset:g.map(s=>({"@type":"Dataset","@id":c+"#dataset-"+xn(s.id),url:c+"#dataset-"+xn(s.id),name:f==="th"?s.th:s.en,alternateName:f==="th"?s.en:s.th,description:s.marketing.visualStory[f]+". "+s.marketing.limitation[f],inLanguage:f,spatialCoverage:s.marketing.evidencedScope.status==="unknown"?void 0:s.marketing.evidencedScope[f],subjectOf:{"@type":"WebPage",url:s.href,name:(f==="th"?"เปิด ":"Open ")+(f==="th"?s.th:s.en)+" in CityMETER"},contributor:CitymeterP1Schema(s.id,f,A)})),hasPart:d.map(s=>({"@type":"CreativeWork","@id":c+"#dataset-"+xn(s.id),url:c+"#dataset-"+xn(s.id),name:f==="th"?s.th:s.en,alternateName:f==="th"?s.en:s.th,description:s.marketing.visualStory[f]+". "+s.marketing.limitation[f],inLanguage:f,spatialCoverage:s.marketing.evidencedScope.status==="unknown"?void 0:s.marketing.evidencedScope[f],subjectOf:{"@type":"WebPage",url:s.href,name:(f==="th"?"เปิด ":"Open ")+(f==="th"?s.th:s.en)+" in CityMETER"},contributor:CitymeterP1Schema(s.id,f,A)}))}]};return p.jsx("script",{type:"application/ld+json",dangerouslySetInnerHTML:{__html:JSON.stringify(h)}})}`;
 
-const contributorRuntimeV27 = `
+const contributorRuntimeV28 = `
 const CitymeterP1VisibleLimit=${CONTRIBUTOR_VISIBLE_LIMIT},CitymeterP1Data=(()=>{try{return JSON.parse(document.getElementById("citymeter-contributor-data")?.textContent||'{"records":[]}')}catch{return{records:[]}}})(),CitymeterP1ById=new Map((CitymeterP1Data.records||[]).flatMap(c=>[[c.datasetId,c],[c.datasetId.replace(/^dataset-/,""),c]]));
 function CitymeterP1Record(c){return CitymeterP1ById.get(c)||CitymeterP1ById.get("dataset-"+xn(c))}
 function CitymeterP1Path(c,f){const g=f==="th"?CitymeterP1Data.linkResolution.thField:CitymeterP1Data.linkResolution.enField;return c[g]}
@@ -572,14 +591,14 @@ function CitymeterP1Schema(c,f,g){const s=CitymeterP1Record(c);return(s?.contrib
 function CitymeterP1Portrait({person:c}){return p.jsxs("span",{className:"citymeter-contributor-portrait","aria-hidden":"true",children:[p.jsx("span",{className:"citymeter-contributor-fallback"}),c.portrait.kind==="portrait"?p.jsx("img",{className:"citymeter-contributor-image","data-contributor-image":"",src:ca(c.portrait.oneX.path),srcSet:ca(c.portrait.oneX.path)+" 1x, "+ca(c.portrait.twoX.path)+" 2x",sizes:"32px",alt:"",width:c.portrait.oneX.width,height:c.portrait.oneX.height,loading:"lazy",decoding:"async"}):null]})}
 function CitymeterP1Link({person:c,language:f,recordName:g}){const s=f==="th"?c.nameTh:c.nameEn,d=CitymeterP1Path(c,f),h=f==="th"?"ดูโปรไฟล์ของ "+s+" ผู้ร่วมพัฒนา CityMETER "+g:"View "+s+"'s profile, a contributor to CityMETER "+g;return p.jsxs("a",{className:"citymeter-contributor",href:d,"data-contributor-person-id":c.personId,"aria-label":h,children:[p.jsx(CitymeterP1Portrait,{person:c}),p.jsx("span",{className:"citymeter-contributor-name",children:s})]},c.personId)}
 function CitymeterP1Compact({record:c,language:f,recordName:g}){const s=CitymeterP1Record(c.id),d=s?.contributors||[],h=f==="th"?"ผู้ร่วมพัฒนา CityMETER "+g+" "+d.length+" คน ดูรายชื่อเมื่อเปิดรายละเอียด":d.length+" contributor"+(d.length===1?"":"s")+" to CityMETER "+g+"; open details to view names";return p.jsx("div",{className:"citymeter-contributors-compact","data-contributor-compact-snapshot-id":CitymeterP1Data.snapshotId,role:"img","aria-label":h,children:d.map(A=>p.jsx("span",{className:"citymeter-contributor-compact-person","data-contributor-compact-person-id":A.personId,"aria-hidden":"true",children:p.jsx(CitymeterP1Portrait,{person:A})},A.personId))})}
-function CitymeterP1ContributorsDetail({record:c,language:f,recordName:g}){const s=CitymeterP1Record(c.id),d=s?.contributors||[],h="dataset-"+xn(c.id)+"-contributors-title",A="dataset-"+xn(c.id)+"-contributors-note",H="dataset-"+xn(c.id)+"-contributors-more-list",v=f==="th"?"ผู้ร่วมพัฒนา":"Contributors",E=f==="th"?"ผู้ร่วมพัฒนา CityMETER view นี้ ไม่ใช่เจ้าของหรือผู้รับรองข้อมูลต้นทาง":"Contributors to this CityMETER view, not owners or endorsers of the source data",O=f==="th"?"แสดงผู้ร่วมพัฒนาที่เหลือ":"Show remaining contributors",ie=f==="th"?"ซ่อนผู้ร่วมพัฒนาเพิ่มเติม":"Hide additional contributors",Y=f==="th"?"ผู้ร่วมพัฒนาเพิ่มเติม":"Additional contributors",N=f==="th"?"ปิดรายชื่อเพิ่มเติม":"Close additional contributors",L=d.slice(0,CitymeterP1VisibleLimit),D=d.slice(CitymeterP1VisibleLimit);return p.jsxs("section",{className:"citymeter-contributors","data-contributor-snapshot-id":CitymeterP1Data.snapshotId,"aria-labelledby":h,children:[p.jsx("h4",{id:h,children:v}),p.jsx("p",{className:"citymeter-contributors-note",id:A,children:E}),p.jsxs("div",{className:"citymeter-contributor-list","aria-describedby":A,children:[L.map(B=>p.jsx(CitymeterP1Link,{person:B,language:f,recordName:g},B.personId)),D.length?p.jsxs("details",{className:"citymeter-contributors-more","data-contributor-disclosure":"",children:[p.jsx("summary",{"aria-controls":H,"data-contributor-more-count":D.length,"data-contributor-more-show-label":O,"data-contributor-more-hide-label":ie,"aria-label":O+" "+D.length,children:"+"+D.length}),p.jsxs("div",{className:"citymeter-contributors-more-list",id:H,role:"group","aria-label":Y,children:[D.map(B=>p.jsx(CitymeterP1Link,{person:B,language:f,recordName:g},B.personId)),p.jsx("button",{type:"button",className:"citymeter-contributors-more-close","data-contributor-more-close":"",hidden:!0,children:N})]})]}):null]})]})}
+function CitymeterP1ContributorsDetail({record:c,language:f,recordName:g}){const s=CitymeterP1Record(c.id),d=s?.contributors||[],h="dataset-"+xn(c.id)+"-contributors-title",H="dataset-"+xn(c.id)+"-contributors-more-list",v=f==="th"?"ผู้ร่วมพัฒนา":"Contributors",O=f==="th"?"แสดงผู้ร่วมพัฒนาที่เหลือ":"Show remaining contributors",ie=f==="th"?"ซ่อนผู้ร่วมพัฒนาเพิ่มเติม":"Hide additional contributors",Y=f==="th"?"ผู้ร่วมพัฒนาเพิ่มเติม":"Additional contributors",N=f==="th"?"ปิดรายชื่อเพิ่มเติม":"Close additional contributors",L=d.slice(0,CitymeterP1VisibleLimit),D=d.slice(CitymeterP1VisibleLimit);return p.jsxs("section",{className:"citymeter-contributors","data-contributor-snapshot-id":CitymeterP1Data.snapshotId,"aria-labelledby":h,children:[p.jsx("h4",{id:h,children:v}),p.jsxs("div",{className:"citymeter-contributor-list",children:[L.map(B=>p.jsx(CitymeterP1Link,{person:B,language:f,recordName:g},B.personId)),D.length?p.jsxs("details",{className:"citymeter-contributors-more","data-contributor-disclosure":"",children:[p.jsx("summary",{"aria-controls":H,"data-contributor-more-count":D.length,"data-contributor-more-show-label":O,"data-contributor-more-hide-label":ie,"aria-label":O+" "+D.length,children:"+"+D.length}),p.jsxs("div",{className:"citymeter-contributors-more-list",id:H,role:"group","aria-label":Y,children:[D.map(B=>p.jsx(CitymeterP1Link,{person:B,language:f,recordName:g},B.personId)),p.jsx("button",{type:"button",className:"citymeter-contributors-more-close","data-contributor-more-close":"",hidden:!0,children:N})]})]}):null]})]})}
 `;
 
-const hydratedCardV27 = `function G6({record:c,language:f,text:g}){const s=sc(c),d=f==="th"?c.th:c.en;return p.jsxs("article",{className:"dataset-card","data-pillar":c.group,id:"dataset-"+xn(c.id),"data-citymeter-record-id":"dataset-"+xn(c.id),"data-module-slug":"dataset-"+xn(c.id),children:[p.jsxs("a",{className:"dataset-image",href:c.href,target:"_blank",rel:"noreferrer",tabIndex:"-1","aria-hidden":"true",children:[p.jsx("img",{src:ca(s.previewPath.replace("media/previews-v2/","media/previews-v3/")),alt:"",width:"800",height:"500",loading:"lazy",decoding:"async"}),p.jsx("span",{className:"preview-focus-label "+(s.assetStatus==="limited"?"is-limited":""),children:s.focusLabel[f]})]}),p.jsxs("div",{className:"dataset-body",children:[p.jsxs("div",{className:"dataset-kicker",children:[p.jsx("span",{children:c.group}),c.marketing.featured?p.jsxs("span",{children:["Featured ",String(c.marketing.featuredOrder).padStart(2,"0")]}):null]}),p.jsx("h3",{children:d}),p.jsx("p",{children:c.marketing.visualStory[f]}),p.jsx("div",{className:"feature-tags",children:c.marketing.featureTags.slice(0,3).map(A=>p.jsx("span",{children:A[f]},A.id))}),p.jsxs("dl",{className:"evidence-summary",children:[p.jsxs("div",{children:[p.jsxs("dt",{children:[p.jsx(gf,{size:18}),g.datasetExplorer.coverage]}),p.jsx("dd",{children:c.marketing.evidencedScope[f]})]}),p.jsxs("div",{children:[p.jsxs("dt",{children:[p.jsx(vf,{size:18}),g.datasetExplorer.resolution]}),p.jsx("dd",{children:c.marketing.evidencedGranularity[f]})]})]}),p.jsxs("div",{className:"dataset-card-actions",children:[p.jsxs("a",{className:"dataset-open",href:c.href,target:"_blank",rel:"noreferrer",children:[g.datasetExplorer.openRecord,p.jsx(Yl,{size:19,weight:"bold"}),p.jsxs("span",{className:"visually-hidden",children:[" · ",g.datasetExplorer.opensNewTab]})]}),p.jsx(CitymeterP1Compact,{record:c,language:f,recordName:d})]}),p.jsxs("details",{className:"dataset-details",children:[p.jsx("summary",{children:g.datasetExplorer.viewDetails}),p.jsx(CitymeterP1ContributorsDetail,{record:c,language:f,recordName:d}),p.jsxs("div",{children:[p.jsx("strong",{children:g.datasetExplorer.limitation}),p.jsx("p",{children:c.marketing.limitation[f]})]})]})]})]})}`;
+const hydratedCardV28 = `function G6({record:c,language:f,text:g}){const s=sc(c),d=f==="th"?c.th:c.en;return p.jsxs("article",{className:"dataset-card","data-pillar":c.group,id:"dataset-"+xn(c.id),"data-citymeter-record-id":"dataset-"+xn(c.id),"data-module-slug":"dataset-"+xn(c.id),children:[p.jsxs("a",{className:"dataset-image",href:c.href,target:"_blank",rel:"noreferrer",tabIndex:"-1","aria-hidden":"true",children:[p.jsx("img",{src:ca(s.previewPath.replace("media/previews-v2/","media/previews-v3/")),alt:"",width:"800",height:"500",loading:"lazy",decoding:"async"}),p.jsx("span",{className:"preview-focus-label "+(s.assetStatus==="limited"?"is-limited":""),children:s.focusLabel[f]})]}),p.jsxs("div",{className:"dataset-body",children:[p.jsxs("div",{className:"dataset-kicker",children:[p.jsx("span",{children:c.group}),c.marketing.featured?p.jsxs("span",{children:["Featured ",String(c.marketing.featuredOrder).padStart(2,"0")]}):null]}),p.jsx("h3",{children:d}),p.jsx("p",{children:c.marketing.visualStory[f]}),p.jsx("div",{className:"feature-tags",children:c.marketing.featureTags.slice(0,3).map(A=>p.jsx("span",{children:A[f]},A.id))}),p.jsxs("dl",{className:"evidence-summary",children:[p.jsxs("div",{children:[p.jsxs("dt",{children:[p.jsx(gf,{size:18}),g.datasetExplorer.coverage]}),p.jsx("dd",{children:c.marketing.evidencedScope[f]})]}),p.jsxs("div",{children:[p.jsxs("dt",{children:[p.jsx(vf,{size:18}),g.datasetExplorer.resolution]}),p.jsx("dd",{children:c.marketing.evidencedGranularity[f]})]})]}),p.jsxs("div",{className:"dataset-card-actions",children:[p.jsxs("a",{className:"dataset-open",href:c.href,target:"_blank",rel:"noreferrer",children:[g.datasetExplorer.openRecord,p.jsx(Yl,{size:19,weight:"bold"}),p.jsxs("span",{className:"visually-hidden",children:[" · ",g.datasetExplorer.opensNewTab]})]}),p.jsx(CitymeterP1Compact,{record:c,language:f,recordName:d})]}),p.jsxs("details",{className:"dataset-details",children:[p.jsx("summary",{children:g.datasetExplorer.viewDetails}),p.jsx(CitymeterP1ContributorsDetail,{record:c,language:f,recordName:d}),p.jsxs("div",{children:[p.jsx("strong",{children:g.datasetExplorer.limitation}),p.jsx("p",{children:c.marketing.limitation[f]})]})]})]})]})}`;
 
 function buildBundle() {
   let bundle = immutableSource(sourceBundle);
-  bundle = replaceDelimited(bundle, "function G6(", "function CatalogStructureDiagram(", `${contributorRuntimeV27}${hydratedCardV27}`, "Hydrated contributor owner");
+  bundle = replaceDelimited(bundle, "function G6(", "function CatalogStructureDiagram(", `${contributorRuntimeV28}${hydratedCardV28}`, "Hydrated contributor owner");
   bundle = replaceDelimited(bundle, "function L6()", "function _f()", hydratedSchema, "Hydrated JSON-LD owner");
   bundle = replaceOnce(
     bundle,
@@ -720,17 +739,11 @@ const enhancerFunctions = `  const contributorDisclosureBindings = new WeakSet()
   function contributorDetailBlock(record, recordName) {
     const section = element("section", "citymeter-contributors");
     const headingId = record.datasetId + "-contributors-title";
-    const noteId = record.datasetId + "-contributors-note";
     section.dataset.contributorSnapshotId = contributorRegistry.snapshotId;
     section.setAttribute("aria-labelledby", headingId);
     const heading = element("h4", "", language === "th" ? "ผู้ร่วมพัฒนา" : "Contributors");
     heading.id = headingId;
-    const note = element("p", "citymeter-contributors-note", language === "th"
-      ? "ผู้ร่วมพัฒนา CityMETER view นี้ ไม่ใช่เจ้าของหรือผู้รับรองข้อมูลต้นทาง"
-      : "Contributors to this CityMETER view, not owners or endorsers of the source data");
-    note.id = noteId;
     const list = element("div", "citymeter-contributor-list");
-    list.setAttribute("aria-describedby", noteId);
     record.contributors.slice(0, ${CONTRIBUTOR_VISIBLE_LIMIT}).forEach((person) => list.append(contributorLink(person, recordName)));
     const remaining = record.contributors.slice(${CONTRIBUTOR_VISIBLE_LIMIT});
     if (remaining.length) {
@@ -756,7 +769,7 @@ const enhancerFunctions = `  const contributorDisclosureBindings = new WeakSet()
       more.append(summary, moreList);
       list.append(more);
     }
-    section.append(heading, note, list);
+    section.append(heading, list);
     return section;
   }
 
@@ -1097,7 +1110,7 @@ const artifactManifest = {
   releaseAuthority: {
     authority: "site_owner",
     authorizedAt: "2026-08-25",
-    scope: "Publish the completed CityMETER P2-P6 contributor presentation to the existing GitHub Pages site while preserving approved live content"
+    scope: "Publish the CityMETER contributor note removal to the existing GitHub Pages site while preserving approved live content"
   },
   publishable: true,
   mustNotDeploy: false,

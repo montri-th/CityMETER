@@ -4,11 +4,11 @@
   "releaseAuthority": {
     "authority": "site_owner",
     "authorizedAt": "2026-08-25",
-    "scope": "Publish the completed CityMETER P2-P6 contributor presentation to the existing GitHub Pages site while preserving approved live content"
+    "scope": "Publish the CityMETER contributor note removal to the existing GitHub Pages site while preserving approved live content"
   },
   "publishable": true,
   "mustNotDeploy": false,
-  "releaseReceipt": "2026-08-25-contributors-compact-details-v27",
+  "releaseReceipt": "2026-08-25-contributor-note-removal-v28",
   "snapshotId": "landom-sheet-20260825-9a5e5cc19e2a",
   "sourceSnapshot": {
     "path": "landom:data/generated/common-public-snapshot.json",
@@ -43,13 +43,13 @@
   "renderOwners": {
     "thaiPrerender": "index.html",
     "englishPrerender": "en/index.html",
-    "hydratedBundle": "assets/index-qbT50gkr-v16.js",
-    "transitionalEnhancer": "assets/catalog-enhancements-v23.js",
+    "hydratedBundle": "assets/index-qbT50gkr-v17.js",
+    "transitionalEnhancer": "assets/catalog-enhancements-v24.js",
     "styles": "assets/catalog-enhancements-v25.css"
   },
   "renderOwnerHashes": {
-    "hydratedBundle": "63e005915ef4ccfa2d208fb5339967ba23f17f1a45ef768074f5015dd0ed7bcc",
-    "transitionalEnhancer": "e1dca698172e5795fbd28318b032b6e494c56ce4f481ad7695f0c60e76d3c6ab",
+    "hydratedBundle": "23d79ee191a447fcbfbfeee2b1514604882a9085e1bb9d1ed3361e89ec778b26",
+    "transitionalEnhancer": "ccdb8806de93b797a4938666c6917fa5fee30e40fd55dfadd240d5719aa8c3db",
     "styles": "d37b1d43f6c582e0be32167f69e9ab48e58feada6633ff0f9c1aea82691482e7"
   },
   "portraits": [
