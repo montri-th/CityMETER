@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -142,7 +143,7 @@ function validateRegistryAllowedKeys(value) {
 }
 
 function validateManifestAllowedKeys(value) {
-  assertExactKeys(value, ["canonicalPersonPathContract", "commonRelease", "contributorRegistry", "designSystem", "excludedPrivateInputs", "mustNotDeploy", "personLinkResolution", "portraitGovernance", "portraits", "projectionSummary", "publicationScope", "publishable", "releaseAuthority", "releaseReceipt", "releaseStatus", "renderOwnerHashes", "renderOwners", "schemaVersion", "snapshotId", "sourceProjection", "sourceSnapshot"], "manifest");
+  assertExactKeys(value, ["canonicalPersonPathContract", "commonRelease", "contributorRegistry", "designSystem", "excludedPrivateInputs", "mustNotDeploy", "personLinkResolution", "portraitGovernance", "portraits", "projectionSummary", "publicationScope", "publishable", "releaseAuthority", "releaseReceipt", "releaseStatus", "renderOwnerHashes", "renderOwners", "retainedPortraits", "schemaVersion", "snapshotId", "sourceProjection", "sourceSnapshot"], "manifest");
   assertExactKeys(value.releaseAuthority, ["authority", "authorizedAt", "scope"], "manifest.releaseAuthority");
   assertExactKeys(value.sourceSnapshot, ["path", "sha256"], "manifest.sourceSnapshot");
   assertExactKeys(value.sourceProjection, ["path", "sha256"], "manifest.sourceProjection");
@@ -153,6 +154,8 @@ function validateManifestAllowedKeys(value) {
   assertExactKeys(value.renderOwnerHashes, ["hydratedBundle", "styles", "transitionalEnhancer"], "manifest.renderOwnerHashes");
   assert(Array.isArray(value.portraits), "manifest.portraits must be an array");
   value.portraits.forEach((portrait, index) => assertExactKeys(portrait, ["path", "sha256"], `manifest.portraits[${index}]`));
+  assert(Array.isArray(value.retainedPortraits), "manifest.retainedPortraits must be an array");
+  value.retainedPortraits.forEach((portrait, index) => assertExactKeys(portrait, ["path", "sha256"], `manifest.retainedPortraits[${index}]`));
   assertExactKeys(value.portraitGovernance, ["cachePolicy", "withdrawalRunbook"], "manifest.portraitGovernance");
   assertExactKeys(value.portraitGovernance.cachePolicy, ["filenamePolicy", "header"], "manifest.portraitGovernance.cachePolicy");
   assertExactKeys(value.portraitGovernance.withdrawalRunbook, ["path", "portraitOnlyAction", "profileAction"], "manifest.portraitGovernance.withdrawalRunbook");
@@ -217,7 +220,7 @@ function assertPortraitRenditionContract(personId, density, rendition) {
   assert(/^[a-f0-9]{64}$/.test(rendition.sha256 || ""), `${personId}/${density} hash is invalid`);
   const expectedFilename = `${personId.toLowerCase()}-${density}-${rendition.sha256.slice(0, 12)}.webp`;
   assert(rendition.path === `media/contributors/${expectedFilename}`, `${personId}/${density} local path is not bound to person, density, and hash`);
-  assert(rendition.sourcePath === `/Landom/public/assets/people/contributors/${expectedFilename}`, `${personId}/${density} source path is not bound to the local filename`);
+  assert(new RegExp(`^/Landom/public/assets/people/${personId}\\.jpg\\?v=[a-f0-9]{12}$`).test(rendition.sourcePath), `${personId}/${density} source path is not bound to the current versioned Landom portrait`);
   assert(rendition.mimeType === "image/webp", `${personId}/${density} must be WebP`);
   assert(rendition.width === expectedSize && rendition.height === expectedSize, `${personId}/${density} must be ${expectedSize}x${expectedSize}`);
 }
@@ -258,63 +261,41 @@ function discoverActive(html) {
   return { registry, manifest };
 }
 
-function normalizedSourceRecords(source) {
-  if (Array.isArray(source?.records)) return source.records;
-  if (source?.records && typeof source.records === "object") return Object.values(source.records);
-  return [];
-}
-
-function validateSourceAlignment(registry, sourceProjection, sourceSnapshot, canonicalIds) {
-  assert(sourceProjection.snapshotId === sourceSnapshot.snapshotId && registry.snapshotId === sourceSnapshot.snapshotId, "Common snapshot, source projection, and CityMETER registry snapshotId values differ");
-  assert(sourceProjection.generatedAt === sourceSnapshot.generatedAt && registry.generatedAt === sourceSnapshot.generatedAt, "Common snapshot, source projection, and CityMETER registry generatedAt values differ");
-  assert(sourceProjection.sourceSnapshotContentHash === sourceSnapshot.contentHash, "Source projection is not bound to the active common snapshot contentHash");
-  assert(registry.contentHash === sourceSnapshot.contentHash, "CityMETER registry is not bound to the active common snapshot contentHash");
-  const sourceRecords = normalizedSourceRecords(sourceProjection);
-  const sourceById = new Map(sourceRecords.map((record) => [record.datasetId, record]));
-  const snapshotById = new Map((sourceSnapshot.catalog || []).map((record) => [record.datasetId, record]));
-  const snapshotPeople = new Map((sourceSnapshot.people || []).map((person) => [person.personId, person]));
-  assert(sourceById.size === canonicalIds.length && snapshotById.size === canonicalIds.length, "Upstream CityMETER projections must exactly cover the canonical catalog");
+function validateSourceAlignment(registry, mapping, peopleMedia, mappingBytes, peopleMediaBytes, canonicalIds) {
+  const peopleMediaHash = sha256(peopleMediaBytes);
+  const expectedSnapshotId = `${mapping.snapshotId}-media-${peopleMediaHash.slice(0, 12)}`;
+  const expectedContentHash = sha256(Buffer.concat([mappingBytes, Buffer.from("\n"), peopleMediaBytes]));
+  assert(registry.snapshotId === expectedSnapshotId, "CityMETER registry is not bound to the approved mapping and current Landom media snapshot");
+  assert(registry.generatedAt === peopleMedia.generatedAt, "CityMETER registry generatedAt differs from Landom people-media");
+  assert(registry.contentHash === expectedContentHash, "CityMETER registry contentHash differs from the approved mapping plus Landom media bytes");
+  assert(registry.publicationScope === mapping.publicationScope, "CityMETER registry publication scope differs from the approved mapping");
+  assert(JSON.stringify(registry.linkResolution) === JSON.stringify(mapping.linkResolution), "CityMETER link resolver differs from the approved mapping");
+  const sourceById = new Map(mapping.records.map((record) => [record.datasetId, record]));
+  const peopleById = new Map(peopleMedia.people.map((person) => [person.personId, person]));
+  assert(sourceById.size === canonicalIds.length, "Approved contributor mapping must exactly cover the canonical catalog");
   assert(JSON.stringify(registry.records.map((record) => record.datasetId)) === JSON.stringify(canonicalIds), "CityMETER registry order differs from the canonical catalog");
-  assert(canonicalIds.every((id) => sourceById.has(id) && snapshotById.has(id)), "Upstream CityMETER projections omit a canonical catalog record");
+  assert(canonicalIds.every((id) => sourceById.has(id)), "Approved contributor mapping omits a canonical catalog record");
 
   for (const record of registry.records) {
     const sourceRecord = sourceById.get(record.datasetId);
-    const snapshotRecord = snapshotById.get(record.datasetId);
-    assert(record.moduleSlug === sourceRecord.moduleSlug && record.moduleSlug === snapshotRecord.moduleSlug, `${record.datasetId} moduleSlug differs across canonical owners`);
-    assert(record.resourceClass === sourceRecord.resourceClass && record.resourceClass === snapshotRecord.resourceClass, `${record.datasetId} resourceClass differs across canonical owners`);
-    const relationships = snapshotRecord.contributors.map(({ personId, roles, displayOrder }) => ({ personId, roles, displayOrder }));
-    const projectedRelationships = sourceRecord.contributors.map(({ personId, roles, displayOrder }) => ({ personId, roles, displayOrder }));
-    assert(JSON.stringify(projectedRelationships) === JSON.stringify(relationships), `${record.datasetId} source projection relationship details differ from the common snapshot`);
-    assert(JSON.stringify(record.contributors.map((person) => person.personId)) === JSON.stringify(sourceRecord.contributors.map((person) => person.personId)), `${record.datasetId} CityMETER contributor order differs from the source projection`);
-
+    assert(record.moduleSlug === sourceRecord.moduleSlug && record.resourceClass === sourceRecord.resourceClass, `${record.datasetId} record identity differs from the approved mapping`);
+    assert(record.contributors.length === sourceRecord.contributors.length, `${record.datasetId} contributor count differs from the approved mapping`);
     for (const [index, person] of record.contributors.entries()) {
-      const projected = sourceRecord.contributors[index];
-      const commonPerson = snapshotPeople.get(person.personId);
-      assert(commonPerson, `${record.datasetId}/${person.personId} is missing from common snapshot people`);
-      for (const [cityField, sourceField] of [
-        ["nameTh", "displayNameTh"],
-        ["nameEn", "displayNameEn"],
-        ["profilePathTh", "profilePathTh"],
-        ["profilePathEn", "profilePathEn"],
-        ["compatibilityAliasTh", "compatibilityAliasTh"],
-        ["compatibilityAliasEn", "compatibilityAliasEn"]
-      ]) {
-        assert(person[cityField] === projected[sourceField] && projected[sourceField] === commonPerson[sourceField], `${record.datasetId}/${person.personId}.${cityField} differs across canonical owners`);
-      }
-      assert(JSON.stringify(person.roles) === JSON.stringify(projected.roles) && person.displayOrder === projected.displayOrder, `${record.datasetId}/${person.personId} relationship projection drifted`);
-      assert(JSON.stringify(projected.portrait) === JSON.stringify(commonPerson.portrait), `${record.datasetId}/${person.personId} source portrait differs from common snapshot person`);
-      if (person.portrait.kind === "neutral_fallback") {
-        assert(JSON.stringify(person.portrait) === JSON.stringify(projected.portrait), `${record.datasetId}/${person.personId} fallback projection drifted`);
+      const mapped = sourceRecord.contributors[index];
+      const landomPerson = peopleById.get(person.personId);
+      assert(landomPerson, `${record.datasetId}/${person.personId} is missing from Landom people-media`);
+      const { portrait: _portrait, ...publicMapping } = person;
+      assert(JSON.stringify(publicMapping) === JSON.stringify(mapped), `${record.datasetId}/${person.personId} differs from the approved mapping`);
+      assert(person.nameTh === landomPerson.displayName.th && person.nameEn === landomPerson.displayName.en, `${record.datasetId}/${person.personId} display name differs from Landom`);
+      assert(landomPerson.profileUrl.th.endsWith(person.compatibilityAliasTh) && landomPerson.profileUrl.en.endsWith(person.compatibilityAliasEn), `${record.datasetId}/${person.personId} compatibility profile URL differs from Landom`);
+      if (landomPerson.portrait?.status === "publishable") {
+        assert(person.portrait.kind === "portrait", `${record.datasetId}/${person.personId} must use the current Landom portrait`);
+        const sourceUrl = new URL(landomPerson.portrait.versionedUrl);
+        const expectedSourcePath = `${sourceUrl.pathname}${sourceUrl.search}`;
+        assert(person.portrait.oneX.sourcePath === expectedSourcePath && person.portrait.twoX.sourcePath === expectedSourcePath, `${record.datasetId}/${person.personId} versioned Landom source path drifted`);
+        assert(expectedSourcePath.endsWith(`?v=${landomPerson.portrait.sha256.slice(0, 12)}`), `${record.datasetId}/${person.personId} source version is not bound to the Landom hash`);
       } else {
-        assert(person.portrait.assetId === projected.portrait.assetId, `${record.datasetId}/${person.personId} portrait assetId drifted`);
-        for (const [cityField, sourceField] of [["oneX", "oneX"], ["twoX", "twoX"]]) {
-          const cityRendition = person.portrait[cityField];
-          const sourceRendition = projected.portrait.renditions[sourceField];
-          assert(cityRendition.sourcePath === sourceRendition.path, `${record.datasetId}/${person.personId}/${cityField} source path drifted`);
-          for (const field of ["sha256", "mimeType", "width", "height"]) {
-            assert(cityRendition[field] === sourceRendition[field], `${record.datasetId}/${person.personId}/${cityField}.${field} differs from source projection`);
-          }
-        }
+        assert(person.portrait.kind === "neutral_fallback", `${record.datasetId}/${person.personId} must use the governed CityMETER neutral fallback`);
       }
     }
   }
@@ -337,25 +318,32 @@ scanForbidden(manifest);
 const catalogReview = readJson(join(root, "data/catalog-source-review.json"), "Canonical CityMETER catalog");
 const canonicalIds = catalogReview.records.map((record) => record.id);
 assert(canonicalIds.length > 0 && new Set(canonicalIds).size === canonicalIds.length, "Canonical CityMETER catalog identities must be non-empty and unique");
-const landomRoot = resolve(root, "../landom-repo");
-const sourceSnapshotPath = join(landomRoot, "data/generated/common-public-snapshot.json");
-const sourceProjectionPath = join(landomRoot, "data/generated/citymeter/contributors.json");
+const landomRoot = resolve(root, process.env.LANDOM_REPO || "../Landom");
+const mappingRef = manifest.sourceSnapshot.path.match(/^citymeter:(data\/citymeter-contributor-mapping-p1-[a-f0-9]{12}\.json)$/)?.[1];
+assert(mappingRef, "Manifest approved contributor mapping locator drifted");
+const peopleMediaRef = manifest.sourceProjection.path.match(/^landom:(data\/generated\/people-media\.json)@([a-f0-9]{40})$/);
+assert(peopleMediaRef, "Manifest Landom people-media locator or revision drifted");
+const sourceSnapshotPath = join(root, mappingRef);
+const sourceProjectionPath = join(landomRoot, peopleMediaRef[1]);
 const sourceSnapshotBytes = readFileSync(sourceSnapshotPath);
 const sourceProjectionBytes = readFileSync(sourceProjectionPath);
 const sourceSnapshot = JSON.parse(sourceSnapshotBytes);
 const sourceProjection = JSON.parse(sourceProjectionBytes);
-assert(manifest.sourceSnapshot.path === "landom:data/generated/common-public-snapshot.json", "Manifest common snapshot locator drifted");
-assert(manifest.sourceProjection.path === "landom:data/generated/citymeter/contributors.json", "Manifest CityMETER projection locator drifted");
-assert(manifest.sourceSnapshot.sha256 === sha256(sourceSnapshotBytes), "Manifest common snapshot hash differs from the canonical input bytes");
-assert(manifest.sourceProjection.sha256 === sha256(sourceProjectionBytes), "Manifest CityMETER projection hash differs from the canonical input bytes");
-validateSourceAlignment(registry, sourceProjection, sourceSnapshot, canonicalIds);
+const landomRevision = execFileSync("git", ["rev-parse", "HEAD"], { cwd: landomRoot, encoding: "utf8" }).trim();
+assert(landomRevision === peopleMediaRef[2], "Checked-out Landom revision differs from the manifest portrait source revision");
+assert(manifest.sourceSnapshot.sha256 === sha256(sourceSnapshotBytes), "Manifest contributor mapping hash differs from the canonical input bytes");
+assert(manifest.sourceProjection.sha256 === sha256(sourceProjectionBytes), "Manifest Landom people-media hash differs from the canonical input bytes");
+assert(sha256(sourceSnapshotBytes).startsWith(mappingRef.match(/([a-f0-9]{12})\.json$/)[1]), "Contributor mapping immutable filename does not match its bytes");
+validateSourceAlignment(registry, sourceSnapshot, sourceProjection, sourceSnapshotBytes, sourceProjectionBytes, canonicalIds);
 
 const p1ManifestFiles = readdirSync(join(root, "data")).filter((name) => /^citymeter-contributor-release-p1-[a-f0-9]{12}\.json$/.test(name));
-assert(p1ManifestFiles.length === 1 && `data/${p1ManifestFiles[0]}` === active.manifest, "Exactly one active P1 release manifest must remain in the artifact");
+assert(p1ManifestFiles.includes(active.manifest.split("/").at(-1)), "Active P1 release manifest is absent from the immutable manifest inventory");
+for (const filename of p1ManifestFiles) assert(sha256(readFileSync(join(root, "data", filename))).startsWith(filename.match(/([a-f0-9]{12})\.json$/)[1]), `Historical P1 manifest filename does not match its bytes: ${filename}`);
 const p1RegistryFiles = readdirSync(join(root, "data")).filter((name) => /^citymeter-contributors-p1-[a-f0-9]{12}\.json$/.test(name));
-assert(p1RegistryFiles.length === 1 && `data/${p1RegistryFiles[0]}` === active.registry, "Exactly one active P1 contributor registry must remain in the artifact");
-const receiptPath = join(root, "CITYMETER_CONTRIBUTORS_P1_CANDIDATE_2026-08-25.md");
-assert(existsSync(receiptPath), "P1 candidate receipt is missing");
+assert(p1RegistryFiles.includes(active.registry.split("/").at(-1)), "Active P1 contributor registry is absent from the immutable registry inventory");
+for (const filename of p1RegistryFiles) assert(sha256(readFileSync(join(root, "data", filename))).startsWith(filename.match(/([a-f0-9]{12})\.json$/)[1]), `Historical P1 registry filename does not match its bytes: ${filename}`);
+const receiptPath = join(root, "CITYMETER_CONTRIBUTOR_THUMBNAIL_SYNC_2026-08-27.md");
+assert(existsSync(receiptPath), "Contributor thumbnail synchronization receipt is missing");
 const receipt = readFileSync(receiptPath, "utf8");
 for (const token of [
   "approved_for_publication",
@@ -375,7 +363,7 @@ assert(/^[a-z0-9][a-z0-9._-]{11,127}$/.test(registry.snapshotId || ""), "Contrib
 assert(/^[a-f0-9]{64}$/.test(registry.contentHash || ""), "Contributor source contentHash is invalid");
 assert(Array.isArray(registry.records) && registry.records.length === canonicalIds.length, "Contributor registry must exactly cover the canonical CityMETER catalog");
 assert(manifest.releaseStatus === "approved_for_publication", "P1 artifact must carry the authorized publication state");
-assert(manifest.releaseAuthority.authority === "site_owner" && manifest.releaseAuthority.authorizedAt === "2026-08-25", "P1 publication authority drifted");
+assert(manifest.releaseAuthority.authority === "site_owner" && manifest.releaseAuthority.authorizedAt === "2026-08-27", "P1 publication authority drifted");
 assert(typeof manifest.releaseAuthority.scope === "string" && manifest.releaseAuthority.scope.includes("CityMETER") && manifest.releaseAuthority.scope.includes("existing GitHub Pages site"), "P1 publication authority scope is incomplete");
 assert(manifest.publishable === true && manifest.mustNotDeploy === false, "P1 authorized artifact must remain publishable and deployable");
 assert(manifest.snapshotId === registry.snapshotId, "Manifest and registry snapshotId differ");
@@ -498,7 +486,18 @@ const duplicatePortraitFixture = manifest.portraits.length > 1
   ? [...manifest.portraits.slice(0, -1), manifest.portraits[0]]
   : [...manifest.portraits, ...manifest.portraits];
 assertRejected("duplicate manifest portrait path", () => assertPortraitInventory(duplicatePortraitFixture, expectedPortraits));
-const expectedPortraitFiles = [...expectedPortraits.keys()].map((path) => path.split("/").at(-1)).sort();
+const retainedPortraits = new Map();
+for (const portrait of manifest.retainedPortraits) {
+  assert(/^media\/contributors\/[spi][0-9]{4}-(?:1x|2x)-[a-f0-9]{12}\.webp$/.test(portrait.path), `Unsafe retained contributor portrait path: ${portrait.path}`);
+  assert(!expectedPortraits.has(portrait.path), `Retained portrait overlaps the active inventory: ${portrait.path}`);
+  assert(!retainedPortraits.has(portrait.path), `Duplicate retained portrait path: ${portrait.path}`);
+  const path = safeLocalPath(portrait.path);
+  assert(existsSync(path) && statSync(path).size > 0, `Missing retained contributor portrait: ${portrait.path}`);
+  assert(sha256(readFileSync(path)) === portrait.sha256, `Retained contributor portrait bytes changed: ${portrait.path}`);
+  webpInfo(path);
+  retainedPortraits.set(portrait.path, portrait.sha256);
+}
+const expectedPortraitFiles = [...expectedPortraits.keys(), ...retainedPortraits.keys()].map((path) => path.split("/").at(-1)).sort();
 const actualPortraitEntries = readdirSync(join(root, "media/contributors"), { withFileTypes: true });
 assertExactMediaDirectory(actualPortraitEntries, expectedPortraitFiles);
 assertRejected("extra non-WebP media file", () => assertExactMediaDirectory([
@@ -690,10 +689,11 @@ for (const [owner, path] of Object.entries(manifest.renderOwners)) {
 
 const assetFiles = readdirSync(join(root, "assets"));
 const p1Bundles = assetFiles.filter((name) => /^index-qbT50gkr-v(\d+)\.js$/.test(name) && Number(name.match(/-v(\d+)\.js$/)[1]) >= 13).sort();
-const p1Enhancers = assetFiles.filter((name) => /^catalog-enhancements-v(\d+)\.js$/.test(name) && Number(name.match(/-v(\d+)\.js$/)[1]) >= 20).sort();
+const p1Enhancers = assetFiles.filter((name) => /^catalog-enhancements-v(\d+)\.js$/.test(name) && Number(name.match(/-v(\d+)\.js$/)[1]) >= 20).sort((a, b) => Number(a.match(/-v(\d+)\.js$/)[1]) - Number(b.match(/-v(\d+)\.js$/)[1]));
 const p1Styles = assetFiles.filter((name) => /^catalog-enhancements-v(\d+)\.css$/.test(name) && Number(name.match(/-v(\d+)\.css$/)[1]) >= 22).sort();
 assert(JSON.stringify(p1Bundles) === JSON.stringify(["index-qbT50gkr-v16.js", activeBundleName]), "Only the prior published and active post-v12 P1 hydrated owners may remain");
-assert(JSON.stringify(p1Enhancers) === JSON.stringify(["catalog-enhancements-v23.js", activeEnhancerName]), "Only the prior published and active post-v19 P1 enhancer owners may remain");
+assert(p1Enhancers.includes("catalog-enhancements-v23.js") && p1Enhancers.includes("catalog-enhancements-v24.js"), "Published contributor enhancer rollback owners are missing");
+assert(p1Enhancers.at(-1) === activeEnhancerName, "The active contributor enhancer must be the latest immutable enhancer version");
 assert(JSON.stringify(p1Styles) === JSON.stringify([activeStylesName]), "Exactly one active post-v21 P1 stylesheet owner must remain");
 
 const bundle = readFileSync(join(root, manifest.renderOwners.hydratedBundle), "utf8");

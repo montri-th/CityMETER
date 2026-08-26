@@ -41,8 +41,8 @@ const outputDir = join(generatedRoot, "build-cards");
 const receiptDir = join(generatedRoot, "artifact-receipts");
 const packageRoot = join(dsRoot, "deployment/machine/v0.9.0");
 
-const CITY_BUILD_ID = "ui-20260825-05";
-const PREVIOUS_CITY_BUILD_ID = "ui-20260825-04";
+const CITY_BUILD_ID = "ui-20260827-06";
+const PREVIOUS_CITY_BUILD_ID = "ui-20260825-05";
 const LANDOM_BUILD_ID = "ui-20260825-02";
 const CITY_RECEIPT_FILE = `citymeter.${CITY_BUILD_ID}.receipt.json`;
 const LANDOM_RECEIPT_FILE = `landom.${LANDOM_BUILD_ID}.receipt.json`;
@@ -59,11 +59,11 @@ const PENDING_GATES = [
   "approved_product_brief_or_product_specific_page_kind",
   "indexability_authority"
 ];
-const EXPECTED_CITY_RELEASE_RECEIPT = "2026-08-25-contributor-note-removal-v28";
-const EXPECTED_CITY_MANIFEST = "data/citymeter-contributor-release-p1-cf7e7b55a7a1.json";
+const EXPECTED_CITY_RELEASE_RECEIPT = "2026-08-27-landom-thumbnail-sync-v29";
+const EXPECTED_CITY_MANIFEST = "data/citymeter-contributor-release-p1-7712069325b3.json";
 const EXPECTED_CITY_REFS = {
   runtime_bundle: "assets/index-qbT50gkr-v17.js",
-  catalog_enhancer: "assets/catalog-enhancements-v24.js",
+  catalog_enhancer: "assets/catalog-enhancements-v25.js",
   catalog_styles: "assets/catalog-enhancements-v25.css"
 };
 
@@ -192,14 +192,14 @@ for (const [logicalPath, label] of [[contributorRegistryPath, "contributor regis
 }
 assert(contributorManifestPath === EXPECTED_CITY_MANIFEST, `CityMETER active manifest must be ${EXPECTED_CITY_MANIFEST}`);
 assert(cityReleaseReceipt === EXPECTED_CITY_RELEASE_RECEIPT, `CityMETER active receipt must be ${EXPECTED_CITY_RELEASE_RECEIPT}`);
-assert(contributorBuildPointers[0] === cityReleaseReceipt, "CityMETER contributor-build and page-level release receipts must both identify v28");
+assert(contributorBuildPointers[0] === cityReleaseReceipt, "CityMETER contributor-build and page-level release receipts must both identify v29");
 const contributorManifest = readJson(join(root, contributorManifestPath));
 assert(contributorManifest.releaseReceipt === cityReleaseReceipt, "CityMETER manifest and HTML release receipts differ");
-assert(contributorManifest.releaseStatus === "approved_for_publication", "CityMETER v28 must retain its approved publication state");
-assert(contributorManifest.publishable === true && contributorManifest.mustNotDeploy === false, "CityMETER v28 must remain publishable and deployable");
-assert(contributorManifest.releaseAuthority?.authority === "site_owner", "CityMETER v28 must retain site-owner authority");
-assert(contributorManifest.releaseAuthority?.authorizedAt === "2026-08-25", "CityMETER v28 authorization date drifted");
-assert(typeof contributorManifest.releaseAuthority?.scope === "string" && contributorManifest.releaseAuthority.scope.includes("existing GitHub Pages site"), "CityMETER v28 authority scope must name the existing GitHub Pages site");
+assert(contributorManifest.releaseStatus === "approved_for_publication", "CityMETER v29 must retain its approved publication state");
+assert(contributorManifest.publishable === true && contributorManifest.mustNotDeploy === false, "CityMETER v29 must remain publishable and deployable");
+assert(contributorManifest.releaseAuthority?.authority === "site_owner", "CityMETER v29 must retain site-owner authority");
+assert(contributorManifest.releaseAuthority?.authorizedAt === "2026-08-27", "CityMETER v29 authorization date drifted");
+assert(typeof contributorManifest.releaseAuthority?.scope === "string" && contributorManifest.releaseAuthority.scope.includes("existing GitHub Pages site"), "CityMETER v29 authority scope must name the existing GitHub Pages site");
 assert(contributorManifest.commonRelease?.stage === "draft", "Common upstream release must remain draft");
 assert(contributorManifest.commonRelease?.publishable === false && contributorManifest.commonRelease?.mustNotDeploy === true, "Common upstream release must remain gated independently of the authorized CityMETER lane");
 assert(Array.isArray(contributorManifest.commonRelease?.openGates) && contributorManifest.commonRelease.openGates.length > 0, "Common upstream release gates are missing");
@@ -214,7 +214,7 @@ for (const [owner, logicalPath] of Object.entries(expectedManifestOwners)) {
   assert(contributorManifest.renderOwners?.[owner] === logicalPath, `CityMETER manifest ${owner} owner drifted`);
   assert(contributorManifest.renderOwnerHashes?.[owner] === sha256Bytes(readFileSync(join(root, logicalPath))), `CityMETER manifest ${owner} hash drifted`);
 }
-assert(sha256Bytes(readFileSync(join(root, contributorManifestPath))).startsWith("cf7e7b55a7a1"), "CityMETER manifest immutable filename no longer matches its bytes");
+assert(sha256Bytes(readFileSync(join(root, contributorManifestPath))).startsWith("7712069325b3"), "CityMETER manifest immutable filename no longer matches its bytes");
 
 const cityArtifacts = [
   ...htmlSpecs.map((spec) => fileReceipt(join(root, spec.path), `citymeter-repo/${spec.path}`, {
@@ -450,7 +450,7 @@ for (const route of matrix.routes) {
         hydratedParityRequired: route.route_family.startsWith("citymeter_") || route.route_family === "landom_directory"
       },
       capabilities: {
-        status: isCityRoute ? "not_claimed_beyond_validated_v28_contract" : "not_claimed_until_product_authority_and_runtime_validation",
+        status: isCityRoute ? "not_claimed_beyond_validated_v29_contract" : "not_claimed_until_product_authority_and_runtime_validation",
         live: [],
         fixtureScoped: []
       },
@@ -474,7 +474,7 @@ for (const route of matrix.routes) {
       },
       qa: {
         machineValidation: isCityRoute
-          ? "passed_schema_source_bytes_and_authorized_v28_receipt_checks"
+          ? "passed_schema_source_bytes_and_authorized_v29_receipt_checks"
           : "passed_schema_source_bytes_and_candidate_receipt_checks",
         readiness: binding.qaReadiness,
         openGates
@@ -490,7 +490,7 @@ for (const route of matrix.routes) {
   assert(card.landometerBuild.deliveryIdentity.artifactBuildId !== machinePackage.artifactBuildId, `${route.route_family} product build ID equals the DS reference ID`);
   assert(card.landometerBuild.deliveryIdentity.artifactHashes.every((artifact) => artifact.artifactBuildId === binding.id && artifact.bytes > 0 && /^[0-9a-f]{64}$/.test(artifact.sha256)), `${route.route_family} has an unbound artifact hash`);
   if (isCityRoute) {
-    assert(card.landometerBuild.publication.status === "approved_for_publication", `${route.route_family} lost the authorized v28 publication state`);
+    assert(card.landometerBuild.publication.status === "approved_for_publication", `${route.route_family} lost the authorized v29 publication state`);
     assert(card.landometerBuild.publication.commonUpstreamRelease?.stage === "draft", `${route.route_family} must preserve the draft common upstream state`);
     assert(card.landometerBuild.publication.commonUpstreamRelease?.publishable === false && card.landometerBuild.publication.commonUpstreamRelease?.must_not_deploy === true, `${route.route_family} must preserve the gated common upstream state`);
     assert(contributorManifest.commonRelease.openGates.every((gate) => openGates.includes(gate)), `${route.route_family} omitted a common upstream gate`);
@@ -608,3 +608,4 @@ console.log(`CityMETER receipt SHA-256: ${cityReceiptMeta.sha256}`);
 console.log(`Landom ${LANDOM_BUILD_ID} aggregate SHA-256: ${landomOutputAggregateSha}`);
 console.log(`Landom receipt SHA-256: ${landomReceiptMeta.sha256}`);
 console.log(`Build Card index SHA-256: ${sha256Bytes(indexBytes)}`);
+ıÛÖıï}´Û½üİÛï×½y¿|ß^ñ¦Üß‡š

@@ -1,0 +1,1889 @@
+{
+  "schemaVersion": "1.1.0-p1",
+  "snapshotId": "landom-sheet-20260825-9a5e5cc19e2a-media-31dae41636a9",
+  "generatedAt": "2026-08-25T00:00:00+07:00",
+  "contentHash": "6ce550e1d18dd92298ffdc3706879faea01a8190850b76d469294004e8ad8777",
+  "publicationScope": "landometer_public_website",
+  "linkResolution": {
+    "mode": "compatibility_alias",
+    "governingGate": "canonical_person_routes_activation",
+    "thField": "compatibilityAliasTh",
+    "enField": "compatibilityAliasEn"
+  },
+  "records": [
+    {
+      "datasetId": "dataset-buildings",
+      "moduleSlug": "dataset-buildings",
+      "resourceClass": "data_layer",
+      "contributors": [
+        {
+          "personId": "I0030",
+          "nameTh": "เคน",
+          "nameEn": "Ken",
+          "profilePathTh": "/landom/people/I0030",
+          "profilePathEn": "/en/landom/people/I0030",
+          "compatibilityAliasTh": "/Landom/?person=I0030&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0030&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0030-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+              "path": "media/contributors/i0030-1x-b6615b3a99de.webp",
+              "sha256": "b6615b3a99de489c0ec90c4f8f462b3bce880f09ac89c88832dcc636fd2312b4",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+              "path": "media/contributors/i0030-2x-60d8f662db6e.webp",
+              "sha256": "60d8f662db6e168a481ba92279df40b51d35de2a771f45bb42d31e9aaa6a3d24",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "S0005",
+          "nameTh": "บิว",
+          "nameEn": "Biw",
+          "profilePathTh": "/landom/people/S0005",
+          "profilePathEn": "/en/landom/people/S0005",
+          "compatibilityAliasTh": "/Landom/?person=S0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0005&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 2,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0005-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+              "path": "media/contributors/s0005-1x-828d8a63af6e.webp",
+              "sha256": "828d8a63af6e84810d9b447381ab2f7fd22cd8574275dbc05da6b655f1a06657",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+              "path": "media/contributors/s0005-2x-d9e7ace8bc74.webp",
+              "sha256": "d9e7ace8bc74ccd4532708d02d24773ec2cff6e3b225400cb610aa5dc9e719b2",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "S0006",
+          "nameTh": "นัท",
+          "nameEn": "Nat",
+          "profilePathTh": "/landom/people/S0006",
+          "profilePathEn": "/en/landom/people/S0006",
+          "compatibilityAliasTh": "/Landom/?person=S0006&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0006&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 3,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0006-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0006.jpg?v=e673f299631e",
+              "path": "media/contributors/s0006-1x-1b6297f9ed96.webp",
+              "sha256": "1b6297f9ed9619a60df7ee2a1154c17d9ec9daadeda61ed909090997d8933e49",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0006.jpg?v=e673f299631e",
+              "path": "media/contributors/s0006-2x-4f743350ff33.webp",
+              "sha256": "4f743350ff33e4a4de798fba170eefb2abe21b899db2f3f7c2cbe4b2296fd3c9",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "S0007",
+          "nameTh": "โปเต้",
+          "nameEn": "Pote",
+          "profilePathTh": "/landom/people/S0007",
+          "profilePathEn": "/en/landom/people/S0007",
+          "compatibilityAliasTh": "/Landom/?person=S0007&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0007&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 4,
+          "portrait": {
+            "kind": "neutral_fallback",
+            "fallbackToken": "neutral-person",
+            "identityDisclosure": "none"
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-registered-housing-estates",
+      "moduleSlug": "dataset-registered-housing-estates",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0034",
+          "nameTh": "เอิร์ธ",
+          "nameEn": "Earth",
+          "profilePathTh": "/landom/people/I0034",
+          "profilePathEn": "/en/landom/people/I0034",
+          "compatibilityAliasTh": "/Landom/?person=I0034&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0034&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0034-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+              "path": "media/contributors/i0034-1x-7230c39ed55e.webp",
+              "sha256": "7230c39ed55eac644411fc95cfe370453fae037cfc81d3b8a6031eefd89ad007",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+              "path": "media/contributors/i0034-2x-a365d6bd4b1c.webp",
+              "sha256": "a365d6bd4b1cd88af7103d6720af814ca7b74a87a423db14605cce77ed5d6e04",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-eia-projects",
+      "moduleSlug": "dataset-eia-projects",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0003",
+          "nameTh": "แพรวา",
+          "nameEn": "Praewa",
+          "profilePathTh": "/landom/people/I0003",
+          "profilePathEn": "/en/landom/people/I0003",
+          "compatibilityAliasTh": "/Landom/?person=I0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0003-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+              "path": "media/contributors/i0003-1x-5b21b0f7e9d6.webp",
+              "sha256": "5b21b0f7e9d62dcb238af54b33a23ec0973b3a26356103fe205b571b83fec75e",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+              "path": "media/contributors/i0003-2x-2c7135912764.webp",
+              "sha256": "2c7135912764320516b96f1b006d49490df2c2d0d9304b08ffa489686ae1bf8b",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "I0008",
+          "nameTh": "กาย",
+          "nameEn": "Guy",
+          "profilePathTh": "/landom/people/I0008",
+          "profilePathEn": "/en/landom/people/I0008",
+          "compatibilityAliasTh": "/Landom/?person=I0008&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0008&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0008-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0008.jpg?v=7610343014a0",
+              "path": "media/contributors/i0008-1x-3e59d217ea19.webp",
+              "sha256": "3e59d217ea1907994c9cf2d5f1b6e2dae99893f49a14da240d7d1c5059c697bd",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0008.jpg?v=7610343014a0",
+              "path": "media/contributors/i0008-2x-e696acd9044e.webp",
+              "sha256": "e696acd9044ee7461ce196385db1627dc85bdda6d7a50226ca729b86b416e936",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-crop-area-output",
+      "moduleSlug": "dataset-crop-area-output",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0003",
+          "nameTh": "แพรวา",
+          "nameEn": "Praewa",
+          "profilePathTh": "/landom/people/I0003",
+          "profilePathEn": "/en/landom/people/I0003",
+          "compatibilityAliasTh": "/Landom/?person=I0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0003-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+              "path": "media/contributors/i0003-1x-5b21b0f7e9d6.webp",
+              "sha256": "5b21b0f7e9d62dcb238af54b33a23ec0973b3a26356103fe205b571b83fec75e",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+              "path": "media/contributors/i0003-2x-2c7135912764.webp",
+              "sha256": "2c7135912764320516b96f1b006d49490df2c2d0d9304b08ffa489686ae1bf8b",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-land-appraisal",
+      "moduleSlug": "dataset-land-appraisal",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0003",
+          "nameTh": "แพรวา",
+          "nameEn": "Praewa",
+          "profilePathTh": "/landom/people/I0003",
+          "profilePathEn": "/en/landom/people/I0003",
+          "compatibilityAliasTh": "/Landom/?person=I0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0003-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+              "path": "media/contributors/i0003-1x-5b21b0f7e9d6.webp",
+              "sha256": "5b21b0f7e9d62dcb238af54b33a23ec0973b3a26356103fe205b571b83fec75e",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+              "path": "media/contributors/i0003-2x-2c7135912764.webp",
+              "sha256": "2c7135912764320516b96f1b006d49490df2c2d0d9304b08ffa489686ae1bf8b",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-land-listing-prices",
+      "moduleSlug": "dataset-land-listing-prices",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0008",
+          "nameTh": "กาย",
+          "nameEn": "Guy",
+          "profilePathTh": "/landom/people/I0008",
+          "profilePathEn": "/en/landom/people/I0008",
+          "compatibilityAliasTh": "/Landom/?person=I0008&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0008&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0008-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0008.jpg?v=7610343014a0",
+              "path": "media/contributors/i0008-1x-3e59d217ea19.webp",
+              "sha256": "3e59d217ea1907994c9cf2d5f1b6e2dae99893f49a14da240d7d1c5059c697bd",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0008.jpg?v=7610343014a0",
+              "path": "media/contributors/i0008-2x-e696acd9044e.webp",
+              "sha256": "e696acd9044ee7461ce196385db1627dc85bdda6d7a50226ca729b86b416e936",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-apartment-rent",
+      "moduleSlug": "dataset-apartment-rent",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "S0003",
+          "nameTh": "พัทธ์",
+          "nameEn": "Pat",
+          "profilePathTh": "/landom/people/S0003",
+          "profilePathEn": "/en/landom/people/S0003",
+          "compatibilityAliasTh": "/Landom/?person=S0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0003-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0003.jpg?v=e797832329c2",
+              "path": "media/contributors/s0003-1x-7e79efefb801.webp",
+              "sha256": "7e79efefb801eb5675b5381c7144557818ce8147b7bbe1691d4d42d8aaf9460c",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0003.jpg?v=e797832329c2",
+              "path": "media/contributors/s0003-2x-5b8471f3311a.webp",
+              "sha256": "5b8471f3311a5d5781372933a5d8b02f29d71e95c242e90ee6ab4785106d41cd",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-condo-appraisal",
+      "moduleSlug": "dataset-condo-appraisal",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0001-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-1x-b2b1e663f429.webp",
+              "sha256": "b2b1e663f429052ef9e1f6b99e57f0eff06c476a5914d6e28f9a767ae3f2df73",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-2x-4bc693f40098.webp",
+              "sha256": "4bc693f400983f875aac431a0461b685b2923476cd7242a79ad23acd21ef65e3",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-condo-listing-prices",
+      "moduleSlug": "dataset-condo-listing-prices",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0011",
+          "nameTh": "อิ๋ง",
+          "nameEn": "Ing",
+          "profilePathTh": "/landom/people/I0011",
+          "profilePathEn": "/en/landom/people/I0011",
+          "compatibilityAliasTh": "/Landom/?person=I0011&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0011&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0011-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0011.jpg?v=d9384fd2964f",
+              "path": "media/contributors/i0011-1x-75195e935b8d.webp",
+              "sha256": "75195e935b8d11152000d74ff047d58f4cf7dd1d3ca843410a26f1ada3694502",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0011.jpg?v=d9384fd2964f",
+              "path": "media/contributors/i0011-2x-0aca83d5b37e.webp",
+              "sha256": "0aca83d5b37ed517e0bbf946ff05023f2e2555a140261a77f8dfc7eb850b321d",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-detached-listing-prices",
+      "moduleSlug": "dataset-detached-listing-prices",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0013",
+          "nameTh": "ปอน",
+          "nameEn": "Pond",
+          "profilePathTh": "/landom/people/I0013",
+          "profilePathEn": "/en/landom/people/I0013",
+          "compatibilityAliasTh": "/Landom/?person=I0013&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0013&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "neutral_fallback",
+            "fallbackToken": "neutral-person",
+            "identityDisclosure": "none"
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-townhouse-listing-prices",
+      "moduleSlug": "dataset-townhouse-listing-prices",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0007",
+          "nameTh": "ดาวเหนือ",
+          "nameEn": "Daonua",
+          "profilePathTh": "/landom/people/I0007",
+          "profilePathEn": "/en/landom/people/I0007",
+          "compatibilityAliasTh": "/Landom/?person=I0007&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0007&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "neutral_fallback",
+            "fallbackToken": "neutral-person",
+            "identityDisclosure": "none"
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-condo-rent-yield",
+      "moduleSlug": "dataset-condo-rent-yield",
+      "resourceClass": "derived_insight",
+      "contributors": [
+        {
+          "personId": "I0010",
+          "nameTh": "ว่าน",
+          "nameEn": "Wan",
+          "profilePathTh": "/landom/people/I0010",
+          "profilePathEn": "/en/landom/people/I0010",
+          "compatibilityAliasTh": "/Landom/?person=I0010&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0010&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0010-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0010.jpg?v=ce53d58516f5",
+              "path": "media/contributors/i0010-1x-3281eb8bdb9f.webp",
+              "sha256": "3281eb8bdb9f84cb34449a2bd04e40d804e3322f09edb2028f0860bc8dca5261",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0010.jpg?v=ce53d58516f5",
+              "path": "media/contributors/i0010-2x-d6dda725be33.webp",
+              "sha256": "d6dda725be33aceb65f4fcff48a2345bcccc47b6b284a77939435ab9bfc39f65",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-registered-companies-status-capital",
+      "moduleSlug": "dataset-registered-companies-status-capital",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0015",
+          "nameTh": "เฟซ",
+          "nameEn": "Faze",
+          "profilePathTh": "/landom/people/I0015",
+          "profilePathEn": "/en/landom/people/I0015",
+          "compatibilityAliasTh": "/Landom/?person=I0015&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0015&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0015-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+              "path": "media/contributors/i0015-1x-46704fb3ab83.webp",
+              "sha256": "46704fb3ab831dd8ed4633cae625837d99cd932c61bf2a365de53c68aa6e7ed8",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+              "path": "media/contributors/i0015-2x-a575e64f49ba.webp",
+              "sha256": "a575e64f49baafd2aefd1117a9d81f435946aee82366aa54576a3e8e4813ab2a",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "I0035",
+          "nameTh": "แทน",
+          "nameEn": "Tan",
+          "profilePathTh": "/landom/people/I0035",
+          "profilePathEn": "/en/landom/people/I0035",
+          "compatibilityAliasTh": "/Landom/?person=I0035&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0035&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0035-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0035.jpg?v=32b661629ad1",
+              "path": "media/contributors/i0035-1x-d7256c341c28.webp",
+              "sha256": "d7256c341c28ffcc59bc41b63a6f17b1d1896b5ec0b2b8c075efe2814376da2b",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0035.jpg?v=32b661629ad1",
+              "path": "media/contributors/i0035-2x-93f448ebd27b.webp",
+              "sha256": "93f448ebd27be86257d02cd8b78bb7c309f479d2b6d68ef8b5eca9cddcbf3fe2",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-business-dynamics",
+      "moduleSlug": "dataset-business-dynamics",
+      "resourceClass": "derived_insight",
+      "contributors": [
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0001-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-1x-b2b1e663f429.webp",
+              "sha256": "b2b1e663f429052ef9e1f6b99e57f0eff06c476a5914d6e28f9a767ae3f2df73",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-2x-4bc693f40098.webp",
+              "sha256": "4bc693f400983f875aac431a0461b685b2923476cd7242a79ad23acd21ef65e3",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-factories-workers-investment",
+      "moduleSlug": "dataset-factories-workers-investment",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0009",
+          "nameTh": "แฮม",
+          "nameEn": "Ham",
+          "profilePathTh": "/landom/people/I0009",
+          "profilePathEn": "/en/landom/people/I0009",
+          "compatibilityAliasTh": "/Landom/?person=I0009&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0009&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0009-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0009.jpg?v=65f6d372b3df",
+              "path": "media/contributors/i0009-1x-ee71d266faa4.webp",
+              "sha256": "ee71d266faa4e5cd2c2e7b2e88b66e94fdb6cf761a8c39f6a410a4f31a9b8d5d",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0009.jpg?v=65f6d372b3df",
+              "path": "media/contributors/i0009-2x-1fd71057a834.webp",
+              "sha256": "1fd71057a834946b883a029974183c4b8e7657c8e0db038ff037c1437da00333",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "I0002",
+          "nameTh": "อาม",
+          "nameEn": "Arm",
+          "profilePathTh": "/landom/people/I0002",
+          "profilePathEn": "/en/landom/people/I0002",
+          "compatibilityAliasTh": "/Landom/?person=I0002&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0002&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0002-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0002.jpg?v=87479792816f",
+              "path": "media/contributors/i0002-1x-ebf747906744.webp",
+              "sha256": "ebf7479067444f5501a35cc23e051e7455121b6e840b3aea3cdf11b088be8b4f",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0002.jpg?v=87479792816f",
+              "path": "media/contributors/i0002-2x-4a056ea9f44c.webp",
+              "sha256": "4a056ea9f44c5f43a447ee98cdbcd60b2351f05d3d330ed339f04faced17b9d1",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "I0001",
+          "nameTh": "ปุ๊กกี้",
+          "nameEn": "Pookkie",
+          "profilePathTh": "/landom/people/I0001",
+          "profilePathEn": "/en/landom/people/I0001",
+          "compatibilityAliasTh": "/Landom/?person=I0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0001&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 3,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0001-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0001.jpg?v=b264e4deec78",
+              "path": "media/contributors/i0001-1x-f74203b0e212.webp",
+              "sha256": "f74203b0e2124cd5a3b9b478c3af12c8a8c8a2e939135e38b735dfec035c16c8",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0001.jpg?v=b264e4deec78",
+              "path": "media/contributors/i0001-2x-ab6d34083f21.webp",
+              "sha256": "ab6d34083f21b8d7bd3953f32efd636bc13faac4c656ceda4d67bc52b1598122",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "S0005",
+          "nameTh": "บิว",
+          "nameEn": "Biw",
+          "profilePathTh": "/landom/people/S0005",
+          "profilePathEn": "/en/landom/people/S0005",
+          "compatibilityAliasTh": "/Landom/?person=S0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0005&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 4,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0005-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+              "path": "media/contributors/s0005-1x-828d8a63af6e.webp",
+              "sha256": "828d8a63af6e84810d9b447381ab2f7fd22cd8574275dbc05da6b655f1a06657",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+              "path": "media/contributors/s0005-2x-d9e7ace8bc74.webp",
+              "sha256": "d9e7ace8bc74ccd4532708d02d24773ec2cff6e3b225400cb610aa5dc9e719b2",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-office-buildings-rent",
+      "moduleSlug": "dataset-office-buildings-rent",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0014",
+          "nameTh": "มอส",
+          "nameEn": "Mos",
+          "profilePathTh": "/landom/people/I0014",
+          "profilePathEn": "/en/landom/people/I0014",
+          "compatibilityAliasTh": "/Landom/?person=I0014&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0014&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0014-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0014.jpg?v=ac843319c494",
+              "path": "media/contributors/i0014-1x-3bcac95bf0a6.webp",
+              "sha256": "3bcac95bf0a6abee38f8c668ea54285f5a6514d22baa30b3b8612c633b51b5fc",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0014.jpg?v=ac843319c494",
+              "path": "media/contributors/i0014-2x-d73ed2a70953.webp",
+              "sha256": "d73ed2a70953627bf8c33935d3b8a21d3642846a35d14d31fe44a68704b92187",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-restaurants",
+      "moduleSlug": "dataset-restaurants",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0001-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-1x-b2b1e663f429.webp",
+              "sha256": "b2b1e663f429052ef9e1f6b99e57f0eff06c476a5914d6e28f9a767ae3f2df73",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-2x-4bc693f40098.webp",
+              "sha256": "4bc693f400983f875aac431a0461b685b2923476cd7242a79ad23acd21ef65e3",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-shopping-centers",
+      "moduleSlug": "dataset-shopping-centers",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0037",
+          "nameTh": "ณิชา",
+          "nameEn": "Nicha",
+          "profilePathTh": "/landom/people/I0037",
+          "profilePathEn": "/en/landom/people/I0037",
+          "compatibilityAliasTh": "/Landom/?person=I0037&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0037&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0037-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0037.jpg?v=226bad11daa7",
+              "path": "media/contributors/i0037-1x-552c8e761dd8.webp",
+              "sha256": "552c8e761dd8ad7996f075b08665ffe4447191ccd50c56af2b09013ac09fcbcf",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0037.jpg?v=226bad11daa7",
+              "path": "media/contributors/i0037-2x-911514fa4ee0.webp",
+              "sha256": "911514fa4ee05994ca25d480777e65c3e786a18ffb911a4d2b6c9affd5d40f46",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-hotel-market",
+      "moduleSlug": "dataset-hotel-market",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0031",
+          "nameTh": "บิว",
+          "nameEn": "Bill",
+          "profilePathTh": "/landom/people/I0031",
+          "profilePathEn": "/en/landom/people/I0031",
+          "compatibilityAliasTh": "/Landom/?person=I0031&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0031&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0031-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0031.jpg?v=4587c8757cf8",
+              "path": "media/contributors/i0031-1x-0da7b25b6274.webp",
+              "sha256": "0da7b25b6274c4503abb006dfda871923ed9ff393d25c5cb5f3aaa8a5b892761",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0031.jpg?v=4587c8757cf8",
+              "path": "media/contributors/i0031-2x-6d03e68b15ad.webp",
+              "sha256": "6d03e68b15ad3800fa57095c67f0c8c7f6d2bc8e7d0de6ed5373c28c3d202cd4",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "I0001",
+          "nameTh": "ปุ๊กกี้",
+          "nameEn": "Pookkie",
+          "profilePathTh": "/landom/people/I0001",
+          "profilePathEn": "/en/landom/people/I0001",
+          "compatibilityAliasTh": "/Landom/?person=I0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0001&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0001-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0001.jpg?v=b264e4deec78",
+              "path": "media/contributors/i0001-1x-f74203b0e212.webp",
+              "sha256": "f74203b0e2124cd5a3b9b478c3af12c8a8c8a2e939135e38b735dfec035c16c8",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0001.jpg?v=b264e4deec78",
+              "path": "media/contributors/i0001-2x-ab6d34083f21.webp",
+              "sha256": "ab6d34083f21b8d7bd3953f32efd636bc13faac4c656ceda4d67bc52b1598122",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-tourism-demand-spending",
+      "moduleSlug": "dataset-tourism-demand-spending",
+      "resourceClass": "derived_insight",
+      "contributors": [
+        {
+          "personId": "I0043",
+          "nameTh": "ดราฟ",
+          "nameEn": "Draf",
+          "profilePathTh": "/landom/people/I0043",
+          "profilePathEn": "/en/landom/people/I0043",
+          "compatibilityAliasTh": "/Landom/?person=I0043&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0043&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0043-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0043.jpg?v=125e00474d0d",
+              "path": "media/contributors/i0043-1x-c02e046980a7.webp",
+              "sha256": "c02e046980a740fda36d380c9b160ccbcd8f2ab01675632c4480b1ddc475ed9a",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0043.jpg?v=125e00474d0d",
+              "path": "media/contributors/i0043-2x-94a96ce3e76f.webp",
+              "sha256": "94a96ce3e76fad37f702c124259f7e0845e531875fb25b0be33a1a09c606df4d",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-fuel-stations",
+      "moduleSlug": "dataset-fuel-stations",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0043",
+          "nameTh": "ดราฟ",
+          "nameEn": "Draf",
+          "profilePathTh": "/landom/people/I0043",
+          "profilePathEn": "/en/landom/people/I0043",
+          "compatibilityAliasTh": "/Landom/?person=I0043&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0043&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0043-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0043.jpg?v=125e00474d0d",
+              "path": "media/contributors/i0043-1x-c02e046980a7.webp",
+              "sha256": "c02e046980a740fda36d380c9b160ccbcd8f2ab01675632c4480b1ddc475ed9a",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0043.jpg?v=125e00474d0d",
+              "path": "media/contributors/i0043-2x-94a96ce3e76f.webp",
+              "sha256": "94a96ce3e76fad37f702c124259f7e0845e531875fb25b0be33a1a09c606df4d",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-registered-cars",
+      "moduleSlug": "dataset-registered-cars",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0015",
+          "nameTh": "เฟซ",
+          "nameEn": "Faze",
+          "profilePathTh": "/landom/people/I0015",
+          "profilePathEn": "/en/landom/people/I0015",
+          "compatibilityAliasTh": "/Landom/?person=I0015&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0015&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0015-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+              "path": "media/contributors/i0015-1x-46704fb3ab83.webp",
+              "sha256": "46704fb3ab831dd8ed4633cae625837d99cd932c61bf2a365de53c68aa6e7ed8",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+              "path": "media/contributors/i0015-2x-a575e64f49ba.webp",
+              "sha256": "a575e64f49baafd2aefd1117a9d81f435946aee82366aa54576a3e8e4813ab2a",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-road-network-archetypes",
+      "moduleSlug": "dataset-road-network-archetypes",
+      "resourceClass": "derived_model",
+      "contributors": [
+        {
+          "personId": "I0039",
+          "nameTh": "จอมใจ",
+          "nameEn": "Jomjai",
+          "profilePathTh": "/landom/people/I0039",
+          "profilePathEn": "/en/landom/people/I0039",
+          "compatibilityAliasTh": "/Landom/?person=I0039&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0039&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0039-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0039.jpg?v=e4e163a8e3b9",
+              "path": "media/contributors/i0039-1x-92b6a7fd08cd.webp",
+              "sha256": "92b6a7fd08cd75b6931e3ba66dafff3b35372d50a42656156c1eca5a5bbae0f9",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0039.jpg?v=e4e163a8e3b9",
+              "path": "media/contributors/i0039-2x-08b260d4e7ee.webp",
+              "sha256": "08b260d4e7ee5c3b5aca7f35eecb750d501bf93d92825ec948569e2bdf387d5e",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-traffic-congestion-speed",
+      "moduleSlug": "dataset-traffic-congestion-speed",
+      "resourceClass": "monitoring_feed",
+      "contributors": [
+        {
+          "personId": "I0005",
+          "nameTh": "เดย์",
+          "nameEn": "Day",
+          "profilePathTh": "/landom/people/I0005",
+          "profilePathEn": "/en/landom/people/I0005",
+          "compatibilityAliasTh": "/Landom/?person=I0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0005&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0005-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0005.jpg?v=59b0734c912d",
+              "path": "media/contributors/i0005-1x-dabf47b4cac2.webp",
+              "sha256": "dabf47b4cac287d92a62282872840f3c5cc38f8abe590ed8cbe6641324fbcb5e",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0005.jpg?v=59b0734c912d",
+              "path": "media/contributors/i0005-2x-0d48a6d33094.webp",
+              "sha256": "0d48a6d33094f162006e87ad2f847d041679887cb1846a5ab10b1dda6ab16677",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-locale-insights",
+      "moduleSlug": "dataset-locale-insights",
+      "resourceClass": "derived_model",
+      "contributors": [
+        {
+          "personId": "I0011",
+          "nameTh": "อิ๋ง",
+          "nameEn": "Ing",
+          "profilePathTh": "/landom/people/I0011",
+          "profilePathEn": "/en/landom/people/I0011",
+          "compatibilityAliasTh": "/Landom/?person=I0011&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0011&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0011-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0011.jpg?v=d9384fd2964f",
+              "path": "media/contributors/i0011-1x-75195e935b8d.webp",
+              "sha256": "75195e935b8d11152000d74ff047d58f4cf7dd1d3ca843410a26f1ada3694502",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0011.jpg?v=d9384fd2964f",
+              "path": "media/contributors/i0011-2x-0aca83d5b37e.webp",
+              "sha256": "0aca83d5b37ed517e0bbf946ff05023f2e2555a140261a77f8dfc7eb850b321d",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-population-age-sex",
+      "moduleSlug": "dataset-population-age-sex",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "S0005",
+          "nameTh": "บิว",
+          "nameEn": "Biw",
+          "profilePathTh": "/landom/people/S0005",
+          "profilePathEn": "/en/landom/people/S0005",
+          "compatibilityAliasTh": "/Landom/?person=S0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0005&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0005-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+              "path": "media/contributors/s0005-1x-828d8a63af6e.webp",
+              "sha256": "828d8a63af6e84810d9b447381ab2f7fd22cd8574275dbc05da6b655f1a06657",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+              "path": "media/contributors/s0005-2x-d9e7ace8bc74.webp",
+              "sha256": "d9e7ace8bc74ccd4532708d02d24773ec2cff6e3b225400cb610aa5dc9e719b2",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "S0006",
+          "nameTh": "นัท",
+          "nameEn": "Nat",
+          "profilePathTh": "/landom/people/S0006",
+          "profilePathEn": "/en/landom/people/S0006",
+          "compatibilityAliasTh": "/Landom/?person=S0006&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0006&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 2,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0006-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0006.jpg?v=e673f299631e",
+              "path": "media/contributors/s0006-1x-1b6297f9ed96.webp",
+              "sha256": "1b6297f9ed9619a60df7ee2a1154c17d9ec9daadeda61ed909090997d8933e49",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0006.jpg?v=e673f299631e",
+              "path": "media/contributors/s0006-2x-4f743350ff33.webp",
+              "sha256": "4f743350ff33e4a4de798fba170eefb2abe21b899db2f3f7c2cbe4b2296fd3c9",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "S0007",
+          "nameTh": "โปเต้",
+          "nameEn": "Pote",
+          "profilePathTh": "/landom/people/S0007",
+          "profilePathEn": "/en/landom/people/S0007",
+          "compatibilityAliasTh": "/Landom/?person=S0007&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0007&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 3,
+          "portrait": {
+            "kind": "neutral_fallback",
+            "fallbackToken": "neutral-person",
+            "identityDisclosure": "none"
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-schools-students-teachers",
+      "moduleSlug": "dataset-schools-students-teachers",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0006",
+          "nameTh": "ทีโน่",
+          "nameEn": "Teno",
+          "profilePathTh": "/landom/people/I0006",
+          "profilePathEn": "/en/landom/people/I0006",
+          "compatibilityAliasTh": "/Landom/?person=I0006&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0006&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0006-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0006.jpg?v=fb74b9e3d780",
+              "path": "media/contributors/i0006-1x-80e8eeaca879.webp",
+              "sha256": "80e8eeaca879d5ef18200ad00690edf9577379bd2dc5fd28254b2c98dac5fdca",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0006.jpg?v=fb74b9e3d780",
+              "path": "media/contributors/i0006-2x-49944c2ea485.webp",
+              "sha256": "49944c2ea48536ea8ffb219eb0924a6aeda7217a92915fe7f3935992deaa993a",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0001-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-1x-b2b1e663f429.webp",
+              "sha256": "b2b1e663f429052ef9e1f6b99e57f0eff06c476a5914d6e28f9a767ae3f2df73",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-2x-4bc693f40098.webp",
+              "sha256": "4bc693f400983f875aac431a0461b685b2923476cd7242a79ad23acd21ef65e3",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-municipal-revenue",
+      "moduleSlug": "dataset-municipal-revenue",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0036",
+          "nameTh": "โต๋",
+          "nameEn": "Toh",
+          "profilePathTh": "/landom/people/I0036",
+          "profilePathEn": "/en/landom/people/I0036",
+          "compatibilityAliasTh": "/Landom/?person=I0036&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0036&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0036-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0036.jpg?v=6b86ffefe6b6",
+              "path": "media/contributors/i0036-1x-938aa56f9e41.webp",
+              "sha256": "938aa56f9e41462fc97b716d8bb1cd909aab754455c718f6d26dcbaa9d5c629a",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0036.jpg?v=6b86ffefe6b6",
+              "path": "media/contributors/i0036-2x-7e6eb491544f.webp",
+              "sha256": "7e6eb491544f583d190da436a6d7d7769509b37692c37de9b2f4013618fadb8a",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-government-agencies-workforce",
+      "moduleSlug": "dataset-government-agencies-workforce",
+      "resourceClass": "derived_insight",
+      "contributors": [
+        {
+          "personId": "I0038",
+          "nameTh": "ไนน์",
+          "nameEn": "Nine",
+          "profilePathTh": "/landom/people/I0038",
+          "profilePathEn": "/en/landom/people/I0038",
+          "compatibilityAliasTh": "/Landom/?person=I0038&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0038&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "neutral_fallback",
+            "fallbackToken": "neutral-person",
+            "identityDisclosure": "none"
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-flood-recurrent",
+      "moduleSlug": "dataset-flood-recurrent",
+      "resourceClass": "derived_model",
+      "contributors": [
+        {
+          "personId": "I0015",
+          "nameTh": "เฟซ",
+          "nameEn": "Faze",
+          "profilePathTh": "/landom/people/I0015",
+          "profilePathEn": "/en/landom/people/I0015",
+          "compatibilityAliasTh": "/Landom/?person=I0015&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0015&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0015-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+              "path": "media/contributors/i0015-1x-46704fb3ab83.webp",
+              "sha256": "46704fb3ab831dd8ed4633cae625837d99cd932c61bf2a365de53c68aa6e7ed8",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0015.jpg?v=bc1e3b051c3e",
+              "path": "media/contributors/i0015-2x-a575e64f49ba.webp",
+              "sha256": "a575e64f49baafd2aefd1117a9d81f435946aee82366aa54576a3e8e4813ab2a",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-flood-latest-observed",
+      "moduleSlug": "dataset-flood-latest-observed",
+      "resourceClass": "monitoring_feed",
+      "contributors": [
+        {
+          "personId": "I0032",
+          "nameTh": "ยิ้ว",
+          "nameEn": "Yew",
+          "profilePathTh": "/landom/people/I0032",
+          "profilePathEn": "/en/landom/people/I0032",
+          "compatibilityAliasTh": "/Landom/?person=I0032&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0032&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0032-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0032.jpg?v=ff9a8b34126e",
+              "path": "media/contributors/i0032-1x-24f1dac59e55.webp",
+              "sha256": "24f1dac59e55ff3187e31fbdf159e90a8ce29e8d1048c91c035cbc800d2c8c47",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0032.jpg?v=ff9a8b34126e",
+              "path": "media/contributors/i0032-2x-209871f5f764.webp",
+              "sha256": "209871f5f7640afb15986672b36146b4db091e314b60e9ce45845d479c3ddd0d",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-flood-forecast-depth",
+      "moduleSlug": "dataset-flood-forecast-depth",
+      "resourceClass": "forecast_layer",
+      "contributors": [
+        {
+          "personId": "I0032",
+          "nameTh": "ยิ้ว",
+          "nameEn": "Yew",
+          "profilePathTh": "/landom/people/I0032",
+          "profilePathEn": "/en/landom/people/I0032",
+          "compatibilityAliasTh": "/Landom/?person=I0032&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0032&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0032-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0032.jpg?v=ff9a8b34126e",
+              "path": "media/contributors/i0032-1x-24f1dac59e55.webp",
+              "sha256": "24f1dac59e55ff3187e31fbdf159e90a8ce29e8d1048c91c035cbc800d2c8c47",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0032.jpg?v=ff9a8b34126e",
+              "path": "media/contributors/i0032-2x-209871f5f764.webp",
+              "sha256": "209871f5f7640afb15986672b36146b4db091e314b60e9ce45845d479c3ddd0d",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-flood-forecast-flash-flood-risk",
+      "moduleSlug": "dataset-flood-forecast-flash-flood-risk",
+      "resourceClass": "forecast_layer",
+      "contributors": [
+        {
+          "personId": "I0034",
+          "nameTh": "เอิร์ธ",
+          "nameEn": "Earth",
+          "profilePathTh": "/landom/people/I0034",
+          "profilePathEn": "/en/landom/people/I0034",
+          "compatibilityAliasTh": "/Landom/?person=I0034&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0034&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0034-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+              "path": "media/contributors/i0034-1x-7230c39ed55e.webp",
+              "sha256": "7230c39ed55eac644411fc95cfe370453fae037cfc81d3b8a6031eefd89ad007",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+              "path": "media/contributors/i0034-2x-a365d6bd4b1c.webp",
+              "sha256": "a365d6bd4b1cd88af7103d6720af814ca7b74a87a423db14605cce77ed5d6e04",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-earthquake-sensors",
+      "moduleSlug": "dataset-earthquake-sensors",
+      "resourceClass": "monitoring_feed",
+      "contributors": [
+        {
+          "personId": "S0003",
+          "nameTh": "พัทธ์",
+          "nameEn": "Pat",
+          "profilePathTh": "/landom/people/S0003",
+          "profilePathEn": "/en/landom/people/S0003",
+          "compatibilityAliasTh": "/Landom/?person=S0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0003&lang=en",
+          "roles": [
+            "product_management"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0003-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0003.jpg?v=e797832329c2",
+              "path": "media/contributors/s0003-1x-7e79efefb801.webp",
+              "sha256": "7e79efefb801eb5675b5381c7144557818ce8147b7bbe1691d4d42d8aaf9460c",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0003.jpg?v=e797832329c2",
+              "path": "media/contributors/s0003-2x-5b8471f3311a.webp",
+              "sha256": "5b8471f3311a5d5781372933a5d8b02f29d71e95c242e90ee6ab4785106d41cd",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-fire-monitoring",
+      "moduleSlug": "dataset-fire-monitoring",
+      "resourceClass": "monitoring_feed",
+      "contributors": [
+        {
+          "personId": "S0005",
+          "nameTh": "บิว",
+          "nameEn": "Biw",
+          "profilePathTh": "/landom/people/S0005",
+          "profilePathEn": "/en/landom/people/S0005",
+          "compatibilityAliasTh": "/Landom/?person=S0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0005&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0005-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+              "path": "media/contributors/s0005-1x-828d8a63af6e.webp",
+              "sha256": "828d8a63af6e84810d9b447381ab2f7fd22cd8574275dbc05da6b655f1a06657",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0005.jpg?v=a79068222c94",
+              "path": "media/contributors/s0005-2x-d9e7ace8bc74.webp",
+              "sha256": "d9e7ace8bc74ccd4532708d02d24773ec2cff6e3b225400cb610aa5dc9e719b2",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-disaster-historical-impacts",
+      "moduleSlug": "dataset-disaster-historical-impacts",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0030",
+          "nameTh": "เคน",
+          "nameEn": "Ken",
+          "profilePathTh": "/landom/people/I0030",
+          "profilePathEn": "/en/landom/people/I0030",
+          "compatibilityAliasTh": "/Landom/?person=I0030&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0030&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0030-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+              "path": "media/contributors/i0030-1x-b6615b3a99de.webp",
+              "sha256": "b6615b3a99de489c0ec90c4f8f462b3bce880f09ac89c88832dcc636fd2312b4",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0030.jpg?v=786f96e99948",
+              "path": "media/contributors/i0030-2x-60d8f662db6e.webp",
+              "sha256": "60d8f662db6e168a481ba92279df40b51d35de2a771f45bb42d31e9aaa6a3d24",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-events-hat-yai-flood-2025-11",
+      "moduleSlug": "dataset-events-hat-yai-flood-2025-11",
+      "resourceClass": "event",
+      "contributors": [
+        {
+          "personId": "I0003",
+          "nameTh": "แพรวา",
+          "nameEn": "Praewa",
+          "profilePathTh": "/landom/people/I0003",
+          "profilePathEn": "/en/landom/people/I0003",
+          "compatibilityAliasTh": "/Landom/?person=I0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-i0003-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+              "path": "media/contributors/i0003-1x-5b21b0f7e9d6.webp",
+              "sha256": "5b21b0f7e9d62dcb238af54b33a23ec0973b3a26356103fe205b571b83fec75e",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/I0003.jpg?v=6214dff6a699",
+              "path": "media/contributors/i0003-2x-2c7135912764.webp",
+              "sha256": "2c7135912764320516b96f1b006d49490df2c2d0d9304b08ffa489686ae1bf8b",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-events-quake-building-inspection",
+      "moduleSlug": "dataset-events-quake-building-inspection",
+      "resourceClass": "event",
+      "contributors": [
+        {
+          "personId": "S0002",
+          "nameTh": "เรเน่",
+          "nameEn": "Renee",
+          "profilePathTh": "/landom/people/S0002",
+          "profilePathEn": "/en/landom/people/S0002",
+          "compatibilityAliasTh": "/Landom/?person=S0002&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0002&lang=en",
+          "roles": [
+            "product_development"
+          ],
+          "displayOrder": 1,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0002-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0002.jpg?v=7048d4bb61a9",
+              "path": "media/contributors/s0002-1x-71ce97b7e644.webp",
+              "sha256": "71ce97b7e64491f06373cda8f05c65d4643f0e123ec02483d65aa65b609f50dd",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0002.jpg?v=7048d4bb61a9",
+              "path": "media/contributors/s0002-2x-31cb532e7d03.webp",
+              "sha256": "31cb532e7d03db162edfbf38b78aae56a0b6d23e9e641e1f31ccee44b88736c7",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        },
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2,
+          "portrait": {
+            "kind": "portrait",
+            "assetId": "portrait-s0001-contributor",
+            "oneX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-1x-b2b1e663f429.webp",
+              "sha256": "b2b1e663f429052ef9e1f6b99e57f0eff06c476a5914d6e28f9a767ae3f2df73",
+              "mimeType": "image/webp",
+              "width": 192,
+              "height": 192
+            },
+            "twoX": {
+              "sourcePath": "/Landom/public/assets/people/S0001.jpg?v=157773940636",
+              "path": "media/contributors/s0001-2x-4bc693f40098.webp",
+              "sha256": "4bc693f400983f875aac431a0461b685b2923476cd7242a79ad23acd21ef65e3",
+              "mimeType": "image/webp",
+              "width": 384,
+              "height": 384
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,945 @@
+{
+  "schemaVersion": "1.0.0",
+  "snapshotId": "landom-sheet-20260825-9a5e5cc19e2a",
+  "generatedAt": "2026-08-25T12:56:49+07:00",
+  "contentHash": "c9bc9e4604e34c0b49c4269572f0354f1d1f695ac3c43c0ee4054aceddf14102",
+  "publicationScope": "landometer_public_website",
+  "linkResolution": {
+    "mode": "compatibility_alias",
+    "governingGate": "canonical_person_routes_activation",
+    "thField": "compatibilityAliasTh",
+    "enField": "compatibilityAliasEn"
+  },
+  "records": [
+    {
+      "datasetId": "dataset-buildings",
+      "moduleSlug": "dataset-buildings",
+      "resourceClass": "data_layer",
+      "contributors": [
+        {
+          "personId": "I0030",
+          "nameTh": "เคน",
+          "nameEn": "Ken",
+          "profilePathTh": "/landom/people/I0030",
+          "profilePathEn": "/en/landom/people/I0030",
+          "compatibilityAliasTh": "/Landom/?person=I0030&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0030&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        },
+        {
+          "personId": "S0005",
+          "nameTh": "บิว",
+          "nameEn": "Biw",
+          "profilePathTh": "/landom/people/S0005",
+          "profilePathEn": "/en/landom/people/S0005",
+          "compatibilityAliasTh": "/Landom/?person=S0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0005&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 2
+        },
+        {
+          "personId": "S0006",
+          "nameTh": "นัท",
+          "nameEn": "Nat",
+          "profilePathTh": "/landom/people/S0006",
+          "profilePathEn": "/en/landom/people/S0006",
+          "compatibilityAliasTh": "/Landom/?person=S0006&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0006&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 3
+        },
+        {
+          "personId": "S0007",
+          "nameTh": "โปเต้",
+          "nameEn": "Pote",
+          "profilePathTh": "/landom/people/S0007",
+          "profilePathEn": "/en/landom/people/S0007",
+          "compatibilityAliasTh": "/Landom/?person=S0007&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0007&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 4
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-registered-housing-estates",
+      "moduleSlug": "dataset-registered-housing-estates",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0034",
+          "nameTh": "เอิร์ธ",
+          "nameEn": "Earth",
+          "profilePathTh": "/landom/people/I0034",
+          "profilePathEn": "/en/landom/people/I0034",
+          "compatibilityAliasTh": "/Landom/?person=I0034&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0034&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-eia-projects",
+      "moduleSlug": "dataset-eia-projects",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0003",
+          "nameTh": "แพรวา",
+          "nameEn": "Praewa",
+          "profilePathTh": "/landom/people/I0003",
+          "profilePathEn": "/en/landom/people/I0003",
+          "compatibilityAliasTh": "/Landom/?person=I0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        },
+        {
+          "personId": "I0008",
+          "nameTh": "กาย",
+          "nameEn": "Guy",
+          "profilePathTh": "/landom/people/I0008",
+          "profilePathEn": "/en/landom/people/I0008",
+          "compatibilityAliasTh": "/Landom/?person=I0008&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0008&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-crop-area-output",
+      "moduleSlug": "dataset-crop-area-output",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0003",
+          "nameTh": "แพรวา",
+          "nameEn": "Praewa",
+          "profilePathTh": "/landom/people/I0003",
+          "profilePathEn": "/en/landom/people/I0003",
+          "compatibilityAliasTh": "/Landom/?person=I0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-land-appraisal",
+      "moduleSlug": "dataset-land-appraisal",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0003",
+          "nameTh": "แพรวา",
+          "nameEn": "Praewa",
+          "profilePathTh": "/landom/people/I0003",
+          "profilePathEn": "/en/landom/people/I0003",
+          "compatibilityAliasTh": "/Landom/?person=I0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-land-listing-prices",
+      "moduleSlug": "dataset-land-listing-prices",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0008",
+          "nameTh": "กาย",
+          "nameEn": "Guy",
+          "profilePathTh": "/landom/people/I0008",
+          "profilePathEn": "/en/landom/people/I0008",
+          "compatibilityAliasTh": "/Landom/?person=I0008&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0008&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-apartment-rent",
+      "moduleSlug": "dataset-apartment-rent",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "S0003",
+          "nameTh": "พัทธ์",
+          "nameEn": "Pat",
+          "profilePathTh": "/landom/people/S0003",
+          "profilePathEn": "/en/landom/people/S0003",
+          "compatibilityAliasTh": "/Landom/?person=S0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-condo-appraisal",
+      "moduleSlug": "dataset-condo-appraisal",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-condo-listing-prices",
+      "moduleSlug": "dataset-condo-listing-prices",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0011",
+          "nameTh": "อิ๋ง",
+          "nameEn": "Ing",
+          "profilePathTh": "/landom/people/I0011",
+          "profilePathEn": "/en/landom/people/I0011",
+          "compatibilityAliasTh": "/Landom/?person=I0011&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0011&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-detached-listing-prices",
+      "moduleSlug": "dataset-detached-listing-prices",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0013",
+          "nameTh": "ปอน",
+          "nameEn": "Pond",
+          "profilePathTh": "/landom/people/I0013",
+          "profilePathEn": "/en/landom/people/I0013",
+          "compatibilityAliasTh": "/Landom/?person=I0013&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0013&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-townhouse-listing-prices",
+      "moduleSlug": "dataset-townhouse-listing-prices",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0007",
+          "nameTh": "ดาวเหนือ",
+          "nameEn": "Daonua",
+          "profilePathTh": "/landom/people/I0007",
+          "profilePathEn": "/en/landom/people/I0007",
+          "compatibilityAliasTh": "/Landom/?person=I0007&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0007&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-condo-rent-yield",
+      "moduleSlug": "dataset-condo-rent-yield",
+      "resourceClass": "derived_insight",
+      "contributors": [
+        {
+          "personId": "I0010",
+          "nameTh": "ว่าน",
+          "nameEn": "Wan",
+          "profilePathTh": "/landom/people/I0010",
+          "profilePathEn": "/en/landom/people/I0010",
+          "compatibilityAliasTh": "/Landom/?person=I0010&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0010&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-registered-companies-status-capital",
+      "moduleSlug": "dataset-registered-companies-status-capital",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0015",
+          "nameTh": "เฟซ",
+          "nameEn": "Faze",
+          "profilePathTh": "/landom/people/I0015",
+          "profilePathEn": "/en/landom/people/I0015",
+          "compatibilityAliasTh": "/Landom/?person=I0015&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0015&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        },
+        {
+          "personId": "I0035",
+          "nameTh": "แทน",
+          "nameEn": "Tan",
+          "profilePathTh": "/landom/people/I0035",
+          "profilePathEn": "/en/landom/people/I0035",
+          "compatibilityAliasTh": "/Landom/?person=I0035&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0035&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-business-dynamics",
+      "moduleSlug": "dataset-business-dynamics",
+      "resourceClass": "derived_insight",
+      "contributors": [
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-factories-workers-investment",
+      "moduleSlug": "dataset-factories-workers-investment",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0009",
+          "nameTh": "แฮม",
+          "nameEn": "Ham",
+          "profilePathTh": "/landom/people/I0009",
+          "profilePathEn": "/en/landom/people/I0009",
+          "compatibilityAliasTh": "/Landom/?person=I0009&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0009&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        },
+        {
+          "personId": "I0002",
+          "nameTh": "อาม",
+          "nameEn": "Arm",
+          "profilePathTh": "/landom/people/I0002",
+          "profilePathEn": "/en/landom/people/I0002",
+          "compatibilityAliasTh": "/Landom/?person=I0002&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0002&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2
+        },
+        {
+          "personId": "I0001",
+          "nameTh": "ปุ๊กกี้",
+          "nameEn": "Pookkie",
+          "profilePathTh": "/landom/people/I0001",
+          "profilePathEn": "/en/landom/people/I0001",
+          "compatibilityAliasTh": "/Landom/?person=I0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0001&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 3
+        },
+        {
+          "personId": "S0005",
+          "nameTh": "บิว",
+          "nameEn": "Biw",
+          "profilePathTh": "/landom/people/S0005",
+          "profilePathEn": "/en/landom/people/S0005",
+          "compatibilityAliasTh": "/Landom/?person=S0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0005&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 4
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-office-buildings-rent",
+      "moduleSlug": "dataset-office-buildings-rent",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0014",
+          "nameTh": "มอส",
+          "nameEn": "Mos",
+          "profilePathTh": "/landom/people/I0014",
+          "profilePathEn": "/en/landom/people/I0014",
+          "compatibilityAliasTh": "/Landom/?person=I0014&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0014&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-restaurants",
+      "moduleSlug": "dataset-restaurants",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-shopping-centers",
+      "moduleSlug": "dataset-shopping-centers",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0037",
+          "nameTh": "ณิชา",
+          "nameEn": "Nicha",
+          "profilePathTh": "/landom/people/I0037",
+          "profilePathEn": "/en/landom/people/I0037",
+          "compatibilityAliasTh": "/Landom/?person=I0037&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0037&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-hotel-market",
+      "moduleSlug": "dataset-hotel-market",
+      "resourceClass": "market_layer",
+      "contributors": [
+        {
+          "personId": "I0031",
+          "nameTh": "บิว",
+          "nameEn": "Bill",
+          "profilePathTh": "/landom/people/I0031",
+          "profilePathEn": "/en/landom/people/I0031",
+          "compatibilityAliasTh": "/Landom/?person=I0031&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0031&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        },
+        {
+          "personId": "I0001",
+          "nameTh": "ปุ๊กกี้",
+          "nameEn": "Pookkie",
+          "profilePathTh": "/landom/people/I0001",
+          "profilePathEn": "/en/landom/people/I0001",
+          "compatibilityAliasTh": "/Landom/?person=I0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0001&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-tourism-demand-spending",
+      "moduleSlug": "dataset-tourism-demand-spending",
+      "resourceClass": "derived_insight",
+      "contributors": [
+        {
+          "personId": "I0043",
+          "nameTh": "ดราฟ",
+          "nameEn": "Draf",
+          "profilePathTh": "/landom/people/I0043",
+          "profilePathEn": "/en/landom/people/I0043",
+          "compatibilityAliasTh": "/Landom/?person=I0043&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0043&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-fuel-stations",
+      "moduleSlug": "dataset-fuel-stations",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0043",
+          "nameTh": "ดราฟ",
+          "nameEn": "Draf",
+          "profilePathTh": "/landom/people/I0043",
+          "profilePathEn": "/en/landom/people/I0043",
+          "compatibilityAliasTh": "/Landom/?person=I0043&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0043&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-registered-cars",
+      "moduleSlug": "dataset-registered-cars",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0015",
+          "nameTh": "เฟซ",
+          "nameEn": "Faze",
+          "profilePathTh": "/landom/people/I0015",
+          "profilePathEn": "/en/landom/people/I0015",
+          "compatibilityAliasTh": "/Landom/?person=I0015&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0015&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-road-network-archetypes",
+      "moduleSlug": "dataset-road-network-archetypes",
+      "resourceClass": "derived_model",
+      "contributors": [
+        {
+          "personId": "I0039",
+          "nameTh": "จอมใจ",
+          "nameEn": "Jomjai",
+          "profilePathTh": "/landom/people/I0039",
+          "profilePathEn": "/en/landom/people/I0039",
+          "compatibilityAliasTh": "/Landom/?person=I0039&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0039&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-traffic-congestion-speed",
+      "moduleSlug": "dataset-traffic-congestion-speed",
+      "resourceClass": "monitoring_feed",
+      "contributors": [
+        {
+          "personId": "I0005",
+          "nameTh": "เดย์",
+          "nameEn": "Day",
+          "profilePathTh": "/landom/people/I0005",
+          "profilePathEn": "/en/landom/people/I0005",
+          "compatibilityAliasTh": "/Landom/?person=I0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0005&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-locale-insights",
+      "moduleSlug": "dataset-locale-insights",
+      "resourceClass": "derived_model",
+      "contributors": [
+        {
+          "personId": "I0011",
+          "nameTh": "อิ๋ง",
+          "nameEn": "Ing",
+          "profilePathTh": "/landom/people/I0011",
+          "profilePathEn": "/en/landom/people/I0011",
+          "compatibilityAliasTh": "/Landom/?person=I0011&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0011&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-population-age-sex",
+      "moduleSlug": "dataset-population-age-sex",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "S0005",
+          "nameTh": "บิว",
+          "nameEn": "Biw",
+          "profilePathTh": "/landom/people/S0005",
+          "profilePathEn": "/en/landom/people/S0005",
+          "compatibilityAliasTh": "/Landom/?person=S0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0005&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1
+        },
+        {
+          "personId": "S0006",
+          "nameTh": "นัท",
+          "nameEn": "Nat",
+          "profilePathTh": "/landom/people/S0006",
+          "profilePathEn": "/en/landom/people/S0006",
+          "compatibilityAliasTh": "/Landom/?person=S0006&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0006&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 2
+        },
+        {
+          "personId": "S0007",
+          "nameTh": "โปเต้",
+          "nameEn": "Pote",
+          "profilePathTh": "/landom/people/S0007",
+          "profilePathEn": "/en/landom/people/S0007",
+          "compatibilityAliasTh": "/Landom/?person=S0007&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0007&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 3
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-schools-students-teachers",
+      "moduleSlug": "dataset-schools-students-teachers",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0006",
+          "nameTh": "ทีโน่",
+          "nameEn": "Teno",
+          "profilePathTh": "/landom/people/I0006",
+          "profilePathEn": "/en/landom/people/I0006",
+          "compatibilityAliasTh": "/Landom/?person=I0006&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0006&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        },
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-municipal-revenue",
+      "moduleSlug": "dataset-municipal-revenue",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0036",
+          "nameTh": "โต๋",
+          "nameEn": "Toh",
+          "profilePathTh": "/landom/people/I0036",
+          "profilePathEn": "/en/landom/people/I0036",
+          "compatibilityAliasTh": "/Landom/?person=I0036&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0036&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-government-agencies-workforce",
+      "moduleSlug": "dataset-government-agencies-workforce",
+      "resourceClass": "derived_insight",
+      "contributors": [
+        {
+          "personId": "I0038",
+          "nameTh": "ไนน์",
+          "nameEn": "Nine",
+          "profilePathTh": "/landom/people/I0038",
+          "profilePathEn": "/en/landom/people/I0038",
+          "compatibilityAliasTh": "/Landom/?person=I0038&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0038&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-flood-recurrent",
+      "moduleSlug": "dataset-flood-recurrent",
+      "resourceClass": "derived_model",
+      "contributors": [
+        {
+          "personId": "I0015",
+          "nameTh": "เฟซ",
+          "nameEn": "Faze",
+          "profilePathTh": "/landom/people/I0015",
+          "profilePathEn": "/en/landom/people/I0015",
+          "compatibilityAliasTh": "/Landom/?person=I0015&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0015&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-flood-latest-observed",
+      "moduleSlug": "dataset-flood-latest-observed",
+      "resourceClass": "monitoring_feed",
+      "contributors": [
+        {
+          "personId": "I0032",
+          "nameTh": "ยิ้ว",
+          "nameEn": "Yew",
+          "profilePathTh": "/landom/people/I0032",
+          "profilePathEn": "/en/landom/people/I0032",
+          "compatibilityAliasTh": "/Landom/?person=I0032&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0032&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-flood-forecast-depth",
+      "moduleSlug": "dataset-flood-forecast-depth",
+      "resourceClass": "forecast_layer",
+      "contributors": [
+        {
+          "personId": "I0032",
+          "nameTh": "ยิ้ว",
+          "nameEn": "Yew",
+          "profilePathTh": "/landom/people/I0032",
+          "profilePathEn": "/en/landom/people/I0032",
+          "compatibilityAliasTh": "/Landom/?person=I0032&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0032&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-flood-forecast-flash-flood-risk",
+      "moduleSlug": "dataset-flood-forecast-flash-flood-risk",
+      "resourceClass": "forecast_layer",
+      "contributors": [
+        {
+          "personId": "I0034",
+          "nameTh": "เอิร์ธ",
+          "nameEn": "Earth",
+          "profilePathTh": "/landom/people/I0034",
+          "profilePathEn": "/en/landom/people/I0034",
+          "compatibilityAliasTh": "/Landom/?person=I0034&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0034&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-earthquake-sensors",
+      "moduleSlug": "dataset-earthquake-sensors",
+      "resourceClass": "monitoring_feed",
+      "contributors": [
+        {
+          "personId": "S0003",
+          "nameTh": "พัทธ์",
+          "nameEn": "Pat",
+          "profilePathTh": "/landom/people/S0003",
+          "profilePathEn": "/en/landom/people/S0003",
+          "compatibilityAliasTh": "/Landom/?person=S0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0003&lang=en",
+          "roles": [
+            "product_management"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-fire-monitoring",
+      "moduleSlug": "dataset-fire-monitoring",
+      "resourceClass": "monitoring_feed",
+      "contributors": [
+        {
+          "personId": "S0005",
+          "nameTh": "บิว",
+          "nameEn": "Biw",
+          "profilePathTh": "/landom/people/S0005",
+          "profilePathEn": "/en/landom/people/S0005",
+          "compatibilityAliasTh": "/Landom/?person=S0005&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0005&lang=en",
+          "roles": [
+            "full_time_staff"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-disaster-historical-impacts",
+      "moduleSlug": "dataset-disaster-historical-impacts",
+      "resourceClass": "public_dataset_record",
+      "contributors": [
+        {
+          "personId": "I0030",
+          "nameTh": "เคน",
+          "nameEn": "Ken",
+          "profilePathTh": "/landom/people/I0030",
+          "profilePathEn": "/en/landom/people/I0030",
+          "compatibilityAliasTh": "/Landom/?person=I0030&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0030&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-events-hat-yai-flood-2025-11",
+      "moduleSlug": "dataset-events-hat-yai-flood-2025-11",
+      "resourceClass": "event",
+      "contributors": [
+        {
+          "personId": "I0003",
+          "nameTh": "แพรวา",
+          "nameEn": "Praewa",
+          "profilePathTh": "/landom/people/I0003",
+          "profilePathEn": "/en/landom/people/I0003",
+          "compatibilityAliasTh": "/Landom/?person=I0003&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=I0003&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 1
+        }
+      ]
+    },
+    {
+      "datasetId": "dataset-events-quake-building-inspection",
+      "moduleSlug": "dataset-events-quake-building-inspection",
+      "resourceClass": "event",
+      "contributors": [
+        {
+          "personId": "S0002",
+          "nameTh": "เรเน่",
+          "nameEn": "Renee",
+          "profilePathTh": "/landom/people/S0002",
+          "profilePathEn": "/en/landom/people/S0002",
+          "compatibilityAliasTh": "/Landom/?person=S0002&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0002&lang=en",
+          "roles": [
+            "product_development"
+          ],
+          "displayOrder": 1
+        },
+        {
+          "personId": "S0001",
+          "nameTh": "โอ๊ต",
+          "nameEn": "Oat",
+          "profilePathTh": "/landom/people/S0001",
+          "profilePathEn": "/en/landom/people/S0001",
+          "compatibilityAliasTh": "/Landom/?person=S0001&lang=th",
+          "compatibilityAliasEn": "/Landom/en/?person=S0001&lang=en",
+          "roles": [
+            "software_development"
+          ],
+          "displayOrder": 2
+        }
+      ]
+    }
+  ]
+}
+�n�i���_�];۶�o����W4��u���
