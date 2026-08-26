@@ -608,4 +608,3 @@ console.log(`CityMETER receipt SHA-256: ${cityReceiptMeta.sha256}`);
 console.log(`Landom ${LANDOM_BUILD_ID} aggregate SHA-256: ${landomOutputAggregateSha}`);
 console.log(`Landom receipt SHA-256: ${landomReceiptMeta.sha256}`);
 console.log(`Build Card index SHA-256: ${sha256Bytes(indexBytes)}`);
-ıÛÖıï}´Û½üİÛï×½y¿|ß^ñ¦Üß‡š

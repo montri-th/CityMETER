@@ -1552,4 +1552,3 @@ for (const asset of supporterAssets) {
 await import("./validate-p1-contributors.mjs");
 
 console.log(`CityMETER release validation passed: hardened P1 static-hydrated ${contributorBundleName} contributor parity on ${contributorManifest.projectionSummary.records} Thai/English cards, ${contributorManifest.projectionSummary.datasetRecords} Dataset + ${contributorManifest.projectionSummary.eventRecords} CreativeWork schema parity, plus the preserved v23 performance, catalog, evidence, QR, social-card, typography, motion, responsive and media contracts.`);
-ﬂ_^˜N}¶¸„éº„üu¶∑Ò∑˜çv’ø}·¶º
