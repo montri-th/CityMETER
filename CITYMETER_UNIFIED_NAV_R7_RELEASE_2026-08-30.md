@@ -2,9 +2,9 @@
 
 Date: 2026-08-30
 
-Release receipt: `2026-08-30-citymeter-unified-nav-r7-v30`
+Release receipt: `2026-08-30-citymeter-unified-nav-r7-v31`
 
-Artifact build: `ui-20260830-08`
+Artifact build: `ui-20260830-09`
 
 DS reference artifact build: `ui-20260821-05`
 
@@ -35,7 +35,7 @@ The catalog and contributor layer was not regenerated. It remains bound to the a
 - prominent header and no sweep under reduced motion
 - static no-JS navigation plus script-load and menu-install fail-open navigation
 - initial-HTML critical header-exclusivity rule, so loss of the shell stylesheet does not expose the immutable React header as a second navigation landmark
-- menu close by repeated button, Escape, transparent outside click, focus leaving the non-modal disclosure or any menu navigation; Escape/repeat restores the opener, while outside activation preserves a real destination focus and restores the opener only when focus would remain in the hidden panel
+- menu close by repeated button, Escape, transparent outside click, focus leaving the non-modal disclosure or any menu navigation; Escape/repeat restores the opener, while outside activation preserves a real destination focus and restores the opener when focus would otherwise remain in the hidden panel, `body`, or the document root
 - navbar visible copy, menu labels, rail tooltips and ARIA follow post-hydration `<html lang>` changes, including the inherited `/` route preference/browser-language behavior
 
 ## Authority and conformance statement
@@ -60,7 +60,7 @@ Recorded artifact exceptions:
 
 ## Exact receipts
 
-`data/citymeter-unified-navbar-r7-v30.receipt.json` binds both initial HTML routes, navigation CSS and JavaScript, the approved identity symbol, outline/filled Material Symbols Rounded subsets, `assets/unified-navbar-assets.manifest.json` and the Apache-2.0 licence. The shell asset manifest records exact bytes, hashes, approval status, embedded font identities, axes, glyph maps, provenance and the immutable relationship to the v29 text-font manifest. The receipt also records the inherited contributor manifest and registry hashes.
+`data/citymeter-unified-navbar-r7-v31.receipt.json` binds both initial HTML routes, navigation CSS and corrective JavaScript, the approved identity symbol, outline/filled Material Symbols Rounded subsets, `assets/unified-navbar-assets-v31.manifest.json` and the Apache-2.0 licence. The shell asset manifest records exact bytes, hashes, approval status, embedded font identities, axes, glyph maps, provenance and the immutable relationship to the v29 text-font manifest. The receipt also records the inherited contributor manifest and registry hashes.
 
 Identity approval `owner-citymeter-navbar-r7-20260830`: asset SHA-256 `b818eeb6a6f4abeb7a8fac2b858de0e7a03a662dff371842a29ebfe4c21d12f6`, assembled as the full-colour symbol plus typed Arvo 700 wordmark `#757575`, directly on navbar light `#F6F7F3` and dark `#11191D`, for the CityMETER production navbar only, effective 2026-08-30 with `expiresAt: null`.
 

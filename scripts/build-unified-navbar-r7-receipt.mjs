@@ -4,9 +4,9 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const output = join(root, "data/citymeter-unified-navbar-r7-v30.receipt.json");
+const output = join(root, "data/citymeter-unified-navbar-r7-v31.receipt.json");
 const checkOnly = process.argv.includes("--check");
-const shellAssetManifest = JSON.parse(readFileSync(join(root, "assets/unified-navbar-assets.manifest.json"), "utf8"));
+const shellAssetManifest = JSON.parse(readFileSync(join(root, "assets/unified-navbar-assets-v31.manifest.json"), "utf8"));
 
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
@@ -30,12 +30,12 @@ const artifacts = [
   artifact("index.html", "thai_initial_html"),
   artifact("en/index.html", "english_initial_html"),
   artifact("assets/unified-navbar-r7-v30.css", "unified_nav_styles"),
-  artifact("assets/unified-navbar-r7-v30.js", "unified_nav_runtime"),
+  artifact("assets/unified-navbar-r7-v31.js", "unified_nav_runtime"),
   artifact("assets/landometer-symbol-color.png", "approved_identity_symbol"),
   artifact("assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf", "nav_icon_subset_outline"),
   artifact("assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf", "nav_icon_subset_filled"),
   artifact("assets/licenses/material-symbols-Apache-2.0.txt", "icon_font_license"),
-  artifact("assets/unified-navbar-assets.manifest.json", "shell_asset_manifest")
+  artifact("assets/unified-navbar-assets-v31.manifest.json", "shell_asset_manifest")
 ];
 
 const receipt = {
@@ -77,8 +77,8 @@ const receipt = {
     }
   },
   product: "CityMETER",
-  releaseReceipt: "2026-08-30-citymeter-unified-nav-r7-v30",
-  artifactBuildId: "ui-20260830-08",
+  releaseReceipt: "2026-08-30-citymeter-unified-nav-r7-v31",
+  artifactBuildId: "ui-20260830-09",
   designSystem: {
     version: "0.9.0",
     authoringRevision: "r7",

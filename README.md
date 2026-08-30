@@ -4,10 +4,10 @@
 
 ## Current release
 
-- Showcase shell receipt: `2026-08-30-citymeter-unified-nav-r7-v30` (`ui-20260830-08`)
+- Showcase shell receipt: `2026-08-30-citymeter-unified-nav-r7-v31` (`ui-20260830-09`)
 - Inherited contributor receipt: `2026-08-27-landom-thumbnail-sync-v29`
 - Active hydrated runtime: `assets/index-qbT50gkr-v17.js`; contributor enhancement owners remain `assets/catalog-enhancements-v25.css` and `assets/catalog-enhancements-v25.js`
-- Unified navigation owners: `assets/unified-navbar-r7-v30.css` and `assets/unified-navbar-r7-v30.js`
+- Unified navigation owners: `assets/unified-navbar-r7-v30.css` and `assets/unified-navbar-r7-v31.js`
 - Navigation alignment: Landometer Design System v0.9.0-r7 authoring-aligned with recorded owner-directed artifact exceptions; the unmerged r8 proposal and full machine-package conformance are not claimed
 - Dataset-card thumbnails: `media/previews-v3/` (38 files, 800×500, 1.42 MB total); high-value intent/showcase evidence remains in `media/previews-v2/`
 - Team rebuild guide: `CITYMETER_REBUILD_BRIEF.md`
@@ -54,8 +54,8 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 ## Files
 
 - `index.html` / `en/index.html` — deployed prerendered Thai/English output
-- `assets/unified-navbar-r7-v30.css` / `assets/unified-navbar-r7-v30.js` — standalone unified navigation shell, calm-scroll behavior, menu and scrollspy
-- `data/citymeter-unified-navbar-r7-v30.receipt.json` / `assets/unified-navbar-assets.manifest.json` — exact TH/EN shell bytes plus governed identity, icon-subset provenance and licence hashes
+- `assets/unified-navbar-r7-v30.css` / `assets/unified-navbar-r7-v31.js` — standalone unified navigation shell, calm-scroll behavior, menu and scrollspy
+- `data/citymeter-unified-navbar-r7-v31.receipt.json` / `assets/unified-navbar-assets-v31.manifest.json` — exact TH/EN shell bytes plus governed identity, icon-subset provenance and licence hashes
 - `scripts/apply-unified-navbar-r7-release.mjs` / `scripts/build-unified-navbar-r7-receipt.mjs` / `scripts/validate-unified-navbar-r7.mjs` — deterministic retrofit, receipt builder and release gate
 - `assets/index-qbT50gkr.js` / `assets/index-cqxdfePB.css` — original compiled React application output (the referenced Vite `src/` files are not present in this repository)
 - `assets/catalog-enhancements.js` / `assets/catalog-enhancements.css` — maintainable post-hydration layer for source drawers, QR, masonry and the mobile hero structure

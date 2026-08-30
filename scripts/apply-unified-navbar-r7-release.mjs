@@ -3,8 +3,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const buildId = "ui-20260830-08";
-const receiptId = "2026-08-30-citymeter-unified-nav-r7-v30";
+const buildId = "ui-20260830-09";
+const receiptId = "2026-08-30-citymeter-unified-nav-r7-v31";
 const checkOnly = process.argv.includes("--check");
 const criticalHeaderExclusivityStyle = '    <style id="lm-header-exclusivity">#root>.site-header{display:none!important}.lm-menu-shell[hidden],.lm-js-fallback-nav[hidden]{display:none!important}</style>';
 
@@ -181,7 +181,7 @@ function updatePage(path, language, assetPrefix) {
     html = html.replace(themeMeta, receiptMetas);
 
     const stylesheet = `    <link rel="stylesheet" href="${assetPrefix}assets/catalog-enhancements-v25.css">`;
-    const navAssets = `${stylesheet}\n    <link rel="preload" as="image" href="${assetPrefix}assets/landometer-symbol-color.png" />\n    <link rel="preload" as="font" href="${assetPrefix}assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf" type="font/ttf" crossorigin />\n    <link rel="preload" as="font" href="${assetPrefix}assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf" type="font/ttf" crossorigin />\n${criticalHeaderExclusivityStyle}\n    <link rel="stylesheet" href="${assetPrefix}assets/unified-navbar-r7-v30.css" />\n    <script defer src="${assetPrefix}assets/unified-navbar-r7-v30.js"></script>`;
+    const navAssets = `${stylesheet}\n    <link rel="preload" as="image" href="${assetPrefix}assets/landometer-symbol-color.png" />\n    <link rel="preload" as="font" href="${assetPrefix}assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf" type="font/ttf" crossorigin />\n    <link rel="preload" as="font" href="${assetPrefix}assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf" type="font/ttf" crossorigin />\n${criticalHeaderExclusivityStyle}\n    <link rel="stylesheet" href="${assetPrefix}assets/unified-navbar-r7-v30.css" />\n    <script defer src="${assetPrefix}assets/unified-navbar-r7-v31.js"></script>`;
     assert(count(html, stylesheet) === 1, `${path}: active stylesheet insertion point drifted`);
     html = html.replace(stylesheet, navAssets);
 
@@ -231,8 +231,8 @@ function updatePage(path, language, assetPrefix) {
     );
   }
 
-  const plainNavScript = `<script defer src="${assetPrefix}assets/unified-navbar-r7-v30.js"></script>`;
-  const hardenedNavScript = `<script defer src="${assetPrefix}assets/unified-navbar-r7-v30.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`;
+  const plainNavScript = `<script defer src="${assetPrefix}assets/unified-navbar-r7-v31.js"></script>`;
+  const hardenedNavScript = `<script defer src="${assetPrefix}assets/unified-navbar-r7-v31.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`;
   if (html.includes(plainNavScript)) html = html.replace(plainNavScript, hardenedNavScript);
 
   html = html.replace('<main id="main-content" tabindex="-1">', '<main id="main-content">');

@@ -5,11 +5,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const receiptPath = "data/citymeter-unified-navbar-r7-v30.receipt.json";
+const receiptPath = "data/citymeter-unified-navbar-r7-v31.receipt.json";
 const receipt = JSON.parse(readFileSync(join(root, receiptPath), "utf8"));
-const assetManifest = JSON.parse(readFileSync(join(root, "assets/unified-navbar-assets.manifest.json"), "utf8"));
+const assetManifest = JSON.parse(readFileSync(join(root, "assets/unified-navbar-assets-v31.manifest.json"), "utf8"));
 const css = readFileSync(join(root, "assets/unified-navbar-r7-v30.css"), "utf8");
-const js = readFileSync(join(root, "assets/unified-navbar-r7-v30.js"), "utf8");
+const js = readFileSync(join(root, "assets/unified-navbar-r7-v31.js"), "utf8");
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -31,8 +31,8 @@ function meta(html, name) {
 const expectedIdentity = {
   "landometer:ds-version": "0.9.0",
   "landometer:color-set": "color-srgb-05",
-  "landometer:artifact-build": "ui-20260830-08",
-  "landometer:release-receipt": "2026-08-30-citymeter-unified-nav-r7-v30"
+  "landometer:artifact-build": "ui-20260830-09",
+  "landometer:release-receipt": "2026-08-30-citymeter-unified-nav-r7-v31"
 };
 
 const pages = [
@@ -61,7 +61,7 @@ for (const page of pages) {
   assert(count(html, '<main id="main-content">') === 1, `${page.path}: skip-link target drifted`);
   assert(!html.includes('<main id="main-content" tabindex="-1">'), `${page.path}: hydrated React subtree must not carry an unowned tabindex`);
   assert(html.includes(`href="${page.prefix}assets/unified-navbar-r7-v30.css"`), `${page.path}: navbar stylesheet is not active`);
-  assert(html.includes(`src="${page.prefix}assets/unified-navbar-r7-v30.js"`), `${page.path}: navbar runtime is not active`);
+  assert(html.includes(`src="${page.prefix}assets/unified-navbar-r7-v31.js"`), `${page.path}: navbar runtime is not active`);
   assert(html.includes(`src="${page.prefix}assets/landometer-symbol-color.png"`), `${page.path}: approved symbol is not active`);
   assert(count(html, `href="${page.prefix}assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf"`) === 1, `${page.path}: outline icon-font preload drifted`);
   assert(count(html, `href="${page.prefix}assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf"`) === 1, `${page.path}: filled icon-font preload drifted`);
@@ -137,7 +137,9 @@ for (const requiredJs of [
   'event.key !== "Escape"',
   'document.addEventListener("scroll"',
   'document.addEventListener("pointerdown"',
-  '(!active || shell.contains(active))',
+  'active !== document.body',
+  'active !== document.documentElement',
+  '!shell.contains(active)',
   'document.addEventListener("focusin"',
   'header.addEventListener("pointerenter"',
   'header.addEventListener("focusin"',
