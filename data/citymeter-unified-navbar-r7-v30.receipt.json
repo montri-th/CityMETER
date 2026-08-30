@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "1.0.0-citymeter-shell-release",
+  "status": "approved_for_publication",
+  "releaseAuthority": {
+    "authority": "site_owner",
+    "authorizedAt": "2026-08-30",
+    "scope": "Apply the attached unified navbar r7 handoff to the CityMETER Showcase and publish it again at the existing GitHub Pages URL, aligned with the concurrently rebuilt Landometer Home"
+  },
+  "publication": {
+    "publishable": true,
+    "mustNotDeploy": false,
+    "target": "https://montri-th.github.io/CityMETER/"
+  },
+  "identityApproval": {
+    "id": "owner-citymeter-navbar-r7-20260830",
+    "status": "approved",
+    "blocking": false,
+    "requiredAuthority": "brand_identity_authority_or_documented_delegate",
+    "approvedBy": "project_owner",
+    "authorityRole": "brand_identity_authority_or_documented_delegate",
+    "approvedAt": "2026-08-30",
+    "assetPath": "assets/landometer-symbol-color.png",
+    "assetSha256": "b818eeb6a6f4abeb7a8fac2b858de0e7a03a662dff371842a29ebfe4c21d12f6",
+    "assembledVariant": "full_colour_symbol_plus_typed_Arvo_700_wordmark_#757575",
+    "transparentCanvas": true,
+    "placement": "direct_surface",
+    "surfaces": [
+      "navbar_light_#F6F7F3",
+      "navbar_dark_#11191D"
+    ],
+    "context": "CityMETER production navbar only",
+    "validFrom": "2026-08-30",
+    "expiresAt": null,
+    "approvalRef": "owner-citymeter-navbar-r7-20260830",
+    "evidence": {
+      "type": "owner_instruction_in_conversation",
+      "verbatim": "ผมจะให้พี่ไปเปลี่ยน navbar + motion ในนี้ https://montri-th.github.io/CityMETER/ เลยน่ะ",
+      "interpretation": "Approve and publish the attached navbar and motion treatment directly on the existing CityMETER production URL",
+      "acceptedContrastRisk": "2.01:1 full-colour symbol contrast on navbar_dark_#11191D"
+    }
+  },
+  "product": "CityMETER",
+  "releaseReceipt": "2026-08-30-citymeter-unified-nav-r7-v30",
+  "artifactBuildId": "ui-20260830-08",
+  "designSystem": {
+    "version": "0.9.0",
+    "authoringRevision": "r7",
+    "authoringSourceSha256": "52ef41f1b231f8b84955a40c21a018991a114a4f5eaabd8c5111816bf8d645b1",
+    "colorSetId": "color-srgb-05",
+    "referenceArtifactBuildId": "ui-20260821-05",
+    "alignmentStatus": "authoring_aligned_with_owner_directed_artifact_exceptions",
+    "machinePackageConformance": false,
+    "unmergedR8ProposalClaimed": false,
+    "riddimProposalUse": "reference_only_no_governed_adapter",
+    "selfCheckStatus": "pending_rendered_production_matrix"
+  },
+  "sourceReferences": {
+    "unifiedNavbarHandoffSha256": "47a26f9546316856357040d7a716619a8fa5289484851b4d25bdbb9501ef60fa",
+    "riddimProposalSha256": "accb6eafa7d881cfc83633391e0e0f13c54b9077bc2dcf5e0f265cc65bdc4c60",
+    "referenceHomeCommit": "d65858c0227b34b4ee8116bdd41711af2d72069e",
+    "referenceHomeUrl": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html"
+  },
+  "implementation": {
+    "strategy": "standalone_shell_outside_hydrated_react_root",
+    "inheritedHydratedBundle": "assets/index-qbT50gkr-v17.js",
+    "hiddenLegacyHeaderSelector": "#root > .site-header",
+    "legacyHeaderExclusivity": "initial_html_critical_rule_plus_external_css",
+    "outsidePointerFocus": "preserve_real_destination_else_restore_trigger",
+    "localAnchors": [
+      "decisions",
+      "examples",
+      "datasets"
+    ],
+    "desktopPostLogoControls": 4,
+    "compactPostLogoControls": 1,
+    "compactControlBreakpoint": 820,
+    "compactSizeTokenBreakpoint": 600,
+    "scrollspy": "requestAnimationFrame_geometry_marker_with_visible_fallback",
+    "reducedMotion": "prominent_header_and_no_cta_sweep",
+    "noJs": "visible_static_fallback_navigation"
+  },
+  "ownerDirectedExceptions": [
+    {
+      "id": "NAV-IDENTITY-01",
+      "decision": "Use the owner-approved color symbol on both themes and typed Arvo wordmark",
+      "acceptedRisk": "Identity approval owner-citymeter-navbar-r7-20260830 accepts the handoff-recorded 2.01:1 symbol contrast on the dark canvas for the CityMETER production navbar only"
+    },
+    {
+      "id": "NAV-WORDMARK-01",
+      "decision": "Use #757575 for the typed wordmark in both themes",
+      "acceptedRisk": "Artifact-level exception; not a normative DS r8 merge"
+    },
+    {
+      "id": "NAV-CALM-01",
+      "decision": "Use the r7 handoff row-scale calm state after downward scroll",
+      "acceptedRisk": "Visible calm controls are below 44px and restore before pointer, focus, or menu activation"
+    },
+    {
+      "id": "MOTION-01",
+      "decision": "Allow one continuous yellow text sweep on the contact CTA",
+      "acceptedRisk": "The duplicate is aria-hidden and pointer-inert; reduced motion removes it"
+    },
+    {
+      "id": "FIT-01",
+      "decision": "Hide the plain product indicator below 901px and switch to the compact one-control composition at 820px while retaining the exact 600px size-token switch",
+      "acceptedRisk": "Fit hardening for 320–900px; the page H1 and current ecosystem row retain CityMETER identity"
+    },
+    {
+      "id": "NAV-UTILITY-01",
+      "decision": "Do not expose theme or locale utilities in the CityMETER unified navbar, matching the attached CityMETER preset",
+      "acceptedRisk": "The real English sibling and first-paint system/stored theme remain functional, but they are not discoverable as navbar controls in this artifact"
+    },
+    {
+      "id": "FLOW-04",
+      "decision": "Use icon-only 44px menu and bookmark-rail controls with accessible names and tooltips",
+      "acceptedRisk": "The visible icon is never the sole accessible label; every control retains aria-label and title evidence"
+    },
+    {
+      "id": "NAV-RAIL-01",
+      "decision": "Expose local CityMETER sub-navigation as a fixed three-item desktop bookmark rail",
+      "acceptedRisk": "The rail is hidden in compact composition and the same local links remain available inside the menu"
+    },
+    {
+      "id": "NAV-ZINDEX-01",
+      "decision": "Use local shell layering values for header, rail, menu and skip link",
+      "acceptedRisk": "Values are isolated to the standalone shell pending a future shared package adoption; rendered overlap is a release-gate check"
+    }
+  ],
+  "inheritedContributorLayer": {
+    "releaseReceipt": "2026-08-27-landom-thumbnail-sync-v29",
+    "manifest": "data/citymeter-contributor-release-p1-7712069325b3.json",
+    "manifestSha256": "7712069325b33b3310d434908be674265250c7776c69b95bdfa9a020baea442b",
+    "registry": "data/citymeter-contributors-p1-c1d0f5a7c057.json",
+    "registrySha256": "c1d0f5a7c0571ae799365c24f4238f3eeba507db99a88e2a00cc692fb761146f",
+    "invariants": {
+      "records": 38,
+      "assignments": 51,
+      "uniquePeople": 29,
+      "portraitIdentities": 25,
+      "fallbackIdentities": 4
+    }
+  },
+  "iconSubset": {
+    "source": "Google Fonts Material Symbols Rounded",
+    "sourceVersion": "v369",
+    "license": "Apache-2.0",
+    "axes": {
+      "opsz": 24,
+      "wght": 300,
+      "GRAD": 0
+    },
+    "outlineGlyphs": [
+      "checklist",
+      "close",
+      "database",
+      "menu",
+      "visibility"
+    ],
+    "filledGlyphs": [
+      "checklist",
+      "database",
+      "visibility"
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "index.html",
+      "role": "thai_initial_html",
+      "bytes": 401401,
+      "sha256": "a61bc6b9768c4362724ac7dc8769f3cfe43a449f0e7020ceea1e0baa668d2322"
+    },
+    {
+      "path": "en/index.html",
+      "role": "english_initial_html",
+      "bytes": 349175,
+      "sha256": "bb839bbbb664acd4fb54266151e2af155b677b902baa5013d7c43dd9adeacc61"
+    },
+    {
+      "path": "assets/unified-navbar-r7-v30.css",
+      "role": "unified_nav_styles",
+      "bytes": 19425,
+      "sha256": "04698dbcce7e249b8b725f9bddb5d04162c894a864c63356103d910abca4ef00"
+    },
+    {
+      "path": "assets/unified-navbar-r7-v30.js",
+      "role": "unified_nav_runtime",
+      "bytes": 13982,
+      "sha256": "d82fed3129bac8127b59427f51352edfde38136cf3b497cfd1e0f41c77e2f04e"
+    },
+    {
+      "path": "assets/landometer-symbol-color.png",
+      "role": "approved_identity_symbol",
+      "bytes": 38962,
+      "sha256": "b818eeb6a6f4abeb7a8fac2b858de0e7a03a662dff371842a29ebfe4c21d12f6"
+    },
+    {
+      "path": "assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf",
+      "role": "nav_icon_subset_outline",
+      "bytes": 3636,
+      "sha256": "9df67745092ec3f5c18f2ddafe0935c851a0428475159cf11f29b61620d5550d"
+    },
+    {
+      "path": "assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf",
+      "role": "nav_icon_subset_filled",
+      "bytes": 3392,
+      "sha256": "4c539173e2e679db79147a89595ca99042a01cbf131575337167d63ed0b29f2e"
+    },
+    {
+      "path": "assets/licenses/material-symbols-Apache-2.0.txt",
+      "role": "icon_font_license",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "assets/unified-navbar-assets.manifest.json",
+      "role": "shell_asset_manifest",
+      "bytes": 4423,
+      "sha256": "f4bae13ef18211f035d18b4dd637250bad4a4c9d0ae41e565c3340c04a782812"
+    }
+  ],
+  "aggregate": {
+    "algorithm": "sha256(stable-json-artifact-array)",
+    "artifactCount": 9,
+    "totalBytes": 845753,
+    "sha256": "1c9cf4794a5ac9e494a0a8bcc6ad5978648bd89dd21d569edcdfbd0b7108a9e6"
+  }
+}

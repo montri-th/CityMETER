@@ -4,11 +4,14 @@
 
 ## Current release
 
-- Receipt: `2026-08-16-motion-image-performance-v23`
-- Active runtime: `assets/index-qbT50gkr-v12.js`, `assets/catalog-enhancements-v21.css`, `assets/catalog-enhancements-v19.js`
+- Showcase shell receipt: `2026-08-30-citymeter-unified-nav-r7-v30` (`ui-20260830-08`)
+- Inherited contributor receipt: `2026-08-27-landom-thumbnail-sync-v29`
+- Active hydrated runtime: `assets/index-qbT50gkr-v17.js`; contributor enhancement owners remain `assets/catalog-enhancements-v25.css` and `assets/catalog-enhancements-v25.js`
+- Unified navigation owners: `assets/unified-navbar-r7-v30.css` and `assets/unified-navbar-r7-v30.js`
+- Navigation alignment: Landometer Design System v0.9.0-r7 authoring-aligned with recorded owner-directed artifact exceptions; the unmerged r8 proposal and full machine-package conformance are not claimed
 - Dataset-card thumbnails: `media/previews-v3/` (38 files, 800×500, 1.42 MB total); high-value intent/showcase evidence remains in `media/previews-v2/`
 - Team rebuild guide: `CITYMETER_REBUILD_BRIEF.md`
-- Release evidence: `CITYMETER_MOTION_IMAGE_PERFORMANCE_RELEASE_2026-08-16.md`
+- Release evidence: `CITYMETER_UNIFIED_NAV_R7_RELEASE_2026-08-30.md`
 
 ## Preview URLs
 
@@ -20,9 +23,13 @@
 
 ## Scope
 
+- Unified sticky navbar shared with the Landometer Home direction: carrier-free symbol + Arvo wordmark, plain `/ CityMETER` indicator, selected CityMETER link, CityWiki link, contact CTA, compact menu, ecosystem panel and three-anchor bookmark rail
+- The compiled React header remains byte-identical as a rollback owner but is hidden inside `#root`; the active navbar is a standalone shell outside the hydrated root so React cannot replace it after hydration
+- Calm navigation follows the attached r7 row-scale behavior on downward scroll and restores at the top, on upward scroll, pointer/focus intent or menu open; reduced motion keeps the header prominent and removes the CTA sweep
+- Static/no-JS and script-failure navigation remain available; menu disclosure supports repeat press, transparent outside click, Escape, focus entry and focus return
 - Exhibition-first hero อัตราส่วน 16:9 พร้อม reel 12.958 วินาที 3 chapter ตามลำดับ Population + Building → Municipality → Tourism, caption ไทย/อังกฤษ และปุ่ม Pause/Play เพียงปุ่มเดียว; autoplay แบบ muted/playsinline และวนต่อเนื่องเป็นค่าเริ่มต้น
-- ภาษาไทย/อังกฤษตาม URL, preference ที่ผู้ใช้เลือก และภาษา browser พร้อม quiet icon controls
-- Theme system / light / dark โดยจำ preference ของผู้ใช้
+- ภาษาไทย/อังกฤษยังเป็น sibling routes ที่เข้าถึงได้โดย URL, metadata และ browser preference; navbar preset นี้ตั้งใจไม่แสดง locale control ตามข้อยกเว้น `NAV-UTILITY-01`
+- Theme light/dark ยัง resolve ก่อน paint จาก system หรือ stored preference และ sync browser theme color; navbar preset นี้ตั้งใจไม่แสดง theme control
 - 5 decision intents สำหรับการลงทุน/พัฒนา การเลือกทำเล การประเมินความเสี่ยง การวางบริการ และงานวิเคราะห์
 - สีพื้นของแต่ละช่วงใช้ surface token คนละบทบาท—canvas, blue tint, beige tint, soft และ alt—ทั้ง light/dark เพื่อให้หน้าแบ่งจังหวะชัดขึ้นโดยยังคงสีเงียบและอ่านง่าย
 - การ์ด Land / Location / Living ใช้ quiet surface คนละบทบาททั้ง 6 featured cards และ 38 dataset cards: beige tint, blue tint และ soft ตามลำดับ พร้อม semantic `data-pillar` ที่ตรงกันก่อนและหลัง hydration
@@ -47,6 +54,9 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 ## Files
 
 - `index.html` / `en/index.html` — deployed prerendered Thai/English output
+- `assets/unified-navbar-r7-v30.css` / `assets/unified-navbar-r7-v30.js` — standalone unified navigation shell, calm-scroll behavior, menu and scrollspy
+- `data/citymeter-unified-navbar-r7-v30.receipt.json` / `assets/unified-navbar-assets.manifest.json` — exact TH/EN shell bytes plus governed identity, icon-subset provenance and licence hashes
+- `scripts/apply-unified-navbar-r7-release.mjs` / `scripts/build-unified-navbar-r7-receipt.mjs` / `scripts/validate-unified-navbar-r7.mjs` — deterministic retrofit, receipt builder and release gate
 - `assets/index-qbT50gkr.js` / `assets/index-cqxdfePB.css` — original compiled React application output (the referenced Vite `src/` files are not present in this repository)
 - `assets/catalog-enhancements.js` / `assets/catalog-enhancements.css` — maintainable post-hydration layer for source drawers, QR, masonry and the mobile hero structure
 - `assets/catalog-enhancements-v15.css` / `assets/index-qbT50gkr-v4.js` — immutable quiet-pillar stylesheet และ hydrated semantic pillar bundle สำหรับ release 15 August 2026
@@ -64,7 +74,7 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 
 ## Status
 
-This public preview is aligned with Landometer Design System v0.8.9 and is indexable. Unknown coverage, resolution, source, or definition metadata is never inferred. Source labels distinguish verified same-dataset lineage, candidates, other providers, derived layers and unproven public lineage.
+This public preview is indexable. Its new navigation shell is authoring-aligned with Landometer Design System v0.9.0-r7 and the attached owner-directed handoff; the underlying compiled showcase still contains legacy layers and therefore does not claim full-page machine-package conformance. Unknown coverage, resolution, source, or definition metadata is never inferred. Source labels distinguish verified same-dataset lineage, candidates, other providers, derived layers and unproven public lineage.
 
 The previous published release was deployed from commit `f83115747047af83bb212b1f7e352b6d419dc22c` (tree `1969e8a0ec0289b8335188a243a07b7f2a4c93eb`) through successful GitHub Pages run `31814244403` (#25). Its production receipt remains historical evidence for base CSS `v2`, enhancement CSS `v13`, font CSS `v1`, enhancement JS `v15`, main bundle `v4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`.
 
@@ -93,5 +103,9 @@ Then serve the repository root with any static HTTP server and verify both `/` a
 Run the release validator after changing copy, typography roles, gradient or surface assignments, supporter-logo layout, routes or release cache revisions:
 
 ```bash
+node scripts/apply-unified-navbar-r7-release.mjs --check
+node scripts/build-unified-navbar-r7-receipt.mjs --check
+node scripts/validate-unified-navbar-r7.mjs
 node scripts/validate-release.mjs
+node scripts/validate-p1-contributors.mjs
 ```
