@@ -2,18 +2,21 @@
 
 หน้า marketing landing page สำหรับ prospect ที่ต้องการเห็นตัวอย่าง implementation จริงของ CityMETER ก่อนเลือกโจทย์ พื้นที่ และข้อมูลที่จะเปิดดูต่อ
 
-## Current release
+## Prepared internal candidate — not published
 
-- Showcase shell receipt: `2026-08-30-citymeter-unified-nav-r7-v31` (`ui-20260830-09`)
+- Candidate record: `2026-09-04-citymeter-ds091-motif-internal-v1` (`ui-20260904-ds091-motif-internal-v1`)
+- Current public source remains commit `22eadcb560172b975aa870b1481bee0f529b6d6a` with showcase shell receipt `2026-08-30-citymeter-unified-nav-r7-v31`
 - Inherited contributor receipt: `2026-08-27-landom-thumbnail-sync-v29`
-- Active hydrated runtime: `assets/index-qbT50gkr-v17.js`; contributor enhancement owners remain `assets/catalog-enhancements-v25.css` and `assets/catalog-enhancements-v25.js`
-- Unified navigation owners: `assets/unified-navbar-r7-v30.css` and `assets/unified-navbar-r7-v31.js`
-- Navigation alignment: Landometer Design System v0.9.0-r7 authoring-aligned with recorded owner-directed artifact exceptions; the unmerged r8 proposal and full machine-package conformance are not claimed
+- Active hydrated runtime: `assets/index-qbT50gkr-v18.js`; the active surface owner is `assets/catalog-enhancements-ds-0.9.1-v26.css` and the contributor enhancement runtime remains `assets/catalog-enhancements-v25.js`
+- Unified navigation owners: `assets/unified-navbar-r7-ds-0.9.1-v32.css` and `assets/unified-navbar-r7-v31.js`
+- Design System binding: DS `0.9.1`, authoring `0.9.1-r8`, ruleset `lds-rules-0.9.1`, machine package `v0.9.1-mp7`, with exact audience color projection `color-srgb-05.production.css`
+- Conformance boundary: the candidate claims no artifact conformance level and is `internal_preview`, `publishable: false`, `mustNotDeploy: true` until approved CityMETER product/claim/evidence records and the required artifact-owned DS records exist
+- Owner-approved authority records: Master Brand Brief v0.5.3 and the CityMETER-scoped Landometer motif attachment, both recorded on 4 September 2026 without broadening CityMETER product claims
 - Dataset-card thumbnails: `media/previews-v3/` (38 files, 800×500, 1.42 MB total); high-value intent/showcase evidence remains in `media/previews-v2/`
 - Team rebuild guide: `CITYMETER_REBUILD_BRIEF.md`
-- Release evidence: `CITYMETER_UNIFIED_NAV_R7_RELEASE_2026-08-30.md`
+- Candidate decision record: `CITYMETER_DS_0.9.1_MOTIF_RELEASE_2026-09-04.md`
 
-## Preview URLs
+## Current production URLs — candidate remains local only
 
 - Landing page on GitHub Pages: https://montri-th.github.io/CityMETER/
 - English initial HTML: https://montri-th.github.io/CityMETER/en/
@@ -25,7 +28,7 @@
 
 - Unified sticky navbar shared with the Landometer Home direction: carrier-free symbol + Arvo wordmark, plain `/ CityMETER` indicator, selected CityMETER link, CityWiki link, contact CTA, compact menu, ecosystem panel and three-anchor bookmark rail
 - The compiled React header remains byte-identical as a rollback owner but is hidden inside `#root`; the active navbar is a standalone shell outside the hydrated root so React cannot replace it after hydration
-- Calm navigation follows the attached r7 row-scale behavior on downward scroll and restores at the top, on upward scroll, pointer/focus intent or menu open; reduced motion keeps the header prominent and removes the CTA sweep
+- Calm navigation follows the attached r7 row-scale behavior on downward scroll and restores at the top, on upward scroll, pointer/focus intent or menu open; the former perpetual CTA sweep is retired for DS 0.9.1 and the real CTA carries static hierarchy
 - Static/no-JS and script-failure navigation remain available; menu disclosure supports repeat press, transparent outside click, Escape, focus entry and focus return
 - Exhibition-first hero อัตราส่วน 16:9 พร้อม reel 12.958 วินาที 3 chapter ตามลำดับ Population + Building → Municipality → Tourism, caption ไทย/อังกฤษ และปุ่ม Pause/Play เพียงปุ่มเดียว; autoplay แบบ muted/playsinline และวนต่อเนื่องเป็นค่าเริ่มต้น
 - ภาษาไทย/อังกฤษยังเป็น sibling routes ที่เข้าถึงได้โดย URL, metadata และ browser preference; navbar preset นี้ตั้งใจไม่แสดง locale control ตามข้อยกเว้น `NAV-UTILITY-01`
@@ -33,7 +36,9 @@
 - 5 decision intents สำหรับการลงทุน/พัฒนา การเลือกทำเล การประเมินความเสี่ยง การวางบริการ และงานวิเคราะห์
 - สีพื้นของแต่ละช่วงใช้ surface token คนละบทบาท—canvas, blue tint, beige tint, soft และ alt—ทั้ง light/dark เพื่อให้หน้าแบ่งจังหวะชัดขึ้นโดยยังคงสีเงียบและอ่านง่าย
 - การ์ด Land / Location / Living ใช้ quiet surface คนละบทบาททั้ง 6 featured cards และ 38 dataset cards: beige tint, blue tint และ soft ตามลำดับ พร้อม semantic `data-pillar` ที่ตรงกันก่อนและหลัง hydration
-- Hero และ mobile handoff ใช้ Design System v0.8.9 `atmosphere.gradient.measure.deep` แบบเดียวกัน: `linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)` พร้อม foreground แบบ onDeep
+- การ์ด แผนภาพโครงสร้าง และกล่องอธิบายใช้เส้นคั่น neutral 1px กับ surface/spacing hierarchy เท่านั้น ไม่มีเส้นบนหรือเส้นซ้ายสีเชิงตกแต่ง; สีที่เหลือมีหน้าที่ด้าน interaction, focus, semantic status หรือสื่อ category พร้อมข้อความกำกับ
+- Hero และ mobile handoff ใช้ exact DS 0.9.1 atmosphere recipes พร้อม foreground contract ตามธีม
+- หน้าใช้ owner-approved `rings` motif แบบ quiet/single-ink หนึ่งจุดในพื้นที่ว่างของ catalog orientation; component autoplay ถูกปิดและ wrapper ใช้ DS approach motion 760/920ms เพียงครั้งเดียว พร้อม reduced-motion และ observer fail-open
 - Social share card ใช้ภาพหน้าจอ Land Appraisal จริงที่แสดงแท่งข้อมูลสามมิติบนแผนที่ ตัดเป็น 1200 × 630 แบบ crop-only โดยไม่วาดหรือเติมข้อมูลใหม่
 - ฟอนต์ใช้ canonical role แยกหน้าที่: Arvo สำหรับ display ภาษาอังกฤษ, IBM Plex Sans Thai Looped สำหรับหัวข้อไทย, Bai Jamjuree สำหรับ body และ JetBrains Mono + IBM Plex Sans Thai สำหรับ technical label; ทุก webfont subset ระบุ `unicode-range` และไม่มี Sarabun ใน shipped font contract
 - Compiled base CSS เหลือเฉพาะ Arvo และ JetBrains Mono; legacy `@font-face` ของ Bai Jamjuree/IBM Plex Sans Thai Looped ที่ไม่มี `unicode-range` ถูกตัดออก เพื่อให้ canonical font stylesheet เป็นผู้ประกาศสองตระกูลนี้เพียงชั้นเดียวและไม่ทำให้ Safari เลือก face กำกวม
@@ -45,7 +50,7 @@
 - 11 ใบที่ยืนยัน same-dataset lineage ผ่านช่องทางทางการแสดงโลโก้ GD Catalog โดยไม่อ้างว่าเป็น direct central-GD download
 - QR เฉพาะ dataset ครบ 38 ใบ ซ่อนอยู่ใน source disclosure และพาไป exact CityMETER viewer URL
 - Pinterest-style masonry ใช้ความสูงจริงของ card และ reflow เมื่อเปิด source/QR
-- เครื่องหมาย depa, dSURE Software และบัญชีบริการดิจิทัลใช้ไฟล์ PNG โปร่งใสแยกกัน วางในวงกลม CSS ขนาดเท่ากันด้วย `circle closest-side`: ขาว alpha `.5` กลางวงสู่ `rgba(255,255,255,0)` ที่ขอบวงกลมที่มองเห็นจริง โดยไม่มี border หรือ box-shadow และไม่ crop, mask, filter หรือเปลี่ยนสีไฟล์ต้นฉบับ
+- เครื่องหมาย depa, dSURE Software และบัญชีบริการดิจิทัลใช้ไฟล์ PNG โปร่งใสแยกกัน วางในวงกลม CSS ขนาดเท่ากันด้วย `circle closest-side`: ใช้ DS raised-surface color mix จาก 50% กลางวงสู่โปร่งใสที่ขอบวงกลมที่มองเห็นจริง โดยไม่มี border หรือ box-shadow และไม่ crop, mask, filter หรือเปลี่ยนสีไฟล์ต้นฉบับ
 - หัวข้อส่วนติดต่อใช้ข้อความตรงกับ CTA: `คุยกับทีม Landometer` ในภาษาไทย และ `Talk to the Landometer team` ในภาษาอังกฤษ
 - Semantic HTML และ JSON-LD สร้างจาก registry เดียวกับหน้า visible โดยไม่มีหัวข้อเทคนิคในหน้า marketing
 
@@ -53,8 +58,10 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 
 ## Files
 
-- `index.html` / `en/index.html` — deployed prerendered Thai/English output
-- `assets/unified-navbar-r7-v30.css` / `assets/unified-navbar-r7-v31.js` — standalone unified navigation shell, calm-scroll behavior, menu and scrollspy
+- `index.html` / `en/index.html` — internal-candidate prerendered Thai/English output in this branch; not the currently deployed bytes
+- `assets/landometer-ds/v0.9.1/color-srgb-05.production.css` — exact audience-safe atomic color projection from machine package `v0.9.1-mp7`
+- `assets/unified-navbar-r7-ds-0.9.1-v32.css` / `assets/unified-navbar-r7-v31.js` — standalone unified navigation shell with DS 0.9.1 color and motion roles
+- `assets/landometer-motifs/v1/` / `assets/citymeter-ds-0.9.1-motif-placement-v1.js` — exact approved motif bytes, scoped manifest, and compliant wrapper-motion placement
 - `data/citymeter-unified-navbar-r7-v31.receipt.json` / `assets/unified-navbar-assets-v31.manifest.json` — exact TH/EN shell bytes plus governed identity, icon-subset provenance and licence hashes
 - `scripts/apply-unified-navbar-r7-release.mjs` / `scripts/build-unified-navbar-r7-receipt.mjs` / `scripts/validate-unified-navbar-r7.mjs` — deterministic retrofit, receipt builder and release gate
 - `assets/index-qbT50gkr.js` / `assets/index-cqxdfePB.css` — original compiled React application output (the referenced Vite `src/` files are not present in this repository)
@@ -69,12 +76,12 @@ The 38 records include datasets, derived modules, monitoring feeds, and two even
 - `media/` — owner-supplied Landometer logo, optimized GD Catalog logo, 38 dark previews, 38 QR assets, governed concept illustrations, Land Appraisal social card and the three-chapter web/exhibition reel
 - `scripts/generate-qr-assets.mjs` — reproducible dataset-URL QR generator
 - `CityMETER_Landing_Page_Prototype_DS_0.8.9.html` — lightweight noindex entry file ที่พาไปยัง static showcase หลัก
-- `design-qa.md` / `qa/` — visual QA evidence ที่ 1920×1080, desktop และ mobile
+- `design-qa.md` — historical visual QA notes; no current DS 0.9.1 governed QA receipt is claimed
 - `CITYMETER_PILLAR_SURFACES_RELEASE_2026-08-15.md` — release contract, exact surface mapping, social-card state และ production receipt
 
 ## Status
 
-This public preview is indexable. Its new navigation shell is authoring-aligned with Landometer Design System v0.9.0-r7 and the attached owner-directed handoff; the underlying compiled showcase still contains legacy layers and therefore does not claim full-page machine-package conformance. Unknown coverage, resolution, source, or definition metadata is never inferred. Source labels distinguish verified same-dataset lineage, candidates, other providers, derived layers and unproven public lineage.
+The DS 0.9.1 work in this branch is an internal, non-indexable candidate only. It applies the visual, interaction, navigation, color and motif implementation without changing product copy, but claims no governed artifact conformance level. Public release is blocked because the approved CityMETER Product Brief, signed claim/evidence release, artifact-resolved Build Card/implementation/manifest chain and required promotion receipts are unavailable. The production URL therefore remains on the prior published bytes. Unknown coverage, resolution, source or definition metadata is never inferred.
 
 The previous published release was deployed from commit `f83115747047af83bb212b1f7e352b6d419dc22c` (tree `1969e8a0ec0289b8335188a243a07b7f2a4c93eb`) through successful GitHub Pages run `31814244403` (#25). Its production receipt remains historical evidence for base CSS `v2`, enhancement CSS `v13`, font CSS `v1`, enhancement JS `v15`, main bundle `v4`, and receipt `2026-08-14-brand-blue-shell-radial-logos-canonical-fonts`.
 
@@ -88,7 +95,7 @@ Thai and English production pages each reference `media/social/citymeter-land-ap
 
 The quiet pillar-card release was deployed from implementation commit `0bc8b3165a95be7a6bc44780e1646b5d69e490fa` (tree `47dcf68d7c924c83ca4a97977378f9322abd83da`) through successful GitHub Pages run `31860734132` (#30). Production verified exact Land / Location / Living light/dark surfaces on both routes, 12 / 13 / 13 dataset parity, 1 / 3 / 2 showcase parity, filter re-render parity and no horizontal overflow across the 320–1440 px responsive harness. Served HTML, CSS, JavaScript and Land Appraisal image hashes matched the release bytes.
 
-Once merged, the static files publish from `main` through GitHub Pages. Before the production-domain cutover, change the current `/citymeter` redirect, complete record-level metadata, resolve the live SPA identity issue, and clear product/satellite screenshot reuse rights.
+Do not merge or deploy this candidate. After the product-authority and artifact-record blockers are resolved, rerun the exact-byte QA matrix and release through `main` and GitHub Pages. The later production-domain cutover also still requires the `/citymeter` redirect, complete record-level metadata, live SPA identity resolution and product/satellite screenshot reuse rights.
 
 ## Build
 
@@ -103,6 +110,8 @@ Then serve the repository root with any static HTTP server and verify both `/` a
 Run the release validator after changing copy, typography roles, gradient or surface assignments, supporter-logo layout, routes or release cache revisions:
 
 ```bash
+node scripts/apply-citymeter-ds-0.9.1-motif-release.mjs --check
+node scripts/validate-citymeter-ds-0.9.1-release.mjs
 node scripts/apply-unified-navbar-r7-release.mjs --check
 node scripts/build-unified-navbar-r7-receipt.mjs --check
 node scripts/validate-unified-navbar-r7.mjs

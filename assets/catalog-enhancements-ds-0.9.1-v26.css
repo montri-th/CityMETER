@@ -1,0 +1,1626 @@
+/* CityMETER DS 0.9.1 visual, surface, motion, and motif placement layer — 2026-09-04. */
+
+:root {
+  /* Bridge every authored interface role to the audience-safe atomic color
+     projection delivered with Landometer Design System v0.9.1. */
+  --canvas: var(--ldm-foundation-surface-canvas-light);
+  --canvas-soft: var(--ldm-foundation-surface-alt-light);
+  --card: var(--ldm-foundation-surface-card-light);
+  --raised: var(--ldm-foundation-surface-raised-light);
+  --text: var(--ldm-foundation-text-primary-light);
+  --text-secondary: var(--ldm-foundation-text-secondary-light);
+  --text-meta: var(--ldm-foundation-text-metadata-light);
+  --hairline: var(--ldm-foundation-border-hairline-light);
+  --border: var(--ldm-foundation-border-default-light);
+  --accent: var(--ldm-foundation-interaction-accent-light);
+  --accent-hover: var(--ldm-product-citymeter-light-primary);
+  --positive: var(--ldm-semantic-assisted-light-foreground);
+  --warning-surface: var(--ldm-semantic-warning-light-background);
+  --focus-ring: var(--ldm-foundation-interaction-focus-ring-light);
+  --brand-blue: var(--ldm-brand-blue);
+  --brand-beige: var(--ldm-brand-dark-beige);
+  --energy-coral: var(--ldm-energy-coral);
+  --energy-yellow: var(--ldm-energy-yellow);
+  --energy-mint: var(--ldm-energy-mint);
+  --energy-sky: var(--ldm-energy-sky);
+  --shadow-low: 0 16px 48px color-mix(in srgb, var(--text) 10%, transparent);
+  --shadow-media: 0 24px 64px color-mix(in srgb, var(--text) 24%, transparent);
+
+  /* Exact v0.9.1 atmosphere recipes. These mark entry, orientation, and
+     closure; they never encode a data category, value, or state. */
+  --atmosphere-measure: var(--ldm-signature-closing-light);
+  --atmosphere-measure-primary: var(--ldm-foundation-surface-raised-light);
+  --atmosphere-measure-secondary: var(--ldm-foundation-text-primary-dark);
+  --atmosphere-measure-separator: var(--ldm-foundation-text-primary-dark);
+  --atmosphere-measure-focus-inner: var(--ldm-foundation-text-primary-light);
+  --atmosphere-measure-focus-outer: var(--ldm-foundation-surface-raised-light);
+  --atmosphere-ground: linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
+  --atmosphere-ground-primary: var(--ldm-foundation-text-primary-light);
+  --atmosphere-ground-secondary: var(--ldm-foundation-surface-raised-dark);
+  --atmosphere-ground-separator: var(--ldm-foundation-text-primary-light);
+  --atmosphere-ground-focus-inner: var(--ldm-foundation-surface-raised-light);
+  --atmosphere-ground-focus-outer: var(--ldm-foundation-text-primary-light);
+  --atmosphere-cultivate: linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%);
+  --atmosphere-cultivate-primary: var(--ldm-foundation-text-primary-light);
+  --atmosphere-cultivate-secondary: var(--ldm-foundation-surface-raised-dark);
+  --atmosphere-cultivate-separator: var(--ldm-foundation-text-primary-light);
+  --atmosphere-cultivate-focus-inner: var(--ldm-foundation-surface-raised-light);
+  --atmosphere-cultivate-focus-outer: var(--ldm-foundation-text-primary-light);
+  --motion-duration-feedback: 120ms;
+  --motion-duration-state: 200ms;
+  --motion-duration-map: 280ms;
+  --motion-distance-feedback: 2px;
+  --motion-ease-state: cubic-bezier(.2, 0, 0, 1);
+  --motion-ease-enter: cubic-bezier(.16, 1, .3, 1);
+  --motion-ease-settle: cubic-bezier(.2, .9, .25, 1.08);
+  --section-surface-decision: var(--ldm-foundation-surface-canvas-light);
+  --section-surface-showcase: var(--ldm-foundation-surface-alt-light);
+  --section-surface-explorer: var(--ldm-foundation-surface-canvas-light);
+  --section-surface-contact: var(--ldm-foundation-surface-soft-light);
+  --section-surface-footer: var(--ldm-foundation-surface-alt-light);
+  /* Category meaning is stated in text. Quiet DS surfaces carry grouping;
+     neutral borders carry separation; color never appears as a card rail. */
+  --pillar-surface-land: var(--ldm-foundation-surface-beige-tint-light);
+  --pillar-surface-location: var(--ldm-foundation-surface-blue-tint-light);
+  --pillar-surface-living: var(--ldm-foundation-surface-soft-light);
+  --pillar-accent-land: var(--ldm-series-03-light);
+  --pillar-accent-location: var(--ldm-series-08-light);
+  --pillar-accent-living: var(--ldm-series-05-light);
+  --pillar-accent-ink: var(--ldm-foundation-text-primary-light);
+  --pillar-text-primary: var(--ldm-foundation-text-primary-light);
+  --pillar-text-secondary: var(--ldm-foundation-text-secondary-light);
+  --pillar-text-metadata: var(--ldm-foundation-text-metadata-light);
+  --pillar-border-hairline: var(--ldm-foundation-border-hairline-light);
+  --pillar-border-default: var(--ldm-foundation-border-default-light);
+  --pillar-border-emphasis: var(--ldm-foundation-border-emphasis-light);
+  --pillar-interaction-accent: var(--ldm-foundation-interaction-accent-light);
+  --pillar-surface-raised: var(--ldm-foundation-surface-raised-light);
+  --pillar-surface-alt: var(--ldm-foundation-surface-alt-light);
+  --source-status-candidate: var(--ldm-semantic-warning-light-foreground);
+  --source-status-other: var(--ldm-semantic-info-light-foreground);
+  --source-status-derived: var(--ldm-semantic-assisted-light-foreground);
+  --supporter-logo-disc: clamp(88px, 24vw, 112px);
+  --supporter-logo-gap: clamp(8px, 1.2vw, 14px);
+}
+
+[data-theme="dark"] {
+  --canvas: var(--ldm-foundation-surface-canvas-dark);
+  --canvas-soft: var(--ldm-foundation-surface-alt-dark);
+  --card: var(--ldm-foundation-surface-card-dark);
+  --raised: var(--ldm-foundation-surface-raised-dark);
+  --text: var(--ldm-foundation-text-primary-dark);
+  --text-secondary: var(--ldm-foundation-text-secondary-dark);
+  --text-meta: var(--ldm-foundation-text-metadata-dark);
+  --hairline: var(--ldm-foundation-border-hairline-dark);
+  --border: var(--ldm-foundation-border-default-dark);
+  --accent: var(--ldm-foundation-interaction-accent-dark);
+  --accent-hover: var(--ldm-product-citymeter-dark-accent);
+  --positive: var(--ldm-semantic-assisted-dark-foreground);
+  --warning-surface: var(--ldm-semantic-warning-dark-background);
+  --focus-ring: var(--ldm-foundation-interaction-focus-ring-dark);
+  --shadow-low: 0 16px 48px color-mix(in srgb, var(--ldm-foundation-surface-canvas-dark) 24%, transparent);
+  --shadow-media: 0 24px 64px color-mix(in srgb, var(--ldm-foundation-surface-canvas-dark) 40%, transparent);
+  --atmosphere-measure: linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%);
+  --atmosphere-measure-primary: var(--ldm-foundation-text-primary-light);
+  --atmosphere-measure-secondary: var(--ldm-foundation-surface-raised-dark);
+  --atmosphere-measure-separator: var(--ldm-foundation-text-primary-light);
+  --atmosphere-measure-focus-inner: var(--ldm-foundation-surface-raised-light);
+  --atmosphere-measure-focus-outer: var(--ldm-foundation-text-primary-light);
+  --atmosphere-ground: linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%);
+  --atmosphere-ground-primary: var(--ldm-foundation-surface-raised-light);
+  --atmosphere-ground-secondary: var(--ldm-foundation-text-primary-dark);
+  --atmosphere-ground-separator: var(--ldm-foundation-text-primary-dark);
+  --atmosphere-ground-focus-inner: var(--ldm-foundation-text-primary-light);
+  --atmosphere-ground-focus-outer: var(--ldm-foundation-surface-raised-light);
+  --atmosphere-cultivate: linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
+  --atmosphere-cultivate-primary: var(--ldm-foundation-text-primary-light);
+  --atmosphere-cultivate-secondary: var(--ldm-foundation-surface-raised-dark);
+  --atmosphere-cultivate-separator: var(--ldm-foundation-text-primary-light);
+  --atmosphere-cultivate-focus-inner: var(--ldm-foundation-surface-raised-light);
+  --atmosphere-cultivate-focus-outer: var(--ldm-foundation-text-primary-light);
+  --section-surface-decision: var(--ldm-foundation-surface-canvas-dark);
+  --section-surface-showcase: var(--ldm-foundation-surface-alt-dark);
+  --section-surface-explorer: var(--ldm-foundation-surface-canvas-dark);
+  --section-surface-contact: var(--ldm-foundation-surface-soft-dark);
+  --section-surface-footer: var(--ldm-foundation-surface-alt-dark);
+  --pillar-surface-land: var(--ldm-foundation-surface-beige-tint-dark);
+  --pillar-surface-location: var(--ldm-foundation-surface-blue-tint-dark);
+  --pillar-surface-living: var(--ldm-foundation-surface-soft-dark);
+  --pillar-accent-land: var(--ldm-series-03-dark);
+  --pillar-accent-location: var(--ldm-series-08-dark);
+  --pillar-accent-living: var(--ldm-series-05-dark);
+  --pillar-accent-ink: var(--ldm-foundation-text-primary-dark);
+  --pillar-text-primary: var(--ldm-foundation-text-primary-dark);
+  --pillar-text-secondary: var(--ldm-foundation-text-secondary-dark);
+  --pillar-text-metadata: var(--ldm-foundation-text-metadata-dark);
+  --pillar-border-hairline: var(--ldm-foundation-border-hairline-dark);
+  --pillar-border-default: var(--ldm-foundation-border-default-dark);
+  --pillar-border-emphasis: var(--ldm-foundation-border-emphasis-dark);
+  --pillar-interaction-accent: var(--ldm-foundation-interaction-accent-dark);
+  --pillar-surface-raised: var(--ldm-foundation-surface-raised-dark);
+  --pillar-surface-alt: var(--ldm-foundation-surface-alt-dark);
+  --source-status-candidate: var(--ldm-semantic-warning-dark-foreground);
+  --source-status-other: var(--ldm-semantic-info-dark-foreground);
+  --source-status-derived: var(--ldm-semantic-assisted-dark-foreground);
+}
+
+/* The base bundle's 320px body floor includes neither classic scrollbars nor
+   embedded-browser gutters, so it can exceed the root's usable inline size. */
+html,
+body {
+  overscroll-behavior-y: none;
+}
+
+/* iOS can expose the root canvas during native elastic pull even when the
+   document ends exactly at the footer. Paint that canvas with the footer
+   surface, and keep normal document scrolling, sticky headers and anchors. */
+html,
+body,
+#root {
+  background: var(--section-surface-footer);
+}
+
+body {
+  min-width: 0;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > main {
+  flex: 1 0 auto;
+}
+
+#root > .site-footer {
+  flex: 0 0 auto;
+}
+
+.decision-section {
+  background: var(--section-surface-decision);
+}
+
+.showcase-section {
+  background: var(--section-surface-showcase);
+}
+
+.explorer-section {
+  background: var(--section-surface-explorer);
+}
+
+.contact-section {
+  background: var(--section-surface-contact);
+}
+
+/* Resolve legacy compiled selectors to the active color roles. Documentary
+   screenshots keep their source pixels; every authored foreground, surface,
+   state, and focus color comes from the DS projection or an exact atmosphere
+   recipe. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible,
+.dataset-card:target {
+  outline-color: var(--focus-ring);
+}
+
+.button-light {
+  border-color: var(--ldm-foundation-surface-raised-light);
+  background: var(--ldm-foundation-surface-raised-light);
+  color: var(--ldm-foundation-text-primary-light);
+}
+
+.button-light:hover {
+  background: var(--ldm-foundation-text-primary-dark);
+}
+
+.button-accent {
+  color: var(--ldm-foundation-surface-raised-light);
+}
+
+.demo-figure,
+.demo-story-caption,
+.preview-focus-label,
+.live-example-label,
+.playback-control,
+.intent-proof-visual > span {
+  background: color-mix(in srgb, var(--ldm-foundation-surface-canvas-dark) 84%, transparent);
+  color: var(--ldm-foundation-surface-raised-light);
+}
+
+/* Close every literal-colour declaration still reachable from the immutable
+   compiled base stylesheet. Overlay edges stay neutral; no pillar or product
+   colour is used as a decorative border. */
+.demo-figure,
+.demo-story-caption,
+.preview-focus-label,
+.live-example-label,
+.playback-control {
+  border-color: var(--ldm-foundation-border-emphasis-dark);
+}
+
+.demo-story-caption {
+  box-shadow: 0 12px 38px color-mix(in srgb, var(--ldm-foundation-surface-canvas-dark) 26%, transparent);
+}
+
+.demo-story-caption small,
+.demo-figure figcaption,
+.hero-proof-item span {
+  color: var(--ldm-foundation-text-secondary-dark);
+}
+
+.demo-figure figcaption span:first-child,
+.hero-proof-item strong {
+  color: var(--ldm-foundation-text-primary-dark);
+}
+
+.hero-proof-item small {
+  color: var(--ldm-foundation-text-metadata-dark);
+}
+
+.demo-progress span {
+  background: color-mix(in srgb, var(--ldm-foundation-surface-raised-light) 35%, transparent);
+}
+
+.demo-video-shell,
+.showcase-image,
+.dataset-image {
+  background: var(--ldm-foundation-surface-soft-light);
+}
+
+.live-example-label > span {
+  background: var(--ldm-energy-mint);
+}
+
+.demo-story-caption span {
+  color: var(--ldm-product-citymeter-dark-accent);
+}
+
+.demo-progress span.is-active {
+  background-color: var(--ldm-product-citymeter-dark-accent);
+}
+
+.hero-proof-item > svg {
+  color: var(--ldm-energy-sky);
+}
+
+.search-control input::placeholder {
+  color: var(--text-meta);
+}
+
+.intent-tab.is-active .intent-icon {
+  background: var(--ldm-foundation-surface-blue-tint-light);
+}
+
+[data-theme="dark"] .intent-tab.is-active .intent-icon {
+  background: var(--ldm-foundation-surface-blue-tint-dark);
+}
+
+.preview-focus-label.is-limited {
+  border-color: var(--ldm-semantic-warning-dark-foreground);
+  color: var(--ldm-semantic-warning-dark-foreground);
+}
+
+/* The three pillar surfaces are intentionally quiet: one exact flat DS token
+   per pillar, with the full local foreground contract resolved on the card.
+   Images remain documentary proof and are not recolored. */
+.dataset-card[data-pillar],
+.showcase-card[data-pillar] {
+  --text: var(--pillar-text-primary);
+  --text-secondary: var(--pillar-text-secondary);
+  --text-meta: var(--pillar-text-metadata);
+  --hairline: var(--pillar-border-hairline);
+  --border: var(--pillar-border-emphasis);
+  --accent: var(--pillar-interaction-accent);
+  --raised: var(--pillar-surface-raised);
+  --canvas-soft: var(--pillar-surface-alt);
+  --card: var(--pillar-surface);
+  color: var(--text);
+  background: var(--pillar-surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 var(--hairline);
+}
+
+.dataset-card[data-pillar="land"],
+.showcase-card[data-pillar="land"] {
+  --pillar-surface: var(--pillar-surface-land);
+  --pillar-accent: var(--pillar-accent-land);
+}
+
+.dataset-card[data-pillar="location"],
+.showcase-card[data-pillar="location"] {
+  --pillar-surface: var(--pillar-surface-location);
+  --pillar-accent: var(--pillar-accent-location);
+}
+
+.dataset-card[data-pillar="living"],
+.showcase-card[data-pillar="living"] {
+  --pillar-surface: var(--pillar-surface-living);
+  --pillar-accent: var(--pillar-accent-living);
+}
+
+.dataset-card[data-pillar] .dataset-kicker > span:first-child,
+.showcase-card[data-pillar] .record-group {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 26px;
+  padding: 4px 9px;
+  border: 1px solid var(--pillar-border-default);
+  border-radius: 999px;
+  background: var(--pillar-surface-raised);
+  color: var(--pillar-text-primary);
+  font-weight: 600;
+}
+
+.dataset-card[data-pillar] .source-link,
+.dataset-card[data-pillar] .dataset-mobile-link,
+.dataset-card[data-pillar] .feature-tags span,
+.showcase-card[data-pillar] .feature-tags span {
+  background: var(--raised);
+}
+
+.dataset-card[data-pillar] :is(a, button, summary, input):focus-visible,
+.showcase-card[data-pillar] :is(a, button, summary, input):focus-visible {
+  outline-color: var(--accent);
+}
+
+/* Three major atmosphere records across a long route: Measure for entry,
+   Ground for orientation and Cultivate for closure. Flat evidence-led scenes
+   separate every moment; cards remain opaque local surfaces. */
+.hero {
+  background: var(--atmosphere-measure);
+  color: var(--atmosphere-measure-primary);
+}
+
+.hero :is(h1, .brand-promise, .hero-text-link) {
+  color: var(--atmosphere-measure-primary);
+}
+
+.hero :is(.hero-support, .eyebrow-on-dark) {
+  color: var(--atmosphere-measure-secondary);
+}
+
+.hero :is(a, button):focus-visible {
+  outline-color: var(--atmosphere-measure-focus-outer);
+  box-shadow: 0 0 0 2px var(--atmosphere-measure-focus-inner);
+}
+
+/* The proof rail is an opaque nested surface, independent of the Measure
+   theme pair. */
+.hero-proof-rail {
+  border-color: var(--ldm-foundation-border-emphasis-dark);
+  background: var(--ldm-foundation-surface-canvas-dark);
+}
+
+.hero-proof-item {
+  background: var(--ldm-foundation-surface-alt-dark);
+}
+
+.showcase-section.section {
+  padding-block: 0;
+  background: var(--section-surface-showcase);
+}
+
+.showcase-atmosphere {
+  background: var(--atmosphere-ground);
+  color: var(--atmosphere-ground-primary);
+  padding-block: clamp(82px, 9vw, 132px) clamp(50px, 5vw, 76px);
+}
+
+.showcase-atmosphere .section-heading {
+  margin-bottom: 0;
+}
+
+.showcase-atmosphere :is(h2, .eyebrow) {
+  color: var(--atmosphere-ground-primary);
+}
+
+.showcase-atmosphere .section-heading > p:last-child {
+  color: var(--atmosphere-ground-secondary);
+}
+
+.showcase-content {
+  padding-block: clamp(50px, 6vw, 92px) clamp(82px, 9vw, 156px);
+}
+
+.handoff-section {
+  background: var(--atmosphere-cultivate);
+  color: var(--atmosphere-cultivate-primary);
+}
+
+.handoff-section :is(.handoff-copy h2, .eyebrow-on-dark) {
+  color: var(--atmosphere-cultivate-primary);
+}
+
+.handoff-copy > p:not(.eyebrow):not(.share-feedback),
+.handoff-section .share-feedback {
+  color: var(--atmosphere-cultivate-secondary);
+}
+
+.handoff-shot {
+  border-color: var(--atmosphere-cultivate-separator);
+}
+
+.handoff-section .qr-card {
+  --text: var(--ldm-foundation-text-primary-light);
+  --text-secondary: var(--ldm-foundation-surface-raised-dark);
+  --text-meta: var(--ldm-foundation-surface-raised-dark);
+  --accent: var(--ldm-foundation-interaction-accent-light);
+  --card: var(--ldm-foundation-surface-raised-light);
+  --border: var(--ldm-foundation-border-emphasis-light);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+}
+
+.handoff-section .qr-card figcaption {
+  color: var(--text);
+}
+
+.handoff-section .qr-card figcaption svg {
+  color: var(--accent);
+}
+
+.handoff-section :is(a, button):focus-visible {
+  outline-color: var(--atmosphere-cultivate-focus-outer);
+  box-shadow: 0 0 0 2px var(--atmosphere-cultivate-focus-inner);
+}
+
+.dataset-grid {
+  display: block !important;
+  column-count: 3;
+  column-gap: 24px;
+}
+
+.dataset-card {
+  display: inline-flex !important;
+  flex-direction: column !important;
+  width: 100%;
+  margin: 0 0 24px !important;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  vertical-align: top;
+  transition: border-color var(--motion-duration-state) var(--motion-ease-state);
+}
+
+.dataset-card:has(.dataset-details[open]) {
+  border-color: var(--pillar-border-emphasis);
+  box-shadow: 0 2px 0 var(--pillar-border-hairline);
+}
+
+.dataset-card > .dataset-image,
+.dataset-card > .dataset-body {
+  width: 100% !important;
+  min-width: 0;
+}
+
+.dataset-card > .dataset-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataset-card .dataset-open {
+  order: 1;
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+}
+
+.dataset-card .dataset-details {
+  order: 2;
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.dataset-card > .dataset-image {
+  height: auto !important;
+  aspect-ratio: 16 / 10;
+  flex: 0 0 auto;
+}
+
+.dataset-card > .dataset-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dataset-body h3,
+.dataset-body > p,
+.evidence-summary dd {
+  min-height: 0 !important;
+  max-height: none !important;
+  display: block !important;
+  overflow: visible !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+}
+
+.dataset-card[data-source-status="verified-lineage"] {
+  box-shadow: 0 1px 0 var(--hairline);
+}
+
+.source-summary {
+  min-height: 64px;
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  padding-block: 8px !important;
+}
+
+.source-summary,
+.group-filters button,
+.intent-tab,
+.source-link,
+.dataset-mobile-link,
+.dataset-open,
+.button,
+.share-action,
+.inline-action,
+.hero-text-link {
+  transition:
+    color var(--motion-duration-state) var(--motion-ease-state),
+    background-color var(--motion-duration-state) var(--motion-ease-state),
+    border-color var(--motion-duration-state) var(--motion-ease-state),
+    transform var(--motion-duration-feedback) var(--motion-ease-state);
+}
+
+.source-summary:active,
+.group-filters button:active,
+.intent-tab:active,
+.source-link:active,
+.dataset-mobile-link:active,
+.dataset-open:active,
+.button:active,
+.share-action:active,
+.inline-action:active,
+.hero-text-link:active {
+  transform: translateY(var(--motion-distance-feedback));
+}
+
+.dataset-open svg,
+.button svg,
+.share-action svg,
+.inline-action svg,
+.hero-text-link svg {
+  transition: transform var(--motion-duration-state) var(--motion-ease-state);
+}
+
+.dataset-open:is(:hover, :focus-visible) svg,
+.button:is(:hover, :focus-visible) svg,
+.share-action:is(:hover, :focus-visible) svg,
+.inline-action:is(:hover, :focus-visible) svg,
+.hero-text-link:is(:hover, :focus-visible) svg {
+  transform: translateX(3px);
+}
+
+.source-summary-copy {
+  min-width: 0;
+  flex: 1;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.gd-lineage-logo {
+  width: 42px;
+  height: auto;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.source-status-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--text-meta);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--text-meta) 14%, transparent);
+}
+
+.dataset-card[data-source-status="candidate"] .source-status-dot {
+  background: var(--source-status-candidate);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--source-status-candidate) 16%, transparent);
+}
+
+.dataset-card[data-source-status="other-source"] .source-status-dot {
+  background: var(--source-status-other);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--source-status-other) 16%, transparent);
+}
+
+.dataset-card[data-source-status="derived"] .source-status-dot {
+  background: var(--source-status-derived);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--source-status-derived) 16%, transparent);
+}
+
+.source-review {
+  display: grid;
+  gap: 16px;
+  padding: 2px 0 4px;
+}
+
+.source-status {
+  justify-self: start;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--canvas-soft);
+  color: var(--text-secondary);
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.source-status-verified-lineage {
+  color: color-mix(in srgb, var(--brand-blue) 78%, var(--text));
+  border-color: color-mix(in srgb, var(--brand-blue) 38%, var(--border));
+  background: color-mix(in srgb, var(--brand-blue) 9%, var(--card));
+}
+
+[data-theme="dark"] .source-status-verified-lineage {
+  color: var(--ldm-product-citymeter-dark-accent);
+}
+
+.source-status-candidate {
+  color: var(--ldm-semantic-warning-light-foreground);
+  border-color: color-mix(in srgb, var(--ldm-semantic-warning-light-foreground) 34%, var(--border));
+  background: var(--ldm-semantic-warning-light-background);
+}
+
+[data-theme="dark"] .source-status-candidate {
+  color: var(--ldm-semantic-warning-dark-foreground);
+  border-color: color-mix(in srgb, var(--ldm-semantic-warning-dark-foreground) 34%, var(--border));
+  background: var(--ldm-semantic-warning-dark-background);
+}
+
+.source-copy-block {
+  display: grid;
+  gap: 6px;
+}
+
+.source-copy-block-benefit {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--accent) 7%, var(--card));
+}
+
+.source-copy-block-benefit .source-copy-label {
+  color: var(--accent);
+}
+
+.source-copy-block-benefit .source-copy-text {
+  color: var(--text);
+  font-size: .94rem;
+  line-height: 1.7;
+}
+
+.source-copy-label,
+.source-copy-text {
+  margin: 0;
+}
+
+.source-copy-label {
+  color: var(--text);
+  font: 600 .82rem/1.35 "Bai Jamjuree", sans-serif;
+}
+
+.dataset-details .source-copy-text,
+.dataset-details .lineage-definition {
+  color: var(--text-secondary);
+  font-size: .88rem;
+  line-height: 1.65;
+}
+
+.dataset-details .lineage-definition {
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--brand-blue) 6%, var(--canvas-soft));
+}
+
+.source-link-group {
+  display: grid;
+  gap: 7px;
+}
+
+.source-link-label {
+  color: var(--text-meta);
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.source-link,
+.dataset-mobile-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 7px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--card);
+  font-size: .79rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.source-link:hover,
+.dataset-mobile-link:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent);
+}
+
+.dataset-qr-handoff {
+  display: grid;
+  grid-template-columns: minmax(116px, 148px) 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--canvas-soft);
+}
+
+.dataset-qr-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--ldm-foundation-surface-card-light);
+}
+
+.dataset-qr-copy {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  min-width: 0;
+  color: var(--text);
+  font-size: .86rem;
+  line-height: 1.5;
+}
+
+.dataset-details .dataset-qr-copy > strong {
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.45;
+}
+
+.conceptual-preview-label {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  width: fit-content;
+  max-width: calc(100% - 28px);
+  padding: 8px 11px;
+  border: 1px solid color-mix(in srgb, var(--ldm-foundation-surface-raised-light) 28%, transparent);
+  border-radius: 999px;
+  color: var(--ldm-foundation-text-primary-dark);
+  background: color-mix(in srgb, var(--ldm-foundation-surface-canvas-dark) 82%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ldm-foundation-surface-canvas-dark) 28%, transparent);
+  backdrop-filter: blur(10px);
+  font-size: .72rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.demo-video-frame,
+.demo-caption-panel {
+  display: contents;
+}
+
+/* Marketing actions use two silhouettes only: circles for icon-only controls,
+   capsules for every control with a text label. */
+.button,
+.share-action,
+.inline-action,
+.hero-text-link,
+.group-filters button,
+.source-link,
+.dataset-mobile-link,
+.related-records a,
+.source-summary,
+.preview-focus-label,
+.live-example-label {
+  border-radius: 999px !important;
+}
+
+.share-action,
+.inline-action,
+.hero-text-link {
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid currentColor;
+  text-decoration: none;
+}
+
+.quiet-control,
+.theme-switch button,
+.playback-control,
+.intent-tab .intent-icon {
+  border-radius: 50% !important;
+}
+
+.theme-switch {
+  border-radius: 999px !important;
+}
+
+.intent-tab {
+  border-radius: 999px;
+  padding-inline: 14px;
+}
+
+.hero-page-qr {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 20px;
+  padding: 9px 16px 9px 9px;
+  border: 1px solid var(--ldm-foundation-border-emphasis-dark);
+  border-radius: 18px;
+  background: var(--ldm-foundation-surface-canvas-dark);
+  color: var(--ldm-foundation-surface-raised-light);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--ldm-foundation-surface-canvas-dark) 14%, transparent);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.hero-page-qr-image {
+  display: block;
+  width: 112px;
+  height: 112px;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--ldm-foundation-surface-card-light);
+}
+
+.hero-page-qr-copy {
+  display: grid;
+  gap: 4px;
+  line-height: 1.35;
+}
+
+.hero-page-qr-copy strong {
+  font-size: .95rem;
+}
+
+.hero-page-qr-copy span {
+  color: var(--ldm-foundation-text-primary-dark);
+  font-size: .78rem;
+}
+
+.supporter-logos {
+  display: grid;
+  grid-template-columns: repeat(3, var(--supporter-logo-disc));
+  align-items: center;
+  gap: var(--supporter-logo-gap);
+  width: max-content;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.supporter-logo-cell {
+  display: grid;
+  place-items: center;
+  width: var(--supporter-logo-disc);
+  height: var(--supporter-logo-disc);
+  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side at center,
+    color-mix(in srgb, var(--ldm-foundation-surface-raised-light) 50%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+.supporter-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.supporter-logo-depa {
+  width: 76%;
+}
+
+.supporter-logo-dsure {
+  width: auto;
+  height: calc(var(--supporter-logo-disc) * .68);
+}
+
+.supporter-logo-account {
+  width: 82%;
+}
+
+.supporter-logos-hero {
+  margin-top: 18px;
+}
+
+.supporter-logos-footer {
+  margin-top: 16px;
+}
+
+.site-footer {
+  overflow-x: clip;
+  background: var(--section-surface-footer);
+  padding-block-start: 34px;
+  padding-block-end: max(34px, env(safe-area-inset-bottom, 0px));
+}
+
+.site-footer .footer-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, auto);
+  align-items: start;
+  column-gap: clamp(32px, 6vw, 84px);
+  max-width: 1120px;
+}
+
+.site-footer .footer-grid > * {
+  min-width: 0;
+}
+
+.site-footer .footer-meta {
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+}
+
+.site-footer .footer-grid nav {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  max-width: 420px;
+}
+
+.site-footer .footer-meta > small {
+  justify-self: end;
+}
+
+@media (max-width: 1120px) {
+  .dataset-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .site-footer .footer-meta {
+    justify-items: start;
+  }
+
+  .site-footer .footer-grid nav {
+    justify-content: flex-start;
+  }
+
+  .site-footer .footer-meta > small {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .dataset-grid {
+    column-count: 1;
+    column-gap: 0;
+  }
+
+  .dataset-card {
+    margin-bottom: 20px !important;
+  }
+
+  .dataset-body h3 {
+    font-size: clamp(1.25rem, 6vw, 1.6rem);
+  }
+
+  .demo-video-shell.is-catalog-enhanced {
+    aspect-ratio: 16 / 9 !important;
+    overflow: hidden !important;
+    display: block !important;
+    border-radius: 0;
+    background: var(--ldm-foundation-surface-canvas-dark);
+  }
+
+  .demo-video-shell.is-catalog-enhanced > video,
+  .demo-video-shell.is-catalog-enhanced > .demo-poster {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .demo-video-shell.is-catalog-enhanced > .live-example-label {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    margin: 0 !important;
+  }
+
+  .demo-video-shell.is-catalog-enhanced > .playback-control {
+    position: absolute !important;
+    right: 11px !important;
+    bottom: 10px !important;
+    z-index: 5;
+  }
+
+  .dataset-qr-handoff {
+    grid-template-columns: 112px 1fr;
+    gap: 13px;
+    padding: 13px;
+  }
+
+  .hero-page-qr {
+    grid-template-columns: 96px minmax(0, 1fr);
+    margin-inline: auto;
+  }
+
+  .hero-page-qr-image {
+    width: 96px;
+    height: 96px;
+  }
+
+  .supporter-logos-hero {
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .dataset-qr-handoff {
+    grid-template-columns: 1fr;
+  }
+
+  .dataset-qr-image {
+    width: min(190px, 100%);
+    justify-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dataset-card,
+  .source-summary,
+  .group-filters button,
+  .intent-tab,
+  .source-link,
+  .dataset-mobile-link,
+  .dataset-open,
+  .button,
+  .share-action,
+  .inline-action,
+  .hero-text-link,
+  .dataset-open svg,
+  .button svg,
+  .share-action svg,
+  .inline-action svg,
+  .hero-text-link svg {
+    transition: none !important;
+  }
+
+  .source-summary:active,
+  .group-filters button:active,
+  .intent-tab:active,
+  .source-link:active,
+  .dataset-mobile-link:active,
+  .dataset-open:active,
+  .button:active,
+  .share-action:active,
+  .inline-action:active,
+  .hero-text-link:active,
+  .dataset-open:is(:hover, :focus-visible) svg,
+  .button:is(:hover, :focus-visible) svg,
+  .share-action:is(:hover, :focus-visible) svg,
+  .inline-action:is(:hover, :focus-visible) svg,
+  .hero-text-link:is(:hover, :focus-visible) svg {
+    transform: none !important;
+  }
+}
+
+@media print {
+  [data-lm-placement],
+  [data-lm-placement][data-lm-armed]:not([data-lm-play]),
+  [data-lm-placement][data-lm-play] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+/* CityMETER catalog structure simplification — release v21.
+   Five primary marks form one reading path: Land + Living → Location,
+   CityMETER, then Landometer to Local Decisions. Category surfaces stay flat. */
+.explorer-section .catalog-structure {
+  --catalog-simple-surface: var(--ldm-foundation-surface-alt-light);
+  --catalog-simple-panel: var(--ldm-foundation-surface-raised-light);
+  --catalog-simple-text: var(--ldm-foundation-text-primary-light);
+  --catalog-simple-secondary: var(--ldm-foundation-text-secondary-light);
+  --catalog-simple-border: var(--ldm-foundation-border-emphasis-light);
+  width: min(100%, 1180px);
+  margin: 0 auto clamp(24px, 3vw, 36px);
+  padding: clamp(20px, 2.5vw, 30px);
+  color: var(--catalog-simple-text);
+  background: var(--catalog-simple-surface);
+  border: 1px solid var(--catalog-simple-border);
+  border-radius: 20px;
+}
+[data-theme="dark"] .explorer-section .catalog-structure {
+  --catalog-simple-surface: var(--ldm-foundation-surface-alt-dark);
+  --catalog-simple-panel: var(--ldm-foundation-surface-canvas-dark);
+  --catalog-simple-text: var(--ldm-foundation-text-primary-dark);
+  --catalog-simple-secondary: var(--ldm-foundation-text-secondary-dark);
+  --catalog-simple-border: var(--ldm-foundation-border-emphasis-dark);
+}
+.explorer-section .catalog-structure-caption { max-width: 64ch; }
+.explorer-section .catalog-structure-caption h3 {
+  margin: 7px 0 8px;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+}
+.explorer-section .catalog-structure-caption > p:last-child { color: var(--catalog-simple-secondary); }
+.explorer-section .catalog-structure-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(10px, 1.5vw, 18px);
+  margin-top: clamp(20px, 2.5vw, 28px);
+}
+.explorer-section .catalog-structure-step {
+  --catalog-step-surface: var(--pillar-surface-alt);
+  --catalog-step-accent: var(--pillar-interaction-accent);
+  min-width: 0;
+  padding: clamp(14px, 1.7vw, 18px);
+  color: var(--pillar-text-primary);
+  background: var(--catalog-step-surface);
+  border: 1px solid var(--pillar-border-emphasis);
+  box-shadow: 0 1px 0 var(--pillar-border-hairline);
+  border-radius: 14px;
+}
+.explorer-section .catalog-structure-step[data-group="land"] { --catalog-step-surface: var(--pillar-surface-land); --catalog-step-accent: var(--pillar-accent-land); }
+.explorer-section .catalog-structure-step[data-group="living"] { --catalog-step-surface: var(--pillar-surface-living); --catalog-step-accent: var(--pillar-accent-living); }
+.explorer-section .catalog-structure-step[data-group="location"] { --catalog-step-surface: var(--pillar-surface-location); --catalog-step-accent: var(--pillar-accent-location); }
+.explorer-section .catalog-structure-step-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.explorer-section .catalog-structure-step-heading > span {
+  padding: 3px 9px;
+  color: var(--pillar-text-primary);
+  background: var(--pillar-surface-raised);
+  border: 1px solid var(--pillar-border-default);
+  border-radius: 999px;
+  font-weight: 700;
+}
+.explorer-section .catalog-structure-step-heading small { color: var(--pillar-text-metadata); font-weight: 600; }
+.explorer-section .catalog-structure-step > p { margin: 12px 0 0; color: var(--pillar-text-secondary); }
+.explorer-section .catalog-structure-operator {
+  align-self: center;
+  color: var(--catalog-simple-text);
+  font-family: Arvo, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.explorer-section .catalog-structure-citymeter,
+.explorer-section .catalog-structure-outcome {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: 14px;
+  padding: clamp(14px, 1.8vw, 18px);
+  background: var(--catalog-simple-panel);
+  border: 1px solid var(--catalog-simple-border);
+  border-radius: 14px;
+}
+.explorer-section .catalog-structure-citymeter { box-shadow: 0 1px 0 var(--pillar-border-hairline); }
+.explorer-section .catalog-structure-citymeter > strong,
+.explorer-section .catalog-structure-outcome-route { color: var(--catalog-simple-text); font-weight: 700; }
+.explorer-section .catalog-structure-citymeter > p,
+.explorer-section .catalog-structure-outcome p { margin: 3px 0 0; color: var(--catalog-simple-secondary); }
+.explorer-section .catalog-structure-outcome { box-shadow: 0 1px 0 var(--pillar-border-hairline); }
+.explorer-section .catalog-structure-outcome-route { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.explorer-section .catalog-structure-outcome-route b { color: var(--catalog-simple-text); }
+@media (max-width: 720px) {
+  .explorer-section .catalog-structure-flow { grid-template-columns: 1fr; gap: 8px; }
+  .explorer-section .catalog-structure-operator { justify-self: center; line-height: 1; }
+  .explorer-section .catalog-structure-citymeter,
+  .explorer-section .catalog-structure-outcome { grid-template-columns: 1fr; gap: 10px; }
+}
+@media (max-width: 430px) {
+  .explorer-section .catalog-structure { padding: 16px; border-radius: 16px; }
+}
+/* CityMETER interaction ripple and social footer — release v22. */
+.explorer-section {
+  overflow-x: clip;
+}
+
+.site-footer .footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: none;
+}
+
+.site-footer .footer-social a {
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 44px;
+  border: 1px solid var(--pillar-border-default);
+  border-radius: 50%;
+  background: var(--pillar-surface-raised);
+  color: var(--pillar-text-primary);
+  text-decoration: none;
+  transition: transform var(--motion-duration-feedback) var(--motion-ease-enter), border-color var(--motion-duration-feedback) ease, color var(--motion-duration-feedback) ease;
+}
+
+.site-footer .footer-social a:hover,
+.site-footer .footer-social a:focus-visible {
+  border-color: var(--pillar-interaction-accent);
+  color: var(--pillar-interaction-accent);
+  transform: translateY(-2px);
+}
+
+.site-footer .footer-social a:active {
+  transform: translateY(0);
+}
+
+.site-footer .footer-social svg {
+  width: 21px;
+  height: 21px;
+}
+
+@media (max-width: 900px) {
+  .site-footer .footer-social {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer .footer-social a:hover,
+  .site-footer .footer-social a:focus-visible,
+  .site-footer .footer-social a:active {
+    transform: none;
+  }
+}
+/* CityMETER groove and image-performance release v23. */
+.intent-tab .intent-icon {
+  transition:
+    color var(--motion-duration-state) var(--motion-ease-state),
+    background-color var(--motion-duration-state) var(--motion-ease-state),
+    border-color var(--motion-duration-state) var(--motion-ease-state);
+}
+
+.intent-tab > svg {
+  transition: color var(--motion-duration-state) var(--motion-ease-state);
+}
+
+.site-footer .footer-social a:hover,
+.site-footer .footer-social a:focus-visible {
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-footer .footer-social a:hover {
+    transform: translateY(-2px);
+  }
+}
+/* CityMETER contributor release v27. Collapsed cards show faces only; full attribution stays in native details. */
+.dataset-card-actions {
+  order: 1;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.dataset-card-actions .dataset-open {
+  order: 0;
+  margin-top: 0;
+}
+
+.citymeter-contributors-compact {
+  min-height: 34px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  margin-left: auto;
+}
+
+.citymeter-contributor-compact-person {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  flex: 0 0 34px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--raised);
+}
+
+.citymeter-contributor-compact-person .citymeter-contributor-portrait {
+  border: 0;
+}
+
+.dataset-card:has(.dataset-details[open]) .citymeter-contributors-compact {
+  display: none;
+}
+
+.citymeter-contributors {
+  margin: 0 0 13px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+
+.citymeter-contributors h4 {
+  margin: 0 0 4px;
+  color: var(--text);
+  font-family: "IBM Plex Sans Thai Looped", "Bai Jamjuree", sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+[lang="en"] .citymeter-contributors h4 {
+  font-family: Arvo, Georgia, serif;
+}
+
+.citymeter-contributors-note {
+  margin: 0 0 10px;
+  color: var(--text-meta);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.citymeter-contributor-list,
+.citymeter-contributors-more-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.citymeter-contributor {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--raised);
+  padding: 5px 10px 5px 5px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.citymeter-contributor:is(:hover, :focus-visible),
+.citymeter-contributors-more > summary:is(:hover, :focus-visible),
+.citymeter-contributors-more-close:is(:hover, :focus-visible) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.citymeter-contributor-portrait {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  background: var(--canvas-soft);
+}
+
+.citymeter-contributor-fallback,
+.citymeter-contributor-fallback::before,
+.citymeter-contributor-fallback::after {
+  position: absolute;
+  content: "";
+}
+
+.citymeter-contributor-fallback {
+  inset: 0;
+}
+
+.citymeter-contributor-fallback::before {
+  width: 8px;
+  height: 8px;
+  top: 7px;
+  left: 11px;
+  border-radius: 50%;
+  background: var(--text-meta);
+}
+
+.citymeter-contributor-fallback::after {
+  width: 18px;
+  height: 10px;
+  left: 6px;
+  bottom: 5px;
+  border-radius: 10px 10px 6px 6px;
+  background: var(--text-meta);
+}
+
+.citymeter-contributor-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.citymeter-contributor-image.is-broken {
+  display: none;
+}
+
+.citymeter-contributors-more {
+  flex: 0 0 auto;
+}
+
+.citymeter-contributors-more[open] {
+  flex-basis: 100%;
+}
+
+.citymeter-contributors-more > summary {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--raised);
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.citymeter-contributors-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.citymeter-contributors-more-list {
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 10px;
+  box-shadow: var(--shadow-low);
+}
+
+.citymeter-contributors-more-close {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--raised);
+  padding: 8px 12px;
+  color: var(--accent);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 420px) {
+  .citymeter-contributor-name {
+    max-width: 18ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Owner-approved motif: one quiet, single-ink orientation cue. It sits inside
+   open space rather than touching a panel edge, so it cannot read as a
+   decorative border. The supplied component stays in its final state; the
+   wrapper owns the exact DS 0.9.1 observer-entry motion. */
+.explorer-section .catalog-structure {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.explorer-section .catalog-structure > :not([data-lm-placement]) {
+  position: relative;
+  z-index: 1;
+}
+
+[data-lm-placement="catalog-orientation"] {
+  position: absolute;
+  z-index: 0;
+  top: clamp(22px, 2.4vw, 32px);
+  right: clamp(24px, 3vw, 42px);
+  width: clamp(132px, 13vw, 188px);
+  aspect-ratio: 2 / 1;
+  display: block;
+  color: var(--ldm-energy-sky);
+  pointer-events: none;
+  user-select: none;
+  contain: layout paint;
+}
+
+[data-lm-placement="catalog-orientation"] lm-motif {
+  width: 100%;
+  height: 100%;
+}
+
+[data-lm-placement][data-lm-armed]:not([data-lm-play]) {
+  opacity: 0;
+  transform: translateX(36px) scale(.985);
+}
+
+[data-lm-placement][data-lm-play] {
+  animation:
+    citymeter-motif-approach-opacity 760ms cubic-bezier(.16, 1, .3, 1) both,
+    citymeter-motif-approach-transform 920ms cubic-bezier(.2, .9, .25, 1.08) both;
+}
+
+@keyframes citymeter-motif-approach-opacity {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes citymeter-motif-approach-transform {
+  from { transform: translateX(36px) scale(.985); }
+  to { transform: none; }
+}
+
+@media (max-width: 979px) {
+  [data-lm-placement="catalog-orientation"] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-lm-placement],
+  [data-lm-placement][data-lm-armed]:not([data-lm-play]),
+  [data-lm-placement][data-lm-play] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

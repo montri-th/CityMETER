@@ -1,0 +1,82 @@
+{
+  "recordType": "citymeter_release_decision_record",
+  "recordVersion": "1.0",
+  "releaseId": "2026-09-04-citymeter-ds091-motif-internal-v1",
+  "artifactBuildId": "ui-20260904-ds091-motif-internal-v1",
+  "decisionDate": "2026-09-04",
+  "productScope": "CityMETER",
+  "artifact": {
+    "format": "web_public",
+    "runtime": "browser",
+    "delivery": "static_initial_html_with_hydration",
+    "canonicalUrl": "https://montri-th.github.io/CityMETER/"
+  },
+  "audience": "internal_review",
+  "intendedAudience": "public",
+  "userJob": "Find, compare, and inspect place-data examples and continue to the stated source or live example.",
+  "localeState": {
+    "primary": "th",
+    "supported": [
+      "th",
+      "en"
+    ],
+    "equivalenceRequired": true
+  },
+  "designSystem": {
+    "version": "0.9.1",
+    "authoringVersion": "0.9.1-r8",
+    "rulesetVersion": "lds-rules-0.9.1",
+    "machinePackageVersion": "v0.9.1-mp7",
+    "releaseTupleHash": "852f2cb97c5c7ba269c4c543f27cb4587b519263ea2075d84562289f21890e49",
+    "formatPack": "web.public.01",
+    "formatKit": "kit.web.base.01",
+    "targetProfile": "target.web.responsive.360-1600.01",
+    "experienceProfile": "product_orientation",
+    "capabilities": [
+      "claims",
+      "evidence",
+      "motion"
+    ],
+    "audienceColorProjection": {
+      "path": "assets/landometer-ds/v0.9.1/color-srgb-05.production.css",
+      "sha256": "3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c",
+      "bytes": 8184
+    }
+  },
+  "authority": {
+    "masterBrandBriefApprovalRef": "data/landometer-master-brand-brief-v0.5.3-approval.json",
+    "motifApprovalRef": "assets/landometer-motifs/v1/manifest.json",
+    "existingContributorReleaseRef": "data/citymeter-contributor-release-p1-7712069325b3.json",
+    "catalogEvidenceRef": "data/catalog-source-review.json",
+    "claimExpansionAuthorized": false
+  },
+  "changeBoundary": {
+    "presentationOnly": true,
+    "productCopyChanged": false,
+    "productClaimsAdded": false,
+    "datasetRecordsChanged": false,
+    "decorativeColoredEdgePolicy": "prohibited",
+    "replacement": "Neutral one-pixel separation, quiet DS surfaces, spacing, and low elevation; category meaning remains explicit in text.",
+    "motifRole": "One decorative and wayfinding rings motif in catalog orientation space; never identity, evidence, state, control, data encoding, border, edge, rail, or divider."
+  },
+  "deliveryDecision": {
+    "ownerRequestedAction": "Publish the presentation-layer migration to the existing CityMETER GitHub Pages URL.",
+    "deliveryState": "internal_preview",
+    "governedConformanceLevel": "not_claimed",
+    "packageValidated": true,
+    "artifactQaPassedClaimed": false,
+    "productionVerifiedClaimed": false,
+    "publishable": false,
+    "mustNotDeploy": true,
+    "blockingReasons": [
+      "The approved CityMETER Product Brief and signed claim/evidence release are unavailable.",
+      "No artifact-resolved Build Card, format implementation, manifest, claim chain, or operator promotion receipts exist for these exact candidate bytes."
+    ]
+  },
+  "knownBoundaries": [
+    "The project copy of the CityMETER Product Brief is unavailable and cannot authorize new product claims.",
+    "No external operator trust-store and pinned policy are present for signed artifact_qa_passed or production_verified promotion.",
+    "Master Brand Brief approval governs brand and shared architecture only; it does not approve CityMETER product facts or evidence.",
+    "The supplied motif approval is owner authority for this page and exact bytes, not a signed DS asset-approval receipt."
+  ]
+}

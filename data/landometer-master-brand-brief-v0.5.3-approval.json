@@ -1,0 +1,36 @@
+{
+  "recordType": "owner_approval_record",
+  "recordVersion": "1.0",
+  "subject": {
+    "title": "Landometer Master Brand Brief",
+    "version": "0.5.3",
+    "sourceRef": "project-source:Landometer_Master_Brand_Brief_v0_5_3_ecosystem_alignment_evidence_standard.md",
+    "sourceSha256": "33041749f59bca930459dccc3637bad1a4884bf4cecc8e1a543f8ec3771fe87c",
+    "sourceBytes": 76984
+  },
+  "approval": {
+    "status": "owner_approved",
+    "approvedBy": "Landometer owner",
+    "approvedOn": "2026-09-04",
+    "approvalTimePrecision": "day",
+    "evidenceRef": "owner-message:2026-09-04:approve-master-brand-brief-v0.5.3"
+  },
+  "authorityScope": [
+    "portfolio_identity",
+    "shared_methodology",
+    "shared_design_principles",
+    "product_architecture"
+  ],
+  "authorityExclusions": [
+    "CityMETER product claims",
+    "CityMETER capability claims",
+    "dataset truth or evidence",
+    "asset rights not separately approved",
+    "artifact QA or production conformance"
+  ],
+  "projectUse": {
+    "productScope": "CityMETER",
+    "purpose": "Brand and portfolio guidance for the public CityMETER page",
+    "claimExpansionAuthorized": false
+  }
+}

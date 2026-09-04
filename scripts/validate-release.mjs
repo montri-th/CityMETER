@@ -37,6 +37,8 @@ const contributorP1Release = contributorManifest.releaseReceipt;
 const contributorBundleName = contributorManifest.renderOwners.hydratedBundle.split("/").at(-1);
 const contributorEnhancerName = contributorManifest.renderOwners.transitionalEnhancer.split("/").at(-1);
 const contributorStylesName = contributorManifest.renderOwners.styles.split("/").at(-1);
+const activeBundleName = "index-qbT50gkr-v18.js";
+const activeStylesName = "catalog-enhancements-ds-0.9.1-v26.css";
 const ids = review.records.map((record) => record.id);
 const routeById = new Map(review.records.map((record) => [record.id, record.citymeterUrl]));
 const muenRaiRoute = "https://landometer.com/v3/citymeter/PRE?d=muenRai";
@@ -265,11 +267,11 @@ for (const page of ["index.html", "en/index.html"]) {
     JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
     `${page} showcase pillar contract must remain 1 / 3 / 2`
   );
-  assert(html.includes(contributorStylesName) && html.includes(contributorEnhancerName), `${page} is missing the hardened P1 contributor layer`);
-  assert(html.includes(contributorStylesName), `${page} must load the immutable P1 stylesheet revision`);
+  assert(html.includes(activeStylesName) && html.includes(contributorEnhancerName), `${page} is missing the active DS 0.9.1 surface layer or hardened P1 contributor runtime`);
+  assert(html.includes(activeStylesName), `${page} must load the DS 0.9.1 surface revision`);
   assert(html.includes(contributorEnhancerName), `${page} must load the immutable hardened P1 enhancement revision`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.css(?:\?v=\d+)?/g) || []).join() === contributorStylesName, `${page} must load exactly one immutable enhancement stylesheet revision`);
+  assert((html.match(/catalog-enhancements[^"']*\.css(?:\?v=\d+)?/g) || []).join() === activeStylesName, `${page} must load exactly one active enhancement stylesheet revision`);
   assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === contributorEnhancerName, `${page} must load exactly one immutable enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
@@ -280,8 +282,8 @@ for (const page of ["index.html", "en/index.html"]) {
     assert(html.split(preload).length === 2, `${page} must preload ${fontFile} exactly once with the route-correct prefix`);
   }
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
-  assert(html.includes(contributorBundleName), `${page} must load the hardened P1 contributor bundle revision`);
-  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === contributorBundleName, `${page} must load exactly one main bundle revision`);
+  assert(html.includes(activeBundleName), `${page} must load the DS 0.9.1 hydrated bundle revision`);
+  assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === activeBundleName, `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
   assert(html.includes(`name="citymeter:release-receipt" content="${contributorP1Release}"`), `${page} is missing the authorized v29 release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
@@ -1549,6 +1551,13 @@ for (const asset of supporterAssets) {
   assert(sha256(path) === asset.sha256, `Supporter crop bytes changed: ${asset.path}`);
 }
 
-await import("./validate-p1-contributors.mjs");
+await import("./validate-citymeter-ds-0.9.1-release.mjs");
 
-console.log(`CityMETER release validation passed: hardened P1 static-hydrated ${contributorBundleName} contributor parity on ${contributorManifest.projectionSummary.records} Thai/English cards, ${contributorManifest.projectionSummary.datasetRecords} Dataset + ${contributorManifest.projectionSummary.eventRecords} CreativeWork schema parity, plus the preserved v23 performance, catalog, evidence, QR, social-card, typography, motion, responsive and media contracts.`);
+const externalPeopleRegistry = join(root, "../Landom/data/generated/people-media.json");
+if (existsSync(externalPeopleRegistry)) {
+  await import("./validate-p1-contributors.mjs");
+} else {
+  console.warn("Skipped cross-repository contributor source check: ../Landom is not present in this workspace; local snapshot and render checks passed.");
+}
+
+console.log(`CityMETER inherited release invariants passed for the blocked internal candidate: hardened P1 static-hydrated ${contributorBundleName} contributor parity on ${contributorManifest.projectionSummary.records} Thai/English cards, ${contributorManifest.projectionSummary.datasetRecords} Dataset + ${contributorManifest.projectionSummary.eventRecords} CreativeWork schema parity, plus the preserved v23 performance, catalog, evidence, QR, social-card, typography, motion, responsive and media contracts.`);

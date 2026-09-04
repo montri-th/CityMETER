@@ -1,0 +1,126 @@
+{
+  "recordType": "project_governed_asset_manifest",
+  "recordVersion": "1.0",
+  "stableAssetId": "citymeter.animated-motif.landometer-v1",
+  "assetKind": "animated_svg_web_component",
+  "productScope": "CityMETER",
+  "source": {
+    "sourceRef": "owner-attachment:Landometer Brand Motifs.zip",
+    "sourceArchiveSha256": "916d18dee1d760d53ec2157d511e16ac6379b645f2a923c40da4356b1b4f90a2",
+    "sourceArchiveBytes": 12481,
+    "suppliedBy": "Landometer owner"
+  },
+  "approval": {
+    "status": "owner_approved",
+    "approvedBy": "Landometer owner",
+    "approvedOn": "2026-09-04",
+    "approvalTimePrecision": "day",
+    "evidenceRef": "owner-message:2026-09-04:approve-animated-motif-for-citymeter",
+    "publicationPermission": true,
+    "rights": "Owner-supplied and approved for this CityMETER public page only; no broader reuse inferred."
+  },
+  "files": [
+    {
+      "targetPath": "assets/landometer-motifs/v1/landometer-motifs.css",
+      "cacheRevision": "v1",
+      "mimeType": "text/css",
+      "bytes": 4194,
+      "sha256": "f5071a37a29bfe9196ea572f50d426bd7bb088c78219181ea8d3ae9f2fc4303c"
+    },
+    {
+      "targetPath": "assets/landometer-motifs/v1/landometer-motifs.js",
+      "cacheRevision": "v1",
+      "mimeType": "text/javascript",
+      "bytes": 8056,
+      "sha256": "593efc75a95daa3fdb458f0a4078c8ba207950d7ced14e1557548e6376e9a02f"
+    }
+  ],
+  "allowedRoles": [
+    "decorative_motif",
+    "wayfinding_accent"
+  ],
+  "prohibitedRoles": [
+    "identity",
+    "logo",
+    "wordmark",
+    "favicon",
+    "social_preview",
+    "data_visualization",
+    "chart",
+    "map",
+    "evidence",
+    "metric",
+    "progress",
+    "status",
+    "loading",
+    "control",
+    "link",
+    "button",
+    "focus_indicator",
+    "decorative_border",
+    "edge",
+    "rail",
+    "divider",
+    "background_behind_text",
+    "product_claim_proof"
+  ],
+  "allowedFormatProfiles": [
+    "web_public"
+  ],
+  "allowedSurfaceRoles": [
+    "dataset_catalog_orientation"
+  ],
+  "allowedAudiences": [
+    "public"
+  ],
+  "locales": [
+    "th",
+    "en"
+  ],
+  "implementation": {
+    "selectedKind": "rings",
+    "variant": "quiet",
+    "ink": "sky",
+    "autoplay": false,
+    "placementSelector": "#datasets .catalog-structure",
+    "placementMarker": "catalog-orientation",
+    "renderedGeometry": {
+      "viewBox": "0 0 600 300",
+      "aspectRatio": "2/1",
+      "placementWidthCssPx": {
+        "minimum": 132,
+        "maximum": 188
+      }
+    },
+    "motionAdapter": {
+      "benefit": "spatial_relationship",
+      "opacityDurationMs": 760,
+      "transformDurationMs": 920,
+      "inlineDistancePx": 36,
+      "scaleFrom": 0.985,
+      "observerThreshold": 0.14,
+      "observerRootMargin": "0px 0px -12% 0px",
+      "onceOnly": true,
+      "initializationWatchdogMs": 2400,
+      "reducedMotion": "final_state",
+      "observerFailure": "final_state"
+    },
+    "deterministicRecipe": "Copy component CSS and JavaScript byte-for-byte; do not minify, bundle, or optimize. Disable component autoplay and animate only the placement wrapper with the DS 0.9.1 adapter."
+  },
+  "accessibility": {
+    "decorative": true,
+    "ariaHidden": true,
+    "focusable": false,
+    "pointerEvents": "none",
+    "textAlternative": null,
+    "fallback": "Omit the decoration while preserving all content and control geometry."
+  },
+  "prohibitedTransformations": [
+    "edit component colors",
+    "edit component timing or curves",
+    "edit component geometry",
+    "compose as identity",
+    "invoke component replay"
+  ],
+  "conformanceBoundary": "This owner approval supports authoring use. It is not a signed DS asset-approval receipt and does not promote the page to artifact_qa_passed or production_verified."
+}

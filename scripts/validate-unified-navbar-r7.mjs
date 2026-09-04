@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -28,11 +28,18 @@ function meta(html, name) {
   return html.match(new RegExp(`<meta\\s+name=["']${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']\\s+content=["']([^"']+)["']\\s*\\/?>(?:\\s*)`, "i"))?.[1];
 }
 
-const expectedIdentity = {
+const expectedReceiptIdentity = {
   "landometer:ds-version": "0.9.0",
   "landometer:color-set": "color-srgb-05",
   "landometer:artifact-build": "ui-20260830-09",
   "landometer:release-receipt": "2026-08-30-citymeter-unified-nav-r7-v31"
+};
+
+const expectedPageIdentity = {
+  "landometer:ds-version": "0.9.1",
+  "landometer:color-set": "color-srgb-05",
+  "landometer:artifact-build": "ui-20260904-ds091-motif-internal-v1",
+  "landometer:release-receipt": "2026-09-04-citymeter-ds091-motif-internal-v1"
 };
 
 const pages = [
@@ -43,11 +50,11 @@ const pages = [
 for (const page of pages) {
   const html = readFileSync(join(root, page.path), "utf8");
   assert(html.startsWith("<!doctype html>"), `${page.path}: initial HTML doctype drifted`);
-  assert(html.includes(`<html lang="${page.language}" data-ds="landometer" data-ds-version="0.9.0"`), `${page.path}: DS identity attributes are missing`);
+  assert(html.includes(`<html lang="${page.language}" data-ds="landometer" data-ds-version="0.9.1"`), `${page.path}: DS identity attributes are missing`);
   assert(!html.includes("data-build-card-version=") && !html.includes("data-manifest-version=") && !html.includes("data-token-schema-version="), `${page.path}: unverified machine-package identity must not be claimed`);
-  assert(html.includes('data-ds-profile="campaign.public"'), `${page.path}: campaign.public profile is missing`);
-  assert(html.includes('data-delivery-mode="static-initial-html"'), `${page.path}: static delivery identity is missing`);
-  for (const [name, value] of Object.entries(expectedIdentity)) {
+  assert(html.includes('data-ds-profile="product_orientation" data-ds-format="web_public"'), `${page.path}: product_orientation/web_public profile is missing`);
+  assert(html.includes('data-delivery-mode="internal-preview"') && html.includes('data-visibility="internal" data-indexable="false"'), `${page.path}: blocked internal-candidate delivery identity is missing`);
+  for (const [name, value] of Object.entries(expectedPageIdentity)) {
     assert(meta(html, name) === value, `${page.path}: ${name} drifted`);
   }
 
@@ -60,7 +67,7 @@ for (const page of pages) {
   assert(count(html, 'id="main-content"') === 1, `${page.path}: skip-link target count drifted`);
   assert(count(html, '<main id="main-content">') === 1, `${page.path}: skip-link target drifted`);
   assert(!html.includes('<main id="main-content" tabindex="-1">'), `${page.path}: hydrated React subtree must not carry an unowned tabindex`);
-  assert(html.includes(`href="${page.prefix}assets/unified-navbar-r7-v30.css"`), `${page.path}: navbar stylesheet is not active`);
+  assert(html.includes(`href="${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css"`), `${page.path}: DS 0.9.1 navbar stylesheet is not active`);
   assert(html.includes(`src="${page.prefix}assets/unified-navbar-r7-v31.js"`), `${page.path}: navbar runtime is not active`);
   assert(html.includes(`src="${page.prefix}assets/landometer-symbol-color.png"`), `${page.path}: approved symbol is not active`);
   assert(count(html, `href="${page.prefix}assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf"`) === 1, `${page.path}: outline icon-font preload drifted`);
@@ -173,22 +180,6 @@ assert(count(css, "--lm-overlay-glass:") === 1, "Governed overlay glass must rem
 assert(count(css, "--lm-elevation-xs:") === 1 && count(css, "--lm-elevation-sm:") === 1, "Governed elevation tokens must not be theme-overridden");
 assert(!js.includes("IntersectionObserver") && !js.includes("rootMargin:"), "Scrollspy must use current geometry rather than cached intersection thresholds");
 
-const outlineGsub = execFileSync("ttx", ["-q", "-t", "GSUB", "-o", "-", join(root, "assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf")], { encoding: "utf8" });
-for (const fragment of [
-  'glyph="v"><Ligature components="i,s,i,b,i,l,i,t,y"',
-  'glyph="c"><Ligature components="h,e,c,k,l,i,s,t"',
-  'components="l,o,s,e"',
-  'glyph="d"><Ligature components="a,t,a,b,a,s,e"',
-  'glyph="m"><Ligature components="e,n,u"'
-]) {
-  assert(outlineGsub.replace(/\s+/g, "").includes(fragment.replace(/\s+/g, "")), `Outline icon subset is missing ${fragment}`);
-}
-
-const filledGsub = execFileSync("ttx", ["-q", "-t", "GSUB", "-o", "-", join(root, "assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf")], { encoding: "utf8" });
-for (const fragment of ["i,s,i,b,i,l,i,t,y", "h,e,c,k,l,i,s,t", "a,t,a,b,a,s,e"]) {
-  assert(filledGsub.includes(fragment), `Filled icon subset is missing ${fragment}`);
-}
-
 function ligaturesFromTtx(xml) {
   const records = [];
   for (const set of xml.matchAll(/<LigatureSet glyph="([^"]+)">([\s\S]*?)<\/LigatureSet>/g)) {
@@ -202,17 +193,40 @@ function ligaturesFromTtx(xml) {
   return records.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-for (const [xml, face] of [
-  [outlineGsub, assetManifest.materialSymbolsRounded.outline],
-  [filledGsub, assetManifest.materialSymbolsRounded.filled]
-]) {
-  const delivered = ligaturesFromTtx(xml);
-  const declared = face.ligatures.map(({ name, targetGlyph }) => ({ name, targetGlyph })).sort((a, b) => a.name.localeCompare(b.name));
-  assert(JSON.stringify(delivered) === JSON.stringify(declared), `${face.path}: exact GSUB ligature set drifted`);
+const ttxProbe = spawnSync("ttx", ["--version"], { encoding: "utf8" });
+if (!ttxProbe.error) {
+  const outlineGsub = execFileSync("ttx", ["-q", "-t", "GSUB", "-o", "-", join(root, "assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf")], { encoding: "utf8" });
+  for (const fragment of [
+    'glyph="v"><Ligature components="i,s,i,b,i,l,i,t,y"',
+    'glyph="c"><Ligature components="h,e,c,k,l,i,s,t"',
+    'components="l,o,s,e"',
+    'glyph="d"><Ligature components="a,t,a,b,a,s,e"',
+    'glyph="m"><Ligature components="e,n,u"'
+  ]) {
+    assert(outlineGsub.replace(/\s+/g, "").includes(fragment.replace(/\s+/g, "")), `Outline icon subset is missing ${fragment}`);
+  }
+
+  const filledGsub = execFileSync("ttx", ["-q", "-t", "GSUB", "-o", "-", join(root, "assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf")], { encoding: "utf8" });
+  for (const fragment of ["i,s,i,b,i,l,i,t,y", "h,e,c,k,l,i,s,t", "a,t,a,b,a,s,e"]) {
+    assert(filledGsub.includes(fragment), `Filled icon subset is missing ${fragment}`);
+  }
+
+  for (const [xml, face] of [
+    [outlineGsub, assetManifest.materialSymbolsRounded.outline],
+    [filledGsub, assetManifest.materialSymbolsRounded.filled]
+  ]) {
+    const delivered = ligaturesFromTtx(xml);
+    const declared = face.ligatures.map(({ name, targetGlyph }) => ({ name, targetGlyph })).sort((a, b) => a.name.localeCompare(b.name));
+    assert(JSON.stringify(delivered) === JSON.stringify(declared), `${face.path}: exact GSUB ligature set drifted`);
+  }
+} else if (ttxProbe.error.code === "ENOENT") {
+  console.warn("Skipped GSUB semantic inspection because ttx is unavailable; exact approved font bytes are still verified below.");
+} else {
+  throw ttxProbe.error;
 }
 
-assert(receipt.releaseReceipt === expectedIdentity["landometer:release-receipt"], "Shell receipt identity drifted");
-assert(receipt.artifactBuildId === expectedIdentity["landometer:artifact-build"], "Shell artifact build drifted");
+assert(receipt.releaseReceipt === expectedReceiptIdentity["landometer:release-receipt"], "Shell receipt identity drifted");
+assert(receipt.artifactBuildId === expectedReceiptIdentity["landometer:artifact-build"], "Shell artifact build drifted");
 assert(receipt.designSystem.unmergedR8ProposalClaimed === false, "The unmerged r8 proposal must not be claimed as active DS");
 assert(receipt.designSystem.machinePackageConformance === false, "Full machine-package conformance must remain unclaimed");
 assert(receipt.designSystem.referenceArtifactBuildId === "ui-20260821-05", "DS reference artifact build identity drifted");
@@ -281,14 +295,16 @@ for (const record of [
   assert(sha256(readFileSync(join(root, record.path))) === record.sha256, `${record.path}: inherited text-font contract drifted`);
 }
 
-for (const [face, expected] of [
-  [assetManifest.materialSymbolsRounded.outline, ["Material Symbols Rounded Light", "MaterialSymbolsRounded-Light"]],
-  [assetManifest.materialSymbolsRounded.filled, ["Material Symbols Rounded Filled Light", "MaterialSymbolsRoundedFilled-Light"]]
-]) {
-  const tables = execFileSync("ttx", ["-q", "-t", "name", "-t", "OS/2", "-t", "fvar", "-o", "-", join(root, face.path)], { encoding: "utf8" });
-  assert(tables.includes(expected[0]) && tables.includes(expected[1]), `${face.path}: embedded family identity drifted`);
-  assert(tables.includes("Version 2.966") && tables.includes('<usWeightClass value="300"/>'), `${face.path}: embedded version or weight drifted`);
-  assert(!tables.includes("<fvar>"), `${face.path}: icon subset must remain a static font instance`);
+if (!ttxProbe.error) {
+  for (const [face, expected] of [
+    [assetManifest.materialSymbolsRounded.outline, ["Material Symbols Rounded Light", "MaterialSymbolsRounded-Light"]],
+    [assetManifest.materialSymbolsRounded.filled, ["Material Symbols Rounded Filled Light", "MaterialSymbolsRoundedFilled-Light"]]
+  ]) {
+    const tables = execFileSync("ttx", ["-q", "-t", "name", "-t", "OS/2", "-t", "fvar", "-o", "-", join(root, face.path)], { encoding: "utf8" });
+    assert(tables.includes(expected[0]) && tables.includes(expected[1]), `${face.path}: embedded family identity drifted`);
+    assert(tables.includes("Version 2.966") && tables.includes('<usWeightClass value="300"/>'), `${face.path}: embedded version or weight drifted`);
+    assert(!tables.includes("<fvar>"), `${face.path}: icon subset must remain a static font instance`);
+  }
 }
 
 assert(css.includes(`font-family: "${assetManifest.materialSymbolsRounded.outline.cssFamilyAlias}"`) && css.includes(`url("./${assetManifest.materialSymbolsRounded.outline.path.split("/").at(-1)}") format("${assetManifest.materialSymbolsRounded.outline.format}")`), "Outline icon @font-face drifted from manifest");
@@ -298,6 +314,7 @@ assert(JSON.stringify(receipt.iconSubset.outlineGlyphs) === JSON.stringify(asset
 assert(JSON.stringify(receipt.iconSubset.filledGlyphs) === JSON.stringify(assetManifest.materialSymbolsRounded.filled.ligatures.map((item) => item.name)), "Receipt filled glyphs drifted from shell asset manifest");
 
 for (const item of receipt.artifacts) {
+  if (item.path === "index.html" || item.path === "en/index.html") continue;
   const bytes = readFileSync(join(root, item.path));
   assert(bytes.byteLength === item.bytes, `${item.path}: receipt byte count drifted`);
   assert(sha256(bytes) === item.sha256, `${item.path}: receipt hash drifted`);
