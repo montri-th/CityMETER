@@ -218,6 +218,7 @@ summary:focus-visible,
 }
 
 .button-accent {
+  border-color: transparent;
   color: var(--ldm-foundation-surface-raised-light);
 }
 
@@ -292,6 +293,7 @@ summary:focus-visible,
 }
 
 .intent-tab.is-active .intent-icon {
+  border-color: var(--border);
   background: var(--ldm-foundation-surface-blue-tint-light);
 }
 
@@ -300,8 +302,17 @@ summary:focus-visible,
 }
 
 .preview-focus-label.is-limited {
-  border-color: var(--ldm-semantic-warning-dark-foreground);
+  border-color: var(--ldm-foundation-border-emphasis-dark);
   color: var(--ldm-semantic-warning-dark-foreground);
+}
+
+.group-filters button.is-active {
+  border-color: var(--border);
+  box-shadow: inset 0 -2px 0 var(--text);
+}
+
+.dataset-card:target {
+  outline-color: var(--pillar-border-emphasis);
 }
 
 /* The three pillar surfaces are intentionally quiet: one exact flat DS token
@@ -509,8 +520,9 @@ summary:focus-visible,
   min-height: 44px;
   margin-top: 20px;
   padding: 10px 16px;
-  border: 1px solid var(--accent);
+  border: 1px solid var(--border);
   border-radius: 999px;
+  background: var(--raised);
 }
 
 .dataset-card .dataset-details {
@@ -764,7 +776,8 @@ summary:focus-visible,
 .source-link:hover,
 .dataset-mobile-link:hover {
   color: var(--accent-hover);
-  border-color: var(--accent);
+  border-color: var(--border);
+  text-decoration: underline;
 }
 
 .dataset-qr-handoff {
@@ -966,7 +979,15 @@ summary:focus-visible,
 }
 
 .supporter-logos-footer {
-  margin-top: 16px;
+  margin-top: 10px;
+}
+
+.supporter-evidence-line {
+  max-width: 44ch;
+  margin: 18px 0 0;
+  color: var(--text-secondary);
+  font-size: .82rem;
+  line-height: 1.5;
 }
 
 .site-footer {
@@ -1154,7 +1175,7 @@ summary:focus-visible,
   }
 }
 /* CityMETER catalog structure simplification — release v21.
-   Five primary marks form one reading path: Land + Living → Location,
+   Five primary marks form one reading path: Land + Location + Living,
    CityMETER, then Landometer to Local Decisions. Category surfaces stay flat. */
 .explorer-section .catalog-structure {
   --catalog-simple-surface: var(--ldm-foundation-surface-alt-light);
@@ -1271,22 +1292,24 @@ summary:focus-visible,
 }
 
 .site-footer .footer-social a {
-  width: 44px;
-  height: 44px;
-  display: inline-grid;
-  place-items: center;
-  flex: 0 0 44px;
-  border: 1px solid var(--pillar-border-default);
-  border-radius: 50%;
-  background: var(--pillar-surface-raised);
+  min-height: 44px;
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 8px 0;
   color: var(--pillar-text-primary);
-  text-decoration: none;
-  transition: transform var(--motion-duration-feedback) var(--motion-ease-enter), border-color var(--motion-duration-feedback) ease, color var(--motion-duration-feedback) ease;
+  text-decoration: underline;
+  text-underline-offset: .24em;
+  transition: transform var(--motion-duration-feedback) var(--motion-ease-enter), color var(--motion-duration-feedback) ease;
 }
 
 .site-footer .footer-social a:hover,
 .site-footer .footer-social a:focus-visible {
-  border-color: var(--pillar-interaction-accent);
   color: var(--pillar-interaction-accent);
   transform: translateY(-2px);
 }
@@ -1435,7 +1458,8 @@ summary:focus-visible,
 .citymeter-contributor:is(:hover, :focus-visible),
 .citymeter-contributors-more > summary:is(:hover, :focus-visible),
 .citymeter-contributors-more-close:is(:hover, :focus-visible) {
-  border-color: var(--accent);
+  border-color: var(--border);
+  background: var(--canvas-soft);
   color: var(--accent);
 }
 

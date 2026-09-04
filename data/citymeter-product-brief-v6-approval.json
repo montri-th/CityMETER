@@ -1,0 +1,49 @@
+{
+  "recordType": "owner_approval_record",
+  "recordVersion": "1.0",
+  "subject": {
+    "title": "Product Brief — CityMETER",
+    "documentType": "Product Brief",
+    "product": "CityMETER",
+    "version": "Landometer-aligned v6",
+    "documentDate": "2026-06-30",
+    "sourceIdentity": "Product_Brief_CityMETER_Landometer_Aligned_v6-2.md",
+    "sourceSha256": "3c84c6b51fe0f8a288090ddaeb5b732c53f30234241103daa1d5a8baa0914448",
+    "sourceBytes": 120412,
+    "audienceDelivered": false
+  },
+  "approval": {
+    "status": "owner_approved",
+    "approvedBy": "Landometer owner",
+    "approvedAt": "2026-09-04T21:49:57+07:00",
+    "evidenceRef": "owner-message:2026-09-04:approve-all-required-for-citymeter-publication"
+  },
+  "authorityScope": [
+    "CityMETER product positioning",
+    "CityMETER product-level messaging",
+    "CityMETER audience and user-job framing",
+    "CityMETER Land, Location, Living and Local Decisions architecture",
+    "publication of product-level statements directly supported by the approved brief"
+  ],
+  "authorityExclusions": [
+    "proof that a specific dataset, feature, endpoint or live operation exists",
+    "proof of third-party source lineage or dataset freshness",
+    "third-party intellectual-property or publicity rights not held by the approver",
+    "Design System artifact QA or production conformance",
+    "cryptographic operator signatures or trust-policy pinning"
+  ],
+  "localeUse": {
+    "sourceLocale": "th-TH with embedded English product lines",
+    "artifactLocales": [
+      "th-TH",
+      "en"
+    ],
+    "englishUseCondition": "English public copy must remain semantically equivalent to the approved product meaning and pass locale review."
+  },
+  "projectUse": {
+    "productScope": "CityMETER",
+    "artifact": "Public CityMETER catalogue at https://montri-th.github.io/CityMETER/",
+    "purpose": "Resolve product authority for the exact Design System 0.9.1 migration candidate.",
+    "claimExpansionAuthorized": "Only where the claim is directly supported by this approved brief and separately meets evidence requirements when it describes a dataset, capability, source, status or live behavior."
+  }
+}

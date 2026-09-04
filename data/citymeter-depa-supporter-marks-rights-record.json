@@ -1,0 +1,78 @@
+{
+  "recordType": "citymeter_third_party_mark_use_record",
+  "recordVersion": "1.0",
+  "productScope": "CityMETER",
+  "artifactScope": {
+    "canonicalUrl": "https://montri-th.github.io/CityMETER/",
+    "placement": "site footer",
+    "locales": [
+      "th",
+      "en"
+    ],
+    "purpose": "Identify depa support and the programme/certification marks delivered for the CityMETER project."
+  },
+  "authorityStatus": "document_supported_and_owner_attested",
+  "evidence": [
+    {
+      "kind": "signed_contract",
+      "sourceIdentity": "DEPA-CityMeter_สัญญา.pdf",
+      "sha256": "6466680e525268eaedb264facd77f9f0cfdbd0019625aae081f4860e5d93eac2",
+      "bytes": 15575142,
+      "pageRef": "PDF page 7 (printed page 6), clauses 14–15",
+      "supports": "The CityMETER project must visibly state that it is promoted and supported by depa and display the depa emblem, or use equivalent depa support wording."
+    },
+    {
+      "kind": "decision_and_programme_document",
+      "sourceIdentity": "DEPA-CityMeter_ผลการพิจารณา-มติที่ประชุม-LOI .pdf",
+      "sha256": "7ecc4f254c65399ad8d58ed990c59972fc829685954f3825cb05f7c9f275f0fb",
+      "bytes": 31209245,
+      "supports": "Connects CityMETER and the project to the depa promotion decision and associated programme context."
+    },
+    {
+      "kind": "owner_attestation_of_delivery",
+      "evidenceRef": "owner-message:2026-09-04:depa-officer-supplied-marks-and-approval-letter",
+      "supports": "The Landometer owner states that a depa officer supplied the logo artwork and approval documentation directly."
+    }
+  ],
+  "approvedExactAssets": [
+    {
+      "role": "source_lockup",
+      "path": "media/depa-dsure-tdc-lockup.png",
+      "sha256": "804506f124cdb55dc14918b6eb64f7c2bd9badd29fc33fcfddeee5b62b07932c",
+      "bytes": 291328,
+      "publicationUse": false
+    },
+    {
+      "role": "depa_support_mark",
+      "path": "media/supporters/depa.png",
+      "sha256": "6098165e3424c8f7b4c15e26200e88f561ab0a841b8a60125b1735d1260532cd",
+      "bytes": 70866,
+      "publicationUse": true
+    },
+    {
+      "role": "dsure_programme_mark",
+      "path": "media/supporters/dsure-software.png",
+      "sha256": "d60db2a3f73abf7a5b815307027c0cf25d6c01ed3134648c094217446bc85143",
+      "bytes": 54776,
+      "publicationUse": true
+    },
+    {
+      "role": "digital_service_account_mark",
+      "path": "media/supporters/digital-service-account.png",
+      "sha256": "57c01b122575800f475cc29e958f6b1c5a7bac705cb5b6ba2365ae9bd90e3086",
+      "bytes": 112508,
+      "publicationUse": true
+    }
+  ],
+  "requiredVisibleCopy": {
+    "th": "ได้รับการส่งเสริมและสนับสนุนโดย depa",
+    "en": "Promoted and supported by depa"
+  },
+  "useConditions": [
+    "Use the exact supplied/cropped bytes without redrawing or recolouring the marks.",
+    "Place the marks once in the footer with the visible depa support statement.",
+    "Do not repeat the marks in the hero or use them as product identity, evidence of dataset lineage, or a general endorsement claim.",
+    "This record is scoped to the CityMETER project page and is not a legal opinion or blanket licence for unrelated artifacts."
+  ],
+  "recordedAt": "2026-09-04T22:32:00+07:00"
+}

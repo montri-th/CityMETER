@@ -38,8 +38,8 @@ const expectedReceiptIdentity = {
 const expectedPageIdentity = {
   "landometer:ds-version": "0.9.1",
   "landometer:color-set": "color-srgb-05",
-  "landometer:artifact-build": "ui-20260904-ds091-motif-internal-v1",
-  "landometer:release-receipt": "2026-09-04-citymeter-ds091-motif-internal-v1"
+  "landometer:artifact-build": "ui-20260905-ds091-motif-public-v1",
+  "landometer:release-receipt": "2026-09-05-citymeter-ds091-motif-public-v1"
 };
 
 const pages = [
@@ -53,7 +53,7 @@ for (const page of pages) {
   assert(html.includes(`<html lang="${page.language}" data-ds="landometer" data-ds-version="0.9.1"`), `${page.path}: DS identity attributes are missing`);
   assert(!html.includes("data-build-card-version=") && !html.includes("data-manifest-version=") && !html.includes("data-token-schema-version="), `${page.path}: unverified machine-package identity must not be claimed`);
   assert(html.includes('data-ds-profile="product_orientation" data-ds-format="web_public"'), `${page.path}: product_orientation/web_public profile is missing`);
-  assert(html.includes('data-delivery-mode="internal-preview"') && html.includes('data-visibility="internal" data-indexable="false"'), `${page.path}: blocked internal-candidate delivery identity is missing`);
+  assert(html.includes('data-delivery-mode="static-initial-html"') && html.includes('data-visibility="public" data-indexable="true"'), `${page.path}: public delivery identity is missing`);
   for (const [name, value] of Object.entries(expectedPageIdentity)) {
     assert(meta(html, name) === value, `${page.path}: ${name} drifted`);
   }

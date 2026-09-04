@@ -1,0 +1,60 @@
+{
+  "recordType": "owner_publication_authorization",
+  "recordVersion": "1.0",
+  "productScope": "CityMETER",
+  "artifact": {
+    "canonicalUrl": "https://montri-th.github.io/CityMETER/",
+    "locales": [
+      "th",
+      "en"
+    ],
+    "catalogRecordCount": 38
+  },
+  "approval": {
+    "status": "owner_approved_retroactively",
+    "approvedBy": "Landometer owner",
+    "approvedAt": "2026-09-04T22:04:47+07:00",
+    "evidenceRefs": [
+      "owner-message:2026-09-04:approve-all-required-for-citymeter-publication",
+      "owner-message:2026-09-04:approve-retroactively-and-publish"
+    ]
+  },
+  "approvedSubjects": [
+    {
+      "subject": "CityMETER Product Brief",
+      "ref": "data/citymeter-product-brief-v6-approval.json"
+    },
+    {
+      "subject": "Landometer Master Brand Brief v0.5.3",
+      "ref": "data/landometer-master-brand-brief-v0.5.3-approval.json"
+    },
+    {
+      "subject": "Owner-supplied animated brand motif bytes and governed page role",
+      "ref": "assets/landometer-motifs/v1/manifest.json"
+    },
+    {
+      "subject": "CityMETER depa support attribution and the exact depa, dSURE Software, and Digital Service Account marks supplied for this project",
+      "ref": "data/citymeter-depa-supporter-marks-rights-record.json"
+    },
+    {
+      "subject": "Publication of all 38 existing catalogue records with their current visible source-status and limitation labels",
+      "ref": "data/catalog-source-review.json",
+      "sha256": "b1141375790b3d6c4d63cf064702b49bf246f26695373ab59e9b9f8bb2e167a4",
+      "bytes": 72839
+    },
+    {
+      "subject": "Migration to Landometer Design System 0.9.1 and publication at the existing canonical URL once technical release gates pass"
+    }
+  ],
+  "publicationPolicy": {
+    "recordsWithoutVerifiedLineage": "Publish only with an explicit visible unverified, candidate, specialist-source, or derived status and a decision-use limitation; do not relabel as verified.",
+    "thirdPartyMarks": "Use only when a project-scoped rights record binds the exact bytes, placement, wording, and non-endorsement boundary. Remove any unbound mark rather than imply endorsement.",
+    "datasetGrowth": "The approved catalogue count is the current 38-record inventory; future records require their own truthful status and limitation entry, not a new blanket factual claim."
+  },
+  "doesNotCreate": [
+    "third-party intellectual-property, trademark, publicity, or endorsement rights",
+    "source lineage, freshness, geographic coverage, capability, or production facts that are not otherwise evidenced",
+    "cryptographic signatures or external operator trust enrollment",
+    "browser, accessibility, native-device, or live-deployment observations that have not been performed"
+  ]
+}

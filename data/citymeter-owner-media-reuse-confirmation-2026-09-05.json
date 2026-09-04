@@ -1,0 +1,61 @@
+{
+  "recordType": "owner_media_reuse_confirmation",
+  "recordVersion": "1.0",
+  "recordedAt": "2026-09-05T00:27:58+07:00",
+  "productScope": "CityMETER",
+  "authority": {
+    "status": "owner_confirmed",
+    "confirmedBy": "Landometer owner",
+    "evidenceRefs": [
+      "owner-message:2026-09-05:snapshots-opened-from-landometer-web-at-owner-direction",
+      "owner-message:2026-09-05:landometer-and-citymeter-share-the-same-owner",
+      "owner-message:2026-09-05:source-work-already-deployed-on-landometer-web"
+    ]
+  },
+  "confirmedFacts": [
+    "The published-product snapshots were captured from Landometer web properties at the owner's direction.",
+    "Landometer and CityMETER are controlled by the same owner.",
+    "The source work represented by the captures was already deployed on Landometer web before this CityMETER release."
+  ],
+  "authorizedUse": {
+    "artifact": "CityMETER public showcase",
+    "canonicalUrl": "https://montri-th.github.io/CityMETER/",
+    "locales": [
+      "th",
+      "en"
+    ],
+    "roles": [
+      "dataset_preview",
+      "hero_product_proof",
+      "social_preview"
+    ],
+    "reuseClass": "same_owner_cross_property_publication"
+  },
+  "assetBindings": [
+    {
+      "manifestRef": "media/previews-v3/manifest.json",
+      "assetCount": 38
+    },
+    {
+      "paths": [
+        "media/previews-v2/buildings.webp",
+        "media/previews-v2/business-dynamics.webp",
+        "media/previews-v2/flood-recurrent.webp",
+        "media/previews-v2/land-appraisal.webp",
+        "media/previews-v2/population-age-sex.webp",
+        "media/previews-v2/road-network-archetypes.webp",
+        "media/previews-v2/shopping-centers.webp",
+        "media/reel/citymeter-proof-v3.mp4",
+        "media/reel/citymeter-proof-v3-exhibition.mp4",
+        "media/reel/citymeter-proof-v3-poster.webp",
+        "media/social/citymeter-land-appraisal-share-2026-08-14.jpg"
+      ],
+      "assetCount": 11
+    }
+  ],
+  "publicationBoundary": [
+    "This confirmation resolves owner authority and provenance for reuse of these existing rendered captures between owner-controlled Landometer properties.",
+    "No new map, dataset or provider content is introduced by this release; source/provider pixels and any embedded attribution are inherited unchanged from the already-published captures.",
+    "This confirmation does not change a provider licence, create an endorsement claim or authorize removal of attribution."
+  ]
+}

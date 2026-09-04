@@ -39,6 +39,8 @@ const contributorEnhancerName = contributorManifest.renderOwners.transitionalEnh
 const contributorStylesName = contributorManifest.renderOwners.styles.split("/").at(-1);
 const activeBundleName = "index-qbT50gkr-v18.js";
 const activeStylesName = "catalog-enhancements-ds-0.9.1-v26.css";
+const activeEnhancerName = "catalog-enhancements-ds-0.9.1-v26.js";
+const activeReleaseReceipt = "2026-09-05-citymeter-ds091-motif-public-v1";
 const ids = review.records.map((record) => record.id);
 const routeById = new Map(review.records.map((record) => [record.id, record.citymeterUrl]));
 const muenRaiRoute = "https://landometer.com/v3/citymeter/PRE?d=muenRai";
@@ -249,9 +251,9 @@ for (const page of ["index.html", "en/index.html"]) {
       ];
   assert((html.match(/class="dataset-card"/g) || []).length === 38, `${page} must prerender 38 cards`);
   const datasetPillars = Array.from(
-    html.matchAll(/<article class="dataset-card" id="[^"]+" data-citymeter-record-id="[^"]+" data-module-slug="[^"]+" data-pillar="(land|location|living)"/g),
-    (match) => match[1]
-  );
+    html.matchAll(/<article\b[^>]*class="dataset-card"[^>]*>/g),
+    (match) => match[0].match(/\sdata-pillar="(land|location|living)"/)?.[1]
+  ).filter(Boolean);
   const showcasePillars = Array.from(
     html.matchAll(/<article class="showcase-card[^"]*" data-pillar="(land|location|living)"/g),
     (match) => match[1]
@@ -267,12 +269,12 @@ for (const page of ["index.html", "en/index.html"]) {
     JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
     `${page} showcase pillar contract must remain 1 / 3 / 2`
   );
-  assert(html.includes(activeStylesName) && html.includes(contributorEnhancerName), `${page} is missing the active DS 0.9.1 surface layer or hardened P1 contributor runtime`);
+  assert(html.includes(activeStylesName) && html.includes(activeEnhancerName), `${page} is missing the active DS 0.9.1 surface layer or hardened P1 contributor runtime`);
   assert(html.includes(activeStylesName), `${page} must load the DS 0.9.1 surface revision`);
-  assert(html.includes(contributorEnhancerName), `${page} must load the immutable hardened P1 enhancement revision`);
+  assert(html.includes(activeEnhancerName), `${page} must load the DS 0.9.1 hardened P1 enhancement revision`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
   assert((html.match(/catalog-enhancements[^"']*\.css(?:\?v=\d+)?/g) || []).join() === activeStylesName, `${page} must load exactly one active enhancement stylesheet revision`);
-  assert((html.match(/catalog-enhancements(?:-v\d+)?\.js(?:\?v=\d+)?/g) || []).join() === contributorEnhancerName, `${page} must load exactly one immutable enhancement script revision`);
+  assert((html.match(/catalog-enhancements(?:-ds-0\.9\.1)?-v\d+\.js(?:\?v=\d+)?/g) || []).join() === activeEnhancerName, `${page} must load exactly one active enhancement script revision`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
   assert((html.match(/citymeter-fonts\.css\?v=\d+/g) || []).join() === "citymeter-fonts.css?v=1", `${page} must load exactly one canonical font stylesheet revision`);
@@ -285,7 +287,7 @@ for (const page of ["index.html", "en/index.html"]) {
   assert(html.includes(activeBundleName), `${page} must load the DS 0.9.1 hydrated bundle revision`);
   assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === activeBundleName, `${page} must load exactly one main bundle revision`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
-  assert(html.includes(`name="citymeter:release-receipt" content="${contributorP1Release}"`), `${page} is missing the authorized v29 release receipt`);
+  assert(html.includes(`name="citymeter:release-receipt" content="${activeReleaseReceipt}"`), `${page} is missing the active DS 0.9.1 release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
   assert(html.includes(`name="citymeter:contributor-candidate-build" content="${contributorP1Release}"`), `${page} is missing the v29 contributor build receipt`);
   assert((html.match(/name="citymeter:contributor-candidate-build"/g) || []).length === 1, `${page} must expose exactly one contributor build receipt`);
@@ -330,16 +332,16 @@ for (const page of ["index.html", "en/index.html"]) {
   assert(catalogDiagram.includes('aria-labelledby="catalog-structure-title"') && catalogDiagram.includes('aria-describedby="catalog-structure-description"'), `${page} catalog diagram needs an explicit accessible name and description`);
   assert((catalogDiagram.match(/id="catalog-structure-title"/g) || []).length === 1 && (catalogDiagram.match(/id="catalog-structure-description"/g) || []).length === 1, `${page} catalog diagram ids must be unique`);
   const catalogGroups = Array.from(catalogDiagram.matchAll(/<div class="catalog-structure-step" role="listitem" data-group="(land|location|living)">/g), (match) => match[1]);
-  assert(JSON.stringify(catalogGroups) === JSON.stringify(["land", "living", "location"]), `${page} catalog diagram must tell the Land plus Living to Location relationship in DOM order`);
+  assert(JSON.stringify(catalogGroups) === JSON.stringify(["land", "location", "living"]), `${page} catalog diagram must present Land, Location and Living as peer dimensions in DOM order`);
   const expectedDiagramCounts = page === "index.html" ? ["12 รายการ", "13 รายการ", "13 รายการ"] : ["12 views", "13 views", "13 views"];
   for (const countLabel of expectedDiagramCounts) assert(catalogDiagram.includes(`<small>${countLabel}</small>`), `${page} catalog diagram is missing ${countLabel}`);
   const expectedDiagramCopy = page === "index.html"
-    ? ["เข้าใจเมืองผ่าน 3 มุมที่เชื่อมกัน", "Land คือฐานของเมือง", "บางเรื่องเปลี่ยนไปตามเวลา", "ผู้คน · บริการ · ความเป็นอยู่", "รวม 38 มุมมองให้ค้น เทียบ และเปิดดูหลักฐานในที่เดียว", "ช่วยให้เห็นว่าควรตรวจอะไรต่อ และตัดสินใจเรื่องพื้นที่ได้อย่างไร"]
-    : ["One city, seen through three connected lenses", "Land is the city’s base", "some patterns change over time", "People · services · everyday life", "Organises 38 views so people can find, compare and inspect evidence in one place.", "Shows what to check next and how to move a place decision forward."];
+    ? ["เข้าใจเมืองผ่าน 3 มิติ แล้วไปสู่การตัดสินใจ", "Land, Location และ Living เป็นบริบทคนละมิติ", "ธุรกิจ · การเดินทาง · การเข้าถึง", "ผู้คน · บริการ · ความเป็นอยู่", "เชื่อม 38 มุมมองให้ค้น เทียบ และเห็นทั้งสิ่งที่รู้กับสิ่งที่ยังต้องตรวจ", "เปลี่ยนบริบทเชิงพื้นที่ให้เป็นสิ่งที่ควรตรวจ เทียบ และทำต่อ"]
+    : ["Three dimensions of a place, connected to a decision", "Land, Location and Living are peer dimensions", "Business · mobility · access", "People · services · everyday life", "Connects 38 views so people can find, compare and see both what is known and what still needs checking.", "Turns spatial context into what to check, compare and do next."];
   for (const copy of expectedDiagramCopy) assert(catalogDiagram.includes(copy), `${page} catalog diagram is missing localized copy: ${copy}`);
-  assert(catalogDiagram.includes('<span class="catalog-structure-outcome-route"><strong lang="en">Landometer</strong><span aria-hidden="true">→</span><b lang="en">Local Decisions</b></span>'), `${page} must expose the Landometer to Local Decisions route`);
+  assert(catalogDiagram.includes('<span class="catalog-structure-outcome-route"><strong lang="en">CityMETER</strong><span aria-hidden="true">→</span><b lang="en">Local Decisions</b></span>'), `${page} must expose the CityMETER to Local Decisions route`);
   assert((catalogDiagram.match(/class="catalog-structure-operator" aria-hidden="true"/g) || []).length === 2, `${page} must expose exactly two decorative relationship operators`);
-  assert(catalogDiagram.includes('<span class="catalog-structure-operator" aria-hidden="true">+</span>') && catalogDiagram.includes('<span class="catalog-structure-operator" aria-hidden="true">→</span>'), `${page} must show Land plus Living leading to Location without claiming equivalence`);
+  assert((catalogDiagram.match(/<span class="catalog-structure-operator" aria-hidden="true">\+<\/span>/g) || []).length === 2, `${page} must join the three peer dimensions with two plus signs`);
   for (const retiredClass of ["catalog-structure-together", "catalog-structure-whys", "catalog-structure-local-decisions", "catalog-structure-benefits", "catalog-structure-boundary"]) {
     assert(!catalogDiagram.includes(retiredClass), `${page} must not restore the retired text-wall block: ${retiredClass}`);
   }
@@ -361,7 +363,7 @@ for (const page of ["index.html", "en/index.html"]) {
   const socialNavMatches = html.match(/<nav class="footer-social"[\s\S]*?<\/nav>/g) || [];
   assert(socialNavMatches.length === 1, `${page} must prerender exactly one social navigation`);
   const socialNav = socialNavMatches[0];
-  assert((socialNav.match(/<a /g) || []).length === 4 && (socialNav.match(/<svg /g) || []).length === 4, `${page} social navigation must contain four icon-only links`);
+  assert((socialNav.match(/<a /g) || []).length === 4 && (socialNav.match(/<svg /g) || []).length === 0, `${page} social navigation must contain four explicit text links`);
   const observedSocialOrder = socialProfiles.map(([, url]) => socialNav.indexOf(`href="${url}"`));
   assert(observedSocialOrder.every((index) => index >= 0) && observedSocialOrder.every((index, position) => position === 0 || index > observedSocialOrder[position - 1]), `${page} social links must preserve the approved order`);
   for (const [name, url] of socialProfiles) {
@@ -369,7 +371,7 @@ for (const page of ["index.html", "en/index.html"]) {
     assert((html.split(url).length - 1) === 1, `${page} must expose ${name} exactly once`);
     assert(socialNav.includes(`href="${url}" target="_blank" rel="noopener noreferrer" aria-label="${localizedLabel}" title="${name}"`), `${page} ${name} link is missing its safe target or localized accessible name`);
   }
-  assert((socialNav.match(/aria-hidden="true" focusable="false" viewBox="0 0 24 24"/g) || []).length === 4, `${page} social icons must be decorative inline SVGs`);
+  assert(!socialNav.includes("<svg"), `${page} social links must stay explicit text rather than decorative icon-only controls`);
   const footerEnd = html.lastIndexOf("</footer>");
   const rootEnd = html.lastIndexOf("</div>");
   assert(footerEnd > 0 && rootEnd > footerEnd && html.slice(footerEnd + "</footer>".length, rootEnd).trim() === "", `${page} must not contain layout content after the footer`);
@@ -430,7 +432,8 @@ for (const page of ["index.html", "en/index.html"]) {
   const jsonLdText = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1] || "";
   const jsonLd = JSON.parse(jsonLdText);
   const catalog = jsonLd["@graph"]?.find((entry) => entry["@type"] === "DataCatalog");
-  assert(catalog?.numberOfItems === contributorManifest.projectionSummary.datasetRecords && catalog?.dataset?.length === contributorManifest.projectionSummary.datasetRecords, `${page} JSON-LD Dataset branch differs from the contributor projection`);
+  assert(!Object.hasOwn(catalog || {}, "numberOfItems"), `${page} JSON-LD DataCatalog must not use the ItemList-only numberOfItems property`);
+  assert(catalog?.dataset?.length === contributorManifest.projectionSummary.datasetRecords, `${page} JSON-LD Dataset branch differs from the contributor projection`);
   assert(catalog?.hasPart?.length === contributorManifest.projectionSummary.eventRecords, `${page} JSON-LD event CreativeWork branch differs from the contributor projection`);
   const structuredRecords = [...catalog.dataset, ...catalog.hasPart];
   assert(structuredRecords.length === contributorManifest.projectionSummary.records && new Set(structuredRecords.map((entry) => entry["@id"])).size === contributorManifest.projectionSummary.records, `${page} JSON-LD must cover the contributor projection exactly once`);
@@ -1560,4 +1563,4 @@ if (existsSync(externalPeopleRegistry)) {
   console.warn("Skipped cross-repository contributor source check: ../Landom is not present in this workspace; local snapshot and render checks passed.");
 }
 
-console.log(`CityMETER inherited release invariants passed for the blocked internal candidate: hardened P1 static-hydrated ${contributorBundleName} contributor parity on ${contributorManifest.projectionSummary.records} Thai/English cards, ${contributorManifest.projectionSummary.datasetRecords} Dataset + ${contributorManifest.projectionSummary.eventRecords} CreativeWork schema parity, plus the preserved v23 performance, catalog, evidence, QR, social-card, typography, motion, responsive and media contracts.`);
+console.log(`CityMETER inherited release invariants passed for the DS 0.9.1 public release: hardened P1 static-hydrated ${contributorBundleName} contributor parity on ${contributorManifest.projectionSummary.records} Thai/English cards, ${contributorManifest.projectionSummary.datasetRecords} Dataset + ${contributorManifest.projectionSummary.eventRecords} CreativeWork schema parity, plus the preserved v23 performance, catalog, evidence, QR, social-card, typography, motion, responsive and media contracts.`);

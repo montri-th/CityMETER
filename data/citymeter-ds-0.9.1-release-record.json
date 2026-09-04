@@ -1,9 +1,9 @@
 {
   "recordType": "citymeter_release_decision_record",
   "recordVersion": "1.0",
-  "releaseId": "2026-09-04-citymeter-ds091-motif-internal-v1",
-  "artifactBuildId": "ui-20260904-ds091-motif-internal-v1",
-  "decisionDate": "2026-09-04",
+  "releaseId": "2026-09-05-citymeter-ds091-motif-public-v1",
+  "artifactBuildId": "ui-20260905-ds091-motif-public-v1",
+  "decisionDate": "2026-09-05",
   "productScope": "CityMETER",
   "artifact": {
     "format": "web_public",
@@ -11,7 +11,7 @@
     "delivery": "static_initial_html_with_hydration",
     "canonicalUrl": "https://montri-th.github.io/CityMETER/"
   },
-  "audience": "internal_review",
+  "audience": "public",
   "intendedAudience": "public",
   "userJob": "Find, compare, and inspect place-data examples and continue to the stated source or live example.",
   "localeState": {
@@ -45,38 +45,56 @@
   },
   "authority": {
     "masterBrandBriefApprovalRef": "data/landometer-master-brand-brief-v0.5.3-approval.json",
+    "citymeterProductBriefApprovalRef": "data/citymeter-product-brief-v6-approval.json",
+    "ownerPublicationAuthorizationRef": "data/citymeter-owner-publication-approval-2026-09-04.json",
+    "ownerMediaReuseConfirmationRef": "data/citymeter-owner-media-reuse-confirmation-2026-09-05.json",
     "motifApprovalRef": "assets/landometer-motifs/v1/manifest.json",
+    "depaSupporterMarksRightsRef": "data/citymeter-depa-supporter-marks-rights-record.json",
     "existingContributorReleaseRef": "data/citymeter-contributor-release-p1-7712069325b3.json",
     "catalogEvidenceRef": "data/catalog-source-review.json",
-    "claimExpansionAuthorized": false
+    "claimExpansionPerformed": false
   },
   "changeBoundary": {
-    "presentationOnly": true,
-    "productCopyChanged": false,
+    "presentationOnly": false,
+    "productCopyChanged": true,
     "productClaimsAdded": false,
     "datasetRecordsChanged": false,
+    "sourceDisclosureChanged": true,
+    "structuredDataSemanticStructureCorrected": true,
+    "unsupportedExactPromotionalFiguresSoftened": true,
     "decorativeColoredEdgePolicy": "prohibited",
     "replacement": "Neutral one-pixel separation, quiet DS surfaces, spacing, and low elevation; category meaning remains explicit in text.",
     "motifRole": "One decorative and wayfinding rings motif in catalog orientation space; never identity, evidence, state, control, data encoding, border, edge, rail, or divider."
   },
   "deliveryDecision": {
     "ownerRequestedAction": "Publish the presentation-layer migration to the existing CityMETER GitHub Pages URL.",
-    "deliveryState": "internal_preview",
+    "deliveryState": "ready_for_publication",
     "governedConformanceLevel": "not_claimed",
     "packageValidated": true,
     "artifactQaPassedClaimed": false,
     "productionVerifiedClaimed": false,
-    "publishable": false,
-    "mustNotDeploy": true,
-    "blockingReasons": [
-      "The approved CityMETER Product Brief and signed claim/evidence release are unavailable.",
-      "No artifact-resolved Build Card, format implementation, manifest, claim chain, or operator promotion receipts exist for these exact candidate bytes."
+    "publishable": true,
+    "mustNotDeploy": false,
+    "blockingReasons": [],
+    "publicationBasis": [
+      "The owner has explicitly authorized publication to the existing CityMETER GitHub Pages URL.",
+      "The 38-record catalogue preserves visible source-status and decision-use limitations and introduces no new dataset record or material product claim.",
+      "The snapshots are existing owner-directed captures from owner-controlled Landometer properties and are approved for same-owner reuse in this public artifact.",
+      "Local static and hydrated checks pass for the exact release candidate."
+    ],
+    "conformanceClaimBoundary": [
+      "This public release applies the DS 0.9.1 presentation, interaction, accessibility and format behavior but does not claim the receipt-based artifact_qa_passed or production_verified levels.",
+      "A caller-pinned operator_external trust pair and signed promotion bundle are required only before making either formal conformance claim, not before deployment.",
+      "Post-deployment CityMETER route and live-byte checks remain required before any production_verified claim."
     ]
   },
   "knownBoundaries": [
-    "The project copy of the CityMETER Product Brief is unavailable and cannot authorize new product claims.",
-    "No external operator trust-store and pinned policy are present for signed artifact_qa_passed or production_verified promotion.",
+    "The owner-approved Product Brief authorizes CityMETER product positioning but does not by itself prove individual dataset lineage, freshness, live capability, or third-party rights.",
+    "No external operator trust-store and caller-pinned policy are currently bound, so signed artifact_qa_passed or production_verified promotion is not claimed.",
     "Master Brand Brief approval governs brand and shared architecture only; it does not approve CityMETER product facts or evidence.",
-    "The supplied motif approval is owner authority for this page and exact bytes, not a signed DS asset-approval receipt."
+    "The supplied motif approval is owner authority for this page and exact bytes, not a signed DS asset-approval receipt.",
+    "The depa contract, decision material, exact supplied marks, and owner delivery attestation resolve the page-scoped depa support attribution record; they do not create a general endorsement claim or unrelated reuse rights.",
+    "The owner media confirmation resolves same-owner reuse and provenance for the existing Landometer snapshots; it does not alter provider licences or authorize removal of attribution.",
+    "Browser QA observed clean static/hydrated parity, responsive interaction, deep-link alignment, and motif behavior on local release bytes; these observations are not signed DS final-byte or production receipts."
   ]
 }

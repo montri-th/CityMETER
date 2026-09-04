@@ -282,7 +282,7 @@ html {
   align-items: center;
   justify-content: center;
   padding-inline: 24px;
-  border: 1px solid var(--lm-interaction-accent);
+  border: 1px solid var(--lm-border-default);
   border-radius: 999px;
   background: transparent;
   color: var(--lm-text-primary);
