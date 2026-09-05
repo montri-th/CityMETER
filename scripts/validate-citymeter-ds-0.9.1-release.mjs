@@ -82,8 +82,8 @@ function assertBalancedCss(source, label) {
 }
 
 const expected = {
-  releaseId: "2026-09-05-citymeter-ds091-public-v5",
-  buildId: "ui-20260905-ds091-public-v5",
+  releaseId: "2026-09-05-citymeter-ds091-public-v6",
+  buildId: "ui-20260905-ds091-public-v6",
   tupleHash: "852f2cb97c5c7ba269c4c543f27cb4587b519263ea2075d84562289f21890e49",
   productionCss: {
     path: "assets/landometer-ds/v0.9.1/color-srgb-05.production.css",
@@ -113,15 +113,15 @@ const expected = {
   ],
   candidateFiles: [
     { path: "assets/catalog-enhancements-ds-0.9.1-v30.css", sha256: "7e3ed3a8b600114480e5b5cce63767f3e01c17800876549ec42e0a04b3abe041", bytes: 46604 },
-    { path: "assets/unified-navbar-r7-ds-0.9.1-v33.css", sha256: "2e32dbe287ee3a66cfbf532cfccfd3c043bbead10cd335e28749d283b1736804", bytes: 22270 },
+    { path: "assets/unified-navbar-r7-ds-0.9.1-v34.css", sha256: "4aa2f994dc67e56866a9dc7d4805acfd206d647b33b0112e27ae69de3b2f08a3", bytes: 22318 },
     { path: "assets/unified-navbar-r7-v32.js", sha256: "461cec2c203236d3a0bf4f73333690b9eec731647e0c78cff8a1bb61e9e00989", bytes: 22328 },
     { path: "assets/catalog-enhancements-ds-0.9.1-v26.js", sha256: "f38e255ed8f921ea7beda520fe9d6eff9da0078ef69f892747b8585fad2807d5", bytes: 61551 },
     { path: "assets/citymeter-ds-0.9.1-approach-reveal-v1.js", sha256: "378c8797958cae7b39311125abe6d759eee6b9056b23c5d59243fb0786d88100", bytes: 10311 },
     { path: "assets/index-qbT50gkr-v18.js", sha256: "808fa6d1805b61181c8675885e68d3be664dcc50d277df3a3af21d0d85c3bed0", bytes: 531713 },
-    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "dc5fabff49e006ad3b7735149920e857f5779d9c9454f8b8ba8360f2e3f9d0c5", bytes: 10098 },
-    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "a561304ce38e2b83d78b8fccb7118be959bc1e1414df99f9a15921b62f7889b8", bytes: 80933 },
-    { path: "index.html", sha256: "c6b78be1b75ae10963b335cef450d3998b73f779db5f43442b2f23d6f8d6380e", bytes: 551242 },
-    { path: "en/index.html", sha256: "f769518b80c6876df37e60cc2f2fdeffb6ba03ee0076d7ce656674112ebbc513", bytes: 474246 }
+    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "e1a690a2dbc80371b861b0e99b8514919f10f1eae8f0d2f3770f89d2d2b9aedc", bytes: 10265 },
+    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "1dc7e73e81c1ed1cb6400af37f6b5665448a0e60c7dc50bbafa46382a7a27180", bytes: 81289 },
+    { path: "index.html", sha256: "94f25b588471f807fdac9af47fd2b165838c3ccbc069bd254ef2db2001ecfb00", bytes: 551242 },
+    { path: "en/index.html", sha256: "d05945044bdcc33c53e2105eb2a51352488fe07e417edd812e38f560bf02301e", bytes: 474246 }
   ],
   sourceBodyHashes: {
     "index.html": "bd0ac3cd092b1327f026f55a19c23731578bd8793ff0bc88e0529690da16f646",
@@ -141,7 +141,7 @@ for (const file of [...expected.migrationSources, ...expected.authorityFiles, ..
 
 const release = json("data/citymeter-ds-0.9.1-release-record.json");
 assert(release.releaseId === expected.releaseId && release.artifactBuildId === expected.buildId, "Release identity drifted");
-assert(release.recordVersion === "1.4", "Release decision record version drifted");
+assert(release.recordVersion === "1.5", "Release decision record version drifted");
 assert(release.productScope === "CityMETER", "Release product scope must remain CityMETER");
 assert(release.artifact.format === "web_public" && release.artifact.runtime === "browser", "Web-public browser contract drifted");
 assert(release.audience === "public" && release.intendedAudience === "public", "Public audience boundary drifted");
@@ -211,6 +211,7 @@ for (const safetyContract of [
 assert(release.changeBoundary.datasetSnapshotHoverClip.includes("15px inner top radius"), "Snapshot-hover clip decision is not recorded");
 assert(release.changeBoundary.navigationUtilityRestoration?.status === "integrated_and_verified", "Language/theme navigation restoration must be integrated and verified");
 assert(JSON.stringify(release.changeBoundary.navigationUtilityRestoration?.controls) === JSON.stringify(["th", "en", "system_theme", "light_theme", "dark_theme"]), "Language/theme control inventory drifted");
+assert(release.changeBoundary.navigationUtilityRestoration?.verifiedBehavior.includes("at least 44px hit targets in both normal and calm header states"), "Navigation record must preserve physical hit targets in the calm header state");
 assert(release.deliveryDecision.deliveryState === "ready_for_publication" && release.deliveryDecision.governedConformanceLevel === "not_claimed", "Public release must keep formal receipt-based conformance unclaimed");
 assert(release.deliveryDecision.artifactQaPassedClaimed === false && release.deliveryDecision.productionVerifiedClaimed === false, "Unsigned QA/production promotion must remain unclaimed");
 assert(release.deliveryDecision.publishable === true && release.deliveryDecision.mustNotDeploy === false, "Owner-authorized public release must remain deployable");
@@ -632,7 +633,7 @@ for (const page of pageContracts) {
   const links = [
     `${page.prefix}${expected.productionCss.path}`,
     `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v30.css`,
-    `${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v33.css`
+    `${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v34.css`
   ];
   for (const link of links) assert(count(html, link) === 1, `${page.path}: expected one active stylesheet ${link}`);
   assert(html.indexOf(links[0]) < html.indexOf(links[1]) && html.indexOf(links[1]) < html.indexOf(links[2]), `${page.path}: DS/surface/navbar stylesheet order drifted`);
@@ -688,7 +689,7 @@ for (const page of pageContracts) {
 const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v30.css");
 const revealRuntime = read("assets/citymeter-ds-0.9.1-approach-reveal-v1.js");
 const compiledBaseCss = read("assets/index-cqxdfePB.css");
-const navbarCss = read("assets/unified-navbar-r7-ds-0.9.1-v33.css");
+const navbarCss = read("assets/unified-navbar-r7-ds-0.9.1-v34.css");
 assertBalancedCss(surfaceCss, "DS surface CSS");
 assertBalancedCss(navbarCss, "DS navbar CSS");
 
@@ -887,10 +888,15 @@ for (const contract of [
   "--lm-interaction-focus-ring: var(--ldm-foundation-interaction-focus-ring-dark)",
   "--lm-motion-duration-state: 200ms",
   "--lm-motion-duration-feedback: 120ms",
+  "--lm-nav-calm-height: 60px",
+  "--lm-nav-calm-height: 56px",
   "min-height: 44px",
   "min-width: 44px",
   "outline: 3px solid var(--lm-interaction-focus-ring)"
 ]) assert(navbarCss.includes(contract), `Navbar DS/accessibility contract is missing: ${contract}`);
+const calmNavbarRowRule = navbarCss.match(/\.lm-site-header\.is-calm \.lm-nav-row\s*\{([^}]+)\}/)?.[1] || "";
+assert(calmNavbarRowRule.includes("width: 100%") && calmNavbarRowRule.includes("transform: scale(1)") && calmNavbarRowRule.includes("opacity: .9"), "Calm navbar must preserve its unscaled interactive row");
+assert(!calmNavbarRowRule.includes("scale(.5)") && !calmNavbarRowRule.includes("width: 200%"), "Calm navbar must not shrink 44px controls below their physical target size");
 for (const preferenceContract of [
   ".lm-site-header [data-lm-preferences]",
   ".lm-menu-panel [data-lm-preferences]",
@@ -917,4 +923,4 @@ for (const preferenceRuntimeContract of [
 assert(navbarCss.includes(".lm-nav-cta__sweep") && /\.lm-nav-cta__sweep\s*\{[\s\S]*?display:\s*none;[\s\S]*?\}/.test(navbarCss), "Retired navbar sweep must remain absent from every motion mode");
 assert(!/\binfinite\b/i.test(navbarCss) && !navbarCss.includes("@keyframes lmNavSweep") && !navbarCss.includes("@keyframes lmNavFlick"), "DS 0.9.1 forbids the historical unbounded CTA sweep/flicker");
 
-console.log("CityMETER DS 0.9.1 v5 public-release gate passed: pinned release bytes, restored Thai/English and system/light/dark controls, 57 semantic once-only reveal targets per locale with an explicit owner-directed 1200/1450/1350ms timing divergence and preserved fail-open contracts, no active motif references, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Exact MOTION-03, artifact_qa_passed, and production_verified claims remain intentionally unclaimed.");
+console.log("CityMETER DS 0.9.1 v6 public-release gate passed: pinned release bytes, restored Thai/English and system/light/dark controls with 44px targets preserved in normal and calm header states, 57 semantic once-only reveal targets per locale with an explicit owner-directed 1200/1450/1350ms timing divergence and preserved fail-open contracts, no active motif references, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Exact MOTION-03, artifact_qa_passed, and production_verified claims remain intentionally unclaimed.");

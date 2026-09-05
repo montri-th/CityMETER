@@ -6,17 +6,17 @@
 
 สาขานี้เก็บ public release สำหรับ Landometer Design System 0.9.1 ที่ได้รับอนุญาตให้ publish ไปยัง GitHub Pages เดิม
 
-- release: `2026-09-05-citymeter-ds091-public-v5`
-- artifact build: `ui-20260905-ds091-public-v5`
+- release: `2026-09-05-citymeter-ds091-public-v6`
+- artifact build: `ui-20260905-ds091-public-v6`
 - public URL เดิม: <https://montri-th.github.io/CityMETER/>
 - public source ก่อน patch นี้: commit `2070b41463322da9d79c2c05d0b2a3a51bcf7f73`
 - local hydrated runtime: `assets/index-qbT50gkr-v18.js`
 - local enhancement owners: `assets/catalog-enhancements-ds-0.9.1-v30.css`, `assets/catalog-enhancements-ds-0.9.1-v26.js` และ `assets/citymeter-ds-0.9.1-approach-reveal-v1.js`
-- unified navigation: `assets/unified-navbar-r7-ds-0.9.1-v33.css` และ `assets/unified-navbar-r7-v32.js`
+- unified navigation: `assets/unified-navbar-r7-ds-0.9.1-v34.css` และ `assets/unified-navbar-r7-v32.js`
 - DS binding: `0.9.1` / `0.9.1-r8` / `lds-rules-0.9.1` / `v0.9.1-mp7`
 - delivery state: `ready_for_publication`, `publishable: true`, `mustNotDeploy: false`
 
-รายละเอียด exact bytes, authority และ QA อยู่ใน `CITYMETER_DS_0.9.1_CONTROLS_AND_REVEAL_2026-09-05_V5.md` และ `data/citymeter-ds-0.9.1-release-record.json`.
+รายละเอียด exact bytes, authority และ QA อยู่ใน `CITYMETER_DS_0.9.1_CALM_TARGET_HOTFIX_2026-09-05_V6.md`, เอกสารฐาน V5 และ `data/citymeter-ds-0.9.1-release-record.json`.
 
 ## สิ่งที่ release นี้เปลี่ยน
 
@@ -26,7 +26,7 @@
 - ใช้ exact audience projection `assets/landometer-ds/v0.9.1/color-srgb-05.production.css`; ไม่ส่ง raw colour-provenance files
 - แสดง Land, Location และ Living เป็น peer dimensions แล้วเชื่อมผ่าน CityMETER ไปสู่ Local Decisions
 - ไม่มี motif, motif runtime, motif placement หรือปุ่มควบคุม motif บน active page
-- คืนปุ่มภาษาไทย/English และ System/Light/Dark ให้เห็นและใช้งานได้โดยตรงบน desktop พร้อมชุดเดียวกันใน compact menu; ลิงก์ภาษายังทำงานได้เมื่อ JavaScript ใช้ไม่ได้
+- คืนปุ่มภาษาไทย/English และ System/Light/Dark ให้เห็นและใช้งานได้โดยตรงบน desktop พร้อมชุดเดียวกันใน compact menu; ลิงก์ภาษายังทำงานได้เมื่อ JavaScript ใช้ไม่ได้ และพื้นที่กดคงอย่างน้อย 44 px แม้ header เข้าโหมด calm หลังเลื่อนหน้า
 - คืน slow reveal ให้ 57 semantic targets ที่มี logical key ไม่ซ้ำต่อภาษา: section headings 3 ชิ้น, showcase media 6 ชิ้น, โครงสร้าง catalogue 8 ชิ้น, snapshot 38 ชิ้น, handoff media 1 ชิ้น และ QR 1 ชิ้น
 - ใช้ DS 0.9.1 approach semantics แบบ once-only และ fail-open แต่ยืดเฉพาะ duration ตามคำสั่งเจ้าของเป็น opacity 1,200 ms, transform 1,450 ms และ media 1,350 ms เพื่อให้มองเห็นจังหวะได้ชัด; คงระยะ scale easing observer และ stagger 150/450 ms เดิม ส่วน snapshot ทั้ง 38 ชิ้นไม่หน่วงเป็นคิวยาว
 - หลังค้นหา กรอง หรือล้างตัวกรอง snapshot ที่ระบบสร้างใหม่ยังผูกกับรหัสรายการเดิม: ชิ้นที่ reveal แล้วไม่เล่นซ้ำ ส่วนชิ้นที่ยังไม่ถึง viewport ยังรอ reveal ตามเดิม
@@ -65,7 +65,7 @@ Owner approval ครบแล้วและไม่ต้องขอซ้�
 - `assets/catalog-enhancements-v25.js` — immutable enhancement migration source
 - `assets/catalog-enhancements-ds-0.9.1-v26.js` — active local enhancement runtime
 - `assets/catalog-enhancements-ds-0.9.1-v30.css` — active local presentation owner
-- `assets/unified-navbar-r7-ds-0.9.1-v33.css` / `assets/unified-navbar-r7-v32.js` — active navigation and preference controls
+- `assets/unified-navbar-r7-ds-0.9.1-v34.css` / `assets/unified-navbar-r7-v32.js` — active navigation and preference controls
 - `assets/citymeter-ds-0.9.1-approach-reveal-v1.js` — active motif-independent slow-reveal runtime
 - `assets/landometer-ds/v0.9.1/` — exact DS audience CSS used by the release
 - `assets/landometer-motifs/v1/` — inactive immutable history; active HTML does not load these files

@@ -9,7 +9,7 @@ const receiptPath = "data/citymeter-unified-navbar-r7-v31.receipt.json";
 const receipt = JSON.parse(readFileSync(join(root, receiptPath), "utf8"));
 const assetManifest = JSON.parse(readFileSync(join(root, "assets/unified-navbar-assets-v31.manifest.json"), "utf8"));
 const receiptCss = readFileSync(join(root, "assets/unified-navbar-r7-v30.css"), "utf8");
-const css = readFileSync(join(root, "assets/unified-navbar-r7-ds-0.9.1-v33.css"), "utf8");
+const css = readFileSync(join(root, "assets/unified-navbar-r7-ds-0.9.1-v34.css"), "utf8");
 const js = readFileSync(join(root, "assets/unified-navbar-r7-v32.js"), "utf8");
 
 function assert(condition, message) {
@@ -63,8 +63,8 @@ const expectedReceiptIdentity = {
 const expectedPageIdentity = {
   "landometer:ds-version": "0.9.1",
   "landometer:color-set": "color-srgb-05",
-  "landometer:artifact-build": "ui-20260905-ds091-public-v5",
-  "landometer:release-receipt": "2026-09-05-citymeter-ds091-public-v5"
+  "landometer:artifact-build": "ui-20260905-ds091-public-v6",
+  "landometer:release-receipt": "2026-09-05-citymeter-ds091-public-v6"
 };
 
 const pages = [
@@ -108,7 +108,7 @@ for (const page of pages) {
   assert(count(html, 'id="main-content"') === 1, `${page.path}: skip-link target count drifted`);
   assert(count(html, '<main id="main-content">') === 1, `${page.path}: skip-link target drifted`);
   assert(!html.includes('<main id="main-content" tabindex="-1">'), `${page.path}: hydrated React subtree must not carry an unowned tabindex`);
-  assert(count(html, `href="${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v33.css"`) === 1, `${page.path}: DS 0.9.1 preference-control navbar stylesheet is not uniquely active`);
+  assert(count(html, `href="${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v34.css"`) === 1, `${page.path}: DS 0.9.1 preference-control navbar stylesheet is not uniquely active`);
   assert(count(html, `src="${page.prefix}assets/unified-navbar-r7-v32.js"`) === 1, `${page.path}: preference-control navbar runtime is not uniquely active`);
   assert(count(html, `href="${page.prefix}assets/catalog-enhancements-ds-0.9.1-v30.css"`) === 1, `${page.path}: active DS 0.9.1 surface stylesheet drifted`);
   assert(count(html, `src="${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.js"`) === 1, `${page.path}: hardened contributor enhancer must remain unique`);
@@ -209,9 +209,11 @@ for (const requiredCss of [
   "--lm-interaction-focus-ring: var(--ldm-foundation-interaction-focus-ring-light)",
   "--lm-interaction-focus-ring: var(--ldm-foundation-interaction-focus-ring-dark)",
   "height: var(--lm-nav-height)",
-  "width: 200%",
-  "transform: scale(.5)",
-  "opacity: .72",
+  "--lm-nav-calm-height: 60px",
+  "--lm-nav-calm-height: 56px",
+  "width: 100%",
+  "transform: scale(1)",
+  "opacity: .9",
   "padding-inline: 24px",
   "color-mix(in srgb, var(--lm-surface-canvas) 26%, transparent)",
   "@media (prefers-reduced-motion: reduce)",
@@ -289,8 +291,12 @@ for (const requiredJs of [
   assert(js.includes(requiredJs), `Navbar runtime contract is missing: ${requiredJs}`);
 }
 
-assert(/\.lm-nav-viewport\s*\{[\s\S]*?padding-inline:\s*24px;[\s\S]*?\}/.test(css), "Desktop gutter must remain outside the scaled calm row");
-assert(/@media \(max-width:\s*600px\)[\s\S]*?\.lm-nav-viewport\s*\{[\s\S]*?padding-inline:\s*16px;[\s\S]*?\}/.test(css), "Compact gutter must remain outside the scaled calm row");
+assert(/\.lm-nav-viewport\s*\{[\s\S]*?padding-inline:\s*24px;[\s\S]*?\}/.test(css), "Desktop gutter must remain on the stable navbar viewport");
+assert(/@media \(max-width:\s*600px\)[\s\S]*?\.lm-nav-viewport\s*\{[\s\S]*?padding-inline:\s*16px;[\s\S]*?\}/.test(css), "Compact gutter must remain on the stable navbar viewport");
+const calmRowRule = css.match(/\.lm-site-header\.is-calm \.lm-nav-row\s*\{([^}]+)\}/)?.[1] || "";
+assert(calmRowRule.includes("width: 100%") && calmRowRule.includes("transform: scale(1)") && calmRowRule.includes("opacity: .9"), "Calm header must preserve the unscaled interactive row");
+assert(!calmRowRule.includes("scale(.5)") && !calmRowRule.includes("width: 200%"), "Calm header must never halve physical hit targets");
+assert(css.includes("--lm-nav-calm-height: 60px") && /@media \(max-width:\s*600px\)[\s\S]*?--lm-nav-calm-height:\s*56px;/.test(css), "Calm header heights must retain room for 44px targets at desktop and compact widths");
 const headerPreferencesRule = css.match(/\.lm-site-header \[data-lm-preferences\]\s*\{([^}]+)\}/)?.[1] || "";
 const menuPreferencesRule = css.match(/\.lm-menu-panel \[data-lm-preferences\]\s*\{([^}]+)\}/)?.[1] || "";
 assert(headerPreferencesRule.includes("display: flex") && menuPreferencesRule.includes("display: grid"), "Header preferences must be visible on desktop and menu preferences must provide the responsive fallback");
@@ -463,4 +469,4 @@ for (const item of receipt.artifacts) {
   assert(sha256(bytes) === item.sha256, `${item.path}: receipt hash drifted`);
 }
 
-console.log("CityMETER unified navbar r7 validation passed: standalone TH/EN shell, three top-level desktop groups within the four-control budget, four locale links and six synchronized theme choices across header/menu, compact menu fallback plus no-JS locale access, 44px targets, neutral selected/focus states, query/hash-preserving locale routing, persistent system-aware themes, menu/focus/Escape/outside close, calm-scroll restore, 3-anchor scrollspy, reduced-motion kill switch, exact historical logo/icon/license receipts, and inherited 38/51/29/25/4 contributor invariants.");
+console.log("CityMETER unified navbar r7 validation passed: standalone TH/EN shell, three top-level desktop groups within the four-control budget, four locale links and six synchronized theme choices across header/menu, compact menu fallback plus no-JS locale access, 44px targets preserved in normal and calm states, neutral selected/focus states, query/hash-preserving locale routing, persistent system-aware themes, menu/focus/Escape/outside close, calm-scroll restore without row scaling, 3-anchor scrollspy, reduced-motion kill switch, exact historical logo/icon/license receipts, and inherited 38/51/29/25/4 contributor invariants.");
