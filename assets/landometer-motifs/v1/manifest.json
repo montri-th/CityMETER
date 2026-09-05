@@ -1,6 +1,6 @@
 {
   "recordType": "project_governed_asset_manifest",
-  "recordVersion": "1.0",
+  "recordVersion": "1.1",
   "stableAssetId": "citymeter.animated-motif.landometer-v1",
   "assetKind": "animated_svg_web_component",
   "productScope": "CityMETER",
@@ -17,7 +17,13 @@
     "approvalTimePrecision": "day",
     "evidenceRef": "owner-message:2026-09-04:approve-animated-motif-for-citymeter",
     "publicationPermission": true,
-    "rights": "Owner-supplied and approved for this CityMETER public page only; no broader reuse inferred."
+    "rights": "Owner-supplied and approved for this CityMETER public page only; no broader reuse inferred.",
+    "latestDirection": {
+      "directedOn": "2026-09-05",
+      "timePrecision": "day",
+      "evidenceRef": "owner-message:2026-09-05:motif-must-move-continuously",
+      "scope": "Make the approved motif clearly visible and continuously moving on the CityMETER catalogue-orientation surface."
+    }
   },
   "files": [
     {
@@ -79,33 +85,33 @@
   ],
   "implementation": {
     "selectedKind": "rings",
-    "variant": "quiet",
-    "ink": "sky",
-    "autoplay": false,
+    "variant": "full",
+    "ink": "component_energy_palette",
+    "autoplay": true,
     "placementSelector": "#datasets .catalog-structure",
     "placementMarker": "catalog-orientation",
     "renderedGeometry": {
       "viewBox": "0 0 600 300",
       "aspectRatio": "2/1",
       "placementWidthCssPx": {
-        "minimum": 132,
-        "maximum": 188
+        "minimum": 160,
+        "maximum": 300
       }
     },
     "motionAdapter": {
       "benefit": "spatial_relationship",
-      "opacityDurationMs": 760,
-      "transformDurationMs": 920,
-      "inlineDistancePx": 36,
-      "scaleFrom": 0.985,
-      "observerThreshold": 0.14,
-      "observerRootMargin": "0px 0px -12% 0px",
-      "onceOnly": true,
+      "componentEntry": "native_once_when_visible",
+      "continuousAmbient": true,
+      "ambientDurationMs": 6800,
+      "ambientDirection": "alternate",
+      "ambientTransform": "translate3d(-8px,4px,0) rotate(-.6deg) scale(.985) to translate3d(8px,-4px,0) rotate(.6deg) scale(1.015)",
+      "pauseControl": true,
       "initializationWatchdogMs": 2400,
       "reducedMotion": "final_state",
-      "observerFailure": "final_state"
+      "runtimeFailure": "omit_decoration",
+      "ownerSelectedDivergence": "Continuous decorative ambient motion is an explicit CityMETER artifact direction and is not claimed as normative DS 0.9.1 MOTION-01 conformance."
     },
-    "deterministicRecipe": "Copy component CSS and JavaScript byte-for-byte; do not minify, bundle, or optimize. Disable component autoplay and animate only the placement wrapper with the DS 0.9.1 adapter."
+    "deterministicRecipe": "Copy component CSS and JavaScript byte-for-byte; do not minify, bundle, optimize, edit, or replay them. Use the full supplied rings variant once, reserve a non-overlapping responsive sidecar, then apply the owner-directed continuous ambient transform only on the outer component element."
   },
   "accessibility": {
     "decorative": true,
@@ -113,7 +119,13 @@
     "focusable": false,
     "pointerEvents": "none",
     "textAlternative": null,
-    "fallback": "Omit the decoration while preserving all content and control geometry."
+    "fallback": "Omit the decoration while preserving all content and control geometry.",
+    "continuousMotionControl": {
+      "default": "running",
+      "userCanPauseAndResume": true,
+      "reducedMotion": "static_final_state",
+      "backgroundTabs": "paused"
+    }
   },
   "prohibitedTransformations": [
     "edit component colors",
@@ -122,5 +134,5 @@
     "compose as identity",
     "invoke component replay"
   ],
-  "conformanceBoundary": "This owner approval supports authoring use. It is not a signed DS asset-approval receipt and does not promote the page to artifact_qa_passed or production_verified."
+  "conformanceBoundary": "This owner approval supports authoring use. It is not a signed DS asset-approval receipt and does not promote the page to artifact_qa_passed or production_verified. The owner-directed continuous decorative ambient motion is a recorded CityMETER artifact divergence from the finite-motion requirement in DS 0.9.1 MOTION-01; the release must not claim formal DS conformance."
 }

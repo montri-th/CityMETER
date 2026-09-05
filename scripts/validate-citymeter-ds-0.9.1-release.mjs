@@ -76,8 +76,8 @@ function assertBalancedCss(source, label) {
 }
 
 const expected = {
-  releaseId: "2026-09-05-citymeter-ds091-motif-public-v1",
-  buildId: "ui-20260905-ds091-motif-public-v1",
+  releaseId: "2026-09-05-citymeter-ds091-motif-public-v2",
+  buildId: "ui-20260905-ds091-motif-public-v2",
   tupleHash: "852f2cb97c5c7ba269c4c543f27cb4587b519263ea2075d84562289f21890e49",
   productionCss: {
     path: "assets/landometer-ds/v0.9.1/color-srgb-05.production.css",
@@ -116,15 +116,16 @@ const expected = {
     { key: "account", path: "media/supporters/digital-service-account.png", sha256: "57c01b122575800f475cc29e958f6b1c5a7bac705cb5b6ba2365ae9bd90e3086", bytes: 112508, width: 2298, height: 1042, altTh: "บัญชีบริการดิจิทัล", altEn: "Digital Service Account" }
   ],
   candidateFiles: [
-    { path: "assets/catalog-enhancements-ds-0.9.1-v26.css", sha256: "81afa73a797277169243ae2b9df5819b654941764f6442fe3db4e1e3492c3ff2", bytes: 46423 },
+    { path: "assets/catalog-enhancements-ds-0.9.1-v27.css", sha256: "0a10041fe6b53f99997fb12e56058187ed9479e138c82370b740443b4c970b9c", bytes: 48645 },
     { path: "assets/unified-navbar-r7-ds-0.9.1-v32.css", sha256: "ad62a48dd65cfbba3798b26679a13b73e07f08927306780757ce15185a408fa2", bytes: 19010 },
-    { path: "assets/citymeter-ds-0.9.1-motif-placement-v1.js", sha256: "a2a36b348bafd96a0e0e41b118acd078f9ba96b752cb5728cbc5701986fa737d", bytes: 4550 },
+    { path: "assets/citymeter-ds-0.9.1-motif-placement-v2.js", sha256: "4cc7a131c62eafb9f1b3dc4989da0fc50c619ba0ea0c16ff044b5309db794be3", bytes: 3433 },
+    { path: "assets/landometer-motifs/v1/manifest.json", sha256: "6452e0fbc3c0b23330d6a188678d1dd9dde66cf22f19e0b7b471b48f4e7b5dee", bytes: 4818 },
     { path: "assets/catalog-enhancements-ds-0.9.1-v26.js", sha256: "f38e255ed8f921ea7beda520fe9d6eff9da0078ef69f892747b8585fad2807d5", bytes: 61551 },
     { path: "assets/index-qbT50gkr-v18.js", sha256: "808fa6d1805b61181c8675885e68d3be664dcc50d277df3a3af21d0d85c3bed0", bytes: 531713 },
-    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "bd13ff64317e8c2b57497d4ce7c45dca9fd20fbc4df469a93ed776cc811aa4e0", bytes: 5688 },
-    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "a8ebd316891fd30e48e8e6918fec9344f2f60abce44d2da14eae9feac67a3e60", bytes: 67233 },
-    { path: "index.html", sha256: "bd6056f7bbb23d2a237e61c673e5c1e49b2fe89e3d49c1d84cafc838b2d94c23", bytes: 548776 },
-    { path: "en/index.html", sha256: "14272f275c0cbf9e2352c16db6ee748350cd8f24c99e03d4119a988aef35046c", bytes: 471884 }
+    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "70098843b7ecd13b63521ad41cd31814be6fe7e518f138102e50514252d3a1da", bytes: 7236 },
+    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "ded06dc96233e02c4d8b5a0495b6105fc176e1087775a20da39b2d0c46377284", bytes: 68432 },
+    { path: "index.html", sha256: "2088ee8ae655fdda6a3f6150e81892c16c2846b8d134f74cae71385ff9f29db0", bytes: 548776 },
+    { path: "en/index.html", sha256: "b56c484ceeb7a05217c5128277042953a8a481ed46f90bc23ee032e105264710", bytes: 471884 }
   ],
   sourceBodyHashes: {
     "index.html": "1cdac0445742a2f7ec1a6b0a9c5d6a52d440f45e3a53ae7eb28b1c597165e461",
@@ -168,6 +169,8 @@ assert(
   "Evidence-bound copy/source/schema correction boundary drifted"
 );
 assert(release.changeBoundary.decorativeColoredEdgePolicy === "prohibited", "Decorative colored-edge prohibition drifted");
+assert(release.changeBoundary.motifMotionDs091Disposition === "owner_selected_artifact_divergence_from_MOTION-01_finite_decorative_motion", "Owner-selected continuous-motif divergence is not recorded exactly");
+assert(release.changeBoundary.datasetSnapshotHoverClip.includes("15px inner top radius"), "Snapshot-hover clip decision is not recorded");
 assert(release.deliveryDecision.deliveryState === "ready_for_publication" && release.deliveryDecision.governedConformanceLevel === "not_claimed", "Public release must keep formal receipt-based conformance unclaimed");
 assert(release.deliveryDecision.artifactQaPassedClaimed === false && release.deliveryDecision.productionVerifiedClaimed === false, "Unsigned QA/production promotion must remain unclaimed");
 assert(release.deliveryDecision.publishable === true && release.deliveryDecision.mustNotDeploy === false, "Owner-authorized public release must remain deployable");
@@ -247,11 +250,14 @@ for (const file of motifManifest.files) {
   assert(sha256(file.targetPath) === file.sha256, `${file.targetPath}: motif manifest SHA-256 drifted`);
   assert(statSync(join(root, file.targetPath)).size === file.bytes, `${file.targetPath}: motif manifest byte count drifted`);
 }
-assert(motifManifest.implementation.selectedKind === "rings" && motifManifest.implementation.variant === "quiet" && motifManifest.implementation.ink === "sky" && motifManifest.implementation.autoplay === false, "Governed motif selection drifted");
+assert(motifManifest.recordVersion === "1.1", "Motif usage manifest revision drifted");
+assert(motifManifest.implementation.selectedKind === "rings" && motifManifest.implementation.variant === "full" && motifManifest.implementation.ink === "component_energy_palette" && motifManifest.implementation.autoplay === true, "Governed motif selection drifted");
+assert(motifManifest.implementation.motionAdapter.continuousAmbient === true && motifManifest.implementation.motionAdapter.pauseControl === true, "Owner-directed continuous motif motion contract drifted");
+assert(motifManifest.implementation.motionAdapter.ownerSelectedDivergence.includes("MOTION-01"), "Motif motion divergence must remain explicit");
 for (const role of ["identity", "data_visualization", "evidence", "status", "control", "decorative_border", "edge", "rail", "divider"]) {
   assert(motifManifest.prohibitedRoles.includes(role), `Motif prohibited role is missing: ${role}`);
 }
-assert(motifManifest.conformanceBoundary.includes("not a signed DS asset-approval receipt"), "Motif conformance boundary drifted");
+assert(motifManifest.conformanceBoundary.includes("not a signed DS asset-approval receipt") && motifManifest.conformanceBoundary.includes("MOTION-01"), "Motif conformance boundary drifted");
 
 const v17 = read("assets/index-qbT50gkr-v17.js");
 const v18 = read("assets/index-qbT50gkr-v18.js");
@@ -553,7 +559,7 @@ for (const page of pageContracts) {
   const links = [
     `${page.prefix}${expected.productionCss.path}`,
     `${page.prefix}${expected.motifCss.path}`,
-    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.css`,
+    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v27.css`,
     `${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css`
   ];
   for (const link of links) assert(count(html, link) === 1, `${page.path}: expected one active stylesheet ${link}`);
@@ -563,11 +569,11 @@ for (const page of pageContracts) {
     `${page.prefix}${expected.motifJs.path}`,
     `${page.prefix}assets/unified-navbar-r7-v31.js`,
     `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.js`,
-    `${page.prefix}assets/citymeter-ds-0.9.1-motif-placement-v1.js`
+    `${page.prefix}assets/citymeter-ds-0.9.1-motif-placement-v2.js`
   ];
   for (const script of scripts) assert(count(html, script) === 1, `${page.path}: expected one active script ${script}`);
   assert(html.indexOf(scripts[0]) < html.indexOf(scripts[3]) && html.indexOf(scripts[2]) < html.indexOf(scripts[3]), `${page.path}: one motif runtime/placement order drifted`);
-  assert(count(html, expected.motifJs.path) === 1 && count(html, "assets/citymeter-ds-0.9.1-motif-placement-v1.js") === 1, `${page.path}: must load exactly one motif runtime and one placement runtime`);
+  assert(count(html, expected.motifJs.path) === 1 && count(html, "assets/citymeter-ds-0.9.1-motif-placement-v2.js") === 1, `${page.path}: must load exactly one motif runtime and one placement runtime`);
   assert(count(html, `${page.prefix}assets/index-qbT50gkr-v18.js`) === 1, `${page.path}: DS 0.9.1 bundle is not uniquely active`);
 
   for (const retired of [
@@ -597,10 +603,10 @@ for (const page of pageContracts) {
   assert(!html.includes("supporter-logos-hero") && !html.includes("supporter-lockup-hero"), `${page.path}: supporter marks must not be duplicated in the hero`);
 }
 
-const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v26.css");
+const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v27.css");
 const compiledBaseCss = read("assets/index-cqxdfePB.css");
 const navbarCss = read("assets/unified-navbar-r7-ds-0.9.1-v32.css");
-const placementJs = read("assets/citymeter-ds-0.9.1-motif-placement-v1.js");
+const placementJs = read("assets/citymeter-ds-0.9.1-motif-placement-v2.js");
 assertBalancedCss(surfaceCss, "DS surface CSS");
 assertBalancedCss(navbarCss, "DS navbar CSS");
 
@@ -668,17 +674,48 @@ assert(!/rgba?\(/i.test(surfaceCss), "Raw rgb/rgba colors must resolve through D
 
 for (const contract of [
   '[data-lm-placement="catalog-orientation"]',
-  "position: absolute",
+  ".catalog-structure[data-lm-motif-ready]",
+  "grid-template-columns: minmax(0, 1fr) minmax(240px, 300px)",
+  "grid-column: 1 / -1",
+  "width: min(100%, 220px)",
   "pointer-events: none",
   "contain: layout paint",
-  "translateX(36px) scale(.985)",
-  "citymeter-motif-approach-opacity 760ms cubic-bezier(.16, 1, .3, 1)",
-  "citymeter-motif-approach-transform 920ms cubic-bezier(.2, .9, .25, 1.08)",
-  "@media (max-width: 979px)",
+  "citymeter-motif-ambient 6800ms ease-in-out infinite alternate",
+  "translate3d(-8px, 4px, 0) rotate(-.6deg) scale(.985)",
+  "translate3d(8px, -4px, 0) rotate(.6deg) scale(1.015)",
+  ".catalog-motif-stage[data-lm-paused] lm-motif",
+  ".catalog-motif-motion-toggle",
+  "min-height: 44px",
   "@media (prefers-reduced-motion: reduce)",
   "@media print",
   "animation: none !important"
 ]) assert(surfaceCss.includes(contract), `Motif layout/motion contract is missing: ${contract}`);
+assert(!surfaceCss.includes("@media (max-width: 979px)"), "Motif must no longer disappear at common tablet/split-pane widths");
+const motifPrintContract = `@media print {
+  [data-lm-placement="catalog-orientation"] lm-motif,
+  [data-lm-placement="catalog-orientation"] lm-motif * {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  [data-lm-placement="catalog-orientation"] lm-motif {
+    will-change: auto;
+  }
+
+  .catalog-motif-motion-toggle {
+    display: none !important;
+  }
+}`;
+assert(surfaceCss.includes(motifPrintContract), "Print output must freeze the continuous motif and omit its interactive motion control");
+assert(surfaceCss.lastIndexOf("@media print") > surfaceCss.indexOf("citymeter-motif-ambient 6800ms"), "The v2 print override must follow the continuous motif rule");
+const mediaClipRule = surfaceCss.match(/\.dataset-card\s*>\s*\.dataset-image\s*\{([^}]+)\}/i)?.[1] || "";
+for (const contract of [
+  "overflow: hidden",
+  "border-radius: 15px 15px 0 0",
+  "clip-path: inset(0 round 15px 15px 0 0)",
+  "contain: paint"
+]) assert(mediaClipRule.includes(contract), `Dataset snapshot hover clip contract is missing: ${contract}`);
+assert(count(surfaceCss, "citymeter-motif-ambient 6800ms ease-in-out infinite alternate") === 1, "Continuous ambient motif animation must have exactly one owner");
 
 assert(!/#[0-9a-f]{3,8}\b/i.test(navbarCss) && !/rgba?\(/i.test(navbarCss), "Navbar authored colors must resolve only through DS tokens");
 for (const contract of [
@@ -698,35 +735,34 @@ assert(!/\binfinite\b/i.test(navbarCss) && !navbarCss.includes("@keyframes lmNav
 for (const contract of [
   'var selector = "#datasets .catalog-structure"',
   'var marker = "catalog-orientation"',
-  "target.querySelector('[data-lm-placement=\"' + marker + '\"]')",
+  'var stageMarker = "catalog-orientation-stage"',
+  "target.querySelector('[data-lm-motif-stage=\"' + stageMarker + '\"]')",
   'motif.setAttribute("kind", "rings")',
-  'motif.setAttribute("quiet", "")',
-  'motif.setAttribute("ink", "sky")',
-  'motif.setAttribute("autoplay", "false")',
   'var motif = document.createElement("lm-motif")',
   "placement.appendChild(motif)",
   'placement.setAttribute("aria-hidden", "true")',
   'motif.setAttribute("aria-hidden", "true")',
-  'threshold: 0.14, rootMargin: "0px 0px -12% 0px"',
-  "function stopObserving(element)",
-  "try {",
-  "observer = null;",
-  "failOpen(placement);",
-  "var observerReported = false",
-  "observerReported = true",
-  "if (!observerReported) failOpen(placement)",
+  'stage.className = "catalog-motif-stage"',
+  'button.className = "catalog-motif-motion-toggle"',
+  'document.addEventListener("visibilitychange", syncMotionState)',
+  'reducedMotion.addEventListener("change", syncMotionState)',
+  'stage.toggleAttribute("data-lm-paused", paused)',
+  'stage.setAttribute("data-lm-motion-state"',
+  'button.addEventListener("click"',
+  'button.textContent = action',
+  'button.setAttribute("aria-label", action)',
+  'target.setAttribute("data-lm-motif-ready", "")',
+  'caption.insertAdjacentElement("afterend", stage)',
+  'target.removeAttribute("data-lm-motif-ready")',
   "}, 2400)",
   'window.addEventListener("load", start, { once: true })'
 ]) assert(placementJs.includes(contract), `Motif placement contract is missing: ${contract}`);
 assert(count(placementJs, 'document.createElement("lm-motif")') === 1 && count(placementJs, "placement.appendChild(motif)") === 1, "Motif placement runtime must create and append exactly one motif");
-for (const lifecycle of ["scroll", "resize", "pageshow", "hashchange", "popstate", "focus", "visibilitychange"]) {
-  assert(placementJs.includes(`addEventListener("${lifecycle}"`) && placementJs.includes(`removeEventListener("${lifecycle}"`), `Motif passive lifecycle audit is incomplete: ${lifecycle}`);
-}
-assert(placementJs.includes("function installPassiveAudit(element)") && placementJs.includes("hasReachedEffectiveRoot(element)") && placementJs.includes("window.innerHeight * 0.88"), "Motif reached-content passive audit drifted");
-assert(count(placementJs, "requestAnimationFrame") >= 4, "Motif placement must preserve hydration and visible-state two-frame boundaries");
-assert(!/\.play\s*\(/.test(placementJs) && !/setAttribute\(\s*["']run["']/.test(placementJs), "Supplied motif internal animation must never be invoked");
+assert(count(placementJs, "requestAnimationFrame") >= 2, "Motif placement must preserve the hydration-safe two-frame boundary");
+assert(!placementJs.includes('motif.setAttribute("quiet"') && !placementJs.includes('motif.setAttribute("ink"') && !placementJs.includes('motif.setAttribute("autoplay"'), "Full supplied rings variant must use its native palette and one-shot entry behavior");
+assert(!/\.play\s*\(/.test(placementJs) && !/setAttribute\(\s*["']run["']/.test(placementJs), "Supplied motif component must never be replayed");
 for (const prohibitedKind of ["dial", "slice", "layers", "cultivate"]) {
   assert(!placementJs.includes(`\"${prohibitedKind}\"`), `Prohibited motif kind remains in placement runtime: ${prohibitedKind}`);
 }
 
-console.log("CityMETER DS 0.9.1 public-release gate passed: exact DS CSS and pinned release bytes, one motif runtime/placement, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Formal artifact_qa_passed and production_verified claims remain intentionally unclaimed.");
+console.log("CityMETER DS 0.9.1 v2 public-release gate passed: exact DS CSS and pinned release bytes, one responsive full-rings motif with owner-directed continuous ambient motion plus pause/reduced-motion controls, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Full DS conformance, artifact_qa_passed, and production_verified claims remain intentionally unclaimed because the continuous decorative motion is a recorded MOTION-01 divergence.");

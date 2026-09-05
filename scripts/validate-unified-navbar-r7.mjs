@@ -38,8 +38,8 @@ const expectedReceiptIdentity = {
 const expectedPageIdentity = {
   "landometer:ds-version": "0.9.1",
   "landometer:color-set": "color-srgb-05",
-  "landometer:artifact-build": "ui-20260905-ds091-motif-public-v1",
-  "landometer:release-receipt": "2026-09-05-citymeter-ds091-motif-public-v1"
+  "landometer:artifact-build": "ui-20260905-ds091-motif-public-v2",
+  "landometer:release-receipt": "2026-09-05-citymeter-ds091-motif-public-v2"
 };
 
 const pages = [
