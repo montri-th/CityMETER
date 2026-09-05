@@ -496,8 +496,8 @@ function migratePage(relativePath, prefix, language) {
   );
   html = replaceOne(html, '<meta name="theme-color" content="#176b82" />', '<meta name="theme-color" content="#F6F7F3" />', `${relativePath} initial theme color`);
   html = replaceOne(html, '<meta name="landometer:ds-version" content="0.9.0" />', '<meta name="landometer:ds-version" content="0.9.1" />', `${relativePath} DS version meta`);
-  html = replaceOneVariant(html, ['<meta name="landometer:artifact-build" content="ui-20260830-09" />', '<meta name="landometer:artifact-build" content="ui-20260904-ds091-motif-internal-v1" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-motif-public-v1" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-motif-public-v2" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v3" />'], '<meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v4" />', `${relativePath} build meta`);
-  html = replaceOneVariant(html, ['<meta name="landometer:release-receipt" content="2026-08-30-citymeter-unified-nav-r7-v31" />', '<meta name="landometer:release-receipt" content="2026-09-04-citymeter-ds091-motif-internal-v1" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v1" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v2" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v3" />'], '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v4" />', `${relativePath} release receipt meta`);
+  html = replaceOneVariant(html, ['<meta name="landometer:artifact-build" content="ui-20260830-09" />', '<meta name="landometer:artifact-build" content="ui-20260904-ds091-motif-internal-v1" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-motif-public-v1" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-motif-public-v2" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v3" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v4" />'], '<meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v5" />', `${relativePath} build meta`);
+  html = replaceOneVariant(html, ['<meta name="landometer:release-receipt" content="2026-08-30-citymeter-unified-nav-r7-v31" />', '<meta name="landometer:release-receipt" content="2026-09-04-citymeter-ds091-motif-internal-v1" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v1" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v2" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v3" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v4" />'], '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v5" />', `${relativePath} release receipt meta`);
   html = replaceOneVariant(
     html,
     [
@@ -506,9 +506,10 @@ function migratePage(relativePath, prefix, language) {
       '<meta name="citymeter:release-receipt" content="2026-09-04-citymeter-ds091-motif-internal-v1" />',
       '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v1" />',
       '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v2" />',
-      '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v3" />'
+      '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v3" />',
+      '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v4" />'
     ],
-    '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v4" />',
+    '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v5" />',
     `${relativePath} CityMETER release receipt meta`
   );
   html = replaceOne(html, `${prefix}assets/index-qbT50gkr-v17.js`, `${prefix}assets/index-qbT50gkr-v18.js`, `${relativePath} hydrated bundle`);
@@ -587,6 +588,126 @@ function migratePage(relativePath, prefix, language) {
   html = ensureStaticSupporterLogos(html, relativePath, prefix, language);
   html = replaceStaticSocialIcons(html, relativePath);
 
+  const headerPreferenceSource = language === "th"
+    ? [
+        '            <a class="lm-header-link lm-desktop-only" href="https://montri-th.github.io/CityMETER/" aria-current="page">CityMETER</a>',
+        '            <a class="lm-header-link lm-desktop-only" href="https://landometer.com/v3/citywiki">CityWiki</a>'
+      ].join("\n")
+    : [
+        '            <a class="lm-header-link lm-desktop-only" href="https://montri-th.github.io/CityMETER/en/" aria-current="page">CityMETER</a>',
+        '            <a class="lm-header-link lm-desktop-only" href="https://landometer.com/v3/citywiki">CityWiki</a>'
+      ].join("\n");
+  const headerPreferences = language === "th"
+    ? [
+        '            <div class="lm-preference-cluster lm-desktop-only" data-lm-preferences>',
+        '              <div class="lm-segmented-control" role="group" aria-label="ภาษา" data-lm-aria="languageGroup">',
+        '                <a class="lm-preference-option" href="./?lang=th" hreflang="th" lang="th" data-lm-locale="th" data-lm-copy="thai">ไทย</a>',
+        '                <a class="lm-preference-option" href="./en/?lang=en" hreflang="en" lang="en" data-lm-locale="en" data-lm-copy="englishShort">EN</a>',
+        '              </div>',
+        '              <div class="lm-segmented-control" role="group" aria-label="ธีมสี" data-lm-aria="themeGroup">',
+        '                <button class="lm-preference-option" type="button" data-lm-theme-choice="system" data-lm-copy="systemShort" data-lm-control-label="themeSystem">ระบบ</button>',
+        '                <button class="lm-preference-option" type="button" data-lm-theme-choice="light" data-lm-copy="light" data-lm-control-label="themeLight">สว่าง</button>',
+        '                <button class="lm-preference-option" type="button" data-lm-theme-choice="dark" data-lm-copy="dark" data-lm-control-label="themeDark">มืด</button>',
+        '              </div>',
+        '            </div>'
+      ].join("\n")
+    : [
+        '            <div class="lm-preference-cluster lm-desktop-only" data-lm-preferences>',
+        '              <div class="lm-segmented-control" role="group" aria-label="Language" data-lm-aria="languageGroup">',
+        '                <a class="lm-preference-option" href="../?lang=th" hreflang="th" lang="th" data-lm-locale="th" data-lm-copy="thai">ไทย</a>',
+        '                <a class="lm-preference-option" href="./?lang=en" hreflang="en" lang="en" data-lm-locale="en" data-lm-copy="englishShort">EN</a>',
+        '              </div>',
+        '              <div class="lm-segmented-control" role="group" aria-label="Colour theme" data-lm-aria="themeGroup">',
+        '                <button class="lm-preference-option" type="button" data-lm-theme-choice="system" data-lm-copy="systemShort" data-lm-control-label="themeSystem">Auto</button>',
+        '                <button class="lm-preference-option" type="button" data-lm-theme-choice="light" data-lm-copy="light" data-lm-control-label="themeLight">Light</button>',
+        '                <button class="lm-preference-option" type="button" data-lm-theme-choice="dark" data-lm-copy="dark" data-lm-control-label="themeDark">Dark</button>',
+        '              </div>',
+        '            </div>'
+      ].join("\n");
+  html = replaceOneVariant(html, [headerPreferenceSource], headerPreferences, `${relativePath} visible locale and theme controls`);
+
+  const menuPanelStart = language === "th"
+    ? '      <div class="lm-menu-panel" id="lm-site-menu" role="dialog" aria-modal="false" aria-label="เมนู Landometer" data-lm-aria="menu" tabindex="-1">'
+    : '      <div class="lm-menu-panel" id="lm-site-menu" role="dialog" aria-modal="false" aria-label="Landometer menu" data-lm-aria="menu" tabindex="-1">';
+  const menuMobileStart = '        <div class="lm-menu-group lm-menu-mobile-only">';
+  const menuPreferenceSource = `${menuPanelStart}\n${menuMobileStart}`;
+  const menuPreferences = language === "th"
+    ? [
+        menuPanelStart,
+        '        <div class="lm-menu-group lm-menu-preferences" data-lm-preferences>',
+        '          <p class="lm-menu-label" data-lm-copy="displayLabel">การแสดงผล</p>',
+        '          <div class="lm-preference-row">',
+        '            <span class="lm-preference-label" data-lm-copy="languageLabel">ภาษา</span>',
+        '            <div class="lm-segmented-control" role="group" aria-label="ภาษา" data-lm-aria="languageGroup">',
+        '              <a class="lm-preference-option" href="./?lang=th" hreflang="th" lang="th" data-lm-locale="th" data-lm-copy="thai">ไทย</a>',
+        '              <a class="lm-preference-option" href="./en/?lang=en" hreflang="en" lang="en" data-lm-locale="en" data-lm-copy="english">English</a>',
+        '            </div>',
+        '          </div>',
+        '          <div class="lm-preference-row">',
+        '            <span class="lm-preference-label" data-lm-copy="themeLabel">ธีม</span>',
+        '            <div class="lm-segmented-control" role="group" aria-label="ธีมสี" data-lm-aria="themeGroup">',
+        '              <button class="lm-preference-option" type="button" data-lm-theme-choice="system" data-lm-copy="system" data-lm-control-label="themeSystem">ตามระบบ</button>',
+        '              <button class="lm-preference-option" type="button" data-lm-theme-choice="light" data-lm-copy="light" data-lm-control-label="themeLight">สว่าง</button>',
+        '              <button class="lm-preference-option" type="button" data-lm-theme-choice="dark" data-lm-copy="dark" data-lm-control-label="themeDark">มืด</button>',
+        '            </div>',
+        '          </div>',
+        '        </div>',
+        menuMobileStart
+      ].join("\n")
+    : [
+        menuPanelStart,
+        '        <div class="lm-menu-group lm-menu-preferences" data-lm-preferences>',
+        '          <p class="lm-menu-label" data-lm-copy="displayLabel">Display</p>',
+        '          <div class="lm-preference-row">',
+        '            <span class="lm-preference-label" data-lm-copy="languageLabel">Language</span>',
+        '            <div class="lm-segmented-control" role="group" aria-label="Language" data-lm-aria="languageGroup">',
+        '              <a class="lm-preference-option" href="../?lang=th" hreflang="th" lang="th" data-lm-locale="th" data-lm-copy="thai">ไทย</a>',
+        '              <a class="lm-preference-option" href="./?lang=en" hreflang="en" lang="en" data-lm-locale="en" data-lm-copy="english">English</a>',
+        '            </div>',
+        '          </div>',
+        '          <div class="lm-preference-row">',
+        '            <span class="lm-preference-label" data-lm-copy="themeLabel">Theme</span>',
+        '            <div class="lm-segmented-control" role="group" aria-label="Colour theme" data-lm-aria="themeGroup">',
+        '              <button class="lm-preference-option" type="button" data-lm-theme-choice="system" data-lm-copy="system" data-lm-control-label="themeSystem">System</button>',
+        '              <button class="lm-preference-option" type="button" data-lm-theme-choice="light" data-lm-copy="light" data-lm-control-label="themeLight">Light</button>',
+        '              <button class="lm-preference-option" type="button" data-lm-theme-choice="dark" data-lm-copy="dark" data-lm-control-label="themeDark">Dark</button>',
+        '            </div>',
+        '          </div>',
+        '        </div>',
+        menuMobileStart
+      ].join("\n");
+  html = replaceOneVariant(html, [menuPreferenceSource], menuPreferences, `${relativePath} menu locale and theme controls`);
+
+  const fallbackSource = language === "th"
+    ? [
+        '      <a href="#decisions" data-lm-copy="decision">เลือกโจทย์</a>',
+        '      <a href="#examples" data-lm-copy="examples">ดูตัวอย่าง</a>',
+        '      <a href="#datasets" data-lm-copy="datasets">ข้อมูลทั้งหมด</a>',
+        '      <a href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">คุยกับเรา</a>'
+      ].join("\n")
+    : [
+        '      <a href="#decisions" data-lm-copy="decision">Choose a question</a>',
+        '      <a href="#examples" data-lm-copy="examples">See examples</a>',
+        '      <a href="#datasets" data-lm-copy="datasets">All data</a>',
+        '      <a href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">Contact us</a>'
+      ].join("\n");
+  const fallbackWithLocale = language === "th"
+    ? [
+        '      <a href="#decisions" data-lm-copy="decision">เลือกโจทย์</a>',
+        '      <a href="#examples" data-lm-copy="examples">ดูตัวอย่าง</a>',
+        '      <a href="#datasets" data-lm-copy="datasets">ข้อมูลทั้งหมด</a>',
+        '      <a href="./en/?lang=en" hreflang="en" lang="en">English</a>',
+        '      <a href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">คุยกับเรา</a>'
+      ].join("\n")
+    : [
+        '      <a href="#decisions" data-lm-copy="decision">Choose a question</a>',
+        '      <a href="#examples" data-lm-copy="examples">See examples</a>',
+        '      <a href="#datasets" data-lm-copy="datasets">All data</a>',
+        '      <a href="../?lang=th" hreflang="th" lang="th">ไทย</a>',
+        '      <a href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">Contact us</a>'
+      ].join("\n");
+  html = replaceEvery(html, fallbackSource, fallbackWithLocale, `${relativePath} fallback locale links`);
+
   const oldEnhancement = `    <link rel="stylesheet" href="${prefix}assets/catalog-enhancements-v25.css">`;
   const previousEnhancement = [
     `    <link rel="stylesheet" href="${prefix}assets/landometer-ds/v0.9.1/color-srgb-05.production.css">`,
@@ -600,14 +721,23 @@ function migratePage(relativePath, prefix, language) {
   ].join("\n");
   const newEnhancement = [
     `    <link rel="stylesheet" href="${prefix}assets/landometer-ds/v0.9.1/color-srgb-05.production.css">`,
-    `    <link rel="stylesheet" href="${prefix}assets/catalog-enhancements-ds-0.9.1-v29.css">`
+    `    <link rel="stylesheet" href="${prefix}assets/catalog-enhancements-ds-0.9.1-v30.css">`
   ].join("\n");
   const previousNoMotifEnhancement = [
     `    <link rel="stylesheet" href="${prefix}assets/landometer-ds/v0.9.1/color-srgb-05.production.css">`,
     `    <link rel="stylesheet" href="${prefix}assets/catalog-enhancements-ds-0.9.1-v28.css">`
   ].join("\n");
-  html = replaceOneVariant(html, [oldEnhancement, previousEnhancement, currentEnhancement, previousNoMotifEnhancement], newEnhancement, `${relativePath} DS styles`);
-  html = replaceOne(html, `${prefix}assets/unified-navbar-r7-v30.css`, `${prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css`, `${relativePath} navbar styles`);
+  const previousSlowRevealEnhancement = [
+    `    <link rel="stylesheet" href="${prefix}assets/landometer-ds/v0.9.1/color-srgb-05.production.css">`,
+    `    <link rel="stylesheet" href="${prefix}assets/catalog-enhancements-ds-0.9.1-v29.css">`
+  ].join("\n");
+  html = replaceOneVariant(html, [oldEnhancement, previousEnhancement, currentEnhancement, previousNoMotifEnhancement, previousSlowRevealEnhancement], newEnhancement, `${relativePath} DS styles`);
+  html = replaceOneVariant(
+    html,
+    [`${prefix}assets/unified-navbar-r7-v30.css`, `${prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css`],
+    `${prefix}assets/unified-navbar-r7-ds-0.9.1-v33.css`,
+    `${relativePath} navbar styles`
+  );
 
   const oldScripts = [
     `    <script defer src="${prefix}assets/unified-navbar-r7-v31.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`,
@@ -626,7 +756,7 @@ function migratePage(relativePath, prefix, language) {
     `    <script defer src="${prefix}assets/citymeter-ds-0.9.1-motif-placement-v2.js"></script>`
   ].join("\n");
   const newScripts = [
-    `    <script defer src="${prefix}assets/unified-navbar-r7-v31.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`,
+    `    <script defer src="${prefix}assets/unified-navbar-r7-v32.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`,
     `    <script defer src="${prefix}assets/catalog-enhancements-ds-0.9.1-v26.js"></script>`,
     `    <script defer src="${prefix}assets/citymeter-ds-0.9.1-approach-reveal-v1.js"></script>`
   ].join("\n");
@@ -634,10 +764,15 @@ function migratePage(relativePath, prefix, language) {
     `    <script defer src="${prefix}assets/unified-navbar-r7-v31.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`,
     `    <script defer src="${prefix}assets/catalog-enhancements-ds-0.9.1-v26.js"></script>`
   ].join("\n");
+  const previousSlowRevealScripts = [
+    `    <script defer src="${prefix}assets/unified-navbar-r7-v31.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`,
+    `    <script defer src="${prefix}assets/catalog-enhancements-ds-0.9.1-v26.js"></script>`,
+    `    <script defer src="${prefix}assets/citymeter-ds-0.9.1-approach-reveal-v1.js"></script>`
+  ].join("\n");
   const headClose = "  </head>";
   html = replaceOneVariant(
     html,
-    [oldScripts, previousScripts, currentScripts, previousNoMotifScripts].map((scripts) => `${scripts}\n${headClose}`),
+    [oldScripts, previousScripts, currentScripts, previousNoMotifScripts, previousSlowRevealScripts].map((scripts) => `${scripts}\n${headClose}`),
     `${newScripts}\n${headClose}`,
     `${relativePath} DS scripts without motif`
   );
@@ -656,5 +791,5 @@ migratePage("index.html", "./", "th");
 migratePage("en/index.html", "../", "en");
 
 console.log(checkOnly
-  ? "CityMETER DS 0.9.1 v4 slow-reveal public-release migration check passed."
-  : "Prepared the CityMETER DS 0.9.1 v4 slow-reveal public release candidate.");
+  ? "CityMETER DS 0.9.1 v5 controls-and-reveal public-release migration check passed."
+  : "Prepared the CityMETER DS 0.9.1 v5 controls-and-reveal public release candidate.");

@@ -6,17 +6,17 @@
 
 สาขานี้เก็บ public release สำหรับ Landometer Design System 0.9.1 ที่ได้รับอนุญาตให้ publish ไปยัง GitHub Pages เดิม
 
-- release: `2026-09-05-citymeter-ds091-public-v4`
-- artifact build: `ui-20260905-ds091-public-v4`
+- release: `2026-09-05-citymeter-ds091-public-v5`
+- artifact build: `ui-20260905-ds091-public-v5`
 - public URL เดิม: <https://montri-th.github.io/CityMETER/>
-- public source ก่อน patch นี้: commit `c944a47e2480dc460d3325971bfe6bf3d9a35b12`
+- public source ก่อน patch นี้: commit `2070b41463322da9d79c2c05d0b2a3a51bcf7f73`
 - local hydrated runtime: `assets/index-qbT50gkr-v18.js`
-- local enhancement owners: `assets/catalog-enhancements-ds-0.9.1-v29.css`, `assets/catalog-enhancements-ds-0.9.1-v26.js` และ `assets/citymeter-ds-0.9.1-approach-reveal-v1.js`
-- unified navigation: `assets/unified-navbar-r7-ds-0.9.1-v32.css` และ `assets/unified-navbar-r7-v31.js`
+- local enhancement owners: `assets/catalog-enhancements-ds-0.9.1-v30.css`, `assets/catalog-enhancements-ds-0.9.1-v26.js` และ `assets/citymeter-ds-0.9.1-approach-reveal-v1.js`
+- unified navigation: `assets/unified-navbar-r7-ds-0.9.1-v33.css` และ `assets/unified-navbar-r7-v32.js`
 - DS binding: `0.9.1` / `0.9.1-r8` / `lds-rules-0.9.1` / `v0.9.1-mp7`
 - delivery state: `ready_for_publication`, `publishable: true`, `mustNotDeploy: false`
 
-รายละเอียด exact bytes, authority และ QA อยู่ใน `CITYMETER_DS_0.9.1_SLOW_REVEAL_2026-09-05_V4.md` และ `data/citymeter-ds-0.9.1-release-record.json`.
+รายละเอียด exact bytes, authority และ QA อยู่ใน `CITYMETER_DS_0.9.1_CONTROLS_AND_REVEAL_2026-09-05_V5.md` และ `data/citymeter-ds-0.9.1-release-record.json`.
 
 ## สิ่งที่ release นี้เปลี่ยน
 
@@ -26,8 +26,9 @@
 - ใช้ exact audience projection `assets/landometer-ds/v0.9.1/color-srgb-05.production.css`; ไม่ส่ง raw colour-provenance files
 - แสดง Land, Location และ Living เป็น peer dimensions แล้วเชื่อมผ่าน CityMETER ไปสู่ Local Decisions
 - ไม่มี motif, motif runtime, motif placement หรือปุ่มควบคุม motif บน active page
+- คืนปุ่มภาษาไทย/English และ System/Light/Dark ให้เห็นและใช้งานได้โดยตรงบน desktop พร้อมชุดเดียวกันใน compact menu; ลิงก์ภาษายังทำงานได้เมื่อ JavaScript ใช้ไม่ได้
 - คืน slow reveal ให้ 57 semantic targets ที่มี logical key ไม่ซ้ำต่อภาษา: section headings 3 ชิ้น, showcase media 6 ชิ้น, โครงสร้าง catalogue 8 ชิ้น, snapshot 38 ชิ้น, handoff media 1 ชิ้น และ QR 1 ชิ้น
-- ใช้ exact DS 0.9.1 approach recipe แบบ once-only และ fail-open; stagger ใช้เฉพาะกลุ่มย่อยที่สัมพันธ์กัน ส่วน snapshot ทั้ง 38 ชิ้นใช้ media arrival 900 ms โดยไม่หน่วงเป็นคิวยาว
+- ใช้ DS 0.9.1 approach semantics แบบ once-only และ fail-open แต่ยืดเฉพาะ duration ตามคำสั่งเจ้าของเป็น opacity 1,200 ms, transform 1,450 ms และ media 1,350 ms เพื่อให้มองเห็นจังหวะได้ชัด; คงระยะ scale easing observer และ stagger 150/450 ms เดิม ส่วน snapshot ทั้ง 38 ชิ้นไม่หน่วงเป็นคิวยาว
 - หลังค้นหา กรอง หรือล้างตัวกรอง snapshot ที่ระบบสร้างใหม่ยังผูกกับรหัสรายการเดิม: ชิ้นที่ reveal แล้วไม่เล่นซ้ำ ส่วนชิ้นที่ยังไม่ถึง viewport ยังรอ reveal ตามเดิม
 - hero/LCP, decision proof, search/filter/status, card copy/actions/details, contact CTA, legal และ identity แสดงทันทีเสมอ
 - ตัดภาพ snapshot ที่ขยายเมื่อ hover ภายใน media frame รัศมี 15 px เพื่อไม่ให้มุมเหลี่ยมล้นพ้นการ์ดรัศมี 16 px
@@ -49,6 +50,8 @@
 - depa project-mark evidence and exact assets: `data/citymeter-depa-supporter-marks-rights-record.json`
 - owner direction ให้นำ motif ออกจากหน้า: `owner-message:2026-09-05:remove-motif-from-citymeter`
 - owner direction ให้คืน slow reveal ทุกชิ้นที่เข้าเกณฑ์: `owner-message:2026-09-05:restore-slow-reveal-all-eligible-pieces`
+- owner direction ให้ reveal ช้าลงและสังเกตได้ชัด: `owner-message:2026-09-05:reveal-slower-and-more-perceivable`
+- owner direction ให้คืนภาษาและธีม: `owner-message:2026-09-05:restore-language-and-theme-controls`
 - 38-record source ledger: `data/catalog-source-review.json`
 - release decision: `data/citymeter-ds-0.9.1-release-record.json`
 
@@ -61,7 +64,8 @@ Owner approval ครบแล้วและไม่ต้องขอซ้�
 - `assets/index-qbT50gkr-v18.js` — active local hydrated bundle
 - `assets/catalog-enhancements-v25.js` — immutable enhancement migration source
 - `assets/catalog-enhancements-ds-0.9.1-v26.js` — active local enhancement runtime
-- `assets/catalog-enhancements-ds-0.9.1-v29.css` — active local presentation owner
+- `assets/catalog-enhancements-ds-0.9.1-v30.css` — active local presentation owner
+- `assets/unified-navbar-r7-ds-0.9.1-v33.css` / `assets/unified-navbar-r7-v32.js` — active navigation and preference controls
 - `assets/citymeter-ds-0.9.1-approach-reveal-v1.js` — active motif-independent slow-reveal runtime
 - `assets/landometer-ds/v0.9.1/` — exact DS audience CSS used by the release
 - `assets/landometer-motifs/v1/` — inactive immutable history; active HTML does not load these files
@@ -83,10 +87,10 @@ node scripts/validate-unified-navbar-r7.mjs
 node scripts/validate-release.mjs
 ```
 
-Release checks cover Thai/English static–hydrated parity, 57 unique reveal targets per locale, exact DS timing/stagger/observer values, once-only and fail-open lifecycle, filter-rerender continuity, 360–1600 px widths, deep links, absence of all motif DOM/runtime/style references, rounded hover clipping, supporter assets, duplicate IDs, horizontal overflow and application console/page/request errors.
+Release checks cover Thai/English static–hydrated parity, visible language/theme controls, persisted themes, query/hash-preserving locale routes, 57 unique reveal targets per locale, the recorded owner-directed duration profile with preserved DS stagger/observer values, once-only and fail-open lifecycle, filter-rerender continuity, 360–1600 px widths, deep links, absence of all motif DOM/runtime/style references, rounded hover clipping, supporter assets, duplicate IDs, horizontal overflow and application console/page/request errors.
 
 ## Publication boundary
 
 การ publish ได้รับอนุญาตแล้ว และ release record กำหนด `publishable: true`, `mustNotDeploy: false`.
 
-Release นี้ใช้ DS 0.9.1 ด้าน visual, interaction, accessibility และ format behavior และไม่มี motif หรือ motif-specific motion divergence เหลืออยู่ แต่ยังไม่อ้าง formal `artifact_qa_passed` หรือ `production_verified` จนกว่าจะมี signed receipts ตามระดับดังกล่าว.
+Release นี้ใช้ DS 0.9.1 ด้าน visual, interaction, accessibility และ format behavior และไม่มี motif หรือ motif-specific motion divergence เหลืออยู่ ระยะเวลา reveal ที่ยืดเป็น owner-directed artifact divergence จึงไม่อ้าง exact `MOTION-03`; และยังไม่อ้าง formal `artifact_qa_passed` หรือ `production_verified` จนกว่าจะมี signed receipts ตามระดับดังกล่าว.

@@ -8,8 +8,8 @@
     <meta name="theme-color" content="#F6F7F3" />
     <meta name="landometer:ds-version" content="0.9.1" />
     <meta name="landometer:color-set" content="color-srgb-05" />
-    <meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v4" />
-    <meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v4" />
+    <meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v5" />
+    <meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v5" />
     <script>
       (() => {
         try {
@@ -29,7 +29,7 @@
     </script>
     <meta name="description" content="Explore CityMETER examples and open mapped data on land, locations, businesses, people, services and risk." />
     <meta name="citymeter:catalog-version" content="2026-08-14" />
-    <meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v4" />
+    <meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v5" />
     <link rel="canonical" href="https://montri-th.github.io/CityMETER/en/" />
     <link rel="alternate" hreflang="th" href="https://montri-th.github.io/CityMETER/" />
     <link rel="alternate" hreflang="en" href="https://montri-th.github.io/CityMETER/en/" />
@@ -79,13 +79,13 @@
     <link rel="stylesheet" crossorigin href="../assets/index-cqxdfePB.css?v=2">
     <link rel="stylesheet" href="../assets/citymeter-fonts.css?v=1">
     <link rel="stylesheet" href="../assets/landometer-ds/v0.9.1/color-srgb-05.production.css">
-    <link rel="stylesheet" href="../assets/catalog-enhancements-ds-0.9.1-v29.css">
+    <link rel="stylesheet" href="../assets/catalog-enhancements-ds-0.9.1-v30.css">
     <link rel="preload" as="image" href="../assets/landometer-symbol-color.png" />
     <link rel="preload" as="font" href="../assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf" type="font/ttf" crossorigin />
     <link rel="preload" as="font" href="../assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf" type="font/ttf" crossorigin />
     <style id="lm-header-exclusivity">#root>.site-header{display:none!important}.lm-menu-shell[hidden],.lm-js-fallback-nav[hidden]{display:none!important}</style>
-    <link rel="stylesheet" href="../assets/unified-navbar-r7-ds-0.9.1-v32.css" />
-    <script defer src="../assets/unified-navbar-r7-v31.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>
+    <link rel="stylesheet" href="../assets/unified-navbar-r7-ds-0.9.1-v33.css" />
+    <script defer src="../assets/unified-navbar-r7-v32.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>
     <script defer src="../assets/catalog-enhancements-ds-0.9.1-v26.js"></script>
     <script defer src="../assets/citymeter-ds-0.9.1-approach-reveal-v1.js"></script>
   </head>
@@ -106,8 +106,17 @@
             <span class="lm-product-name" lang="en">CityMETER</span>
           </span>
           <nav class="lm-header-actions" aria-label="Landometer primary navigation" data-lm-aria="mainNav">
-            <a class="lm-header-link lm-desktop-only" href="https://montri-th.github.io/CityMETER/en/" aria-current="page">CityMETER</a>
-            <a class="lm-header-link lm-desktop-only" href="https://landometer.com/v3/citywiki">CityWiki</a>
+            <div class="lm-preference-cluster lm-desktop-only" data-lm-preferences>
+              <div class="lm-segmented-control" role="group" aria-label="Language" data-lm-aria="languageGroup">
+                <a class="lm-preference-option" href="../?lang=th" hreflang="th" lang="th" data-lm-locale="th" data-lm-copy="thai">ไทย</a>
+                <a class="lm-preference-option" href="./?lang=en" hreflang="en" lang="en" data-lm-locale="en" data-lm-copy="englishShort">EN</a>
+              </div>
+              <div class="lm-segmented-control" role="group" aria-label="Colour theme" data-lm-aria="themeGroup">
+                <button class="lm-preference-option" type="button" data-lm-theme-choice="system" data-lm-copy="systemShort" data-lm-control-label="themeSystem">Auto</button>
+                <button class="lm-preference-option" type="button" data-lm-theme-choice="light" data-lm-copy="light" data-lm-control-label="themeLight">Light</button>
+                <button class="lm-preference-option" type="button" data-lm-theme-choice="dark" data-lm-copy="dark" data-lm-control-label="themeDark">Dark</button>
+              </div>
+            </div>
             <span class="lm-nav-cta lm-desktop-only">
               <a class="lm-secondary-button" href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">Contact us</a>
               <span class="lm-nav-cta__sweep" aria-hidden="true" data-lm-copy="contact">Contact us</span>
@@ -122,6 +131,24 @@
     <div class="lm-menu-shell" data-lm-menu-shell hidden>
       <button class="lm-menu-backdrop" type="button" data-lm-menu-close tabindex="-1" aria-hidden="true"></button>
       <div class="lm-menu-panel" id="lm-site-menu" role="dialog" aria-modal="false" aria-label="Landometer menu" data-lm-aria="menu" tabindex="-1">
+        <div class="lm-menu-group lm-menu-preferences" data-lm-preferences>
+          <p class="lm-menu-label" data-lm-copy="displayLabel">Display</p>
+          <div class="lm-preference-row">
+            <span class="lm-preference-label" data-lm-copy="languageLabel">Language</span>
+            <div class="lm-segmented-control" role="group" aria-label="Language" data-lm-aria="languageGroup">
+              <a class="lm-preference-option" href="../?lang=th" hreflang="th" lang="th" data-lm-locale="th" data-lm-copy="thai">ไทย</a>
+              <a class="lm-preference-option" href="./?lang=en" hreflang="en" lang="en" data-lm-locale="en" data-lm-copy="english">English</a>
+            </div>
+          </div>
+          <div class="lm-preference-row">
+            <span class="lm-preference-label" data-lm-copy="themeLabel">Theme</span>
+            <div class="lm-segmented-control" role="group" aria-label="Colour theme" data-lm-aria="themeGroup">
+              <button class="lm-preference-option" type="button" data-lm-theme-choice="system" data-lm-copy="system" data-lm-control-label="themeSystem">System</button>
+              <button class="lm-preference-option" type="button" data-lm-theme-choice="light" data-lm-copy="light" data-lm-control-label="themeLight">Light</button>
+              <button class="lm-preference-option" type="button" data-lm-theme-choice="dark" data-lm-copy="dark" data-lm-control-label="themeDark">Dark</button>
+            </div>
+          </div>
+        </div>
         <div class="lm-menu-group lm-menu-mobile-only">
           <p class="lm-menu-label" data-lm-copy="localLabel">On this page</p>
           <nav class="lm-menu-links" aria-label="Sections on the CityMETER page" data-lm-aria="localAria">
@@ -181,6 +208,7 @@
       <a href="#decisions" data-lm-copy="decision">Choose a question</a>
       <a href="#examples" data-lm-copy="examples">See examples</a>
       <a href="#datasets" data-lm-copy="datasets">All data</a>
+      <a href="../?lang=th" hreflang="th" lang="th">ไทย</a>
       <a href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">Contact us</a>
       <a href="https://montri-th.github.io/rebuild02/">Landometer</a>
       <a href="https://landometer.com/v3/citywiki">CityWiki</a>
@@ -190,6 +218,7 @@
       <a href="#decisions" data-lm-copy="decision">Choose a question</a>
       <a href="#examples" data-lm-copy="examples">See examples</a>
       <a href="#datasets" data-lm-copy="datasets">All data</a>
+      <a href="../?lang=th" hreflang="th" lang="th">ไทย</a>
       <a href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">Contact us</a>
       <a href="https://montri-th.github.io/rebuild02/">Landometer</a>
       <a href="https://landometer.com/v3/citywiki">CityWiki</a>

@@ -1,8 +1,8 @@
 {
   "recordType": "citymeter_release_decision_record",
-  "recordVersion": "1.3",
-  "releaseId": "2026-09-05-citymeter-ds091-public-v4",
-  "artifactBuildId": "ui-20260905-ds091-public-v4",
+  "recordVersion": "1.4",
+  "releaseId": "2026-09-05-citymeter-ds091-public-v5",
+  "artifactBuildId": "ui-20260905-ds091-public-v5",
   "decisionDate": "2026-09-05",
   "productScope": "CityMETER",
   "artifact": {
@@ -50,6 +50,8 @@
     "ownerMediaReuseConfirmationRef": "data/citymeter-owner-media-reuse-confirmation-2026-09-05.json",
     "ownerMotifRemovalDirectionRef": "owner-message:2026-09-05:remove-motif-from-citymeter",
     "ownerSlowRevealDirectionRef": "owner-message:2026-09-05:restore-slow-reveal-all-eligible-pieces",
+    "ownerRevealPerceptibilityDirectionRef": "owner-message:2026-09-05:reveal-slower-and-more-perceivable",
+    "ownerNavigationControlRestorationDirectionRef": "owner-message:2026-09-05:restore-language-and-theme-controls",
     "depaSupporterMarksRightsRef": "data/citymeter-depa-supporter-marks-rights-record.json",
     "existingContributorReleaseRef": "data/citymeter-contributor-release-p1-7712069325b3.json",
     "catalogEvidenceRef": "data/catalog-source-review.json",
@@ -77,10 +79,21 @@
       "media.arrival": 45,
       "approach.inline-end": 1
     },
-    "approachRevealTiming": {
+    "approachRevealConformanceDisposition": "owner_directed_artifact_timing_divergence; exact MOTION-03 recipe conformance is not claimed",
+    "approachRevealCanonicalDsBaseline": {
       "opacityDurationMs": 760,
       "transformDurationMs": 920,
       "mediaDurationMs": 900,
+      "blockDistancePx": 32,
+      "inlineDistancePx": 36,
+      "scaleFrom": 0.985,
+      "staggerStepMs": 150,
+      "staggerCapMs": 450
+    },
+    "approachRevealTiming": {
+      "opacityDurationMs": 1200,
+      "transformDurationMs": 1450,
+      "mediaDurationMs": 1350,
       "blockDistancePx": 32,
       "inlineDistancePx": 36,
       "scaleFrom": 0.985,
@@ -93,10 +106,23 @@
       "initializationWatchdogMs": 2400
     },
     "approachRevealSafety": "Final-state source HTML; capability-gated off-screen arming; one observer; once-only unobserve; two-frame reached-content audit; irrevocable initialization timeout; fail-open for reduced motion, missing or failed observer, hidden tabs, focus, deep links, history/BFCache, and print; dynamic catalogue refresh preserves 57 unique logical keys, never replays landed records, and never re-arms after fail-open.",
-    "datasetSnapshotHoverClip": "The immediate media frame clips the 1.018 hover scale to a 15px inner top radius so transformed pixels cannot protrude beyond the 16px card radius."
+    "datasetSnapshotHoverClip": "The immediate media frame clips the 1.018 hover scale to a 15px inner top radius so transformed pixels cannot protrude beyond the 16px card radius.",
+    "navigationUtilityRestoration": {
+      "status": "integrated_and_verified",
+      "controls": [
+        "th",
+        "en",
+        "system_theme",
+        "light_theme",
+        "dark_theme"
+      ],
+      "requirement": "Restore visible, operable language and theme choices without removing the compact-menu fallback or exceeding the governed header control budget.",
+      "implementation": "Two synchronized preference groups: direct desktop controls and compact-menu controls; static opposite-locale links remain available in both script-failure and no-JavaScript fallbacks.",
+      "verifiedBehavior": "Thai/English routes preserve query and hash; system/light/dark selection synchronizes both copies, persists across reloads, responds to the operating-system preference, maintains neutral selected states and 44px targets, and introduces no horizontal overflow."
+    }
   },
   "deliveryDecision": {
-    "ownerRequestedAction": "Restore the slow reveal across every eligible CityMETER content piece, keep the motif removed, retain rounded snapshot-hover clipping, and publish to the existing GitHub Pages URL.",
+    "ownerRequestedAction": "Make the restored reveal clearly perceivable, restore the missing Thai/English and theme choices, keep the motif removed, retain rounded snapshot-hover clipping, and publish to the existing GitHub Pages URL.",
     "deliveryState": "ready_for_publication",
     "governedConformanceLevel": "not_claimed",
     "packageValidated": true,
@@ -110,13 +136,13 @@
       "The 38-record catalogue preserves visible source-status and decision-use limitations and introduces no new dataset record or material product claim.",
       "The snapshots are existing owner-directed captures from owner-controlled Landometer properties and are approved for same-owner reuse in this public artifact.",
       "The owner explicitly directed the motif to be removed; the active HTML, stylesheet, and runtime no longer load, place, or animate it.",
-      "The owner explicitly directed slow reveal to return across every eligible piece; the independent adapter assigns 57 unique semantic targets per locale while excluding protected content and actions and preserving once-only behavior through catalogue filtering.",
-      "Local static and hydrated checks pass for the exact release candidate."
+      "The owner explicitly directed slow reveal to return across every eligible piece and then directed its pacing to become more clearly perceivable; the independent adapter assigns 57 unique semantic targets per locale while excluding protected content and actions and preserving once-only behavior through catalogue filtering.",
+      "The owner explicitly directed restoration of the missing Thai/English and theme controls; the synchronized desktop/menu controls, static locale fallbacks, persisted themes, route-state preservation, keyboard semantics and responsive fit are integrated and locally verified."
     ],
     "conformanceClaimBoundary": [
       "This public release applies the DS 0.9.1 presentation, interaction, accessibility and format behavior but does not claim the receipt-based artifact_qa_passed or production_verified levels.",
       "No active motif or motif-specific motion divergence remains in the published artifact.",
-      "The active approach adapter uses the exact DS 0.9.1 browser-observer recipe and does not convert the removed motif into another decorative animation.",
+      "The active approach adapter preserves the DS 0.9.1 browser-observer semantics, fail-open behavior, travel distances, scale, and bounded stagger, but uses owner-directed 1200/1450/1350 ms artifact durations instead of the canonical 760/920/900 ms baseline; exact MOTION-03 recipe conformance is therefore not claimed.",
       "A caller-pinned operator_external trust pair and signed promotion bundle are required only before making either formal conformance claim, not before deployment.",
       "Post-deployment CityMETER route and live-byte checks remain required before any production_verified claim."
     ]

@@ -82,8 +82,8 @@ function assertBalancedCss(source, label) {
 }
 
 const expected = {
-  releaseId: "2026-09-05-citymeter-ds091-public-v4",
-  buildId: "ui-20260905-ds091-public-v4",
+  releaseId: "2026-09-05-citymeter-ds091-public-v5",
+  buildId: "ui-20260905-ds091-public-v5",
   tupleHash: "852f2cb97c5c7ba269c4c543f27cb4587b519263ea2075d84562289f21890e49",
   productionCss: {
     path: "assets/landometer-ds/v0.9.1/color-srgb-05.production.css",
@@ -112,19 +112,20 @@ const expected = {
     { key: "account", path: "media/supporters/digital-service-account.png", sha256: "57c01b122575800f475cc29e958f6b1c5a7bac705cb5b6ba2365ae9bd90e3086", bytes: 112508, width: 2298, height: 1042, altTh: "บัญชีบริการดิจิทัล", altEn: "Digital Service Account" }
   ],
   candidateFiles: [
-    { path: "assets/catalog-enhancements-ds-0.9.1-v29.css", sha256: "06a31da996f6a0572781cf529bae207c4e54286ae69b4827268a0ef379c2bf66", bytes: 46526 },
-    { path: "assets/unified-navbar-r7-ds-0.9.1-v32.css", sha256: "ad62a48dd65cfbba3798b26679a13b73e07f08927306780757ce15185a408fa2", bytes: 19010 },
+    { path: "assets/catalog-enhancements-ds-0.9.1-v30.css", sha256: "7e3ed3a8b600114480e5b5cce63767f3e01c17800876549ec42e0a04b3abe041", bytes: 46604 },
+    { path: "assets/unified-navbar-r7-ds-0.9.1-v33.css", sha256: "2e32dbe287ee3a66cfbf532cfccfd3c043bbead10cd335e28749d283b1736804", bytes: 22270 },
+    { path: "assets/unified-navbar-r7-v32.js", sha256: "461cec2c203236d3a0bf4f73333690b9eec731647e0c78cff8a1bb61e9e00989", bytes: 22328 },
     { path: "assets/catalog-enhancements-ds-0.9.1-v26.js", sha256: "f38e255ed8f921ea7beda520fe9d6eff9da0078ef69f892747b8585fad2807d5", bytes: 61551 },
     { path: "assets/citymeter-ds-0.9.1-approach-reveal-v1.js", sha256: "378c8797958cae7b39311125abe6d759eee6b9056b23c5d59243fb0786d88100", bytes: 10311 },
     { path: "assets/index-qbT50gkr-v18.js", sha256: "808fa6d1805b61181c8675885e68d3be664dcc50d277df3a3af21d0d85c3bed0", bytes: 531713 },
-    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "7f6961d8f797f834ae72fe447f2019438d321be10aa9685b6f8648945455ae28", bytes: 8102 },
-    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "3ba305e2e87308cce2b7a5bfd31fbee7f3b6a517098aa983bf98ff6b0b6f7307", bytes: 70040 },
-    { path: "index.html", sha256: "a93d19c5a9bbdf69665ab714b4b7493d9843331c74af3d64b2a47406e7126610", bytes: 548586 },
-    { path: "en/index.html", sha256: "562e70dcbf9f3c0031508b3ddaf740a755f036088aef75d62370751e846a30c5", bytes: 471692 }
+    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "dc5fabff49e006ad3b7735149920e857f5779d9c9454f8b8ba8360f2e3f9d0c5", bytes: 10098 },
+    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "a561304ce38e2b83d78b8fccb7118be959bc1e1414df99f9a15921b62f7889b8", bytes: 80933 },
+    { path: "index.html", sha256: "c6b78be1b75ae10963b335cef450d3998b73f779db5f43442b2f23d6f8d6380e", bytes: 551242 },
+    { path: "en/index.html", sha256: "f769518b80c6876df37e60cc2f2fdeffb6ba03ee0076d7ce656674112ebbc513", bytes: 474246 }
   ],
   sourceBodyHashes: {
-    "index.html": "1cdac0445742a2f7ec1a6b0a9c5d6a52d440f45e3a53ae7eb28b1c597165e461",
-    "en/index.html": "fad2fe35eb7baae8d6436a98f14d1ca12c57eb0abc0451fa3b67a0d72fd676d5"
+    "index.html": "bd0ac3cd092b1327f026f55a19c23731578bd8793ff0bc88e0529690da16f646",
+    "en/index.html": "0b3edd918dc09bba00c81da13b0740eb8f572c5fda22cb0e611901e8258c4476"
   }
 };
 
@@ -133,14 +134,14 @@ for (const asset of [expected.productionCss, expected.compiledBaseCss]) {
   assert(sha256(asset.path) === asset.sha256, `${asset.path}: exact-byte SHA-256 drifted`);
 }
 for (const file of [...expected.migrationSources, ...expected.authorityFiles, ...expected.supporterMarks, ...expected.candidateFiles]) {
-  assert(/^[a-f0-9]{64}$/.test(file.sha256) && file.bytes >= 0, `${file.path}: replace the v4 candidate hash/byte placeholder before running the release gate`);
+  assert(/^[a-f0-9]{64}$/.test(file.sha256) && file.bytes >= 0, `${file.path}: replace the v5 candidate hash/byte placeholder before running the release gate`);
   assert(statSync(join(root, file.path)).size === file.bytes, `${file.path}: candidate byte count drifted`);
   assert(sha256(file.path) === file.sha256, `${file.path}: candidate SHA-256 drifted`);
 }
 
 const release = json("data/citymeter-ds-0.9.1-release-record.json");
 assert(release.releaseId === expected.releaseId && release.artifactBuildId === expected.buildId, "Release identity drifted");
-assert(release.recordVersion === "1.3", "Release decision record version drifted");
+assert(release.recordVersion === "1.4", "Release decision record version drifted");
 assert(release.productScope === "CityMETER", "Release product scope must remain CityMETER");
 assert(release.artifact.format === "web_public" && release.artifact.runtime === "browser", "Web-public browser contract drifted");
 assert(release.audience === "public" && release.intendedAudience === "public", "Public audience boundary drifted");
@@ -171,10 +172,21 @@ assert(release.changeBoundary.motifMotionDs091Disposition === "no_active_diverge
 assert(release.changeBoundary.approachRevealRuntime === "browser_observer", "Slow reveal must use the DS browser-observer runtime");
 assert(release.changeBoundary.approachRevealTargetCountPerLocale === 57, "Slow reveal must bind exactly 57 semantic targets per locale");
 assert(JSON.stringify(release.changeBoundary.approachRevealRoles) === JSON.stringify({ "approach.soft": 11, "media.arrival": 45, "approach.inline-end": 1 }), "Slow-reveal role inventory drifted");
-assert(JSON.stringify(release.changeBoundary.approachRevealTiming) === JSON.stringify({
+assert(release.changeBoundary.approachRevealConformanceDisposition === "owner_directed_artifact_timing_divergence; exact MOTION-03 recipe conformance is not claimed", "Owner-directed reveal timing divergence must remain explicit");
+assert(JSON.stringify(release.changeBoundary.approachRevealCanonicalDsBaseline) === JSON.stringify({
   opacityDurationMs: 760,
   transformDurationMs: 920,
   mediaDurationMs: 900,
+  blockDistancePx: 32,
+  inlineDistancePx: 36,
+  scaleFrom: 0.985,
+  staggerStepMs: 150,
+  staggerCapMs: 450
+}), "Canonical DS 0.9.1 reveal baseline record drifted");
+assert(JSON.stringify(release.changeBoundary.approachRevealTiming) === JSON.stringify({
+  opacityDurationMs: 1200,
+  transformDurationMs: 1450,
+  mediaDurationMs: 1350,
   blockDistancePx: 32,
   inlineDistancePx: 36,
   scaleFrom: 0.985,
@@ -185,7 +197,7 @@ assert(JSON.stringify(release.changeBoundary.approachRevealTiming) === JSON.stri
   observerThreshold: 0.14,
   observerRootMargin: "0px 0px -12% 0px",
   initializationWatchdogMs: 2400
-}), "Slow-reveal DS 0.9.1 timing record drifted");
+}), "Owner-directed perceivable reveal timing record drifted");
 for (const safetyContract of [
   "Final-state source HTML",
   "one observer",
@@ -197,6 +209,8 @@ for (const safetyContract of [
   "print"
 ]) assert(release.changeBoundary.approachRevealSafety.includes(safetyContract), `Slow-reveal safety record is missing: ${safetyContract}`);
 assert(release.changeBoundary.datasetSnapshotHoverClip.includes("15px inner top radius"), "Snapshot-hover clip decision is not recorded");
+assert(release.changeBoundary.navigationUtilityRestoration?.status === "integrated_and_verified", "Language/theme navigation restoration must be integrated and verified");
+assert(JSON.stringify(release.changeBoundary.navigationUtilityRestoration?.controls) === JSON.stringify(["th", "en", "system_theme", "light_theme", "dark_theme"]), "Language/theme control inventory drifted");
 assert(release.deliveryDecision.deliveryState === "ready_for_publication" && release.deliveryDecision.governedConformanceLevel === "not_claimed", "Public release must keep formal receipt-based conformance unclaimed");
 assert(release.deliveryDecision.artifactQaPassedClaimed === false && release.deliveryDecision.productionVerifiedClaimed === false, "Unsigned QA/production promotion must remain unclaimed");
 assert(release.deliveryDecision.publishable === true && release.deliveryDecision.mustNotDeploy === false, "Owner-authorized public release must remain deployable");
@@ -208,6 +222,8 @@ assert(release.authority.catalogEvidenceRef === "data/catalog-source-review.json
 assert(release.authority.ownerMediaReuseConfirmationRef === "data/citymeter-owner-media-reuse-confirmation-2026-09-05.json", "Owner media-reuse authority binding drifted");
 assert(release.authority.ownerMotifRemovalDirectionRef === "owner-message:2026-09-05:remove-motif-from-citymeter", "Owner motif-removal direction is missing");
 assert(release.authority.ownerSlowRevealDirectionRef === "owner-message:2026-09-05:restore-slow-reveal-all-eligible-pieces", "Owner slow-reveal direction is missing");
+assert(release.authority.ownerRevealPerceptibilityDirectionRef === "owner-message:2026-09-05:reveal-slower-and-more-perceivable", "Owner reveal-perceptibility direction is missing");
+assert(release.authority.ownerNavigationControlRestorationDirectionRef === "owner-message:2026-09-05:restore-language-and-theme-controls", "Owner language/theme restoration direction is missing");
 assert(!("motifApprovalRef" in release.authority) && !("ownerContinuousMotifDirectionRef" in release.authority), "Inactive motif-use authority must not remain in the active release record");
 
 const brandApproval = json("data/landometer-master-brand-brief-v0.5.3-approval.json");
@@ -506,6 +522,14 @@ for (const page of pageContracts) {
   assert(html.includes(`<link rel="canonical" href="${page.canonical}" />`), `${page.path}: canonical URL drifted`);
   assert(count(html, "class=\"dataset-card\"") === 38, `${page.path}: static dataset record count drifted`);
   assert(count(html, "<main id=\"main-content\">") === 1 && count(html, "<h1") === 1, `${page.path}: semantic main/H1 contract drifted`);
+  const shellHeader = html.match(/<header class="lm-site-header"[\s\S]*?<\/header>/)?.[0] || "";
+  const shellMenu = html.match(/<div class="lm-menu-panel"[\s\S]*?<\/div>\s*<\/div>\s*<nav class="lm-bookmark-rail"/)?.[0] || "";
+  assert(count(html, "data-lm-preferences") === 2 && count(shellHeader, "data-lm-preferences") === 1 && count(shellMenu, "data-lm-preferences") === 1, `${page.path}: preference controls must appear once in the header and once in the menu`);
+  assert(count(html, 'data-lm-locale="th"') === 2 && count(html, 'data-lm-locale="en"') === 2, `${page.path}: synchronized Thai/English control inventory drifted`);
+  for (const theme of ["system", "light", "dark"]) assert(count(html, `data-lm-theme-choice="${theme}"`) === 2, `${page.path}: synchronized ${theme} theme choice inventory drifted`);
+  assert(count(shellHeader, "lm-preference-cluster lm-desktop-only") === 1 && count(shellMenu, "lm-menu-preferences") === 1, `${page.path}: direct desktop and compact-menu preference placements drifted`);
+  const fallbackLocaleHref = page.language === "th" ? 'href="./en/?lang=en" hreflang="en" lang="en"' : 'href="../?lang=th" hreflang="th" lang="th"';
+  assert(count(html, fallbackLocaleHref) >= 2, `${page.path}: script-failure and no-JS locale links are missing`);
   assert(!html.includes("data-lm-reveal-role") && !html.includes("data-lm-reveal-pending") && !html.includes("data-lm-reveal-landed") && !html.includes('data-lm-approach="armed"'), `${page.path}: source HTML must remain the complete visible state before reveal enhancement`);
   for (const sectionContract of [
     /<section class="section decision-section" id="decisions"[^>]*><div class="wide-container"><div class="section-heading">/,
@@ -607,14 +631,14 @@ for (const page of pageContracts) {
 
   const links = [
     `${page.prefix}${expected.productionCss.path}`,
-    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v29.css`,
-    `${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css`
+    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v30.css`,
+    `${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v33.css`
   ];
   for (const link of links) assert(count(html, link) === 1, `${page.path}: expected one active stylesheet ${link}`);
   assert(html.indexOf(links[0]) < html.indexOf(links[1]) && html.indexOf(links[1]) < html.indexOf(links[2]), `${page.path}: DS/surface/navbar stylesheet order drifted`);
 
   const scripts = [
-    `${page.prefix}assets/unified-navbar-r7-v31.js`,
+    `${page.prefix}assets/unified-navbar-r7-v32.js`,
     `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.js`,
     `${page.prefix}assets/citymeter-ds-0.9.1-approach-reveal-v1.js`
   ];
@@ -634,6 +658,7 @@ for (const page of pageContracts) {
 
   for (const retired of [
     "catalog-enhancements-ds-0.9.1-v28.css",
+    "catalog-enhancements-ds-0.9.1-v29.css",
     "catalog-enhancements-v25.css",
     "catalog-enhancements-v25.js",
     "unified-navbar-r7-v30.css",
@@ -660,10 +685,10 @@ for (const page of pageContracts) {
   assert(!html.includes("supporter-logos-hero") && !html.includes("supporter-lockup-hero"), `${page.path}: supporter marks must not be duplicated in the hero`);
 }
 
-const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v29.css");
+const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v30.css");
 const revealRuntime = read("assets/citymeter-ds-0.9.1-approach-reveal-v1.js");
 const compiledBaseCss = read("assets/index-cqxdfePB.css");
-const navbarCss = read("assets/unified-navbar-r7-ds-0.9.1-v32.css");
+const navbarCss = read("assets/unified-navbar-r7-ds-0.9.1-v33.css");
 assertBalancedCss(surfaceCss, "DS surface CSS");
 assertBalancedCss(navbarCss, "DS navbar CSS");
 
@@ -830,13 +855,13 @@ for (const prohibitedRuntimePattern of [
   /lm-motif|catalog-motif|data-lm-motif|data-lm-placement|citymeter-motif/i
 ]) assert(!prohibitedRuntimePattern.test(revealRuntime), `Slow-reveal adapter contains prohibited rendering or motif behavior: ${prohibitedRuntimePattern}`);
 
-const revealCssMarker = "/* CityMETER slow reveal — DS 0.9.1 motion-riddim-approach-02.";
-assert(count(surfaceCss, revealCssMarker) === 1, "DS surface CSS must contain exactly one slow-reveal layer");
+const revealCssMarker = "/* CityMETER owner-directed perceivable reveal — based on DS 0.9.1";
+assert(count(surfaceCss, revealCssMarker) === 1, "DS-based surface CSS must contain exactly one owner-directed perceivable-reveal layer");
 const revealCss = surfaceCss.slice(surfaceCss.indexOf(revealCssMarker));
 for (const cssContract of [
   'html[data-lm-approach="armed"] [data-lm-reveal-role]',
-  "opacity 760ms cubic-bezier(.16, 1, .3, 1)",
-  "transform 920ms cubic-bezier(.2, .9, .25, 1.08)",
+  "opacity 1200ms cubic-bezier(.16, 1, .3, 1)",
+  "transform 1450ms cubic-bezier(.2, .9, .25, 1.08)",
   "transition-delay: var(--lm-approach-delay, 0ms)",
   'data-lm-reveal-role="approach.soft"',
   "transform: translateY(32px) scale(.985)",
@@ -845,7 +870,7 @@ for (const cssContract of [
   'data-lm-reveal-role="approach.inline-end"',
   "transform: translateX(36px)",
   'data-lm-reveal-role="media.arrival"',
-  "transition-duration: 900ms, 900ms",
+  "transition-duration: 1350ms, 1350ms",
   "@media print, (prefers-reduced-motion: reduce)",
   "opacity: 1 !important",
   "transform: none !important",
@@ -866,7 +891,30 @@ for (const contract of [
   "min-width: 44px",
   "outline: 3px solid var(--lm-interaction-focus-ring)"
 ]) assert(navbarCss.includes(contract), `Navbar DS/accessibility contract is missing: ${contract}`);
+for (const preferenceContract of [
+  ".lm-site-header [data-lm-preferences]",
+  ".lm-menu-panel [data-lm-preferences]",
+  ".lm-preference-row",
+  ".lm-segmented-control",
+  "[data-lm-locale]",
+  "[data-lm-theme-choice]",
+  "min-width: 44px",
+  "min-height: 44px",
+  "html.lm-preferences-ready [data-lm-theme-choice]",
+  ".lm-site-header [data-lm-preferences] {\n    display: none !important;"
+]) assert(navbarCss.includes(preferenceContract), `Navbar preference-control CSS contract is missing: ${preferenceContract}`);
+const navbarRuntime = read("assets/unified-navbar-r7-v32.js");
+for (const preferenceRuntimeContract of [
+  'var themeStorageKeys = ["lds-theme", "citymeter-theme"]',
+  'window.matchMedia("(prefers-color-scheme: dark)")',
+  'url.searchParams.set("lang", target)',
+  'document.querySelectorAll("[data-lm-locale]")',
+  'document.querySelectorAll("[data-lm-theme-choice]")',
+  'control.setAttribute("aria-pressed", String(selected))',
+  'window.addEventListener("storage"',
+  'root.classList.add("lm-preferences-ready")'
+]) assert(navbarRuntime.includes(preferenceRuntimeContract), `Navbar preference-control runtime contract is missing: ${preferenceRuntimeContract}`);
 assert(navbarCss.includes(".lm-nav-cta__sweep") && /\.lm-nav-cta__sweep\s*\{[\s\S]*?display:\s*none;[\s\S]*?\}/.test(navbarCss), "Retired navbar sweep must remain absent from every motion mode");
 assert(!/\binfinite\b/i.test(navbarCss) && !navbarCss.includes("@keyframes lmNavSweep") && !navbarCss.includes("@keyframes lmNavFlick"), "DS 0.9.1 forbids the historical unbounded CTA sweep/flicker");
 
-console.log("CityMETER DS 0.9.1 v4 public-release gate passed: exact DS CSS and pinned release bytes, 57 semantic once-only slow-reveal targets per locale with full DS timing/fail-open contracts and protected-content exclusions, no active motif DOM/runtime/style references, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Formal artifact_qa_passed and production_verified claims remain intentionally unclaimed pending their signed receipts.");
+console.log("CityMETER DS 0.9.1 v5 public-release gate passed: pinned release bytes, restored Thai/English and system/light/dark controls, 57 semantic once-only reveal targets per locale with an explicit owner-directed 1200/1450/1350ms timing divergence and preserved fail-open contracts, no active motif references, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Exact MOTION-03, artifact_qa_passed, and production_verified claims remain intentionally unclaimed.");

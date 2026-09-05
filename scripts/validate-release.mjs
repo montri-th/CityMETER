@@ -38,11 +38,11 @@ const contributorBundleName = contributorManifest.renderOwners.hydratedBundle.sp
 const contributorEnhancerName = contributorManifest.renderOwners.transitionalEnhancer.split("/").at(-1);
 const contributorStylesName = contributorManifest.renderOwners.styles.split("/").at(-1);
 const activeBundleName = "index-qbT50gkr-v18.js";
-const activeStylesName = "catalog-enhancements-ds-0.9.1-v29.css";
+const activeStylesName = "catalog-enhancements-ds-0.9.1-v30.css";
 const activeEnhancerName = "catalog-enhancements-ds-0.9.1-v26.js";
 const activeApproachRevealName = "citymeter-ds-0.9.1-approach-reveal-v1.js";
-const activeArtifactBuild = "ui-20260905-ds091-public-v4";
-const activeReleaseReceipt = "2026-09-05-citymeter-ds091-public-v4";
+const activeArtifactBuild = "ui-20260905-ds091-public-v5";
+const activeReleaseReceipt = "2026-09-05-citymeter-ds091-public-v5";
 const ids = review.records.map((record) => record.id);
 const routeById = new Map(review.records.map((record) => [record.id, record.citymeterUrl]));
 const muenRaiRoute = "https://landometer.com/v3/citymeter/PRE?d=muenRai";
@@ -807,7 +807,7 @@ assert(catalogStructureCss.startsWith(previousEnhancementCss.trimEnd()), "Catalo
 assert(motionSocialCss.startsWith(catalogStructureCss.trimEnd()), "Motion/social CSS v20 must preserve immutable v19 before its scoped release block");
 assert(enhancementCss.startsWith(motionSocialCss.trimEnd()), "Active P1 CSS must preserve immutable v20 before its scoped contributor block");
 assert(activeSurfaceCss.includes('html[data-lm-approach="armed"] [data-lm-reveal-role]'), "Active surface CSS is missing the bounded approach-reveal state");
-assert(activeSurfaceCss.includes("opacity 760ms cubic-bezier(.16, 1, .3, 1)") && activeSurfaceCss.includes("transform 920ms cubic-bezier(.2, .9, .25, 1.08)"), "Active surface CSS approach timings drifted from DS 0.9.1");
+assert(activeSurfaceCss.includes("opacity 1200ms cubic-bezier(.16, 1, .3, 1)") && activeSurfaceCss.includes("transform 1450ms cubic-bezier(.2, .9, .25, 1.08)") && activeSurfaceCss.includes("transition-duration: 1350ms, 1350ms"), "Active surface CSS owner-directed perceivable reveal timings drifted");
 assert(activeSurfaceCss.includes("@media print, (prefers-reduced-motion: reduce)"), "Active surface CSS must settle reveals for print and reduced motion");
 assert((approachRevealJs.match(/new window\.IntersectionObserver/g) || []).length === 1, "Approach reveal must own exactly one document observer");
 assert((approachRevealJs.match(/new window\.MutationObserver/g) || []).length === 1, "Approach reveal must own exactly one dynamic-catalogue observer");
