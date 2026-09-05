@@ -6,17 +6,17 @@
 
 สาขานี้เก็บ public release สำหรับ Landometer Design System 0.9.1 ที่ได้รับอนุญาตให้ publish ไปยัง GitHub Pages เดิม
 
-- release: `2026-09-05-citymeter-ds091-public-v3`
-- artifact build: `ui-20260905-ds091-public-v3`
+- release: `2026-09-05-citymeter-ds091-public-v4`
+- artifact build: `ui-20260905-ds091-public-v4`
 - public URL เดิม: <https://montri-th.github.io/CityMETER/>
-- public source ก่อน patch นี้: commit `0d2d3839f87cc69c6334b47546ea92b58643a138`
+- public source ก่อน patch นี้: commit `c944a47e2480dc460d3325971bfe6bf3d9a35b12`
 - local hydrated runtime: `assets/index-qbT50gkr-v18.js`
-- local enhancement owners: `assets/catalog-enhancements-ds-0.9.1-v28.css` และ `assets/catalog-enhancements-ds-0.9.1-v26.js`
+- local enhancement owners: `assets/catalog-enhancements-ds-0.9.1-v29.css`, `assets/catalog-enhancements-ds-0.9.1-v26.js` และ `assets/citymeter-ds-0.9.1-approach-reveal-v1.js`
 - unified navigation: `assets/unified-navbar-r7-ds-0.9.1-v32.css` และ `assets/unified-navbar-r7-v31.js`
 - DS binding: `0.9.1` / `0.9.1-r8` / `lds-rules-0.9.1` / `v0.9.1-mp7`
 - delivery state: `ready_for_publication`, `publishable: true`, `mustNotDeploy: false`
 
-รายละเอียด exact bytes, authority และ QA อยู่ใน `CITYMETER_DS_0.9.1_MOTIF_REMOVAL_2026-09-05_V3.md` และ `data/citymeter-ds-0.9.1-release-record.json`.
+รายละเอียด exact bytes, authority และ QA อยู่ใน `CITYMETER_DS_0.9.1_SLOW_REVEAL_2026-09-05_V4.md` และ `data/citymeter-ds-0.9.1-release-record.json`.
 
 ## สิ่งที่ release นี้เปลี่ยน
 
@@ -26,6 +26,10 @@
 - ใช้ exact audience projection `assets/landometer-ds/v0.9.1/color-srgb-05.production.css`; ไม่ส่ง raw colour-provenance files
 - แสดง Land, Location และ Living เป็น peer dimensions แล้วเชื่อมผ่าน CityMETER ไปสู่ Local Decisions
 - ไม่มี motif, motif runtime, motif placement หรือปุ่มควบคุม motif บน active page
+- คืน slow reveal ให้ 57 semantic targets ที่มี logical key ไม่ซ้ำต่อภาษา: section headings 3 ชิ้น, showcase media 6 ชิ้น, โครงสร้าง catalogue 8 ชิ้น, snapshot 38 ชิ้น, handoff media 1 ชิ้น และ QR 1 ชิ้น
+- ใช้ exact DS 0.9.1 approach recipe แบบ once-only และ fail-open; stagger ใช้เฉพาะกลุ่มย่อยที่สัมพันธ์กัน ส่วน snapshot ทั้ง 38 ชิ้นใช้ media arrival 900 ms โดยไม่หน่วงเป็นคิวยาว
+- หลังค้นหา กรอง หรือล้างตัวกรอง snapshot ที่ระบบสร้างใหม่ยังผูกกับรหัสรายการเดิม: ชิ้นที่ reveal แล้วไม่เล่นซ้ำ ส่วนชิ้นที่ยังไม่ถึง viewport ยังรอ reveal ตามเดิม
+- hero/LCP, decision proof, search/filter/status, card copy/actions/details, contact CTA, legal และ identity แสดงทันทีเสมอ
 - ตัดภาพ snapshot ที่ขยายเมื่อ hover ภายใน media frame รัศมี 15 px เพื่อไม่ให้มุมเหลี่ยมล้นพ้นการ์ดรัศมี 16 px
 - คง catalogue 38 records: Land 12, Location 13, Living 13
 - source status ปัจจุบัน: verified lineage 11, candidate 7, specialist source 5, derived 2, unproven 13
@@ -44,6 +48,7 @@
 - owner confirmation สำหรับ same-owner snapshot reuse: `data/citymeter-owner-media-reuse-confirmation-2026-09-05.json`
 - depa project-mark evidence and exact assets: `data/citymeter-depa-supporter-marks-rights-record.json`
 - owner direction ให้นำ motif ออกจากหน้า: `owner-message:2026-09-05:remove-motif-from-citymeter`
+- owner direction ให้คืน slow reveal ทุกชิ้นที่เข้าเกณฑ์: `owner-message:2026-09-05:restore-slow-reveal-all-eligible-pieces`
 - 38-record source ledger: `data/catalog-source-review.json`
 - release decision: `data/citymeter-ds-0.9.1-release-record.json`
 
@@ -56,7 +61,8 @@ Owner approval ครบแล้วและไม่ต้องขอซ้�
 - `assets/index-qbT50gkr-v18.js` — active local hydrated bundle
 - `assets/catalog-enhancements-v25.js` — immutable enhancement migration source
 - `assets/catalog-enhancements-ds-0.9.1-v26.js` — active local enhancement runtime
-- `assets/catalog-enhancements-ds-0.9.1-v28.css` — active local presentation owner
+- `assets/catalog-enhancements-ds-0.9.1-v29.css` — active local presentation owner
+- `assets/citymeter-ds-0.9.1-approach-reveal-v1.js` — active motif-independent slow-reveal runtime
 - `assets/landometer-ds/v0.9.1/` — exact DS audience CSS used by the release
 - `assets/landometer-motifs/v1/` — inactive immutable history; active HTML does not load these files
 - `media/previews-v2/` — high-value intent/showcase captures
@@ -77,7 +83,7 @@ node scripts/validate-unified-navbar-r7.mjs
 node scripts/validate-release.mjs
 ```
 
-Release checks cover Thai/English static–hydrated parity, 360–1600 px widths, deep links, absence of all motif DOM/runtime/style references, rounded hover clipping, supporter assets, filter behavior, duplicate IDs, horizontal overflow and application console/page/request errors.
+Release checks cover Thai/English static–hydrated parity, 57 unique reveal targets per locale, exact DS timing/stagger/observer values, once-only and fail-open lifecycle, filter-rerender continuity, 360–1600 px widths, deep links, absence of all motif DOM/runtime/style references, rounded hover clipping, supporter assets, duplicate IDs, horizontal overflow and application console/page/request errors.
 
 ## Publication boundary
 

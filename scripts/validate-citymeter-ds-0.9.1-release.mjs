@@ -58,6 +58,12 @@ function attribute(tag, name) {
   return tag.match(new RegExp(`(?:^|\\s)${name}="([^"]*)"`))?.[1] || "";
 }
 
+function classTokenCount(source, className) {
+  return [...source.matchAll(/(?:^|\s)class="([^"]*)"/g)]
+    .filter((match) => match[1].split(/\s+/).includes(className))
+    .length;
+}
+
 function bodyBytes(html) {
   const start = html.indexOf("<body>");
   assert(start >= 0, "Static HTML body is missing");
@@ -76,8 +82,8 @@ function assertBalancedCss(source, label) {
 }
 
 const expected = {
-  releaseId: "2026-09-05-citymeter-ds091-public-v3",
-  buildId: "ui-20260905-ds091-public-v3",
+  releaseId: "2026-09-05-citymeter-ds091-public-v4",
+  buildId: "ui-20260905-ds091-public-v4",
   tupleHash: "852f2cb97c5c7ba269c4c543f27cb4587b519263ea2075d84562289f21890e49",
   productionCss: {
     path: "assets/landometer-ds/v0.9.1/color-srgb-05.production.css",
@@ -106,14 +112,15 @@ const expected = {
     { key: "account", path: "media/supporters/digital-service-account.png", sha256: "57c01b122575800f475cc29e958f6b1c5a7bac705cb5b6ba2365ae9bd90e3086", bytes: 112508, width: 2298, height: 1042, altTh: "บัญชีบริการดิจิทัล", altEn: "Digital Service Account" }
   ],
   candidateFiles: [
-    { path: "assets/catalog-enhancements-ds-0.9.1-v28.css", sha256: "d5ccb8fd86ee5ab5eb1410bbac759775b2fef27d3b05e54cc3a4ee2671fa1fed", bytes: 44637 },
+    { path: "assets/catalog-enhancements-ds-0.9.1-v29.css", sha256: "06a31da996f6a0572781cf529bae207c4e54286ae69b4827268a0ef379c2bf66", bytes: 46526 },
     { path: "assets/unified-navbar-r7-ds-0.9.1-v32.css", sha256: "ad62a48dd65cfbba3798b26679a13b73e07f08927306780757ce15185a408fa2", bytes: 19010 },
     { path: "assets/catalog-enhancements-ds-0.9.1-v26.js", sha256: "f38e255ed8f921ea7beda520fe9d6eff9da0078ef69f892747b8585fad2807d5", bytes: 61551 },
+    { path: "assets/citymeter-ds-0.9.1-approach-reveal-v1.js", sha256: "378c8797958cae7b39311125abe6d759eee6b9056b23c5d59243fb0786d88100", bytes: 10311 },
     { path: "assets/index-qbT50gkr-v18.js", sha256: "808fa6d1805b61181c8675885e68d3be664dcc50d277df3a3af21d0d85c3bed0", bytes: 531713 },
-    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "61ffc8d174a86ef6df9c27bfef37ae0a207adec84b08fc11a961a1dc762481be", bytes: 6223 },
-    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "d4683d0990f3145bc3f459c95584985e5caa66871e7366dbe275e647d8bbd025", bytes: 69043 },
-    { path: "index.html", sha256: "cb325e2e6e17ed502f6b8adf488f8dac679c872f037706f9e95e714f7c3851b3", bytes: 548502 },
-    { path: "en/index.html", sha256: "c7729cca67016364d5c926939e62c4c41976052a546ceb7bdcd600f79d80c415", bytes: 471607 }
+    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "7f6961d8f797f834ae72fe447f2019438d321be10aa9685b6f8648945455ae28", bytes: 8102 },
+    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "3ba305e2e87308cce2b7a5bfd31fbee7f3b6a517098aa983bf98ff6b0b6f7307", bytes: 70040 },
+    { path: "index.html", sha256: "a93d19c5a9bbdf69665ab714b4b7493d9843331c74af3d64b2a47406e7126610", bytes: 548586 },
+    { path: "en/index.html", sha256: "562e70dcbf9f3c0031508b3ddaf740a755f036088aef75d62370751e846a30c5", bytes: 471692 }
   ],
   sourceBodyHashes: {
     "index.html": "1cdac0445742a2f7ec1a6b0a9c5d6a52d440f45e3a53ae7eb28b1c597165e461",
@@ -126,12 +133,14 @@ for (const asset of [expected.productionCss, expected.compiledBaseCss]) {
   assert(sha256(asset.path) === asset.sha256, `${asset.path}: exact-byte SHA-256 drifted`);
 }
 for (const file of [...expected.migrationSources, ...expected.authorityFiles, ...expected.supporterMarks, ...expected.candidateFiles]) {
+  assert(/^[a-f0-9]{64}$/.test(file.sha256) && file.bytes >= 0, `${file.path}: replace the v4 candidate hash/byte placeholder before running the release gate`);
   assert(statSync(join(root, file.path)).size === file.bytes, `${file.path}: candidate byte count drifted`);
   assert(sha256(file.path) === file.sha256, `${file.path}: candidate SHA-256 drifted`);
 }
 
 const release = json("data/citymeter-ds-0.9.1-release-record.json");
 assert(release.releaseId === expected.releaseId && release.artifactBuildId === expected.buildId, "Release identity drifted");
+assert(release.recordVersion === "1.3", "Release decision record version drifted");
 assert(release.productScope === "CityMETER", "Release product scope must remain CityMETER");
 assert(release.artifact.format === "web_public" && release.artifact.runtime === "browser", "Web-public browser contract drifted");
 assert(release.audience === "public" && release.intendedAudience === "public", "Public audience boundary drifted");
@@ -159,6 +168,34 @@ assert(
 assert(release.changeBoundary.decorativeColoredEdgePolicy === "prohibited", "Decorative colored-edge prohibition drifted");
 assert(release.changeBoundary.motifRole === "none" && release.changeBoundary.motifRuntime === "not_loaded" && release.changeBoundary.motifMotion === "none", "Motif removal boundary is not recorded exactly");
 assert(release.changeBoundary.motifMotionDs091Disposition === "no_active_divergence_after_owner_directed_removal", "Removed motif must not retain an active motion divergence");
+assert(release.changeBoundary.approachRevealRuntime === "browser_observer", "Slow reveal must use the DS browser-observer runtime");
+assert(release.changeBoundary.approachRevealTargetCountPerLocale === 57, "Slow reveal must bind exactly 57 semantic targets per locale");
+assert(JSON.stringify(release.changeBoundary.approachRevealRoles) === JSON.stringify({ "approach.soft": 11, "media.arrival": 45, "approach.inline-end": 1 }), "Slow-reveal role inventory drifted");
+assert(JSON.stringify(release.changeBoundary.approachRevealTiming) === JSON.stringify({
+  opacityDurationMs: 760,
+  transformDurationMs: 920,
+  mediaDurationMs: 900,
+  blockDistancePx: 32,
+  inlineDistancePx: 36,
+  scaleFrom: 0.985,
+  staggerStepMs: 150,
+  staggerCapMs: 450,
+  staggerScope: "small_related_groups_only",
+  datasetPreviewStaggerMs: 0,
+  observerThreshold: 0.14,
+  observerRootMargin: "0px 0px -12% 0px",
+  initializationWatchdogMs: 2400
+}), "Slow-reveal DS 0.9.1 timing record drifted");
+for (const safetyContract of [
+  "Final-state source HTML",
+  "one observer",
+  "once-only unobserve",
+  "two-frame reached-content audit",
+  "reduced motion",
+  "deep links",
+  "history/BFCache",
+  "print"
+]) assert(release.changeBoundary.approachRevealSafety.includes(safetyContract), `Slow-reveal safety record is missing: ${safetyContract}`);
 assert(release.changeBoundary.datasetSnapshotHoverClip.includes("15px inner top radius"), "Snapshot-hover clip decision is not recorded");
 assert(release.deliveryDecision.deliveryState === "ready_for_publication" && release.deliveryDecision.governedConformanceLevel === "not_claimed", "Public release must keep formal receipt-based conformance unclaimed");
 assert(release.deliveryDecision.artifactQaPassedClaimed === false && release.deliveryDecision.productionVerifiedClaimed === false, "Unsigned QA/production promotion must remain unclaimed");
@@ -170,6 +207,7 @@ assert(release.authority.citymeterProductBriefApprovalRef === "data/citymeter-pr
 assert(release.authority.catalogEvidenceRef === "data/catalog-source-review.json" && release.authority.claimExpansionPerformed === false, "Catalogue evidence/claim boundary drifted");
 assert(release.authority.ownerMediaReuseConfirmationRef === "data/citymeter-owner-media-reuse-confirmation-2026-09-05.json", "Owner media-reuse authority binding drifted");
 assert(release.authority.ownerMotifRemovalDirectionRef === "owner-message:2026-09-05:remove-motif-from-citymeter", "Owner motif-removal direction is missing");
+assert(release.authority.ownerSlowRevealDirectionRef === "owner-message:2026-09-05:restore-slow-reveal-all-eligible-pieces", "Owner slow-reveal direction is missing");
 assert(!("motifApprovalRef" in release.authority) && !("ownerContinuousMotifDirectionRef" in release.authority), "Inactive motif-use authority must not remain in the active release record");
 
 const brandApproval = json("data/landometer-master-brand-brief-v0.5.3-approval.json");
@@ -437,6 +475,24 @@ const expectedRuntimeSourceHtml = JSON.stringify(Object.fromEntries(["th", "en"]
 assert(v18.includes(`const CitymeterSourceReviewHtml=${expectedRuntimeSourceHtml};`), "Hydrated source-review HTML must match the approved registry in both locales");
 assert(v18.includes(`const CitymeterSourceStatusLabels=${JSON.stringify(sourceStatusLabels)};`), "Hydrated source-status labels must match the static locale contract");
 
+const expectedRevealTargets = [
+  { selector: "#decisions > .wide-container > .section-heading", role: "approach.soft", group: "decisions-heading", count: 1 },
+  { selector: "#examples > .showcase-atmosphere > .wide-container > .section-heading", role: "approach.soft", group: "examples-heading", count: 1 },
+  { selector: "#examples .showcase-grid > .showcase-card > .showcase-image", role: "media.arrival", group: "showcase-media", count: 6 },
+  { selector: "#datasets > .wide-container > .section-heading", role: "approach.soft", group: "datasets-heading", count: 1 },
+  { selector: "#datasets .catalog-structure > :is(.catalog-structure-caption, .catalog-structure-citymeter, .catalog-structure-outcome)", role: "approach.soft", group: "catalog-panels", count: 3 },
+  { selector: "#datasets .catalog-structure-flow > :is(.catalog-structure-step, .catalog-structure-operator)", role: "approach.soft", group: "catalog-flow", count: 5 },
+  { selector: "#datasets .dataset-grid > .dataset-card > .dataset-image", role: "media.arrival", group: "dataset-previews", count: 38 },
+  { selector: ".handoff-grid > .handoff-media", role: "media.arrival", group: "handoff-pair", count: 1 },
+  { selector: ".handoff-grid > .qr-card", role: "approach.inline-end", group: "handoff-pair", count: 1 }
+];
+const expectedRevealRoleCounts = { "approach.soft": 11, "media.arrival": 45, "approach.inline-end": 1 };
+assert(expectedRevealTargets.reduce((total, target) => total + target.count, 0) === 57, "Expected slow-reveal target inventory must total 57");
+assert(JSON.stringify(Object.fromEntries(Object.keys(expectedRevealRoleCounts).map((role) => [
+  role,
+  expectedRevealTargets.filter((target) => target.role === role).reduce((total, target) => total + target.count, 0)
+]))) === JSON.stringify(expectedRevealRoleCounts), "Expected slow-reveal role inventory is internally inconsistent");
+
 for (const page of pageContracts) {
   const html = read(page.path);
   assert(html.includes(`<html lang="${page.language}" data-ds="landometer" data-ds-version="0.9.1" data-ds-profile="product_orientation" data-ds-format="web_public" data-delivery-mode="static-initial-html" data-evidence-status="source_limited" data-visibility="public" data-indexable="true"`), `${page.path}: public source-limited release identity/boundary drifted`);
@@ -450,6 +506,25 @@ for (const page of pageContracts) {
   assert(html.includes(`<link rel="canonical" href="${page.canonical}" />`), `${page.path}: canonical URL drifted`);
   assert(count(html, "class=\"dataset-card\"") === 38, `${page.path}: static dataset record count drifted`);
   assert(count(html, "<main id=\"main-content\">") === 1 && count(html, "<h1") === 1, `${page.path}: semantic main/H1 contract drifted`);
+  assert(!html.includes("data-lm-reveal-role") && !html.includes("data-lm-reveal-pending") && !html.includes("data-lm-reveal-landed") && !html.includes('data-lm-approach="armed"'), `${page.path}: source HTML must remain the complete visible state before reveal enhancement`);
+  for (const sectionContract of [
+    /<section class="section decision-section" id="decisions"[^>]*><div class="wide-container"><div class="section-heading">/,
+    /<section class="section showcase-section" id="examples"[^>]*><div class="showcase-atmosphere"><div class="wide-container"><div class="section-heading">/,
+    /<section class="section explorer-section" id="datasets"[^>]*><div class="wide-container"><div class="section-heading">/
+  ]) assert(sectionContract.test(html), `${page.path}: an explicitly targeted supporting section heading moved outside its reveal contract`);
+  const staticRevealRoleCounts = {
+    "approach.soft":
+      classTokenCount(html, "section-heading")
+      + classTokenCount(html, "catalog-structure-caption")
+      + classTokenCount(html, "catalog-structure-citymeter")
+      + classTokenCount(html, "catalog-structure-outcome")
+      + classTokenCount(html, "catalog-structure-step")
+      + classTokenCount(html, "catalog-structure-operator"),
+    "media.arrival": classTokenCount(html, "showcase-image") + classTokenCount(html, "dataset-image") + classTokenCount(html, "handoff-media"),
+    "approach.inline-end": classTokenCount(html, "qr-card")
+  };
+  assert(JSON.stringify(staticRevealRoleCounts) === JSON.stringify(expectedRevealRoleCounts), `${page.path}: static slow-reveal role inventory must remain 11 soft + 45 media + 1 inline-end`);
+  assert(Object.values(staticRevealRoleCounts).reduce((total, value) => total + value, 0) === 57, `${page.path}: slow reveal must resolve exactly 57 targets`);
   assert(createHash("sha256").update(bodyBytes(html)).digest("hex") === expected.sourceBodyHashes[page.path], `${page.path}: exact approved candidate body drifted`);
   for (const retiredCopy of retiredUnsupportedVisibleCopy) {
     assert(!html.includes(retiredCopy), `${page.path}: restored unsupported visible copy: ${retiredCopy}`);
@@ -532,7 +607,7 @@ for (const page of pageContracts) {
 
   const links = [
     `${page.prefix}${expected.productionCss.path}`,
-    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v28.css`,
+    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v29.css`,
     `${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css`
   ];
   for (const link of links) assert(count(html, link) === 1, `${page.path}: expected one active stylesheet ${link}`);
@@ -540,10 +615,11 @@ for (const page of pageContracts) {
 
   const scripts = [
     `${page.prefix}assets/unified-navbar-r7-v31.js`,
-    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.js`
+    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.js`,
+    `${page.prefix}assets/citymeter-ds-0.9.1-approach-reveal-v1.js`
   ];
   for (const script of scripts) assert(count(html, script) === 1, `${page.path}: expected one active script ${script}`);
-  assert(html.indexOf(scripts[0]) < html.indexOf(scripts[1]), `${page.path}: navbar/enhancer script order drifted`);
+  assert(html.indexOf(scripts[0]) < html.indexOf(scripts[1]) && html.indexOf(scripts[1]) < html.indexOf(scripts[2]), `${page.path}: navbar/enhancer/reveal script order drifted`);
   assert(count(html, `${page.prefix}assets/index-qbT50gkr-v18.js`) === 1, `${page.path}: DS 0.9.1 bundle is not uniquely active`);
 
   for (const retiredMotifRef of [
@@ -557,6 +633,7 @@ for (const page of pageContracts) {
   ]) assert(!html.includes(retiredMotifRef), `${page.path}: active motif reference remains: ${retiredMotifRef}`);
 
   for (const retired of [
+    "catalog-enhancements-ds-0.9.1-v28.css",
     "catalog-enhancements-v25.css",
     "catalog-enhancements-v25.js",
     "unified-navbar-r7-v30.css",
@@ -583,7 +660,8 @@ for (const page of pageContracts) {
   assert(!html.includes("supporter-logos-hero") && !html.includes("supporter-lockup-hero"), `${page.path}: supporter marks must not be duplicated in the hero`);
 }
 
-const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v28.css");
+const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v29.css");
+const revealRuntime = read("assets/citymeter-ds-0.9.1-approach-reveal-v1.js");
 const compiledBaseCss = read("assets/index-cqxdfePB.css");
 const navbarCss = read("assets/unified-navbar-r7-ds-0.9.1-v32.css");
 assertBalancedCss(surfaceCss, "DS surface CSS");
@@ -668,6 +746,114 @@ for (const contract of [
   "contain: paint"
 ]) assert(mediaClipRule.includes(contract), `Dataset snapshot hover clip contract is missing: ${contract}`);
 
+const observedRevealDefinitions = [...revealRuntime.matchAll(/\{\s*selector: "([^"]+)",\s*role: "([^"]+)",\s*group: "([^"]+)"/g)]
+  .map((match) => ({ selector: match[1], role: match[2], group: match[3] }));
+assert(JSON.stringify(observedRevealDefinitions) === JSON.stringify(expectedRevealTargets.map(({ selector, role, group }) => ({ selector, role, group }))), "Slow-reveal runtime selector/role/group registry drifted");
+for (const selector of observedRevealDefinitions.map((definition) => definition.selector)) {
+  assert(selector !== ".section-heading" && selector !== ".showcase-card" && selector !== ".dataset-card" && selector !== ".dataset-image", `Slow reveal must not use a broad every-item selector: ${selector}`);
+  for (const protectedFragment of [
+    ".site-header",
+    ".primary-nav",
+    ".hero",
+    ".hero-media",
+    ".hero-proof",
+    ".intent-proof",
+    ".explorer-toolbar",
+    ".results-meta",
+    ".dataset-body",
+    ".dataset-card-actions",
+    ".dataset-open",
+    ".dataset-details",
+    ".handoff-copy",
+    ".contact-section",
+    ".contact-actions",
+    ".site-footer",
+    ".footer-grid",
+    ".button",
+    "h1",
+    "[aria-live",
+    ":target",
+    ":focus"
+  ]) assert(!selector.includes(protectedFragment), `Slow reveal directly targets protected content (${protectedFragment}): ${selector}`);
+}
+
+for (const runtimeContract of [
+  "var STAGGER_STEP_MS = 150;",
+  "var STAGGER_CAP_INDEX = 3;",
+  "var INITIALIZATION_WATCHDOG_MS = 2400;",
+  "var EFFECTIVE_VIEWPORT_RATIO = 0.88;",
+  "threshold: 0.14,",
+  'rootMargin: "0px 0px -12% 0px"',
+  "Math.min(index, STAGGER_CAP_INDEX) * STAGGER_STEP_MS",
+  "Math.min(definition.delayIndex || 0, STAGGER_CAP_INDEX) * STAGGER_STEP_MS",
+  "if (!node || node.hasAttribute(LANDED_ATTRIBUTE)) return;",
+  "if (!observer || !observedNodes.has(node)) return;",
+  "observedNodes.delete(node);",
+  "observer.unobserve(node);",
+  "if (entry.isIntersecting) land(entry.target);",
+  'return definition.group + ":" + definition.role + ":" + index;',
+  'if (recordId) return definition.group + ":" + recordId;',
+  'var initializationTimedOut = false;',
+  '!initializationTimedOut &&',
+  'initializationTimedOut = true;',
+  'mutationObserver.observe(catalogRoot, { childList: true, subtree: true });',
+  'mutationObserver.disconnect();',
+  'window.addEventListener("scroll", scheduleReachedAudit, { passive: true });',
+  'window.addEventListener("resize", scheduleReachedAudit, { passive: true });',
+  'window.addEventListener("hashchange", settleForDeepLink);',
+  'window.addEventListener("popstate", landAll);',
+  'window.addEventListener("beforeprint", landAll);',
+  'document.addEventListener("focusin", settleForFocus, true);',
+  'document.addEventListener("visibilitychange", function () {',
+  'reducedMotion.addEventListener("change", function (event) {',
+  'typeof window.performance.getEntriesByType === "function"',
+  'window.performance.getEntriesByType("navigation")[0]',
+  'navigationEntry.type === "back_forward"',
+  "if (event.persisted) {",
+  "scheduleReachedAudit();"
+]) assert(revealRuntime.includes(runtimeContract), `Slow-reveal runtime contract is missing: ${runtimeContract}`);
+assert(count(revealRuntime, "new window.IntersectionObserver(") === 1, "Slow reveal must instantiate exactly one shared IntersectionObserver");
+assert(count(revealRuntime, "new window.MutationObserver(") === 1, "Slow reveal must use exactly one catalogue refresh observer");
+assert(count(revealRuntime, "window.requestAnimationFrame(function () {") === 2, "Reached-content fail-open audit must wait exactly two animation frames");
+assert(/window\.setTimeout\(function \(\) \{\s*if \(!initialized\) \{\s*initializationTimedOut = true;\s*landAll\(\);\s*return;\s*\}\s*scheduleReachedAudit\(\);\s*\}, INITIALIZATION_WATCHDOG_MS\);/.test(revealRuntime), "Slow reveal must latch fail-open on its 2400ms initialization watchdog and then audit reached content");
+assert(/window\.addEventListener\("pageshow", function \(event\) \{\s*if \(event\.persisted\) \{\s*landAll\(\);\s*\} else \{\s*scheduleReachedAudit\(\);\s*\}\s*\}\);/.test(revealRuntime), "Slow reveal must settle BFCache restoration and run the two-frame audit on normal pageshow");
+assert(revealRuntime.indexOf("node.setAttribute(PENDING_ATTRIBUTE") < revealRuntime.indexOf("root.setAttribute(ROOT_ATTRIBUTE, ROOT_ARMED)"), "Slow reveal must identify only off-screen pending nodes before arming the root");
+assert(revealRuntime.includes('!window.location.hash') && revealRuntime.includes('!historyRestoration') && revealRuntime.includes('document.visibilityState === "visible"') && revealRuntime.includes('!(reducedMotion && reducedMotion.matches)') && revealRuntime.includes('typeof window.IntersectionObserver === "function"'), "Slow reveal must be gated by deep-link, history-restoration, visibility, reduced-motion, and observer capability checks");
+const datasetRevealDefinition = revealRuntime.match(/selector: "#datasets \.dataset-grid > \.dataset-card > \.dataset-image",\s*role: "media\.arrival",\s*group: "dataset-previews",\s*stagger: (true|false)/)?.[1];
+assert(datasetRevealDefinition === "false", "The 38-item catalogue must use individual media arrival without a long stagger queue");
+for (const prohibitedRuntimePattern of [
+  /\bsetInterval\s*\(/,
+  /\binnerHTML\b/,
+  /\binsertAdjacentHTML\b/,
+  /\bdocument\.createElement\b/,
+  /\binfinite\b/i,
+  /lm-motif|catalog-motif|data-lm-motif|data-lm-placement|citymeter-motif/i
+]) assert(!prohibitedRuntimePattern.test(revealRuntime), `Slow-reveal adapter contains prohibited rendering or motif behavior: ${prohibitedRuntimePattern}`);
+
+const revealCssMarker = "/* CityMETER slow reveal — DS 0.9.1 motion-riddim-approach-02.";
+assert(count(surfaceCss, revealCssMarker) === 1, "DS surface CSS must contain exactly one slow-reveal layer");
+const revealCss = surfaceCss.slice(surfaceCss.indexOf(revealCssMarker));
+for (const cssContract of [
+  'html[data-lm-approach="armed"] [data-lm-reveal-role]',
+  "opacity 760ms cubic-bezier(.16, 1, .3, 1)",
+  "transform 920ms cubic-bezier(.2, .9, .25, 1.08)",
+  "transition-delay: var(--lm-approach-delay, 0ms)",
+  'data-lm-reveal-role="approach.soft"',
+  "transform: translateY(32px) scale(.985)",
+  'data-lm-reveal-role="approach.inline-start"',
+  "transform: translateX(-36px)",
+  'data-lm-reveal-role="approach.inline-end"',
+  "transform: translateX(36px)",
+  'data-lm-reveal-role="media.arrival"',
+  "transition-duration: 900ms, 900ms",
+  "@media print, (prefers-reduced-motion: reduce)",
+  "opacity: 1 !important",
+  "transform: none !important",
+  "transition: none !important"
+]) assert(revealCss.includes(cssContract), `Slow-reveal CSS contract is missing: ${cssContract}`);
+assert(!/^\s*(?:display|position|inset|top|right|bottom|left|width|height|min-width|min-height|max-width|max-height|margin|padding|border|grid|flex|overflow|clip-path)\s*:/im.test(revealCss), "Slow reveal must animate without changing layout geometry or clipping");
+assert(!/@keyframes|\banimation\s*:|\binfinite\b/i.test(revealCss), "Slow reveal must remain once-only observer motion, not a looping CSS animation");
+
 assert(!/#[0-9a-f]{3,8}\b/i.test(navbarCss) && !/rgba?\(/i.test(navbarCss), "Navbar authored colors must resolve only through DS tokens");
 for (const contract of [
   "--lm-surface-canvas: var(--ldm-foundation-surface-canvas-light)",
@@ -683,4 +869,4 @@ for (const contract of [
 assert(navbarCss.includes(".lm-nav-cta__sweep") && /\.lm-nav-cta__sweep\s*\{[\s\S]*?display:\s*none;[\s\S]*?\}/.test(navbarCss), "Retired navbar sweep must remain absent from every motion mode");
 assert(!/\binfinite\b/i.test(navbarCss) && !navbarCss.includes("@keyframes lmNavSweep") && !navbarCss.includes("@keyframes lmNavFlick"), "DS 0.9.1 forbids the historical unbounded CTA sweep/flicker");
 
-console.log("CityMETER DS 0.9.1 v3 public-release gate passed: exact DS CSS and pinned release bytes, no active motif DOM/runtime/style references, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Formal artifact_qa_passed and production_verified claims remain intentionally unclaimed pending their signed receipts.");
+console.log("CityMETER DS 0.9.1 v4 public-release gate passed: exact DS CSS and pinned release bytes, 57 semantic once-only slow-reveal targets per locale with full DS timing/fail-open contracts and protected-content exclusions, no active motif DOM/runtime/style references, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Formal artifact_qa_passed and production_verified claims remain intentionally unclaimed pending their signed receipts.");

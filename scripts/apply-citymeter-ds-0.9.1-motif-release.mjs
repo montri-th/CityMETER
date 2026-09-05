@@ -496,8 +496,8 @@ function migratePage(relativePath, prefix, language) {
   );
   html = replaceOne(html, '<meta name="theme-color" content="#176b82" />', '<meta name="theme-color" content="#F6F7F3" />', `${relativePath} initial theme color`);
   html = replaceOne(html, '<meta name="landometer:ds-version" content="0.9.0" />', '<meta name="landometer:ds-version" content="0.9.1" />', `${relativePath} DS version meta`);
-  html = replaceOneVariant(html, ['<meta name="landometer:artifact-build" content="ui-20260830-09" />', '<meta name="landometer:artifact-build" content="ui-20260904-ds091-motif-internal-v1" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-motif-public-v1" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-motif-public-v2" />'], '<meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v3" />', `${relativePath} build meta`);
-  html = replaceOneVariant(html, ['<meta name="landometer:release-receipt" content="2026-08-30-citymeter-unified-nav-r7-v31" />', '<meta name="landometer:release-receipt" content="2026-09-04-citymeter-ds091-motif-internal-v1" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v1" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v2" />'], '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v3" />', `${relativePath} release receipt meta`);
+  html = replaceOneVariant(html, ['<meta name="landometer:artifact-build" content="ui-20260830-09" />', '<meta name="landometer:artifact-build" content="ui-20260904-ds091-motif-internal-v1" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-motif-public-v1" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-motif-public-v2" />', '<meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v3" />'], '<meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v4" />', `${relativePath} build meta`);
+  html = replaceOneVariant(html, ['<meta name="landometer:release-receipt" content="2026-08-30-citymeter-unified-nav-r7-v31" />', '<meta name="landometer:release-receipt" content="2026-09-04-citymeter-ds091-motif-internal-v1" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v1" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v2" />', '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v3" />'], '<meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v4" />', `${relativePath} release receipt meta`);
   html = replaceOneVariant(
     html,
     [
@@ -505,9 +505,10 @@ function migratePage(relativePath, prefix, language) {
       '<meta name="citymeter:release-receipt" content="2026-08-30-citymeter-unified-nav-r7-v31" />',
       '<meta name="citymeter:release-receipt" content="2026-09-04-citymeter-ds091-motif-internal-v1" />',
       '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v1" />',
-      '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v2" />'
+      '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-motif-public-v2" />',
+      '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v3" />'
     ],
-    '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v3" />',
+    '<meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v4" />',
     `${relativePath} CityMETER release receipt meta`
   );
   html = replaceOne(html, `${prefix}assets/index-qbT50gkr-v17.js`, `${prefix}assets/index-qbT50gkr-v18.js`, `${relativePath} hydrated bundle`);
@@ -599,9 +600,13 @@ function migratePage(relativePath, prefix, language) {
   ].join("\n");
   const newEnhancement = [
     `    <link rel="stylesheet" href="${prefix}assets/landometer-ds/v0.9.1/color-srgb-05.production.css">`,
+    `    <link rel="stylesheet" href="${prefix}assets/catalog-enhancements-ds-0.9.1-v29.css">`
+  ].join("\n");
+  const previousNoMotifEnhancement = [
+    `    <link rel="stylesheet" href="${prefix}assets/landometer-ds/v0.9.1/color-srgb-05.production.css">`,
     `    <link rel="stylesheet" href="${prefix}assets/catalog-enhancements-ds-0.9.1-v28.css">`
   ].join("\n");
-  html = replaceOneVariant(html, [oldEnhancement, previousEnhancement, currentEnhancement], newEnhancement, `${relativePath} DS styles`);
+  html = replaceOneVariant(html, [oldEnhancement, previousEnhancement, currentEnhancement, previousNoMotifEnhancement], newEnhancement, `${relativePath} DS styles`);
   html = replaceOne(html, `${prefix}assets/unified-navbar-r7-v30.css`, `${prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css`, `${relativePath} navbar styles`);
 
   const oldScripts = [
@@ -622,12 +627,17 @@ function migratePage(relativePath, prefix, language) {
   ].join("\n");
   const newScripts = [
     `    <script defer src="${prefix}assets/unified-navbar-r7-v31.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`,
+    `    <script defer src="${prefix}assets/catalog-enhancements-ds-0.9.1-v26.js"></script>`,
+    `    <script defer src="${prefix}assets/citymeter-ds-0.9.1-approach-reveal-v1.js"></script>`
+  ].join("\n");
+  const previousNoMotifScripts = [
+    `    <script defer src="${prefix}assets/unified-navbar-r7-v31.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>`,
     `    <script defer src="${prefix}assets/catalog-enhancements-ds-0.9.1-v26.js"></script>`
   ].join("\n");
   const headClose = "  </head>";
   html = replaceOneVariant(
     html,
-    [oldScripts, previousScripts, currentScripts].map((scripts) => `${scripts}\n${headClose}`),
+    [oldScripts, previousScripts, currentScripts, previousNoMotifScripts].map((scripts) => `${scripts}\n${headClose}`),
     `${newScripts}\n${headClose}`,
     `${relativePath} DS scripts without motif`
   );
@@ -646,5 +656,5 @@ migratePage("index.html", "./", "th");
 migratePage("en/index.html", "../", "en");
 
 console.log(checkOnly
-  ? "CityMETER DS 0.9.1 v3 no-motif public-release migration check passed."
-  : "Prepared the CityMETER DS 0.9.1 v3 no-motif public release candidate.");
+  ? "CityMETER DS 0.9.1 v4 slow-reveal public-release migration check passed."
+  : "Prepared the CityMETER DS 0.9.1 v4 slow-reveal public release candidate.");

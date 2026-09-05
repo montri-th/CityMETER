@@ -38,9 +38,11 @@ const contributorBundleName = contributorManifest.renderOwners.hydratedBundle.sp
 const contributorEnhancerName = contributorManifest.renderOwners.transitionalEnhancer.split("/").at(-1);
 const contributorStylesName = contributorManifest.renderOwners.styles.split("/").at(-1);
 const activeBundleName = "index-qbT50gkr-v18.js";
-const activeStylesName = "catalog-enhancements-ds-0.9.1-v28.css";
+const activeStylesName = "catalog-enhancements-ds-0.9.1-v29.css";
 const activeEnhancerName = "catalog-enhancements-ds-0.9.1-v26.js";
-const activeReleaseReceipt = "2026-09-05-citymeter-ds091-public-v3";
+const activeApproachRevealName = "citymeter-ds-0.9.1-approach-reveal-v1.js";
+const activeArtifactBuild = "ui-20260905-ds091-public-v4";
+const activeReleaseReceipt = "2026-09-05-citymeter-ds091-public-v4";
 const ids = review.records.map((record) => record.id);
 const routeById = new Map(review.records.map((record) => [record.id, record.citymeterUrl]));
 const muenRaiRoute = "https://landometer.com/v3/citymeter/PRE?d=muenRai";
@@ -269,12 +271,16 @@ for (const page of ["index.html", "en/index.html"]) {
     JSON.stringify(countPillars(showcasePillars)) === JSON.stringify({ land: 1, location: 3, living: 2 }),
     `${page} showcase pillar contract must remain 1 / 3 / 2`
   );
-  assert(html.includes(activeStylesName) && html.includes(activeEnhancerName), `${page} is missing the active DS 0.9.1 surface layer or hardened P1 contributor runtime`);
+  assert(html.includes(activeStylesName) && html.includes(activeEnhancerName) && html.includes(activeApproachRevealName), `${page} is missing the active DS 0.9.1 surface, hardened P1 contributor runtime, or independent approach-reveal runtime`);
   assert(html.includes(activeStylesName), `${page} must load the DS 0.9.1 surface revision`);
   assert(html.includes(activeEnhancerName), `${page} must load the DS 0.9.1 hardened P1 enhancement revision`);
+  assert(html.includes(activeApproachRevealName), `${page} must load the independent DS 0.9.1 approach-reveal runtime`);
   assert(html.includes(fontStylesheet), `${page} must load the canonical font-role stylesheet revision`);
   assert((html.match(/catalog-enhancements[^"']*\.css(?:\?v=\d+)?/g) || []).join() === activeStylesName, `${page} must load exactly one active enhancement stylesheet revision`);
   assert((html.match(/catalog-enhancements(?:-ds-0\.9\.1)?-v\d+\.js(?:\?v=\d+)?/g) || []).join() === activeEnhancerName, `${page} must load exactly one active enhancement script revision`);
+  assert((html.match(/citymeter-ds-0\.9\.1-approach-reveal-v\d+\.js(?:\?v=\d+)?/g) || []).join() === activeApproachRevealName, `${page} must load exactly one active approach-reveal script revision`);
+  assert(html.indexOf(activeEnhancerName) < html.indexOf(activeApproachRevealName), `${page} must load the approach reveal after the hydration-safe contributor enhancer`);
+  assert(!/landometer-motifs|motif-placement|<lm-motif\b|data-motif-/i.test(html), `${page} must not restore active motif markup, styles, or runtime`);
   const baseStylesheetMatches = html.match(/index-cqxdfePB\.css(?:\?v=\d+)?/g) || [];
   assert(baseStylesheetMatches.length === 1 && baseStylesheetMatches[0] === "index-cqxdfePB.css?v=2", `${page} must load exactly one deduplicated base stylesheet revision`);
   assert((html.match(/citymeter-fonts\.css\?v=\d+/g) || []).join() === "citymeter-fonts.css?v=1", `${page} must load exactly one canonical font stylesheet revision`);
@@ -286,6 +292,8 @@ for (const page of ["index.html", "en/index.html"]) {
   assert((html.match(/<link rel="preload" as="font" type="font\/woff2" href="[^"]+" crossorigin \/>/g) || []).length === expectedFontPreloads.length, `${page} must preload only the route-specific critical font set`);
   assert(html.includes(activeBundleName), `${page} must load the DS 0.9.1 hydrated bundle revision`);
   assert((html.match(/index-qbT50gkr-v\d+\.js(?:\?v=\d+)?/g) || []).join() === activeBundleName, `${page} must load exactly one main bundle revision`);
+  assert(html.includes(`name="landometer:artifact-build" content="${activeArtifactBuild}"`), `${page} is missing the active DS 0.9.1 artifact build`);
+  assert((html.match(/name="landometer:artifact-build"/g) || []).length === 1, `${page} must expose exactly one artifact build`);
   assert(html.includes('name="citymeter:catalog-version" content="2026-08-14"'), `${page} has a stale catalog version`);
   assert(html.includes(`name="citymeter:release-receipt" content="${activeReleaseReceipt}"`), `${page} is missing the active DS 0.9.1 release receipt`);
   assert((html.match(/name="citymeter:release-receipt"/g) || []).length === 1, `${page} must expose exactly one release receipt`);
@@ -791,11 +799,23 @@ const catalogStoryCss = readFileSync(join(root, "assets/catalog-enhancements-v18
 const catalogStructureCss = readFileSync(join(root, "assets/catalog-enhancements-v19.css"), "utf8");
 const motionSocialCss = readFileSync(join(root, "assets/catalog-enhancements-v20.css"), "utf8");
 const enhancementCss = readFileSync(join(root, contributorManifest.renderOwners.styles), "utf8");
+const activeSurfaceCss = readFileSync(join(root, "assets", activeStylesName), "utf8");
+const approachRevealJs = readFileSync(join(root, "assets", activeApproachRevealName), "utf8");
 const canonicalFontCss = readFileSync(join(root, "assets/citymeter-fonts.css"), "utf8");
 assert(catalogStoryCss.startsWith(previousEnhancementCss.trimEnd()), "Historical catalog CSS v18 must preserve immutable v17 before its scoped diagram block");
 assert(catalogStructureCss.startsWith(previousEnhancementCss.trimEnd()), "Catalog CSS v19 must preserve immutable v17 before the simplified diagram block");
 assert(motionSocialCss.startsWith(catalogStructureCss.trimEnd()), "Motion/social CSS v20 must preserve immutable v19 before its scoped release block");
 assert(enhancementCss.startsWith(motionSocialCss.trimEnd()), "Active P1 CSS must preserve immutable v20 before its scoped contributor block");
+assert(activeSurfaceCss.includes('html[data-lm-approach="armed"] [data-lm-reveal-role]'), "Active surface CSS is missing the bounded approach-reveal state");
+assert(activeSurfaceCss.includes("opacity 760ms cubic-bezier(.16, 1, .3, 1)") && activeSurfaceCss.includes("transform 920ms cubic-bezier(.2, .9, .25, 1.08)"), "Active surface CSS approach timings drifted from DS 0.9.1");
+assert(activeSurfaceCss.includes("@media print, (prefers-reduced-motion: reduce)"), "Active surface CSS must settle reveals for print and reduced motion");
+assert((approachRevealJs.match(/new window\.IntersectionObserver/g) || []).length === 1, "Approach reveal must own exactly one document observer");
+assert((approachRevealJs.match(/new window\.MutationObserver/g) || []).length === 1, "Approach reveal must own exactly one dynamic-catalogue observer");
+for (const contract of ['threshold: 0.14', 'rootMargin: "0px 0px -12% 0px"', "observer.unobserve(node)", "var INITIALIZATION_WATCHDOG_MS = 2400", "initializationTimedOut = true", 'window.requestAnimationFrame(function ()', 'mutationObserver.observe(catalogRoot, { childList: true, subtree: true })']) {
+  assert(approachRevealJs.includes(contract), `Approach reveal safety contract is missing: ${contract}`);
+}
+assert(/group: "dataset-previews",\s*stagger: false/.test(approachRevealJs), "Dataset previews must reveal individually without a 38-item stagger queue");
+assert(!/landometer-motifs|motif-placement|<lm-motif\b|data-motif-/i.test(`${activeSurfaceCss}\n${approachRevealJs}`), "Active slow reveal must remain independent of the removed motif layer");
 const catalogCssDelta = catalogStructureCss.slice(previousEnhancementCss.trimEnd().length);
 const motionSocialCssDelta = motionSocialCss.slice(catalogStructureCss.trimEnd().length);
 const v23CssDelta = enhancementCss.slice(motionSocialCss.trimEnd().length);

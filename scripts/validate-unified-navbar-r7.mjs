@@ -38,8 +38,8 @@ const expectedReceiptIdentity = {
 const expectedPageIdentity = {
   "landometer:ds-version": "0.9.1",
   "landometer:color-set": "color-srgb-05",
-  "landometer:artifact-build": "ui-20260905-ds091-public-v3",
-  "landometer:release-receipt": "2026-09-05-citymeter-ds091-public-v3"
+  "landometer:artifact-build": "ui-20260905-ds091-public-v4",
+  "landometer:release-receipt": "2026-09-05-citymeter-ds091-public-v4"
 };
 
 const pages = [
@@ -69,6 +69,11 @@ for (const page of pages) {
   assert(!html.includes('<main id="main-content" tabindex="-1">'), `${page.path}: hydrated React subtree must not carry an unowned tabindex`);
   assert(html.includes(`href="${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css"`), `${page.path}: DS 0.9.1 navbar stylesheet is not active`);
   assert(html.includes(`src="${page.prefix}assets/unified-navbar-r7-v31.js"`), `${page.path}: navbar runtime is not active`);
+  assert(count(html, `href="${page.prefix}assets/catalog-enhancements-ds-0.9.1-v29.css"`) === 1, `${page.path}: active DS 0.9.1 surface stylesheet drifted`);
+  assert(count(html, `src="${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.js"`) === 1, `${page.path}: hardened contributor enhancer must remain unique`);
+  assert(count(html, `src="${page.prefix}assets/citymeter-ds-0.9.1-approach-reveal-v1.js"`) === 1, `${page.path}: independent approach-reveal runtime must remain unique`);
+  assert(html.indexOf("catalog-enhancements-ds-0.9.1-v26.js") < html.indexOf("citymeter-ds-0.9.1-approach-reveal-v1.js"), `${page.path}: approach reveal must load after the contributor enhancer`);
+  assert(!/landometer-motifs|motif-placement|<lm-motif\b|data-motif-/i.test(html), `${page.path}: removed motif markup, styles, or runtime became active again`);
   assert(html.includes(`src="${page.prefix}assets/landometer-symbol-color.png"`), `${page.path}: approved symbol is not active`);
   assert(count(html, `href="${page.prefix}assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf"`) === 1, `${page.path}: outline icon-font preload drifted`);
   assert(count(html, `href="${page.prefix}assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf"`) === 1, `${page.path}: filled icon-font preload drifted`);
