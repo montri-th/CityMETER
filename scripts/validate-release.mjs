@@ -38,9 +38,9 @@ const contributorBundleName = contributorManifest.renderOwners.hydratedBundle.sp
 const contributorEnhancerName = contributorManifest.renderOwners.transitionalEnhancer.split("/").at(-1);
 const contributorStylesName = contributorManifest.renderOwners.styles.split("/").at(-1);
 const activeBundleName = "index-qbT50gkr-v18.js";
-const activeStylesName = "catalog-enhancements-ds-0.9.1-v27.css";
+const activeStylesName = "catalog-enhancements-ds-0.9.1-v28.css";
 const activeEnhancerName = "catalog-enhancements-ds-0.9.1-v26.js";
-const activeReleaseReceipt = "2026-09-05-citymeter-ds091-motif-public-v2";
+const activeReleaseReceipt = "2026-09-05-citymeter-ds091-public-v3";
 const ids = review.records.map((record) => record.id);
 const routeById = new Map(review.records.map((record) => [record.id, record.citymeterUrl]));
 const muenRaiRoute = "https://landometer.com/v3/citymeter/PRE?d=muenRai";

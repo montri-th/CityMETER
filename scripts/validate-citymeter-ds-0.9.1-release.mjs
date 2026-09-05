@@ -76,23 +76,13 @@ function assertBalancedCss(source, label) {
 }
 
 const expected = {
-  releaseId: "2026-09-05-citymeter-ds091-motif-public-v2",
-  buildId: "ui-20260905-ds091-motif-public-v2",
+  releaseId: "2026-09-05-citymeter-ds091-public-v3",
+  buildId: "ui-20260905-ds091-public-v3",
   tupleHash: "852f2cb97c5c7ba269c4c543f27cb4587b519263ea2075d84562289f21890e49",
   productionCss: {
     path: "assets/landometer-ds/v0.9.1/color-srgb-05.production.css",
     sha256: "3bac2499df594bbf6b016b650ee7763f7ec093e33bc5f28239144e0677281d5c",
     bytes: 8184
-  },
-  motifCss: {
-    path: "assets/landometer-motifs/v1/landometer-motifs.css",
-    sha256: "f5071a37a29bfe9196ea572f50d426bd7bb088c78219181ea8d3ae9f2fc4303c",
-    bytes: 4194
-  },
-  motifJs: {
-    path: "assets/landometer-motifs/v1/landometer-motifs.js",
-    sha256: "593efc75a95daa3fdb458f0a4078c8ba207950d7ced14e1557548e6376e9a02f",
-    bytes: 8056
   },
   compiledBaseCss: {
     path: "assets/index-cqxdfePB.css",
@@ -116,16 +106,14 @@ const expected = {
     { key: "account", path: "media/supporters/digital-service-account.png", sha256: "57c01b122575800f475cc29e958f6b1c5a7bac705cb5b6ba2365ae9bd90e3086", bytes: 112508, width: 2298, height: 1042, altTh: "บัญชีบริการดิจิทัล", altEn: "Digital Service Account" }
   ],
   candidateFiles: [
-    { path: "assets/catalog-enhancements-ds-0.9.1-v27.css", sha256: "0a10041fe6b53f99997fb12e56058187ed9479e138c82370b740443b4c970b9c", bytes: 48645 },
+    { path: "assets/catalog-enhancements-ds-0.9.1-v28.css", sha256: "d5ccb8fd86ee5ab5eb1410bbac759775b2fef27d3b05e54cc3a4ee2671fa1fed", bytes: 44637 },
     { path: "assets/unified-navbar-r7-ds-0.9.1-v32.css", sha256: "ad62a48dd65cfbba3798b26679a13b73e07f08927306780757ce15185a408fa2", bytes: 19010 },
-    { path: "assets/citymeter-ds-0.9.1-motif-placement-v2.js", sha256: "4cc7a131c62eafb9f1b3dc4989da0fc50c619ba0ea0c16ff044b5309db794be3", bytes: 3433 },
-    { path: "assets/landometer-motifs/v1/manifest.json", sha256: "6452e0fbc3c0b23330d6a188678d1dd9dde66cf22f19e0b7b471b48f4e7b5dee", bytes: 4818 },
     { path: "assets/catalog-enhancements-ds-0.9.1-v26.js", sha256: "f38e255ed8f921ea7beda520fe9d6eff9da0078ef69f892747b8585fad2807d5", bytes: 61551 },
     { path: "assets/index-qbT50gkr-v18.js", sha256: "808fa6d1805b61181c8675885e68d3be664dcc50d277df3a3af21d0d85c3bed0", bytes: 531713 },
-    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "70098843b7ecd13b63521ad41cd31814be6fe7e518f138102e50514252d3a1da", bytes: 7236 },
-    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "ded06dc96233e02c4d8b5a0495b6105fc176e1087775a20da39b2d0c46377284", bytes: 68432 },
-    { path: "index.html", sha256: "2088ee8ae655fdda6a3f6150e81892c16c2846b8d134f74cae71385ff9f29db0", bytes: 548776 },
-    { path: "en/index.html", sha256: "b56c484ceeb7a05217c5128277042953a8a481ed46f90bc23ee032e105264710", bytes: 471884 }
+    { path: "data/citymeter-ds-0.9.1-release-record.json", sha256: "61ffc8d174a86ef6df9c27bfef37ae0a207adec84b08fc11a961a1dc762481be", bytes: 6223 },
+    { path: "scripts/apply-citymeter-ds-0.9.1-motif-release.mjs", sha256: "d4683d0990f3145bc3f459c95584985e5caa66871e7366dbe275e647d8bbd025", bytes: 69043 },
+    { path: "index.html", sha256: "cb325e2e6e17ed502f6b8adf488f8dac679c872f037706f9e95e714f7c3851b3", bytes: 548502 },
+    { path: "en/index.html", sha256: "c7729cca67016364d5c926939e62c4c41976052a546ceb7bdcd600f79d80c415", bytes: 471607 }
   ],
   sourceBodyHashes: {
     "index.html": "1cdac0445742a2f7ec1a6b0a9c5d6a52d440f45e3a53ae7eb28b1c597165e461",
@@ -133,7 +121,7 @@ const expected = {
   }
 };
 
-for (const asset of [expected.productionCss, expected.motifCss, expected.motifJs, expected.compiledBaseCss]) {
+for (const asset of [expected.productionCss, expected.compiledBaseCss]) {
   assert(statSync(join(root, asset.path)).size === asset.bytes, `${asset.path}: byte count drifted`);
   assert(sha256(asset.path) === asset.sha256, `${asset.path}: exact-byte SHA-256 drifted`);
 }
@@ -169,7 +157,8 @@ assert(
   "Evidence-bound copy/source/schema correction boundary drifted"
 );
 assert(release.changeBoundary.decorativeColoredEdgePolicy === "prohibited", "Decorative colored-edge prohibition drifted");
-assert(release.changeBoundary.motifMotionDs091Disposition === "owner_selected_artifact_divergence_from_MOTION-01_finite_decorative_motion", "Owner-selected continuous-motif divergence is not recorded exactly");
+assert(release.changeBoundary.motifRole === "none" && release.changeBoundary.motifRuntime === "not_loaded" && release.changeBoundary.motifMotion === "none", "Motif removal boundary is not recorded exactly");
+assert(release.changeBoundary.motifMotionDs091Disposition === "no_active_divergence_after_owner_directed_removal", "Removed motif must not retain an active motion divergence");
 assert(release.changeBoundary.datasetSnapshotHoverClip.includes("15px inner top radius"), "Snapshot-hover clip decision is not recorded");
 assert(release.deliveryDecision.deliveryState === "ready_for_publication" && release.deliveryDecision.governedConformanceLevel === "not_claimed", "Public release must keep formal receipt-based conformance unclaimed");
 assert(release.deliveryDecision.artifactQaPassedClaimed === false && release.deliveryDecision.productionVerifiedClaimed === false, "Unsigned QA/production promotion must remain unclaimed");
@@ -180,6 +169,8 @@ assert(release.knownBoundaries.length >= 4, "Known authority/trust boundaries mu
 assert(release.authority.citymeterProductBriefApprovalRef === "data/citymeter-product-brief-v6-approval.json", "CityMETER Product Brief approval binding drifted");
 assert(release.authority.catalogEvidenceRef === "data/catalog-source-review.json" && release.authority.claimExpansionPerformed === false, "Catalogue evidence/claim boundary drifted");
 assert(release.authority.ownerMediaReuseConfirmationRef === "data/citymeter-owner-media-reuse-confirmation-2026-09-05.json", "Owner media-reuse authority binding drifted");
+assert(release.authority.ownerMotifRemovalDirectionRef === "owner-message:2026-09-05:remove-motif-from-citymeter", "Owner motif-removal direction is missing");
+assert(!("motifApprovalRef" in release.authority) && !("ownerContinuousMotifDirectionRef" in release.authority), "Inactive motif-use authority must not remain in the active release record");
 
 const brandApproval = json("data/landometer-master-brand-brief-v0.5.3-approval.json");
 assert(brandApproval.subject.version === "0.5.3" && brandApproval.approval.status === "owner_approved", "Master Brand Brief v0.5.3 approval record drifted");
@@ -241,23 +232,6 @@ for (const record of catalogReview.records) {
 for (const [status, expectedCount] of Object.entries(expectedSourceStatusCounts)) {
   assert(catalogReview.records.filter((record) => record.status === status).length === expectedCount, `Source registry status count drifted: ${status}`);
 }
-
-const motifManifest = json("assets/landometer-motifs/v1/manifest.json");
-assert(motifManifest.productScope === "CityMETER" && motifManifest.approval.status === "owner_approved" && motifManifest.approval.publicationPermission === true, "Motif approval/publication authority drifted");
-assert(motifManifest.source.sourceArchiveSha256 === "916d18dee1d760d53ec2157d511e16ac6379b645f2a923c40da4356b1b4f90a2" && motifManifest.source.sourceArchiveBytes === 12481, "Motif source archive binding drifted");
-assert(motifManifest.files.length === 2, "Motif manifest must bind exactly two supplied files");
-for (const file of motifManifest.files) {
-  assert(sha256(file.targetPath) === file.sha256, `${file.targetPath}: motif manifest SHA-256 drifted`);
-  assert(statSync(join(root, file.targetPath)).size === file.bytes, `${file.targetPath}: motif manifest byte count drifted`);
-}
-assert(motifManifest.recordVersion === "1.1", "Motif usage manifest revision drifted");
-assert(motifManifest.implementation.selectedKind === "rings" && motifManifest.implementation.variant === "full" && motifManifest.implementation.ink === "component_energy_palette" && motifManifest.implementation.autoplay === true, "Governed motif selection drifted");
-assert(motifManifest.implementation.motionAdapter.continuousAmbient === true && motifManifest.implementation.motionAdapter.pauseControl === true, "Owner-directed continuous motif motion contract drifted");
-assert(motifManifest.implementation.motionAdapter.ownerSelectedDivergence.includes("MOTION-01"), "Motif motion divergence must remain explicit");
-for (const role of ["identity", "data_visualization", "evidence", "status", "control", "decorative_border", "edge", "rail", "divider"]) {
-  assert(motifManifest.prohibitedRoles.includes(role), `Motif prohibited role is missing: ${role}`);
-}
-assert(motifManifest.conformanceBoundary.includes("not a signed DS asset-approval receipt") && motifManifest.conformanceBoundary.includes("MOTION-01"), "Motif conformance boundary drifted");
 
 const v17 = read("assets/index-qbT50gkr-v17.js");
 const v18 = read("assets/index-qbT50gkr-v18.js");
@@ -558,23 +532,29 @@ for (const page of pageContracts) {
 
   const links = [
     `${page.prefix}${expected.productionCss.path}`,
-    `${page.prefix}${expected.motifCss.path}`,
-    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v27.css`,
+    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v28.css`,
     `${page.prefix}assets/unified-navbar-r7-ds-0.9.1-v32.css`
   ];
   for (const link of links) assert(count(html, link) === 1, `${page.path}: expected one active stylesheet ${link}`);
-  assert(html.indexOf(links[0]) < html.indexOf(links[1]) && html.indexOf(links[1]) < html.indexOf(links[2]) && html.indexOf(links[2]) < html.indexOf(links[3]), `${page.path}: DS/motif/surface/navbar stylesheet order drifted`);
+  assert(html.indexOf(links[0]) < html.indexOf(links[1]) && html.indexOf(links[1]) < html.indexOf(links[2]), `${page.path}: DS/surface/navbar stylesheet order drifted`);
 
   const scripts = [
-    `${page.prefix}${expected.motifJs.path}`,
     `${page.prefix}assets/unified-navbar-r7-v31.js`,
-    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.js`,
-    `${page.prefix}assets/citymeter-ds-0.9.1-motif-placement-v2.js`
+    `${page.prefix}assets/catalog-enhancements-ds-0.9.1-v26.js`
   ];
   for (const script of scripts) assert(count(html, script) === 1, `${page.path}: expected one active script ${script}`);
-  assert(html.indexOf(scripts[0]) < html.indexOf(scripts[3]) && html.indexOf(scripts[2]) < html.indexOf(scripts[3]), `${page.path}: one motif runtime/placement order drifted`);
-  assert(count(html, expected.motifJs.path) === 1 && count(html, "assets/citymeter-ds-0.9.1-motif-placement-v2.js") === 1, `${page.path}: must load exactly one motif runtime and one placement runtime`);
+  assert(html.indexOf(scripts[0]) < html.indexOf(scripts[1]), `${page.path}: navbar/enhancer script order drifted`);
   assert(count(html, `${page.prefix}assets/index-qbT50gkr-v18.js`) === 1, `${page.path}: DS 0.9.1 bundle is not uniquely active`);
+
+  for (const retiredMotifRef of [
+    "assets/landometer-motifs/",
+    "citymeter-ds-0.9.1-motif-placement",
+    "<lm-motif",
+    "data-lm-motif",
+    "data-lm-placement",
+    "catalog-motif",
+    "citymeter-motif"
+  ]) assert(!html.includes(retiredMotifRef), `${page.path}: active motif reference remains: ${retiredMotifRef}`);
 
   for (const retired of [
     "catalog-enhancements-v25.css",
@@ -603,10 +583,9 @@ for (const page of pageContracts) {
   assert(!html.includes("supporter-logos-hero") && !html.includes("supporter-lockup-hero"), `${page.path}: supporter marks must not be duplicated in the hero`);
 }
 
-const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v27.css");
+const surfaceCss = read("assets/catalog-enhancements-ds-0.9.1-v28.css");
 const compiledBaseCss = read("assets/index-cqxdfePB.css");
 const navbarCss = read("assets/unified-navbar-r7-ds-0.9.1-v32.css");
-const placementJs = read("assets/citymeter-ds-0.9.1-motif-placement-v2.js");
 assertBalancedCss(surfaceCss, "DS surface CSS");
 assertBalancedCss(navbarCss, "DS navbar CSS");
 
@@ -672,42 +651,15 @@ const authoredHexColors = new Set(surfaceCss.match(/#[0-9a-f]{6}\b/gi) || []);
 for (const color of authoredHexColors) assert(allowedAtmosphereColors.has(color.toUpperCase()), `Non-DS authored hex color remains in the surface layer: ${color}`);
 assert(!/rgba?\(/i.test(surfaceCss), "Raw rgb/rgba colors must resolve through DS tokens or exact recipes");
 
-for (const contract of [
-  '[data-lm-placement="catalog-orientation"]',
-  ".catalog-structure[data-lm-motif-ready]",
-  "grid-template-columns: minmax(0, 1fr) minmax(240px, 300px)",
-  "grid-column: 1 / -1",
-  "width: min(100%, 220px)",
-  "pointer-events: none",
-  "contain: layout paint",
-  "citymeter-motif-ambient 6800ms ease-in-out infinite alternate",
-  "translate3d(-8px, 4px, 0) rotate(-.6deg) scale(.985)",
-  "translate3d(8px, -4px, 0) rotate(.6deg) scale(1.015)",
-  ".catalog-motif-stage[data-lm-paused] lm-motif",
-  ".catalog-motif-motion-toggle",
-  "min-height: 44px",
-  "@media (prefers-reduced-motion: reduce)",
-  "@media print",
-  "animation: none !important"
-]) assert(surfaceCss.includes(contract), `Motif layout/motion contract is missing: ${contract}`);
-assert(!surfaceCss.includes("@media (max-width: 979px)"), "Motif must no longer disappear at common tablet/split-pane widths");
-const motifPrintContract = `@media print {
-  [data-lm-placement="catalog-orientation"] lm-motif,
-  [data-lm-placement="catalog-orientation"] lm-motif * {
-    transform: none !important;
-    animation: none !important;
-  }
-
-  [data-lm-placement="catalog-orientation"] lm-motif {
-    will-change: auto;
-  }
-
-  .catalog-motif-motion-toggle {
-    display: none !important;
-  }
-}`;
-assert(surfaceCss.includes(motifPrintContract), "Print output must freeze the continuous motif and omit its interactive motion control");
-assert(surfaceCss.lastIndexOf("@media print") > surfaceCss.indexOf("citymeter-motif-ambient 6800ms"), "The v2 print override must follow the continuous motif rule");
+for (const retiredMotifToken of [
+  "lm-motif",
+  "catalog-motif",
+  "data-lm-motif",
+  "data-lm-placement",
+  "data-lm-armed",
+  "data-lm-play",
+  "citymeter-motif-ambient"
+]) assert(!surfaceCss.includes(retiredMotifToken), `Active surface stylesheet retains motif-only behavior: ${retiredMotifToken}`);
 const mediaClipRule = surfaceCss.match(/\.dataset-card\s*>\s*\.dataset-image\s*\{([^}]+)\}/i)?.[1] || "";
 for (const contract of [
   "overflow: hidden",
@@ -715,7 +667,6 @@ for (const contract of [
   "clip-path: inset(0 round 15px 15px 0 0)",
   "contain: paint"
 ]) assert(mediaClipRule.includes(contract), `Dataset snapshot hover clip contract is missing: ${contract}`);
-assert(count(surfaceCss, "citymeter-motif-ambient 6800ms ease-in-out infinite alternate") === 1, "Continuous ambient motif animation must have exactly one owner");
 
 assert(!/#[0-9a-f]{3,8}\b/i.test(navbarCss) && !/rgba?\(/i.test(navbarCss), "Navbar authored colors must resolve only through DS tokens");
 for (const contract of [
@@ -732,37 +683,4 @@ for (const contract of [
 assert(navbarCss.includes(".lm-nav-cta__sweep") && /\.lm-nav-cta__sweep\s*\{[\s\S]*?display:\s*none;[\s\S]*?\}/.test(navbarCss), "Retired navbar sweep must remain absent from every motion mode");
 assert(!/\binfinite\b/i.test(navbarCss) && !navbarCss.includes("@keyframes lmNavSweep") && !navbarCss.includes("@keyframes lmNavFlick"), "DS 0.9.1 forbids the historical unbounded CTA sweep/flicker");
 
-for (const contract of [
-  'var selector = "#datasets .catalog-structure"',
-  'var marker = "catalog-orientation"',
-  'var stageMarker = "catalog-orientation-stage"',
-  "target.querySelector('[data-lm-motif-stage=\"' + stageMarker + '\"]')",
-  'motif.setAttribute("kind", "rings")',
-  'var motif = document.createElement("lm-motif")',
-  "placement.appendChild(motif)",
-  'placement.setAttribute("aria-hidden", "true")',
-  'motif.setAttribute("aria-hidden", "true")',
-  'stage.className = "catalog-motif-stage"',
-  'button.className = "catalog-motif-motion-toggle"',
-  'document.addEventListener("visibilitychange", syncMotionState)',
-  'reducedMotion.addEventListener("change", syncMotionState)',
-  'stage.toggleAttribute("data-lm-paused", paused)',
-  'stage.setAttribute("data-lm-motion-state"',
-  'button.addEventListener("click"',
-  'button.textContent = action',
-  'button.setAttribute("aria-label", action)',
-  'target.setAttribute("data-lm-motif-ready", "")',
-  'caption.insertAdjacentElement("afterend", stage)',
-  'target.removeAttribute("data-lm-motif-ready")',
-  "}, 2400)",
-  'window.addEventListener("load", start, { once: true })'
-]) assert(placementJs.includes(contract), `Motif placement contract is missing: ${contract}`);
-assert(count(placementJs, 'document.createElement("lm-motif")') === 1 && count(placementJs, "placement.appendChild(motif)") === 1, "Motif placement runtime must create and append exactly one motif");
-assert(count(placementJs, "requestAnimationFrame") >= 2, "Motif placement must preserve the hydration-safe two-frame boundary");
-assert(!placementJs.includes('motif.setAttribute("quiet"') && !placementJs.includes('motif.setAttribute("ink"') && !placementJs.includes('motif.setAttribute("autoplay"'), "Full supplied rings variant must use its native palette and one-shot entry behavior");
-assert(!/\.play\s*\(/.test(placementJs) && !/setAttribute\(\s*["']run["']/.test(placementJs), "Supplied motif component must never be replayed");
-for (const prohibitedKind of ["dial", "slice", "layers", "cultivate"]) {
-  assert(!placementJs.includes(`\"${prohibitedKind}\"`), `Prohibited motif kind remains in placement runtime: ${prohibitedKind}`);
-}
-
-console.log("CityMETER DS 0.9.1 v2 public-release gate passed: exact DS CSS and pinned release bytes, one responsive full-rings motif with owner-directed continuous ambient motion plus pause/reduced-motion controls, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Full DS conformance, artifact_qa_passed, and production_verified claims remain intentionally unclaimed because the continuous decorative motion is a recorded MOTION-01 divergence.");
+console.log("CityMETER DS 0.9.1 v3 public-release gate passed: exact DS CSS and pinned release bytes, no active motif DOM/runtime/style references, clipped snapshot hover media, embedded 38-record r5 source/status/claim hydration parity in TH/EN, peer Land + Location + Living architecture, 36 Dataset + 2 hasPart JSON-LD, exact footer supporter marks with no hero duplication, and a public source_limited/indexable boundary. Formal artifact_qa_passed and production_verified claims remain intentionally unclaimed pending their signed receipts.");

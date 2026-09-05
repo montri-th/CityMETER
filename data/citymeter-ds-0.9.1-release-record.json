@@ -1,8 +1,8 @@
 {
   "recordType": "citymeter_release_decision_record",
-  "recordVersion": "1.1",
-  "releaseId": "2026-09-05-citymeter-ds091-motif-public-v2",
-  "artifactBuildId": "ui-20260905-ds091-motif-public-v2",
+  "recordVersion": "1.2",
+  "releaseId": "2026-09-05-citymeter-ds091-public-v3",
+  "artifactBuildId": "ui-20260905-ds091-public-v3",
   "decisionDate": "2026-09-05",
   "productScope": "CityMETER",
   "artifact": {
@@ -48,8 +48,7 @@
     "citymeterProductBriefApprovalRef": "data/citymeter-product-brief-v6-approval.json",
     "ownerPublicationAuthorizationRef": "data/citymeter-owner-publication-approval-2026-09-04.json",
     "ownerMediaReuseConfirmationRef": "data/citymeter-owner-media-reuse-confirmation-2026-09-05.json",
-    "motifApprovalRef": "assets/landometer-motifs/v1/manifest.json",
-    "ownerContinuousMotifDirectionRef": "owner-message:2026-09-05:motif-must-move-continuously",
+    "ownerMotifRemovalDirectionRef": "owner-message:2026-09-05:remove-motif-from-citymeter",
     "depaSupporterMarksRightsRef": "data/citymeter-depa-supporter-marks-rights-record.json",
     "existingContributorReleaseRef": "data/citymeter-contributor-release-p1-7712069325b3.json",
     "catalogEvidenceRef": "data/catalog-source-review.json",
@@ -65,14 +64,14 @@
     "unsupportedExactPromotionalFiguresSoftened": true,
     "decorativeColoredEdgePolicy": "prohibited",
     "replacement": "Neutral one-pixel separation, quiet DS surfaces, spacing, and low elevation; category meaning remains explicit in text.",
-    "motifRole": "One decorative and wayfinding rings motif in a reserved catalog-orientation sidecar; never identity, evidence, state, control, data encoding, border, edge, rail, divider, or a background behind text.",
-    "motifResponsiveVisibility": "Visible across the supported responsive range rather than hidden at or below 979px.",
-    "motifMotion": "The supplied full rings component plays its native finite construction once; the component host then carries owner-directed continuous ambient movement with a pause/resume control, reduced-motion final state, and background-tab pause.",
-    "motifMotionDs091Disposition": "owner_selected_artifact_divergence_from_MOTION-01_finite_decorative_motion",
+    "motifRole": "none",
+    "motifRuntime": "not_loaded",
+    "motifMotion": "none",
+    "motifMotionDs091Disposition": "no_active_divergence_after_owner_directed_removal",
     "datasetSnapshotHoverClip": "The immediate media frame clips the 1.018 hover scale to a 15px inner top radius so transformed pixels cannot protrude beyond the 16px card radius."
   },
   "deliveryDecision": {
-    "ownerRequestedAction": "Publish the DS 0.9.1 presentation patch, clearly visible continuously moving motif, and rounded snapshot-hover clipping to the existing CityMETER GitHub Pages URL.",
+    "ownerRequestedAction": "Remove the motif entirely from the active CityMETER page, retain the rounded snapshot-hover clipping, and publish to the existing GitHub Pages URL.",
     "deliveryState": "ready_for_publication",
     "governedConformanceLevel": "not_claimed",
     "packageValidated": true,
@@ -85,12 +84,12 @@
       "The owner has explicitly authorized publication to the existing CityMETER GitHub Pages URL.",
       "The 38-record catalogue preserves visible source-status and decision-use limitations and introduces no new dataset record or material product claim.",
       "The snapshots are existing owner-directed captures from owner-controlled Landometer properties and are approved for same-owner reuse in this public artifact.",
-      "The owner explicitly directed the approved motif to remain continuously moving and visible; this instruction is recorded as an artifact-level motion divergence rather than misrepresented as a normative DS change.",
+      "The owner explicitly directed the motif to be removed; the active HTML, stylesheet, and runtime no longer load, place, or animate it.",
       "Local static and hydrated checks pass for the exact release candidate."
     ],
     "conformanceClaimBoundary": [
       "This public release applies the DS 0.9.1 presentation, interaction, accessibility and format behavior but does not claim the receipt-based artifact_qa_passed or production_verified levels.",
-      "The continuous decorative ambient motif motion is an explicit owner-selected artifact divergence from DS 0.9.1 MOTION-01; therefore this release does not claim full DS 0.9.1 conformance.",
+      "No active motif or motif-specific motion divergence remains in the published artifact.",
       "A caller-pinned operator_external trust pair and signed promotion bundle are required only before making either formal conformance claim, not before deployment.",
       "Post-deployment CityMETER route and live-byte checks remain required before any production_verified claim."
     ]
@@ -99,8 +98,7 @@
     "The owner-approved Product Brief authorizes CityMETER product positioning but does not by itself prove individual dataset lineage, freshness, live capability, or third-party rights.",
     "No external operator trust-store and caller-pinned policy are currently bound, so signed artifact_qa_passed or production_verified promotion is not claimed.",
     "Master Brand Brief approval governs brand and shared architecture only; it does not approve CityMETER product facts or evidence.",
-    "The supplied motif approval is owner authority for this page and exact bytes, not a signed DS asset-approval receipt.",
-    "The continuously moving ambient treatment follows the owner's current page-specific direction and is not promoted into the canonical Design System; reduced-motion and explicit pause/resume remain available.",
+    "Previously supplied motif assets remain immutable repository history for rollback but are not referenced or loaded by the active page.",
     "The depa contract, decision material, exact supplied marks, and owner delivery attestation resolve the page-scoped depa support attribution record; they do not create a general endorsement claim or unrelated reuse rights.",
     "The owner media confirmation resolves same-owner reuse and provenance for the existing Landometer snapshots; it does not alter provider licences or authorize removal of attribution.",
     "Deterministic local gates verify static/hydrated source parity and the responsive interaction contracts; rendered-browser and live-byte observations remain post-push release checks and are not signed DS final-byte or production receipts."
