@@ -1,0 +1,56 @@
+# CityMETER
+
+CityMETER brings 43 public data views into three peer lenses: Land, Location and Living. Read source, period, unit, coverage and limitations before using a view for a decision.
+
+- [Thai catalog](https://montri-th.github.io/CityMETER/)
+- [English catalog](https://montri-th.github.io/CityMETER/en/)
+- [Structured catalog](https://montri-th.github.io/CityMETER/data/catalog.json): bilingual descriptions, source references, unknowns, map start URLs and public contributors.
+- [Public contributor projection](https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json)
+
+## Interpretation
+Observed branch or registration shares describe their selected records, not sales, revenue or the whole market. Demand proxies are not observed demand. Locale Insight is a contextual prior for planning and validation, not official population, eligibility, legal boundary, risk or observed behaviour. Missing data is not zero. Historical event archives are CreativeWork records; they are not live incident feeds. Source-review dates are editorial checks, not ingestion timestamps, freshness guarantees or data licences.
+
+## Data views
+- [Buildings: Footprints, Height & Estimated Floor Area](https://montri-th.github.io/CityMETER/en/datasets/buildings/): Turn available building data into a city model showing density and estimated floor area without specialist GIS skills.
+- [Registered Housing Estates](https://montri-th.github.io/CityMETER/en/datasets/registered-housing-estates/): See the distribution and composition of registered housing developments before comparing neighbourhoods.
+- [EIA Projects & Reports](https://montri-th.github.io/CityMETER/en/datasets/eia-projects/): Explore environmental assessment records around a location to understand its development history.
+- [Agriculture: Crop Area & Output (10,000 Rai)](https://montri-th.github.io/CityMETER/en/datasets/crop-area-output/): Explore recorded agricultural activity, cultivated area and output to prepare a supply study.
+- [Land Appraisal & Title Deeds](https://montri-th.github.io/CityMETER/en/datasets/land-appraisal/): Compare official land appraisal values across areas before checking individual parcels.
+- [Land Listing Prices](https://montri-th.github.io/CityMETER/en/datasets/land-listing-prices/): Compare land asking prices and official appraisal values before following up on a listing.
+- [Apartment Rent](https://montri-th.github.io/CityMETER/en/datasets/apartment-rent/): Turn scattered apartment listings into a neighbourhood view of rental prices and building density.
+- [Condo Appraisal Prices](https://montri-th.github.io/CityMETER/en/datasets/condo-appraisal/): Compare official condominium appraisal values across projects and neighbourhoods.
+- [Condo Listing Prices](https://montri-th.github.io/CityMETER/en/datasets/condo-listing-prices/): Compare condominium asking prices with official appraisal values in the same area.
+- [Detached Listing Prices](https://montri-th.github.io/CityMETER/en/datasets/detached-listing-prices/): Compare detached-house asking prices and plot sizes before choosing homes to visit.
+- [Townhouse Listing Prices](https://montri-th.github.io/CityMETER/en/datasets/townhouse-listing-prices/): Compare townhouse asking prices and property details to shortlist homes within a budget.
+- [Condo Rent & Yield (RentWise)](https://montri-th.github.io/CityMETER/en/datasets/condo-rent-yield/): Compare condominium asking rents and return estimates before checking investment assumptions.
+- [Registered Companies: Status & Capital](https://montri-th.github.io/CityMETER/en/datasets/registered-companies-status-capital/): Map registered businesses, registration status and capital to study potential competitors, partners and local markets.
+- [Factories, Workers & Investment](https://montri-th.github.io/CityMETER/en/datasets/factories-workers-investment/): Explore registered factories, workforce figures and investment data to understand industrial areas.
+- [Office Buildings & Rent](https://montri-th.github.io/CityMETER/en/datasets/office-buildings-rent/): Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate.
+- [Restaurants: Density, Ratings & Price](https://montri-th.github.io/CityMETER/en/datasets/restaurants/): See restaurant types, ratings and price ranges across a neighbourhood before studying a site.
+- [Shopping Centres, Markets & Retail Sites](https://montri-th.github.io/CityMETER/en/datasets/shopping-centers/): Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations.
+- [Hotel Supply, Rates & Seasonality](https://montri-th.github.io/CityMETER/en/datasets/hotel-market/): Compare hotel locations, room supply and listed prices to understand accommodation around a site.
+- [Tourism Demand: Visitors & Spending](https://montri-th.github.io/CityMETER/en/datasets/tourism-demand-spending/): Compare reported tourism volumes, spending and destinations to choose markets and seasons for further study.
+- [Fuel Stations: Count, Density & Fuel Types](https://montri-th.github.io/CityMETER/en/datasets/fuel-stations/): Compare station locations and brand shares of recorded station counts to study local networks and plan fieldwork.
+- [Registered Cars](https://montri-th.github.io/CityMETER/en/datasets/registered-cars/): Compare first-time vehicle registrations and brand shares within the selected records to plan local marketing and service networks.
+- [Road Network Archetypes](https://montri-th.github.io/CityMETER/en/datasets/road-network-archetypes/): Turn road networks into an area profile to understand urban connections and study a location.
+- [Traffic: Congestion & Speed](https://montri-th.github.io/CityMETER/en/datasets/traffic-congestion-speed/): Explore available speed and congestion data to study access to a site and plan services and market visits.
+- [Locale Insights](https://montri-th.github.io/CityMETER/en/datasets/locale-insights/): Bring key neighbourhood context into one view to compare the strengths, gaps and character of each area.
+- [Population by Age & Sex](https://montri-th.github.io/CityMETER/en/datasets/population-age-sex/): See the age and sex structure of registered populations on a map to compare areas and plan services.
+- [Schools, Students & Teachers](https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/): See the distribution, levels and types of schools on a map to compare local provision.
+- [Municipal Revenue](https://montri-th.github.io/CityMETER/en/datasets/municipal-revenue/): Compare local-government revenue over time to prepare better questions about public resources.
+- [Government Agencies & Workforce](https://montri-th.github.io/CityMETER/en/datasets/government-agencies-workforce/): Explore government offices and reported personnel to understand the public-service presence in an area.
+- [Flood: Recurrent](https://montri-th.github.io/CityMETER/en/datasets/flood-recurrent/): Compare areas where flooding was observed in past years before studying a location further.
+- [Flood: Latest Observed](https://montri-th.github.io/CityMETER/en/datasets/flood-latest-observed/): Review satellite-observed flood areas for a selected date and study their watershed context.
+- [Flood: Forecast Depth by DWR](https://montri-th.github.io/CityMETER/en/datasets/flood-forecast-depth/): Read modelled flood depth for a forecast period and check the model context before planning.
+- [Flood: Flash Flood: 24-hour Risk by Google](https://montri-th.github.io/CityMETER/en/datasets/flood-forecast-flash-flood-risk/): Read flash-flood forecast information for an area alongside its issue time and validity window.
+- [Earthquake Sensor Network](https://montri-th.github.io/CityMETER/en/datasets/earthquake-sensors/): See what seismic stations report, when they report it, and what to check next.
+- [Fire Monitoring](https://montri-th.github.io/CityMETER/en/datasets/fire-monitoring/): View satellite hotspots by area and observation time to support further checks.
+- [Disaster: Historical Impacts](https://montri-th.github.io/CityMETER/en/datasets/disaster-historical-impacts/): Turn village-level disaster history into a map of past impacts to support evidence-based preparedness.
+- [Hat Yai Flood Reports — 24–27 Nov 2025](https://montri-th.github.io/CityMETER/en/datasets/events-hat-yai-flood-2025-11/): Review mapped flood reports from Hat Yai, 24–27 November 2025, to learn from the response.
+- [QuakeSafe: Building Inspection Status](https://montri-th.github.io/CityMETER/en/datasets/events-quake-building-inspection/): Review dated building inspection reports after an earthquake and check the original assessment.
+- [Retail & Wholesale Networks](https://montri-th.github.io/CityMETER/en/datasets/grocery-retail/): See retail and wholesale networks across an area to inform market strategy and decide where to investigate next.
+- [Non-bank Branch & Office Networks](https://montri-th.github.io/CityMETER/en/datasets/non-bank/): Explore non-bank lender branches and offices to inform market strategy and further research into local service networks.
+- [Places of Worship](https://montri-th.github.io/CityMETER/en/datasets/places-of-worship/): Explore places of worship on a map to understand local context and prepare for conversations with communities.
+- [Terrain & Elevation](https://montri-th.github.io/CityMETER/en/datasets/terrain-elevation/): Explore terrain and elevation in 3D to understand an area and prepare questions for on-site investigation.
+- [City Events & Notices](https://montri-th.github.io/CityMETER/en/datasets/events-notices/): Explore local reports and notices by area and time, then open the evidence that matters to your work.
+- [Government Budget & Disbursement](https://montri-th.github.io/CityMETER/en/datasets/government-spending/): Compare budget allocations and recorded disbursements by area to prepare questions about public spending.

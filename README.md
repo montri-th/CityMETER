@@ -2,7 +2,17 @@
 
 หน้า public showcase สำหรับให้ผู้ใช้ค้น เปรียบเทียบ และตรวจข้อจำกัดของตัวอย่าง CityMETER ก่อนเปิดพื้นที่หรือแหล่งข้อมูลที่เกี่ยวข้องต่อ
 
-## สถานะปัจจุบัน
+## แค็ตตาล็อกปัจจุบัน — 2026-10-10
+
+งานแค็ตตาล็อกใหม่ใช้ **LDS 0.9.7** เป็นฐาน: 43 รายการ (Land 13 / Location 16 / Living 14), หน้ารายละเอียดไทย–อังกฤษ 86 หน้า, ที่มา/ช่วงเวลา/ข้อจำกัดใน HTML และ [public JSON](data/catalog.json) พร้อมเครดิตจาก [public Landom projection](https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json) รายการ Business Dynamics ไม่อยู่ใน public catalog นี้
+
+แก้เนื้อหาที่ `src/catalog.json` แล้วรัน `npm run build` และ `npm run check` ด้วย Node 20 ขึ้นไป ไม่ต้องติดตั้ง dependency อ่าน [คู่มือ intern](docs/catalog-maintenance.md) และ [ขั้นตอนสำหรับ agent](docs/catalog-maintenance.json) ก่อนแก้แหล่งข้อมูลหรือ attribution CI ตรวจ PR/main แต่ไม่ deploy จาก PR; การเผยแพร่ยังใช้ GitHub Pages `main` / root เดิม
+
+Initial HTML และ React hydration ใช้ renderer เดียวกันสำหรับ catalog/showcase/identity graph เพื่อไม่ให้ค้นหา กรอง หรือโหลดเสร็จแล้วกลับเป็นข้อมูลเก่า Shell, navigation และสื่อเดิมยังเก็บจาก public release ก่อนหน้า ส่วน audience CSS ปัจจุบันเป็น exact `color-srgb-10` ของ LDS 0.9.7 ขอบเขตนี้ไม่ใช่การอ้างว่าเว็บทั้งหมดผ่าน migration หรือ conformance แล้ว
+
+`data/catalog-build.json` เป็นหลักฐานการสร้างไฟล์และ hash ไม่ใช่ใบยืนยัน deployment รายละเอียด LDS 0.9.1 และตัวเลข 38 รายการด้านล่างเป็นประวัติของ release เก่าเท่านั้น ไม่ใช่ authority หรือจำนวนปัจจุบัน
+
+## ประวัติ public release 2026-09-05 — LDS 0.9.1
 
 สาขานี้เก็บ public release สำหรับ Landometer Design System 0.9.1 ที่ได้รับอนุญาตให้ publish ไปยัง GitHub Pages เดิม
 

@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "montri-th/CityMETER public static catalog; does not change the map application or upstream data",
+  "authority": {
+    "designSystem": "0.9.7",
+    "baseDocumentId": "lds-0.9.7-landometer-standalone-r1",
+    "baseSha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
+    "coverage": "New catalog/detail writing, neutral components, discovery; historical public shell/media retained"
+  },
+  "authoredInputs": [
+    "src/catalog.json",
+    "src/templates/index.th.html",
+    "src/templates/index.en.html",
+    "src/runtime/catalog.js",
+    "src/styles/catalog.css",
+    "data/landom-contributors.json"
+  ],
+  "commands": {
+    "generate": "npm run build",
+    "check": "npm run check",
+    "syncContributors": "npm run sync:contributors"
+  },
+  "tasks": [
+    {
+      "id": "evidence",
+      "dependsOn": [],
+      "action": "Read current public data view and primary source references; distinguish provider, publisher, reference candidate, period, units, denominator and missingness.",
+      "doneWhen": "Every changed factual claim has an inspectable source or is explicitly unknown."
+    },
+    {
+      "id": "copy",
+      "dependsOn": ["evidence"],
+      "action": "Edit src/catalog.json in TH/EN, retaining team intent and natural voice. Add cross-language aliases. Preserve stable IDs/map URLs and source scope.",
+      "doneWhen": "No invented coverage, freshness, rights, behaviour or business outcome; branch shares have a stated subset and demand proxies stay proxies."
+    },
+    {
+      "id": "credits",
+      "dependsOn": ["evidence"],
+      "action": "Sync only the reviewed public Landom contributor projection and review its diff; do not infer candidate attribution or consent.",
+      "doneWhen": "Each displayed credit joins an explicit public module mapping and a usable public profile URL."
+    },
+    {
+      "id": "generate",
+      "dependsOn": ["copy", "credits"],
+      "action": "Run npm run build, then npm run check. Do not hand-edit generated output.",
+      "doneWhen": "Deterministic build, semantic/search checks and immutable-input hash checks pass."
+    },
+    {
+      "id": "browser-qa",
+      "dependsOn": ["generate"],
+      "action": "Inspect TH/EN at 390px and 1440px, including new sections, initial/hydrated/filter/reset parity, menu/language/theme, decision panels, share, reel, keyboard and reduced motion.",
+      "doneWhen": "No overflow, fake preview, decorative bracket/rail, missing credit/name, dead control or stale count."
+    },
+    {
+      "id": "review",
+      "dependsOn": ["browser-qa"],
+      "action": "Open a focused PR with evidence, changed behaviour, test result and responsive screenshots; require quality CI.",
+      "doneWhen": "The exact commit and generated diff have been reviewed; CI does not deploy a PR."
+    },
+    {
+      "id": "publish-verify",
+      "dependsOn": ["review"],
+      "action": "After authorized merge, inspect GitHub Pages provider/source/build status, confirm deployed commit, fetch exact public artifacts and compare hashes, then check user journeys on the public URLs.",
+      "doneWhen": "Provider attestation and public bytes agree with the reviewed release; push success alone is insufficient."
+    }
+  ],
+  "guardrails": {
+    "taxonomy": ["Land", "Location", "Living"],
+    "locationPurpose": [
+      "market landscape",
+      "observed subset count share",
+      "demand proxies",
+      "supply and service planning"
+    ],
+    "noInference": [
+      "count share is not sales or revenue share",
+      "proxy is not observed demand",
+      "no data is not zero",
+      "no matched license record is not no license",
+      "data-review date is not ingestion time",
+      "public credit is not inferred personal consent"
+    ],
+    "localeInsight": "Contextual prior only; crosswalk locale_id to verified municipality/community/service boundary before aggregation; not official population, eligibility, statutory boundary, risk or verified behaviour.",
+    "generatedFolders": ["datasets/", "en/datasets/"],
+    "releaseHistory": "Preserve immutable public baseline and historical assets; do not treat older LDS documentation as current parallel authority."
+  }
+}

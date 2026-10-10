@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="th" data-ds="landometer" data-ds-version="0.9.1" data-ds-profile="product_orientation" data-ds-format="web_public" data-delivery-mode="static-initial-html" data-evidence-status="source_limited" data-visibility="public" data-indexable="true">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#F6F7F3" />
+    <meta name="landometer:ds-version" content="0.9.1" />
+    <meta name="landometer:color-set" content="color-srgb-05" />
+    <meta name="landometer:artifact-build" content="ui-20260905-ds091-public-v6" />
+    <meta name="landometer:release-receipt" content="2026-09-05-citymeter-ds091-public-v6" />
+    <script>
+      (() => {
+        try {
+          const stored = localStorage.getItem("lds-theme") || localStorage.getItem("citymeter-theme") || "system";
+          const normalized = stored === "auto" ? "system" : stored;
+          const choice = ["system", "light", "dark"].includes(normalized) ? normalized : "system";
+          const theme = choice === "system"
+            ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+            : choice;
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.dataset.themePreference = choice;
+          document.documentElement.style.colorScheme = theme;
+          const themeMeta = document.querySelector('meta[name="theme-color"]');
+          if (themeMeta) themeMeta.setAttribute("content", theme === "dark" ? "#11191D" : "#F6F7F3");
+        } catch (_error) {}
+      })();
+    </script>
+    <meta name="description" content="สำรวจตัวอย่าง CityMETER และเปิดข้อมูลด้านที่ดิน ทำเล ธุรกิจ ผู้คน บริการ และความเสี่ยงบนแผนที่" />
+    <meta name="citymeter:catalog-version" content="2026-08-14" />
+    <meta name="citymeter:release-receipt" content="2026-09-05-citymeter-ds091-public-v6" />
+    <link rel="canonical" href="https://montri-th.github.io/CityMETER/" />
+    <link rel="alternate" hreflang="th" href="https://montri-th.github.io/CityMETER/" />
+    <link rel="alternate" hreflang="en" href="https://montri-th.github.io/CityMETER/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://montri-th.github.io/CityMETER/" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://landometer.com/static/images/favicon/favicon-32x32.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="th_TH" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:url" content="https://montri-th.github.io/CityMETER/" />
+    <meta property="og:site_name" content="Landometer.com" />
+    <meta property="og:title" content="CityMETER — เห็นข้อมูลพื้นที่ก่อนตัดสินใจ" />
+    <meta
+      property="og:description"
+      content="สำรวจตัวอย่าง CityMETER และเปิดข้อมูลด้านที่ดิน ทำเล ธุรกิจ ผู้คน บริการ และความเสี่ยงบนแผนที่"
+    />
+    <meta
+      property="og:image"
+      content="https://montri-th.github.io/CityMETER/media/social/citymeter-land-appraisal-share-2026-08-14.jpg"
+    />
+    <meta property="og:image:secure_url" content="https://montri-th.github.io/CityMETER/media/social/citymeter-land-appraisal-share-2026-08-14.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="หน้าจอ CityMETER แสดงราคาประเมินที่ดินด้วยแท่งข้อมูลสามมิติบนแผนที่" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CityMETER — เห็นข้อมูลพื้นที่ก่อนตัดสินใจ" />
+    <meta name="twitter:description" content="สำรวจตัวอย่าง CityMETER และเปิดข้อมูลด้านที่ดิน ทำเล ธุรกิจ ผู้คน บริการ และความเสี่ยงบนแผนที่" />
+    <meta name="twitter:image" content="https://montri-th.github.io/CityMETER/media/social/citymeter-land-appraisal-share-2026-08-14.jpg" />
+    <meta name="twitter:image:alt" content="หน้าจอ CityMETER แสดงราคาประเมินที่ดินด้วยแท่งข้อมูลสามมิติบนแผนที่" />
+    <link rel="preload" as="image" href="./media/reel/citymeter-proof-v3-poster.webp" fetchpriority="high" />
+    <link rel="preload" as="font" type="font/woff2" href="./assets/arvo-latin-700-normal-jvQUOvPP.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./assets/bai-jamjuree-thai-400-normal-CvLA45ZU.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./assets/bai-jamjuree-thai-600-normal-CzTxzpuq.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="./assets/ibm-plex-sans-thai-thai-400-normal-2d66381c.woff2" crossorigin />
+    <title>CityMETER — เห็นข้อมูลพื้นที่ก่อนตัดสินใจ</title>
+    <script type="module" crossorigin src="./assets/index-qbT50gkr-v18.js"></script>
+    <meta name="citymeter:contributor-candidate-build" content="2026-08-27-landom-thumbnail-sync-v29" />
+    <meta name="citymeter:contributor-snapshot" content="landom-sheet-20260825-9a5e5cc19e2a-media-31dae41636a9" />
+    <meta name="citymeter:contributor-data" content="data/citymeter-contributors-p1-c1d0f5a7c057.json" />
+    <meta name="citymeter:contributor-release-manifest" content="data/citymeter-contributor-release-p1-7712069325b3.json" />
+    {{SOURCES}}
+    {{CONTRIBUTORS}}
+    <link rel="stylesheet" crossorigin href="./assets/index-cqxdfePB.css?v=2">
+    <link rel="stylesheet" href="./assets/citymeter-fonts.css?v=1">
+    <link rel="stylesheet" href="./assets/landometer-ds/v0.9.1/color-srgb-05.production.css">
+    <link rel="stylesheet" href="./assets/catalog-enhancements-ds-0.9.1-v30.css">
+    <link rel="preload" as="image" href="./assets/landometer-symbol-color.png" />
+    <link rel="preload" as="font" href="./assets/material-symbols-rounded-citymeter-nav-outline-r1.ttf" type="font/ttf" crossorigin />
+    <link rel="preload" as="font" href="./assets/material-symbols-rounded-citymeter-nav-filled-r1.ttf" type="font/ttf" crossorigin />
+    <style id="lm-header-exclusivity">#root>.site-header{display:none!important}.lm-menu-shell[hidden],.lm-js-fallback-nav[hidden]{display:none!important}</style>
+    <link rel="stylesheet" href="./assets/unified-navbar-r7-ds-0.9.1-v34.css" />
+    <script defer src="./assets/unified-navbar-r7-v32.js" onerror="document.querySelector('.lm-js-fallback-nav')?.removeAttribute('hidden')"></script>
+    <script defer src="./assets/catalog-enhancements-ds-0.9.1-v26.js"></script>
+    <script defer src="./assets/citymeter-ds-0.9.1-approach-reveal-v1.js"></script>
+  </head>
+  <body>
+
+    <header class="lm-site-header" data-lm-nav data-nav-preset="citymeter">
+      <a class="lm-skip-link" href="#main-content" data-lm-copy="skip">ข้ามไปเนื้อหาหลัก</a>
+      <div class="lm-nav-viewport">
+        <div class="lm-nav-row">
+          <a class="lm-brand" href="https://landometer.com/" aria-label="Landometer" title="Landometer">
+            <span class="lm-brand__lockup">
+              <img class="lm-brand__symbol" src="./assets/landometer-symbol-color.png" width="1601" height="1601" alt="" />
+              <span class="lm-brand__wordmark" lang="en">Landometer</span>
+            </span>
+          </a>
+          <span class="lm-product-lockup" aria-label="CityMETER">
+            <span class="lm-product-divider" aria-hidden="true">/</span>
+            <span class="lm-product-name" lang="en">CityMETER</span>
+          </span>
+          <nav class="lm-header-actions" aria-label="เมนูหลักของ Landometer" data-lm-aria="mainNav">
+            <div class="lm-preference-cluster lm-desktop-only" data-lm-preferences>
+              <div class="lm-segmented-control" role="group" aria-label="ภาษา" data-lm-aria="languageGroup">
+                <a class="lm-preference-option" href="./?lang=th" hreflang="th" lang="th" data-lm-locale="th" data-lm-copy="thai">ไทย</a>
+                <a class="lm-preference-option" href="./en/?lang=en" hreflang="en" lang="en" data-lm-locale="en" data-lm-copy="englishShort">EN</a>
+              </div>
+              <div class="lm-segmented-control" role="group" aria-label="ธีมสี" data-lm-aria="themeGroup">
+                <button class="lm-preference-option" type="button" data-lm-theme-choice="system" data-lm-copy="systemShort" data-lm-control-label="themeSystem">ระบบ</button>
+                <button class="lm-preference-option" type="button" data-lm-theme-choice="light" data-lm-copy="light" data-lm-control-label="themeLight">สว่าง</button>
+                <button class="lm-preference-option" type="button" data-lm-theme-choice="dark" data-lm-copy="dark" data-lm-control-label="themeDark">มืด</button>
+              </div>
+            </div>
+            <span class="lm-nav-cta lm-desktop-only">
+              <a class="lm-secondary-button" href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">คุยกับเรา</a>
+              <span class="lm-nav-cta__sweep" aria-hidden="true" data-lm-copy="contact">คุยกับเรา</span>
+            </span>
+            <button class="lm-menu-toggle" type="button" data-lm-menu-open aria-haspopup="dialog" aria-expanded="false" aria-controls="lm-site-menu" aria-label="เปิดเมนู" title="เปิดเมนู">
+              <span class="lm-icon" aria-hidden="true" data-lm-menu-icon>menu</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="lm-menu-shell" data-lm-menu-shell hidden>
+      <button class="lm-menu-backdrop" type="button" data-lm-menu-close tabindex="-1" aria-hidden="true"></button>
+      <div class="lm-menu-panel" id="lm-site-menu" role="dialog" aria-modal="false" aria-label="เมนู Landometer" data-lm-aria="menu" tabindex="-1">
+        <div class="lm-menu-group lm-menu-preferences" data-lm-preferences>
+          <p class="lm-menu-label" data-lm-copy="displayLabel">การแสดงผล</p>
+          <div class="lm-preference-row">
+            <span class="lm-preference-label" data-lm-copy="languageLabel">ภาษา</span>
+            <div class="lm-segmented-control" role="group" aria-label="ภาษา" data-lm-aria="languageGroup">
+              <a class="lm-preference-option" href="./?lang=th" hreflang="th" lang="th" data-lm-locale="th" data-lm-copy="thai">ไทย</a>
+              <a class="lm-preference-option" href="./en/?lang=en" hreflang="en" lang="en" data-lm-locale="en" data-lm-copy="english">English</a>
+            </div>
+          </div>
+          <div class="lm-preference-row">
+            <span class="lm-preference-label" data-lm-copy="themeLabel">ธีม</span>
+            <div class="lm-segmented-control" role="group" aria-label="ธีมสี" data-lm-aria="themeGroup">
+              <button class="lm-preference-option" type="button" data-lm-theme-choice="system" data-lm-copy="system" data-lm-control-label="themeSystem">ตามระบบ</button>
+              <button class="lm-preference-option" type="button" data-lm-theme-choice="light" data-lm-copy="light" data-lm-control-label="themeLight">สว่าง</button>
+              <button class="lm-preference-option" type="button" data-lm-theme-choice="dark" data-lm-copy="dark" data-lm-control-label="themeDark">มืด</button>
+            </div>
+          </div>
+        </div>
+        <div class="lm-menu-group lm-menu-mobile-only">
+          <p class="lm-menu-label" data-lm-copy="localLabel">ในหน้านี้</p>
+          <nav class="lm-menu-links" aria-label="ส่วนต่าง ๆ ในหน้า CityMETER" data-lm-aria="localAria">
+          <a class="lm-page-link" href="#decisions" data-lm-scrollspy-link="decisions" data-lm-menu-close>
+            <span class="lm-icon" aria-hidden="true">checklist</span>
+            <span data-lm-copy="decision">เลือกโจทย์</span>
+          </a>
+          <a class="lm-page-link" href="#examples" data-lm-scrollspy-link="examples" data-lm-menu-close>
+            <span class="lm-icon" aria-hidden="true">visibility</span>
+            <span data-lm-copy="examples">ดูตัวอย่าง</span>
+          </a>
+          <a class="lm-page-link" href="#datasets" data-lm-scrollspy-link="datasets" data-lm-menu-close>
+            <span class="lm-icon" aria-hidden="true">database</span>
+            <span data-lm-copy="datasets">ข้อมูลทั้งหมด</span>
+          </a>
+          </nav>
+          <div class="lm-menu-cta-wrap">
+            <span class="lm-nav-cta">
+              <a class="lm-secondary-button" href="https://montri-th.github.io/rebuild02/#contact" data-lm-menu-close data-lm-copy="contact">คุยกับเรา</a>
+              <span class="lm-nav-cta__sweep" aria-hidden="true" data-lm-copy="contact">คุยกับเรา</span>
+            </span>
+          </div>
+        </div>
+        <div class="lm-menu-group lm-menu-divider">
+          <p class="lm-menu-label lm-menu-label--ecosystem" data-lm-copy="ecosystem">Landometer ecosystem</p>
+          <nav class="lm-menu-links" aria-label="เว็บไซต์ใน Landometer ecosystem" data-lm-aria="ecosystemAria">
+            <a class="lm-ecosystem-link" href="https://montri-th.github.io/rebuild02/">
+              <span class="lm-ecosystem-copy"><strong>Landometer</strong><small data-lm-copy="homeDesc">หน้าแรก · ผลิตภัณฑ์และบริการ</small></span>
+            </a>
+            <a class="lm-ecosystem-link" href="https://montri-th.github.io/CityMETER/" aria-current="page">
+              <span class="lm-ecosystem-copy"><strong>CityMETER</strong><small data-lm-copy="citymeterDesc">มุมมองข้อมูลเมือง 38 รายการ</small></span>
+              <span class="lm-ecosystem-current" data-lm-copy="here">· อยู่ที่นี่</span>
+            </a>
+            <a class="lm-ecosystem-link" href="https://landometer.com/v3/citywiki">
+              <span class="lm-ecosystem-copy"><strong>CityWiki</strong><small data-lm-copy="citywikiDesc">คู่มือย่าน 45 พื้นที่</small></span>
+            </a>
+            <a class="lm-ecosystem-link" href="https://montri-th.github.io/Landom/">
+              <span class="lm-ecosystem-copy"><strong>Landom</strong><small data-lm-copy="landomDesc">ผู้คนที่ร่วมสร้าง Landometer</small></span>
+            </a>
+          </nav>
+        </div>
+        <a class="lm-menu-all" href="https://landometer.com/" data-lm-copy="all">เปิด landometer.com — ผลิตภัณฑ์ทั้งหมด</a>
+      </div>
+    </div>
+    <nav class="lm-bookmark-rail" aria-label="ส่วนต่าง ๆ ในหน้า CityMETER" data-lm-aria="localAria">
+      <a href="#decisions" data-lm-scrollspy-link="decisions" data-lm-rail-label="decision" data-label="เลือกโจทย์" aria-label="เลือกโจทย์" title="เลือกโจทย์">
+        <span class="lm-icon" aria-hidden="true">checklist</span>
+      </a>
+      <a href="#examples" data-lm-scrollspy-link="examples" data-lm-rail-label="examples" data-label="ดูตัวอย่าง" aria-label="ดูตัวอย่าง" title="ดูตัวอย่าง">
+        <span class="lm-icon" aria-hidden="true">visibility</span>
+      </a>
+      <a href="#datasets" data-lm-scrollspy-link="datasets" data-lm-rail-label="datasets" data-label="ข้อมูลทั้งหมด" aria-label="ข้อมูลทั้งหมด" title="ข้อมูลทั้งหมด">
+        <span class="lm-icon" aria-hidden="true">database</span>
+      </a>
+    </nav>
+    <nav class="lm-noscript-nav lm-js-fallback-nav" aria-label="ทางลัดสำรอง" hidden>
+      <a href="#decisions" data-lm-copy="decision">เลือกโจทย์</a>
+      <a href="#examples" data-lm-copy="examples">ดูตัวอย่าง</a>
+      <a href="#datasets" data-lm-copy="datasets">ข้อมูลทั้งหมด</a>
+      <a href="./en/?lang=en" hreflang="en" lang="en">English</a>
+      <a href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">คุยกับเรา</a>
+      <a href="https://montri-th.github.io/rebuild02/">Landometer</a>
+      <a href="https://landometer.com/v3/citywiki">CityWiki</a>
+      <a href="https://montri-th.github.io/Landom/">Landom</a>
+    </nav>
+    <noscript><nav class="lm-noscript-nav" data-lm-noscript-fallback aria-label="ทางลัดสำรอง">
+      <a href="#decisions" data-lm-copy="decision">เลือกโจทย์</a>
+      <a href="#examples" data-lm-copy="examples">ดูตัวอย่าง</a>
+      <a href="#datasets" data-lm-copy="datasets">ข้อมูลทั้งหมด</a>
+      <a href="./en/?lang=en" hreflang="en" lang="en">English</a>
+      <a href="https://montri-th.github.io/rebuild02/#contact" data-lm-copy="contact">คุยกับเรา</a>
+      <a href="https://montri-th.github.io/rebuild02/">Landometer</a>
+      <a href="https://landometer.com/v3/citywiki">CityWiki</a>
+      <a href="https://montri-th.github.io/Landom/">Landom</a>
+    </nav></noscript>
+    <div id="root"><link rel="preload" as="image" href="./media/landometer-logo-horizontal.png"/><link rel="preload" as="image" href="./media/reel/citymeter-proof-v3-poster.webp"/>{{JSONLD}}<header class="site-header"><a class="skip-link" href="#main-content">ข้ามไปเนื้อหาหลัก</a><div class="header-inner"><div class="brand-row"><a class="landometer-brand" href="https://landometer.com" aria-label="Landometer"><img src="./media/landometer-logo-horizontal.png" alt="Landometer" width="1800" height="494"/></a><span class="brand-divider" aria-hidden="true">/</span><a class="citymeter-label" href="#top" lang="en">CityMETER</a></div><nav class="primary-nav" aria-label="เมนูหลัก"><a href="#decisions">เลือกโจทย์</a><a href="#examples">ดูตัวอย่าง</a><a href="#datasets">ข้อมูลทั้งหมด</a></nav><div class="preference-controls"><button class="quiet-control" type="button" aria-label="เปลี่ยนเป็นภาษาอังกฤษ" title="เปลี่ยนเป็นภาษาอังกฤษ"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M247.15,212.42l-56-112a8,8,0,0,0-14.31,0l-21.71,43.43A88,88,0,0,1,108,126.93,103.65,103.65,0,0,0,135.69,64H160a8,8,0,0,0,0-16H104V32a8,8,0,0,0-16,0V48H32a8,8,0,0,0,0,16h87.63A87.76,87.76,0,0,1,96,116.35a87.74,87.74,0,0,1-19-31,8,8,0,1,0-15.08,5.34A103.63,103.63,0,0,0,84,127a87.55,87.55,0,0,1-52,17,8,8,0,0,0,0,16,103.46,103.46,0,0,0,64-22.08,104.18,104.18,0,0,0,51.44,21.31l-26.6,53.19a8,8,0,0,0,14.31,7.16L148.94,192h70.11l13.79,27.58A8,8,0,0,0,240,224a8,8,0,0,0,7.15-11.58ZM156.94,176,184,121.89,211.05,176Z"></path></svg></button><div class="theme-switch" role="group" aria-label="เลือกธีมสี"><button type="button" class="is-active" aria-pressed="true" aria-label="ใช้ธีมตามระบบ" title="ใช้ธีมตามระบบ"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M208,40H48A24,24,0,0,0,24,64V176a24,24,0,0,0,24,24h72v16H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16H136V200h72a24,24,0,0,0,24-24V64A24,24,0,0,0,208,40Zm0,144H48a8,8,0,0,1-8-8V160H216v16A8,8,0,0,1,208,184Z"></path></svg></button><button type="button" class="" aria-pressed="false" aria-label="ใช้ธีมสว่าง" title="ใช้ธีมสว่าง"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16a8,8,0,0,0-11.32-11.32ZM192,72a8,8,0,0,0,5.66-2.34l16-16a8,8,0,0,0-11.32-11.32l-16,16A8,8,0,0,0,192,72Zm5.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32ZM48,128a8,8,0,0,0-8-8H16a8,8,0,0,0,0,16H40A8,8,0,0,0,48,128Zm80,80a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V216A8,8,0,0,0,128,208Zm112-88H216a8,8,0,0,0,0,16h24a8,8,0,0,0,0-16Z"></path></svg></button><button type="button" class="" aria-pressed="false" aria-label="ใช้ธีมมืด" title="ใช้ธีมมืด"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.8-109.8,8,8,0,0,0-10-10,104.84,104.84,0,0,0-52.91,37A104,104,0,0,0,136,224a103.09,103.09,0,0,0,62.52-20.88,104.84,104.84,0,0,0,37-52.91A8,8,0,0,0,233.54,142.23ZM188.9,190.34A88,88,0,0,1,65.66,67.11a89,89,0,0,1,31.4-26A106,106,0,0,0,96,56,104.11,104.11,0,0,0,200,160a106,106,0,0,0,14.92-1.06A89,89,0,0,1,188.9,190.34Z"></path></svg></button></div></div></div></header><main id="main-content"><section class="hero" id="top" aria-labelledby="page-title"><div class="hero-grid"><div class="hero-copy"><p class="eyebrow eyebrow-on-dark">ข้อมูลพื้นที่สำหรับการตัดสินใจจริง</p><h1 id="page-title" lang="en">CityMETER</h1><p class="hero-support">สำรวจตัวอย่างอาคาร ราคา ธุรกิจ ผู้คน การเดินทาง และความเสี่ยง พร้อมดูขอบเขตและสิ่งที่ยังต้องตรวจ ก่อนเปิดพื้นที่ที่สนใจ</p><p class="brand-promise">Measure What Matters. Make It Actionable.</p><div class="hero-actions"><a class="button button-light" href="#decisions">เลือกโจทย์ที่กำลังตัดสินใจ<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></a><a class="hero-text-link" href="#datasets">ดูข้อมูลทั้งหมด</a></div></div><div class="hero-media"><figure class="demo-figure"><div class="demo-video-shell"><img class="demo-poster" src="./media/reel/citymeter-proof-v3-poster.webp" alt="" width="1280" height="720" fetchpriority="high" decoding="async"/><span class="live-example-label"><span aria-hidden="true"></span>ตัวอย่างจากหน้าจอ CityMETER จริง</span></div><div id="demo-transcript" class="visually-hidden"><p>วิดีโอตัวอย่างไม่มีเสียง</p><ol><li>ประชากรจดทะเบียน. โครงสร้างอายุ เพศ และความหนาแน่นประชากร. ประชากรจดทะเบียนไม่ใช่ประชากรกลางวัน ผู้อยู่อาศัยจริง หรือข้อมูลสด</li><li>อาคาร 3 มิติที่สวนพลู. พื้นที่อาคารรวม จำนวนอาคาร ความสูง และจำนวนชั้น. Open Buildings ไม่ใช่ทะเบียนอาคารและอาจไม่ครอบคลุมทุกสิ่งปลูกสร้าง</li><li>รายได้องค์กรปกครองส่วนท้องถิ่น. เปรียบเทียบแหล่งรายได้ รายได้ต่อคน และรายได้ต่อพื้นที่. รายได้เพียงอย่างเดียวไม่ใช่คุณภาพบริการหรือสุขภาพการคลัง</li><li>อุปสงค์การท่องเที่ยว. ผู้เยี่ยมเยือน การใช้จ่าย ฤดูกาล และการเปรียบเทียบจังหวัด. จำนวนผู้เยี่ยมเยือนไม่ใช่จำนวนบุคคลไม่ซ้ำ และตัวเลขอาจมีการปรับปรุง</li></ol></div></figure><div class="hero-proof-rail" aria-label="ข้อมูลต่างระดับ ทำงานร่วมกันบนพื้นที่เดียว"><div class="hero-proof-item"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M240,208H224V96a16,16,0,0,0-16-16H144V32a16,16,0,0,0-24.88-13.32L39.12,72A16,16,0,0,0,32,85.34V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM208,96V208H144V96ZM48,85.34,128,32V208H48ZM112,112v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm-32,0v16a8,8,0,0,1-16,0V112a8,8,0,1,1,16,0Zm0,56v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Zm32,0v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Z"></path></svg><div><span>รูปแบบอาคาร</span><strong>GFA · ความสูง · จำนวนชั้น</strong><small>ตัวชี้วัดอาคารที่มีใน implementation จริง</small></div></div><div class="hero-proof-item"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"></path></svg><div><span>ระดับรายละเอียด</span><strong>จังหวัด · Locale · สถานีเซนเซอร์</strong><small>แต่ละรายการบอกระดับพื้นที่ที่รองรับได้ หรือสิ่งที่ยังต้องตรวจ</small></div></div><div class="hero-proof-item"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M128,24C74.17,24,32,48.6,32,80v96c0,31.4,42.17,56,96,56s96-24.6,96-56V80C224,48.6,181.83,24,128,24Zm80,104c0,9.62-7.88,19.43-21.61,26.92C170.93,163.35,150.19,168,128,168s-42.93-4.65-58.39-13.08C55.88,147.43,48,137.62,48,128V111.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64ZM69.61,53.08C85.07,44.65,105.81,40,128,40s42.93,4.65,58.39,13.08C200.12,60.57,208,70.38,208,80s-7.88,19.43-21.61,26.92C170.93,115.35,150.19,120,128,120s-42.93-4.65-58.39-13.08C55.88,99.43,48,89.62,48,80S55.88,60.57,69.61,53.08ZM186.39,202.92C170.93,211.35,150.19,216,128,216s-42.93-4.65-58.39-13.08C55.88,195.43,48,185.62,48,176V159.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64V176C208,185.62,200.12,195.43,186.39,202.92Z"></path></svg><div><span>เปิดดูได้โดยตรง</span><strong>38 มุมมองข้อมูลและโมดูล</strong><small>แต่ละรายการระบุขอบเขตแยกกัน</small></div></div></div></div></div></section><section class="section decision-section" id="decisions" aria-labelledby="decision-title"><div class="wide-container"><div class="section-heading"><p class="eyebrow">เริ่มจากสิ่งที่ต้องตัดสินใจ</p><h2 id="decision-title">ตอนนี้คุณกำลังหาคำตอบเรื่องไหน</h2><p>เลือกโจทย์ แล้วดูตัวอย่างและข้อมูลที่เกี่ยวข้องโดยไม่ต้องจำชื่อชุดข้อมูล</p></div><div class="intent-layout"><div class="intent-list" role="group" aria-label="เลือกตามสิ่งที่ต้องตัดสินใจ"><button type="button" id="intent-tab-invest-develop" aria-pressed="true" class="intent-tab is-active"><span class="intent-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M228.92,49.69a8,8,0,0,0-6.86-1.45L160.93,63.52,99.58,32.84a8,8,0,0,0-5.52-.6l-64,16A8,8,0,0,0,24,56V200a8,8,0,0,0,9.94,7.76l61.13-15.28,61.35,30.68A8.15,8.15,0,0,0,160,224a8,8,0,0,0,1.94-.24l64-16A8,8,0,0,0,232,200V56A8,8,0,0,0,228.92,49.69ZM104,52.94l48,24V203.06l-48-24ZM40,62.25l48-12v127.5l-48,12Zm176,131.5-48,12V78.25l48-12Z"></path></svg></span><span><small>เจ้าของที่ดิน · ผู้พัฒนา · นักลงทุน</small><strong>ควรซื้อ ถือ หรือพัฒนาพื้นที่ไหน</strong></span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></button><button type="button" id="intent-tab-hotel-retail-expansion" aria-pressed="false" class="intent-tab"><span class="intent-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M232,96a7.89,7.89,0,0,0-.3-2.2L217.35,43.6A16.07,16.07,0,0,0,202,32H54A16.07,16.07,0,0,0,38.65,43.6L24.31,93.8A7.89,7.89,0,0,0,24,96h0v16a40,40,0,0,0,16,32v72a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8V144a40,40,0,0,0,16-32V96ZM54,48H202l11.42,40H42.61Zm50,56h48v8a24,24,0,0,1-48,0Zm-16,0v8a24,24,0,0,1-35.12,21.26,7.88,7.88,0,0,0-1.82-1.06A24,24,0,0,1,40,112v-8ZM200,208H56V151.2a40.57,40.57,0,0,0,8,.8,40,40,0,0,0,32-16,40,40,0,0,0,64,0,40,40,0,0,0,32,16,40.57,40.57,0,0,0,8-.8Zm4.93-75.8a8.08,8.08,0,0,0-1.8,1.05A24,24,0,0,1,168,112v-8h48v8A24,24,0,0,1,204.93,132.2Z"></path></svg></span><span><small>โรงแรม · ค้าปลีก · ร้านอาหาร · ทีมขยายสาขา</small><strong>ทำเลไหนเหมาะกับโรงแรม ร้าน หรือสาขาใหม่</strong></span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></button><button type="button" id="intent-tab-risk-assets" aria-pressed="false" class="intent-tab"><span class="intent-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"></path></svg></span><span><small>ธนาคาร · ประกัน · เจ้าของสินทรัพย์ · หน่วยงานรัฐ</small><strong>พื้นที่ไหนควรตรวจความเสี่ยงก่อน</strong></span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></button><button type="button" id="intent-tab-plan-services" aria-pressed="false" class="intent-tab"><span class="intent-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M240,208h-8V88a8,8,0,0,0-8-8H160a8,8,0,0,0-8,8v40H104V40a8,8,0,0,0-8-8H32a8,8,0,0,0-8,8V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM168,96h48V208H168Zm-16,48v64H104V144ZM40,48H88V208H40ZM72,72V88a8,8,0,0,1-16,0V72a8,8,0,0,1,16,0Zm0,48v16a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm0,48v16a8,8,0,0,1-16,0V168a8,8,0,0,1,16,0Zm48,16V168a8,8,0,0,1,16,0v16a8,8,0,0,1-16,0Zm64,0V168a8,8,0,0,1,16,0v16a8,8,0,0,1-16,0Zm0-48V120a8,8,0,0,1,16,0v16a8,8,0,0,1-16,0Z"></path></svg></span><span><small>ท้องถิ่น · ทีมบริการเมือง · นักวางแผน</small><strong>พื้นที่ไหนควรได้บริการหรืองบก่อน</strong></span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></button><button type="button" id="intent-tab-analysis-brief" aria-pressed="false" class="intent-tab"><span class="intent-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"></path></svg></span><span><small>ที่ปรึกษา · นักวิเคราะห์ · ทีมวิจัย</small><strong>จะทำ analysis หรือ brief ให้ทีมใช้ต่ออย่างไร</strong></span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></button></div><article class="intent-proof" id="intent-proof"><div class="intent-proof-visual"><img src="./media/previews-v2/land-appraisal.webp" alt="ตัวอย่างหน้าจอ ราคาประเมินที่ดินและโฉนด" width="1200" height="750" loading="lazy" decoding="async"/><span>ราคาประเมิน · จำนวนโฉนด</span></div><div class="intent-proof-copy"><p class="intent-audience">เจ้าของที่ดิน · ผู้พัฒนา · นักลงทุน</p><h3>ควรซื้อ ถือ หรือพัฒนาพื้นที่ไหน</h3><p>เทียบอาคาร ราคา และข้อจำกัดรอบพื้นที่ เพื่อเลือกจุดที่ควรตรวจต่อก่อนลงทุน</p><div class="related-records" aria-label="ข้อมูลที่ใช้ประกอบ"><a href="#dataset-land-appraisal">ราคาประเมินที่ดินและโฉนด</a><a href="#dataset-land-listing-prices">ราคาประกาศขายที่ดิน</a><a href="#dataset-buildings">อาคาร: ขอบเขต พื้นที่อาคารรวม และความสูง</a><a href="#dataset-eia-projects">โครงการและรายงาน EIA</a><a href="#dataset-condo-appraisal">ราคาประเมินคอนโดมิเนียม</a></div><div class="intent-actions"><a class="button button-accent" href="https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed" target="_blank" rel="noreferrer">สำรวจการตัดสินใจด้านที่ดิน<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></a><button class="share-action" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M176,160a39.89,39.89,0,0,0-28.62,12.09l-46.1-29.63a39.8,39.8,0,0,0,0-28.92l46.1-29.63a40,40,0,1,0-8.66-13.45l-46.1,29.63a40,40,0,1,0,0,55.82l46.1,29.63A40,40,0,1,0,176,160Zm0-128a24,24,0,1,1-24,24A24,24,0,0,1,176,32ZM64,152a24,24,0,1,1,24-24A24,24,0,0,1,64,152Zm112,72a24,24,0,1,1,24-24A24,24,0,0,1,176,224Z"></path></svg>เก็บลิงก์หรือส่งให้เพื่อนลงทุน</button></div></div></article></div></div></section>{{SHOWCASE}}{{CATALOG}}<section class="handoff-section" aria-labelledby="handoff-title"><div class="wide-container handoff-grid"><div class="handoff-copy"><p class="eyebrow eyebrow-on-dark">ดูต่อบนมือถือ</p><h2 id="handoff-title">เก็บตัวอย่างนี้ไว้ใช้ เมื่อต้องตัดสินใจเรื่องพื้นที่</h2><p>สแกน QR เพื่อเปิดบนมือถือ เก็บลิงก์ไว้ดูเอง หรือส่งให้เพื่อนที่กำลังเลือกบ้าน ทำเลธุรกิจ หรือพื้นที่ลงทุน</p><button class="button button-light" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 256 256"><path d="M176,156a43.78,43.78,0,0,0-29.09,11L106.1,140.8a44.07,44.07,0,0,0,0-25.6L146.91,89a43.83,43.83,0,1,0-13-20.17L93.09,95a44,44,0,1,0,0,65.94L133.9,187.2A44,44,0,1,0,176,156Zm0-120a20,20,0,1,1-20,20A20,20,0,0,1,176,36ZM64,148a20,20,0,1,1,20-20A20,20,0,0,1,64,148Zm112,72a20,20,0,1,1,20-20A20,20,0,0,1,176,220Z"></path></svg>เก็บลิงก์หรือส่งให้เพื่อน</button><p class="share-feedback" aria-live="polite">ลิงก์จะเปิดตัวอย่างและข้อมูลชุดเดียวกัน</p></div><div class="handoff-media" aria-hidden="true"><div class="handoff-shot handoff-shot-road"><img src="./media/previews-v2/road-network-archetypes.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"/></div><div class="handoff-shot handoff-shot-retail"><img src="./media/previews-v2/shopping-centers.webp" alt="" width="1200" height="750" loading="lazy" decoding="async"/></div></div><figure class="qr-card"><canvas role="img" aria-label="QR code สำหรับเปิด CityMETER บนมือถือ"></canvas><figcaption><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewBox="0 0 256 256"><path d="M176,16H80A24,24,0,0,0,56,40V216a24,24,0,0,0,24,24h96a24,24,0,0,0,24-24V40A24,24,0,0,0,176,16ZM72,64H184V192H72Zm8-32h96a8,8,0,0,1,8,8v8H72V40A8,8,0,0,1,80,32Zm96,192H80a8,8,0,0,1-8-8v-8H184v8A8,8,0,0,1,176,224Z"></path></svg><span>เปิด CityMETER บนมือถือ</span></figcaption></figure></div></section><section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="content-container"><p class="eyebrow">มีพื้นที่หรือโจทย์อยู่แล้ว?</p><h2 id="contact-title">คุยกับทีม Landometer</h2><p>ส่งชื่อพื้นที่และสิ่งที่ต้องตัดสินใจมา ทีมจะช่วยชี้ข้อมูลที่เกี่ยวข้องและสิ่งที่ยังต้องตรวจเพิ่ม</p><div class="contact-actions"><a class="button button-accent" href="https://landometer.com/#section-contact" target="_blank" rel="noreferrer">คุยกับทีม Landometer<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" viewBox="0 0 256 256"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></a><a class="inline-action" href="#datasets">ดูข้อมูลทั้งหมดก่อน</a></div></div></section></main><footer class="site-footer"><div class="wide-container footer-grid"><div class="footer-brand"><a class="landometer-brand" href="https://landometer.com" aria-label="Landometer"><img src="./media/landometer-logo-horizontal.png" alt="Landometer" width="1800" height="494"/></a><p>ข้อมูลพื้นที่สำหรับคัดกรอง เปรียบเทียบ และตรวจต่อก่อนตัดสินใจ</p><p class="supporter-evidence-line">ได้รับการส่งเสริมและสนับสนุนโดย depa</p><div class="supporter-logos supporter-logos-footer" role="group" aria-label="การสนับสนุนและเครื่องหมายโครงการที่ได้รับจาก depa"><span class="supporter-logo-cell supporter-logo-cell-depa"><img class="supporter-logo supporter-logo-depa" src="./media/supporters/depa.png" alt="depa" width="2160" height="1350" loading="lazy" decoding="async"/></span><span class="supporter-logo-cell supporter-logo-cell-dsure"><img class="supporter-logo supporter-logo-dsure" src="./media/supporters/dsure-software.png" alt="dSURE Software" width="1014" height="1465" loading="lazy" decoding="async"/></span><span class="supporter-logo-cell supporter-logo-cell-account"><img class="supporter-logo supporter-logo-account" src="./media/supporters/digital-service-account.png" alt="บัญชีบริการดิจิทัล" width="2298" height="1042" loading="lazy" decoding="async"/></span></div></div><div class="footer-meta"><nav aria-label="Footer"><a href="#datasets">ข้อมูล CityMETER</a><a href="https://landometer.com" target="_blank" rel="noreferrer">ติดต่อ Landometer</a><a href="#top">กลับด้านบน</a></nav><nav class="footer-social" aria-label="ช่องทางโซเชียลมีเดียของ Landometer"><a href="https://www.facebook.com/landometer/" target="_blank" rel="noopener noreferrer" aria-label="Landometer บน Facebook — เปิดในแท็บใหม่" title="Facebook">Facebook</a><a href="https://www.instagram.com/landometer/" target="_blank" rel="noopener noreferrer" aria-label="Landometer บน Instagram — เปิดในแท็บใหม่" title="Instagram">Instagram</a><a href="https://th.linkedin.com/company/landometer" target="_blank" rel="noopener noreferrer" aria-label="Landometer บน LinkedIn — เปิดในแท็บใหม่" title="LinkedIn">LinkedIn</a><a href="https://www.tiktok.com/@landometer82" target="_blank" rel="noopener noreferrer" aria-label="Landometer บน TikTok — เปิดในแท็บใหม่" title="TikTok">TikTok</a></nav><small>© 2026 Landometer</small></div></div></footer></div>
+  </body>
+</html>
