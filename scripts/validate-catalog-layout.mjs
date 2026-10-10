@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import jsQR from "jsqr";
 import {
   catalogInner,
-  sourcePanel,
+  cardReferences,
   esc,
   card,
   hasVerifiedGdReference,
@@ -79,8 +79,7 @@ for (const lang of ["th", "en"]) {
         `${record.id} mixed into ${group} lane`,
       );
       if (appears) {
-        assert(lane.includes(sourcePanel(record, lang, 6)));
-        assert(lane.includes(esc(record.limitation[lang])));
+        assert(lane.includes(cardReferences(record, lang, 6)));
       }
     }
   }
@@ -92,6 +91,40 @@ for (const record of catalog.records) {
     const html = card(catalog, record, lang, credits, "./", 5);
     const closed = html.split('<details class="catalog-details">')[0];
     assert(closed.includes('class="catalog-card-pills"'));
+    assert(
+      html.includes(
+        lang === "th"
+          ? "<span>ข้อมูลนี้ใช้ทำอะไรได้</span>"
+          : "<span>What can I use this data for?</span>",
+      ),
+    );
+    for (const marker of [
+      "catalog-pill-source",
+      "catalog-status",
+      "catalog-limit",
+      "catalog-pill-period",
+      "data-source-status=",
+    ])
+      assert(
+        !html.includes(marker),
+        `Catalog must not expose review/caveat chrome: ${record.id} ${marker}`,
+      );
+    assert(
+      !html.includes(esc(record.limitation[lang])),
+      "Interpretation limitations belong in the summary disclosure",
+    );
+    assert(
+      !html.includes('<details class="catalog-details" open'),
+      "Catalog starts collapsed",
+    );
+    for (const ref of [
+      ...record.sourceReview.official,
+      ...record.sourceReview.gd,
+    ])
+      assert(
+        html.includes('href="' + esc(ref.url) + '"'),
+        "Factual reference destinations retained",
+      );
     assert(
       closed.includes(
         'class="button catalog-map-link" href="' + esc(record.mapUrl) + '"',
@@ -138,11 +171,6 @@ for (const record of catalog.records) {
             "</span>",
         ),
       );
-    const period = record.sourceReview.period?.[lang]?.trim();
-    assert.equal(
-      closed.includes("catalog-pill-period"),
-      Boolean(period && [...period].length <= (lang === "th" ? 45 : 70)),
-    );
     checkedCards++;
   }
 }
@@ -177,9 +205,36 @@ fixture.sourceReview.period = { th: "", en: "" };
 fixture.sourceReview.reviewedAt = "2099-01-01";
 assert(
   !card(catalog, fixture, "th", credits, "./").includes("catalog-pill-period"),
-  "Editorial review date must not become a data-period pill",
+  "Catalog must not turn editorial review dates into data-date pills",
 );
 const cardCss = read("src/styles/catalog.css");
+assert(
+  !cardCss.includes("surface-beige-tint"),
+  "Card surfaces must remain neutral",
+);
+for (const slot of ["03", "08", "05"])
+  for (const theme of ["light", "dark"])
+    assert(
+      cardCss.includes(`var(--ldm-series-${slot}-fill-${theme})`),
+      "Exact current categorical fill missing",
+    );
+const gdRule = cardCss.match(/\.catalog-gd-badge\s*\{([^}]+)\}/)[1];
+assert.match(gdRule, /background:\s*transparent;/);
+assert.match(gdRule, /padding:\s*0;/);
+assert.match(gdRule, /border:\s*0;/);
+assert.match(gdRule, /filter:\s*none;/);
+assert(cardCss.includes("--catalog-action-size: 56px"));
+for (const selector of [
+  ".catalog-card .catalog-actions > .catalog-map-link",
+  ".catalog-credit-avatars img",
+])
+  assert(
+    cardCss
+      .slice(cardCss.indexOf(selector))
+      .split("}")[0]
+      .includes("var(--catalog-action-size)"),
+    "CTA and portrait must share their visible size",
+  );
 assert(cardCss.includes('html[data-catalog-focus="active"] body::after'));
 assert(
   cardCss.includes("pointer-events: none"),
@@ -194,7 +249,7 @@ assert(
   "Documentary screenshots must not zoom on hover",
 );
 console.log(
-  `PASS ${checkedCards} bilingual card anatomy checks, explicit GD lineage gates, date semantics and compact native contributor links.`,
+  `PASS ${checkedCards} bilingual card anatomy checks, value-only disclosures, transparent GD lineage badges and matched native contributor links.`,
 );
 const css = read("src/styles/shell-current.css");
 assert(

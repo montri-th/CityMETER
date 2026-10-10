@@ -1,76 +1,74 @@
-# ดูแลข้อมูล CityMETER บนเว็บสาธารณะ
+# ดูแล CityMETER catalog และบทความ
 
-ใช้คู่มือนี้กับ repository `montri-th/CityMETER` และเว็บ <https://montri-th.github.io/CityMETER/> การแก้คำอธิบายในเว็บนี้ไม่เปลี่ยนฐานข้อมูลหรือความสามารถของแผนที่ที่ landometer.com
+ใช้คู่มือนี้กับ `montri-th/CityMETER` และ https://montri-th.github.io/CityMETER/ การแก้เว็บสาธารณะนี้ไม่เปลี่ยนฐานข้อมูล ตัวกรอง หรือความสามารถของแผนที่ที่ landometer.com คู่มือ machine-readable อยู่ข้างกันใน `catalog-maintenance.json`
 
-## แก้จากแหล่งเดียว
+## แก้ให้ถูกไฟล์
 
-แก้ `src/catalog.json` สำหรับชื่อ คำอธิบาย ที่มา ช่วงเวลา ระดับรายละเอียด ข้อจำกัด คำค้นไทย–อังกฤษ และกลุ่มย่อย อย่าแก้ `index.html`, `en/index.html`, `datasets/`, `en/datasets/`, `data/catalog.json`, `media/qr/datasets/` หรือ `assets/*public*r1*` ด้วยมือ เพราะระบบสร้างไฟล์เหล่านี้จากแหล่งเดียวกัน
+| งาน | แหล่งที่แก้ | ผู้สร้างผลลัพธ์ |
+|---|---|---|
+| การ์ด ชื่อ หมวด คำค้น ที่มา หน่วย ช่วงเวลา ข้อจำกัด เส้นทาง | `src/catalog.json` | `scripts/lib/catalog-render.mjs` |
+| บทความอิสระไทย–อังกฤษ 43 เรื่อง | `src/dataset-stories.json` | `scripts/lib/summary-article.mjs` |
+| การค้นหา กลุ่มการ์ด quiet context และ motion | `src/runtime/catalog.js`, `src/styles/catalog.css` | builder |
+| หน้าบทความ การแชร์ ธีม | `src/styles/summary.css`, `src/runtime/summary.js` | builder |
+| footer และ favicon ร่วมกัน | `scripts/lib/public-shell.mjs`, `src/styles/public-footer.css` | initial HTML, React K6 และบทความ |
+| เครดิต | public Landom projection → `data/landom-contributors.json` | `scripts/sync-public-contributors.mjs` |
+| ที่มาภาครัฐ/โรงงาน/โรงแรม | `data/government-source-provenance-20261010.json`, `data/factory-hotel-source-provenance-20261010.json` | public evidence ledger |
+| ภาพแค็ตตาล็อกใหม่ 6 ชุด/12 ไฟล์ | `data/dataset-preview-assets-20261010.json` | ตรวจตาม hash/ขนาด/บทบาท |
+| ภาพประกอบบทความจากหน้าใช้งาน 5 ภาพ | `data/story-snapshot-assets-20261010.json` | ตรวจตาม hash/ขนาด/บทบาท |
 
-ปัจจุบันมี 43 รายการ: Land 13, Location 16, Living 14 ใช้สามหมวดเป็นมุมมองคู่กัน ไม่มีสูตรที่ให้หมวดหนึ่งเท่ากับผลรวมของอีกสองหมวด งานเขียนและส่วนแค็ตตาล็อกใหม่ใช้ LDS 0.9.7 ฐาน `lds-0.9.7-landometer-standalone-r1` (SHA-256 `d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96`) และ audience CSS `color-srgb-10` สี UI ของ shell ใช้ current projection ส่วนพฤติกรรมและสื่อเดิมยังเก็บจาก public release ก่อนหน้า จึงไม่ใช่คำรับรองว่าเว็บทั้งหมดผ่านการย้ายรุ่นหรือ conformance
+ไม่แก้ `index.html`, `en/index.html`, `datasets/`, `en/datasets/`, `data/catalog.json`, `data/dataset-stories.json`, QR หรือ public bundles ด้วยมือ ให้สร้างใหม่ผ่าน `scripts/build-catalog.mjs` เก็บ baseline ที่ตรึง hash และประวัติ release เดิมไว้
 
-1. **ระบุสิ่งที่จะเปลี่ยนและหลักฐาน** เปิดหน้าข้อมูลจริงและแหล่งสาธารณะที่เกี่ยวข้อง แยกเจ้าของข้อมูล ผู้เผยแพร่ ผู้ให้บริการแผนที่ และแหล่งอ้างอิงที่ยังไม่ยืนยันว่าเป็นไฟล์เดียวกัน จดช่วงเวลา หน่วย ตัวหาร และขอบเขตที่ตรวจได้ อย่าใช้วันที่ทบทวนคำอธิบายแทนวันที่อัปเดตข้อมูล
-2. **แก้คำอธิบายให้คนอ่านรู้ว่าจะใช้ตอบอะไร** ใช้ถ้อยคำของทีมที่มีอยู่ก่อน รักษาความหมายและคำที่คนใช้จริง ถ้าข้อมูลยังไม่พอให้ระบุสิ่งที่ยังไม่ทราบ ใช้ WHO เป็นคนที่มีคำถามและเหตุผลที่ต้องตัดสินใจ WHAT เป็นข้อมูลที่มี WHICH เป็นวิธีอื่นที่ตอบคำถามเดียวกัน HOW เป็นคุณค่าที่ช่วยให้ตัดสินใจต่อ ไม่ปนกับขั้นตอนคลิกใช้งาน
-3. **ตรวจข้อจำกัดของการตีความ** Location ช่วยอ่านภูมิทัศน์ตลาด เครือข่ายธุรกิจ อุปทาน และตัวแทนของความต้องการ สัดส่วนจากจำนวนสาขาหรือทะเบียนต้องบอกฐานรายการที่ใช้ ไม่เรียกว่า market share ด้านยอดขายหรือรายได้ ความต้องการที่อนุมานยังไม่ใช่ observed demand ส่วน Locale Insight ใช้เป็น contextual prior สำหรับวางแผนและตรวจพื้นที่ ต้องมี crosswalk ก่อน aggregate; ไม่ใช่ประชากรทางการ เกณฑ์สิทธิ ขอบเขตตามกฎหมาย ความเสี่ยง หรือพฤติกรรมที่ยืนยันแล้ว
-4. **แก้ทั้งสองภาษาและคำค้น** คง `id`, `slug`, `datasetCode` และ `mapUrl` ถ้าไม่มีการย้ายเส้นทางที่ตรวจแล้ว เพิ่มชื่อที่คนใช้ค้นใน `aliases` ทั้งไทยและอังกฤษ ไม่เพิ่มคำที่อ้างคุณสมบัติหรือผู้เผยแพร่ที่ยังไม่ยืนยัน ภาพใหม่ต้องมีสิทธิและแสดงข้อมูลนั้นจริง ถ้าไม่มีให้ใช้ `preview.available: false` และ `path: null`
-5. **เครดิตใช้ public Landom projection** รัน `npm run sync:contributors` เพื่ออ่าน <https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json> ตรวจ diff ของรายชื่อและ module ก่อนใช้ อย่าเดาคนจากชื่อผลงาน อย่าเติมบทบาทหัวหน้า วันที่ หรือความยินยอมจากการพบชื่อในเว็บ ถ้ากำลังปล่อยสอง repo พร้อมกัน ใช้ `node scripts/sync-public-contributors.mjs --file <public-landom-checkout>/data/generated/citymeter-contributors.json` โดยแทน `<public-landom-checkout>` ด้วย path ของ public checkout ที่ review แล้ว ปัจจุบัน projection ผูกครบทั้ง 43 รายการ โดย Non-bank ใช้เครดิตเดิมของ Ken (`I0030`) และศาสนสถานใช้เครดิตเดิมของคิว (`I0045`) การแก้ครั้งนี้เติมการเชื่อมผลงานที่ยืนยันแล้ว ไม่ได้เพิ่มคน บทบาท วันที่ หรือการยินยอมใหม่ คงชื่อคิวเป็นภาษาไทยเมื่อไม่มีชื่ออังกฤษ และคงสถานะ “กำลังจัดทำ / Developing” ตามต้นทาง
-6. **สร้างและตรวจ** ใช้ Node 20 ขึ้นไป รัน `npm ci` เพื่อติดตั้ง dependency ตาม lockfile จากนั้นรัน `npm run build` แล้ว `npm run check` ทดสอบค้นชื่อใหม่ทั้งสองภาษา ตรวจกรอง Land/Location/Living ล้างคำค้น เปิดรายละเอียดและลิงก์แผนที่ ตรวจว่าข้อความของรายการที่แสดงหลังโหลดหรือเปลี่ยนตัวกรองตรงกับ HTML เริ่มต้น
-7. **ตรวจหน้าจอจริง** เปิด TH/EN ที่ความกว้างประมาณ 390 และ 1440 px ตรวจชื่อยาว ช่วงเวลา ข้อจำกัด เครดิต และส่วนที่เพิ่มใหม่ ตรวจ keyboard focus, เมนู ภาษา ธีม decision panel, share, reel และ reduced motion ไม่มีข้อความล้น ไม่มีภาพตัวอย่างปลอม และไม่มี decorative bracket หรือ rail สี
-8. **ส่ง PR พร้อมผลตรวจ** ระบุปัญหาและผลต่อผู้ใช้ หลักฐานที่เปลี่ยน ภาพ TH/EN บนมือถือ/desktop และผล `npm run check` CI นี้ตรวจคุณภาพเท่านั้น ไม่ deploy จาก PR เก็บไฟล์ public release เก่าไว้เป็นประวัติ ไม่ใช้เอกสาร LDS รุ่นเก่าเป็น authority คู่ขนาน
-9. **หลัง merge และ Pages deploy** ตรวจ provider ว่า source คือ `main` ที่ root และ commit ที่ deploy ตรงกับ commit ที่ review แล้ว ตรวจ URL จริงทั้งสองภาษา metadata, `data/catalog.json`, รายการใหม่ และเครดิตสาธารณะ เปรียบเทียบ SHA-256 ของไฟล์ตัวแทนกับ build นี้ อย่าเรียกว่าปล่อยสำเร็จจากการ push อย่างเดียว
+## คนใช้เดินทางอย่างไร
 
-## สัญญาของข้อมูลและการสร้างหน้า
+ปัจจุบันมี 43 public records: Land 13, Location 16, Living 14 ไม่มี Business Dynamics หรือ mb ใน public discovery สามหมวดเป็นมุมมองคู่กัน ไม่ใช่สูตรผลรวม
 
-- `scripts/lib/catalog-render.mjs` สร้าง HTML ของ catalog/showcase/detail และ minimal identity graph
-- `scripts/build-catalog.mjs` ใช้ public baseline ที่ตรึง hash ไว้ สร้าง bundle รุ่นใหม่อย่างตรวจซ้ำได้ และใช้ HTML เดียวกันใน initial page กับ React hydration
-- React เดิมยังเป็นเจ้าของ decision panels, share/reel และ shell ส่วน `src/runtime/catalog.js` รับการค้น/กรอง ลิงก์ภายใน และ motion ที่มีขอบเขตของ catalog ไม่ย้าย DOM แย่งกับ React
-- `data/catalog.json` เป็น read-only public representation ของคำอธิบายและแหล่งอ้างอิง ไม่ใช่ API ของตัวเลขข้อมูลเมือง และไม่ใช่สัญญาอนุญาตให้ใช้ upstream data
-- วันที่ `sourceReview.reviewedAt` คือวันทบทวนแหล่งอ้างอิง ไม่ได้ยืนยัน ingestion, freshness, completeness หรือสิทธิการนำข้อมูลไปใช้ต่อ
-- JSON-LD ใช้ identity เท่านั้น: `@id`, `@type`, `name`, `url`; คำอธิบาย ที่มา และข้อจำกัดอยู่ใน HTML และ public JSON อย่าเพิ่ม claim ที่ graph ไม่ได้มีหน้าที่ยืนยัน
-- `data/catalog-build.json` แสดง hash ของ input/output และขอบเขตที่เปลี่ยน ไม่ใช่ deployment receipt หรือการรับรองทั้งเว็บไซต์
+การ์ดหลักพาเข้าแผนที่ได้ทันที ปุ่มอ่านบทความเป็นทางเลือกข้างกัน ไม่บังคับอ่านก่อนใช้งาน ช่อง **ข้อมูลนี้ใช้ทำอะไรได้** เป็น native disclosure ที่เริ่มพับไว้ ภายในมีประโยชน์ คำถามที่ข้อมูลช่วยตอบ ลิงก์อ้างอิงข้อเท็จจริง เครดิต และ QR เท่านั้น ไม่มีสถานะทบทวน คำเตือนเรื่องแหล่ง หรือข้อจำกัดบนการ์ดทั้งตอนพับและขยาย โลโก้ GD ใช้ภาพโปร่งใสเดิม ไม่มีพื้นรอง/ย้อมสี และต้องมี lineage กับ GD reference ที่ตรงจริงก่อนแสดง
 
-ถ้าเพิ่มหรือนำรายการออก ให้ปรับ registry count, หมวด, guards และ test cases พร้อมกัน แล้วตรวจว่าลิงก์เก่าที่ควรคงอยู่ยังใช้งานได้ คำตอบว่า “ไม่พบข้อมูล” ต้องไม่กลายเป็นศูนย์ ไม่มีสถานที่ หรือไม่มีใบอนุญาต
+บทความมีเรื่องอิสระราย dataset จาก `src/dataset-stories.json` เริ่มด้วยพื้นที่หรือสถานการณ์จริง ตัวเลขที่มีหน่วยและช่วงเวลา และคำถามที่คนอยากตอบ ตามด้วยอย่างน้อยสามส่วนที่พาเรื่องไปข้างหน้า ไม่ใช่การนำคำอธิบายการ์ดมาเพิ่มความยาว `record.executiveSummary` ยังเป็นข้อมูลประกอบเดิม ไม่ใช่แหล่งหลักของเรื่องทั้งบทอีกต่อไป
 
-## คงรูปแบบ catalog และเพิ่มข้อมูลต่อ
+เก็บที่มาและข้อควรรู้ทั้งหมดใน **แหล่งข้อมูลและข้อควรรู้** ที่พับไว้เป็นค่าเริ่มต้น รวม `record.limitation`, reader note และ `story.hiddenNotes` ให้ครบ ส่วน `findingContext` ที่มองเห็นต้องยังบอกสถานที่ วันที่ รุ่น/ช่วงคาดการณ์ หน่วย หรือสถานะว่าเป็นตัวอย่างจากแหล่งภายนอก เพื่อให้ข้อค้นพบอ่านถูกตั้งแต่ต้น ไม่ซ่อนบริบทจนทำให้ตัวเลขดูเป็นเหตุการณ์ปัจจุบัน
 
-1. คงสามหมวดหลัก Land / Location / Living เลือก `record.group` และ `record.subgroup` ให้ตรงกัน กลุ่มย่อยอยู่ใน `catalog.subgroups` แต่ละกลุ่มมีชื่อไทย–อังกฤษและลำดับที่ชัด อย่าสร้าง Local Decisions เป็นหมวดที่สี่
-2. เรียงตามหมวด → กลุ่มย่อย → ชื่ออังกฤษ A–Z ใช้ลำดับเดียวกันทั้งสองภาษา กลุ่มน้ำท่วมใช้ลำดับย้อนหลัง → ตรวจพบล่าสุด → คาดการณ์ DWR → คาดการณ์ Google เพื่อไม่ปะปนอดีตกับการพยากรณ์
-3. ที่ความกว้างตั้งแต่ 1100 CSS px ต้องมีสามคอลัมน์แยกหมวด แต่ละคอลัมน์ต่อการ์ดลงอย่างอิสระ ที่ 768–1099 px ใช้สองคอลัมน์ของหมวด และต่ำกว่า 768 px เรียงทีละหมวด ห้ามสลับการ์ดข้ามหมวดเพื่อเติมช่องว่าง
-4. การ์ดแสดงภาพตัวอย่าง ชื่อ คำอธิบายสั้น ประเด็นข้อมูล ปุ่มเปิดแผนที่ และเครดิต ส่วนรายละเอียดมีที่มา ผู้เผยแพร่ ช่วงเวลา พื้นที่ ระดับรายละเอียด ข้อจำกัด และ QR หากยังไม่มีภาพตัวอย่าง ไม่สร้างภาพให้ดูเหมือนเป็นหลักฐานจริง
-5. QR สร้างจาก `record.mapUrl` โดยตรง ไฟล์อยู่ใน `media/qr/datasets/<slug>.svg` พร้อมข้อความและลิงก์สำรอง ใช้แผ่นรองสว่างและ quiet zone 4 modules คงภาพเดิมเมื่อเปลี่ยนธีม `npm run check` ถอดรหัสครบทุกภาพเพื่อเทียบ URL
-6. การค้นหาต้องซ่อนทั้งการ์ด กลุ่มย่อย และหมวดที่ไม่มีผลลัพธ์ ปุ่ม “ล้างคำค้น” ล้างข้อความและคืนทุกหมวด ส่วนการลบข้อความในช่องค้นหาอย่างเดียวคงหมวดที่เลือกไว้ ลิงก์จากตัวอย่างต้องเปิดการ์ดเป้าหมายได้แม้เคยค้นจนการ์ดนั้นถูกซ่อนและ URL hash ยังเหมือนเดิม
-7. Motion เพิ่มเฉพาะการตอบสนองและภาพตัวอย่าง เนื้อหาและปุ่มปรากฏตั้งแต่ HTML แรก เมื่อ reduced motion, observer ล้มเหลว หรือออกจากหน้า ต้องคงสถานะที่อ่านและใช้งานได้ QR ไม่ขยับ
-8. ใช้สีจาก LDS0.9.7 ผ่าน `src/styles/shell-current.css`, `navbar-current.css` และ `catalog.css` ไฟล์ CSS เก่าเป็นประวัติเท่านั้น ไม่แก้ hash ของ baseline และไม่ใช้ series alias รุ่นเก่า ไม่เพิ่ม decorative bracket หรือ rail สี
+ท้ายบทความมีทางเปิดแผนที่ รายชื่อทีม QR การแชร์ และลิงก์กลับ `#dataset-<slug>` ไม่มีขั้นอ่านชั้นที่สาม การแชร์ผ่าน LINE/Facebook/LinkedIn/X เป็นลิงก์ที่ผู้ใช้เลือกเอง; native share/clipboard เป็นส่วนเสริม มี URL ให้เลือกคัดลอกเมื่อ JavaScript หรือ clipboard ใช้ไม่ได้
 
-ก่อนส่ง PR รัน `npm ci`, `npm run build`, `npm run check` แล้วตรวจหน้าจอจริงไทย–อังกฤษทั้งกว้างและแคบ รวมการเปิดรายละเอียดจนเห็น QR คีย์บอร์ด การค้นหา/ล้างคำค้น และการเพิ่ม dataset ใหม่ ทดสอบ DOM geometry ช่วยหา overflow ได้ แต่ต้องอ่านเนื้อหาที่ render แล้วด้วย
+## ขั้นตอนของ intern
 
-ขั้นตอนเดียวกันสำหรับ AI agent อยู่ใน `docs/catalog-maintenance.json`.
+1. **ตรวจหลักฐานและขอบเขต** เปิดหน้าจริงหรือ receipt ที่ตรวจแล้ว จดพื้นที่ ตัวกรอง ช่วงเวลา หน่วย ตัวหารและ source role แยกผู้ผลิต ผู้เผยแพร่ portal และผู้ประมวลผล การเปิด URL ได้ไม่ยืนยันว่า CityMETER ใช้ไฟล์รุ่นนั้น ห้ามนำ private telemetry, contact payload, raw Drive IDs หรือบันทึกภายในใส่ public JSON
+2. **เขียนทั้งสองภาษา** แก้ข้อมูลการ์ดใน catalog และเรื่องใน dataset-stories โดย join ด้วย `datasetCode` รักษา `id`, `slug`, `mapUrl` เดิมถ้ายังไม่มีการย้ายเส้นทางที่ตรวจแล้ว เรื่องต้องมี `title`, `place`, `lead`, `findingContext`, `sections`, `action`, `hiddenNotes` และ evidence สาธารณะ; `mapUrl`/`snapshot` เป็นตัวเลือกที่ต้องตรงกับตัวอย่าง อ้างแหล่งภายนอกเป็นลิงก์ในส่วนที่เล่าข้อเท็จจริงนั้น
+3. **ตรวจเนื้อหาซ้ำและการตีความ** ให้แต่ละส่วนมีสิ่งใหม่ที่เกี่ยวกับพื้นที่หรือคำถามนั้น หลีกเลี่ยงสี่ส่วนที่วนซ้ำเพียง “จดเวลา–ตั้งคำถาม–ลงพื้นที่–ส่งต่อทีม” ไม่เติมคำเพื่อให้ผ่านความยาว การอ่านประมาณ 3–5 นาทีคำนวณจาก ICU word-like segments ของชื่อเรื่อง lead หัวข้อ ย่อหน้าและ action หาร 170 แล้วปัดใกล้ที่สุด ไม่รวม source disclosure, caption, findingContext หรือ footer และไม่ใช่เวลาที่วัดจากผู้อ่านจริง
+4. **ตรวจหมวด ภาพ และเครดิต** คง 13/16/14 และลำดับกลุ่มย่อยเดิม น้ำท่วมเรียงประวัติซ้ำ → ตรวจพบล่าสุด → DWR คาดการณ์ → Google คาดการณ์ ภาพห้าชุดใหม่คือ rentWise, terrain, localeInsights, flood-forecast-depth และ flash-flood-risk เก็บสีข้อมูลและ selected state จริง วัน capture ไม่ใช่วันอัปเดตข้อมูล ถ้าไม่มีภาพจริงให้บอกว่าไม่มี ห้ามสร้างภาพให้ดูเป็นหลักฐาน
+5. **รับเครดิตจากแหล่ง public ที่ตรวจแล้ว** ใช้ `npm run sync:contributors` และ review diff; ถ้าใช้ไฟล์จาก public Landom checkout ที่ตรวจแล้ว ใช้ `node scripts/sync-public-contributors.mjs --file <path>` ไม่คัดลอก private registry ปัจจุบัน module joins ครบ 43 รายการ ชื่ออังกฤษที่เจ้าของยืนยันคือ Que (`I0045`: Nattapat Daengkongkaew) และ Nine (`I0038`: Norraphat Rathasamuth) คงบทบาท วันที่ Developing และ consent ตาม canonical เดิม การแก้ชื่อไม่ใช่การอนุญาตเผยแพร่เพิ่ม
+6. **สร้างและตรวจรวม** จาก root repository บน Node 20+ รัน `npm ci`, `npm run build`, `npm run check` ตามลำดับ การ check รวม deterministic build, catalog, layout, runtime, 86 summary pages และ public shell; QR ต้องถอดรหัสกลับเป็น `record.mapUrl` ทุกภาพ ก่อน integrated build ใช้ `node scripts/validate-public-shell.mjs --source-only` ได้ แต่ผลนี้ไม่ยืนยัน HTML/React parity
+7. **ตรวจจอจริง** TH/EN ที่ 390/1440 CSS px ทั้ง light/dark, จุดเปลี่ยน 768/1100 และ native zoom 200% ตรวจส่วนที่แก้ครบ การ์ดต้องอยู่คนละ lane ตามหมวด จอแคบไม่ซ้อนข้อความ การค้นหาซ่อนกลุ่มว่างได้ reset/same-hash ทำงาน QR ไม่ถูกบัง menu/nav อ่านชัด keyboard/touch/no-JS/reduced motion ใช้งานได้และไม่มี first-tap trap บันทึกเฉพาะภาษา ขนาด ธีม และหน้าที่ตรวจจริง
+8. **review และ release** PR ต้องชี้ exact head ที่ผ่าน CI พร้อมภาพและขอบเขตผลตรวจ หลัง merge ที่ได้รับอนุญาต ตรวจ Pages provider/deployed SHA/merge tree และ live bytes/MIME/hash ของ HTML, JSON, เครดิต, ledgers, ภาพ, font/icons, footer และ build manifest แล้วลองเส้นทางผู้ใช้จริง การ push หรือ CI ผ่านเพียงอย่างเดียวไม่ใช่การ deploy สำเร็จ
 
-## Card, หน้ารายละเอียด และ QR ทำงานร่วมกัน
+## ข้อเท็จจริงเรื่องแหล่งที่เพิ่งยืนยัน
 
-Card ช่วยเลือกเรื่องอย่างรวดเร็วและสแกน QR ไปหน้าใช้งานจริง ส่วนหน้ารายละเอียดมี URL ของแต่ละรายการ พร้อมชื่อ คำอธิบาย ที่มา ช่วงเวลา และข้อจำกัดให้คนและระบบค้นหาอ้างอิงได้ คงทั้งสองส่วน ไม่สร้างหน้าใหม่ที่มีเพียง QR เพื่อหวังผล SEO
+- **น้ำท่วมซ้ำซาก:** ทีมยืนยัน GISTDA Disaster Platform Open API แล้ว ช่วง 2011–2024 เป็นปีที่ explorer ให้เลือก; ยังต้องจับคู่ annual assets และวิธีประมวลผล ไม่ใช้ metadata ชุด GD เดิม 2011–2023 แทนไฟล์ทุกปี
+- **งบประมาณ:** GFMIS เป็นระบบต้นทางตามคู่มือ PBO/Thaith ช่วงปีงบประมาณ 2015–2025 หน่วยล้านบาท แยกงบหลังปรับ เบิกจ่าย และ PO; รายการที่จับคู่พื้นที่ได้ไม่ใช่งบทั้งประเทศ
+- **หน่วยงานและบุคลากร:** แยกกำลังคน ก.พ. ออกจากที่อยู่ ก.พ.ร. และสถานที่ของกรมการปกครอง/กทม. ไฟล์ข้าราชการพลเรือนสามัญ 2023/2024 ไม่มีพิกัดสำหรับกระจายยอดกรมลงทุกสาขา ที่อยู่ไม่ยืนยันการเปิดบริการหรือคุณภาพ
+- **โรงงาน:** แหล่งที่ตรงคือชุด “ที่ตั้งประกอบกิจการโรงงาน” ของสำนักงานปลัดกระทรวงอุตสาหกรรม; GD Catalog เป็น discovery host วันที่ลงทะเบียน 4 ส.ค. 2025, data update 8 ก.ค. 2025 และเดือนเมษายน 2025 บนแผนที่เป็นคนละวัน
+- **โรงแรม:** TAT ให้ประเภท/ที่ตั้งที่พัก; BMA เผยแพร่ subset โรงแรมสมาชิกสมาคมพร้อมฟิลด์ห้องพัก ไม่ใช่หลักฐานของราคา ฤดูกาล หรือการนำเข้า CityMETER จริง แยก contact/manual/comparison references ออกจาก upstream data
 
-เมื่อเพิ่มข้อมูล ตรวจชื่อหน้า คำอธิบายหน้า canonical, hreflang และ sitemap พร้อมลิงก์ HTML จาก catalog ไปหน้ารายละเอียด และจากหน้ารายละเอียดไปแผนที่ การมี URL และเนื้อหาที่อ่านได้สอดคล้องกับ [แนวทาง Google Search สำหรับผู้พัฒนา](https://developers.google.com/search/docs/fundamentals/get-started-developers) แต่ไม่รับประกันอันดับหรือการถูกนำไปตอบโดย AI
+การตอบชื่อแหล่งแล้วไม่ทำให้ gap เรื่อง exact ingestion, coverage, method หรือ licence หายไป ห้ามถามซ้ำว่าใครเป็นผู้ผลิตโดยมองข้ามคำตอบเดิม ให้ตามเฉพาะรุ่นไฟล์และการจับคู่ที่ยังขาด
 
-QR มาจากแนวคิด Quick Response ตาม [ประวัติจาก DENSO WAVE](https://www.qrcode.com/en/history/) ในงานนี้ QR มีหน้าที่เปิดข้อมูลบนมือถือ ไม่ใช่เนื้อหาทดแทนคำอธิบายหรือปัจจัยรับรอง SEO
+## รูปแบบและขอบเขต LDS
 
-## สรุปแต่ละ dataset และทางไปต่อ
+ใช้ LDS 0.9.7 ฐาน `lds-0.9.7-landometer-standalone-r1` SHA-256 `d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96` สำหรับส่วนที่ปรับ งานนี้คง historical immutable assets และ shell behavior เดิม จึงไม่ใช่ full-site conformance claim
 
-1. แก้ `record.executiveSummary` ใน `src/catalog.json` ให้ครบทั้งไทยและอังกฤษ: `lead` บอกประโยชน์เฉพาะเรื่อง, `sectionTitle` และ `reading` ชี้มุมที่น่าสังเกต, `note` เป็นข้อควรรู้ที่จำเป็น, `questions` สองข้อช่วยตั้งโจทย์ และ `takeaway` แนะนำสิ่งที่ทำต่อได้ ใช้ถ้อยคำและเจตนาของทีมก่อน ร่างเพิ่มจากหลักฐานของรายการเดียวกัน โดยคง `editorialBasis: catalog_description_and_source_review` ไม่เพิ่มความสามารถหรือขอบเขตข้อมูลจากการเขียนคำถาม
-2. คงเส้นทางเดิม `datasets/<slug>/` และ `en/datasets/<slug>/` ปุ่มบนการ์ดเปิดแผนที่โดยตรง เครดิตย่อไปโปรไฟล์ผู้ร่วมพัฒนา ส่วน “อ่านสรุป” เป็นลิงก์ทางเลือกแยกต่างหาก “ที่มา ข้อควรรู้ และ QR” อยู่ใน native disclosure ของการ์ด ไม่เพิ่มขั้นบังคับก่อนใช้แผนที่
-3. หน้าสรุปเริ่มจากประโยชน์ ปุ่มแผนที่ และภาพที่ตรงกับรายการ ตามด้วยย่อหน้าอ่านภาพรวม ข้อควรรู้สั้น คำถาม และสิ่งที่ทำต่อ ที่มา ช่วงเวลา ขอบเขต และข้อจำกัดฉบับเต็มเดิมอยู่ใน disclosure ที่เปิดได้ในหน้าเดียว ทั้งหมดอยู่ใน HTML เริ่มต้น เครดิต QR แชร์ และลิงก์กลับ `#dataset-<slug>` ยังคงอยู่ `src/styles/summary.css` ดูแลการจัดบทความแยกจากการ์ด
-4. ภาพใหม่หกรายการเป็นภาพหน้าจอจริงที่จับเมื่อ 10 ตุลาคม 2026: Grocery, Non-bank, ศาสนสถาน, Terrain, Events & Notices และ Government Spending เก็บภาพเล็ก 641×319 และภาพใหญ่ 1200×597 พร้อม hash/ขนาด/ต้นทาง/บทบาทที่อนุญาตใน `data/dataset-preview-assets-20261010.json` คำบรรยายใช้ `focusLabel`, `capture.stateLabel` และ `capture.note` สองภาษา ต้องคงตัวหาร ช่วงเวลา และค่าที่เลือก เช่น Terrain ขยายความสูง 1.5 เท่า วันที่จับภาพไม่ใช่วันอัปเดตของข้อมูล ภาพเดิมที่เป็นแนวคิดยังต้องติดป้าย และไม่ใช้ภาพนั้นเป็น social preview
-5. ท้ายบทความมีลิงก์คุยกับทีมไปหน้า contact เดิม การคลิกไม่ส่งคำถามหรือเติมชื่อ dataset ในฟอร์มอัตโนมัติ “แชร์สรุปนี้” เปิดตัวเลือก LINE, Facebook, LinkedIn หรือ X ด้วย URL canonical ของภาษาที่อ่าน ไม่มีการโพสต์อัตโนมัติหรือ SDK เพิ่ม ปุ่มแชร์ผ่านแอปใช้เมื่อ browser รองรับ; คัดลอกไม่สำเร็จให้เลือก URL เพื่อคัดลอกเอง ลิงก์และช่อง URL ใช้ได้แม้ไม่มี JavaScript
-6. ชื่อหน้าและ metadata ตรงกับรายการนั้น คำอธิบาย meta/OG/Twitter ใช้ `executiveSummary.lead` ของภาษาปัจจุบัน ภาพ social ใช้ภาพจริงรายการเดียวกันเท่านั้น JSON-LD ยังเป็น identity graph สี่ field ตาม LDS ส่วนรายละเอียดอยู่ใน initial HTML และ public JSON ไม่เพิ่ม publisher, licence หรือคำรับรองที่ไม่มีหลักฐาน
-7. Theme ในหน้าสรุปเลือกตาม query `theme=light|dark|system` ที่ถูกต้องก่อนค่าที่บันทึกไว้ แล้วจึงตามระบบ Query เป็นการเลือกชั่วคราว ไม่เขียนทับความชอบใน localStorage ถ้า JavaScript ไม่ทำงาน HTML เริ่มต้นใช้ light; อย่าอ้างว่า no-JS เปลี่ยนตามธีมระบบ
-8. `npm run check` ตรวจครบ 86 หน้า รวมข้อความ metadata ที่มา ข้อจำกัด เครดิต QR ลิงก์ตรงและ URL แชร์ จากนั้นอ่านหน้าจอจริง TH/EN แคบและกว้าง ตรวจ keyboard focus, กลับจากสรุป และการแชร์/คัดลอก อย่าอ้างว่าส่งสำเร็จจากการเปิดหน้าของแพลตฟอร์ม
+พื้นการ์ด/ค้นหาเป็นกลางทุกสถานะ ไม่มีสีน้ำตาลหรือ beige; สี chip Land/Location/Living ใช้ categorical roles ที่กำหนด การขยายใช้ native details และ finite FLIP พร้อม reduced-motion final state; quiet treatment เป็น pointer-transparent veil ไม่มี blur, scroll lock หรือการดักคลิก ปุ่มและเนื้อหาสำคัญมองเห็นตั้งแต่ initial HTML ไม่ใช้ decorative bracket หรือ colored left rail
 
-ข้อมูล discovery อ่านได้จาก HTML, public JSON และ sitemap ส่วน `llms.txt` เป็นดัชนีช่วยค้นหา ไม่รับประกันอันดับ การจัดทำดัชนี หรือการนำไปตอบและอ้างอิงโดย AI
+เชื่อม **Google Material Symbols Rounded — FILL=0, wght=300, GRAD=0** สำหรับ functional icons ในส่วนเว็บที่ปรับแล้ว โดยใช้ asset ในเครื่องตาม `data/ui-icon-assets-20261010.json`, helper `scripts/lib/ui-icon.mjs`, ตัวแปลง `scripts/lib/ui-icon-migration.mjs` และ `src/styles/ui-icons.css` ไม่พึ่ง font จากเครือข่าย รักษาชื่อปุ่ม focus และสถานะที่อ่านได้ด้วยเทคโนโลยีช่วยเหลือ โลโก้ social และ brand ทางการ รวมถึง portfolio favicon คงเดิมและใช้ authority ของตน การเชื่อมใน source เสร็จแล้ว แต่ผลตรวจภาพจริงและการเผยแพร่ยังต้องอ้าง receipt แยก
 
-## ขอบเขตผลตรวจรอบ 10 ตุลาคม 2026
+Footer มาจาก `publicFooter(lang, assetBase, {kind, mapUrl?, slug?})` ร่วมกันใน initial HTML, React K6 และบทความ คงคำ/ลิงก์แบรนด์จาก reference, depa supporter และเครื่องหมายประกอบเดิม ใช้ favicon ที่ตรวจแล้วในเครื่อง ไม่ใช้ external favicon รุ่นเก่า
 
-- Runtime catalog ผ่าน 14 behavioral fixtures ใน Node VM (`scripts/validate-catalog-runtime.mjs`): รวม observer ที่ไม่มีหรือทำงานล้มเหลว, reduced-motion preference จำลองและการเปลี่ยนค่า, anchor เดิมหลังกรองข้อมูล และการโหลด runtime ซ้ำ
-- Fixture ใช้ DOM adapter และ media-query จำลอง ไม่ใช่ browser rendering, screen reader หรือการเปิด reduced motion ในระบบปฏิบัติการ รอบนี้ยังไม่ได้ทดสอบ OS reduced motion จึงไม่รับรองผลในระดับนั้น
-- ผลตรวจภาพจริงต้องระบุหน้า ภาษา ความกว้าง ธีม และส่วนที่ตรวจจาก browser แยกต่างหาก การผ่าน fixture, การวัด DOM และการตรวจ token ไม่แทนการอ่านภาพจริง; ผลของ catalog ไม่ครอบคลุมต้นแบบ dataset switcher หรือการ integration กับแอปแผนที่
+Locale Insight เป็น contextual prior เพื่อวางแผน ตรวจพื้นที่และรับฟัง ต้องมี `locale_id` crosswalk ก่อน aggregate ไม่ใช้ยืนยันประชากร สิทธิ ขอบเขตตามกฎหมาย ความเสี่ยง หรือพฤติกรรมจริง Count share ไม่ใช่ส่วนแบ่งยอดขาย; no-data ไม่ใช่ศูนย์; review date ไม่ใช่ ingestion date
 
-- Summary ผ่าน 86 initial-page checks, 8 theme-precedence fixtures และ 6 sharing fixtures; native share sheet, authenticated posting และ third-party preview cache ยังต้องมีผลตรวจเฉพาะของตน
-- `summary.css` ผ่านการตรวจ static LDS ตามขอบเขตของเครื่องมือ การสแกนทั้งหน้าอาจยังพบ literal สีและ color-mix ใน CSS สืบทอด จึงไม่อ้าง full-site conformance หรือแทนการตรวจ contrast และภาพจริง
+## ป้องกันสคริปต์และสไตล์รุ่นเก่าค้างใน browser
+
+Builder เติม `?v=<catalog.contentVersion>-<SHA-256 ของเนื้อหาไฟล์ 12 ตัวแรก>` ให้ URL ของ generated JS/CSS ที่อยู่ใน `versionedPublicAssets` ทั้งหน้า catalog ไทย–อังกฤษและบทความ86หน้า เมื่อ bytes เปลี่ยน URL จะเปลี่ยนแม้ใช้ชื่อไฟล์หรือ contentVersion เดิม จึงไม่เอา HTML ใหม่ไปใช้กับ runtime/style เก่าจาก warm cache
+
+ขอบเขตนี้ครอบคลุม public catalog/enhancer/navbar bundles, catalog/summary runtime และ catalog/summary/shell/navbar/footer/UI-icon styles ที่ระบุใน allowlist ไม่ได้เปลี่ยนชื่อ historical immutable assets หรือเป็นคำรับรองการ purge cache ทั้งเว็บไซต์ ให้รัน builder และตรวจ query เทียบ hash ของ output จริง ห้ามแก้ query ด้วยมือ การตรวจ cache URL เป็นคนละขั้นกับ provider/deployed SHA และ live-byte attestation
+
+## ขอบเขตคำรับรอง
+
+คู่มือนี้บันทึกสัญญาที่เขียนใน source ระหว่างงานรวม ไม่ได้ประกาศว่า final build, browser matrix หรือ deployment รอบนี้ผ่านแล้ว ตัวเลข fixture เดิมใน JSON เป็นประวัติที่ต้องรันใหม่บน final head รูปหน้าจอ/byte hash/VM test ทำหน้าที่ต่างกันและใช้แทนกันไม่ได้ JSON-LD คง identity-only (`@id`, `@type`, `name`, `url`) ส่วนคำอธิบายและข้อจำกัดอยู่ใน HTML/public JSON การมี metadata ไม่รับประกัน search ranking หรือการถูก AI อ้างถึง

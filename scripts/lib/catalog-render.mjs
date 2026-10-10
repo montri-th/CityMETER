@@ -1,3 +1,4 @@
+import { uiIcon } from "./ui-icon.mjs";
 /** Shared public HTML renderer: one source for initial HTML, hydration and detail pages. */
 export const esc = (value) =>
   String(value ?? "")
@@ -47,7 +48,7 @@ const words = {
     limits: "ควรรู้ก่อนใช้",
     references: "อ่านแหล่งอ้างอิง",
     credits: "ร่วมพัฒนาโดย",
-    details: "ที่มา ข้อควรรู้ และ QR",
+    details: "ข้อมูลนี้ใช้ทำอะไรได้",
     sourceHeading: "ที่มาและขอบเขตข้อมูล",
     detailLink: "อ่านสรุป",
     questions: "ข้อมูลนี้ช่วยตอบคำถามอะไร",
@@ -82,7 +83,7 @@ const words = {
     limits: "Know before use",
     references: "Read the references",
     credits: "Contributors",
-    details: "Sources, notes & QR",
+    details: "What can I use this data for?",
     sourceHeading: "Sources and coverage",
     detailLink: "Read summary",
     questions: "Questions this data can help answer",
@@ -154,13 +155,6 @@ export function qrHandoff(record, lang, base) {
       : "Scan to open this data in CityMETER";
   return `<div class="catalog-qr-handoff"><img src="${base}media/qr/datasets/${esc(record.slug)}.svg" width="144" height="144" alt="${esc(label + ": " + record.title[lang])}" loading="lazy" decoding="async"/><div><strong>${label}</strong><a href="${esc(record.mapUrl)}" target="_blank" rel="noopener noreferrer">${words[lang].map}<span class="sr-only"> ${lang === "th" ? "(เปิดแท็บใหม่)" : "(opens a new tab)"}</span></a></div></div>`;
 }
-const cardSourceLabels = {
-  "verified-lineage": { th: "ยืนยันต้นทาง", en: "Reference checked" },
-  candidate: { th: "แหล่งอ้างอิงที่เกี่ยวข้อง", en: "Related reference" },
-  "other-source": { th: "แหล่งเฉพาะทาง", en: "Specialist source" },
-  derived: { th: "ข้อมูลรวบรวมหรือคำนวณต่อ", en: "Compiled or derived" },
-  unproven: { th: "ที่มายังต้องยืนยัน", en: "Source review pending" },
-};
 export function hasVerifiedGdReference(record) {
   return (
     record.sourceReview.status === "verified-lineage" &&
@@ -173,13 +167,23 @@ export function hasVerifiedGdReference(record) {
     })
   );
 }
+export function cardReferences(record, lang, headingLevel = 6) {
+  const refs = [...(record.sourceReview.official || []), ...(record.sourceReview.gd || [])];
+  if (!refs.length) return "";
+  // These are reference links, not a claim that every referenced package was ingested.
+  // Keep unresolved lineage prose in the article's source disclosure. A literal
+  // hostname is a factual link label when the authored label contains review jargon.
+  const label = (ref) => /candidate/i.test(ref.label[lang])
+    ? new URL(ref.url).hostname : ref.label[lang];
+  return `<div class="catalog-card-references"><h${headingLevel}>${words[lang].references}</h${headingLevel}><ul>${refs.map((ref) => `<li><a href="${esc(ref.url)}" target="_blank" rel="noopener noreferrer">${esc(label(ref))}<span class="sr-only"> ${lang === "th" ? "(เปิดแท็บใหม่)" : "(opens a new tab)"}</span></a></li>`).join("")}</ul></div>`;
+}
 function cardCredits(record, lang, projection) {
   const people = projection.byModuleSlug[`dataset-${record.slug}`] || [];
   if (!people.length) return "";
   return `<div class="catalog-credit-avatars" aria-label="${words[lang].credits}">${people.map((person) => {
     const name = person.nickname[lang] || person.nickname.th || person.nickname.en || person.personId;
     const href = person.profileUrl[lang] || person.profileUrl.th || person.profileUrl.en;
-    return `<a href="${esc(href)}" aria-label="${esc(words[lang].credits + ": " + name)}" title="${esc(name)}">${person.portrait ? `<img src="${esc(person.portrait.versionedUrl || person.portrait.url)}" alt="" width="32" height="32" loading="lazy" decoding="async"/><span class="sr-only">${esc(name)}</span>` : `<span class="catalog-credit-name">${esc(name)}</span>`}</a>`;
+    return `<a href="${esc(href)}" aria-label="${esc(words[lang].credits + ": " + name)}" title="${esc(name)}">${person.portrait ? `<img src="${esc(person.portrait.versionedUrl || person.portrait.url)}" alt="" width="56" height="56" loading="lazy" decoding="async"/><span class="sr-only">${esc(name)}</span>` : `<span class="catalog-credit-name">${esc(name)}</span>`}</a>`;
   }).join("")}</div>`;
 }
 export function card(
@@ -194,15 +198,10 @@ export function card(
   const benefit = record.sourceReview.benefit?.[lang] || record.description[lang];
   const focusLabel = record.preview.available && record.preview.focusLabel?.[lang];
   const previewLink = `<a class="catalog-preview-link" href="${esc(record.mapUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(w.map + ": " + record.title[lang])}">${preview(record, lang, base)}${focusLabel ? `<span class="catalog-preview-feature">${esc(focusLabel)}</span>` : ""}</a>`;
-  const sourceLabel = cardSourceLabels[record.sourceReview.status]?.[lang] || w.source;
-  const period = record.sourceReview.period?.[lang]?.trim();
-  // Editorial review dates are not data dates. Keep long qualifications in the disclosure.
-  const periodPill = period && [...period].length <= (lang === "th" ? 45 : 70)
-    ? `<span class="catalog-pill catalog-pill-period"><span class="sr-only">${w.period}: </span>${esc(period)}</span>` : "";
   const gdBadge = hasVerifiedGdReference(record)
-    ? `<img class="catalog-gd-badge" src="${base}media/gdcatalog-logo.png" alt="Government Data Catalog" width="40" height="48" loading="lazy" decoding="async"/>` : "";
+    ? `<img class="catalog-gd-badge" src="${base}media/gdcatalog-logo.png" alt="Government Data Catalog" width="43" height="56" loading="lazy" decoding="async"/>` : "";
   const mapLabel = lang === "th" ? "เปิดใน CityMETER" : "Open in CityMETER";
-  return `<article class="dataset-card catalog-card" data-catalog-owner="public-registry" data-group="${esc(record.group)}" data-record-id="${esc(record.id)}" data-search="${esc(searchHaystack(record))}" id="dataset-${esc(record.slug)}">${previewLink}<div class="catalog-card-main"><div class="catalog-card-pills"><span class="catalog-pill catalog-pill-pillar">${esc(catalog.groups.find((g) => g.id === record.group).label)}</span><span class="catalog-pill catalog-pill-source" data-source-status="${esc(record.sourceReview.status)}">${esc(sourceLabel)}</span>${periodPill}</div><h${headingLevel} class="catalog-card-title"><a href="${detailUrl(catalog, record, lang)}">${headingTitle(record.title[lang])}</a></h${headingLevel}><p class="catalog-description">${esc(record.description[lang])}</p><ul class="catalog-tags" aria-label="${lang === "th" ? "ประเด็นข้อมูล" : "Data topics"}">${record.tags.map((tag) => `<li>${esc(catalog.tagLabels[tag]?.[lang] || tag)}</li>`).join("")}</ul><div class="catalog-actions"><a class="button catalog-map-link" href="${esc(record.mapUrl)}" target="_blank" rel="noopener noreferrer">${mapLabel}<span aria-hidden="true"> →</span></a>${cardCredits(record, lang, projection)}</div><a class="catalog-detail-link catalog-summary-link" href="${detailUrl(catalog, record, lang)}">${w.detailLink} →</a><details class="catalog-details"><summary>${gdBadge}<span>${w.details}</span></summary><div class="catalog-detail-content"><p class="catalog-benefit"><strong>${w.benefit}</strong><br/>${esc(benefit)}</p>${sourcePanel(record, lang, 6)}<p class="catalog-limit"><strong>${w.limits}:</strong> ${esc(record.limitation[lang])}</p>${contributors(record, lang, projection)}${qrHandoff(record, lang, base)}</div></details></div></article>`;
+  return `<article class="dataset-card catalog-card" data-catalog-owner="public-registry" data-group="${esc(record.group)}" data-record-id="${esc(record.id)}" data-search="${esc(searchHaystack(record))}" id="dataset-${esc(record.slug)}">${previewLink}<div class="catalog-card-main"><div class="catalog-card-pills"><span class="catalog-pill catalog-pill-pillar">${esc(catalog.groups.find((g) => g.id === record.group).label)}</span></div><h${headingLevel} class="catalog-card-title"><a href="${detailUrl(catalog, record, lang)}">${headingTitle(record.title[lang])}</a></h${headingLevel}><p class="catalog-description">${esc(record.description[lang])}</p><ul class="catalog-tags" aria-label="${lang === "th" ? "ประเด็นข้อมูล" : "Data topics"}">${record.tags.map((tag) => `<li>${esc(catalog.tagLabels[tag]?.[lang] || tag)}</li>`).join("")}</ul><div class="catalog-actions"><a class="button catalog-map-link" href="${esc(record.mapUrl)}" target="_blank" rel="noopener noreferrer">${mapLabel}${uiIcon("open_in_new", { size: 20 })}</a>${cardCredits(record, lang, projection)}</div><a class="catalog-detail-link catalog-summary-link" href="${detailUrl(catalog, record, lang)}">${w.detailLink}${uiIcon("arrow_forward", { size: 20 })}</a><details class="catalog-details"><summary>${gdBadge}<span>${w.details}</span>${uiIcon("add", { size: 20, className: "cm-disclosure-icon" })}</summary><div class="catalog-detail-content"><p class="catalog-benefit">${esc(benefit)}</p>${record.executiveSummary?.questions?.[lang] ? `<ul class="catalog-use-questions">${record.executiveSummary.questions[lang].map((question) => `<li>${esc(question)}</li>`).join("")}</ul>` : ""}${cardReferences(record, lang, 6)}${contributors(record, lang, projection)}${qrHandoff(record, lang, base)}</div></details></div></article>`;
 }
 function groupLane(catalog, group, lang, projection, base) {
   const records = catalog.records.filter((record) => record.group === group.id);
@@ -232,7 +231,7 @@ export function catalogInner(catalog, lang, projection, base) {
   return `<div class="wide-container"><div class="section-heading"><p class="eyebrow">${esc(t.eyebrow)}</p><h2 id="datasets-title">${esc(t.title)}</h2><p>${esc(t.intro)}</p></div><p class="catalog-story">${esc(t.story.intro)}</p><div class="catalog-toolbar"><label class="catalog-search">${esc(t.searchLabel)}<input type="search" data-catalog-search placeholder="${esc(t.searchPlaceholder)}" aria-controls="catalog-results" autocomplete="off"/></label><div class="catalog-filter" role="group" aria-label="${esc(t.groupLabel)}">${[{ id: "all", label: t.allGroups, count: catalog.records.length }, ...catalog.groups].map((g) => `<button type="button" data-catalog-group="${g.id}" aria-pressed="${g.id === "all"}">${esc(g.label)} <span>${g.count}</span></button>`).join("")}</div><button type="button" class="catalog-reset" data-catalog-reset>${esc(t.clearSearch)}</button></div><p class="catalog-result-count" data-catalog-count role="status" aria-live="polite" data-label="${esc(t.resultLabel)}">${esc(t.resultLabel)}: ${catalog.records.length}</p><div class="catalog-grid" id="catalog-results">${catalog.groups.map((group) => groupLane(catalog, group, lang, projection, base)).join("")}</div><div class="catalog-empty" data-catalog-empty hidden><h3>${esc(t.emptyTitle)}</h3><p>${esc(t.emptyBody)}</p><button type="button" class="button" data-catalog-reset>${esc(t.resetFilters)}</button></div><p class="catalog-machine-link"><a href="${base}data/catalog.json">${lang === "th" ? "อ่านแค็ตตาล็อกในรูปแบบ JSON" : "Read the catalog as JSON"}</a></p></div>`;
 }
 export function showcaseInner(catalog, lang, base) {
-  return `<div class="wide-container"><div class="section-heading"><p class="eyebrow">${lang === "th" ? "ลองดูภาพจากข้อมูล" : "See the data in context"}</p><h2 id="examples-title">${lang === "th" ? "เริ่มจากเรื่องที่อยากเข้าใจ" : "Start with a question about a place"}</h2><p>${lang === "th" ? "อ่านตัวอย่าง แล้วเปิดข้อมูลเพื่อดูพื้นที่ ช่วงเวลา และข้อจำกัดก่อนนำไปใช้" : "Explore a few examples, then check coverage, dates and limitations in each data view."}</p></div><div class="catalog-showcase-grid">${catalog.showcaseIds
+  return `<div class="wide-container"><div class="section-heading"><p class="eyebrow">${lang === "th" ? "ลองดูภาพจากข้อมูล" : "See the data in context"}</p><h2 id="examples-title">${lang === "th" ? "เริ่มจากเรื่องที่อยากเข้าใจ" : "Start with a question about a place"}</h2><p>${lang === "th" ? "อ่านตัวอย่างจากพื้นที่จริง แล้วเปิดแผนที่เพื่อดูคำตอบที่เกี่ยวกับคุณ" : "Read examples from real places, then open the map to explore your own question."}</p></div><div class="catalog-showcase-grid">${catalog.showcaseIds
     .map((id) => {
       const r = catalog.records.find((x) => x.id === id);
       return `<article><a href="#dataset-${r.slug}">${preview(r, lang, base)}<h3>${esc(r.title[lang])}</h3></a><p>${esc(r.description[lang])}</p></article>`;

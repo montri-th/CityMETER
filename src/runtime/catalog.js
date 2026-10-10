@@ -101,8 +101,8 @@
       ),
     };
   }
-  function moveFrom(snapshot) {
-    if (!snapshot || reduced?.matches || coarse?.matches) return;
+  function moveFrom(snapshot, { bounce = false, origin = null } = {}) {
+    if (!snapshot || reduced?.matches || (coarse?.matches && !bounce)) return;
     requestAnimationFrame(() => {
       if (
         snapshot.sequence !== sequence ||
@@ -110,12 +110,63 @@
         Math.abs(snapshot.x - window.scrollX) > 4
       )
         return;
-      for (const [card, before] of snapshot.rects) {
-        if (!card.isConnected || card.hidden) continue;
-        const after = card.getBoundingClientRect();
-        const x = before.left - after.left,
-          y = before.top - after.top;
-        if (near(after) && (Math.abs(x) > 1 || Math.abs(y) > 1))
+      const movers = [...snapshot.rects]
+        .map(([card, before], index) => {
+          const after = card.getBoundingClientRect();
+          return {
+            card,
+            index,
+            after,
+            x: before.left - after.left,
+            y: before.top - after.top,
+          };
+        })
+        .filter(
+          ({ card, after, x, y }) =>
+            card.isConnected &&
+            !card.hidden &&
+            near(after) &&
+            (Math.abs(x) > 1 || Math.abs(y) > 1),
+        );
+      const originIndex = [...snapshot.rects.keys()].indexOf(origin);
+      if (bounce)
+        movers.sort(
+          (a, b) =>
+            Math.abs(a.index - originIndex) - Math.abs(b.index - originIndex),
+        );
+      movers.forEach(({ card, x, y }, index) => {
+        if (bounce) {
+          // The same finite FLIP/settle vocabulary as the public Landom directory.
+          // Only displaced cards move; the chosen native control stays in place.
+          const settleX = x === 0 ? 0 : x > 0 ? -7 : 7;
+          const settleY = y === 0 ? 0 : y > 0 ? -5 : 5;
+          animate(
+            card,
+            [
+              {
+                transform: `translate3d(${x}px, ${y}px, 0)`,
+                offset: 0,
+                easing: "cubic-bezier(.22,1,.36,1)",
+              },
+              {
+                transform: "translate3d(0, 0, 0)",
+                offset: 0.72,
+                easing: "cubic-bezier(.33,1,.68,1)",
+              },
+              {
+                transform: `translate3d(${settleX}px, ${settleY}px, 0)`,
+                offset: 0.86,
+                easing: "ease-out",
+              },
+              { transform: "translate3d(0, 0, 0)", offset: 1 },
+            ],
+            {
+              duration: 620,
+              delay: Math.min(index, 5) * 38,
+              fill: "backwards",
+            },
+          );
+        } else
           animate(
             card,
             [
@@ -124,7 +175,7 @@
             ],
             { duration: 220 },
           );
-      }
+      });
     });
   }
   function enhance(section = document.querySelector("#datasets")) {
@@ -305,7 +356,8 @@
       syncQuiet();
       const pending = pendingDetails;
       pendingDetails = null;
-      if (pending?.details === event.target) moveFrom(pending.snapshot);
+      if (pending?.details === event.target)
+        moveFrom(pending.snapshot, { bounce: true, origin: card });
       if (event.target.open && !coarse?.matches)
         animate(event.target.querySelector(".catalog-detail-content"), [
           { transform: "translateY(-3px)" },
@@ -413,7 +465,13 @@
     true,
   );
   document.addEventListener("focusin", (event) => {
-    if (event.target.closest?.("#datasets")) settle();
+    // Native pointer activation focuses summary after pointerdown. Keep that
+    // pre-toggle geometry; cancelling it here would erase the requested FLIP.
+    if (
+      event.target.closest?.("#datasets") &&
+      !event.target.closest?.(".catalog-details > summary")
+    )
+      settle();
     const card = eligibleCard(event.target);
     focusedCard = keyboardMode ? card : null;
     quietSuppressed = !card;
@@ -433,6 +491,8 @@
     const card = eligibleCard(event.target);
     const details = card?.querySelector(".catalog-details");
     if (!details?.open) return;
+    const section = card.closest("#datasets");
+    if (section) pendingDetails = { details, snapshot: capture(section) };
     details.open = false;
     details.querySelector("summary")?.focus();
     event.preventDefault();

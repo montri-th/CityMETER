@@ -1,0 +1,32 @@
+/* Official Google Material Symbols Rounded; owner-requested artifact subset.
+   FILL 0 / wght 300 / GRAD 0 is encoded in the pinned outline assets.
+   Inline SVG remains visible without an async font or script dependency. */
+@font-face {
+  font-family: "CityMETER Material Symbols Rounded";
+  src: url("./ui-icons/material-symbols-rounded-20261010/material-symbols-rounded-ui-300.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+}
+.cm-ui-icon.cm-ui-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  vertical-align: -0.18em;
+  fill: currentColor;
+  stroke: none;
+  stroke-width: 0;
+  overflow: visible;
+}
+.lm-icon:has(> .cm-ui-icon), .cm-footer-map-icon:has(> .cm-ui-icon) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  line-height: 1;
+}
+.catalog-card .catalog-details > summary::after { content: none; }
+.catalog-details > summary > .cm-disclosure-icon,
+.summary-source-details > summary > .cm-disclosure-icon { margin-inline-start: auto; }
+.catalog-details[open] > summary > .cm-disclosure-icon,
+.summary-source-details[open] > summary > .cm-disclosure-icon { transform: rotate(45deg); }
+/* Glyphs never change fill/weight for selected, hover or expanded states. */

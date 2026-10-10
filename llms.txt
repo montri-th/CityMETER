@@ -44,7 +44,7 @@ Observed branch or registration shares describe their selected records, not sale
 - [Schools, Students & Teachers](https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/): See the distribution, levels and types of schools on a map to compare local provision.
 - [Government Budget & Disbursement](https://montri-th.github.io/CityMETER/en/datasets/government-spending/): Compare budget allocations and recorded disbursements by area to prepare questions about public spending.
 - [Municipal Revenue](https://montri-th.github.io/CityMETER/en/datasets/municipal-revenue/): Compare local-government revenue over time to prepare better questions about public resources.
-- [Government Agencies & Workforce](https://montri-th.github.io/CityMETER/en/datasets/government-agencies-workforce/): Explore government offices and reported personnel to understand the public-service presence in an area.
+- [Government Agencies & Workforce](https://montri-th.github.io/CityMETER/en/datasets/government-agencies-workforce/): Find agencies and service locations, then read agency-level workforce context to prepare coordination and service planning.
 - [Flood: Recurrent](https://montri-th.github.io/CityMETER/en/datasets/flood-recurrent/): Compare areas where flooding was observed in past years before studying a location further.
 - [Flood: Latest Observed](https://montri-th.github.io/CityMETER/en/datasets/flood-latest-observed/): Review satellite-observed flood areas for a selected date and study their watershed context.
 - [Flood: Forecast Depth by DWR](https://montri-th.github.io/CityMETER/en/datasets/flood-forecast-depth/): Read modelled flood depth for a forecast period and check the model context before planning.

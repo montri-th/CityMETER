@@ -244,7 +244,7 @@ function harness({
         element(
           "div",
           { class: "catalog-detail-content" },
-          "Source, limits and QR stay readable",
+          "Uses, factual references and QR stay readable",
         ),
       );
       card.append(
@@ -491,7 +491,7 @@ test("reduced motion leaves all content visible and disables preview, reflow and
   assert.equal(h.stats.animations.length, 0);
   assert.equal(
     details.children[1].textContent,
-    "Source, limits and QR stay readable",
+    "Uses, factual references and QR stay readable",
   );
 });
 
@@ -669,6 +669,62 @@ test("filtering an active card removes its quiet state without changing disclosu
   h.input("grocery");
   assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
   assert.deepEqual(h.visible(), ["grocery-retail"]);
+});
+
+for (const input of ["mouse", "touch", "keyboard"]) {
+  test(`native ${input} disclosure reflow survives focus and uses a bounded settle`, () => {
+    const h = harness({ hasObserver: false, coarsePointer: input === "touch" });
+    h.boot();
+    const detail = h.disclosures[0],
+      summary = detail.children[0],
+      displaced = h.cards[1];
+    const original = displaced.getBoundingClientRect.bind(displaced);
+    let delta = 0;
+    displaced.getBoundingClientRect = () => {
+      const rect = original();
+      return { ...rect, top: rect.top + delta, bottom: rect.bottom + delta };
+    };
+    if (input === "keyboard") h.dispatch("keydown", summary, { key: "Enter" });
+    else h.dispatch("pointerdown", summary, { pointerType: input });
+    h.dispatch("focusin", summary);
+    detail.open = true;
+    delta = 220;
+    h.dispatch("toggle", detail);
+    const reflow = h.stats.animations.find((a) => a.node === displaced);
+    assert(reflow, "Native summary focus must preserve pre-toggle geometry");
+    assert.equal(reflow.keyframes.length, 4);
+    assert.equal(reflow.keyframes[2].offset, 0.86);
+    assert.equal(reflow.options.duration, 620);
+    assert(reflow.options.delay <= 190);
+    assert.equal(reflow.keyframes.at(-1).transform, "translate3d(0, 0, 0)");
+    assert.equal(h.stats.scrolls, 0);
+    assert.equal(
+      h.stats.focus,
+      0,
+      "Opening must not move focus programmatically",
+    );
+    h.dispatch("pointerout", h.cards[0], {
+      pointerType: "mouse",
+      relatedTarget: h.search,
+    });
+    assert.equal(detail.open, true);
+  });
+}
+test("reduced motion renders disclosure reflow immediately without bounce or scroll", () => {
+  const h = harness({ reducedMotion: true, hasObserver: false });
+  h.boot();
+  const detail = h.disclosures[0],
+    summary = detail.children[0],
+    displaced = h.cards[1];
+  h.dispatch("pointerdown", summary, { pointerType: "mouse" });
+  h.dispatch("focusin", summary);
+  displaced.getBoundingClientRect = () => ({ top: 420, bottom: 520, left: 0 });
+  detail.open = true;
+  h.dispatch("toggle", detail);
+  assert.equal(h.stats.animations.length, 0);
+  assert.equal(h.stats.scrolls, 0);
+  assert.equal(detail.open, true);
+  assertAllVisible(h);
 });
 
 console.log(
