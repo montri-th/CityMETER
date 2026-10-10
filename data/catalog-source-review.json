@@ -400,8 +400,8 @@
       "periodEn": "The view identifies April 2025; check the reference date of each measure before comparison.",
       "benefitTh": "เปลี่ยนทะเบียนโรงงานทั่วประเทศ ให้เป็นแผนที่กิจกรรมอุตสาหกรรมเชิงพื้นที่ที่ช่วยสแกนข้อมูลแรงงานและการลงทุนระดับย่าน",
       "benefitEn": "Explore registered factories, workforce figures and investment data to understand industrial areas.",
-      "readingTh": "ยังไม่ทราบนิยาม แหล่งข้อมูล และความครอบคลุมของทะเบียนที่แสดง",
-      "readingEn": "Definitions, source, and registry coverage are not yet documented on the public page",
+      "readingTh": "ก่อนเปรียบเทียบ ให้ตรวจว่าตัวเลขมาจากแหล่งใด เป็นข้อมูลปีไหน และรวมโรงงานกลุ่มใดบ้าง ข้อมูลที่มีอยู่ยังยืนยันรายละเอียดเหล่านี้ได้ไม่ครบ จึงใช้จำนวนที่แสดงแทนโรงงานหรือแรงงานทั้งหมดในพื้นที่ไม่ได้",
+      "readingEn": "Before comparing, check where each figure comes from, its reference year and which factories it includes. These details have not yet been fully verified, so the displayed counts should not stand in for all factories or workers in the area.",
       "official": [
         {
           "labelTh": "กรมโรงงานอุตสาหกรรม — ข้อมูลโรงงาน (แหล่งอ้างอิงที่เกี่ยวข้อง)",
@@ -872,8 +872,8 @@
       "periodEn": null,
       "benefitTh": "รวมข้อมูลหน่วยงานรัฐและบุคลากรบนแผนที่ เพื่อเห็นการกระจายตัวของบริการและเลือกพื้นที่ศึกษาต่อ",
       "benefitEn": "Explore government offices and reported personnel to understand the public-service presence in an area.",
-      "readingTh": "ความครอบคลุมข้อมูลติดต่อไม่ใช่ความพร้อมหรือคุณภาพบริการ และนิยามตัวหารยังต้องยืนยัน",
-      "readingEn": "Contact coverage is not service availability or quality, and denominator definitions still need confirmation",
+      "readingTh": "การมีข้อมูลติดต่อไม่ได้ยืนยันว่าหน่วยงานยังเปิดทำการหรือบริการมีคุณภาพ ก่อนเทียบอัตราส่วนบุคลากร ให้ตรวจว่าแต่ละค่านับบุคลากรกลุ่มใดและคำนวณเทียบกับอะไร",
+      "readingEn": "A contact record does not confirm that an organisation is operating or establish service quality. Before comparing personnel ratios, confirm which people each figure counts and what it is divided by.",
       "official": [],
       "gd": [],
       "conceptualPreview": false

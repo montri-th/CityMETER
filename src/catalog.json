@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "contentVersion": "2026-10-10-reading-focus-value-summary-r4",
+  "contentVersion": "2026-10-10-source-notes-human-r5",
   "canonicalBase": "https://montri-th.github.io/CityMETER/",
   "updatedAt": "2026-10-10",
   "authority": {
@@ -2352,8 +2352,8 @@
         "en": "Factory records with reported status, workforce, capital or machinery measures"
       },
       "limitation": {
-        "th": "ยังไม่ทราบนิยาม แหล่งข้อมูล และความครอบคลุมของทะเบียนที่แสดง",
-        "en": "Definitions, source, and registry coverage are not yet documented on the public page"
+        "th": "ก่อนเปรียบเทียบ ให้ตรวจว่าตัวเลขมาจากแหล่งใด เป็นข้อมูลปีไหน และรวมโรงงานกลุ่มใดบ้าง ข้อมูลที่มีอยู่ยังยืนยันรายละเอียดเหล่านี้ได้ไม่ครบ จึงใช้จำนวนที่แสดงแทนโรงงานหรือแรงงานทั้งหมดในพื้นที่ไม่ได้",
+        "en": "Before comparing, check where each figure comes from, its reference year and which factories it includes. These details have not yet been fully verified, so the displayed counts should not stand in for all factories or workers in the area."
       },
       "sourceReview": {
         "status": "candidate",
@@ -4754,8 +4754,8 @@
         "en": "Agency records and reported personnel; counting units may differ across agency groups"
       },
       "limitation": {
-        "th": "ความครอบคลุมข้อมูลติดต่อไม่ใช่ความพร้อมหรือคุณภาพบริการ และนิยามตัวหารยังต้องยืนยัน",
-        "en": "Contact coverage is not service availability or quality, and denominator definitions still need confirmation"
+        "th": "การมีข้อมูลติดต่อไม่ได้ยืนยันว่าหน่วยงานยังเปิดทำการหรือบริการมีคุณภาพ ก่อนเทียบอัตราส่วนบุคลากร ให้ตรวจว่าแต่ละค่านับบุคลากรกลุ่มใดและคำนวณเทียบกับอะไร",
+        "en": "A contact record does not confirm that an organisation is operating or establish service quality. Before comparing personnel ratios, confirm which people each figure counts and what it is divided by."
       },
       "sourceReview": {
         "status": "unproven",

@@ -130,7 +130,7 @@
       "qr": "local SVG actual mapUrl, 4-module quiet zone, M correction; static before hydration",
       "motion": "preview-only once arrival and bounded state feedback; all content/actions visible without motion",
       "filterReset": "Reset button clears query and restores all pillars; deleting only the search text retains the selected pillar.",
-      "readingFocus": "Hover, keyboard focus or an open visible disclosure quiets sibling content; release on outside click, Escape, filtering or offscreen active card. No backdrop, scroll lock, tab-order change or intercepted direct action; print/forced colors remain fully visible."
+      "readingFocus": "Hover, keyboard focus or an open visible disclosure quiets surrounding content through a pointer-transparent veil. Clicking or focusing outside, filtering or an offscreen active card clears the quiet treatment. No blur, input-intercepting backdrop, scroll lock, tab-order change or intercepted direct action. Hover/focus activation does not move focus; Escape closes an open disclosure and returns focus to its summary. Print and forced colors remain fully visible."
     },
     "summary": {
       "source": "record.executiveSummary in src/catalog.json",
