@@ -17,6 +17,7 @@ function harness({
   observerFailure = null,
   reducedMotion = false,
   hasObserver = true,
+  coarsePointer = false,
 } = {}) {
   const stats = {
     animations: [],
@@ -47,6 +48,10 @@ function harness({
     setAttribute(key, value) {
       this.attributes.set(key, String(value));
       if (key.startsWith("data-")) this.dataset[dataKey(key)] = String(value);
+    }
+    removeAttribute(key) {
+      this.attributes.delete(key);
+      if (key.startsWith("data-")) delete this.dataset[dataKey(key)];
     }
     getAttribute(key) {
       return this.attributes.get(key) ?? null;
@@ -271,9 +276,12 @@ function harness({
     },
   });
   const reduced = media(reducedMotion),
-    coarse = media(false);
+    coarse = media(coarsePointer),
+    hover = media(!coarsePointer);
+  const documentElement = element("html");
   const document = {
     readyState: "complete",
+    documentElement,
     visibilityState: "visible",
     querySelector: (selector) => root.querySelector(selector),
     getElementById: (id) => root.querySelector("#" + id),
@@ -285,7 +293,11 @@ function harness({
     scrollY: 0,
     location: { hash: "" },
     matchMedia: (query) =>
-      query.includes("reduced-motion") ? reduced : coarse,
+      query.includes("reduced-motion")
+        ? reduced
+        : query.includes("hover:")
+          ? hover
+          : coarse,
     addEventListener: (name, fn) => add(windowListeners, name, fn),
   };
   let observerInstance;
@@ -352,10 +364,14 @@ function harness({
       target,
       button: 0,
       defaultPrevented: false,
+      preventDefault() {
+        this.defaultPrevented = true;
+      },
       ...extras,
     };
     for (const listener of listeners.get(type) || []) listener(event);
     flush();
+    return event;
   };
   const input = (value) => {
     search.value = value;
@@ -380,9 +396,16 @@ function harness({
     controls,
     anchorLabel,
     window,
+    documentElement,
+    coarse,
+    hover,
     reduced,
     listeners,
     dispatch,
+    dispatchWindow: (name) => {
+      for (const listener of windowListeners.get(name) || []) listener();
+      flush();
+    },
     input,
     visible,
     intersect: () => observerInstance?.intersect(),
@@ -536,6 +559,116 @@ test("loading runtime twice does not duplicate event ownership", () => {
   h.dispatch("click", h.resetLabel);
   assert.equal(h.stats.focus, 1);
   assertAllVisible(h);
+});
+
+test("fine-pointer hover quiets the page and does not consume native link clicks", () => {
+  const h = harness({ reducedMotion: true });
+  h.boot();
+  const card = h.cards[0],
+    link = card.querySelector("a");
+  h.dispatch("pointerover", card, { pointerType: "mouse" });
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), "active");
+  assert(card.hasAttribute("data-catalog-focused"));
+  assertAllVisible(h);
+  const event = h.dispatch("click", link);
+  assert.equal(event.defaultPrevented, false);
+  h.dispatch("pointerout", card, {
+    pointerType: "mouse",
+    relatedTarget: h.search,
+  });
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+  assert.equal(card.hasAttribute("data-catalog-focused"), false);
+});
+
+test("expanded details resume attention after another card is hovered without closing", () => {
+  const h = harness({ reducedMotion: true });
+  h.boot();
+  const details = h.disclosures[0];
+  h.dispatch("pointerdown", details.children[0], { pointerType: "mouse" });
+  details.open = true;
+  h.dispatch("toggle", details);
+  h.dispatch("pointerover", h.cards[2], { pointerType: "mouse" });
+  assert(h.cards[2].hasAttribute("data-catalog-focused"));
+  h.dispatch("pointerout", h.cards[2], {
+    pointerType: "mouse",
+    relatedTarget: h.search,
+  });
+  assert(h.cards[0].hasAttribute("data-catalog-focused"));
+  assert.equal(details.open, true);
+  details.open = false;
+  h.dispatch("toggle", details);
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+});
+
+test("keyboard focus stays visible and leaving the card clears the quiet treatment", () => {
+  const h = harness({ reducedMotion: true });
+  h.boot();
+  const summary = h.disclosures[0].children[0];
+  h.dispatch("focusin", summary);
+  assert(h.cards[0].hasAttribute("data-catalog-focused"));
+  h.disclosures[0].open = true;
+  h.dispatch("toggle", h.disclosures[0]);
+  const escape = h.dispatch("keydown", summary, { key: "Escape" });
+  assert.equal(escape.defaultPrevented, true);
+  assert.equal(h.disclosures[0].open, false);
+  assert.equal(h.stats.focus, 1);
+  h.dispatch("focusout", summary, { relatedTarget: h.search });
+  h.dispatch("focusin", h.search);
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+  assert.equal(h.stats.animations.length, 0);
+});
+
+test("touch ignores synthetic hover and opens links on the first native tap", () => {
+  const h = harness({ reducedMotion: true, coarsePointer: true });
+  h.boot();
+  const card = h.cards[0],
+    link = card.querySelector("a");
+  h.dispatch("pointerover", card, { pointerType: "touch" });
+  h.dispatch("pointerover", card, { pointerType: "mouse" });
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+  h.dispatch("pointerdown", link, { pointerType: "touch" });
+  h.dispatch("focusin", link);
+  assert.equal(h.dispatch("click", link).defaultPrevented, false);
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+  const details = h.disclosures[0];
+  details.open = true;
+  h.dispatch("toggle", details);
+  assert(card.hasAttribute("data-catalog-focused"));
+  h.dispatch("pointerdown", h.search, { pointerType: "touch" });
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+  assert.equal(details.open, true);
+});
+
+test("scrolling away from an open card suspends the veil without closing it", () => {
+  const h = harness({ reducedMotion: true });
+  h.boot();
+  const card = h.cards[0],
+    details = h.disclosures[0];
+  details.open = true;
+  h.dispatch("toggle", details);
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), "active");
+  const originalRect = card.getBoundingClientRect.bind(card);
+  card.getBoundingClientRect = () => ({ top: -200, bottom: -40 });
+  h.dispatchWindow("scroll");
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+  assert.equal(details.open, true);
+  card.getBoundingClientRect = originalRect;
+  h.dispatchWindow("scroll");
+  assert(card.hasAttribute("data-catalog-focused"));
+  h.dispatch("pointerover", card, { pointerType: "mouse" });
+  card.getBoundingClientRect = () => ({ top: -200, bottom: -40 });
+  h.dispatchWindow("scroll");
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+  assert.equal(h.stats.scrolls, 0, "Attention must not move the page");
+});
+
+test("filtering an active card removes its quiet state without changing disclosure state", () => {
+  const h = harness({ reducedMotion: true });
+  h.boot();
+  h.dispatch("pointerover", h.cards[0], { pointerType: "mouse" });
+  h.input("grocery");
+  assert.equal(h.documentElement.getAttribute("data-catalog-focus"), null);
+  assert.deepEqual(h.visible(), ["grocery-retail"]);
 });
 
 console.log(

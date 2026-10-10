@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "contentVersion": "2026-10-10-catalog-masonry-summary-r3",
+  "contentVersion": "2026-10-10-reading-focus-value-summary-r4",
   "canonicalBase": "https://montri-th.github.io/CityMETER/",
   "updatedAt": "2026-10-10",
   "authority": {
@@ -662,19 +662,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "บริเวณใดมีอาคารหนาแน่นหรือมีความสูงต่างจากพื้นที่รอบข้าง?",
-            "พื้นที่ใช้สอยโดยประมาณช่วยเลือกบริเวณที่จะศึกษาต่อได้อย่างไร?"
-          ],
-          "en": [
-            "Where are buildings concentrated, and how does their height vary across the area?",
-            "How can estimated floor area help identify places for a closer study?"
-          ]
+        "lead": {
+          "th": "เห็นอาคารเป็นภาพเมืองสามมิติ ทั้งความสูง ความหนาแน่น และพื้นที่ใช้สอยโดยประมาณ เพื่อเข้าใจว่าย่านหนึ่งถูกพัฒนาไปในรูปแบบใด",
+          "en": "See the shape of a neighbourhood through building heights, density and estimated floor area."
+        },
+        "sectionTitle": {
+          "th": "ตึกมีฐานเท่ากัน เมืองอาจหนาแน่นต่างกัน",
+          "en": "Similar footprints can tell very different stories"
         },
         "reading": {
-          "th": "อ่านขอบเขตอาคารร่วมกับความสูงและพื้นที่ใช้สอยโดยประมาณ เพื่อเห็นรูปแบบการพัฒนาของพื้นที่ ตรวจรุ่นข้อมูลและความครอบคลุมก่อนเปรียบเทียบ เพราะอาจมีอาคารตกหล่นหรือค่าคลาดเคลื่อน เมื่อต้องตัดสินใจรายอาคาร ควรตรวจทะเบียนและสำรวจจริงประกอบ",
-          "en": "Read building footprints alongside estimated height and floor area to understand development patterns. Check the data version and coverage before comparing places: some buildings may be missing and estimates may be inaccurate. Decisions about an individual building need records and field checks."
+          "th": "ขอบเขตอาคารอย่างเดียวอาจทำให้ตึกเตี้ยกับตึกสูงดูคล้ายกัน เมื่ออ่านความสูงและพื้นที่ใช้สอยร่วมกัน จึงเห็นรูปแบบการพัฒนาที่ควรพิจารณาก่อนเลือกแปลง วางบริการ หรือสำรวจย่าน",
+          "en": "A footprint alone can make a low-rise and a tower look alike. Height and estimated floor area add context for choosing sites and planning neighbourhood research."
+        },
+        "note": {
+          "th": "ความสูง จำนวนชั้น และพื้นที่ใช้สอยมีค่าประมาณ ใช้ทะเบียนอาคารหรือการสำรวจยืนยันก่อนตัดสินใจรายอาคาร",
+          "en": "Heights, storeys and floor areas include estimates. Check building records or survey the site before a building-specific decision."
+        },
+        "questions": {
+          "th": [
+            "ย่านนี้มีอาคารสูงหรืออาคารเตี้ยกระจุกตัวตรงไหน?",
+            "พื้นที่ใดควรไปดูสภาพการพัฒนาจริงต่อ?"
+          ],
+          "en": [
+            "Where do tall and low-rise buildings cluster?",
+            "Which areas deserve a closer site visit?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกย่านที่สนใจ แล้วใช้ความต่างของรูปทรงอาคารตั้งคำถามสำหรับการลงพื้นที่",
+          "en": "Choose a neighbourhood and use its built form to plan a more focused site visit."
         }
       },
       "detailUrl": {
@@ -844,11 +860,29 @@
       "datasetCode": "terrain",
       "mapUrl": "https://landometer.com/v3/citymeter-3d?d=terrain",
       "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
+        "available": true,
+        "path": "media/previews-current/terrain-elevation-20261010.webp",
+        "largePath": "media/previews-current/terrain-elevation-20261010-large.webp",
         "conceptual": false,
-        "focusLabel": null
+        "focusLabel": {
+          "th": "เมืองเชียงใหม่ · ความสูง · ภูมิประเทศ 3 มิติ",
+          "en": "Chiang Mai · elevation · 3D terrain"
+        },
+        "capture": {
+          "date": "2026-10-10",
+          "url": "https://landometer.com/v3/citymeter-3d?d=terrain",
+          "state": "เมืองเชียงใหม่ · FABDEM · สามมิติ · ขยายความสูง 1.5 เท่า · สีตามมุมมอง",
+          "note": {
+            "th": "ภาพตัวอย่างที่จับเมื่อ 10 ตุลาคม 2569 ตัวเลขและตัวเลือกอาจเปลี่ยนเมื่อเปิดใช้งาน",
+            "en": "Captured on 10 October 2026. Values and available controls may change in the live service."
+          },
+          "stateLabel": {
+            "th": "เมืองเชียงใหม่ · FABDEM · สามมิติ · ขยายความสูง 1.5 เท่า · สีตามมุมมอง",
+            "en": "Chiang Mai · FABDEM · 3D · 1.5× vertical exaggeration · colours for the selected view"
+          }
+        },
+        "width": 641,
+        "height": 319
       },
       "aliases": [
         "ภูมิประเทศและระดับความสูง",
@@ -865,19 +899,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "รูปทรงและระดับความสูงของภูมิประเทศต่างกันอย่างไรในพื้นที่ที่สนใจ?",
-            "ส่วนต่างของแบบจำลองระดับความสูงบอกอะไรได้ และยังต้องตรวจอะไรในพื้นที่จริง?"
-          ],
-          "en": [
-            "How do terrain shape and elevation vary across the area of interest?",
-            "What can differences between elevation models tell us, and what needs a field check?"
-          ]
+        "lead": {
+          "th": "ทำความรู้จักพื้นที่จากความสูงและรูปทรงภูมิประเทศ เห็นแนวลาดและความต่างระดับก่อนลงสำรวจจริง",
+          "en": "Get a feel for the terrain through elevation and landform before visiting the site."
+        },
+        "sectionTitle": {
+          "th": "อ่านรูปทรงพื้นดินก่อนอ่านแปลง",
+          "en": "Start with the shape of the land"
         },
         "reading": {
-          "th": "เริ่มจากรูปทรงภูมิประเทศ แล้วอ่านชื่อแบบจำลองและความละเอียดที่ใช้ในตำแหน่งนั้น ภาพสามมิติอาจเกลี่ยหรือขยายความสูง ส่วนต่าง GLO-30 กับ FABDEM จึงไม่ใช่ความสูงอาคารหรือต้นไม้ที่วัดยืนยัน ข้อมูลนี้ช่วยเตรียมการสำรวจ ไม่แทนงานสำรวจระดับหรือการประเมินน้ำท่วม และบริเวณไม่มีข้อมูลไม่ใช่ 0 เมตร",
-          "en": "Start with terrain shape, then check the model and resolution at the location. The 3D view may smooth or exaggerate elevation, and GLO-30 minus FABDEM is not a verified building or tree height. Use it to prepare field questions, not as a survey or flood-risk assessment; missing data is not zero metres."
+          "th": "มุมมองสามมิติช่วยให้เห็นบริบทที่เส้นขอบแปลงอธิบายไม่ได้ ลองพิจารณาพื้นที่รอบจุดสนใจด้วย เพื่อเตรียมประเด็นเรื่องระดับพื้นดินและแนวลาดที่ต้องตรวจหน้างาน",
+          "en": "A 3D view adds landform context beyond a parcel boundary. Look around the site as well as at it to prepare questions about levels and slopes."
+        },
+        "note": {
+          "th": "ระดับจาก DEM เป็นแบบจำลอง ไม่ใช่ผลสำรวจหรือผลประเมินน้ำท่วม ส่วนต่างแบบจำลองไม่ใช่ความสูงอาคารที่วัดจริง",
+          "en": "DEM elevations are modelled, not survey levels or a flood assessment. Differences between models are not measured building heights."
+        },
+        "questions": {
+          "th": [
+            "พื้นที่รอบจุดสนใจมีรูปทรงและระดับต่างกันอย่างไร?",
+            "มีประเด็นเรื่องระดับใดที่ควรตรวจหน้างาน?"
+          ],
+          "en": [
+            "How does the land rise and fall around the site?",
+            "Which levels need checking on the ground?"
+          ]
+        },
+        "takeaway": {
+          "th": "ใช้ภาพรวมเตรียมงานสำรวจ และเก็บค่าระดับจริงก่อนออกแบบหรือก่อสร้าง",
+          "en": "Use the overview to brief a survey, then obtain site measurements before design or construction."
         }
       },
       "detailUrl": {
@@ -1008,19 +1058,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "โครงการจัดสรรที่จดทะเบียนกระจุกตัวอยู่บริเวณใด?",
-            "ประเภทที่อยู่อาศัย จำนวนแปลง และผู้พัฒนาในแต่ละพื้นที่ต่างกันอย่างไร?"
-          ],
-          "en": [
-            "Where are registered housing developments concentrated?",
-            "How do housing types, plot counts and developers differ between areas?"
-          ]
+        "lead": {
+          "th": "ดูว่าโครงการจัดสรรที่จดทะเบียนกระจุกตัวอยู่ที่ใด มีที่อยู่อาศัยประเภทไหน และใครเป็นผู้พัฒนา ก่อนเลือกพื้นที่ลงสำรวจ",
+          "en": "See where registered housing developments cluster, what they contain and who developed them before visiting."
+        },
+        "sectionTitle": {
+          "th": "เห็นภาพโครงการรอบทำเลในครั้งเดียว",
+          "en": "Read the development pattern around a site"
         },
         "reading": {
-          "th": "ใช้รายการจดทะเบียนอ่านประวัติการอนุญาตและการกระจายโครงการ ก่อนเลือกย่านที่จะลงสำรวจ จำนวนแปลงและผู้พัฒนาช่วยอธิบายโครงสร้างของโครงการในทะเบียน แต่ใบอนุญาตไม่ได้บอกว่าก่อสร้างเสร็จ มีบ้านเหลือขาย หรือมีผู้พักอาศัยแล้ว และทะเบียนนี้ไม่ครอบคลุมโครงการที่อยู่อาศัยทั้งหมด",
-          "en": "Registered projects, plot counts and developers help describe the development pattern before a neighbourhood visit. Read them as permit records: a permit does not establish completion, homes available for sale or occupancy. The register should not be treated as every housing development."
+          "th": "เมื่อเห็นโครงการ จำนวนแปลง และผู้พัฒนาบนแผนที่เดียวกัน จะเริ่มเปรียบเทียบโครงสร้างที่อยู่อาศัยระหว่างพื้นที่ได้ ใช้เป็นจุดตั้งต้นสำหรับศึกษาตลาดและติดตามรายละเอียดของโครงการที่สนใจ",
+          "en": "Putting projects, plots and developers on one map helps compare the housing structure of different areas and identify developments worth researching."
+        },
+        "note": {
+          "th": "ทะเบียนบอกประวัติโครงการที่ได้รับอนุญาต ไม่ได้ยืนยันว่าก่อสร้างเสร็จ มีหน่วยเหลือขาย หรือมีคนอยู่แล้ว",
+          "en": "Registration does not establish construction completion, available units or current occupancy."
+        },
+        "questions": {
+          "th": [
+            "โครงการจัดสรรประเภทใดกระจุกตัวในย่านนี้?",
+            "มีโครงการหรือผู้พัฒนารายใดที่ควรศึกษาเพิ่ม?"
+          ],
+          "en": [
+            "What types of registered development cluster here?",
+            "Which projects and developers merit further research?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกโครงการจากแผนที่ แล้วตรวจสถานะปัจจุบันกับโครงการและพื้นที่จริง",
+          "en": "Shortlist projects on the map, then confirm their current status with the developer and a site visit."
         }
       },
       "detailUrl": {
@@ -1157,19 +1223,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "รอบทำเลที่สนใจมีประวัติโครงการและรายงานการประเมินประเภทใดบ้าง?",
-            "ควรเปิดเอกสารต้นทางของโครงการใดเพื่อเข้าใจบริบทการพัฒนาให้ชัดขึ้น?"
-          ],
-          "en": [
-            "What kinds of projects and assessment records are found around this location?",
-            "Which original project reports would help clarify the development context?"
-          ]
+        "lead": {
+          "th": "รู้จักโครงการรอบทำเลผ่านข้อมูลและรายงาน EIA ก่อนเปิดเอกสารฉบับเต็มของโครงการที่เกี่ยวข้อง",
+          "en": "Understand nearby projects through environmental-assessment records before reading the relevant reports in full."
+        },
+        "sectionTitle": {
+          "th": "จากตำแหน่งโครงการไปสู่เอกสารที่ควรอ่าน",
+          "en": "Find the projects behind the paperwork"
         },
         "reading": {
-          "th": "อ่านตำแหน่งโครงการร่วมกับประเภท IEE, EIA หรือ EHIA แล้วเปิดรายงานต้นทางเมื่อพบโครงการที่เกี่ยวข้อง แผนที่เป็นข้อมูลที่คัดเลือกและเพิ่มพิกัด การมีรายงานหรือได้รับความเห็นชอบยังไม่บอกว่าก่อสร้าง เปิดดำเนินการ หรือปฏิบัติตามมาตรการครบแล้ว จึงใช้เป็นจุดเริ่มต้นศึกษาบริบท ไม่ใช่ข้อสรุปสิทธิพัฒนา",
-          "en": "Read project locations with their IEE, EIA or EHIA assessment type, then consult the original reports. The map is a curated, geocoded snapshot. A report or approval does not establish construction, operation or compliance, so use it for initial development context rather than a determination of development rights."
+          "th": "แผนที่ช่วยเชื่อมชื่อโครงการกับพื้นที่จริง เห็นประเภทและประวัติที่เกี่ยวข้องกับทำเล แล้วเลือกอ่านรายงาน IEE, EIA หรือ EHIA ของรายการที่สำคัญกับโจทย์ของคุณ",
+          "en": "The map connects project names to places, making it easier to find the IEE, EIA or EHIA records relevant to a site."
+        },
+        "note": {
+          "th": "ข้อมูลบนแผนที่เป็นรายการที่นำเข้ามา ไม่ยืนยันสถานะอนุมัติปัจจุบัน การก่อสร้าง หรือการปฏิบัติตามมาตรการ",
+          "en": "Mapped records do not establish current approval, construction progress or compliance with environmental measures."
+        },
+        "questions": {
+          "th": [
+            "รอบทำเลนี้มีโครงการประเภทใดอยู่ในข้อมูล?",
+            "รายงานฉบับไหนควรอ่านก่อนพิจารณาพื้นที่ต่อ?"
+          ],
+          "en": [
+            "What types of projects appear around this site?",
+            "Which reports are relevant to the next decision?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตามไปอ่านวันที่ สถานะ และรายละเอียดในรายงานต้นทางของโครงการนั้น",
+          "en": "Check the report date, status and full details in the original project record."
         }
       },
       "detailUrl": {
@@ -1303,19 +1385,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "พื้นที่ใดมีการเพาะปลูกหรือผลผลิตที่เกี่ยวข้องกับแหล่งวัตถุดิบที่กำลังศึกษา?",
-            "ตัวเลขพื้นที่เพาะปลูกและผลผลิตต่างกันอย่างไรเมื่อเลือกกิจกรรมและช่วงเวลาเดียวกัน?"
-          ],
-          "en": [
-            "Which areas record the crops or output relevant to a supply study?",
-            "How do cultivated area and output compare for the same activity and reporting period?"
-          ]
+        "lead": {
+          "th": "เริ่มหาแหล่งวัตถุดิบจากภาพพื้นที่เพาะปลูกและผลผลิต เห็นว่ากิจกรรมเกษตรที่สนใจกระจุกตัวอยู่บริเวณใด",
+          "en": "Start a sourcing study by seeing where crops and recorded agricultural output are concentrated."
+        },
+        "sectionTitle": {
+          "th": "พื้นที่ปลูกกับผลผลิตบอกคนละเรื่อง",
+          "en": "Planted area and output answer different questions"
         },
         "reading": {
-          "th": "เลือกกิจกรรมเกษตร พื้นที่ และเดือนหรือปีให้สอดคล้องกัน แล้วอ่านหน่วยของพื้นที่เพาะปลูกและผลผลิตก่อนเปรียบเทียบ ใช้ข้อมูลเพื่อเตรียมศึกษาแหล่งวัตถุดิบต่อ เพราะเดือนที่รายงานยังไม่ครบไม่ใช่ผลผลิตทั้งปี และผลผลิตที่บันทึกไม่ได้เท่ากับปริมาณที่พร้อมซื้อขาย",
-          "en": "Compare the same agricultural activity, geography and reporting period, keeping cultivated-area and output units clear. These records can guide a supply study, but an incomplete month is not annual production, and recorded output does not establish how much is available to buy."
+          "th": "พื้นที่เพาะปลูกช่วยอธิบายขนาดกิจกรรม ส่วนผลผลิตช่วยให้เห็นปริมาณที่รายงาน อ่านทั้งสองอย่างด้วยหน่วยและช่วงเวลาเดียวกันก่อนเลือกพื้นที่ศึกษาแหล่งวัตถุดิบ",
+          "en": "Planted area describes the scale of cultivation; output describes reported production. Compare like periods and units when narrowing a sourcing study."
+        },
+        "note": {
+          "th": "เดือนที่รายงานยังไม่ครบไม่ใช่ผลผลิตทั้งปี และผลผลิตที่บันทึกไม่ใช่ปริมาณที่พร้อมซื้อขายทั้งหมด",
+          "en": "Incomplete monthly reports are not annual output, and recorded production is not all available for purchase."
+        },
+        "questions": {
+          "th": [
+            "กิจกรรมเกษตรที่สนใจอยู่หนาแน่นบริเวณใด?",
+            "เมื่อใช้ช่วงเวลาเดียวกัน พื้นที่ปลูกและผลผลิตต่างกันอย่างไร?"
+          ],
+          "en": [
+            "Where is the agricultural activity of interest concentrated?",
+            "How do planted area and output compare over the same period?"
+          ]
+        },
+        "takeaway": {
+          "th": "นำพื้นที่ที่เลือกไปคุยกับผู้ผลิต เพื่อยืนยันฤดูกาลและปริมาณที่จัดหาได้",
+          "en": "Follow up with producers to confirm timing and available supply."
         }
       },
       "detailUrl": {
@@ -1460,19 +1558,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ราคาประเมินที่ดินต่างกันอย่างไรระหว่างแปลงและบริเวณที่สนใจ?",
-            "แปลงใดควรนำไปตรวจเอกสารและรายละเอียดต่อหลังดูภาพรวมราคา?"
-          ],
-          "en": [
-            "How do appraisal values differ between parcels and surrounding areas?",
-            "Which parcels merit document checks after reviewing the appraisal pattern?"
-          ]
+        "lead": {
+          "th": "มองราคาประเมินที่ดินเป็นภาพของทำเล เพื่อเทียบพื้นที่และหาแปลงที่ควรตรวจรายละเอียดต่อ",
+          "en": "Read land appraisal values across a location and identify parcels worth a closer look."
+        },
+        "sectionTitle": {
+          "th": "มีฐานอ้างอิงก่อนคุยเรื่องราคา",
+          "en": "Bring a reference point to a price discussion"
         },
         "reading": {
-          "th": "ใช้ราคาประเมินเป็นข้อมูลอ้างอิงสำหรับคัดกรองพื้นที่ แล้วตรวจรายละเอียดของแปลงที่สนใจแยกต่างหาก ราคาประเมินไม่ใช่ราคาซื้อขายจริง และแผนที่นี้ไม่ยืนยันเจ้าของหรือภาระผูกพันของที่ดิน การตัดสินใจรายแปลงจึงต้องอาศัยเอกสารที่ดินประกอบ",
-          "en": "Use appraisal values as a reference for screening areas before checking individual parcels. They are not transaction prices, and the map does not establish ownership or encumbrances. Decisions about a parcel still require its land documents."
+          "th": "การวางราคาประเมินลงบนแผนที่ช่วยให้เห็นความต่างระหว่างพื้นที่ข้างเคียง ใช้ประกอบการคัดกรองแปลงและเตรียมคำถามก่อนเทียบกับราคาเสนอขายหรือข้อมูลธุรกรรม",
+          "en": "Mapped appraisal values reveal differences between nearby areas. Use them to shortlist parcels and frame questions alongside asking prices or transaction evidence."
+        },
+        "note": {
+          "th": "ราคาประเมินไม่ใช่ราคาซื้อขาย และไม่ยืนยันกรรมสิทธิ์หรือภาระผูกพันของแปลง",
+          "en": "Appraisal value is not a sale price and does not confirm ownership or encumbrances."
+        },
+        "questions": {
+          "th": [
+            "ราคาประเมินรอบแปลงที่สนใจต่างกันมากเพียงใด?",
+            "แปลงใดควรเปิดเอกสารตรวจต่อ?"
+          ],
+          "en": [
+            "How do appraisal values vary around the parcel?",
+            "Which parcels need closer document review?"
+          ]
+        },
+        "takeaway": {
+          "th": "ใช้แผนที่เลือกแปลง แล้วตรวจเอกสารและข้อมูลตลาดของแปลงนั้นโดยตรง",
+          "en": "Use the map to choose parcels, then review their documents and market evidence."
         }
       },
       "detailUrl": {
@@ -1583,19 +1697,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ที่ดินที่ประกาศขายมีช่วงราคาและขนาดแปลงต่างกันอย่างไร?",
-            "ราคาเสนอขายกับราคาประเมินช่วยเลือกประกาศที่จะติดตามต่อได้อย่างไร?"
-          ],
-          "en": [
-            "How do asking prices and plot sizes differ among land listings?",
-            "How can asking and appraisal values help shortlist listings for follow-up?"
-          ]
+        "lead": {
+          "th": "เทียบราคาเสนอขาย ขนาดแปลง และราคาประเมินบนแผนที่ เพื่อเลือกที่ดินที่น่าศึกษาให้ตรงกับงบและโจทย์",
+          "en": "Compare land asking prices, plot sizes and appraisal references to focus your shortlist."
+        },
+        "sectionTitle": {
+          "th": "เทียบแปลงให้ตรงขนาดและทำเล",
+          "en": "Compare plots on a common basis"
         },
         "reading": {
-          "th": "อ่านราคารวม ราคาต่อตารางวา และขนาดแปลงร่วมกันก่อนเทียบกับราคาประเมิน ความต่างของราคาเป็นจุดเริ่มต้นตั้งคำถาม ไม่ใช่ราคาที่ขายได้จริง ควรตรวจแหล่งประกาศ วันเก็บข้อมูล รายการซ้ำ และค่าผิดปกติก่อนนำหลายประกาศมาเปรียบเทียบ",
-          "en": "Read total asking price, price per square wa and plot size together before comparing with appraisal values. A price gap is a starting point for investigation, not an achievable closing price. Check listing dates, sources, duplicates and outliers before comparing records."
+          "th": "ราคารวมอย่างเดียวอาจทำให้แปลงต่างขนาดดูเทียบกันยาก ลองอ่านราคาต่อตารางวาคู่กับขนาดและตำแหน่ง แล้วจดรายการที่ควรสอบถามผู้ขายต่อ",
+          "en": "Total prices can be misleading when plot sizes differ. Read price per square wah alongside plot size and location to choose listings for follow-up."
+        },
+        "note": {
+          "th": "ราคาเสนอขายอาจเปลี่ยน และประกาศอาจซ้ำหรือยังไม่ได้ปรับปรุง จึงต้องยืนยันกับผู้ขาย",
+          "en": "Asking prices can change, and listings may be duplicated or outdated. Confirm details with the seller."
+        },
+        "questions": {
+          "th": [
+            "งบใกล้กันให้ขนาดแปลงและทำเลต่างกันอย่างไร?",
+            "มีประกาศใดที่ควรสอบถามรายละเอียดเพิ่ม?"
+          ],
+          "en": [
+            "What locations and plot sizes fit a similar budget?",
+            "Which listings deserve a conversation with the seller?"
+          ]
+        },
+        "takeaway": {
+          "th": "เก็บรายการสั้น ๆ แล้วตรวจราคา สถานะขาย และเงื่อนไขรายแปลง",
+          "en": "Make a short list and confirm price, availability and parcel-specific conditions."
         }
       },
       "detailUrl": {
@@ -1706,19 +1836,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ย่านที่สนใจมีช่วงค่าเช่าอะพาร์ตเมนต์ที่ประกาศไว้เท่าใด?",
-            "การกระจายตัวของอาคารและช่วงค่าเช่าช่วยเลือกบริเวณไปศึกษาต่อได้อย่างไร?"
-          ],
-          "en": [
-            "What advertised apartment-rent ranges appear in the neighbourhood?",
-            "How can building distribution and rent ranges help shortlist areas to investigate?"
-          ]
+        "lead": {
+          "th": "เห็นช่วงค่าเช่าและการกระจุกตัวของอพาร์ทเมนต์ระดับย่าน โดยไม่ต้องเริ่มจากไล่อ่านประกาศทีละแห่ง",
+          "en": "See neighbourhood rental ranges and apartment clusters without starting from individual listings."
+        },
+        "sectionTitle": {
+          "th": "รู้จักย่านเช่าก่อนเลือกอาคาร",
+          "en": "Understand the rental area before choosing a building"
         },
         "reading": {
-          "th": "อ่านช่วงค่าเช่าที่ประกาศควบคู่กับการกระจายตัวของอะพาร์ตเมนต์ เพื่อเข้าใจตัวอย่างตลาดเช่าในแต่ละย่าน ฐานข้อมูลนี้ไม่ได้แทนตลาดทั้งหมดหรือยืนยันค่าเช่าปัจจุบันของทุกอาคาร จึงควรติดตามรายละเอียดของอาคารที่สนใจก่อนใช้เปรียบเทียบจริง",
-          "en": "Read advertised rent ranges alongside the distribution of apartment buildings to understand the available neighbourhood sample. The records do not represent the entire rental market or establish current rent for every building. Follow up on the properties of interest before relying on a comparison."
+          "th": "เมื่อวางอพาร์ทเมนต์ไว้ในบริบทเดียวกัน จะเห็นว่าราคาเช่าที่สนใจพบในส่วนใดของย่าน ใช้เลือกอาคารที่จะเปรียบเทียบประเภทห้องและเงื่อนไขกันต่อ",
+          "en": "Seeing apartments together helps locate the rental ranges relevant to your search and choose buildings for a closer comparison."
+        },
+        "note": {
+          "th": "ช่วงราคามาจากรายการที่มีในฐานข้อมูล ไม่ได้แทนทุกอาคารหรือยืนยันค่าเช่าปัจจุบัน",
+          "en": "The listed ranges do not represent every building or confirm current rents."
+        },
+        "questions": {
+          "th": [
+            "ช่วงค่าเช่าที่ต้องการพบมากในส่วนไหนของย่าน?",
+            "อาคารใดควรติดต่อเพื่อตรวจห้องและเงื่อนไขเช่า?"
+          ],
+          "en": [
+            "Where in the neighbourhood do the relevant rents appear?",
+            "Which buildings should you contact about rooms and terms?"
+          ]
+        },
+        "takeaway": {
+          "th": "ยืนยันค่าเช่า ห้องว่าง และเงื่อนไขกับแต่ละอาคารก่อนเลือก",
+          "en": "Confirm current rent, availability and terms directly with each building."
         }
       },
       "detailUrl": {
@@ -1848,19 +1994,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ราคาประเมินต่อตารางเมตรต่างกันอย่างไรระหว่างโครงการคอนโดมิเนียม?",
-            "ย่านใดมีช่วงราคาประเมินที่ควรนำไปเทียบกับข้อมูลตลาดต่อ?"
-          ],
-          "en": [
-            "How do appraisal values per square metre differ between condominium projects?",
-            "Which neighbourhood appraisal ranges merit comparison with market evidence?"
-          ]
+        "lead": {
+          "th": "ดูราคาประเมินคอนโดรายโครงการเพื่อเข้าใจช่วงราคาอ้างอิง และเลือกโครงการที่จะศึกษาเรื่องตลาดต่อ",
+          "en": "Compare condominium appraisal values by project before exploring their market prices."
+        },
+        "sectionTitle": {
+          "th": "แยกราคาอ้างอิงออกจากราคาตลาด",
+          "en": "Keep appraisal and market prices distinct"
         },
         "reading": {
-          "th": "อ่านราคาประเมินระดับอาคารหรือโครงการเป็นฐานมูลค่าทางราชการ เพื่อเห็นความแตกต่างระหว่างย่าน ก่อนนำไปเทียบกับประกาศหรือธุรกรรมที่ตรวจแล้ว ราคาประเมินแต่ละโครงการไม่ได้บอกราคาเสนอขายหรือราคาปิดล่าสุดของห้องที่สนใจ",
-          "en": "Use building or project appraisal values as an official baseline for comparing neighbourhoods. Compare that baseline separately with checked listing or transaction evidence. A project appraisal does not establish the current asking or closing price of a particular unit."
+          "th": "ราคาประเมินต่อตารางเมตรช่วยวางโครงการต่าง ๆ บนฐานเปรียบเทียบเดียวกัน ความต่างที่เห็นเป็นจุดเริ่มต้นให้ตามไปอ่านข้อมูลของอาคารและเทียบประกาศในทำเลนั้น",
+          "en": "Appraisal value per square metre provides a common reference across projects. Differences can guide a closer look at buildings and nearby listings."
+        },
+        "note": {
+          "th": "ราคาประเมินเป็นฐานมูลค่าทางราชการ ไม่ใช่ราคาเสนอขายหรือราคาปิดล่าสุด",
+          "en": "Appraisal values are an administrative reference, not current asking or transaction prices."
+        },
+        "questions": {
+          "th": [
+            "โครงการในย่านเดียวกันมีช่วงราคาประเมินต่างกันอย่างไร?",
+            "โครงการใดควรนำไปเทียบข้อมูลตลาดต่อ?"
+          ],
+          "en": [
+            "How do appraisal ranges vary within the neighbourhood?",
+            "Which projects deserve further market comparison?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจรอบราคาประเมิน แล้วเทียบกับห้องและโครงการที่มีลักษณะใกล้กัน",
+          "en": "Check the appraisal period and compare rooms and projects with similar characteristics."
         }
       },
       "detailUrl": {
@@ -1979,19 +2141,35 @@
       "order": 3,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ราคาเสนอขายคอนโดต่างจากราคาประเมินในพื้นที่เดียวกันอย่างไร?",
-            "รายการใดควรตรวจระดับห้องและโครงการก่อนนำมาเทียบราคา?"
-          ],
-          "en": [
-            "How do condominium asking prices compare with appraisal values in the same area?",
-            "Which records need unit- and project-level checks before comparing prices?"
-          ]
+        "lead": {
+          "th": "เห็นราคาเสนอขายคอนโดเทียบกับราคาประเมินในทำเลเดียวกัน เพื่อเลือกโครงการและห้องที่จะถามต่อ",
+          "en": "See condominium asking prices alongside appraisal references in the same location."
+        },
+        "sectionTitle": {
+          "th": "ใช้ส่วนต่างราคาเป็นคำถาม ไม่ใช่คำตัดสิน",
+          "en": "Let a price gap start a conversation"
         },
         "reading": {
-          "th": "ความต่างระหว่างราคาประกาศกับราคาประเมินช่วยเลือกประเด็นที่จะศึกษาในแต่ละโครงการ ก่อนสรุปต้องตรวจว่าจับคู่ห้องและโครงการถูกต้อง ใช้หน่วยเดียวกัน และจัดการรายการซ้ำอย่างไร ราคาเสนอขายยังไม่ใช่ราคาปิดการซื้อขาย",
-          "en": "The gap between asking and appraisal values can guide further project research. Before drawing conclusions, check how units and projects were matched, whether units of measurement agree, and how duplicates were handled. Asking prices remain distinct from completed transaction prices."
+          "th": "ส่วนต่างระหว่างราคาเสนอและราคาประเมินช่วยชี้รายการที่น่าศึกษา แต่แต่ละห้องอาจต่างกันทั้งขนาดและเงื่อนไข จึงควรกลับไปดูรายละเอียดก่อนเรียกว่าราคาถูกหรือแพง",
+          "en": "A gap between asking and appraisal prices can flag a listing for research. Room size and terms still matter before calling it cheap or expensive."
+        },
+        "note": {
+          "th": "ราคาเป็นราคาเสนอขาย และรายการอาจซ้ำ ต้องตรวจหน่วยและการจับคู่ห้องหรือโครงการก่อนเทียบ",
+          "en": "These are asking prices. Check duplicates, units and room or project matching before comparing."
+        },
+        "questions": {
+          "th": [
+            "ราคาเสนอขายกับราคาประเมินในย่านนี้ห่างกันอย่างไร?",
+            "รายการใดควรตรวจขนาดห้องและเงื่อนไขเพิ่ม?"
+          ],
+          "en": [
+            "How do asking and appraisal prices differ here?",
+            "Which listings need a closer check of room size and terms?"
+          ]
+        },
+        "takeaway": {
+          "th": "ใช้แผนที่คัดรายการ แล้วตรวจประกาศและห้องจริงก่อนเจรจา",
+          "en": "Shortlist on the map, then review the listing and room before negotiating."
         }
       },
       "detailUrl": {
@@ -2102,19 +2280,35 @@
       "order": 4,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "บ้านเดี่ยวในประกาศมีราคาเสนอขายสัมพันธ์กับขนาดที่ดินอย่างไร?",
-            "ทำเลใดมีรายการบ้านที่เหมาะจะคัดไว้ไปดูรายละเอียดต่อ?"
-          ],
-          "en": [
-            "How do detached-house asking prices compare with plot sizes?",
-            "Which locations have listings worth shortlisting for a closer look?"
-          ]
+        "lead": {
+          "th": "เทียบราคาบ้านเดี่ยวกับขนาดที่ดินในแต่ละทำเล เพื่อเลือกย่านที่เข้ากับงบและพื้นที่ใช้ชีวิตที่ต้องการ",
+          "en": "Compare detached-house asking prices and plot sizes to find areas that fit your budget and space needs."
+        },
+        "sectionTitle": {
+          "th": "งบเท่ากัน ได้ที่ดินและทำเลต่างกัน",
+          "en": "See what a similar budget offers in different areas"
         },
         "reading": {
-          "th": "ใช้ราคาเสนอขายและขนาดที่ดินช่วยคัดกรองบ้านเดี่ยวก่อนเลือกทำเลไปดูจริง เปรียบเทียบอย่างระมัดระวังเมื่อจำนวนตัวอย่างในแต่ละพื้นที่ต่างกัน เพราะยังไม่ทราบความครอบคลุมของแหล่งประกาศ และราคาในรายการไม่ได้ยืนยันราคาที่ซื้อขายสำเร็จ",
-          "en": "Use asking prices and plot sizes to shortlist detached homes and areas for a visit. Compare cautiously where samples differ between areas: listing-source coverage is not documented, and an advertised price does not establish the completed sale price."
+          "th": "การดูราคาไปพร้อมกับขนาดที่ดินช่วยให้การเปรียบเทียบชัดกว่าดูราคารวมอย่างเดียว เลือกพื้นที่ที่น่าสนใจแล้วค่อยลงรายละเอียดของบ้านแต่ละหลัง",
+          "en": "Reading plot size alongside price makes the comparison more useful than total price alone. Narrow the areas first, then examine individual homes."
+        },
+        "note": {
+          "th": "ข้อมูลเป็นราคาเสนอขายจากรายการที่มี ตัวอย่างในแต่ละพื้นที่อาจไม่เท่ากัน",
+          "en": "Prices are asking prices from available listings; representation can vary by area."
+        },
+        "questions": {
+          "th": [
+            "บ้านในงบใกล้กันมีขนาดที่ดินต่างกันอย่างไร?",
+            "ย่านใดควรเลือกไปดูบ้านจริง?"
+          ],
+          "en": [
+            "How do plot sizes vary within a similar budget?",
+            "Which neighbourhoods deserve a viewing?"
+          ]
+        },
+        "takeaway": {
+          "th": "ยืนยันสภาพบ้าน ขนาดที่ดิน และราคาปัจจุบันกับเจ้าของประกาศ",
+          "en": "Confirm the home’s condition, plot size and current price with the seller."
         }
       },
       "detailUrl": {
@@ -2218,19 +2412,35 @@
       "order": 5,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ทาวน์เฮาส์ในพื้นที่ที่สนใจมีช่วงราคาเสนอขายใดบ้าง?",
-            "รายการใดเหมาะจะนำไปศึกษารายละเอียดต่อให้สอดคล้องกับงบประมาณ?"
-          ],
-          "en": [
-            "What asking-price ranges appear for townhouses in the selected area?",
-            "Which listings merit a closer look within the available budget?"
-          ]
+        "lead": {
+          "th": "เห็นช่วงราคาประกาศทาวน์เฮาส์ในแต่ละย่าน เพื่อเลือกบ้านที่เข้ากับงบและทำเลที่อยากอยู่",
+          "en": "Explore townhouse asking prices by neighbourhood to focus a search around your budget and preferred location."
+        },
+        "sectionTitle": {
+          "th": "เริ่มจากย่าน แล้วค่อยเลือกหลัง",
+          "en": "Choose the neighbourhood, then the home"
         },
         "reading": {
-          "th": "อ่านราคาและรายละเอียดประกาศเพื่อคัดเลือกทาวน์เฮาส์ที่ต้องการศึกษาต่อ อย่าใช้จำนวนประกาศแทนจำนวนบ้านทั้งหมด เพราะอาจมีรายการซ้ำหรือประกาศที่ยังไม่ปรับปรุง ส่วนราคาเสนอขายช่วยเทียบตัวเลือกเบื้องต้น แต่ยังไม่ใช่ราคาซื้อขายจริง",
-          "en": "Read asking prices and listing details to shortlist townhouses for further investigation. Listing counts do not represent the full housing stock and may include duplicate or outdated records. Advertised prices help compare options but are not completed transaction prices."
+          "th": "ราคาและตำแหน่งของประกาศช่วยลดตัวเลือกที่ต้องไล่ดูทีละหลัง ลองเทียบพื้นที่ใกล้กันก่อนเลือกประกาศที่จะตรวจรายละเอียดและนัดชม",
+          "en": "Mapped listings help narrow a long search. Compare nearby areas, then select homes for a closer review and viewing."
+        },
+        "note": {
+          "th": "จำนวนประกาศไม่ใช่จำนวนบ้านทั้งหมด และราคาอาจซ้ำหรือยังไม่ปรับปรุง",
+          "en": "Listing counts are not the total housing stock, and entries may be duplicated or outdated."
+        },
+        "questions": {
+          "th": [
+            "ช่วงราคาที่ตั้งงบไว้พบในย่านไหนบ้าง?",
+            "มีประกาศใดเหมาะจะนัดดูต่อ?"
+          ],
+          "en": [
+            "Which areas contain listings within your budget?",
+            "Which homes are worth arranging to view?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจรายละเอียดและสถานะขายล่าสุดก่อนนัดชมบ้าน",
+          "en": "Check the latest listing details and availability before arranging a viewing."
         }
       },
       "detailUrl": {
@@ -2343,19 +2553,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ค่าเช่าที่ประกาศและค่าประมาณผลตอบแทนต่างกันอย่างไรในพื้นที่ที่สนใจ?",
-            "ต้องตรวจสมมติฐานใดก่อนนำตัวเลขผลตอบแทนไปใช้กับห้องหรือโครงการจริง?"
-          ],
-          "en": [
-            "How do advertised rents and estimated yields compare across the area?",
-            "Which assumptions need checking before applying a yield estimate to a property?"
-          ]
+        "lead": {
+          "th": "อ่านค่าเช่าคอนโดและผลตอบแทนเบื้องต้นร่วมกัน เพื่อเลือกห้องหรือโครงการที่ควรทำการบ้านต่อ",
+          "en": "Read condominium rents alongside indicative yields to choose projects for closer financial research."
+        },
+        "sectionTitle": {
+          "th": "เปลี่ยนตัวเลขผลตอบแทนเป็นโจทย์ที่ตรวจได้",
+          "en": "Turn an indicative yield into a testable case"
         },
         "reading": {
-          "th": "เริ่มจากข้อมูลประกาศเช่าและค่าสรุประดับพื้นที่ แล้วอ่านว่าผลตอบแทนหรือคะแนนลงทุนคำนวณจากอะไร ตรวจค่าใช้จ่าย ห้องว่าง และรายการซ้ำประกอบก่อนใช้กับห้องหรือโครงการที่สนใจ ค่าประมาณเหล่านี้ไม่ใช่ผลตอบแทนที่รับประกัน",
-          "en": "Start with rental listings and area summaries, then examine the assumptions behind yield estimates or investment scores. Check costs, vacancy and duplicate listings before applying the figures to a particular unit or project. These estimates do not guarantee a return."
+          "th": "แผนที่ช่วยวางช่วงค่าเช่าและค่าคำนวณผลตอบแทนไว้ในบริบทเดียวกัน จุดที่ดูน่าสนใจจึงเป็นจุดเริ่มต้นให้กลับไปตรวจราคาซื้อ ค่าใช้จ่าย และโอกาสห้องว่างของห้องจริง",
+          "en": "The map puts rents and indicative yields in context. Use promising entries to investigate actual purchase prices, costs and potential vacancy."
+        },
+        "note": {
+          "th": "ผลตอบแทนและคะแนนคำนวณจากประกาศ ไม่ใช่รายได้ที่เกิดขึ้นจริงหรือผลตอบแทนรับประกัน",
+          "en": "Yields and scores are calculated from listings, not realised income or guaranteed returns."
+        },
+        "questions": {
+          "th": [
+            "ค่าเช่าและผลตอบแทนเบื้องต้นต่างกันอย่างไรระหว่างย่าน?",
+            "สมมติฐานใดต้องตรวจจากห้องจริงก่อนลงทุน?"
+          ],
+          "en": [
+            "How do rents and indicative yields vary between areas?",
+            "Which assumptions need checking before investing?"
+          ]
+        },
+        "takeaway": {
+          "th": "ทำประมาณการของห้องที่เลือกโดยใส่ต้นทุนและห้องว่างให้ครบ",
+          "en": "Build a room-specific estimate that includes costs and vacancy."
         }
       },
       "detailUrl": {
@@ -2514,19 +2740,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ย่านที่สนใจมีธุรกิจจดทะเบียนประเภทใดและสถานะทะเบียนเป็นอย่างไร?",
-            "โครงสร้างธุรกิจและทุนจดทะเบียนช่วยเลือกตลาด คู่แข่ง หรือคู่ค้าที่ควรศึกษาต่ออย่างไร?"
-          ],
-          "en": [
-            "Which registered business activities and registration statuses appear in the area?",
-            "How can the business mix and registered capital guide further market, competitor or partner research?"
-          ]
+        "lead": {
+          "th": "รู้จักโครงสร้างธุรกิจในพื้นที่จากประเภทบริษัท สถานะทะเบียน และทุนจดทะเบียน ก่อนศึกษาคู่แข่งหรือคู่ค้า",
+          "en": "Read the local business landscape through company types, registration status and registered capital."
+        },
+        "sectionTitle": {
+          "th": "เห็นกลุ่มธุรกิจก่อนเลือกเจาะรายบริษัท",
+          "en": "See the business mix before researching individual firms"
         },
         "reading": {
-          "th": "ใช้ประเภทธุรกิจ สถานะทะเบียน และทุนจดทะเบียนอ่านภาพรวมธุรกิจในช่วงข้อมูลที่เลือก แล้วนำไปตั้งคำถามสำหรับสำรวจตลาดต่อ สถานะทะเบียนไม่ได้ยืนยันว่ากิจการเปิดหรือปิดจริง และทุนจดทะเบียนไม่ใช่รายได้ เงินลงทุน หรือจำนวนการจ้างงาน อีกทั้งยังไม่ควรถือว่ารายการนี้ครอบคลุมนิติบุคคลทั้งหมด",
-          "en": "Read business activity, registration status and registered capital within the selected period to frame further market research. Registration status does not establish actual opening or closure, and registered capital is not revenue, investment or employment. Do not assume the records cover every legal entity."
+          "th": "เมื่อบริษัทต่าง ๆ อยู่บนแผนที่เดียวกัน จะเห็นประเภทธุรกิจที่กระจุกตัวและพื้นที่ที่ควรลงสำรวจ ใช้ทุนจดทะเบียนประกอบการอ่านโครงสร้างทะเบียน แล้วตรวจการดำเนินงานจริงของบริษัทที่สนใจต่อ",
+          "en": "A shared map reveals concentrations of business types and areas for market research. Registered capital adds registry context; follow up on the actual operations of selected firms."
+        },
+        "note": {
+          "th": "สถานะทะเบียนไม่เท่ากับการเปิดกิจการจริง และทุนจดทะเบียนไม่ใช่รายได้ เงินลงทุน หรือจำนวนงาน",
+          "en": "Registration status is not operating status. Registered capital is not revenue, investment or employment."
+        },
+        "questions": {
+          "th": [
+            "ธุรกิจประเภทใดกระจุกตัวในพื้นที่นี้?",
+            "มีบริษัทไหนควรศึกษาเป็นคู่แข่งหรือคู่ค้า?"
+          ],
+          "en": [
+            "Which business types cluster in this area?",
+            "Which firms merit competitor or partner research?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกกลุ่มธุรกิจแล้วตรวจรายบริษัทกับข้อมูลการดำเนินงานปัจจุบัน",
+          "en": "Choose a business segment, then check current operating information for individual firms."
         }
       },
       "detailUrl": {
@@ -2680,19 +2922,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "โรงงานและตัวเลขแรงงานที่บันทึกไว้กระจุกตัวอยู่บริเวณใด?",
-            "ข้อมูลทุนและเครื่องจักรช่วยตั้งคำถามเกี่ยวกับฐานอุตสาหกรรมของพื้นที่ได้อย่างไร?"
-          ],
-          "en": [
-            "Where are factory records and reported workforce figures concentrated?",
-            "How can reported capital and machinery figures guide questions about the industrial base?"
-          ]
+        "lead": {
+          "th": "เห็นฐานอุตสาหกรรมในพื้นที่จากโรงงาน แรงงาน และตัวเลขการลงทุนที่บันทึก เพื่อเริ่มศึกษาตลาดและเครือข่ายธุรกิจ",
+          "en": "Explore an area’s industrial base through recorded factories, workforce and investment figures."
+        },
+        "sectionTitle": {
+          "th": "มองโรงงานเป็นเครือข่ายของพื้นที่",
+          "en": "Read factories as part of a local business network"
         },
         "reading": {
-          "th": "อ่านรายการโรงงานร่วมกับสถานะและตัวเลขแรงงาน ทุน หรือเครื่องจักรที่บันทึกไว้ เพื่อทำความเข้าใจฐานอุตสาหกรรมก่อนศึกษาตลาดในพื้นที่ต่อ ควรตรวจนิยาม หน่วย และความครบถ้วนของทะเบียนก่อนเปรียบเทียบหรือรวมตัวเลข จึงยังไม่ใช้ภาพรวมนี้แทนข้อสรุปอุตสาหกรรมทั้งหมดของพื้นที่",
-          "en": "Read factory records with reported status, workforce, capital and machinery measures to frame an area’s industrial context for further market research. Confirm definitions, units and registry coverage before comparing or adding figures. The available inventory should not stand in for the area’s entire industrial economy."
+          "th": "การดูประเภทและการกระจายโรงงานพร้อมตัวเลขที่เกี่ยวข้องช่วยตั้งคำถามเรื่องคู่ค้า บริการ และพื้นที่สำรวจต่อ เลือกเทียบรายการที่ใช้ช่วงเวลาและหน่วยเดียวกัน เพื่อให้ความต่างที่เห็นมีความหมาย",
+          "en": "Factory types and locations help frame questions about suppliers, services and field research. Compare figures with matching units and reference periods."
+        },
+        "note": {
+          "th": "ตัวเลขเป็นสิ่งที่ทะเบียนบันทึก ต้องยืนยันนิยามและสถานะโรงงานก่อนใช้แทนกำลังผลิตหรือการจ้างงานปัจจุบัน",
+          "en": "Registry figures need their definitions and operating status confirmed before being used as current production capacity or employment."
+        },
+        "questions": {
+          "th": [
+            "โรงงานประเภทใดเป็นฐานสำคัญของพื้นที่?",
+            "กลุ่มโรงงานไหนควรลงรายละเอียดเพื่อศึกษาตลาดต่อ?"
+          ],
+          "en": [
+            "Which factory types shape the area’s industrial base?",
+            "Which clusters deserve closer market research?"
+          ]
+        },
+        "takeaway": {
+          "th": "คัดพื้นที่และโรงงานที่เกี่ยวข้อง แล้วตรวจสถานะกับข้อมูลต้นทาง",
+          "en": "Shortlist relevant areas and factories, then confirm their status with the source records."
         }
       },
       "detailUrl": {
@@ -2873,19 +3131,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "อาคารสำนักงานในกรุงเทพฯ มีช่วงราคาเสนอเช่าต่างกันอย่างไรตามทำเล?",
-            "อาคารใดควรเลือกไปศึกษารายละเอียดต่อจากราคาและบริบทพื้นที่?"
-          ],
-          "en": [
-            "How do Bangkok office asking-rent ranges vary by location?",
-            "Which buildings merit further investigation based on asking rent and area context?"
-          ]
+        "lead": {
+          "th": "เทียบอาคารสำนักงานในกรุงเทพฯ จากราคาเสนอเช่าและทำเล ก่อนเลือกอาคารไปดูรายละเอียด",
+          "en": "Compare Bangkok office buildings by asking rent and location before arranging a closer look."
+        },
+        "sectionTitle": {
+          "th": "วางค่าเช่าไว้ในบริบทของทำเล",
+          "en": "Put asking rent in its location context"
         },
         "reading": {
-          "th": "เปรียบเทียบอาคารสำนักงานในกรุงเทพฯ ผ่านราคาเสนอเช่าและบริบททำเล เพื่อเห็นตัวเลือกในตลาดก่อนเลือกอาคารไปศึกษาต่อ ขอบเขตที่ยืนยันได้จำกัดอยู่ที่กรุงเทพฯ และราคาที่ประกาศไม่ใช่ค่าเช่าตามสัญญาหรือหลักฐานอัตราการใช้พื้นที่",
-          "en": "Compare Bangkok office buildings through asking rents and location context to understand the available market options before investigating properties. The confirmed scope is Bangkok. Advertised rent is neither contracted rent nor evidence of occupancy."
+          "th": "อาคารที่เสนอค่าเช่าใกล้กันอาจอยู่ในบริบททำเลต่างกัน แผนที่ช่วยจัดตัวเลือกให้อยู่ในภาพเดียว เพื่อเตรียมเปรียบเทียบเงื่อนไขและพื้นที่เช่ากับแต่ละอาคาร",
+          "en": "Buildings with similar asking rents can sit in different location contexts. The map helps organise a shortlist before comparing space and lease terms directly."
+        },
+        "note": {
+          "th": "ขอบเขตนี้คือกรุงเทพฯ ราคาเสนอเช่าไม่ใช่ค่าเช่าที่ตกลงในสัญญาหรืออัตราเช่าเต็ม",
+          "en": "This view covers Bangkok. Asking rents are not agreed lease rents or occupancy rates."
+        },
+        "questions": {
+          "th": [
+            "อาคารในช่วงค่าเช่าใกล้กันอยู่ทำเลไหนบ้าง?",
+            "อาคารใดควรติดต่อเรื่องพื้นที่และเงื่อนไขเช่า?"
+          ],
+          "en": [
+            "Where are buildings in a similar rental range?",
+            "Which buildings should you contact about space and terms?"
+          ]
+        },
+        "takeaway": {
+          "th": "สอบถามพื้นที่ว่างและเงื่อนไขล่าสุดกับอาคารในรายการสั้น",
+          "en": "Ask shortlisted buildings about current availability and lease terms."
         }
       },
       "detailUrl": {
@@ -2994,11 +3268,29 @@
       "datasetCode": "nonBank",
       "mapUrl": "https://landometer.com/v3/citymeter?d=nonBank",
       "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
+        "available": true,
+        "path": "media/previews-current/non-bank-20261010.webp",
+        "largePath": "media/previews-current/non-bank-20261010-large.webp",
         "conceptual": false,
-        "focusLabel": null
+        "focusLabel": {
+          "th": "เทียบเครือข่ายสาขา · โหมด VS",
+          "en": "Compare branch networks · VS mode"
+        },
+        "capture": {
+          "date": "2026-10-10",
+          "url": "https://landometer.com/v3/citymeter?d=nonBank",
+          "state": "ประเทศไทย · โหมด VS · เมืองไทย แคปปิตอล เทียบ ศรีสวัสดิ์ พาวเวอร์ 2014",
+          "note": {
+            "th": "ภาพตัวอย่างที่จับเมื่อ 10 ตุลาคม 2569 ตัวเลขและตัวเลือกอาจเปลี่ยนเมื่อเปิดใช้งาน",
+            "en": "Captured on 10 October 2026. Values and available controls may change in the live service."
+          },
+          "stateLabel": {
+            "th": "ประเทศไทย · โหมด VS · เมืองไทย แคปปิตอล เทียบ ศรีสวัสดิ์ พาวเวอร์ 2014",
+            "en": "Thailand · VS mode · Muangthai Capital compared with Srisawad Power 2014"
+          }
+        },
+        "width": 641,
+        "height": 319
       },
       "aliases": [
         "เครือข่ายสาขาและสำนักงาน Non-bank",
@@ -3014,19 +3306,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ผู้ให้กู้ Non-bank ในฐานข้อมูลมีเครือข่ายสาขาและสำนักงานกระจายตัวอย่างไร?",
-            "ก่อนเปรียบเทียบเครือข่าย ต้องแยกสาขา บริษัท และประเภทใบอนุญาตอย่างไร?"
-          ],
-          "en": [
-            "How are the recorded non-bank lender branches and offices distributed?",
-            "How should branches, companies and licence categories be separated before comparing networks?"
-          ]
+        "lead": {
+          "th": "เห็นเครือข่ายสาขาและสำนักงาน Non-bank เพื่อเข้าใจภูมิทัศน์ผู้ให้บริการก่อนเลือกพื้นที่สำรวจตลาด",
+          "en": "See Non-bank branches and offices together to understand the provider landscape before a market visit."
+        },
+        "sectionTitle": {
+          "th": "แยกประเภทจุดบริการ ก่อนนับเครือข่าย",
+          "en": "Distinguish service locations before counting a network"
         },
         "reading": {
-          "th": "อ่านเครือข่ายบริการโดยแยกสาขา สำนักงาน สำนักงานใหญ่ และบริษัทให้ชัด เพื่อใช้ศึกษาตลาดในพื้นที่ที่มีข้อมูล พิกัดอาจไม่ครบและหมวดใบอนุญาตอาจซ้อนกัน การจับคู่ชื่อไม่พบไม่ได้แปลว่าไม่มีใบอนุญาต และจำนวนสาขาไม่บอกยอดสินเชื่อ ความต้องการสินเชื่อ หรือความเสี่ยงหนี้",
-          "en": "Study the service network by keeping branches, offices, headquarters and companies distinct. Some coordinates are missing and licence categories can overlap; an unmatched name does not mean unlicensed. Branch counts describe the recorded network, not loan volume, credit demand or debt risk."
+          "th": "สาขา สำนักงาน สำนักงานใหญ่ และบริษัทมีความหมายต่างกัน การแยกหน่วยเหล่านี้ช่วยให้เปรียบเทียบการกระจายบริการได้ตรงโจทย์ แล้วค่อยใช้ข้อมูลใบอนุญาตประกอบการตรวจผู้ให้บริการแต่ละราย",
+          "en": "Branches, offices, headquarters and companies are different units. Keeping them distinct makes network comparisons useful, with licence information supporting provider-specific checks."
+        },
+        "note": {
+          "th": "ไม่พบการจับคู่ใบอนุญาตไม่ได้แปลว่าไม่มีใบอนุญาต จำนวนสาขาไม่ใช่ยอดสินเชื่อหรือความต้องการกู้",
+          "en": "No matched licence does not mean unlicensed. Branch counts do not measure lending volumes or demand."
+        },
+        "questions": {
+          "th": [
+            "ผู้ให้บริการแต่ละรายมีสาขาและสำนักงานอยู่บริเวณใด?",
+            "พื้นที่ไหนควรลงสำรวจเครือข่ายบริการเพิ่ม?"
+          ],
+          "en": [
+            "Where do providers have branches and offices?",
+            "Which areas need closer service-network research?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกพื้นที่แล้วตรวจประเภทจุดบริการ สถานะ และใบอนุญาตกับผู้ให้บริการ",
+          "en": "Choose an area and confirm location type, operating status and licensing with the provider."
         }
       },
       "detailUrl": {
@@ -3138,19 +3446,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ย่านที่สนใจมีร้านอาหารประเภทใดและช่วงราคาแบบไหน?",
-            "คะแนนรีวิวและการกระจายตัวของร้านช่วยตั้งคำถามเรื่องคู่แข่งอย่างไร?"
-          ],
-          "en": [
-            "What restaurant types and price ranges appear in the neighbourhood?",
-            "How can review scores and restaurant distribution guide competitor research?"
-          ]
+        "lead": {
+          "th": "อ่านภาพร้านอาหารในย่านจากประเภทร้าน ระดับราคา และรีวิว เพื่อวางโจทย์สำรวจคู่แข่งให้ชัดขึ้น",
+          "en": "Understand a neighbourhood’s restaurant mix through cuisine types, prices and reviews before researching competitors."
+        },
+        "sectionTitle": {
+          "th": "เห็นตลาดร้านอาหาร มากกว่ารายชื่อร้าน",
+          "en": "Look beyond a list of restaurants"
         },
         "reading": {
-          "th": "อ่านประเภทร้าน ระดับราคา และคะแนนรีวิวร่วมกันเพื่อเห็นบริบทการแข่งขัน ก่อนเลือกทำเลไปศึกษาต่อ ต้องตรวจวันรวบรวมและความครอบคลุมก่อนเปรียบเทียบย่าน จำนวนร้านหรือรีวิวไม่ใช่จำนวนลูกค้าหรือความต้องการซื้อ และคะแนนไม่ได้แทนการตรวจคุณภาพอย่างอิสระ",
-          "en": "Read restaurant categories, price ranges and review scores together to frame local competitive research. Check collection dates and coverage before comparing neighbourhoods. Restaurant or review counts are not customer numbers or demand, and review scores are not an independent quality assessment."
+          "th": "การวางร้านในบริบทเดียวกันช่วยให้เห็นว่าร้านแบบไหนกระจุกตัวและมีช่วงราคาใดให้เลือก ใช้ภาพนี้เตรียมลงพื้นที่ดูข้อเสนอของร้านและประสบการณ์ลูกค้าจริง",
+          "en": "Seeing restaurants together reveals their mix and price ranges. Use that context to plan visits and compare actual offers and customer experience."
+        },
+        "note": {
+          "th": "จำนวนร้านและรีวิวไม่ใช่ยอดขายหรือจำนวนลูกค้า คะแนนรีวิวก็ไม่ใช่การตรวจคุณภาพโดยอิสระ",
+          "en": "Restaurant and review counts are not sales or customer volumes. Ratings are not independent quality assessments."
+        },
+        "questions": {
+          "th": [
+            "ย่านนี้มีร้านแบบไหนและช่วงราคาใดเป็นหลัก?",
+            "ร้านใดควรไปศึกษาเพื่อวางตำแหน่งธุรกิจ?"
+          ],
+          "en": [
+            "Which restaurant types and price ranges shape this area?",
+            "Which places are useful comparisons for your business?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกกลุ่มร้านที่ใกล้กับโจทย์ แล้วลงพื้นที่ตรวจเมนู ราคา และการให้บริการ",
+          "en": "Select relevant comparison restaurants and check their menus, prices and service in person."
         }
       },
       "detailUrl": {
@@ -3266,11 +3590,29 @@
       "datasetCode": "grocery",
       "mapUrl": "https://landometer.com/v3/citymeter?d=grocery",
       "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
+        "available": true,
+        "path": "media/previews-current/grocery-retail-20261010.webp",
+        "largePath": "media/previews-current/grocery-retail-20261010-large.webp",
         "conceptual": false,
-        "focusLabel": null
+        "focusLabel": {
+          "th": "ร้านต่อประชากร · สัดส่วนแบรนด์",
+          "en": "Stores per population · brand count shares"
+        },
+        "capture": {
+          "date": "2026-10-10",
+          "url": "https://landometer.com/v3/citymeter?d=grocery",
+          "state": "ประเทศไทย · ร้านต่อประชากร 10,000 คน · ทุกเชนที่มีในฐาน",
+          "note": {
+            "th": "ภาพตัวอย่างที่จับเมื่อ 10 ตุลาคม 2569 ตัวเลขและตัวเลือกอาจเปลี่ยนเมื่อเปิดใช้งาน",
+            "en": "Captured on 10 October 2026. Values and available controls may change in the live service."
+          },
+          "stateLabel": {
+            "th": "ประเทศไทย · ร้านต่อประชากร 10,000 คน · ทุกเชนที่มีในฐาน",
+            "en": "Thailand · stores per 10,000 people · all chains in the database"
+          }
+        },
+        "width": 641,
+        "height": 319
       },
       "aliases": [
         "ร้านค้าปลีกและค้าส่ง",
@@ -3286,19 +3628,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "แบรนด์ค้าปลีกและค้าส่งในฐานข้อมูลมีเครือข่ายสาขากระจายตัวอย่างไร?",
-            "สัดส่วนสาขาและประเภทร้านช่วยเลือกย่านไปสำรวจตลาดต่อได้อย่างไร?"
-          ],
-          "en": [
-            "How are the recorded retail and wholesale chains distributed across the area?",
-            "How can branch-count shares and store types help prioritise market visits?"
-          ]
+        "lead": {
+          "th": "เทียบเครือข่ายค้าปลีกและค้าส่งในพื้นที่เดียวกัน เพื่อเห็นโครงสร้างการแข่งขันและเลือกย่านที่ควรสำรวจต่อ",
+          "en": "Compare retail and wholesale networks in one area to understand the competitive landscape and focus market research."
+        },
+        "sectionTitle": {
+          "th": "ดูทั้งแบรนด์และรูปแบบร้าน",
+          "en": "Read both brand and store format"
         },
         "reading": {
-          "th": "ใช้สาขา แบรนด์ และประเภทร้านอ่านภูมิทัศน์ค้าปลีกและค้าส่งของเครือข่ายที่มีข้อมูล รวมถึงร้านขายยา สัดส่วนที่เห็นเป็นสัดส่วนจำนวนสาขาในฐานนี้ ไม่ใช่ยอดขาย ส่วนแบ่งรายได้ หรือความต้องการซื้อจริง ก่อนวางแผนควรตรวจสถานะสาขาและพื้นที่ขาย ซึ่งเป็นค่าประมาณตามประเภทร้าน",
-          "en": "Use stores, brands and store types to study the recorded retail, wholesale and pharmacy networks. Any count share describes this selected inventory, not sales, revenue share or observed demand. Check operating status and sales-floor area, which is estimated by store type, before planning."
+          "th": "จำนวนสาขาช่วยให้เห็นรอยเท้าของแต่ละเครือข่าย ขณะที่ประเภทร้านช่วยอธิบายว่าพื้นที่มีข้อเสนอแบบใดอยู่แล้ว อ่านสองอย่างร่วมกันก่อนกำหนดโจทย์ลงสำรวจ",
+          "en": "Branch counts show network presence; store formats show the kinds of retail offer already in an area. Read both before planning field research."
+        },
+        "note": {
+          "th": "สัดส่วนจากสาขาในฐานข้อมูลไม่ใช่ส่วนแบ่งยอดขาย พื้นที่ขายเป็นค่าประมาณ และไม่ได้รวมร้านค้าทุกแห่ง",
+          "en": "Shares of recorded branches are not sales shares. Selling areas are estimates, and not every shop is included."
+        },
+        "questions": {
+          "th": [
+            "เครือข่ายและรูปแบบร้านใดพบในย่านนี้?",
+            "พื้นที่ไหนน่าไปตรวจข้อเสนอของร้านจริงต่อ?"
+          ],
+          "en": [
+            "Which chains and store formats are represented here?",
+            "Where should you examine the local retail offer?"
+          ]
+        },
+        "takeaway": {
+          "th": "คัดย่านที่สนใจ แล้วตรวจสถานะสาขา ขนาดร้าน และบริบทหน้าร้าน",
+          "en": "Shortlist areas, then confirm branch status, store size and the immediate retail context."
         }
       },
       "detailUrl": {
@@ -3414,19 +3772,35 @@
       "order": 3,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "พื้นที่ที่สนใจมีศูนย์การค้า ตลาด และพื้นที่ค้าปลีกประเภทใดบ้าง?",
-            "ข้อมูลพื้นที่อาคาร พื้นที่ให้เช่า และผู้เช่าช่วยเลือกสถานที่ศึกษาต่อได้อย่างไร?"
-          ],
-          "en": [
-            "What types of shopping centres, markets and retail sites appear in the area?",
-            "How can floor-area and tenant information help shortlist sites for further study?"
-          ]
+        "lead": {
+          "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในภาพเดียว เพื่อเข้าใจทางเลือกของคนในย่านและวางโจทย์ศึกษาตลาด",
+          "en": "See shopping centres, markets and retail spaces together when studying a local retail landscape."
+        },
+        "sectionTitle": {
+          "th": "เทียบพื้นที่ค้าปลีกให้ตรงรูปแบบ",
+          "en": "Compare like kinds of retail space"
         },
         "reading": {
-          "th": "แยกประเภทรูปแบบค้าปลีกก่อนอ่าน GFA, GLA และจำนวนผู้เช่า เพื่อเปรียบเทียบอุปทานและเลือกสถานที่ศึกษาตลาดต่อ ข้อมูลแต่ละตัวอาจครบไม่เท่ากัน จึงต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน จำนวนสถานที่ไม่ใช่ยอดขายหรือจำนวนลูกค้าที่เข้ามาใช้บริการ",
-          "en": "Separate retail-site types before reading GFA, GLA and tenant counts to compare supply and shortlist locations for market research. Coverage differs between measures, so distinguish estimates from sourced measurements. Site counts do not establish sales or customer numbers."
+          "th": "ศูนย์การค้าและตลาดเป็นพื้นที่ค้าปลีกต่างรูปแบบ จำนวนแห่งอย่างเดียวจึงเล่าเรื่องได้ไม่ครบ ลองอ่านประเภทควบคู่กับขนาดและข้อมูลผู้เช่าที่มี ก่อนเลือกสถานที่ไปศึกษา",
+          "en": "A market and a shopping centre offer different retail formats. Read type alongside available size and tenant information before choosing places to research."
+        },
+        "note": {
+          "th": "GFA, GLA และจำนวนผู้เช่ามีความครบต่างกัน ค่าประมาณและจำนวนแห่งไม่ใช่ยอดขายหรือจำนวนลูกค้า",
+          "en": "GFA, GLA and tenant data vary in completeness. Estimates and venue counts do not measure sales or footfall."
+        },
+        "questions": {
+          "th": [
+            "ย่านนี้มีพื้นที่ค้าปลีกรูปแบบใดบ้าง?",
+            "สถานที่ไหนควรใช้เป็นคู่เทียบที่มีลักษณะใกล้กัน?"
+          ],
+          "en": [
+            "What kinds of retail space serve this area?",
+            "Which venues make useful like-for-like comparisons?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกสถานที่รูปแบบใกล้กัน แล้วตรวจพื้นที่เช่าและผู้เช่ากับสถานที่จริง",
+          "en": "Choose comparable formats, then confirm leasable space and tenant details at the venues."
         }
       },
       "detailUrl": {
@@ -3546,19 +3920,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "โรงแรมและจำนวนห้องพักที่บันทึกไว้กระจุกตัวอยู่บริเวณใด?",
-            "ระดับราคาและฤดูกาลช่วยเลือกทำเลที่พักไปศึกษาตลาดต่ออย่างไร?"
-          ],
-          "en": [
-            "Where are the recorded hotels and room supply concentrated?",
-            "How can advertised rates and seasonality guide further accommodation-market research?"
-          ]
+        "lead": {
+          "th": "มองตลาดที่พักผ่านจำนวนห้อง การกระจุกตัว และระดับราคา ก่อนเลือกศึกษาทำเลที่พึ่งพานักเดินทาง",
+          "en": "Read the accommodation market through room supply, clustering and prices before studying visitor-dependent locations."
+        },
+        "sectionTitle": {
+          "th": "แยกจำนวนโรงแรมออกจากอุปทานห้องพัก",
+          "en": "A hotel count is only part of the supply picture"
         },
         "reading": {
-          "th": "อ่านที่ตั้งโรงแรม จำนวนห้อง และราคาที่ประกาศเป็นภาพอุปทานเบื้องต้น แล้วพิจารณาฤดูกาลเพื่อเลือกทำเลศึกษาต่อ แหล่งข้อมูล วิธีคำนวณ และความครอบคลุมยังต้องตรวจเพิ่มเติม จึงไม่ใช้ตัวเลขเหล่านี้แทนอัตราเข้าพัก ยอดจอง หรือรายได้โรงแรม",
-          "en": "Read hotel locations, recorded room counts and advertised rates as an initial supply picture, with seasonality helping frame further location research. Source, method and coverage still need checking. These measures do not establish occupancy, bookings or hotel revenue."
+          "th": "โรงแรมจำนวนเท่ากันอาจมีจำนวนห้องต่างกันมาก การอ่านจำนวนห้องควบคู่กับราคาและตำแหน่งช่วยให้เลือกคู่เทียบได้เหมาะกว่า แล้วค่อยศึกษาช่วงเวลาและตลาดของแต่ละแห่ง",
+          "en": "Similar hotel counts can hide very different room supply. Read room numbers with prices and location to select better comparisons, then investigate their timing and market."
+        },
+        "note": {
+          "th": "ราคาเป็นข้อมูลที่ประกาศ จำนวนห้องไม่บอกอัตราเข้าพัก ยอดจอง หรือรายได้ของโรงแรม",
+          "en": "Listed prices and room counts do not establish occupancy, bookings or hotel revenue."
+        },
+        "questions": {
+          "th": [
+            "ที่พักและจำนวนห้องกระจุกตัวในส่วนไหนของพื้นที่?",
+            "โรงแรมใดเหมาะเป็นคู่เทียบสำหรับศึกษาตลาดต่อ?"
+          ],
+          "en": [
+            "Where is accommodation and room supply concentrated?",
+            "Which hotels make useful market comparisons?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกคู่เทียบแล้วตรวจราคา ช่วงเข้าพัก และสถานะห้องกับแต่ละแห่ง",
+          "en": "Select comparable properties and check prices, stay dates and room availability directly."
         }
       },
       "detailUrl": {
@@ -3741,19 +4131,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "จำนวนนักท่องเที่ยวและค่าใช้จ่ายที่รายงานต่างกันอย่างไรระหว่างจังหวัด?",
-            "แนวโน้มตามฤดูกาลและแหล่งท่องเที่ยวช่วยเลือกตลาดที่จะศึกษาต่ออย่างไร?"
-          ],
-          "en": [
-            "How do reported visitor volumes and spending compare between provinces?",
-            "How can seasonality and destinations help identify tourism markets for further study?"
-          ]
+        "lead": {
+          "th": "เทียบแนวโน้มนักท่องเที่ยวและการใช้จ่ายระหว่างจังหวัด เพื่อเตรียมแผนธุรกิจหรือกิจกรรมให้เข้ากับพื้นที่และฤดูกาล",
+          "en": "Compare visitor and spending trends across provinces when planning a tourism business or local activity."
+        },
+        "sectionTitle": {
+          "th": "จำนวนผู้เยี่ยมเยือนกับรายได้ต้องอ่านคู่กัน",
+          "en": "Read visitor numbers alongside tourism receipts"
         },
         "reading": {
-          "th": "เริ่มจากการเปรียบเทียบระดับจังหวัด แล้วอ่านจำนวนนักท่องเที่ยวและค่าใช้จ่ายร่วมกับฤดูกาลและแหล่งดึงดูด เพื่อกำหนดประเด็นศึกษาตลาดต่อ ต้องตรวจนิยามผู้เยี่ยมเยือนและวิธีแยกตลาด เพราะจำนวนที่รายงานไม่ใช่จำนวนคนไม่ซ้ำ และตัวเลขอาจมีการปรับปรุง",
-          "en": "Start with province-level comparisons, reading reported visitor volumes and spending alongside seasonality and attractions. Use the pattern to frame further market research. Check visitor definitions and market splits: reported visits are not unique people, and the figures may be revised."
+          "th": "จังหวัดที่มีผู้เยี่ยมเยือนมากอาจมีรูปแบบการใช้จ่ายต่างกัน ลองเทียบช่วงเวลาเดียวกันแล้วดูฤดูกาลและแหล่งท่องเที่ยวประกอบ เพื่อเลือกตลาดที่ควรศึกษาเชิงลึก",
+          "en": "Provinces with high visitor numbers can have different spending patterns. Compare the same period and consider seasonality and attractions before choosing a market to study."
+        },
+        "note": {
+          "th": "ผู้เยี่ยมเยือนไม่จำเป็นต้องเป็นคนไม่ซ้ำ ตัวเลขอาจปรับปรุงได้ และภาพระดับจังหวัดไม่แทนความต้องการหน้าร้าน",
+          "en": "Visitor counts need not represent unique people and can be revised. Provincial totals do not establish demand at an individual site."
+        },
+        "questions": {
+          "th": [
+            "จังหวัดที่สนใจมีแนวโน้มผู้เยี่ยมเยือนและรายได้ต่างกันอย่างไร?",
+            "ช่วงไหนควรศึกษาเพิ่มก่อนวางแผนธุรกิจ?"
+          ],
+          "en": [
+            "How do visitor and receipt trends differ across target provinces?",
+            "Which periods need closer study before planning?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกจังหวัดและช่วงเวลา แล้วต่อด้วยการศึกษาตลาดในพื้นที่จริง",
+          "en": "Choose a province and period, then investigate the local market directly."
         }
       },
       "detailUrl": {
@@ -3864,19 +4270,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "สถานีแต่ละแบรนด์ในฐานข้อมูลกระจายตัวและมีสัดส่วนจำนวนต่างกันอย่างไร?",
-            "บริเวณใดควรลงสำรวจเครือข่ายสถานีและสถานะเปิดบริการต่อ?"
-          ],
-          "en": [
-            "How do station locations and brand shares of recorded counts vary across areas?",
-            "Which areas merit field checks of station networks and operating status?"
-          ]
+        "lead": {
+          "th": "เห็นการกระจายตัวของสถานีบริการแต่ละแบรนด์ เพื่อเทียบเครือข่ายและวางแผนสำรวจทำเล",
+          "en": "See the distribution of fuel-station brands when comparing networks and planning location research."
+        },
+        "sectionTitle": {
+          "th": "อ่านรอยเท้าเครือข่าย ก่อนสรุปโอกาสตลาด",
+          "en": "Read network presence before judging market opportunity"
         },
         "reading": {
-          "th": "ใช้ตำแหน่ง จำนวน และความหนาแน่นอ่านภูมิทัศน์เครือข่ายสถานี ก่อนเลือกพื้นที่สำรวจต่อ ฐานปัจจุบันมีทั้งน้ำมัน ก๊าซ และรายการไม่ทราบแบรนด์ จึงต้องตรวจประเภท สถานะเปิดบริการ และรายการซ้ำ สัดส่วนจำนวนสถานีในฐานนี้ไม่ใช่ส่วนแบ่งยอดขายเชื้อเพลิง",
-          "en": "Use locations, counts and density to study station networks before choosing areas for fieldwork. The inventory mixes fuel and gas stations and includes unknown brands, so check type, operating status and duplicates. A brand’s share of recorded stations is not its share of fuel sales."
+          "th": "จำนวนและความหนาแน่นของสถานีช่วยให้เห็นว่าแต่ละแบรนด์มีจุดบริการในพื้นที่มากน้อยอย่างไร ใช้เลือกพื้นที่สำรวจ โดยแยกประเภทเชื้อเพลิงและสถานะสถานีให้ตรงกัน",
+          "en": "Station counts and density show how brands are represented in an area. Use them to focus research, comparing matching fuel types and operating states."
+        },
+        "note": {
+          "th": "ฐานนี้มีทั้งสถานีน้ำมันและก๊าซ รวมรายการไม่ทราบแบรนด์ สัดส่วนจำนวนสถานีไม่ใช่ส่วนแบ่งยอดขาย",
+          "en": "The records include petrol and gas stations, with some brands unknown. Station-count shares are not sales shares."
+        },
+        "questions": {
+          "th": [
+            "แต่ละแบรนด์มีสถานีกระจุกตัวบริเวณใด?",
+            "ทำเลไหนควรไปดูเครือข่ายบริการและทางเข้าออกจริง?"
+          ],
+          "en": [
+            "Where are each brand’s stations concentrated?",
+            "Which locations merit a visit to examine service coverage and access?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจประเภทเชื้อเพลิง สถานะเปิดบริการ และรายการซ้ำก่อนนำไปเทียบทำเล",
+          "en": "Confirm fuel type, operating status and duplicate records before comparing locations."
         }
       },
       "detailUrl": {
@@ -4023,19 +4445,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "การจดทะเบียนรถครั้งแรกต่างกันอย่างไรระหว่างจังหวัดในช่วงเวลาที่เลือก?",
-            "สัดส่วนแบรนด์และประเภทรถในรายการที่เลือกช่วยวางประเด็นศึกษาตลาดอย่างไร?"
-          ],
-          "en": [
-            "How do first-time vehicle registrations differ between provinces in the selected period?",
-            "How can brand and vehicle-type shares within selected records guide market research?"
-          ]
+        "lead": {
+          "th": "อ่านการจดทะเบียนรถครั้งแรกแยกจังหวัด ประเภทรถ และแบรนด์ เพื่อเห็นทิศทางตลาดที่ควรศึกษา",
+          "en": "Explore first-time vehicle registrations by province, vehicle type and brand to frame market research."
+        },
+        "sectionTitle": {
+          "th": "ดูแบรนด์บนฐานการจดทะเบียนเดียวกัน",
+          "en": "Compare brands using the same registration base"
         },
         "reading": {
-          "th": "เปรียบเทียบการจดทะเบียนครั้งแรกโดยใช้ช่วงเวลา ประเภทรถ และแบรนด์ที่สอดคล้องกัน เพื่อเตรียมแผนตลาดและเครือข่ายบริการ สัดส่วนแบรนด์มีฐานเป็นรายการที่เลือก ไม่ใช่จำนวนรถใช้งานทั้งหมด และไม่ใช้ตัวเลขนี้สรุปกำลังซื้อหรือพฤติกรรมเดินทางของคนในจังหวัด",
-          "en": "Compare first-time registrations using consistent periods, vehicle types and brands to frame marketing and service-network plans. Brand shares are calculated within the selected records, not the active vehicle fleet. These counts do not establish provincial purchasing power or travel behaviour."
+          "th": "ตัวกรองเวลา ประเภทรถ และแบรนด์เปลี่ยนฐานที่ใช้คำนวณสัดส่วน สัดส่วนจึงเป็นของกลุ่มแบรนด์ที่เลือก เมื่อใช้ชุดแบรนด์เดียวกัน จึงเห็นความต่างระหว่างจังหวัดและช่วงเวลาที่นำไปตั้งโจทย์เครือข่ายบริการต่อได้",
+          "en": "Time, vehicle-type and brand filters change the denominator. Shares are calculated within the selected brands. Keep that brand set the same when comparing provinces and periods to frame service-network questions."
+        },
+        "note": {
+          "th": "เป็นการจดทะเบียนครั้งแรก ไม่ใช่รถทั้งหมดที่ใช้งานในพื้นที่ และไม่ได้บอกกำลังซื้อหรือพฤติกรรมเดินทาง",
+          "en": "These are first-time registrations, not all vehicles in use. They do not establish purchasing power or travel behaviour."
+        },
+        "questions": {
+          "th": [
+            "ในกลุ่มแบรนด์ที่เลือก แบรนด์ใดมีสัดส่วนการจดทะเบียนครั้งแรกมากในจังหวัดที่สนใจ?",
+            "แนวโน้มเปลี่ยนอย่างไรเมื่อเทียบช่วงเวลาเดียวกัน?"
+          ],
+          "en": [
+            "Within the selected brands, which has the largest first-time registration share in the target province?",
+            "How does the pattern change across comparable periods?"
+          ]
+        },
+        "takeaway": {
+          "th": "ระบุจังหวัด ประเภทรถ ช่วงเวลา และชุดแบรนด์ให้ตรงกัน ก่อนใช้ประกอบแผนตลาดหรือบริการ",
+          "en": "Match the province, vehicle type, period and selected brand set before using the pattern in a market or service plan."
         }
       },
       "detailUrl": {
@@ -4147,19 +4585,35 @@
       "order": 3,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "โครงข่ายถนนในพื้นที่ที่สนใจมีรูปแบบการเชื่อมต่ออย่างไร?",
-            "สัดส่วนทางตันและความหนาแน่นทางแยกชี้ประเด็นใดให้ไปตรวจทำเลต่อ?"
-          ],
-          "en": [
-            "What connection patterns appear in the road network around the location?",
-            "What follow-up questions do dead-end and intersection measures raise about the area?"
-          ]
+        "lead": {
+          "th": "อ่านรูปแบบถนนเป็นลักษณะของย่าน เห็นความต่างของการเชื่อมต่อก่อนเลือกประเด็นสำรวจทำเล",
+          "en": "Read street-network patterns as neighbourhood characteristics before planning a location study."
+        },
+        "sectionTitle": {
+          "th": "ถนนหลายเส้น ไม่ได้เชื่อมต่อเหมือนกัน",
+          "en": "Street networks connect places in different ways"
         },
         "reading": {
-          "th": "ใช้รูปแบบโครงข่ายถนนตั้งคำถามเกี่ยวกับโครงสร้างพื้นที่ก่อนลงสำรวจทำเล ตัวอย่างที่ตรวจได้เป็นพื้นที่กรุงเทพฯ ควรอ่านคำอธิบายหน่วยวิเคราะห์ก่อนเปรียบเทียบ สัดส่วนทางตันและทางแยกเป็นสัญญาณให้ศึกษาต่อ ไม่ใช่การจราจรจริง คะแนนการเข้าถึง หรือคำตัดสินว่าทำเลดีหรือไม่ดี",
-          "en": "Use road-network patterns to frame questions about an area before investigating the location. This example covers Bangkok; check the analytical unit before comparing areas. Dead-end and intersection measures are diagnostic signals, not observed traffic, an access score or a verdict on location quality."
+          "th": "ในตัวอย่างพื้นที่กรุงเทพฯ สัดส่วนทางตันและความหนาแน่นทางแยกช่วยให้มองโครงสร้างถนนได้มากกว่าเส้นบนแผนที่ ใช้ตั้งคำถามว่าจะเดินทางเข้าถึงพื้นที่จริงอย่างไร",
+          "en": "In the Bangkok example, dead-end shares and junction density add context beyond road lines. Use the pattern to frame questions about real routes into the area."
+        },
+        "note": {
+          "th": "รูปแบบโครงข่ายไม่ใช่สภาพจราจร เวลาเดินทาง หรือคะแนนตัดสินว่าทำเลดีหรือไม่ดี",
+          "en": "Network form is not traffic, journey time or a score that determines whether a location is good or bad."
+        },
+        "questions": {
+          "th": [
+            "ย่านนี้มีถนนเชื่อมต่อกันหรือทางตันมากเพียงใด?",
+            "เส้นทางเข้าออกใดควรลองใช้จริง?"
+          ],
+          "en": [
+            "How connected or dead-end-heavy is the network?",
+            "Which access routes should you try in person?"
+          ]
+        },
+        "takeaway": {
+          "th": "นำข้อสังเกตเรื่องโครงข่ายไปตรวจเส้นทางและเงื่อนไขเดินทางจริง",
+          "en": "Check the observed pattern against real routes and travel conditions."
         }
       },
       "detailUrl": {
@@ -4282,19 +4736,35 @@
       "order": 4,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ในช่วงที่มีข้อมูล ความเร็วและความติดขัดบนเส้นทางในกรุงเทพฯ เป็นอย่างไร?",
-            "เวลาของข้อมูลช่วยเลือกประเด็นลงสำรวจการเข้าถึงหน้าร้านหรือจุดบริการอย่างไร?"
-          ],
-          "en": [
-            "What do the available speed and congestion readings show on roads in Bangkok?",
-            "How can the data timestamp help plan checks of access to a storefront or service location?"
-          ]
+        "lead": {
+          "th": "อ่านความเร็วและความติดขัดบนถนนในกรุงเทพฯ เพื่อเตรียมแผนเข้าถึงทำเลและลงสำรวจในช่วงที่สนใจ",
+          "en": "Read road speeds and congestion in Bangkok when planning access to a location or a field visit."
+        },
+        "sectionTitle": {
+          "th": "เวลาเดียวกันจึงเทียบการเดินทางได้ตรงโจทย์",
+          "en": "Time matters when reading traffic"
         },
         "reading": {
-          "th": "อ่านความเร็วและความติดขัดพร้อมเวลาของข้อมูลและสถานะการเชื่อมต่อ เพื่อเตรียมตรวจการเข้าถึงทำเลและวางแผนลงสำรวจตลาด ข้อมูลที่ตรวจได้อยู่ในกรุงเทพฯ โดยระดับพื้นที่ย่อยสุดยังต้องยืนยัน เมื่อข้อมูลเก่าหรือเชื่อมต่อไม่ได้ ห้ามตีความว่าถนนคล่องหรือสภาพการจราจรไม่มีปัญหา",
-          "en": "Read speed and congestion with the timestamp and feed status to prepare site-access checks and market visits. This example covers Bangkok; its smallest supported geography still needs confirmation. Delayed or unavailable readings do not establish free-flow traffic."
+          "th": "สภาพการจราจรมีความหมายเมื่อรู้ว่าข้อมูลแทนเวลาใด ลองอ่านค่าความเร็วและความติดขัดพร้อมเวลาของข้อมูล แล้วใช้ประกอบการเลือกช่วงไปสำรวจหรือให้บริการ",
+          "en": "Speed and congestion become useful when you know the time they represent. Read the timestamp alongside the values when planning a visit or service window."
+        },
+        "note": {
+          "th": "ข้อมูลเก่าหรือขาดหายไม่ได้แปลว่าถนนโล่ง และค่าจราจรไม่ได้บอกจำนวนลูกค้าที่หน้าร้าน",
+          "en": "Old or missing data does not mean clear roads. Traffic values do not measure customers at a shop."
+        },
+        "questions": {
+          "th": [
+            "ถนนรอบทำเลมีความเร็วและความติดขัดอย่างไรในเวลาที่แสดง?",
+            "ควรลงพื้นที่ช่วงใดเพื่อดูการเข้าถึงจริง?"
+          ],
+          "en": [
+            "What do road speeds and congestion show at the displayed time?",
+            "When should you visit to understand actual access?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจเวลาอัปเดต แล้วลองเดินทางในช่วงที่ตรงกับการใช้งานของคุณ",
+          "en": "Check the timestamp, then test the journey at a time relevant to your use."
         }
       },
       "detailUrl": {
@@ -4402,11 +4872,29 @@
       "datasetCode": "trafficIncident",
       "mapUrl": "https://landometer.com/v3/citymeter?d=trafficIncident",
       "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
+        "available": true,
+        "path": "media/previews-current/events-notices-20261010.webp",
+        "largePath": "media/previews-current/events-notices-20261010-large.webp",
         "conceptual": false,
-        "focusLabel": null
+        "focusLabel": {
+          "th": "รายงานในพื้นที่ · ประเภท · ช่วงเวลา",
+          "en": "Local reports · type · time period"
+        },
+        "capture": {
+          "date": "2026-10-10",
+          "url": "https://landometer.com/v3/citymeter?d=trafficIncident",
+          "state": "ประเทศไทย · ช่วง 7 วัน · ทุกประเภทรายงาน · หน้าจออ้างเวลา 10 ต.ค. 2569 16:00",
+          "note": {
+            "th": "ภาพตัวอย่างที่จับเมื่อ 10 ตุลาคม 2569 ตัวเลขและตัวเลือกอาจเปลี่ยนเมื่อเปิดใช้งาน",
+            "en": "Captured on 10 October 2026. Values and available controls may change in the live service."
+          },
+          "stateLabel": {
+            "th": "ประเทศไทย · ช่วง 7 วัน · ทุกประเภทรายงาน · หน้าจออ้างเวลา 10 ต.ค. 2569 16:00",
+            "en": "Thailand · 7-day window · all report types · displayed reference time: 10 October 2026, 16:00"
+          }
+        },
+        "width": 641,
+        "height": 319
       },
       "aliases": [
         "เหตุการณ์และประกาศในพื้นที่",
@@ -4423,19 +4911,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ในพื้นที่และช่วงเวลาที่สนใจ มีรายงานหรือประกาศเรื่องใดบ้าง?",
-            "รายงานใดควรเปิดหลักฐานต่อก่อนวางแผนงานในพื้นที่?"
-          ],
-          "en": [
-            "What reports and notices are available for the chosen area and period?",
-            "Which reports merit checking their evidence before planning work in the area?"
-          ]
+        "lead": {
+          "th": "เห็นรายงานเหตุการณ์และประกาศในพื้นที่ตามช่วงเวลา เพื่อเตรียมงานและเลือกข่าวที่ควรตามต่อ",
+          "en": "Explore area reports and notices over time to prepare local work and follow relevant updates."
+        },
+        "sectionTitle": {
+          "th": "อ่านแต่ละรายงานให้เห็นเรื่องและเวลา",
+          "en": "Connect each report with its place and time"
         },
         "reading": {
-          "th": "อ่านรายงานตามประเภท พิกัด และเวลาที่มี เพื่อเลือกหลักฐานที่เกี่ยวข้องกับงานในพื้นที่ต่อ หลายรายการอาจกล่าวถึงเหตุเดียวกัน จำนวนรายงานจึงไม่ใช่จำนวนเหตุจริงหรือปริมาณจราจร ความครอบคลุมต่างกันตามช่วงนำเข้า และการไม่พบรายงานไม่ได้ยืนยันว่าไม่มีเหตุเกิดขึ้น",
-          "en": "Read available report categories, locations and times to identify evidence relevant to local work. Several reports may refer to one event, so report counts are not unique events or traffic volume. Coverage varies by import period, and finding no report does not establish that nothing happened."
+          "th": "แผนที่ช่วยรวมรายงานที่กระจายอยู่ตามจุดและช่วงเวลา เลือกเรื่องที่เกี่ยวกับพื้นที่ของคุณแล้วเปิดรายละเอียดต้นทางก่อนปรับแผนงาน",
+          "en": "The map brings reports together by place and time. Find those relevant to your area and read the original details before changing a plan."
+        },
+        "note": {
+          "th": "หลายรายงานอาจเป็นเหตุเดียวกัน และการไม่พบรายงานไม่ได้แปลว่าไม่มีเหตุเกิดขึ้น",
+          "en": "Several reports may describe one event, and no report does not mean no event occurred."
+        },
+        "questions": {
+          "th": [
+            "ช่วงที่สนใจมีรายงานเรื่องใดในพื้นที่นี้?",
+            "รายงานไหนควรอ่านต้นทางก่อนวางแผนต่อ?"
+          ],
+          "en": [
+            "What was reported here during the period of interest?",
+            "Which original reports matter for the next plan?"
+          ]
+        },
+        "takeaway": {
+          "th": "ติดตามเวลาและที่มาของรายการที่เกี่ยวข้อง แยกจำนวนรายงานออกจากจำนวนเหตุ",
+          "en": "Follow the time and source of relevant records, keeping report counts distinct from event counts."
         }
       },
       "detailUrl": {
@@ -4569,19 +5073,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "บริบทของแต่ละ locale ช่วยตั้งคำถามเรื่องบริการและจุดที่ควรลงพื้นที่อย่างไร?",
-            "ก่อนรวมข้อมูลหลาย locale ต้องเชื่อมกับขอบเขตบริการหรือชุมชนใด?"
-          ],
-          "en": [
-            "How can each locale’s context guide service-planning questions and field visits?",
-            "Which verified administrative or service boundaries need matching before combining locales?"
-          ]
+        "lead": {
+          "th": "เริ่มรู้จักย่านจากข้อมูลบริบทที่รวมไว้ เพื่อเตรียมการลงพื้นที่ วางแผนบริการ และพูดคุยกับชุมชน",
+          "en": "Start with a neighbourhood’s context when preparing fieldwork, service planning and community conversations."
+        },
+        "sectionTitle": {
+          "th": "ใช้โปรไฟล์ย่านตั้งคำถามให้ดีขึ้น",
+          "en": "Use the neighbourhood profile to ask better questions"
         },
         "reading": {
-          "th": "ใช้โปรไฟล์ย่านเป็นบริบทตั้งต้นสำหรับวางแผนบริการ พูดคุยกับชุมชน และจัดลำดับการลงพื้นที่ หน้าตั้งต้นอยู่ในกรุงเทพฯ และยังต้องตรวจขอบเขต locale ให้ตรงกับเทศบาล ชุมชน หรือพื้นที่บริการก่อนรวมยอด ข้อมูลนี้ไม่แทนประชากรทางการ พฤติกรรมจริง เกณฑ์สิทธิ ขอบเขตตามกฎหมาย หรือการประเมินความเสี่ยง",
-          "en": "Use locale profiles as starting context for service planning, community conversations and fieldwork priorities. The initial view is Bangkok; match locale_id to verified administrative or service boundaries before aggregation. The profiles do not establish official population, observed behaviour, eligibility, statutory boundaries or risk."
+          "th": "Locale Insights ช่วยให้มีภาพตั้งต้นก่อนเข้าไปทำงานในพื้นที่ นำประเด็นที่เห็นไปเทียบกับข้อมูลราชการ บันทึกท้องถิ่น และสิ่งที่พบจริง แล้วปรับแผนจากหลักฐานเหล่านั้น",
+          "en": "Locale Insights provides a starting picture. Compare it with official data, local records and field observations, then refine the plan using that evidence."
+        },
+        "note": {
+          "th": "บริบทนี้ไม่แทนประชากรทางการ พฤติกรรมจริง เกณฑ์สิทธิ หรือความเสี่ยง ต้องเชื่อม locale_id กับขอบเขตที่ตรวจแล้วก่อนรวมยอด",
+          "en": "Context is not official population, observed behaviour, eligibility or risk. Crosswalk locale_id to verified boundaries before aggregation."
+        },
+        "questions": {
+          "th": [
+            "มีประเด็นใดของย่านที่ควรไปเรียนรู้จากคนในพื้นที่?",
+            "ข้อมูลทางการหรือบันทึกท้องถิ่นใดควรใช้ประกอบ?"
+          ],
+          "en": [
+            "What should you learn from people in this neighbourhood?",
+            "Which official or local records should accompany the profile?"
+          ]
+        },
+        "takeaway": {
+          "th": "ใช้เป็นโจทย์ลงพื้นที่และพูดคุย ไม่ใช้เป็นคำตัดสินแทนชุมชน",
+          "en": "Use it to guide fieldwork and conversation, not to make assumptions about the community."
         }
       },
       "detailUrl": {
@@ -4674,11 +5194,29 @@
       "datasetCode": "placeOfWorship",
       "mapUrl": "https://landometer.com/v3/citymeter?d=placeOfWorship",
       "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
+        "available": true,
+        "path": "media/previews-current/places-of-worship-20261010.webp",
+        "largePath": "media/previews-current/places-of-worship-20261010-large.webp",
         "conceptual": false,
-        "focusLabel": null
+        "focusLabel": {
+          "th": "ศาสนสถาน · ประเภท · พื้นที่",
+          "en": "Places of worship · type · area"
+        },
+        "capture": {
+          "date": "2026-10-10",
+          "url": "https://landometer.com/v3/citymeter?d=placeOfWorship",
+          "state": "ประเทศไทย · จำนวนศาสนสถาน · ทั้งสี่ศาสนาที่มีในฐาน",
+          "note": {
+            "th": "ภาพตัวอย่างที่จับเมื่อ 10 ตุลาคม 2569 ตัวเลขและตัวเลือกอาจเปลี่ยนเมื่อเปิดใช้งาน",
+            "en": "Captured on 10 October 2026. Values and available controls may change in the live service."
+          },
+          "stateLabel": {
+            "th": "ประเทศไทย · จำนวนศาสนสถาน · ทั้งสี่ศาสนาที่มีในฐาน",
+            "en": "Thailand · place count · all four religions represented in the database"
+          }
+        },
+        "width": 641,
+        "height": 319
       },
       "aliases": [
         "ศาสนสถานในพื้นที่",
@@ -4693,19 +5231,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ศาสนสถานที่มีในฐานข้อมูลกระจายตัวอย่างไรในพื้นที่ที่สนใจ?",
-            "รายการใดมีพิกัดให้ดูบนแผนที่ และรายการใดยังต้องตรวจตำแหน่งต่อ?"
-          ],
-          "en": [
-            "How are the recorded places of worship distributed in the area?",
-            "Which records have mapped locations, and which still need location checks?"
-          ]
+        "lead": {
+          "th": "รู้จักศาสนสถานในพื้นที่เพื่อเข้าใจบริบทชุมชน และเตรียมการประสานงานอย่างใส่ใจความหลากหลาย",
+          "en": "Explore places of worship to understand community context and prepare thoughtful local coordination."
+        },
+        "sectionTitle": {
+          "th": "เห็นสถานที่ แล้วค่อยเรียนรู้บทบาทในชุมชน",
+          "en": "Find the places, then learn their community role"
         },
         "reading": {
-          "th": "อ่านรายการศาสนสถานเพื่อเตรียมทำความเข้าใจบริบทพื้นที่และพูดคุยกับชุมชน แยกจำนวนรายการทั้งหมดออกจากรายการที่มีพิกัด เพราะไม่มีหมุดไม่ได้แปลว่าไม่มีสถานที่ ฐานข้อมูลมีทั้งสถานที่เปิดใช้งานและวัดร้าง และอัตราส่วนประชากรต่อแห่งไม่บอกความจุ จำนวนผู้มาใช้บริการ หรือศาสนาของผู้อยู่อาศัย",
-          "en": "Use the records to prepare local-context research and community conversations. Separate all records from those with coordinates: a missing point does not mean no place exists. The inventory includes active places and abandoned temples, while population per site does not establish capacity, attendance or residents’ religious affiliation."
+          "th": "แผนที่ช่วยให้เห็นศาสนสถานที่มีตำแหน่งระบุไว้ ส่วนรายการที่ไม่มีพิกัดยังต้องอ่านควบคู่กัน ใช้เตรียมการเยี่ยมพื้นที่และสอบถามบทบาทของแต่ละแห่งจากผู้ดูแล",
+          "en": "The map shows records with coordinates; records without them still matter. Use both to prepare visits and learn about each place from its caretakers."
+        },
+        "note": {
+          "th": "ไม่มีหมุดไม่ได้แปลว่าไม่มีศาสนสถาน อัตราส่วนประชากรต่อแห่งไม่ใช่จำนวนศาสนิกชนหรือความจุรองรับคน",
+          "en": "No map pin does not mean no place of worship. Population-per-site ratios are not follower counts or venue capacity."
+        },
+        "questions": {
+          "th": [
+            "มีศาสนสถานใดอยู่ในรายการของพื้นที่นี้?",
+            "สถานที่ใดควรสอบถามตำแหน่งหรือข้อมูลติดต่อเพิ่ม?"
+          ],
+          "en": [
+            "Which places of worship are listed in this area?",
+            "Which locations or contact details need follow-up?"
+          ]
+        },
+        "takeaway": {
+          "th": "ติดต่อผู้ดูแลเพื่อยืนยันตำแหน่ง สถานะ และการเข้าใช้พื้นที่",
+          "en": "Contact caretakers to confirm location, status and arrangements for visiting."
         }
       },
       "detailUrl": {
@@ -4829,19 +5383,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ประชากรตามทะเบียนในพื้นที่มีโครงสร้างอายุและเพศอย่างไร?",
-            "เมื่อใช้เดือนอ้างอิงเดียวกัน พื้นที่ต่าง ๆ มีโครงสร้างวัยต่างกันอย่างไร?"
-          ],
-          "en": [
-            "What is the age and sex structure of the registered population in the area?",
-            "How do age profiles compare between areas for the same reference month?"
-          ]
+        "lead": {
+          "th": "รู้จักโครงสร้างอายุและเพศของคนตามทะเบียนในแต่ละพื้นที่ เพื่อเตรียมบริการให้เหมาะกับช่วงชีวิต",
+          "en": "Understand the registered population by age and sex when planning services for different stages of life."
+        },
+        "sectionTitle": {
+          "th": "จำนวนคนเท่ากัน อาจต้องการบริการต่างกัน",
+          "en": "Similar population totals can have different age profiles"
         },
         "reading": {
-          "th": "เปรียบเทียบพื้นที่โดยใช้เดือนอ้างอิงเดียวกัน แล้วอ่านโครงสร้างอายุและเพศเพื่อเตรียมแผนบริการ ตัวเลขนี้เป็นประชากรตามทะเบียน ไม่ใช่จำนวนคนที่อยู่จริงหรือประชากรกลางวัน และไม่บอกรายได้ สิทธิรับบริการ หรือพฤติกรรมของคนในพื้นที่",
-          "en": "Use the same reference month when comparing age and sex profiles for service planning. These are registered-population figures, not a count of people actually present or daytime population. They do not establish income, service eligibility or local behaviour."
+          "th": "ลองมองให้ลึกกว่ายอดรวม พื้นที่ที่มีเด็ก ผู้ใหญ่ หรือผู้สูงอายุในสัดส่วนต่างกัน ช่วยตั้งโจทย์เรื่องโรงเรียน บริการสุขภาพ และพื้นที่สาธารณะให้เฉพาะเจาะจงขึ้น แล้วนำไปเทียบกับข้อมูลผู้ใช้บริการจริง",
+          "en": "Look beyond the total. Different age profiles help frame questions about schools, health services and public space. Compare those questions with evidence of who actually uses local services."
+        },
+        "note": {
+          "th": "เป็นประชากรตามทะเบียน ณ เดือนอ้างอิง ไม่ใช่จำนวนคนที่อยู่ในพื้นที่ระหว่างวันหรือใช้บริการจริง",
+          "en": "These are registered residents in the reference month, not everyone present during the day or actual service users."
+        },
+        "questions": {
+          "th": [
+            "พื้นที่นี้มีคนแต่ละช่วงวัยในสัดส่วนเท่าไร?",
+            "ควรศึกษาความต้องการบริการของช่วงวัยใดเพิ่ม?"
+          ],
+          "en": [
+            "What is the age profile of registered residents here?",
+            "Which age groups merit closer service-needs research?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกเดือนและขอบเขตพื้นที่ให้ตรงกัน แล้วคุยกับผู้ให้บริการและชุมชนเพื่อเติมภาพการใช้งานจริง",
+          "en": "Compare the same month and boundaries, then speak with service providers and communities about actual use."
         }
       },
       "detailUrl": {
@@ -4999,19 +5569,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "โรงเรียนแต่ละระดับและประเภทกระจายตัวอย่างไรในพื้นที่?",
-            "ตัวเลขนักเรียน ครู และห้องเรียนใช้เปรียบเทียบบริการการศึกษาได้อย่างไร?"
-          ],
-          "en": [
-            "How are schools of different levels and types distributed across the area?",
-            "How can student, teacher and classroom figures inform comparisons of education provision?"
-          ]
+        "lead": {
+          "th": "เห็นการกระจายตัวของสถานศึกษา พร้อมบริบทนักเรียน ครู และห้องเรียน เพื่อเริ่มวางแผนบริการการศึกษาในพื้นที่",
+          "en": "Explore where schools are located alongside student, teacher and classroom records when planning local education services."
+        },
+        "sectionTitle": {
+          "th": "เริ่มจากโรงเรียนที่มี แล้วค่อยดูโจทย์ของพื้นที่",
+          "en": "Start with the schools, then examine local needs"
         },
         "reading": {
-          "th": "เริ่มจากตำแหน่ง ระดับชั้น และประเภทโรงเรียน แล้วอ่านจำนวนนักเรียน ครู และห้องเรียนตามรุ่นข้อมูล ความครบถ้วนของแต่ละตัวอาจต่างกัน จึงต้องตรวจวิธีเฉลี่ยก่อนเปรียบเทียบอัตราส่วน ตัวเลขเหล่านี้ช่วยศึกษาการจัดบริการ แต่ไม่ได้บอกคุณภาพโรงเรียนหรือจำนวนที่นั่งว่าง",
-          "en": "Start with school locations, levels and types, then read student, teacher and classroom figures for the selected data version. Coverage can differ between measures, so check how ratios are averaged. These figures inform provision studies but do not establish school quality or available places."
+          "th": "แยกตามระดับชั้นและประเภทสถานศึกษาเพื่อให้การเปรียบเทียบตรงคำถาม จากนั้นอ่านจำนวนนักเรียน ครู และห้องเรียนร่วมกัน ช่วยเลือกโรงเรียนหรือพื้นที่ที่จะไปศึกษาเงื่อนไขการให้บริการต่อ",
+          "en": "Compare matching education levels and school types. Reading student, teacher and classroom figures together helps identify schools or areas where a closer look would be useful."
+        },
+        "note": {
+          "th": "ข้อมูลแต่ละรายการอาจครบไม่เท่ากัน และจำนวนครูหรือห้องเรียนไม่ได้บอกคุณภาพการสอนหรือที่นั่งว่างรับนักเรียน",
+          "en": "Record completeness varies. Teacher and classroom counts do not establish teaching quality or available places."
+        },
+        "questions": {
+          "th": [
+            "โรงเรียนระดับและประเภทที่สนใจกระจายอยู่ตรงไหน?",
+            "มีรายการใดควรสอบถามจำนวนนักเรียน ครู หรือห้องเรียนเพิ่ม?"
+          ],
+          "en": [
+            "Where are schools of the relevant level and type located?",
+            "Which student, teacher or classroom figures need follow-up?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกกลุ่มโรงเรียนที่เทียบกันได้ แล้วตรวจปีและรายละเอียดกับสถานศึกษาก่อนวางแผน",
+          "en": "Choose comparable schools and confirm the year and details with them before planning."
         }
       },
       "detailUrl": {
@@ -5127,11 +5713,29 @@
       "datasetCode": "govspending",
       "mapUrl": "https://landometer.com/v3/citymeter?d=govspending",
       "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
+        "available": true,
+        "path": "media/previews-current/government-spending-20261010.webp",
+        "largePath": "media/previews-current/government-spending-20261010-large.webp",
         "conceptual": false,
-        "focusLabel": null
+        "focusLabel": {
+          "th": "งบจัดสรร · เบิกจ่าย · ปี 2568",
+          "en": "Allocation · disbursement · FY2025"
+        },
+        "capture": {
+          "date": "2026-10-10",
+          "url": "https://landometer.com/v3/citymeter?d=govspending",
+          "state": "ประเทศไทย · ปีงบประมาณ 2568 · งบรวม · ทุกหมวด",
+          "note": {
+            "th": "ภาพตัวอย่างที่จับเมื่อ 10 ตุลาคม 2569 ตัวเลขและตัวเลือกอาจเปลี่ยนเมื่อเปิดใช้งาน",
+            "en": "Captured on 10 October 2026. Values and available controls may change in the live service."
+          },
+          "stateLabel": {
+            "th": "ประเทศไทย · ปีงบประมาณ 2568 · งบรวม · ทุกหมวด",
+            "en": "Thailand · FY2025 · total budget · all categories"
+          }
+        },
+        "width": 641,
+        "height": 319
       },
       "aliases": [
         "งบประมาณและการเบิกจ่ายภาครัฐ",
@@ -5148,19 +5752,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "งบหลังโอนเปลี่ยนแปลงและยอดเบิกจ่ายต่างกันอย่างไรในพื้นที่ที่จับคู่ข้อมูลได้?",
-            "ตัวเลขแต่ละปีงบประมาณชี้ประเด็นใดให้ติดตามโครงการต่อ?"
-          ],
-          "en": [
-            "How do adjusted budgets and recorded disbursements compare in matched areas?",
-            "What follow-up questions do the fiscal-year figures raise about projects?"
-          ]
+        "lead": {
+          "th": "ตามเงินงบประมาณจากยอดจัดสรรถึงยอดเบิกจ่าย และเห็นว่ารายการที่มีพื้นที่อ้างอิงเชื่อมกับส่วนใดของประเทศ",
+          "en": "Follow budget allocations and disbursements, and see where records with a geographic match are located."
+        },
+        "sectionTitle": {
+          "th": "เงินที่จัดสรรกับเงินที่ใช้ไป ตอบคนละคำถาม",
+          "en": "Allocation and disbursement answer different questions"
         },
         "reading": {
-          "th": "อ่านงบหลังโอนเปลี่ยนแปลงแยกจากยอดเบิกจ่ายในปีงบประมาณที่เลือก แผนที่แสดงเฉพาะรายการที่จับคู่พื้นที่ได้ จึงไม่ใช่งบทั้งหมดของประเทศ ใช้ตัวเลขเพื่อเตรียมติดตามโครงการต่อ เพราะเงินที่จัดสรรหรือเบิกจ่ายเพียงอย่างเดียวยังไม่บอกผลสำเร็จ คุณภาพบริการ หรือความคุ้มค่า",
-          "en": "Read adjusted budgets separately from recorded disbursements for the selected fiscal year. The map contains only items matched to areas, not total national spending. Use the figures to prepare project follow-up questions: allocation or disbursement alone does not establish outcomes, service quality or value for money."
+          "th": "ยอดงบประมาณหลังปรับเปลี่ยนช่วยมองขนาดเงินที่จัดสรร ส่วนยอดเบิกจ่ายช่วยติดตามการใช้เงิน ลองอ่านสองส่วนนี้ในปีงบประมาณเดียวกัน แล้วเลือกรายการที่อยากเข้าใจรายละเอียดโครงการต่อ",
+          "en": "The adjusted budget shows the allocation; disbursement shows money drawn down. Read both within the same fiscal year, then choose the project records you want to investigate further."
+        },
+        "note": {
+          "th": "แผนที่แสดงเฉพาะรายการที่จับคู่พื้นที่ได้ เงินที่ใช้ไปยังไม่ใช่หลักฐานว่าบริการดีขึ้นหรือโครงการคุ้มค่า",
+          "en": "The map includes only geographically matched records. Spending alone does not establish better services or value for money."
+        },
+        "questions": {
+          "th": [
+            "พื้นที่ที่สนใจมีรายการจัดสรรและเบิกจ่ายใดบ้าง?",
+            "ยอดสองส่วนนี้ต่างกันอย่างไรในปีเดียวกัน?"
+          ],
+          "en": [
+            "Which allocations and disbursements are mapped to the area?",
+            "How do those amounts compare within the same fiscal year?"
+          ]
+        },
+        "takeaway": {
+          "th": "ใช้รายการที่พบเป็นจุดเริ่มต้นอ่านเอกสารงบประมาณและติดตามผลโครงการกับหน่วยงานที่เกี่ยวข้อง",
+          "en": "Use the records as a starting point for budget documents and follow up project results with the relevant agencies."
         }
       },
       "detailUrl": {
@@ -5282,19 +5902,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "รายได้จัดเก็บเอง รัฐจัดสรร และเงินอุดหนุนมีสัดส่วนอย่างไรในแต่ละ อปท.?",
-            "รายได้รายปีและค่าต่อคนหรือต่อพื้นที่ช่วยเตรียมคำถามเรื่องงบประมาณอย่างไร?"
-          ],
-          "en": [
-            "How do own-source revenue, allocated revenue and grants contribute to each local authority’s income?",
-            "How can annual, per-person and per-area figures guide budget-planning questions?"
-          ]
+        "lead": {
+          "th": "เข้าใจรายได้ขององค์กรปกครองส่วนท้องถิ่น ทั้งที่จัดเก็บเอง รัฐจัดสรร และเงินอุดหนุน เพื่อคุยเรื่องแผนบริการด้วยบริบทการเงินที่ชัดขึ้น",
+          "en": "Understand local-government revenue from own-source collection, state allocations and grants when discussing service plans."
+        },
+        "sectionTitle": {
+          "th": "ยอดรวมใกล้กัน โครงสร้างรายได้อาจต่างกัน",
+          "en": "Similar totals can hide different revenue structures"
         },
         "reading": {
-          "th": "อ่านองค์ประกอบรายได้และแนวโน้มตามปีงบประมาณก่อนเปรียบเทียบ อปท. ค่าต่อคนหรือต่อพื้นที่เป็นผลคำนวณของ CityMETER จึงต้องตรวจนิยามตัวหารร่วมด้วย รายได้ช่วยตั้งคำถามเกี่ยวกับทรัพยากรสาธารณะ แต่ไม่ใช่ข้อสรุปคุณภาพบริการหรือศักยภาพการคลังทั้งหมด",
-          "en": "Read revenue components and fiscal-year trends before comparing local authorities. Per-person and per-area figures are CityMETER calculations, so check their denominators. Revenue can frame questions about public resources but does not establish service quality or overall fiscal capacity."
+          "th": "ลองแยกที่มาของรายได้ก่อนเทียบยอดรวม แล้วดูแนวโน้มปีต่อปี ตัวเลขต่อคนหรือต่อพื้นที่ช่วยเพิ่มมุมมอง แต่ควรอ่านพร้อมฐานประชากรและขอบเขตพื้นที่ที่ใช้คำนวณ",
+          "en": "Separate revenue sources before comparing totals, then examine the trend over time. Per-person and per-area figures add perspective when their population and area denominators are understood."
+        },
+        "note": {
+          "th": "รายได้ไม่ได้บอกคุณภาพบริการหรือฐานะการคลังทั้งหมด เทียบปีและตัวหารให้ตรงกัน โดยปีที่มีในแหล่งต้นทางอาจต่างจากปีที่เลือกได้ใน CityMETER",
+          "en": "Revenue does not describe service quality or the full fiscal position. Match years and denominators; upstream years may differ from the years available in CityMETER."
+        },
+        "questions": {
+          "th": [
+            "ท้องถิ่นนี้พึ่งรายได้จากส่วนใดมาก?",
+            "โครงสร้างรายได้เปลี่ยนไปอย่างไรเมื่อเทียบปี?"
+          ],
+          "en": [
+            "Which revenue sources does this local government rely on?",
+            "How has its revenue structure changed over time?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกปีที่เทียบกันได้ แล้วอ่านเอกสารการเงินและแผนบริการของท้องถิ่นประกอบ",
+          "en": "Choose comparable years and consult local financial records and service plans."
         }
       },
       "detailUrl": {
@@ -5406,19 +6042,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "หน่วยงานรัฐและบุคลากรที่บันทึกไว้กระจายตัวอย่างไร?",
-            "ก่อนเปรียบเทียบแต่ละพื้นที่ ต้องแยกหน่วยนับของหน่วยงานกลุ่มใดบ้าง?"
-          ],
-          "en": [
-            "How are recorded government offices and reported personnel distributed?",
-            "Which agency counting units need checking before comparing areas?"
-          ]
+        "lead": {
+          "th": "รู้จักหน่วยงานและเครือข่ายบริการในพื้นที่ เพื่อหาจุดประสานงานและเตรียมการลงพื้นที่ได้ตรงเรื่อง",
+          "en": "Find local organisations and service networks to identify useful contacts and prepare a focused visit."
+        },
+        "sectionTitle": {
+          "th": "เลือกประเภทบริการก่อน แล้วภาพพื้นที่จะชัดขึ้น",
+          "en": "Choose the service category before comparing places"
         },
         "reading": {
-          "th": "ใช้รายการหน่วยงานและบุคลากรอ่านโครงสร้างบริการภาครัฐ ก่อนเลือกพื้นที่ศึกษาต่อ แต่ละกลุ่มหน่วยงานอาจใช้ฐานนับต่างกัน จึงต้องตรวจนิยามก่อนรวมจำนวนหรือเทียบพื้นที่ การมีหน่วยงาน ข้อมูลติดต่อ หรือบุคลากรไม่ได้ยืนยันความพร้อม คุณภาพบริการ หรือสิทธิรับบริการ",
-          "en": "Use agency records and reported personnel to study the structure of public-service provision. Counting units may differ between agency groups, so confirm definitions before adding or comparing figures. Offices, contact records and workforce counts do not establish service availability, quality or eligibility."
+          "th": "รายการนี้รวมหลายประเภท ตั้งแต่หน่วยงานปกครองและตำรวจ ไปจนถึงสถานศึกษา ศาสนสถาน ชุมชน และสมาคม เลือกหมวดที่ตรงกับเรื่องที่จะทำก่อนดูการกระจายตัวหรือข้อมูลติดต่อ จะช่วยให้หาองค์กรที่ควรประสานงานได้ตรงโจทย์",
+          "en": "The records span administration and police as well as schools, places of worship, communities and associations. Choose the category relevant to your task before reading the distribution or contact details to find organisations worth approaching."
+        },
+        "note": {
+          "th": "ยอดรวมทุกหมวดไม่ใช่จำนวนหน่วยงานรัฐหรือกำลังคนภาครัฐทั้งหมด ตรวจข้อมูลบุคลากรและช่องทางติดต่อกับหน่วยงานก่อนใช้วางแผนบริการ",
+          "en": "The combined categories are not a total of government agencies or public-sector staff. Confirm staffing and contact details with each organisation before service planning."
+        },
+        "questions": {
+          "th": [
+            "เรื่องที่ต้องการประสานงานควรเริ่มจากหน่วยงานประเภทใด?",
+            "มีองค์กรใดในพื้นที่ที่ควรติดต่อหรือไปเยี่ยม?"
+          ],
+          "en": [
+            "Which type of organisation is relevant to your task?",
+            "Which local organisations should you contact or visit?"
+          ]
+        },
+        "takeaway": {
+          "th": "เริ่มจากหมวดที่ตรงเรื่อง เช่น ปกครองหรือตำรวจ แล้วติดต่อหน่วยงานเพื่อยืนยันข้อมูลและผู้รับผิดชอบ",
+          "en": "Start with a relevant category, such as administration or police, then confirm details and the right contact with the organisation."
         }
       },
       "detailUrl": {
@@ -5538,19 +6190,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "พื้นที่ใดเคยตรวจพบน้ำท่วมซ้ำในหลายปีของช่วงที่เลือก?",
-            "ประวัติการตรวจพบในแต่ละปีช่วยเลือกจุดศึกษาทำเลต่ออย่างไร?"
-          ],
-          "en": [
-            "Where was flooding detected in several years of the selected period?",
-            "How can year-by-year flood history guide further location research?"
-          ]
+        "lead": {
+          "th": "ย้อนดูพื้นที่ที่เคยตรวจพบน้ำท่วมในหลายปี เพื่อเตรียมคำถามเรื่องการใช้พื้นที่และการรับมือในฤดูฝน",
+          "en": "Look back at areas where flooding was detected across multiple years to inform land-use questions and wet-season preparation."
+        },
+        "sectionTitle": {
+          "th": "เคยพบซ้ำที่ไหน และในช่วงใด",
+          "en": "Where has flooding been detected repeatedly?"
         },
         "reading": {
-          "th": "อ่านพื้นที่ตรวจพบน้ำท่วมรายปีร่วมกับจำนวนปีที่พบในช่วงที่เลือก เพื่อเข้าใจประวัติการเกิดซ้ำและเลือกจุดศึกษาต่อ ประวัตินี้ไม่ได้บอกสภาพปัจจุบันหรือพยากรณ์ว่าจะเกิดน้ำท่วมครั้งต่อไป และไม่แทนการกำหนดความเสี่ยงตามกฎหมาย",
-          "en": "Read yearly observed flood extents with the number of years showing detections in the selected period. The history helps identify places for further study, but it does not describe current conditions, predict the next flood or replace a statutory risk determination."
+          "th": "จำนวนปีที่ตรวจพบช่วยให้เห็นรูปแบบในอดีต ลองอ่านช่วงปีที่เลือกควบคู่กับสภาพพื้นที่และประสบการณ์ของคนในชุมชน เพื่อเลือกจุดที่ควรศึกษาระบบระบายน้ำหรือการเตรียมพร้อมต่อ",
+          "en": "The number of years with detections shows a historical pattern. Read the selected period alongside local conditions and community experience to choose places for drainage or preparedness follow-up."
+        },
+        "note": {
+          "th": "ประวัติการตรวจพบไม่ใช่สถานการณ์ปัจจุบัน การพยากรณ์ หรือเขตเสี่ยงตามกฎหมาย พื้นที่ที่ไม่ปรากฏข้อมูลไม่ได้แปลว่าไม่เคยท่วม",
+          "en": "Past detections are not current conditions, a forecast or a statutory risk boundary. An area without records is not necessarily flood-free."
+        },
+        "questions": {
+          "th": [
+            "พื้นที่ใดเคยตรวจพบน้ำท่วมในหลายปี?",
+            "มีจุดใดควรถามประวัติเพิ่มจากคนในพื้นที่?"
+          ],
+          "en": [
+            "Where was flooding detected in multiple years?",
+            "Which places need more local flood-history research?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกช่วงปี แล้วนำจุดที่สนใจไปเทียบกับข้อมูลระบายน้ำและบันทึกเหตุการณ์ในพื้นที่",
+          "en": "Choose a period, then compare locations of interest with drainage information and local event records."
         }
       },
       "detailUrl": {
@@ -5669,19 +6337,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ภาพตามวันที่ที่เลือกตรวจพบน้ำท่วมบริเวณใด?",
-            "บริบทลุ่มน้ำและข้อมูลพื้นที่ที่ซ้อนทับช่วยทบทวนเหตุการณ์อย่างไร?"
-          ],
-          "en": [
-            "Where was flooding detected on the selected observation date?",
-            "How can watershed context and spatial overlays help review that event?"
-          ]
+        "lead": {
+          "th": "ดูร่องรอยพื้นที่น้ำท่วมที่ตรวจพบจากดาวเทียมตามวันของภาพ เพื่อเข้าใจภาพเหตุการณ์และเลือกจุดติดตามต่อ",
+          "en": "See satellite-detected flood extent by observation date to understand an event and choose locations to follow up."
+        },
+        "sectionTitle": {
+          "th": "เริ่มจากวันที่สังเกต ก่อนอ่านขอบเขตน้ำ",
+          "en": "Read the observation date before the extent"
         },
         "reading": {
-          "th": "เริ่มอ่านจากวันที่ตรวจพบ แล้วดูขอบเขตน้ำท่วมร่วมกับบริบทลุ่มน้ำและข้อมูลพื้นที่ที่ซ้อนทับ คำว่าล่าสุดหมายถึงภาพที่มีให้ดูตามวันที่ระบุ ไม่ใช่สถานการณ์สด และบริเวณที่ไม่มีสีไม่ได้ยืนยันว่าปลอดภัย",
-          "en": "Start with the observation date, then read flood extent alongside watershed context and spatial overlays. “Latest” refers to the available dated observation, not live conditions. An uncoloured area does not establish that the location is safe."
+          "th": "ขอบเขตที่เห็นเป็นภาพของช่วงเวลาหนึ่ง อ่านวันที่ตรวจพบพร้อมบริบทลุ่มน้ำ แล้วใช้เลือกพื้นที่ที่ต้องสอบถามสถานการณ์ภาคสนามหรือเทียบกับรายงานเหตุการณ์เพิ่มเติม",
+          "en": "The extent represents a particular observation. Read its date alongside the basin context, then identify places needing field updates or comparison with other event reports."
+        },
+        "note": {
+          "th": "ข้อมูลดาวเทียมมีช่วงเวลาที่สังเกตและข้อจำกัดการตรวจจับ จึงไม่ใช่แผนที่สถานการณ์สด และพื้นที่ว่างไม่ได้ยืนยันว่าปลอดภัย",
+          "en": "Satellite observations have timing and detection limits. This is not a live situation map, and blank areas do not establish safety."
+        },
+        "questions": {
+          "th": [
+            "ขอบเขตที่เห็นตรวจพบเมื่อใด?",
+            "พื้นที่ใดควรติดตามข้อมูลภาคสนามเพิ่ม?"
+          ],
+          "en": [
+            "When was the displayed extent observed?",
+            "Where are field updates needed?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจวันของภาพและประกาศในพื้นที่ก่อนตัดสินใจเดินทางหรือปฏิบัติงาน",
+          "en": "Check the observation date and local notices before travel or operational decisions."
         }
       },
       "detailUrl": {
@@ -5792,19 +6476,35 @@
       "order": 3,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "แบบจำลองคาดการณ์ความลึกน้ำท่วมเท่าใดในพื้นที่และช่วงเวลาที่เลือก?",
-            "เวลาออกรันและข้อจำกัดของโมเดลมีผลต่อการอ่านค่าคาดการณ์อย่างไร?"
-          ],
-          "en": [
-            "What flood depth does the model forecast for the selected area and period?",
-            "How do the model run time and limitations affect interpretation of the forecast?"
-          ]
+        "lead": {
+          "th": "อ่านระดับความลึกน้ำท่วมที่แบบจำลองคาดการณ์ เพื่อเตรียมประเด็นเฝ้าระวังและวางแผนติดตามในพื้นที่",
+          "en": "Read modelled flood-depth forecasts to focus monitoring and prepare local follow-up."
+        },
+        "sectionTitle": {
+          "th": "ความลึกที่คาดการณ์ต้องมาพร้อมเวลาของแบบจำลอง",
+          "en": "Forecast depth needs a model time"
         },
         "reading": {
-          "th": "อ่านความลึกที่คาดการณ์พร้อมช่วงเวลาพยากรณ์ เวลาออกรัน และวิธีของโมเดล โดยตรวจขอบเขตและความละเอียดก่อนนำไปใช้ในพื้นที่ย่อย การเปรียบเทียบระดับจังหวัดทำได้ตามข้อมูลที่มี แต่ผลโมเดลไม่ใช่ระดับน้ำที่ตรวจวัดจริง คำยืนยันว่าจะเกิดเหตุ หรือคำแนะนำฉุกเฉิน",
-          "en": "Read modelled depth with the forecast period, run time and method. Check coverage and resolution before applying a province-level comparison to a smaller location. A forecast is not an observed water level, confirmation that an event will occur or emergency guidance."
+          "th": "เปรียบเทียบพื้นที่ด้วยรอบการคาดการณ์และช่วงเวลาเดียวกัน เพื่อเห็นจุดที่แบบจำลองให้ค่าต่างกัน จากนั้นนำไปอ่านร่วมกับการสังเกตจริงและข้อมูลจากหน่วยงานในพื้นที่",
+          "en": "Compare areas within the same model run and forecast period to see where predicted depths differ. Read those differences alongside observations and local agency information."
+        },
+        "note": {
+          "th": "เป็นค่าจากแบบจำลองของกรมทรัพยากรน้ำ ไม่ใช่ระดับน้ำที่วัดจริงหรือผลที่จะเกิดแน่นอน และใช้แทนประกาศฉุกเฉินไม่ได้",
+          "en": "These are Department of Water Resources model outputs, not measured water levels or certain outcomes. They do not replace emergency notices."
+        },
+        "questions": {
+          "th": [
+            "แบบจำลองคาดความลึกต่างกันตรงไหนในช่วงเวลาที่เลือก?",
+            "มีจุดใดควรตรวจสถานการณ์จริงเพิ่มเติม?"
+          ],
+          "en": [
+            "Where do forecast depths differ for the selected period?",
+            "Which locations need observational follow-up?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจรอบแบบจำลองและช่วงคาดการณ์ แล้วประสานหน่วยงานในพื้นที่เพื่อประกอบแผนรับมือ",
+          "en": "Check the model run and forecast period, then consult local agencies when preparing a response."
         }
       },
       "detailUrl": {
@@ -5924,19 +6624,35 @@
       "order": 4,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "พื้นที่ที่สนใจมีสัญญาณคาดการณ์น้ำท่วมฉับพลันในช่วง 24 ชั่วโมงอย่างไร?",
-            "เวลาออกรันและช่วงเวลาที่ผลคาดการณ์ใช้ได้ควรอ่านร่วมกันอย่างไร?"
-          ],
-          "en": [
-            "What flash-flood forecast signal is shown for the area over the 24-hour window?",
-            "How should the issue time and validity window be read together?"
-          ]
+        "lead": {
+          "th": "ดูสัญญาณคาดการณ์น้ำท่วมฉับพลันล่วงหน้า 24 ชั่วโมงจากแบบจำลองทดลองของ Google เพื่อเลือกประเด็นติดตาม",
+          "en": "Explore Google’s experimental 24-hour flash-flood signal to identify places needing follow-up."
+        },
+        "sectionTitle": {
+          "th": "สัญญาณล่วงหน้าช่วยชี้จุดที่ควรติดตาม",
+          "en": "An early signal helps focus attention"
         },
         "reading": {
-          "th": "ใช้ข้อมูลเป็นสัญญาณเฝ้าระวังประกอบการตรวจสถานการณ์และติดตามประกาศที่เกี่ยวข้อง โดยอ่านเวลาออกรัน ช่วงเวลาที่ใช้ได้ และสถานะการทดลองทุกครั้ง ผลคาดการณ์ไม่ยืนยันว่าจะเกิดเหตุ และความละเอียดของโมเดลยังต้องตรวจเพิ่มเติมก่อนใช้กับพื้นที่เฉพาะ",
-          "en": "Use the forecast as a monitoring signal alongside situation checks and relevant notices. Read the run time, validity window and experimental status each time. It does not confirm that an event will occur, and model resolution needs checking before applying it to a specific location."
+          "th": "อ่านสัญญาณพร้อมเวลาของรอบแบบจำลองและช่วงคาดการณ์ แล้วเทียบกับฝน สภาพพื้นที่ และประกาศที่เกี่ยวข้อง เพื่อเตรียมติดตามสถานการณ์อย่างมีบริบท",
+          "en": "Read the signal with its model-run time and forecast window. Compare it with rainfall, local conditions and relevant notices to guide further monitoring."
+        },
+        "note": {
+          "th": "แบบจำลองยังเป็นการทดลอง สัญญาณไม่ยืนยันว่าจะเกิดเหตุ และใช้ตัดสินความปลอดภัยของเส้นทางหรือแทนประกาศเตือนไม่ได้",
+          "en": "The model is experimental. A signal does not confirm an event or establish route safety, and it does not replace warnings."
+        },
+        "questions": {
+          "th": [
+            "สัญญาณนี้ครอบคลุมช่วงเวลาใด?",
+            "ควรติดตามพื้นที่ไหนร่วมกับข้อมูลฝนและประกาศท้องถิ่น?"
+          ],
+          "en": [
+            "Which period does this signal cover?",
+            "Where should rainfall and local notices be followed more closely?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจเวลาของข้อมูลและติดตามประกาศจากหน่วยงานรับผิดชอบก่อนดำเนินการ",
+          "en": "Check the data time and follow responsible agencies’ notices before taking action."
         }
       },
       "detailUrl": {
@@ -6056,19 +6772,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "สถานีแต่ละแห่งรายงานค่าการสั่นในช่วงเวลาใด?",
-            "ตำแหน่งสถานี หน่วย และเวลาของข้อมูลช่วยเลือกสิ่งที่จะตรวจต่ออย่างไร?"
-          ],
-          "en": [
-            "What shaking readings do individual stations report, and for which times?",
-            "How can station location, units and timestamps guide further checks?"
-          ]
+        "lead": {
+          "th": "เห็นแรงสั่นสะเทือนที่สถานีตรวจวัดรายงาน เพื่อเข้าใจความต่างระหว่างจุดและเตรียมติดตามผลในพื้นที่",
+          "en": "Explore shaking reported by monitoring stations to understand differences between locations and plan follow-up."
+        },
+        "sectionTitle": {
+          "th": "สถานีรายงานการสั่น อาคารยังต้องตรวจอีกแบบ",
+          "en": "Station readings and building assessments serve different purposes"
         },
         "reading": {
-          "th": "อ่านค่าการสั่นพร้อมชื่อสถานี ตำแหน่ง หน่วย และเวลาที่ข้อมูลแทนอยู่ เพื่อแยกข้อมูลที่เพิ่งรายงานออกจากข้อมูลเก่า ค่าที่แสดงช่วยเลือกประเด็นตรวจต่อ แต่ไม่รับรองความปลอดภัยของอาคาร และข้อมูลเก่าไม่ใช่การเฝ้าระวังสถานการณ์ขณะนี้",
-          "en": "Read shaking measurements with the station, location, units and the time represented by the data. This helps distinguish recent reports from older readings and identify follow-up checks. Station measurements do not certify building safety, and old data is not current monitoring."
+          "th": "ค่าจากสถานีช่วยมองเหตุการณ์ผ่านจุดตรวจวัด อ่านหน่วย เวลา และตำแหน่งให้ตรงกัน แล้วใช้ประกอบคำถามว่าบริเวณใดควรติดตามรายงานหรือการตรวจสอบภาคสนามเพิ่ม",
+          "en": "Station readings provide one view of an event. Compare matching units, times and locations, then use them to identify where more reports or field assessments would help."
+        },
+        "note": {
+          "th": "รายงานเก่าไม่ใช่การเฝ้าระวังปัจจุบัน และค่าการสั่นที่สถานีไม่ใช่ใบรับรองความปลอดภัยของอาคาร",
+          "en": "Older reports are not current monitoring, and station readings do not certify building safety."
+        },
+        "questions": {
+          "th": [
+            "สถานีใดรายงานการสั่นในเหตุการณ์ที่สนใจ?",
+            "แต่ละค่ามีหน่วยและเวลาวัดตรงกันหรือไม่?"
+          ],
+          "en": [
+            "Which stations reported shaking for the event?",
+            "Are the readings expressed in comparable units and times?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจรายละเอียดรายงาน แล้วใช้การประเมินจากผู้เชี่ยวชาญสำหรับการตัดสินใจเรื่องอาคาร",
+          "en": "Read the report details and use qualified assessments for building decisions."
         }
       },
       "detailUrl": {
@@ -6187,19 +6919,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "ในช่วงเวลาที่เลือก ดาวเทียมตรวจพบจุดความร้อนบริเวณใด?",
-            "จุดใดควรตรวจร่วมกับเวลาตรวจพบและรายงานภาคสนามต่อ?"
-          ],
-          "en": [
-            "Where did satellites detect hotspots during the selected period?",
-            "Which detections merit checking against observation times and field reports?"
-          ]
+        "lead": {
+          "th": "ดูจุดความร้อนที่ดาวเทียมตรวจพบ เพื่อเลือกพื้นที่ติดตามสถานการณ์ไฟและตรวจสอบกับรายงานภาคสนาม",
+          "en": "Explore satellite-detected hotspots to focus fire-related follow-up and compare with field reports."
+        },
+        "sectionTitle": {
+          "th": "จุดความร้อนเป็นจุดเริ่มต้นของการตรวจสอบ",
+          "en": "A hotspot is a starting point for verification"
         },
         "reading": {
-          "th": "อ่านจุดความร้อนร่วมกับขอบเขตพื้นที่และเวลาตรวจพบ เพื่อเลือกตำแหน่งที่ต้องติดตามต่อ สัญญาณจากดาวเทียมไม่ใช่ไฟป่าทุกเหตุ ขอบเขตพื้นที่เสียหาย หรือปริมาณ PM2.5 จึงต้องตรวจรายงานภาคสนามประกอบก่อนสรุปสถานการณ์",
-          "en": "Read hotspot locations with area context and detection times to choose where further checks are needed. Satellite detections do not represent every wildfire, burned area or PM2.5 levels. Consult field reports before drawing conclusions about the situation."
+          "th": "ตำแหน่งและเวลาตรวจพบช่วยให้เห็นว่ามีสัญญาณความร้อนที่ไหนในช่วงที่สนใจ นำไปเทียบกับการใช้พื้นที่และรายงานจากเจ้าหน้าที่หรือคนในพื้นที่ ก่อนสรุปว่าเกิดอะไรขึ้น",
+          "en": "Detection locations and times show where thermal signals were observed. Compare them with land use and reports from responders or local people before concluding what occurred."
+        },
+        "note": {
+          "th": "จุดความร้อนจาก VIIRS/FIRMS ไม่ใช่เหตุไฟทั้งหมด พื้นที่เสียหาย หรือค่าฝุ่น PM2.5 และไม่ได้เป็นคำแนะนำให้อพยพ",
+          "en": "VIIRS/FIRMS hotspots are not all fire incidents, burned area or PM2.5 readings, and they are not evacuation guidance."
+        },
+        "questions": {
+          "th": [
+            "ตรวจพบจุดความร้อนที่ไหนและเมื่อใด?",
+            "จุดใดมีรายงานในพื้นที่ให้ตรวจสอบต่อ?"
+          ],
+          "en": [
+            "Where and when were hotspots detected?",
+            "Which detections have local reports to investigate?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจเวลาตรวจพบและรายงานจากหน่วยงานรับผิดชอบก่อนนำไปวางแผนปฏิบัติงาน",
+          "en": "Check detection times and responsible agencies’ reports before operational planning."
         }
       },
       "detailUrl": {
@@ -6330,19 +7078,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "พื้นที่ใดเคยมีรายงานผลกระทบจากสาธารณภัยในปีที่สนใจ?",
-            "ประวัติผลกระทบช่วยเลือกประเด็นเตรียมพร้อมและจุดตรวจต่ออย่างไร?"
-          ],
-          "en": [
-            "Which areas recorded disaster impacts in the years of interest?",
-            "How can past impacts guide preparedness questions and follow-up checks?"
-          ]
+        "lead": {
+          "th": "เรียนรู้จากประวัติภัยและผลกระทบที่มีรายงานในระดับหมู่บ้าน เพื่อเตรียมชุมชนให้พร้อมขึ้นจากประสบการณ์ที่ผ่านมา",
+          "en": "Learn from village-level disaster and impact reports when preparing communities for future events."
+        },
+        "sectionTitle": {
+          "th": "เรื่องที่เคยเกิดช่วยตั้งโจทย์การเตรียมพร้อม",
+          "en": "Past events help frame preparedness questions"
         },
         "reading": {
-          "th": "เปรียบเทียบประวัติผลกระทบตามพื้นที่และปี เพื่อเลือกประเด็นเตรียมพร้อมที่ควรศึกษาเพิ่มเติม ก่อนนับเหตุควรตรวจหน่วยรายงาน เพราะหนึ่งเหตุอาจมีหลายแถว ข้อมูลย้อนหลังไม่ใช่สถานการณ์ปัจจุบันหรือการพยากรณ์ และต้องอ่านช่วงเวลากับข้อจำกัดการรายงานควบคู่กัน",
-          "en": "Compare reported impacts by area and year to frame further preparedness research. Check the reporting unit before counting events, since one event may span several rows. Historical impacts are neither current conditions nor a forecast; read them with their period and reporting limits."
+          "th": "อ่านชนิดภัยและปีร่วมกับผลกระทบต่อคน ครัวเรือน บ้านเรือน อาชีพ หรือสาธารณูปโภค จะช่วยเลือกประเด็นที่ควรพูดคุยกับชุมชนและหน่วยงานก่อนวางแผนรับมือ",
+          "en": "Read hazard type and year alongside reported effects on people, households, homes, livelihoods or infrastructure. Use that history to choose topics for community and agency discussions."
+        },
+        "note": {
+          "th": "เป็นประวัติรายงานช่วงปี 2557–2567 เหตุเดียวอาจมีหลายรายการ จึงต้องดูวิธีนับก่อนรวมยอด และไม่ใช่ระดับความเสี่ยงหรือการพยากรณ์",
+          "en": "The reports cover 2014–2024. One event may produce several records, so check the counting basis before adding totals. This is not a risk rating or forecast."
+        },
+        "questions": {
+          "th": [
+            "พื้นที่นี้เคยมีรายงานภัยและผลกระทบประเภทใด?",
+            "ประสบการณ์ใดควรนำมาทบทวนแผนเตรียมพร้อม?"
+          ],
+          "en": [
+            "Which hazards and impacts have been reported here?",
+            "Which experiences should inform preparedness discussions?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกรายงานที่เกี่ยวข้อง แล้วเติมรายละเอียดจากบันทึกท้องถิ่นและประสบการณ์ของชุมชน",
+          "en": "Select relevant reports and add local records and community experience."
         }
       },
       "detailUrl": {
@@ -6453,19 +7217,35 @@
       "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "รายงานระหว่าง 24–27 พฤศจิกายน 2568 เล่าเหตุการณ์น้ำท่วมหาดใหญ่อย่างไร?",
-            "ข้อมูลแต่ละวันช่วยทบทวนบริบทและบทเรียนการช่วยเหลือในพื้นที่อย่างไร?"
-          ],
-          "en": [
-            "What do the reports from 24–27 November 2025 show about the Hat Yai flood?",
-            "How can the dated reports support a review of local response and lessons learned?"
-          ]
+        "lead": {
+          "th": "ย้อนดูรายงานน้ำท่วมหาดใหญ่ช่วง 24–27 พฤศจิกายน 2568 เพื่อเข้าใจบริบทเหตุการณ์และทบทวนบทเรียนการรับมือ",
+          "en": "Revisit Hat Yai flood reports from 24–27 November 2025 to understand the event and discuss response lessons."
+        },
+        "sectionTitle": {
+          "th": "อ่านเหตุการณ์ตามวันของรายงาน",
+          "en": "Read the event through dated reports"
         },
         "reading": {
-          "th": "อ่านรายงานตามวันเพื่อย้อนดูลำดับเหตุการณ์และบริบทการช่วยเหลือในหาดใหญ่ช่วง 24–27 พฤศจิกายน 2568 คลังนี้เก็บเหตุการณ์เฉพาะช่วง จึงไม่ใช่ชั้นน้ำท่วมทั่วไปหรือสถานการณ์ปัจจุบัน และไม่ได้ประเมินผลกระทบทั้งหมดของเหตุการณ์",
-          "en": "Read the dated reports to review the sequence and response context of the Hat Yai flood from 24–27 November 2025. This is an archive of a specific event period, not a general flood layer or current conditions. It does not provide a complete assessment of the event’s impacts."
+          "th": "รายงานจาก Thai PBS และ Thai Help ช่วยประกอบภาพเหตุการณ์ในช่วงเวลานั้น เริ่มจากวันและตำแหน่งของแต่ละรายการ แล้วเชื่อมกับข้อมูลท้องถิ่นเพื่อทบทวนสิ่งที่เกิดขึ้นและการช่วยเหลือ",
+          "en": "Thai PBS and Thai Help reports provide context for that period. Start with each report’s date and location, then add local evidence when reviewing the event and response."
+        },
+        "note": {
+          "th": "นี่คือคลังรายงานของเหตุการณ์เฉพาะช่วงเวลา ไม่ใช่สถานการณ์ปัจจุบันหรือยอดความเสียหายที่ครอบคลุมทั้งหมด",
+          "en": "This is a time-bounded event archive, not current conditions or a complete damage total."
+        },
+        "questions": {
+          "th": [
+            "แต่ละพื้นที่มีรายงานอะไรในวันที่สนใจ?",
+            "มีประเด็นใดที่ควรตามข้อมูลเพิ่มเพื่อถอดบทเรียน?"
+          ],
+          "en": [
+            "What was reported in each area on a given day?",
+            "Which points need more evidence for a lessons review?"
+          ]
+        },
+        "takeaway": {
+          "th": "อ่านต้นฉบับของรายงานและตรวจวันทุกครั้งก่อนอ้างอิงหรือแชร์",
+          "en": "Read the original report and check its date before citing or sharing it."
         }
       },
       "detailUrl": {
@@ -6577,19 +7357,35 @@
       "order": 2,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
-        "questions": {
-          "th": [
-            "อาคารที่อยู่ในคลังรายงานมีสถานะการตรวจหลังแผ่นดินไหวอย่างไร?",
-            "รายการใดควรติดตามรายละเอียดการตรวจกับผู้รับผิดชอบต่อ?"
-          ],
-          "en": [
-            "What post-earthquake inspection status is recorded for buildings in the archive?",
-            "Which records need follow-up with the people responsible for the assessment?"
-          ]
+        "lead": {
+          "th": "ติดตามบันทึกการตรวจอาคารของ QuakeSafe ในกรุงเทพฯ เพื่อหาข้อมูลรายงานและประเด็นที่ควรสอบถามต่อ",
+          "en": "Explore QuakeSafe building-inspection records in Bangkok to find reports and questions for follow-up."
+        },
+        "sectionTitle": {
+          "th": "สถานะในรายงานต้องอ่านพร้อมรายละเอียดการตรวจ",
+          "en": "Read an inspection status with its report"
         },
         "reading": {
-          "th": "ใช้คลังรายงานในกรุงเทพฯ ค้นอาคารและอ่านสถานะที่รายงาน รวมรายการที่ยังไม่ทราบสถานะ แล้วติดตามรายละเอียดจากการประเมินต้นทาง ข้อมูลนี้ช่วยทบทวนการติดตามหลังเหตุการณ์ ไม่ใช่ใบรับรองโครงสร้าง เครือข่ายเซนเซอร์ หรือทะเบียนสถานะปัจจุบันของอาคารทุกแห่ง",
-          "en": "Use the Bangkok archive to find buildings and read reported inspection status, including unknown status, then consult the original assessment. It supports post-event follow-up rather than structural certification. It is neither a sensor network nor a current status inventory of every building."
+          "th": "เริ่มจากอาคารและสถานะที่มีรายงาน แล้วอ่านรายละเอียดต้นฉบับเพื่อเข้าใจว่ามีการตรวจอะไรและเมื่อใด รายการที่ยังไม่ทราบสถานะเป็นจุดที่ควรสอบถามเพิ่ม ไม่ควรตีความแทนผู้ตรวจ",
+          "en": "Start with the building and reported status, then read the original details to understand what was assessed and when. An unknown status calls for follow-up rather than assumptions."
+        },
+        "note": {
+          "th": "บันทึกนี้ไม่ใช่ทะเบียนอาคารทั้งหมดหรือใบรับรองความปลอดภัยปัจจุบัน การตัดสินใจใช้อาคารต้องอาศัยผลประเมินที่เกี่ยวข้อง",
+          "en": "This archive is not a complete building register or current safety certification. Decisions about using a building require the relevant assessment."
+        },
+        "questions": {
+          "th": [
+            "อาคารที่สนใจมีรายงานการตรวจไว้หรือไม่?",
+            "สถานะและรายละเอียดใดต้องสอบถามผู้รับผิดชอบต่อ?"
+          ],
+          "en": [
+            "Is an inspection report available for the building?",
+            "Which status or report details need follow-up?"
+          ]
+        },
+        "takeaway": {
+          "th": "ตรวจต้นฉบับและติดต่อผู้รับผิดชอบอาคารหรือผู้ประเมินก่อนใช้ผลไปตัดสินใจ",
+          "en": "Check the original report and consult the building’s responsible party or assessor before relying on the result."
         }
       },
       "detailUrl": {

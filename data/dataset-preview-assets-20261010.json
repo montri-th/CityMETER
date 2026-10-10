@@ -1,0 +1,1049 @@
+{
+  "schemaVersion": "1.0.0",
+  "assets": [
+    {
+      "assetId": "citymeter-government-spending-live-20261010",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=govspending",
+      "sourceSha256": "db4b87f9b44278c02c42acb40a3f9392307965d17d98e8c0860bf502cc794de6",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/government-spending-20261010.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/government-spending-20261010.webp",
+      "mimeType": "image/webp",
+      "byteLength": 19316,
+      "sha256": "b0fb1ebe16819f7ac870bce4429930d262614ebc0cb046bbcbbd693ccb8884c6",
+      "width": 641,
+      "height": 319,
+      "alt": {
+        "th": "งบจัดสรร · เบิกจ่าย · ปี 2568",
+        "en": "Allocation · disbursement · FY2025"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · ปีงบประมาณ 2568 · งบรวม · ทุกหมวด",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "db4b87f9b44278c02c42acb40a3f9392307965d17d98e8c0860bf502cc794de6",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 641,
+          "height": 319
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 19316,
+        "sha256": "b0fb1ebe16819f7ac870bce4429930d262614ebc0cb046bbcbbd693ccb8884c6",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-government-spending-live-20261010-large",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=govspending",
+      "sourceSha256": "db4b87f9b44278c02c42acb40a3f9392307965d17d98e8c0860bf502cc794de6",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/government-spending-20261010-large.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/government-spending-20261010-large.webp",
+      "mimeType": "image/webp",
+      "byteLength": 63516,
+      "sha256": "384fc6b96c7a943f70140f3253ea1266ed504aee0a5000b2a15468bafd9dda4a",
+      "width": 1200,
+      "height": 597,
+      "alt": {
+        "th": "งบจัดสรร · เบิกจ่าย · ปี 2568",
+        "en": "Allocation · disbursement · FY2025"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · ปีงบประมาณ 2568 · งบรวม · ทุกหมวด",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "db4b87f9b44278c02c42acb40a3f9392307965d17d98e8c0860bf502cc794de6",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1200,
+          "height": 597
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 63516,
+        "sha256": "384fc6b96c7a943f70140f3253ea1266ed504aee0a5000b2a15468bafd9dda4a",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-non-bank-live-20261010",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=nonBank",
+      "sourceSha256": "4b8a79f0537c0b3074696ef93d16a263e562aefecee62fd4af04b759e8bbbdd5",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/non-bank-20261010.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/non-bank-20261010.webp",
+      "mimeType": "image/webp",
+      "byteLength": 19252,
+      "sha256": "e2bdbc9746593961ed08d9cd636f4e52f34463638136cc9220c7033288fcaf7e",
+      "width": 641,
+      "height": 319,
+      "alt": {
+        "th": "เทียบเครือข่ายสาขา · โหมด VS",
+        "en": "Compare branch networks · VS mode"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · โหมด VS · เมืองไทย แคปปิตอล เทียบ ศรีสวัสดิ์ พาวเวอร์ 2014",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "4b8a79f0537c0b3074696ef93d16a263e562aefecee62fd4af04b759e8bbbdd5",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 641,
+          "height": 319
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 19252,
+        "sha256": "e2bdbc9746593961ed08d9cd636f4e52f34463638136cc9220c7033288fcaf7e",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-non-bank-live-20261010-large",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=nonBank",
+      "sourceSha256": "4b8a79f0537c0b3074696ef93d16a263e562aefecee62fd4af04b759e8bbbdd5",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/non-bank-20261010-large.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/non-bank-20261010-large.webp",
+      "mimeType": "image/webp",
+      "byteLength": 60614,
+      "sha256": "e29b661ba6b8a8b3f6e2699911324977db8090e199cedfa29b9092b01b724952",
+      "width": 1200,
+      "height": 597,
+      "alt": {
+        "th": "เทียบเครือข่ายสาขา · โหมด VS",
+        "en": "Compare branch networks · VS mode"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · โหมด VS · เมืองไทย แคปปิตอล เทียบ ศรีสวัสดิ์ พาวเวอร์ 2014",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "4b8a79f0537c0b3074696ef93d16a263e562aefecee62fd4af04b759e8bbbdd5",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1200,
+          "height": 597
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 60614,
+        "sha256": "e29b661ba6b8a8b3f6e2699911324977db8090e199cedfa29b9092b01b724952",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-grocery-retail-live-20261010",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=grocery",
+      "sourceSha256": "3bb73a93d3987784dd6384782300a1288a02a8f62972aebeea40975a988b92c3",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/grocery-retail-20261010.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/grocery-retail-20261010.webp",
+      "mimeType": "image/webp",
+      "byteLength": 21558,
+      "sha256": "f1d2e4a45f6376523de2a8b74eeb026b3dcb0b9599eb89c38f75966ddaaefcf0",
+      "width": 641,
+      "height": 319,
+      "alt": {
+        "th": "ร้านต่อประชากร · สัดส่วนแบรนด์",
+        "en": "Stores per population · brand count shares"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · ร้านต่อประชากร 10,000 คน · ทุกเชนที่มีในฐาน",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "3bb73a93d3987784dd6384782300a1288a02a8f62972aebeea40975a988b92c3",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 641,
+          "height": 319
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 21558,
+        "sha256": "f1d2e4a45f6376523de2a8b74eeb026b3dcb0b9599eb89c38f75966ddaaefcf0",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-grocery-retail-live-20261010-large",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=grocery",
+      "sourceSha256": "3bb73a93d3987784dd6384782300a1288a02a8f62972aebeea40975a988b92c3",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/grocery-retail-20261010-large.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/grocery-retail-20261010-large.webp",
+      "mimeType": "image/webp",
+      "byteLength": 71370,
+      "sha256": "875c119300905084fd738fe821b506c2858fab06ba708c781234ebc3128467b9",
+      "width": 1200,
+      "height": 597,
+      "alt": {
+        "th": "ร้านต่อประชากร · สัดส่วนแบรนด์",
+        "en": "Stores per population · brand count shares"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · ร้านต่อประชากร 10,000 คน · ทุกเชนที่มีในฐาน",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "3bb73a93d3987784dd6384782300a1288a02a8f62972aebeea40975a988b92c3",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1200,
+          "height": 597
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 71370,
+        "sha256": "875c119300905084fd738fe821b506c2858fab06ba708c781234ebc3128467b9",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-places-of-worship-live-20261010",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=placeOfWorship",
+      "sourceSha256": "b68066f44190ab993f73b72937d33ef7b1fd70a40be7d38aab12cf84c785f0b5",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/places-of-worship-20261010.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/places-of-worship-20261010.webp",
+      "mimeType": "image/webp",
+      "byteLength": 20338,
+      "sha256": "c51420f8bd135d7b2348ea3c05ca257a29e83573329cfabce12d9fbad558014f",
+      "width": 641,
+      "height": 319,
+      "alt": {
+        "th": "ศาสนสถาน · ประเภท · พื้นที่",
+        "en": "Places of worship · type · area"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · จำนวนศาสนสถาน · ทั้งสี่ศาสนาที่มีในฐาน",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "b68066f44190ab993f73b72937d33ef7b1fd70a40be7d38aab12cf84c785f0b5",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 641,
+          "height": 319
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 20338,
+        "sha256": "c51420f8bd135d7b2348ea3c05ca257a29e83573329cfabce12d9fbad558014f",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-places-of-worship-live-20261010-large",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=placeOfWorship",
+      "sourceSha256": "b68066f44190ab993f73b72937d33ef7b1fd70a40be7d38aab12cf84c785f0b5",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/places-of-worship-20261010-large.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/places-of-worship-20261010-large.webp",
+      "mimeType": "image/webp",
+      "byteLength": 64988,
+      "sha256": "68a1036db7cb5d3350b05f3bc10a2220d54e12e7873fbc600acba8cd35e33cfb",
+      "width": 1200,
+      "height": 597,
+      "alt": {
+        "th": "ศาสนสถาน · ประเภท · พื้นที่",
+        "en": "Places of worship · type · area"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · จำนวนศาสนสถาน · ทั้งสี่ศาสนาที่มีในฐาน",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "b68066f44190ab993f73b72937d33ef7b1fd70a40be7d38aab12cf84c785f0b5",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1200,
+          "height": 597
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 64988,
+        "sha256": "68a1036db7cb5d3350b05f3bc10a2220d54e12e7873fbc600acba8cd35e33cfb",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-events-notices-live-20261010",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=trafficIncident",
+      "sourceSha256": "753e53235038f2c99dafb966de56cef7076d66db6f031c691c0fb41949c72dba",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/events-notices-20261010.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/events-notices-20261010.webp",
+      "mimeType": "image/webp",
+      "byteLength": 17956,
+      "sha256": "947a6e89de07c78cbcf4d6ad572d648c989038c02ff066734d5212f6a5949d44",
+      "width": 641,
+      "height": 319,
+      "alt": {
+        "th": "รายงานในพื้นที่ · ประเภท · ช่วงเวลา",
+        "en": "Local reports · type · time period"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · ช่วง 7 วัน · ทุกประเภทรายงาน · หน้าจออ้างเวลา 10 ต.ค. 2569 16:00",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "753e53235038f2c99dafb966de56cef7076d66db6f031c691c0fb41949c72dba",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 641,
+          "height": 319
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 17956,
+        "sha256": "947a6e89de07c78cbcf4d6ad572d648c989038c02ff066734d5212f6a5949d44",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-events-notices-live-20261010-large",
+      "sourceUrl": "https://landometer.com/v3/citymeter?d=trafficIncident",
+      "sourceSha256": "753e53235038f2c99dafb966de56cef7076d66db6f031c691c0fb41949c72dba",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/events-notices-20261010-large.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/events-notices-20261010-large.webp",
+      "mimeType": "image/webp",
+      "byteLength": 58496,
+      "sha256": "1e4441b8cf54350f29e71c0a2eb15bd55b34eeb838c033b5ed52c1969d8bfa3f",
+      "width": 1200,
+      "height": 597,
+      "alt": {
+        "th": "รายงานในพื้นที่ · ประเภท · ช่วงเวลา",
+        "en": "Local reports · type · time period"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "ประเทศไทย · ช่วง 7 วัน · ทุกประเภทรายงาน · หน้าจออ้างเวลา 10 ต.ค. 2569 16:00",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "753e53235038f2c99dafb966de56cef7076d66db6f031c691c0fb41949c72dba",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1200,
+          "height": 597
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 58496,
+        "sha256": "1e4441b8cf54350f29e71c0a2eb15bd55b34eeb838c033b5ed52c1969d8bfa3f",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-terrain-elevation-live-20261010",
+      "sourceUrl": "https://landometer.com/v3/citymeter-3d?d=terrain",
+      "sourceSha256": "18f979a08746f8239e5f8adf825282a47599e96871d6f826468c469a181feb30",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/terrain-elevation-20261010.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/terrain-elevation-20261010.webp",
+      "mimeType": "image/webp",
+      "byteLength": 30176,
+      "sha256": "797ebbdb249ca8c6209f4933606bf9cb07057f2a0d5187d8d3d7325f79ab6e11",
+      "width": 641,
+      "height": 319,
+      "alt": {
+        "th": "เมืองเชียงใหม่ · ความสูง · ภูมิประเทศ 3 มิติ",
+        "en": "Chiang Mai · elevation · 3D terrain"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "เมืองเชียงใหม่ · FABDEM · สามมิติ · ขยายความสูง 1.5 เท่า · สีตามมุมมอง",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "18f979a08746f8239e5f8adf825282a47599e96871d6f826468c469a181feb30",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 641,
+          "height": 319
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 30176,
+        "sha256": "797ebbdb249ca8c6209f4933606bf9cb07057f2a0d5187d8d3d7325f79ab6e11",
+        "pillowVersion": "12.3.0"
+      }
+    },
+    {
+      "assetId": "citymeter-terrain-elevation-live-20261010-large",
+      "sourceUrl": "https://landometer.com/v3/citymeter-3d?d=terrain",
+      "sourceSha256": "18f979a08746f8239e5f8adf825282a47599e96871d6f826468c469a181feb30",
+      "owner": "Landometer / public CityMETER service",
+      "approval": {
+        "status": "authorized",
+        "basis": "User requested real AHA screenshots for catalog/summary dataset previews and authorized publication to montri-th/CityMETER",
+        "approver": "Montri",
+        "date": "2026-10-10"
+      },
+      "approvedRoles": [
+        "dataset-card-preview",
+        "dataset-summary-preview",
+        "dataset-social-preview"
+      ],
+      "prohibitedRoles": [
+        "current-operational-status",
+        "full-dataset-verification",
+        "source-agency-endorsement"
+      ],
+      "path": "media/previews-current/terrain-elevation-20261010-large.webp",
+      "url": "https://montri-th.github.io/CityMETER/media/previews-current/terrain-elevation-20261010-large.webp",
+      "mimeType": "image/webp",
+      "byteLength": 83808,
+      "sha256": "c87ac70d4f774edb4a25cd00b62e18bc79578e814ed5fac20bc88ab2c856c67a",
+      "width": 1200,
+      "height": 597,
+      "alt": {
+        "th": "เมืองเชียงใหม่ · ความสูง · ภูมิประเทศ 3 มิติ",
+        "en": "Chiang Mai · elevation · 3D terrain"
+      },
+      "capturedAt": "2026-10-10",
+      "selectedState": "เมืองเชียงใหม่ · FABDEM · สามมิติ · ขยายความสูง 1.5 เท่า · สีตามมุมมอง",
+      "privacyReview": "Public map and institutional/business aggregate controls only. No signed-in account, private notification, credentials or personal applicant data.",
+      "credit": "Captured from CityMETER, Landometer. Underlying data sources and terms remain those listed in each record. Terrain view credits FABDEM (Hawker et al., University of Bristol), CC BY-NC-SA 4.0.",
+      "recipe": {
+        "sourceSha256": "18f979a08746f8239e5f8adf825282a47599e96871d6f826468c469a181feb30",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 851
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1200,
+          "height": 597
+        },
+        "encoding": {
+          "quality": 88,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "LANCZOS",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 83808,
+        "sha256": "c87ac70d4f774edb4a25cd00b62e18bc79578e814ed5fac20bc88ab2c856c67a",
+        "pillowVersion": "12.3.0"
+      }
+    }
+  ]
+}

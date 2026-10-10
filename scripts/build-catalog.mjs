@@ -215,15 +215,23 @@ bundle = replaceSpan(
 );
 bundle = bundle.replace('["business-dynamics",1],', "");
 const [pa, pb] = literalSpan(bundle, "qn=");
-const previews = Function(
+const historicalPreviews = Function(
   `"use strict";return (${bundle.slice(pa, pb)})`,
 )().filter((x) => x.id !== "business-dynamics");
+const previews = catalog.records.filter((record) => record.preview.available).map((record) => {
+  const retained = historicalPreviews.find((item) => item.id === record.id);
+  return { ...(retained || {}), id: record.id, assetStatus: retained?.assetStatus || "ready", image: record.preview.path, largeImage: record.preview.largePath, previewPath: `/${record.preview.path}`, focusLabel: record.preview.focusLabel };
+});
 bundle = replaceLiteral(bundle, "qn=", previews);
 bundle = replaceSpan(
   bundle,
   ",M6=new Set(Rt.map",
   "const rc=Object.freeze",
   `;const CitymeterValidatePreviewContract=${validatePreviewContract.toString()};CitymeterValidatePreviewContract(Rt,qn);`,
+);
+bundle = replaceOnce(bundle,
+  'previewPath:`/media/previews-v2/${c.id.replaceAll("/","-")}.webp`',
+  'previewPath:c.previewPath??`/media/previews-v2/${c.id.replaceAll("/","-")}.webp`',
 );
 validatePreviewContract(
   catalog.records.map((record) => ({
@@ -275,6 +283,7 @@ emit(navPath, fixCopy(read("assets/unified-navbar-r7-v32.js")));
 emit("assets/catalog-public-r1.js", read("src/runtime/catalog.js"));
 emit("assets/dataset-summary-public-r1.js", read("src/runtime/summary.js"));
 emit("assets/catalog-public-r1.css", read("src/styles/catalog.css"));
+emit("assets/dataset-summary-public-r1.css", read("src/styles/summary.css"));
 emit("assets/catalog-shell-current-r1.css", read("src/styles/shell-current.css"));
 emit("assets/navbar-current-r1.css", read("src/styles/navbar-current.css"));
 const qrRecords = catalog.records.map((record) => {
@@ -440,9 +449,11 @@ const authored = [
   "src/runtime/catalog.js",
   "src/runtime/summary.js",
   "src/styles/catalog.css",
+  "src/styles/summary.css",
   "src/styles/shell-current.css",
   "src/styles/navbar-current.css",
   "data/landom-contributors.json",
+  "data/dataset-preview-assets-20261010.json",
   "scripts/lib/catalog-render.mjs",
   "scripts/lib/patch-public.mjs",
   "scripts/lib/preview-contract.mjs",
