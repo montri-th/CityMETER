@@ -5,7 +5,7 @@
     "designSystem": "0.9.7",
     "baseDocumentId": "lds-0.9.7-landometer-standalone-r1",
     "baseSha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
-    "coverage": "New catalog/detail writing, neutral components, discovery; historical public shell/media retained"
+    "coverage": "Catalog/detail writing, grouped masonry, latest LDS0.9.7 UI color projection and discovery; retained public shell behavior/media"
   },
   "authoredInputs": [
     "src/catalog.json",
@@ -13,12 +13,16 @@
     "src/templates/index.en.html",
     "src/runtime/catalog.js",
     "src/styles/catalog.css",
-    "data/landom-contributors.json"
+    "data/landom-contributors.json",
+    "src/styles/shell-current.css",
+    "src/styles/navbar-current.css",
+    "scripts/lib/catalog-qr.mjs"
   ],
   "commands": {
     "generate": "npm run build",
     "check": "npm run check",
-    "syncContributors": "npm run sync:contributors"
+    "syncContributors": "npm run sync:contributors",
+    "install": "npm ci"
   },
   "tasks": [
     {
@@ -29,43 +33,70 @@
     },
     {
       "id": "copy",
-      "dependsOn": ["evidence"],
+      "dependsOn": [
+        "evidence"
+      ],
       "action": "Edit src/catalog.json in TH/EN, retaining team intent and natural voice. Add cross-language aliases. Preserve stable IDs/map URLs and source scope.",
       "doneWhen": "No invented coverage, freshness, rights, behaviour or business outcome; branch shares have a stated subset and demand proxies stay proxies."
     },
     {
+      "id": "taxonomy",
+      "dependsOn": [
+        "evidence",
+        "copy"
+      ],
+      "action": "Assign each record one of Land/Location/Living and exactly one semantic subgroup. Preserve subgroup order and canonical EN title order shared across locales; Flood is recurrent, observed, DWR forecast, Google forecast. Keep 24 headings scalable; no fourth Local Decisions pillar.",
+      "doneWhen": "All 43 records have valid subgroup, stable IDs and map URLs; counts 13/16/14 and no empty public subgroup."
+    },
+    {
       "id": "credits",
-      "dependsOn": ["evidence"],
+      "dependsOn": [
+        "evidence"
+      ],
       "action": "Sync only the reviewed public Landom contributor projection and review its diff; do not infer candidate attribution or consent.",
       "doneWhen": "Each displayed credit joins an explicit public module mapping and a usable public profile URL."
     },
     {
       "id": "generate",
-      "dependsOn": ["copy", "credits"],
-      "action": "Run npm run build, then npm run check. Do not hand-edit generated output.",
+      "dependsOn": [
+        "copy",
+        "credits",
+        "taxonomy"
+      ],
+      "action": "Run npm ci, npm run build and npm run check. Build all 43 local static SVG QR codes from each exact map URL; decode them independently. Do not edit generated files.",
       "doneWhen": "Deterministic build, semantic/search checks and immutable-input hash checks pass."
     },
     {
       "id": "browser-qa",
-      "dependsOn": ["generate"],
-      "action": "Inspect TH/EN at 390px and 1440px, including new sections, initial/hydrated/filter/reset parity, menu/language/theme, decision panels, share, reel, keyboard and reduced motion.",
+      "dependsOn": [
+        "generate"
+      ],
+      "action": "Inspect actual TH/EN content at 390 and 1440 CSS px, plus breakpoints 768 and 1100 CSS px. Verify 3 dedicated group lanes at wide widths, independent card heights, native source disclosures and QR, filter/reset/empty/same-hash navigation, menu/language/theme, retained decision/share/reel, keyboard and reduced-motion/observer-failure final visibility.",
       "doneWhen": "No overflow, fake preview, decorative bracket/rail, missing credit/name, dead control or stale count."
     },
     {
       "id": "review",
-      "dependsOn": ["browser-qa"],
+      "dependsOn": [
+        "browser-qa"
+      ],
       "action": "Open a focused PR with evidence, changed behaviour, test result and responsive screenshots; require quality CI.",
       "doneWhen": "The exact commit and generated diff have been reviewed; CI does not deploy a PR."
     },
     {
       "id": "publish-verify",
-      "dependsOn": ["review"],
+      "dependsOn": [
+        "review"
+      ],
       "action": "After authorized merge, inspect GitHub Pages provider/source/build status, confirm deployed commit, fetch exact public artifacts and compare hashes, then check user journeys on the public URLs.",
       "doneWhen": "Provider attestation and public bytes agree with the reviewed release; push success alone is insufficient."
     }
   ],
   "guardrails": {
-    "taxonomy": ["Land", "Location", "Living"],
+    "taxonomy": [
+      "Land",
+      "Location",
+      "Living"
+    ],
     "locationPurpose": [
       "market landscape",
       "observed subset count share",
@@ -81,7 +112,67 @@
       "public credit is not inferred personal consent"
     ],
     "localeInsight": "Contextual prior only; crosswalk locale_id to verified municipality/community/service boundary before aggregation; not official population, eligibility, statutory boundary, risk or verified behaviour.",
-    "generatedFolders": ["datasets/", "en/datasets/"],
+    "generatedFolders": [
+      "datasets/",
+      "en/datasets/"
+    ],
     "releaseHistory": "Preserve immutable public baseline and historical assets; do not treat older LDS documentation as current parallel authority."
+  },
+  "components": {
+    "catalog": {
+      "wide": "3 dedicated masonry lanes Land/Location/Living at >= 1100 CSS px",
+      "medium": "2 group lanes at 768–1099 CSS px; do not intermix records",
+      "narrow": "1 sequential group lane below 768 CSS px",
+      "source": "src/catalog.json",
+      "qr": "local SVG actual mapUrl, 4-module quiet zone, M correction; static before hydration",
+      "motion": "preview-only once arrival and bounded state feedback; all content/actions visible without motion",
+      "filterReset": "Reset button clears query and restores all pillars; deleting only the search text retains the selected pillar."
+    }
+  },
+  "verificationScope": {
+    "recordedAt": "2026-10-10",
+    "runtimeFixtures": {
+      "script": "scripts/validate-catalog-runtime.mjs",
+      "environment": "Node VM with a small DOM adapter and simulated media queries",
+      "passed": 8,
+      "covers": [
+        "observer missing or constructor/observe failure",
+        "simulated reduced-motion preference and preference change",
+        "same-hash filtered anchor recovery",
+        "modified-click preservation",
+        "single event ownership"
+      ]
+    },
+    "osReducedMotion": {
+      "status": "not_tested",
+      "claim": "VM fixtures do not establish OS-level reduced-motion behavior."
+    },
+    "browserVisualReview": {
+      "status": "separate_evidence_required",
+      "record": [
+        "page",
+        "language",
+        "viewport CSS pixels",
+        "theme",
+        "sections actually inspected"
+      ],
+      "notSubstitutes": [
+        "VM fixtures",
+        "DOM geometry",
+        "token/hash checks"
+      ]
+    },
+    "chooserAndOperationalMap": "Catalog checks do not establish dataset-switcher prototype or operational-map integration behavior."
+  },
+  "discoveryModel": {
+    "catalog": "Concise grouped cards, real HTML links, native source disclosures and per-record operational QR handoff.",
+    "detailPages": "Stable localized URLs with per-record title, description, source, period, scope and limitations; canonical/hreflang/sitemap kept in sync.",
+    "operationalViews": "Exact existing mapUrl, preserving dataset, example area and 3D route.",
+    "qr": "Mobile handoff to mapUrl; a QR-only page is not a replacement for useful indexable dataset content.",
+    "searchReference": "https://developers.google.com/search/docs/fundamentals/get-started-developers",
+    "noGuarantee": [
+      "search indexing or rank",
+      "AI answer inclusion"
+    ]
   }
 }

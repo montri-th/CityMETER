@@ -5,6 +5,7 @@ import { createHash } from "node:crypto";
 import { replaceOnce } from "./lib/patch-public.mjs";
 import { validatePreviewContract } from "./lib/preview-contract.mjs";
 import { languageForPath } from "./lib/route-language.mjs";
+import { datasetQr } from "./lib/catalog-qr.mjs";
 import {
   catalogInner,
   showcaseInner,
@@ -198,7 +199,7 @@ bundle = replaceSpan(
   bundle,
   "function Q6(",
   "function X6(",
-  `function Q6({language:c}){return p.jsx("section",{className:"section explorer-section",id:"datasets","aria-labelledby":"datasets-title",dangerouslySetInnerHTML:{__html:${json(catalogs)}[c]}})}\n`,
+  `function Q6({language:c}){return p.jsx("section",{className:"section explorer-section",id:"datasets","aria-labelledby":"datasets-title",ref:n=>{if(n)document.dispatchEvent(new Event("citymeter:catalog-ready"))},dangerouslySetInnerHTML:{__html:${json(catalogs)}[c]}})}\n`,
 );
 bundle = replaceSpan(
   bundle,
@@ -273,6 +274,15 @@ emit(enhancerPath, enhancer);
 emit(navPath, fixCopy(read("assets/unified-navbar-r7-v32.js")));
 emit("assets/catalog-public-r1.js", read("src/runtime/catalog.js"));
 emit("assets/catalog-public-r1.css", read("src/styles/catalog.css"));
+emit("assets/catalog-shell-current-r1.css", read("src/styles/shell-current.css"));
+emit("assets/navbar-current-r1.css", read("src/styles/navbar-current.css"));
+const qrRecords = catalog.records.map((record) => {
+  const path = `media/qr/datasets/${record.slug}.svg`;
+  const svg = datasetQr(record.mapUrl);
+  emit(path, svg);
+  return { id: record.id, url: record.mapUrl, file: path, sha256: hash(svg) };
+});
+emit("data/catalog-qr.json", { schemaVersion: "1.0.0", contentVersion: catalog.contentVersion, quietZoneModules: 4, errorCorrection: "M", records: qrRecords });
 const publicCatalog = {
   ...catalog,
   contributorProjection: projection.canonicalUrl,
@@ -349,6 +359,8 @@ for (const lang of ["th", "en"]) {
     .replaceAll("assets/index-qbT50gkr-v18.js", bundlePath)
     .replaceAll("assets/catalog-enhancements-ds-0.9.1-v26.js", enhancerPath)
     .replaceAll("assets/unified-navbar-r7-v32.js", navPath)
+    .replaceAll("assets/catalog-enhancements-ds-0.9.1-v30.css", "assets/catalog-shell-current-r1.css")
+    .replaceAll("assets/unified-navbar-r7-ds-0.9.1-v34.css", "assets/navbar-current-r1.css")
     .replaceAll(
       "assets/landometer-ds/v0.9.1/color-srgb-05.production.css",
       "assets/landometer-ds/v0.9.7/color-srgb-10.production.css",
@@ -356,7 +368,7 @@ for (const lang of ["th", "en"]) {
   html = html
     .replace(
       'data-ds-version="0.9.1"',
-      'data-ds-version="0.9.7" data-ds-coverage="catalog-and-details; historical-shell-retained"',
+      'data-ds-version="0.9.7" data-ds-coverage="catalog-and-details; current-ui-color-projection; retained-shell-behavior"',
     )
     .replace(
       'name="landometer:ds-version" content="0.9.1"',
@@ -368,7 +380,7 @@ for (const lang of ["th", "en"]) {
     )
     .replace(
       'content="ui-20260905-ds091-public-v6"',
-      'content="2026-10-10-catalog-r1"',
+      'content="2026-10-10-catalog-masonry-r2"',
     )
     .replace(
       /    <meta name="(?:landometer:release-receipt|citymeter:release-receipt|citymeter:contributor-[^"]+)"[^>]*>\n/g,
@@ -426,11 +438,14 @@ const authored = [
   "src/templates/index.en.html",
   "src/runtime/catalog.js",
   "src/styles/catalog.css",
+  "src/styles/shell-current.css",
+  "src/styles/navbar-current.css",
   "data/landom-contributors.json",
   "scripts/lib/catalog-render.mjs",
   "scripts/lib/patch-public.mjs",
   "scripts/lib/preview-contract.mjs",
   "scripts/lib/route-language.mjs",
+  "scripts/lib/catalog-qr.mjs",
   "scripts/build-catalog.mjs",
 ];
 const manifest = {
@@ -451,7 +466,7 @@ const manifest = {
   },
   ownerModel: {
     catalog:
-      "Shared HTML renderer in initial HTML and React Q6; delegated native search only.",
+      "Shared HTML renderer in initial HTML and React Q6; native search, group lanes, disclosures, static QR and bounded motion enhancement.",
     showcase: "Shared HTML renderer in initial HTML and React Y6.",
     discovery: "Shared minimal identity graph in initial HTML and React L6.",
     shell:

@@ -1,13 +1,13 @@
 {
   "schemaVersion": "1.0.0",
-  "contentVersion": "2026-10-10-catalog-r1",
+  "contentVersion": "2026-10-10-catalog-masonry-r2",
   "canonicalBase": "https://montri-th.github.io/CityMETER/",
   "updatedAt": "2026-10-10",
   "authority": {
     "dsVersion": "0.9.7",
     "baseDocumentId": "lds-0.9.7-landometer-standalone-r1",
     "baseSha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
-    "scope": "Current catalog writing, new neutral catalog/detail components and discovery. Existing public shell and immutable media retained; no full-site conformance claim."
+    "scope": "Current catalog writing, grouped masonry/detail components, UI color projection and discovery using LDS0.9.7. Existing public shell behavior and immutable media retained; no full-site conformance claim."
   },
   "groups": [
     {
@@ -15,21 +15,33 @@
       "label": "Land",
       "thai": "ที่ดินและอสังหาริมทรัพย์",
       "count": 13,
-      "description": "อ่านรูปแบบการพัฒนา ราคาประเมิน ราคาประกาศ และตลาดเช่า เพื่อคัดกรองพื้นที่และทรัพย์สินก่อนลงรายละเอียด"
+      "description": "อ่านรูปแบบการพัฒนา ราคาประเมิน ราคาประกาศ และตลาดเช่า เพื่อคัดกรองพื้นที่และทรัพย์สินก่อนลงรายละเอียด",
+      "summary": {
+        "th": "ที่ดิน อาคาร ราคา และตลาดเช่า",
+        "en": "Land, buildings, prices and rents"
+      }
     },
     {
       "id": "location",
       "label": "Location",
       "thai": "ธุรกิจ ทำเล และการเข้าถึง",
       "count": 16,
-      "description": "เห็นภูมิทัศน์ตลาด เครือข่ายธุรกิจ และบริบทการเดินทาง เพื่อวางกลยุทธ์ตลาดและเลือกพื้นที่ศึกษาความต้องการกับบริการที่มีอยู่"
+      "description": "เห็นภูมิทัศน์ตลาด เครือข่ายธุรกิจ และบริบทการเดินทาง เพื่อวางกลยุทธ์ตลาดและเลือกพื้นที่ศึกษาความต้องการกับบริการที่มีอยู่",
+      "summary": {
+        "th": "ภาพตลาด เครือข่ายธุรกิจ และการเข้าถึง",
+        "en": "Market landscape, business networks and access"
+      }
     },
     {
       "id": "living",
       "label": "Living",
       "thai": "ผู้คน บริการ และความเสี่ยง",
       "count": 14,
-      "description": "อ่านประชากร บริการสาธารณะ ฐานะท้องถิ่น และสัญญาณภัย เพื่อจัดลำดับการวางแผนและการเฝ้าระวัง"
+      "description": "อ่านประชากร บริการสาธารณะ ฐานะท้องถิ่น และสัญญาณภัย เพื่อจัดลำดับการวางแผนและการเฝ้าระวัง",
+      "summary": {
+        "th": "ผู้คน บริการภาครัฐ และสัญญาณภัย",
+        "en": "People, public services and hazard context"
+      }
     }
   ],
   "tagLabels": {
@@ -434,7 +446,7 @@
     "th": {
       "eyebrow": "สำรวจข้อมูล",
       "title": "เลือกข้อมูลที่ตรงกับคำถามของคุณ",
-      "intro": "ค้นจากเรื่องที่สนใจ หรือเปิดตามหมวดเพื่อดูตัวอย่าง ขอบเขต และลิงก์ตรง",
+      "intro": "เลือกดูตาม Land, Location หรือ Living หรือค้นชื่อข้อมูลและเรื่องที่สนใจ",
       "searchLabel": "ค้นหาข้อมูล",
       "searchPlaceholder": "เช่น น้ำท่วม ราคาอาคาร ธุรกิจ หรือประชากร",
       "groupLabel": "กรองตามหมวด",
@@ -458,7 +470,7 @@
       "story": {
         "eyebrow": "43 มุมมองข้อมูล · 3 กลุ่ม",
         "title": "เข้าใจเมืองผ่าน 3 มุมที่เชื่อมกัน",
-        "intro": "Land, Location และ Living เป็นสามมุมมองที่ช่วยอ่านพื้นที่ร่วมกัน ตั้งแต่ที่ดินและสิ่งปลูกสร้าง ภูมิทัศน์ตลาด ไปจนถึงผู้คนและบริการ เพื่อเลือกหลักฐานที่ต้องตรวจต่อก่อนตัดสินใจ",
+        "intro": "อ่านที่ดินและสิ่งปลูกสร้าง เห็นภูมิทัศน์ตลาด และเข้าใจผู้คนกับบริการในพื้นที่ เพื่อตัดสินใจว่าควรสำรวจอะไรต่อ",
         "groups": {
           "land": {
             "name": "Land",
@@ -487,7 +499,7 @@
     "en": {
       "eyebrow": "Explore the data",
       "title": "Find the data that fits your question",
-      "intro": "Search by topic or browse a group to see examples, coverage and a direct link.",
+      "intro": "Browse Land, Location or Living, or search for a dataset or topic.",
       "searchLabel": "Search data",
       "searchPlaceholder": "Try flood, land price, buildings, business or population",
       "groupLabel": "Filter by group",
@@ -511,7 +523,7 @@
       "story": {
         "eyebrow": "43 DATA VIEWS · 3 LENSES",
         "title": "One city, seen through three connected lenses",
-        "intro": "Land, Location and Living offer three complementary views of a place: land and buildings, market landscape, and people and services. Read them together to choose the evidence needed for a decision.",
+        "intro": "Read land and buildings, understand the market landscape, and explore people and services to decide what to investigate next.",
         "groups": {
           "land": {
             "name": "Land",
@@ -645,7 +657,104 @@
         "building",
         "buildings"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "built-form-terrain",
+      "order": 1
+    },
+    {
+      "id": "terrain-elevation",
+      "group": "land",
+      "title": {
+        "th": "ภูมิประเทศและระดับความสูง",
+        "en": "Terrain & Elevation"
+      },
+      "description": {
+        "th": "อ่านรูปทรงและระดับความสูงของภูมิประเทศในมุมมองสามมิติ เพื่อทำความเข้าใจพื้นที่และเตรียมคำถามก่อนสำรวจจริง",
+        "en": "Explore terrain and elevation in 3D to understand an area and prepare questions for on-site investigation."
+      },
+      "tags": [
+        "terrain",
+        "elevation"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "พื้นที่ที่มีข้อมูลของแต่ละแบบจำลอง; แหล่งข้อมูลและความละเอียดอาจเปลี่ยนตามตำแหน่ง",
+        "en": "Coverage depends on the elevation model; source and resolution can vary by location"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "แบบจำลองระดับความสูงและส่วนต่าง GLO-30 ลบ FABDEM; ภาพสามมิติอาจเกลี่ยหรือขยายความสูง",
+        "en": "Elevation models and GLO-30 minus FABDEM differences; 3D rendering may smooth or exaggerate height"
+      },
+      "limitation": {
+        "th": "ค่า DEM ไม่ใช่ผลสำรวจระดับที่ดินหรือผลประเมินน้ำท่วม ส่วนต่างสองแบบจำลองไม่ใช่ความสูงอาคารหรือต้นไม้ที่วัดยืนยัน และส่วนไม่มีข้อมูลไม่ใช่ 0 เมตร",
+        "en": "DEM values are not a land survey or flood-risk assessment. Differences between models are not verified building or tree heights, and no-data is not zero metres."
+      },
+      "sourceReview": {
+        "status": "other-source",
+        "owner": {
+          "th": "FABDEM — Hawker et al. / University of Bristol; Copernicus DEM; Terrain Tiles — Mapzen / AWS Open Data",
+          "en": "FABDEM — Hawker et al. / University of Bristol; Copernicus DEM; Terrain Tiles — Mapzen / AWS Open Data"
+        },
+        "source": {
+          "th": "FABDEM V1-2, Copernicus GLO-30 และ Terrain Tiles มีบทบาทต่างกัน แยกค่าระดับที่อ่านจากภาพสามมิติ และดูว่าแหล่งใดใช้ในพื้นที่นั้น FABDEM V1-2 ใช้สัญญาอนุญาต CC BY-NC-SA 4.0; ตรวจเงื่อนไขของแต่ละแบบจำลองก่อนนำข้อมูลไปใช้ต่อ โดยเฉพาะการใช้เชิงพาณิชย์",
+          "en": "FABDEM V1-2, Copernicus GLO-30 and Terrain Tiles have distinct roles. Distinguish elevation readings from the rendered 3D surface and check the source used at each location. FABDEM V1-2 is licensed CC BY-NC-SA 4.0; check each model’s terms before reuse, especially commercial use."
+        },
+        "period": {
+          "th": "รุ่นและช่วงสำรวจแตกต่างกันตาม DEM; วันที่ทำแผ่นภาพไม่ใช่วันที่สำรวจ",
+          "en": "Versions and acquisition periods differ by DEM; tile-production dates are not survey dates."
+        },
+        "benefit": {
+          "th": "อ่านรูปทรงและระดับความสูงของภูมิประเทศในมุมมองสามมิติ เพื่อทำความเข้าใจพื้นที่และเตรียมคำถามก่อนสำรวจจริง",
+          "en": "Explore terrain and elevation in 3D to understand an area and prepare questions for on-site investigation."
+        },
+        "reading": {
+          "th": "ค่า DEM ไม่ใช่ผลสำรวจระดับที่ดินหรือผลประเมินน้ำท่วม ส่วนต่างสองแบบจำลองไม่ใช่ความสูงอาคารหรือต้นไม้ที่วัดยืนยัน และส่วนไม่มีข้อมูลไม่ใช่ 0 เมตร",
+          "en": "DEM values are not a land survey or flood-risk assessment. Differences between models are not verified building or tree heights, and no-data is not zero metres."
+        },
+        "official": [
+          {
+            "label": {
+              "th": "FABDEM V1-2 — University of Bristol",
+              "en": "FABDEM V1-2 — University of Bristol"
+            },
+            "url": "https://doi.org/10.5523/bris.s5hqmjcdj8yo2ibzi9b4ew3sn"
+          },
+          {
+            "label": {
+              "th": "Terrain Tiles — ที่มาและการให้บริการ",
+              "en": "Terrain Tiles — provenance and hosting"
+            },
+            "url": "https://registry.opendata.aws/terrain-tiles/"
+          }
+        ],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "terrain-elevation",
+      "datasetCode": "terrain",
+      "mapUrl": "https://landometer.com/v3/citymeter-3d?d=terrain",
+      "preview": {
+        "available": false,
+        "path": null,
+        "largePath": null,
+        "conceptual": false,
+        "focusLabel": null
+      },
+      "aliases": [
+        "ภูมิประเทศและระดับความสูง",
+        "Terrain & Elevation",
+        "terrain",
+        "terrain-elevation",
+        "Terrain",
+        "elevation",
+        "ภูมิประเทศ",
+        "ระดับความสูง"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "built-form-terrain",
+      "order": 2
     },
     {
       "id": "registered-housing-estates",
@@ -740,7 +849,9 @@
         "estate",
         "registered-housing-estates"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "land-development",
+      "order": 1
     },
     {
       "id": "eia-projects",
@@ -841,7 +952,9 @@
         "eiaReport",
         "eia-projects"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "planning-regulation",
+      "order": 1
     },
     {
       "id": "crop-area-output",
@@ -916,7 +1029,9 @@
         "muenRai",
         "crop-area-output"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "land-use",
+      "order": 1
     },
     {
       "id": "land-appraisal",
@@ -1025,7 +1140,9 @@
         "deed",
         "land-appraisal"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "land-market",
+      "order": 1
     },
     {
       "id": "land-listing-prices",
@@ -1100,7 +1217,9 @@
         "landoffer",
         "land-listing-prices"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "land-market",
+      "order": 2
     },
     {
       "id": "apartment-rent",
@@ -1175,7 +1294,9 @@
         "apartment",
         "apartment-rent"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "residential-market",
+      "order": 1
     },
     {
       "id": "condo-appraisal",
@@ -1269,7 +1390,9 @@
         "condo",
         "condo-appraisal"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "residential-market",
+      "order": 2
     },
     {
       "id": "condo-listing-prices",
@@ -1352,7 +1475,9 @@
         "condoOffer",
         "condo-listing-prices"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "residential-market",
+      "order": 3
     },
     {
       "id": "detached-listing-prices",
@@ -1427,7 +1552,9 @@
         "detachedhouse",
         "detached-listing-prices"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "residential-market",
+      "order": 4
     },
     {
       "id": "townhouse-listing-prices",
@@ -1502,7 +1629,9 @@
         "townhouse",
         "townhouse-listing-prices"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "residential-market",
+      "order": 5
     },
     {
       "id": "condo-rent-yield",
@@ -1586,7 +1715,9 @@
         "rentWise",
         "condo-rent-yield"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "investment-insight",
+      "order": 1
     },
     {
       "id": "registered-companies-status-capital",
@@ -1709,7 +1840,9 @@
         "company",
         "registered-companies-status-capital"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "business-registry",
+      "order": 1
     },
     {
       "id": "factories-workers-investment",
@@ -1804,7 +1937,9 @@
         "factory",
         "factories-workers-investment"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "business-activity",
+      "order": 1
     },
     {
       "id": "office-buildings-rent",
@@ -1880,7 +2015,104 @@
         "office",
         "office-buildings-rent"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "commercial-property",
+      "order": 1
+    },
+    {
+      "id": "non-bank",
+      "group": "location",
+      "title": {
+        "th": "เครือข่ายสาขาและสำนักงาน Non-bank",
+        "en": "Non-bank Branch & Office Networks"
+      },
+      "description": {
+        "th": "มองเห็นเครือข่ายสาขาและสำนักงานผู้ให้กู้ Non-bank เพื่อวางกลยุทธ์ตลาดและสำรวจพื้นที่ให้บริการต่ออย่างมีบริบท",
+        "en": "Explore non-bank lender branches and offices to inform market strategy and further research into local service networks."
+      },
+      "tags": [
+        "business",
+        "services",
+        "density"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "ผู้ให้กู้ที่มีในแฟ้มสาขา และสำนักงานพิโกที่มีข้อมูลอ้างอิง",
+        "en": "Lenders in the branch file and Pico offices in the source records"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "แยกสาขา สำนักงาน สำนักงานใหญ่ บริษัท และประเภทใบอนุญาต; พิกัดบางรายการยังไม่ครบ",
+        "en": "Keep branch, office, headquarters, company and licence categories separate; coordinates are incomplete"
+      },
+      "limitation": {
+        "th": "ไม่พบการจับคู่ชื่อหรือชิปใบอนุญาตไม่ได้แปลว่าไม่มีใบอนุญาต หมวดใบอนุญาตซ้อนกันได้ จำนวนสาขาไม่ใช่ยอดสินเชื่อ ความต้องการสินเชื่อ หรือความเสี่ยงหนี้",
+        "en": "An unmatched name or missing licence chip does not mean unlicensed. Licence categories can overlap. Branch counts are not loan volume, credit demand or debt risk."
+      },
+      "sourceReview": {
+        "status": "other-source",
+        "owner": {
+          "th": "กรมพัฒนาธุรกิจการค้า / สำนักงานเศรษฐกิจการคลัง / ธนาคารแห่งประเทศไทย ตามบทบาทข้อมูล",
+          "en": "DBD / Fiscal Policy Office / Bank of Thailand, by source role"
+        },
+        "source": {
+          "th": "แฟ้มสาขา DBD รองรับรายการสาขา; สศค. รองรับสำนักงานพิโก; ธปท. รองรับข้อมูลใบอนุญาตที่จับคู่ด้วยชื่อบริษัท ไม่ใช่ทะเบียนชุดเดียวกัน",
+          "en": "DBD branch records support branches; FPO supports Pico offices; BOT supports licence information matched by company name. These are distinct sources and counting units."
+        },
+        "period": {
+          "th": "แฟ้มสาขา DBD ไม่ทราบวันข้อมูล; พิโก 18 กันยายน 2569; ใบอนุญาต ธปท. 23 กันยายน 2569",
+          "en": "DBD branch vintage unknown; Pico 18 September 2026; BOT licence information 23 September 2026."
+        },
+        "benefit": {
+          "th": "มองเห็นเครือข่ายสาขาและสำนักงานผู้ให้กู้ Non-bank เพื่อวางกลยุทธ์ตลาดและสำรวจพื้นที่ให้บริการต่ออย่างมีบริบท",
+          "en": "Explore non-bank lender branches and offices to inform market strategy and further research into local service networks."
+        },
+        "reading": {
+          "th": "ไม่พบการจับคู่ชื่อหรือชิปใบอนุญาตไม่ได้แปลว่าไม่มีใบอนุญาต หมวดใบอนุญาตซ้อนกันได้ จำนวนสาขาไม่ใช่ยอดสินเชื่อ ความต้องการสินเชื่อ หรือความเสี่ยงหนี้",
+          "en": "An unmatched name or missing licence chip does not mean unlicensed. Licence categories can overlap. Branch counts are not loan volume, credit demand or debt risk."
+        },
+        "official": [
+          {
+            "label": {
+              "th": "สศค. — รายชื่อผู้ประกอบธุรกิจพิโกไฟแนนซ์",
+              "en": "FPO — Pico finance providers"
+            },
+            "url": "https://www.1359.go.th/picodoc/pico_public/"
+          },
+          {
+            "label": {
+              "th": "ธปท. — รายชื่อสถาบันการเงินและ Non-bank",
+              "en": "BOT — financial institution and non-bank list"
+            },
+            "url": "https://www.bot.or.th/th/fi-list.html"
+          }
+        ],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "non-bank",
+      "datasetCode": "nonBank",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=nonBank",
+      "preview": {
+        "available": false,
+        "path": null,
+        "largePath": null,
+        "conceptual": false,
+        "focusLabel": null
+      },
+      "aliases": [
+        "เครือข่ายสาขาและสำนักงาน Non-bank",
+        "Non-bank Branch & Office Networks",
+        "nonBank",
+        "non-bank",
+        "Non-bank",
+        "สาขา Non-bank",
+        "นอนแบงก์"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "financial-services",
+      "order": 1
     },
     {
       "id": "restaurants",
@@ -1956,7 +2188,111 @@
         "restaurant",
         "restaurants"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "food-retail",
+      "order": 1
+    },
+    {
+      "id": "grocery-retail",
+      "group": "location",
+      "title": {
+        "th": "ร้านค้าปลีกและค้าส่ง",
+        "en": "Retail & Wholesale Networks"
+      },
+      "description": {
+        "th": "เห็นเครือข่ายร้านค้าปลีกและค้าส่งในพื้นที่เดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกย่านที่ควรลงสำรวจต่อ",
+        "en": "See retail and wholesale networks across an area to inform market strategy and decide where to investigate next."
+      },
+      "tags": [
+        "retail",
+        "brands",
+        "density"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "เครือข่ายแบรนด์ที่มีในฐานข้อมูล ครอบคลุมค้าปลีก ค้าส่ง และร้านขายยา ไม่ใช่ร้านค้าทุกแห่ง",
+        "en": "Selected chains covering retail, wholesale and pharmacies; not a census of every shop"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "สาขา แบรนด์ และประเภทร้าน; พื้นที่ขายเป็นค่าประมาณตามประเภท",
+        "en": "Stores, brands and store types; sales-floor area is estimated by type"
+      },
+      "limitation": {
+        "th": "จำนวนสาขาและสัดส่วนในฐานข้อมูลไม่ใช่ยอดขาย ส่วนแบ่งรายได้ หรือความต้องการซื้อจริง ต้องตรวจสถานะสาขาและพื้นที่ขายก่อนใช้วางแผน",
+        "en": "Store counts and count shares are not sales, revenue share or observed demand. Verify operating status and floor area before planning."
+      },
+      "sourceReview": {
+        "status": "other-source",
+        "owner": {
+          "th": "เว็บไซต์สาขาของแต่ละแบรนด์ และฐาน CityMETER เดิม",
+          "en": "Brand store locators and the legacy CityMETER inventory"
+        },
+        "source": {
+          "th": "บางแบรนด์อ้างอิงเว็บไซต์สาขาโดยตรง บางรายการใช้ข้อมูลเดิมหรือพิกัดที่ตรวจด้วยมือ ให้ดูที่มารายสาขา",
+          "en": "Some brands use their store locators; other records use legacy data or manually checked coordinates. Read each store’s provenance."
+        },
+        "period": {
+          "th": "เว็บไซต์บางแบรนด์ตรวจ 29–30 กันยายน 2569; ฐานเดิมนำเข้า 12 พฤษภาคม 2567 โดยไม่ทราบวันเก็บต้นทาง",
+          "en": "Selected locators checked 29–30 September 2026; legacy data imported 12 May 2024 with original collection dates unknown."
+        },
+        "benefit": {
+          "th": "เห็นเครือข่ายร้านค้าปลีกและค้าส่งในพื้นที่เดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกย่านที่ควรลงสำรวจต่อ",
+          "en": "See retail and wholesale networks across an area to inform market strategy and decide where to investigate next."
+        },
+        "reading": {
+          "th": "จำนวนสาขาและสัดส่วนในฐานข้อมูลไม่ใช่ยอดขาย ส่วนแบ่งรายได้ หรือความต้องการซื้อจริง ต้องตรวจสถานะสาขาและพื้นที่ขายก่อนใช้วางแผน",
+          "en": "Store counts and count shares are not sales, revenue share or observed demand. Verify operating status and floor area before planning."
+        },
+        "official": [
+          {
+            "label": {
+              "th": "7-Eleven — ค้นหาร้าน",
+              "en": "7-Eleven store locator"
+            },
+            "url": "https://www.7eleven.co.th/find-store"
+          },
+          {
+            "label": {
+              "th": "CJ MORE — ที่ตั้งสาขา",
+              "en": "CJ MORE branches"
+            },
+            "url": "https://www.cjmore.co.th/branch"
+          },
+          {
+            "label": {
+              "th": "Tops — ค้นหาสาขา",
+              "en": "Tops store locator"
+            },
+            "url": "https://corporate.tops.co.th/store/"
+          }
+        ],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "grocery-retail",
+      "datasetCode": "grocery",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=grocery",
+      "preview": {
+        "available": false,
+        "path": null,
+        "largePath": null,
+        "conceptual": false,
+        "focusLabel": null
+      },
+      "aliases": [
+        "ร้านค้าปลีกและค้าส่ง",
+        "Retail & Wholesale Networks",
+        "grocery",
+        "grocery-retail",
+        "Grocery",
+        "ค้าปลีก",
+        "ค้าส่ง"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "food-retail",
+      "order": 2
     },
     {
       "id": "shopping-centers",
@@ -2036,7 +2372,9 @@
         "shoppingCenter",
         "shopping-centers"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "food-retail",
+      "order": 3
     },
     {
       "id": "hotel-market",
@@ -2120,7 +2458,9 @@
         "hotel",
         "hotel-market"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "tourism-hospitality",
+      "order": 1
     },
     {
       "id": "tourism-demand-spending",
@@ -2244,7 +2584,9 @@
         "tourism",
         "tourism-demand-spending"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "tourism-hospitality",
+      "order": 2
     },
     {
       "id": "fuel-stations",
@@ -2319,7 +2661,9 @@
         "gasStation",
         "fuel-stations"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "mobility",
+      "order": 1
     },
     {
       "id": "registered-cars",
@@ -2414,7 +2758,9 @@
         "cars",
         "registered-cars"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "mobility",
+      "order": 2
     },
     {
       "id": "road-network-archetypes",
@@ -2490,7 +2836,9 @@
         "roadDna",
         "road-network-archetypes"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "mobility",
+      "order": 3
     },
     {
       "id": "traffic-congestion-speed",
@@ -2577,7 +2925,104 @@
         "traffic",
         "traffic-congestion-speed"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "mobility",
+      "order": 4
+    },
+    {
+      "id": "events-notices",
+      "group": "location",
+      "title": {
+        "th": "เหตุการณ์และประกาศในพื้นที่",
+        "en": "City Events & Notices"
+      },
+      "description": {
+        "th": "เลือกพื้นที่และช่วงเวลา แล้วเห็นว่ามีรายงานเรื่องใดบ้าง เพื่อเลือกหลักฐานที่ควรเปิดดูต่อและวางแผนงานในพื้นที่ได้ดีขึ้น",
+        "en": "Explore local reports and notices by area and time, then open the evidence that matters to your work."
+      },
+      "tags": [
+        "events",
+        "mobility"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "รายงานและประกาศในช่วงเวลาที่มีข้อมูล; ความครอบคลุมต่างกันตามพื้นที่และช่วงนำเข้า",
+        "en": "Reports and notices for available periods; coverage varies by area and import period"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "รายการรายงานพร้อมประเภท พิกัด และเวลา เมื่อมีข้อมูล; หลายรายการอาจกล่าวถึงเหตุเดียวกัน",
+        "en": "Reports with category, location and time where available; multiple reports may describe one event"
+      },
+      "limitation": {
+        "th": "จำนวนรายงานไม่ใช่จำนวนเหตุจริงหรือปริมาณจราจร ประวัติที่เริ่มเก่าไม่ได้ยืนยันว่าครบทุกช่วง และการไม่พบรายงานไม่ได้แปลว่าไม่มีเหตุ",
+        "en": "Report counts are not unique events or traffic volume. An early historical record does not prove continuous coverage, and no report does not mean no event."
+      },
+      "sourceReview": {
+        "status": "other-source",
+        "owner": {
+          "th": "ต้นทางรายงานตามรายการ — ยังยืนยันผู้เผยแพร่แต่ละรายงานได้ไม่ครบ",
+          "en": "Original report sources vary by record; not every report publisher is verified"
+        },
+        "source": {
+          "th": "ระบบนำเข้าผ่าน Longdo และหน้าใช้งานแสดงเครดิต iTIC ช่องทางส่งข้อมูลกับผู้ให้ข้อมูลต้นฉบับอาจต่างกัน จึงตรวจที่มาของรายการที่นำไปอ้างอิง",
+          "en": "Records are imported through Longdo while the view credits iTIC. Feed transport and original provider can differ; check the source of the report being cited."
+        },
+        "period": {
+          "th": "เลือกช่วงล่าสุดหรือประวัติที่มีในฐานข้อมูลได้ เวลาเริ่มต้นและความครบถ้วนต้องอ่านตามช่วงที่เลือก",
+          "en": "Choose recent or historical periods available in the database. Read the start date and coverage for the selected period."
+        },
+        "benefit": {
+          "th": "เลือกพื้นที่และช่วงเวลา แล้วเห็นว่ามีรายงานเรื่องใดบ้าง เพื่อเลือกหลักฐานที่ควรเปิดดูต่อและวางแผนงานในพื้นที่ได้ดีขึ้น",
+          "en": "Explore local reports and notices by area and time, then open the evidence that matters to your work."
+        },
+        "reading": {
+          "th": "จำนวนรายงานไม่ใช่จำนวนเหตุจริงหรือปริมาณจราจร ประวัติที่เริ่มเก่าไม่ได้ยืนยันว่าครบทุกช่วง และการไม่พบรายงานไม่ได้แปลว่าไม่มีเหตุ",
+          "en": "Report counts are not unique events or traffic volume. An early historical record does not prove continuous coverage, and no report does not mean no event."
+        },
+        "official": [
+          {
+            "label": {
+              "th": "Longdo — รายงานเหตุการณ์",
+              "en": "Longdo — event reports"
+            },
+            "url": "https://event.longdo.com/"
+          },
+          {
+            "label": {
+              "th": "มูลนิธิ iTIC",
+              "en": "iTIC Foundation"
+            },
+            "url": "https://iticfoundation.org/"
+          }
+        ],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "events-notices",
+      "datasetCode": "trafficIncident",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=trafficIncident",
+      "preview": {
+        "available": false,
+        "path": null,
+        "largePath": null,
+        "conceptual": false,
+        "focusLabel": null
+      },
+      "aliases": [
+        "เหตุการณ์และประกาศในพื้นที่",
+        "City Events & Notices",
+        "trafficIncident",
+        "events-notices",
+        "Traffic Incident",
+        "Traffic Incidents",
+        "City Events & Notices",
+        "รายงานเหตุการณ์"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "events-notices",
+      "order": 1
     },
     {
       "id": "locale-insights",
@@ -2652,7 +3097,87 @@
         "localeInsights",
         "locale-insights"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "area-community-context",
+      "order": 1
+    },
+    {
+      "id": "places-of-worship",
+      "group": "location",
+      "title": {
+        "th": "ศาสนสถานในพื้นที่",
+        "en": "Places of Worship"
+      },
+      "description": {
+        "th": "รู้จักศาสนสถานในพื้นที่ผ่านแผนที่ เพื่อเริ่มทำความเข้าใจบริบทชุมชนและเตรียมการพูดคุยในพื้นที่อย่างรอบด้าน",
+        "en": "Explore places of worship on a map to understand local context and prepare for conversations with communities."
+      },
+      "tags": [
+        "community",
+        "services"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "รายการที่เผยแพร่ได้ในฐานพุทธ อิสลาม คริสต์ และซิกข์ ทั้งเปิดใช้งานและวัดร้าง",
+        "en": "Publishable Buddhist, Muslim, Christian and Sikh records, including active places and abandoned temples"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "แยกรายการทั้งหมด รายการที่มีพิกัด และความครบถ้วนของตำแหน่ง",
+        "en": "Distinguish total records, mapped records and coordinate quality"
+      },
+      "limitation": {
+        "th": "ไม่มีหมุดไม่ได้แปลว่าไม่มีศาสนสถาน อัตราส่วนประชากรต่อแห่งไม่ใช่ความจุ จำนวนผู้ใช้บริการ หรือจำนวนผู้นับถือศาสนา",
+        "en": "A missing point does not mean no place exists. Population per site is not capacity, attendance or religious affiliation."
+      },
+      "sourceReview": {
+        "status": "unproven",
+        "owner": {
+          "th": "ยังยืนยันผู้เผยแพร่ข้อมูลต้นทางของแต่ละรายการได้ไม่ครบ",
+          "en": "Original publishers are not yet fully verified for each record"
+        },
+        "source": {
+          "th": "ต้นทางและวันข้อมูลกำกับเป็นรายรายการ ให้ตรวจรายละเอียดก่อนอ้างอิงข้ามศาสนาหรือรวมยอด",
+          "en": "Source and reference date belong to each record; check them before combining religions or totals."
+        },
+        "period": {
+          "th": "วันข้อมูลต่างกันตามรายการ ไม่กำหนดวันเดียวแทนทั้งฐาน",
+          "en": "Reference dates vary by record; no single date represents the entire inventory."
+        },
+        "benefit": {
+          "th": "รู้จักศาสนสถานในพื้นที่ผ่านแผนที่ เพื่อเริ่มทำความเข้าใจบริบทชุมชนและเตรียมการพูดคุยในพื้นที่อย่างรอบด้าน",
+          "en": "Explore places of worship on a map to understand local context and prepare for conversations with communities."
+        },
+        "reading": {
+          "th": "ไม่มีหมุดไม่ได้แปลว่าไม่มีศาสนสถาน อัตราส่วนประชากรต่อแห่งไม่ใช่ความจุ จำนวนผู้ใช้บริการ หรือจำนวนผู้นับถือศาสนา",
+          "en": "A missing point does not mean no place exists. Population per site is not capacity, attendance or religious affiliation."
+        },
+        "official": [],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "places-of-worship",
+      "datasetCode": "placeOfWorship",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=placeOfWorship",
+      "preview": {
+        "available": false,
+        "path": null,
+        "largePath": null,
+        "conceptual": false,
+        "focusLabel": null
+      },
+      "aliases": [
+        "ศาสนสถานในพื้นที่",
+        "Places of Worship",
+        "placeOfWorship",
+        "places-of-worship",
+        "Places of Worship",
+        "ศาสนสถาน"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "area-community-context",
+      "order": 2
     },
     {
       "id": "population-age-sex",
@@ -2747,7 +3272,9 @@
         "population",
         "population-age-sex"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "people",
+      "order": 1
     },
     {
       "id": "schools-students-teachers",
@@ -2830,7 +3357,89 @@
         "school",
         "schools-students-teachers"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "education",
+      "order": 1
+    },
+    {
+      "id": "government-spending",
+      "group": "living",
+      "title": {
+        "th": "งบประมาณและการเบิกจ่ายภาครัฐ",
+        "en": "Government Budget & Disbursement"
+      },
+      "description": {
+        "th": "เปลี่ยนข้อมูลงบประมาณและการเบิกจ่ายให้เป็นภาพเชิงพื้นที่ เพื่อเห็นว่าเงินถูกจัดสรรและเบิกจ่ายอย่างไร ก่อนติดตามโครงการต่อ",
+        "en": "Compare budget allocations and recorded disbursements by area to prepare questions about public spending."
+      },
+      "tags": [
+        "public-finance",
+        "services"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "ปีงบประมาณ 2558–2568 ตามตัวเลือกที่มี; แผนที่แสดงส่วนที่จับคู่พื้นที่ได้",
+        "en": "Available fiscal-year selections are 2015–2025; mapped data is the subset matched to areas"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "รายการงบหลังโอนเปลี่ยนแปลงและยอดเบิกจ่าย แยกตามปีและพื้นที่ที่จับคู่ได้",
+        "en": "Adjusted budget and disbursement records by fiscal year and matched area"
+      },
+      "limitation": {
+        "th": "รายการที่จับคู่พื้นที่ได้ไม่ใช่งบทั้งหมดของประเทศ การจัดสรรและเบิกจ่ายเป็นคนละขั้น และตัวเงินไม่บอกผลสำเร็จ คุณภาพบริการ หรือความคุ้มค่าโดยลำพัง",
+        "en": "Mapped items are not total national spending. Allocation and disbursement are different stages; amounts alone do not establish outcomes, service quality or value for money."
+      },
+      "sourceReview": {
+        "status": "unproven",
+        "owner": {
+          "th": "ยังยืนยันหน่วยงานผู้เผยแพร่ข้อมูลต้นทางไม่ได้",
+          "en": "Original publisher not yet verified"
+        },
+        "source": {
+          "th": "ข้อมูลรายการงบประมาณและการเบิกจ่ายที่เชื่อมกับพื้นที่ได้ ยังต้องตรวจเอกสารต้นทางของรายการก่อนอ้างอิงหน่วยงานผู้เผยแพร่หรือยอดรวมประเทศ",
+          "en": "Budget and disbursement items are linked to areas where possible. Check the underlying documents before attributing a publisher or quoting a national total."
+        },
+        "period": {
+          "th": "ปีงบประมาณ 2558–2568 ตามรายการที่มี; ความครบถ้วนของตำแหน่งต่างกันตามปี",
+          "en": "Fiscal years 2015–2025 for available records; spatial completeness differs by year."
+        },
+        "benefit": {
+          "th": "เปลี่ยนข้อมูลงบประมาณและการเบิกจ่ายให้เป็นภาพเชิงพื้นที่ เพื่อเห็นว่าเงินถูกจัดสรรและเบิกจ่ายอย่างไร ก่อนติดตามโครงการต่อ",
+          "en": "Compare budget allocations and recorded disbursements by area to prepare questions about public spending."
+        },
+        "reading": {
+          "th": "รายการที่จับคู่พื้นที่ได้ไม่ใช่งบทั้งหมดของประเทศ การจัดสรรและเบิกจ่ายเป็นคนละขั้น และตัวเงินไม่บอกผลสำเร็จ คุณภาพบริการ หรือความคุ้มค่าโดยลำพัง",
+          "en": "Mapped items are not total national spending. Allocation and disbursement are different stages; amounts alone do not establish outcomes, service quality or value for money."
+        },
+        "official": [],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "government-spending",
+      "datasetCode": "govspending",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=govspending",
+      "preview": {
+        "available": false,
+        "path": null,
+        "largePath": null,
+        "conceptual": false,
+        "focusLabel": null
+      },
+      "aliases": [
+        "งบประมาณและการเบิกจ่ายภาครัฐ",
+        "Government Budget & Disbursement",
+        "govspending",
+        "government-spending",
+        "Government Spending",
+        "งบประมาณ",
+        "การเบิกจ่าย",
+        "การใช้จ่ายภาครัฐ"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "public-finance",
+      "order": 1
     },
     {
       "id": "municipal-revenue",
@@ -2916,7 +3525,9 @@
         "municipality",
         "municipal-revenue"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "public-finance",
+      "order": 2
     },
     {
       "id": "government-agencies-workforce",
@@ -2992,7 +3603,9 @@
         "governmentOfficer",
         "government-agencies-workforce"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "public-service",
+      "order": 1
     },
     {
       "id": "flood-recurrent",
@@ -3076,7 +3689,9 @@
         "floodimpact",
         "flood-recurrent"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "flood",
+      "order": 1
     },
     {
       "id": "flood-latest-observed",
@@ -3159,7 +3774,9 @@
         "floodrecent",
         "flood-latest-observed"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "flood",
+      "order": 2
     },
     {
       "id": "flood-forecast-depth",
@@ -3234,7 +3851,9 @@
         "Flood: Forecast Depth by DWR",
         "flood-forecast-depth"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "flood",
+      "order": 3
     },
     {
       "id": "flood-forecast-flash-flood-risk",
@@ -3318,7 +3937,9 @@
         "flash-flood-risk",
         "flood-forecast-flash-flood-risk"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "flood",
+      "order": 4
     },
     {
       "id": "earthquake-sensors",
@@ -3402,7 +4023,9 @@
         "quake",
         "earthquake-sensors"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "other-hazards",
+      "order": 1
     },
     {
       "id": "fire-monitoring",
@@ -3485,7 +4108,9 @@
         "fire",
         "fire-monitoring"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "other-hazards",
+      "order": 2
     },
     {
       "id": "disaster-historical-impacts",
@@ -3580,7 +4205,9 @@
         "disaster",
         "disaster-historical-impacts"
       ],
-      "resourceClass": "Dataset"
+      "resourceClass": "Dataset",
+      "subgroup": "multi-hazard",
+      "order": 1
     },
     {
       "id": "events/hat-yai-flood-2025-11",
@@ -3655,7 +4282,9 @@
         "hatyaiflood",
         "events-hat-yai-flood-2025-11"
       ],
-      "resourceClass": "CreativeWork"
+      "resourceClass": "CreativeWork",
+      "subgroup": "event-archive",
+      "order": 1
     },
     {
       "id": "events/quake-building-inspection",
@@ -3731,540 +4360,260 @@
         "quakeSafe",
         "events-quake-building-inspection"
       ],
-      "resourceClass": "CreativeWork"
-    },
+      "resourceClass": "CreativeWork",
+      "subgroup": "event-archive",
+      "order": 2
+    }
+  ],
+  "subgroups": [
     {
-      "id": "grocery-retail",
-      "group": "location",
-      "title": {
-        "th": "ร้านค้าปลีกและค้าส่ง",
-        "en": "Retail & Wholesale Networks"
-      },
-      "description": {
-        "th": "เห็นเครือข่ายร้านค้าปลีกและค้าส่งในพื้นที่เดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกย่านที่ควรลงสำรวจต่อ",
-        "en": "See retail and wholesale networks across an area to inform market strategy and decide where to investigate next."
-      },
-      "tags": [
-        "retail",
-        "brands",
-        "density"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "เครือข่ายแบรนด์ที่มีในฐานข้อมูล ครอบคลุมค้าปลีก ค้าส่ง และร้านขายยา ไม่ใช่ร้านค้าทุกแห่ง",
-        "en": "Selected chains covering retail, wholesale and pharmacies; not a census of every shop"
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "สาขา แบรนด์ และประเภทร้าน; พื้นที่ขายเป็นค่าประมาณตามประเภท",
-        "en": "Stores, brands and store types; sales-floor area is estimated by type"
-      },
-      "limitation": {
-        "th": "จำนวนสาขาและสัดส่วนในฐานข้อมูลไม่ใช่ยอดขาย ส่วนแบ่งรายได้ หรือความต้องการซื้อจริง ต้องตรวจสถานะสาขาและพื้นที่ขายก่อนใช้วางแผน",
-        "en": "Store counts and count shares are not sales, revenue share or observed demand. Verify operating status and floor area before planning."
-      },
-      "sourceReview": {
-        "status": "other-source",
-        "owner": {
-          "th": "เว็บไซต์สาขาของแต่ละแบรนด์ และฐาน CityMETER เดิม",
-          "en": "Brand store locators and the legacy CityMETER inventory"
-        },
-        "source": {
-          "th": "บางแบรนด์อ้างอิงเว็บไซต์สาขาโดยตรง บางรายการใช้ข้อมูลเดิมหรือพิกัดที่ตรวจด้วยมือ ให้ดูที่มารายสาขา",
-          "en": "Some brands use their store locators; other records use legacy data or manually checked coordinates. Read each store’s provenance."
-        },
-        "period": {
-          "th": "เว็บไซต์บางแบรนด์ตรวจ 29–30 กันยายน 2569; ฐานเดิมนำเข้า 12 พฤษภาคม 2567 โดยไม่ทราบวันเก็บต้นทาง",
-          "en": "Selected locators checked 29–30 September 2026; legacy data imported 12 May 2024 with original collection dates unknown."
-        },
-        "benefit": {
-          "th": "เห็นเครือข่ายร้านค้าปลีกและค้าส่งในพื้นที่เดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกย่านที่ควรลงสำรวจต่อ",
-          "en": "See retail and wholesale networks across an area to inform market strategy and decide where to investigate next."
-        },
-        "reading": {
-          "th": "จำนวนสาขาและสัดส่วนในฐานข้อมูลไม่ใช่ยอดขาย ส่วนแบ่งรายได้ หรือความต้องการซื้อจริง ต้องตรวจสถานะสาขาและพื้นที่ขายก่อนใช้วางแผน",
-          "en": "Store counts and count shares are not sales, revenue share or observed demand. Verify operating status and floor area before planning."
-        },
-        "official": [
-          {
-            "label": {
-              "th": "7-Eleven — ค้นหาร้าน",
-              "en": "7-Eleven store locator"
-            },
-            "url": "https://www.7eleven.co.th/find-store"
-          },
-          {
-            "label": {
-              "th": "CJ MORE — ที่ตั้งสาขา",
-              "en": "CJ MORE branches"
-            },
-            "url": "https://www.cjmore.co.th/branch"
-          },
-          {
-            "label": {
-              "th": "Tops — ค้นหาสาขา",
-              "en": "Tops store locator"
-            },
-            "url": "https://corporate.tops.co.th/store/"
-          }
-        ],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
-      },
-      "slug": "grocery-retail",
-      "datasetCode": "grocery",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=grocery",
-      "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
-        "conceptual": false,
-        "focusLabel": null
-      },
-      "aliases": [
-        "ร้านค้าปลีกและค้าส่ง",
-        "Retail & Wholesale Networks",
-        "grocery",
-        "grocery-retail",
-        "Grocery",
-        "ค้าปลีก",
-        "ค้าส่ง"
-      ],
-      "resourceClass": "Dataset"
-    },
-    {
-      "id": "non-bank",
-      "group": "location",
-      "title": {
-        "th": "เครือข่ายสาขาและสำนักงาน Non-bank",
-        "en": "Non-bank Branch & Office Networks"
-      },
-      "description": {
-        "th": "มองเห็นเครือข่ายสาขาและสำนักงานผู้ให้กู้ Non-bank เพื่อวางกลยุทธ์ตลาดและสำรวจพื้นที่ให้บริการต่ออย่างมีบริบท",
-        "en": "Explore non-bank lender branches and offices to inform market strategy and further research into local service networks."
-      },
-      "tags": [
-        "business",
-        "services",
-        "density"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "ผู้ให้กู้ที่มีในแฟ้มสาขา และสำนักงานพิโกที่มีข้อมูลอ้างอิง",
-        "en": "Lenders in the branch file and Pico offices in the source records"
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "แยกสาขา สำนักงาน สำนักงานใหญ่ บริษัท และประเภทใบอนุญาต; พิกัดบางรายการยังไม่ครบ",
-        "en": "Keep branch, office, headquarters, company and licence categories separate; coordinates are incomplete"
-      },
-      "limitation": {
-        "th": "ไม่พบการจับคู่ชื่อหรือชิปใบอนุญาตไม่ได้แปลว่าไม่มีใบอนุญาต หมวดใบอนุญาตซ้อนกันได้ จำนวนสาขาไม่ใช่ยอดสินเชื่อ ความต้องการสินเชื่อ หรือความเสี่ยงหนี้",
-        "en": "An unmatched name or missing licence chip does not mean unlicensed. Licence categories can overlap. Branch counts are not loan volume, credit demand or debt risk."
-      },
-      "sourceReview": {
-        "status": "other-source",
-        "owner": {
-          "th": "กรมพัฒนาธุรกิจการค้า / สำนักงานเศรษฐกิจการคลัง / ธนาคารแห่งประเทศไทย ตามบทบาทข้อมูล",
-          "en": "DBD / Fiscal Policy Office / Bank of Thailand, by source role"
-        },
-        "source": {
-          "th": "แฟ้มสาขา DBD รองรับรายการสาขา; สศค. รองรับสำนักงานพิโก; ธปท. รองรับข้อมูลใบอนุญาตที่จับคู่ด้วยชื่อบริษัท ไม่ใช่ทะเบียนชุดเดียวกัน",
-          "en": "DBD branch records support branches; FPO supports Pico offices; BOT supports licence information matched by company name. These are distinct sources and counting units."
-        },
-        "period": {
-          "th": "แฟ้มสาขา DBD ไม่ทราบวันข้อมูล; พิโก 18 กันยายน 2569; ใบอนุญาต ธปท. 23 กันยายน 2569",
-          "en": "DBD branch vintage unknown; Pico 18 September 2026; BOT licence information 23 September 2026."
-        },
-        "benefit": {
-          "th": "มองเห็นเครือข่ายสาขาและสำนักงานผู้ให้กู้ Non-bank เพื่อวางกลยุทธ์ตลาดและสำรวจพื้นที่ให้บริการต่ออย่างมีบริบท",
-          "en": "Explore non-bank lender branches and offices to inform market strategy and further research into local service networks."
-        },
-        "reading": {
-          "th": "ไม่พบการจับคู่ชื่อหรือชิปใบอนุญาตไม่ได้แปลว่าไม่มีใบอนุญาต หมวดใบอนุญาตซ้อนกันได้ จำนวนสาขาไม่ใช่ยอดสินเชื่อ ความต้องการสินเชื่อ หรือความเสี่ยงหนี้",
-          "en": "An unmatched name or missing licence chip does not mean unlicensed. Licence categories can overlap. Branch counts are not loan volume, credit demand or debt risk."
-        },
-        "official": [
-          {
-            "label": {
-              "th": "สศค. — รายชื่อผู้ประกอบธุรกิจพิโกไฟแนนซ์",
-              "en": "FPO — Pico finance providers"
-            },
-            "url": "https://www.1359.go.th/picodoc/pico_public/"
-          },
-          {
-            "label": {
-              "th": "ธปท. — รายชื่อสถาบันการเงินและ Non-bank",
-              "en": "BOT — financial institution and non-bank list"
-            },
-            "url": "https://www.bot.or.th/th/fi-list.html"
-          }
-        ],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
-      },
-      "slug": "non-bank",
-      "datasetCode": "nonBank",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=nonBank",
-      "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
-        "conceptual": false,
-        "focusLabel": null
-      },
-      "aliases": [
-        "เครือข่ายสาขาและสำนักงาน Non-bank",
-        "Non-bank Branch & Office Networks",
-        "nonBank",
-        "non-bank",
-        "Non-bank",
-        "สาขา Non-bank",
-        "นอนแบงก์"
-      ],
-      "resourceClass": "Dataset"
-    },
-    {
-      "id": "places-of-worship",
-      "group": "location",
-      "title": {
-        "th": "ศาสนสถานในพื้นที่",
-        "en": "Places of Worship"
-      },
-      "description": {
-        "th": "รู้จักศาสนสถานในพื้นที่ผ่านแผนที่ เพื่อเริ่มทำความเข้าใจบริบทชุมชนและเตรียมการพูดคุยในพื้นที่อย่างรอบด้าน",
-        "en": "Explore places of worship on a map to understand local context and prepare for conversations with communities."
-      },
-      "tags": [
-        "community",
-        "services"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "รายการที่เผยแพร่ได้ในฐานพุทธ อิสลาม คริสต์ และซิกข์ ทั้งเปิดใช้งานและวัดร้าง",
-        "en": "Publishable Buddhist, Muslim, Christian and Sikh records, including active places and abandoned temples"
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "แยกรายการทั้งหมด รายการที่มีพิกัด และความครบถ้วนของตำแหน่ง",
-        "en": "Distinguish total records, mapped records and coordinate quality"
-      },
-      "limitation": {
-        "th": "ไม่มีหมุดไม่ได้แปลว่าไม่มีศาสนสถาน อัตราส่วนประชากรต่อแห่งไม่ใช่ความจุ จำนวนผู้ใช้บริการ หรือจำนวนผู้นับถือศาสนา",
-        "en": "A missing point does not mean no place exists. Population per site is not capacity, attendance or religious affiliation."
-      },
-      "sourceReview": {
-        "status": "unproven",
-        "owner": {
-          "th": "ยังยืนยันผู้เผยแพร่ข้อมูลต้นทางของแต่ละรายการได้ไม่ครบ",
-          "en": "Original publishers are not yet fully verified for each record"
-        },
-        "source": {
-          "th": "ต้นทางและวันข้อมูลกำกับเป็นรายรายการ ให้ตรวจรายละเอียดก่อนอ้างอิงข้ามศาสนาหรือรวมยอด",
-          "en": "Source and reference date belong to each record; check them before combining religions or totals."
-        },
-        "period": {
-          "th": "วันข้อมูลต่างกันตามรายการ ไม่กำหนดวันเดียวแทนทั้งฐาน",
-          "en": "Reference dates vary by record; no single date represents the entire inventory."
-        },
-        "benefit": {
-          "th": "รู้จักศาสนสถานในพื้นที่ผ่านแผนที่ เพื่อเริ่มทำความเข้าใจบริบทชุมชนและเตรียมการพูดคุยในพื้นที่อย่างรอบด้าน",
-          "en": "Explore places of worship on a map to understand local context and prepare for conversations with communities."
-        },
-        "reading": {
-          "th": "ไม่มีหมุดไม่ได้แปลว่าไม่มีศาสนสถาน อัตราส่วนประชากรต่อแห่งไม่ใช่ความจุ จำนวนผู้ใช้บริการ หรือจำนวนผู้นับถือศาสนา",
-          "en": "A missing point does not mean no place exists. Population per site is not capacity, attendance or religious affiliation."
-        },
-        "official": [],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
-      },
-      "slug": "places-of-worship",
-      "datasetCode": "placeOfWorship",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=placeOfWorship",
-      "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
-        "conceptual": false,
-        "focusLabel": null
-      },
-      "aliases": [
-        "ศาสนสถานในพื้นที่",
-        "Places of Worship",
-        "placeOfWorship",
-        "places-of-worship",
-        "Places of Worship",
-        "ศาสนสถาน"
-      ],
-      "resourceClass": "Dataset"
-    },
-    {
-      "id": "terrain-elevation",
+      "id": "built-form-terrain",
       "group": "land",
-      "title": {
-        "th": "ภูมิประเทศและระดับความสูง",
-        "en": "Terrain & Elevation"
+      "label": {
+        "th": "อาคารและภูมิประเทศ",
+        "en": "Built form & terrain"
       },
-      "description": {
-        "th": "อ่านรูปทรงและระดับความสูงของภูมิประเทศในมุมมองสามมิติ เพื่อทำความเข้าใจพื้นที่และเตรียมคำถามก่อนสำรวจจริง",
-        "en": "Explore terrain and elevation in 3D to understand an area and prepare questions for on-site investigation."
+      "order": 1,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "land-development",
+      "group": "land",
+      "label": {
+        "th": "ที่ดินและการพัฒนา",
+        "en": "Land & development"
       },
-      "tags": [
-        "terrain",
-        "elevation"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "พื้นที่ที่มีข้อมูลของแต่ละแบบจำลอง; แหล่งข้อมูลและความละเอียดอาจเปลี่ยนตามตำแหน่ง",
-        "en": "Coverage depends on the elevation model; source and resolution can vary by location"
+      "order": 2,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "planning-regulation",
+      "group": "land",
+      "label": {
+        "th": "การวางแผนและข้อกำหนด",
+        "en": "Planning & regulation"
       },
-      "granularity": {
-        "status": "evidenced",
-        "th": "แบบจำลองระดับความสูงและส่วนต่าง GLO-30 ลบ FABDEM; ภาพสามมิติอาจเกลี่ยหรือขยายความสูง",
-        "en": "Elevation models and GLO-30 minus FABDEM differences; 3D rendering may smooth or exaggerate height"
+      "order": 3,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "land-use",
+      "group": "land",
+      "label": {
+        "th": "การใช้ที่ดิน",
+        "en": "Land use"
       },
-      "limitation": {
-        "th": "ค่า DEM ไม่ใช่ผลสำรวจระดับที่ดินหรือผลประเมินน้ำท่วม ส่วนต่างสองแบบจำลองไม่ใช่ความสูงอาคารหรือต้นไม้ที่วัดยืนยัน และส่วนไม่มีข้อมูลไม่ใช่ 0 เมตร",
-        "en": "DEM values are not a land survey or flood-risk assessment. Differences between models are not verified building or tree heights, and no-data is not zero metres."
+      "order": 4,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "land-market",
+      "group": "land",
+      "label": {
+        "th": "ตลาดที่ดิน",
+        "en": "Land market"
       },
-      "sourceReview": {
-        "status": "other-source",
-        "owner": {
-          "th": "FABDEM — Hawker et al. / University of Bristol; Copernicus DEM; Terrain Tiles — Mapzen / AWS Open Data",
-          "en": "FABDEM — Hawker et al. / University of Bristol; Copernicus DEM; Terrain Tiles — Mapzen / AWS Open Data"
-        },
-        "source": {
-          "th": "FABDEM V1-2, Copernicus GLO-30 และ Terrain Tiles มีบทบาทต่างกัน แยกค่าระดับที่อ่านจากภาพสามมิติ และดูว่าแหล่งใดใช้ในพื้นที่นั้น FABDEM V1-2 ใช้สัญญาอนุญาต CC BY-NC-SA 4.0; ตรวจเงื่อนไขของแต่ละแบบจำลองก่อนนำข้อมูลไปใช้ต่อ โดยเฉพาะการใช้เชิงพาณิชย์",
-          "en": "FABDEM V1-2, Copernicus GLO-30 and Terrain Tiles have distinct roles. Distinguish elevation readings from the rendered 3D surface and check the source used at each location. FABDEM V1-2 is licensed CC BY-NC-SA 4.0; check each model’s terms before reuse, especially commercial use."
-        },
-        "period": {
-          "th": "รุ่นและช่วงสำรวจแตกต่างกันตาม DEM; วันที่ทำแผ่นภาพไม่ใช่วันที่สำรวจ",
-          "en": "Versions and acquisition periods differ by DEM; tile-production dates are not survey dates."
-        },
-        "benefit": {
-          "th": "อ่านรูปทรงและระดับความสูงของภูมิประเทศในมุมมองสามมิติ เพื่อทำความเข้าใจพื้นที่และเตรียมคำถามก่อนสำรวจจริง",
-          "en": "Explore terrain and elevation in 3D to understand an area and prepare questions for on-site investigation."
-        },
-        "reading": {
-          "th": "ค่า DEM ไม่ใช่ผลสำรวจระดับที่ดินหรือผลประเมินน้ำท่วม ส่วนต่างสองแบบจำลองไม่ใช่ความสูงอาคารหรือต้นไม้ที่วัดยืนยัน และส่วนไม่มีข้อมูลไม่ใช่ 0 เมตร",
-          "en": "DEM values are not a land survey or flood-risk assessment. Differences between models are not verified building or tree heights, and no-data is not zero metres."
-        },
-        "official": [
-          {
-            "label": {
-              "th": "FABDEM V1-2 — University of Bristol",
-              "en": "FABDEM V1-2 — University of Bristol"
-            },
-            "url": "https://doi.org/10.5523/bris.s5hqmjcdj8yo2ibzi9b4ew3sn"
-          },
-          {
-            "label": {
-              "th": "Terrain Tiles — ที่มาและการให้บริการ",
-              "en": "Terrain Tiles — provenance and hosting"
-            },
-            "url": "https://registry.opendata.aws/terrain-tiles/"
-          }
-        ],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      "order": 5,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "residential-market",
+      "group": "land",
+      "label": {
+        "th": "ตลาดที่อยู่อาศัย",
+        "en": "Residential market"
       },
-      "slug": "terrain-elevation",
-      "datasetCode": "terrain",
-      "mapUrl": "https://landometer.com/v3/citymeter-3d?d=terrain",
-      "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
-        "conceptual": false,
-        "focusLabel": null
+      "order": 6,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "investment-insight",
+      "group": "land",
+      "label": {
+        "th": "ข้อมูลประกอบการลงทุน",
+        "en": "Investment insight"
       },
-      "aliases": [
-        "ภูมิประเทศและระดับความสูง",
-        "Terrain & Elevation",
-        "terrain",
-        "terrain-elevation",
-        "Terrain",
-        "elevation",
-        "ภูมิประเทศ",
-        "ระดับความสูง"
-      ],
-      "resourceClass": "Dataset"
+      "order": 7,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "business-registry",
+      "group": "location",
+      "label": {
+        "th": "ทะเบียนธุรกิจ",
+        "en": "Business registry"
+      },
+      "order": 1,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "business-activity",
+      "group": "location",
+      "label": {
+        "th": "กิจกรรมธุรกิจและอุตสาหกรรม",
+        "en": "Business activity"
+      },
+      "order": 2,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "commercial-property",
+      "group": "location",
+      "label": {
+        "th": "อสังหาริมทรัพย์เชิงพาณิชย์",
+        "en": "Commercial property"
+      },
+      "order": 3,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "financial-services",
+      "group": "location",
+      "label": {
+        "th": "เครือข่ายบริการทางการเงิน",
+        "en": "Financial services"
+      },
+      "order": 4,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "food-retail",
+      "group": "location",
+      "label": {
+        "th": "อาหารและค้าปลีก",
+        "en": "Food & retail"
+      },
+      "order": 5,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "tourism-hospitality",
+      "group": "location",
+      "label": {
+        "th": "การท่องเที่ยวและที่พัก",
+        "en": "Tourism & hospitality"
+      },
+      "order": 6,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "mobility",
+      "group": "location",
+      "label": {
+        "th": "การเดินทางและการเข้าถึง",
+        "en": "Mobility"
+      },
+      "order": 7,
+      "orderMode": "en_title_ascending"
     },
     {
       "id": "events-notices",
       "group": "location",
-      "title": {
-        "th": "เหตุการณ์และประกาศในพื้นที่",
-        "en": "City Events & Notices"
+      "label": {
+        "th": "เหตุการณ์และประกาศ",
+        "en": "Events & notices"
       },
-      "description": {
-        "th": "เลือกพื้นที่และช่วงเวลา แล้วเห็นว่ามีรายงานเรื่องใดบ้าง เพื่อเลือกหลักฐานที่ควรเปิดดูต่อและวางแผนงานในพื้นที่ได้ดีขึ้น",
-        "en": "Explore local reports and notices by area and time, then open the evidence that matters to your work."
-      },
-      "tags": [
-        "events",
-        "mobility"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "รายงานและประกาศในช่วงเวลาที่มีข้อมูล; ความครอบคลุมต่างกันตามพื้นที่และช่วงนำเข้า",
-        "en": "Reports and notices for available periods; coverage varies by area and import period"
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "รายการรายงานพร้อมประเภท พิกัด และเวลา เมื่อมีข้อมูล; หลายรายการอาจกล่าวถึงเหตุเดียวกัน",
-        "en": "Reports with category, location and time where available; multiple reports may describe one event"
-      },
-      "limitation": {
-        "th": "จำนวนรายงานไม่ใช่จำนวนเหตุจริงหรือปริมาณจราจร ประวัติที่เริ่มเก่าไม่ได้ยืนยันว่าครบทุกช่วง และการไม่พบรายงานไม่ได้แปลว่าไม่มีเหตุ",
-        "en": "Report counts are not unique events or traffic volume. An early historical record does not prove continuous coverage, and no report does not mean no event."
-      },
-      "sourceReview": {
-        "status": "other-source",
-        "owner": {
-          "th": "ต้นทางรายงานตามรายการ — ยังยืนยันผู้เผยแพร่แต่ละรายงานได้ไม่ครบ",
-          "en": "Original report sources vary by record; not every report publisher is verified"
-        },
-        "source": {
-          "th": "ระบบนำเข้าผ่าน Longdo และหน้าใช้งานแสดงเครดิต iTIC ช่องทางส่งข้อมูลกับผู้ให้ข้อมูลต้นฉบับอาจต่างกัน จึงตรวจที่มาของรายการที่นำไปอ้างอิง",
-          "en": "Records are imported through Longdo while the view credits iTIC. Feed transport and original provider can differ; check the source of the report being cited."
-        },
-        "period": {
-          "th": "เลือกช่วงล่าสุดหรือประวัติที่มีในฐานข้อมูลได้ เวลาเริ่มต้นและความครบถ้วนต้องอ่านตามช่วงที่เลือก",
-          "en": "Choose recent or historical periods available in the database. Read the start date and coverage for the selected period."
-        },
-        "benefit": {
-          "th": "เลือกพื้นที่และช่วงเวลา แล้วเห็นว่ามีรายงานเรื่องใดบ้าง เพื่อเลือกหลักฐานที่ควรเปิดดูต่อและวางแผนงานในพื้นที่ได้ดีขึ้น",
-          "en": "Explore local reports and notices by area and time, then open the evidence that matters to your work."
-        },
-        "reading": {
-          "th": "จำนวนรายงานไม่ใช่จำนวนเหตุจริงหรือปริมาณจราจร ประวัติที่เริ่มเก่าไม่ได้ยืนยันว่าครบทุกช่วง และการไม่พบรายงานไม่ได้แปลว่าไม่มีเหตุ",
-          "en": "Report counts are not unique events or traffic volume. An early historical record does not prove continuous coverage, and no report does not mean no event."
-        },
-        "official": [
-          {
-            "label": {
-              "th": "Longdo — รายงานเหตุการณ์",
-              "en": "Longdo — event reports"
-            },
-            "url": "https://event.longdo.com/"
-          },
-          {
-            "label": {
-              "th": "มูลนิธิ iTIC",
-              "en": "iTIC Foundation"
-            },
-            "url": "https://iticfoundation.org/"
-          }
-        ],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
-      },
-      "slug": "events-notices",
-      "datasetCode": "trafficIncident",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=trafficIncident",
-      "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
-        "conceptual": false,
-        "focusLabel": null
-      },
-      "aliases": [
-        "เหตุการณ์และประกาศในพื้นที่",
-        "City Events & Notices",
-        "trafficIncident",
-        "events-notices",
-        "Traffic Incident",
-        "Traffic Incidents",
-        "City Events & Notices",
-        "รายงานเหตุการณ์"
-      ],
-      "resourceClass": "Dataset"
+      "order": 8,
+      "orderMode": "en_title_ascending"
     },
     {
-      "id": "government-spending",
+      "id": "area-community-context",
+      "group": "location",
+      "label": {
+        "th": "บริบทพื้นที่และสถานที่ชุมชน",
+        "en": "Area & community context"
+      },
+      "order": 9,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "people",
       "group": "living",
-      "title": {
-        "th": "งบประมาณและการเบิกจ่ายภาครัฐ",
-        "en": "Government Budget & Disbursement"
+      "label": {
+        "th": "ผู้คนและประชากร",
+        "en": "People"
       },
-      "description": {
-        "th": "เปลี่ยนข้อมูลงบประมาณและการเบิกจ่ายให้เป็นภาพเชิงพื้นที่ เพื่อเห็นว่าเงินถูกจัดสรรและเบิกจ่ายอย่างไร ก่อนติดตามโครงการต่อ",
-        "en": "Compare budget allocations and recorded disbursements by area to prepare questions about public spending."
+      "order": 1,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "education",
+      "group": "living",
+      "label": {
+        "th": "การศึกษา",
+        "en": "Education"
       },
-      "tags": [
-        "public-finance",
-        "services"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "ปีงบประมาณ 2558–2568 ตามตัวเลือกที่มี; แผนที่แสดงส่วนที่จับคู่พื้นที่ได้",
-        "en": "Available fiscal-year selections are 2015–2025; mapped data is the subset matched to areas"
+      "order": 2,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "public-finance",
+      "group": "living",
+      "label": {
+        "th": "การคลังภาครัฐและท้องถิ่น",
+        "en": "Public finance"
       },
-      "granularity": {
-        "status": "evidenced",
-        "th": "รายการงบหลังโอนเปลี่ยนแปลงและยอดเบิกจ่าย แยกตามปีและพื้นที่ที่จับคู่ได้",
-        "en": "Adjusted budget and disbursement records by fiscal year and matched area"
+      "order": 3,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "public-service",
+      "group": "living",
+      "label": {
+        "th": "บริการภาครัฐ",
+        "en": "Public service"
       },
-      "limitation": {
-        "th": "รายการที่จับคู่พื้นที่ได้ไม่ใช่งบทั้งหมดของประเทศ การจัดสรรและเบิกจ่ายเป็นคนละขั้น และตัวเงินไม่บอกผลสำเร็จ คุณภาพบริการ หรือความคุ้มค่าโดยลำพัง",
-        "en": "Mapped items are not total national spending. Allocation and disbursement are different stages; amounts alone do not establish outcomes, service quality or value for money."
+      "order": 4,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "flood",
+      "group": "living",
+      "label": {
+        "th": "น้ำท่วม",
+        "en": "Flood"
       },
-      "sourceReview": {
-        "status": "unproven",
-        "owner": {
-          "th": "ยังยืนยันหน่วยงานผู้เผยแพร่ข้อมูลต้นทางไม่ได้",
-          "en": "Original publisher not yet verified"
-        },
-        "source": {
-          "th": "ข้อมูลรายการงบประมาณและการเบิกจ่ายที่เชื่อมกับพื้นที่ได้ ยังต้องตรวจเอกสารต้นทางของรายการก่อนอ้างอิงหน่วยงานผู้เผยแพร่หรือยอดรวมประเทศ",
-          "en": "Budget and disbursement items are linked to areas where possible. Check the underlying documents before attributing a publisher or quoting a national total."
-        },
-        "period": {
-          "th": "ปีงบประมาณ 2558–2568 ตามรายการที่มี; ความครบถ้วนของตำแหน่งต่างกันตามปี",
-          "en": "Fiscal years 2015–2025 for available records; spatial completeness differs by year."
-        },
-        "benefit": {
-          "th": "เปลี่ยนข้อมูลงบประมาณและการเบิกจ่ายให้เป็นภาพเชิงพื้นที่ เพื่อเห็นว่าเงินถูกจัดสรรและเบิกจ่ายอย่างไร ก่อนติดตามโครงการต่อ",
-          "en": "Compare budget allocations and recorded disbursements by area to prepare questions about public spending."
-        },
-        "reading": {
-          "th": "รายการที่จับคู่พื้นที่ได้ไม่ใช่งบทั้งหมดของประเทศ การจัดสรรและเบิกจ่ายเป็นคนละขั้น และตัวเงินไม่บอกผลสำเร็จ คุณภาพบริการ หรือความคุ้มค่าโดยลำพัง",
-          "en": "Mapped items are not total national spending. Allocation and disbursement are different stages; amounts alone do not establish outcomes, service quality or value for money."
-        },
-        "official": [],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      "order": 5,
+      "orderMode": "flood_lifecycle"
+    },
+    {
+      "id": "other-hazards",
+      "group": "living",
+      "label": {
+        "th": "ภัยและสัญญาณเฝ้าระวังอื่น",
+        "en": "Other hazards"
       },
-      "slug": "government-spending",
-      "datasetCode": "govspending",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=govspending",
-      "preview": {
-        "available": false,
-        "path": null,
-        "largePath": null,
-        "conceptual": false,
-        "focusLabel": null
+      "order": 6,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "multi-hazard",
+      "group": "living",
+      "label": {
+        "th": "ผลกระทบจากภัยหลายประเภท",
+        "en": "Multi-hazard"
       },
-      "aliases": [
-        "งบประมาณและการเบิกจ่ายภาครัฐ",
-        "Government Budget & Disbursement",
-        "govspending",
-        "government-spending",
-        "Government Spending",
-        "งบประมาณ",
-        "การเบิกจ่าย",
-        "การใช้จ่ายภาครัฐ"
-      ],
-      "resourceClass": "Dataset"
+      "order": 7,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "event-archive",
+      "group": "living",
+      "label": {
+        "th": "บันทึกเหตุการณ์ที่ผ่านมา",
+        "en": "Event archive"
+      },
+      "order": 8,
+      "orderMode": "en_title_ascending"
     }
-  ]
+  ],
+  "taxonomy": {
+    "version": "2026-10-10-r2",
+    "pillarOrder": [
+      "land",
+      "location",
+      "living"
+    ],
+    "sort": "ordered subgroup, then canonical English-title order shared by locales; flood uses explicit historical, observed, forecast order"
+  }
 }
