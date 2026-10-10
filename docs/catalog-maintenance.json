@@ -211,5 +211,31 @@
       "search indexing or rank",
       "AI answer inclusion"
     ]
+  },
+  "contributorProjection": {
+    "url": "https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json",
+    "moduleCount": 43,
+    "joinContract": "Every public catalog record has one explicit dataset-<slug> module key; hidden business-dynamics remains excluded.",
+    "existingBindingsRestored": [
+      {
+        "moduleSlug": "dataset-non-bank",
+        "personId": "I0030",
+        "contributionId": "C0124",
+        "scope": "Existing owner-confirmed contribution; module binding restored."
+      },
+      {
+        "moduleSlug": "dataset-places-of-worship",
+        "personId": "I0045",
+        "contributionId": "C0122",
+        "scope": "Existing owner-confirmed contribution; module binding restored. Preserve Developing status and canonical Thai nickname fallback."
+      }
+    ],
+    "preservedFields": [
+      "person identity",
+      "contribution role",
+      "work dates",
+      "completion status",
+      "consent"
+    ]
   }
 }

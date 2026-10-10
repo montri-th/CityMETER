@@ -71,21 +71,17 @@ test("literal replacement keeps author dollar text", () => {
   assert.equal(replaceOnce("a{{COPY}}b", "{{COPY}}", copy), "a" + copy + "b");
   assert.throws(() => replaceOnce("absent", "{{COPY}}", "text"));
 });
-test("public projection has 41 joined credit modules", () => {
-  assert.equal(Object.keys(projection.byModuleSlug).length, 41);
-  for (const key of Object.keys(projection.byModuleSlug))
-    assert(
-      catalog.records.some((r) => "dataset-" + r.slug === key),
-      key,
-    );
-  for (const id of [
-    "dataset-non-bank",
-    "dataset-places-of-worship",
-    "dataset-business-dynamics",
-  ])
-    assert(!projection.byModuleSlug[id]);
+test("public projection joins all 43 catalog records exactly", () => {
+  assert.equal(Object.keys(projection.byModuleSlug).length, 43);
+  assert.deepEqual(
+    Object.keys(projection.byModuleSlug).sort(),
+    catalog.records.map((record) => "dataset-" + record.slug).sort(),
+  );
+  assert(!projection.byModuleSlug["dataset-business-dynamics"]);
 });
 const expectedCredits = {
+  "non-bank": ["I0030"],
+  "places-of-worship": ["I0045"],
   "grocery-retail": ["I0030"],
   "terrain-elevation": ["I0034"],
   "government-spending": ["I0036"],
@@ -98,6 +94,55 @@ for (const [id, expected] of Object.entries(expectedCredits))
       expected.sort(),
     ),
   );
+for (const [slug, personId, names, roles] of [
+  [
+    "non-bank",
+    "I0030",
+    { th: "เคน", en: "Ken" },
+    { th: "Software development", en: "Software development" },
+  ],
+  [
+    "places-of-worship",
+    "I0045",
+    { th: "คิว", en: "คิว" },
+    { th: "กำลังจัดทำ", en: "Developing" },
+  ],
+])
+  for (const lang of ["th", "en"])
+    test(
+      "existing credit appears in initial card and detail " + lang + " " + slug,
+      () => {
+        const prefix = lang === "en" ? "en/" : "";
+        const card = read(prefix + "index.html").match(
+          new RegExp(
+            '<article[^>]*id="dataset-' + slug + '"[^>]*>[\\s\\S]*?</article>',
+          ),
+        )?.[0];
+        const detail = read(prefix + "datasets/" + slug + "/index.html");
+        const profileUrl =
+          "https://montri-th.github.io/Landom/" +
+          prefix +
+          "?person=" +
+          personId +
+          "&lang=" +
+          lang;
+        assert(card, "Initial catalog card is missing");
+        for (const html of [card, detail]) {
+          assert(
+            html.includes('href="' + esc(profileUrl) + '"'),
+            "Public profile link is missing",
+          );
+          assert(
+            html.includes("<span>" + names[lang] + "</span>"),
+            "Canonical name or locale fallback is missing",
+          );
+        }
+        assert(
+          detail.includes("<small>" + roles[lang] + "</small>"),
+          "Original contribution role must remain intact",
+        );
+      },
+    );
 for (const r of catalog.records) {
   test("bilingual complete record " + r.id, () => {
     for (const value of [
