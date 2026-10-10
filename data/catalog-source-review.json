@@ -392,28 +392,28 @@
       "id": "dataset-factories-workers-investment",
       "citymeterUrl": "https://landometer.com/v3/citymeter?d=factory",
       "status": "candidate",
-      "ownerTh": "สำนักงานปลัดกระทรวงอุตสาหกรรม — แหล่งสถิติอ้างอิง; กรมโรงงานอุตสาหกรรม — ทะเบียนโรงงานที่เกี่ยวข้อง",
-      "ownerEn": "Office of the Permanent Secretary, Ministry of Industry — statistical reference; Department of Industrial Works — related factory register",
-      "sourceTh": "ข้อมูลอ้างอิงที่ตรวจพบมาจากช่องทางสำนักงานปลัดกระทรวงอุตสาหกรรม ส่วนชุดของกรมโรงงานอุตสาหกรรมเป็นแหล่งที่เกี่ยวข้อง ยังไม่ยืนยันว่าเป็นไฟล์เดียวกับฐานที่แสดง",
-      "sourceEn": "The inspected reference points to the Office of the Permanent Secretary, Ministry of Industry. Department of Industrial Works data is a related source; an exact match to the displayed database is not established.",
-      "periodTh": "หน้าแสดงข้อมูลเดือนเมษายน 2568; ตรวจวันอ้างอิงของแต่ละตัวเลขก่อนเปรียบเทียบ",
-      "periodEn": "The view identifies April 2025; check the reference date of each measure before comparison.",
+      "ownerTh": "สำนักงานปลัดกระทรวงอุตสาหกรรม; ข้อมูลจากผู้ประกอบการหรือสำนักงานอุตสาหกรรมจังหวัด",
+      "ownerEn": "Office of the Permanent Secretary, Ministry of Industry; records supplied by operators or provincial industry offices",
+      "sourceTh": "ชุด “ที่ตั้งประกอบกิจการโรงงาน” เผยแพร่ผ่านบัญชีข้อมูลของสำนักงานปลัดกระทรวงอุตสาหกรรม และค้นหาได้ใน GD Catalog ต้องเทียบรายการและนิยามตัวเลขกับรุ่นที่แผนที่ใช้ก่อนรวมเป็นฐานเดียวกัน",
+      "sourceEn": "Factory-location records are published through the ministry’s catalog and indexed by GD Catalog. Match the records and measure definitions to the map’s release before combining them.",
+      "periodTh": "แผนที่ระบุเมษายน 2568; บัญชีต้นทางระบุปรับปรุงข้อมูล 8 กรกฎาคม 2568 และลงทะเบียน GD Catalog 4 สิงหาคม 2568 ซึ่งเป็นคนละวันที่",
+      "periodEn": "The map identifies April 2025. Source metadata lists a data update on 8 July 2025 and GD Catalog registration on 4 August 2025; these are separate dates.",
       "benefitTh": "เปลี่ยนทะเบียนโรงงานทั่วประเทศ ให้เป็นแผนที่กิจกรรมอุตสาหกรรมเชิงพื้นที่ที่ช่วยสแกนข้อมูลแรงงานและการลงทุนระดับย่าน",
       "benefitEn": "Explore registered factories, workforce figures and investment data to understand industrial areas.",
-      "readingTh": "ก่อนเปรียบเทียบ ให้ตรวจว่าตัวเลขมาจากแหล่งใด เป็นข้อมูลปีไหน และรวมโรงงานกลุ่มใดบ้าง ข้อมูลที่มีอยู่ยังยืนยันรายละเอียดเหล่านี้ได้ไม่ครบ จึงใช้จำนวนที่แสดงแทนโรงงานหรือแรงงานทั้งหมดในพื้นที่ไม่ได้",
-      "readingEn": "Before comparing, check where each figure comes from, its reference year and which factories it includes. These details have not yet been fully verified, so the displayed counts should not stand in for all factories or workers in the area.",
+      "readingTh": "ทะเบียนบันทึกสิ่งที่ผู้ประกอบการหรือสำนักงานอุตสาหกรรมจังหวัดรายงาน จึงต้องตรวจสถานะโรงงาน นิยามแรงงาน หน่วยเงินทุนและเครื่องจักร รวมถึงวันอ้างอิง ก่อนใช้แทนการจ้างงานหรือกำลังผลิตปัจจุบัน วันที่ลงทะเบียนในบัญชีข้อมูลไม่ใช่อายุของข้อมูลโรงงาน",
+      "readingEn": "Check operating status, workforce definitions, capital and machinery units, and reference dates before treating registry figures as current employment or production capacity. Catalog registration is not the factories’ data vintage.",
       "official": [
         {
-          "labelTh": "กรมโรงงานอุตสาหกรรม — ข้อมูลโรงงาน (แหล่งอ้างอิงที่เกี่ยวข้อง)",
-          "labelEn": "Department of Industrial Works — related factory-data reference",
-          "url": "https://www.diw.go.th/webdiw/s-data-fac/"
+          "labelTh": "สำนักงานปลัดกระทรวงอุตสาหกรรม — ที่ตั้งประกอบกิจการโรงงาน",
+          "labelEn": "OPS Ministry of Industry — factory locations",
+          "url": "https://industry.gdcatalog.go.th/dataset/a4e85b60-3fd5-4c50-9450-5e139cb1b0e1"
         }
       ],
       "gd": [
         {
-          "labelTh": "สำนักงานปลัดกระทรวงอุตสาหกรรม — ข้อมูลโรงงานอุตสาหกรรม (แหล่งอ้างอิง)",
-          "labelEn": "OPS Ministry of Industry — industrial factory data (reference)",
-          "url": "https://gdcatalog.go.th/dataset/gdpublish-ops_13_01"
+          "labelTh": "GD Catalog — ที่ตั้งประกอบกิจการโรงงาน",
+          "labelEn": "GD Catalog — factory-location record",
+          "url": "https://gdcatalog.go.th/dataset/gdpublish-ops-13-041"
         }
       ],
       "conceptualPreview": false
@@ -539,24 +539,34 @@
       "id": "dataset-hotel-market",
       "citymeterUrl": "https://landometer.com/v3/citymeter?d=hotel",
       "status": "candidate",
-      "ownerTh": "การท่องเที่ยวแห่งประเทศไทย — TAT Accommodation (candidate)",
-      "ownerEn": "Tourism Authority of Thailand — Accommodation (candidate)",
-      "sourceTh": "ข้อมูลที่พักของ ททท. เป็นแหล่งอ้างอิงที่เกี่ยวข้อง แต่ยังไม่ยืนยันว่าเป็นรายการและช่วงเวลาเดียวกับจำนวนโรงแรมและห้องพักที่แสดง",
-      "sourceEn": "TAT accommodation data is a relevant reference, but a match to the displayed hotel and room inventory and its reference period is not yet confirmed.",
-      "periodTh": null,
-      "periodEn": null,
+      "ownerTh": "การท่องเที่ยวแห่งประเทศไทย; กรุงเทพมหานคร — กองยุทธศาสตร์ดิจิทัลเป็นผู้เผยแพร่ชุดโรงแรม",
+      "ownerEn": "Tourism Authority of Thailand; Bangkok Metropolitan Administration — hotel dataset published by its Digital Strategy Division",
+      "sourceTh": "ททท. เผยแพร่ประเภทและที่ตั้งที่พักจากฐานข้อมูลการท่องเที่ยวเชิงการตลาด ส่วนชุด กทม. มีชื่อโรงแรม เขต พิกัด จำนวนห้อง และระดับโรงแรม ยังไม่ใช่หลักฐานว่าราคาหรือค่าฤดูกาลในแผนที่มาจากสองชุดนี้",
+      "sourceEn": "TAT publishes accommodation types and locations from its tourism marketing database. BMA records include hotel names, districts, coordinates, rooms and grades. Neither reference establishes the source of the map’s price or seasonality measures.",
+      "periodTh": "บัญชี ททท. ระบุปรับปรุงข้อมูล 11 มิถุนายน 2569; ชุดโรงแรม กทม. ระบุ 23 มิถุนายน 2566 วันเหล่านี้ยังไม่ยืนยันช่วงเวลาของราคาและรายการที่แผนที่แสดง",
+      "periodEn": "TAT metadata lists 11 June 2026; the BMA hotel resource lists 23 June 2023. These dates do not establish the period of the map’s displayed inventory or rates.",
       "benefitTh": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
       "benefitEn": "Compare hotel locations, room supply and listed prices to understand accommodation around a site.",
-      "readingTh": "ยังไม่ทราบแหล่ง วิธีคำนวณ และความครอบคลุม จึงไม่ควรใช้แทนอัตราเข้าพักหรือยอดจอง",
-      "readingEn": "Source, method, and coverage are not documented, so this should not stand in for occupancy or bookings",
-      "official": [],
-      "gd": [
+      "readingTh": "ที่พักแต่ละแหล่งมีประเภท ขอบเขต และช่วงเวลาต่างกัน จำนวนห้องในทะเบียนไม่ใช่ห้องว่างหรือยอดจอง ส่วนแหล่งราคาและวิธีสรุปฤดูกาลของค่าที่แสดงยังต้องเทียบให้ตรง จึงใช้คำนวณอัตราเข้าพักหรือรายได้ไม่ได้",
+      "readingEn": "Sources differ in accommodation types, coverage and dates. Registered room counts do not measure availability or bookings. The displayed rates and seasonality still need their source and method matched; they cannot establish occupancy or revenue.",
+      "official": [
         {
-          "labelTh": "TAT Accommodation candidate",
-          "labelEn": "TAT Accommodation candidate",
-          "url": "https://gdcatalog.go.th/dataset/gdpublish-accommodation1"
+          "labelTh": "ททท. — ชุดข้อมูลที่พัก",
+          "labelEn": "TAT — accommodation dataset",
+          "url": "https://datacatalog.tat.or.th/dataset/accommodation"
+        },
+        {
+          "labelTh": "กรุงเทพมหานคร — โรงแรมที่ขึ้นทะเบียนกับสมาคมโรงแรมไทย",
+          "labelEn": "BMA — hotels registered with the Thai Hotels Association",
+          "url": "https://data.bangkok.go.th/dataset/hotels"
+        },
+        {
+          "labelTh": "กรุงเทพมหานคร — รายการโรงแรมและจำนวนห้อง",
+          "labelEn": "BMA — hotel and room-count resource",
+          "url": "https://data.bangkok.go.th/dataset/hotels/resource/d2b08c18-9071-4d5c-ae3d-bd35740a9393"
         }
       ],
+      "gd": [],
       "conceptualPreview": false
     },
     {
@@ -821,18 +831,29 @@
     {
       "id": "dataset-government-spending",
       "citymeterUrl": "https://landometer.com/v3/citymeter?d=govspending",
-      "status": "unproven",
-      "ownerTh": "ยังยืนยันหน่วยงานผู้เผยแพร่ข้อมูลต้นทางไม่ได้",
-      "ownerEn": "Original publisher not yet verified",
-      "sourceTh": "ข้อมูลรายการงบประมาณและการเบิกจ่ายที่เชื่อมกับพื้นที่ได้ ยังต้องตรวจเอกสารต้นทางของรายการก่อนอ้างอิงหน่วยงานผู้เผยแพร่หรือยอดรวมประเทศ",
-      "sourceEn": "Budget and disbursement items are linked to areas where possible. Check the underlying documents before attributing a publisher or quoting a national total.",
-      "periodTh": "ปีงบประมาณ 2558–2568 ตามรายการที่มี; ความครบถ้วนของตำแหน่งต่างกันตามปี",
-      "periodEn": "Fiscal years 2015–2025 for available records; spatial completeness differs by year.",
+      "status": "derived",
+      "ownerTh": "ต้นทางระบบ GFMIS; ชุดข้อมูลที่เผยแพร่ผ่าน PBO / Thaith",
+      "ownerEn": "GFMIS source records; dataset published through PBO / Thaith",
+      "sourceTh": "คู่มือ PBO Budget ระบุข้อมูลเบิกจ่ายระดับรายการปี 2558–2568 จากระบบ GFMIS แยกงบหลังโอน/เปลี่ยนแปลง เบิกจ่าย และ PO หน่วยล้านบาท; ขอบเขตการจับคู่รายการกับพื้นที่ใน CityMETER ต้องอ่านแยกจากขอบเขตไฟล์ต้นทาง",
+      "sourceEn": "The PBO Budget manual describes GFMIS line items for FY2015–2025, with adjusted budgets, disbursements and PO commitments in million baht. CityMETER’s geographic matching has a separate coverage boundary from the source files.",
+      "periodTh": "แหล่งอ้างอิง PBO: ปีงบประมาณ 2558–2568; ตัวเลือกบนแผนที่ช่วงเดียวกัน แต่ยังไม่ได้ตรวจเทียบครบทุกไฟล์และทุกรายการ",
+      "periodEn": "PBO reference: fiscal years 2015–2025. The map offers the same year range; every source file and mapped item has not been reconciled.",
       "benefitTh": "เปลี่ยนข้อมูลงบประมาณและการเบิกจ่ายให้เป็นภาพเชิงพื้นที่ เพื่อเห็นว่าเงินถูกจัดสรรและเบิกจ่ายอย่างไร ก่อนติดตามโครงการต่อ",
       "benefitEn": "Compare budget allocations and recorded disbursements by area to prepare questions about public spending.",
-      "readingTh": "รายการที่จับคู่พื้นที่ได้ไม่ใช่งบทั้งหมดของประเทศ การจัดสรรและเบิกจ่ายเป็นคนละขั้น และตัวเงินไม่บอกผลสำเร็จ คุณภาพบริการ หรือความคุ้มค่าโดยลำพัง",
-      "readingEn": "Mapped items are not total national spending. Allocation and disbursement are different stages; amounts alone do not establish outcomes, service quality or value for money.",
-      "official": [],
+      "readingTh": "แผนที่แสดงเฉพาะรายการที่จับคู่พื้นที่ได้ ไม่ใช่งบทั้งหมดของประเทศ แยกงบหลังโอน/เปลี่ยนแปลง ยอดเบิกจ่าย และ PO ออกจากกัน; เครื่องหมาย “-” ในต้นทางไม่ใช่ศูนย์ และจำนวนเงินไม่ยืนยันผลสำเร็จหรือความคุ้มค่าโครงการ",
+      "readingEn": "The map shows only geographically matched items, not the full national budget. Keep adjusted budget, disbursement and purchase-order commitments separate. A source dash is not zero; amounts alone do not establish project outcomes or value for money.",
+      "official": [
+        {
+          "labelTh": "PBO Budget — คู่มือข้อมูลและนิยามคอลัมน์",
+          "labelEn": "PBO Budget — source definitions and columns",
+          "url": "https://pbo-mcp.thaith.ai/manual"
+        },
+        {
+          "labelTh": "กิจกรรมเปิดข้อมูล — คลังเอกสารที่เผยแพร่",
+          "labelEn": "Open-data event — published document collection",
+          "url": "https://open.thaith.ai/aievent/"
+        }
+      ],
       "gd": [],
       "conceptualPreview": false
     },
@@ -863,43 +884,85 @@
     {
       "id": "dataset-government-agencies-workforce",
       "citymeterUrl": "https://landometer.com/v3/citymeter?d=governmentOfficer",
-      "status": "unproven",
-      "ownerTh": "ข้อมูลจากหลายแหล่ง — ยังยืนยันผู้เผยแพร่ของแต่ละส่วนได้ไม่ครบ",
-      "ownerEn": "Multiple sources; publishers are not yet fully verified for every part",
-      "sourceTh": "รวมข้อมูลหน่วยงานและบุคลากรหลายประเภท แหล่งที่มาและปีอ้างอิงอาจต่างกัน จึงควรตรวจรายละเอียดของหมวดที่เลือก",
-      "sourceEn": "Combines several types of agency and workforce records. Sources and reference years may differ; check the selected category.",
-      "periodTh": null,
-      "periodEn": null,
-      "benefitTh": "รวมข้อมูลหน่วยงานรัฐและบุคลากรบนแผนที่ เพื่อเห็นการกระจายตัวของบริการและเลือกพื้นที่ศึกษาต่อ",
-      "benefitEn": "Explore government offices and reported personnel to understand the public-service presence in an area.",
-      "readingTh": "การมีข้อมูลติดต่อไม่ได้ยืนยันว่าหน่วยงานยังเปิดทำการหรือบริการมีคุณภาพ ก่อนเทียบอัตราส่วนบุคลากร ให้ตรวจว่าแต่ละค่านับบุคลากรกลุ่มใดและคำนวณเทียบกับอะไร",
-      "readingEn": "A contact record does not confirm that an organisation is operating or establish service quality. Before comparing personnel ratios, confirm which people each figure counts and what it is divided by.",
-      "official": [],
-      "gd": [],
+      "status": "derived",
+      "ownerTh": "สำนักงาน ก.พ. — กำลังคน; สำนักงาน ก.พ.ร. และกรมการปกครอง — หน่วยงาน/สถานที่; กรุงเทพมหานคร — ชุดสถานที่ใน กทม.",
+      "ownerEn": "OCSC — workforce; OPDC and DOPA — agencies/places; Bangkok Metropolitan Administration — Bangkok place datasets",
+      "sourceTh": "ก.พ. เผยแพร่สถิติข้าราชการพลเรือนสามัญแยกกระทรวงและกรม; ก.พ.ร. ให้ที่อยู่และช่องทางติดต่อ; กรมการปกครองให้สถานที่ราชการและสถานที่สำคัญ 76 จังหวัด; กทม. ให้ชุดที่ตั้งหน่วยงาน ตำรวจ ไปรษณีย์ และดับเพลิง ซึ่งใช้ดูร่วมกันตามขอบเขตของแต่ละชุด",
+      "sourceEn": "OCSC publishes ordinary civil-servant statistics by ministry and department. OPDC provides agency addresses and contacts; DOPA covers government and important places in 76 provinces. Bangkok supplies office, police, post-office and fire-station locations. Read each source within its own scope.",
+      "periodTh": "สถิติ ก.พ. ที่ตรวจ: 2566 และ 2567 (2023–2024); ข้อมูลที่ตั้งและเอกสารเฉพาะหน่วยงานอ้างอิงต่างปี จึงไม่ใช่ภาพกำลังคนปัจจุบันในวันเดียวกัน",
+      "periodEn": "Checked OCSC statistics: 2023 and 2024. Location datasets and agency-specific documents have different reference dates, so this is not a single-date current staffing snapshot.",
+      "benefitTh": "ค้นหาหน่วยงานและจุดบริการในพื้นที่ พร้อมอ่านบริบทกำลังคนจากสถิติของหน่วยงาน เพื่อเตรียมการประสานงานและวางแผนบริการ",
+      "benefitEn": "Find agencies and service locations, then read agency-level workforce context to prepare coordination and service planning.",
+      "readingTh": "จุดสถานที่ จำนวนคน กรอบตำแหน่ง และมาตรฐานบริการเป็นคนละหน่วยนับ ห้ามนำยอดกำลังคนของกรมไปแทนบุคลากรทุกสาขาโดยไม่มีตารางจับคู่ที่ตรวจแล้ว; ที่ตั้งและช่องทางติดต่อไม่ยืนยันการเปิดทำการ เขตบริการ หรือคุณภาพบริการ",
+      "readingEn": "Locations, headcounts, authorised positions and service standards measure different things. Do not assign department totals to every branch without a verified crosswalk. An address or contact does not confirm current operation, service boundaries or quality.",
+      "official": [
+        {
+          "labelTh": "สำนักงาน ก.พ. — อัตรากำลังข้าราชการพลเรือนสามัญ",
+          "labelEn": "OCSC — ordinary civil-servant workforce",
+          "url": "https://catalog.ocsc.go.th/dataset/dataset_32_02"
+        },
+        {
+          "labelTh": "สำนักงาน ก.พ. — รายงานกำลังคนภาครัฐ 2567",
+          "labelEn": "OCSC — government workforce report 2024",
+          "url": "https://www.ocsc.go.th/wp-content/uploads/2026/02/thai-gov-manpower-2567.4.pdf"
+        },
+        {
+          "labelTh": "สำนักงาน ก.พ.ร. — ที่อยู่และช่องทางติดต่อส่วนราชการ",
+          "labelEn": "OPDC — agency addresses and contacts",
+          "url": "https://dataportal.opdc.go.th/dataset/dataset_3_1601_psd_015"
+        },
+        {
+          "labelTh": "กรุงเทพมหานคร — ที่ตั้งหน่วยงานและกระทรวง",
+          "labelEn": "Bangkok — government offices and ministries",
+          "url": "https://data.bangkok.go.th/dataset/minitries"
+        },
+        {
+          "labelTh": "กรุงเทพมหานคร — สถานีตำรวจ",
+          "labelEn": "Bangkok — police stations",
+          "url": "https://data.bangkok.go.th/dataset/2eeda85a-084c-462b-8686-24dbf85b9e03"
+        },
+        {
+          "labelTh": "กรุงเทพมหานคร — ที่ทำการไปรษณีย์",
+          "labelEn": "Bangkok — post offices",
+          "url": "https://data.bangkok.go.th/dataset/798005df-660f-4fb5-81e3-ac39c739f24e"
+        },
+        {
+          "labelTh": "กรุงเทพมหานคร — สถานีดับเพลิง",
+          "labelEn": "Bangkok — fire stations",
+          "url": "https://data.bangkok.go.th/dataset/c0a2208d-1dfb-4fba-973e-84c6cca63b8d"
+        }
+      ],
+      "gd": [
+        {
+          "labelTh": "กรมการปกครอง — สถานที่ราชการและสถานที่สำคัญ 76 จังหวัด (GD Catalog)",
+          "labelEn": "DOPA — government and important places in 76 provinces (GD Catalog)",
+          "url": "https://gdcatalog.go.th/dataset/gdpublish-gis-02"
+        }
+      ],
       "conceptualPreview": false
     },
     {
       "id": "dataset-flood-recurrent",
       "citymeterUrl": "https://landometer.com/v3/citymeter/AYA/D/1408?d=floodimpact",
-      "status": "candidate",
-      "ownerTh": "GISTDA disaster layers (candidate)",
-      "ownerEn": "GISTDA disaster layers (candidate)",
-      "sourceTh": "หน้าใช้งานแสดงขอบเขตน้ำท่วมที่สังเกตได้รายปี ช่วง 2554–2567 แหล่ง GISTDA ที่เกี่ยวข้องมีช่วงปีและวิธีสรุปต่างกัน จึงยังไม่ยืนยันว่าเป็นชุดเดียวกันทั้งหมด",
-      "sourceEn": "The view shows annual observed flood extents for 2011–2024. Related GISTDA products use different periods and summaries; a complete source match is not yet confirmed.",
-      "periodTh": null,
-      "periodEn": null,
+      "status": "verified_lineage",
+      "ownerTh": "สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ (GISTDA)",
+      "ownerEn": "Geo-Informatics and Space Technology Development Agency (GISTDA)",
+      "sourceTh": "ชั้นข้อมูลน้ำท่วมย้อนหลังจาก GISTDA Disaster Platform Open API ตามต้นทางที่ทีมยืนยัน",
+      "sourceEn": "Historical flood layers from the GISTDA Disaster Platform Open API, confirmed by the team as the source.",
+      "periodTh": "ช่วงปีที่หน้าใช้งานเปิดให้เลือก: 2554–2567",
+      "periodEn": "Selectable years displayed in the explorer: 2011–2024",
       "benefitTh": "เปลี่ยนข้อมูลน้ำท่วมย้อนหลังให้เป็นแผนที่ เห็นพื้นที่ที่เคยตรวจพบน้ำท่วมและการเกิดซ้ำในแต่ละปี ก่อนศึกษาทำเลต่อ",
       "benefitEn": "Compare areas where flooding was observed in past years before studying a location further.",
       "readingTh": "ประวัติย้อนหลังไม่ใช่สภาพปัจจุบันหรือการคาดการณ์ และไม่ใช้แทนการกำหนดความเสี่ยงตามกฎหมาย",
       "readingEn": "Historical recurrence is neither current conditions nor a forecast and does not replace a statutory risk determination",
-      "official": [],
-      "gd": [
+      "official": [
         {
-          "labelTh": "GISTDA candidate",
-          "labelEn": "GISTDA candidate",
-          "url": "https://gdcatalog.go.th/dataset/gdpublish-disasters-01"
+          "labelTh": "GISTDA Disaster Platform — Open API",
+          "labelEn": "GISTDA Disaster Platform — Open API",
+          "url": "https://disaster.gistda.or.th/services/open-api"
         }
       ],
+      "gd": [],
       "conceptualPreview": false
     },
     {

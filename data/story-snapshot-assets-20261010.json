@@ -1,0 +1,496 @@
+{
+  "schemaVersion": "1.0.0",
+  "capturedAt": "2026-10-10",
+  "assets": [
+    {
+      "assetId": "citymeter-story-rentwise-bangrak-v3",
+      "datasetCode": "rentWise",
+      "path": "media/story-snapshots/rentwise-bangrak-v3-1710.webp",
+      "mediaType": "image/webp",
+      "width": 1710,
+      "height": 907,
+      "bytes": 70008,
+      "sha256": "a5a00c2f81c60dc59d30a2fa66f52b0b9a312879769db4104f9de913423a69b9",
+      "sourceUrl": "https://landometer.com/v3/citymeter/BKK/D/1004?d=rentWise",
+      "sourceSha256": "bdf128c3c0b70dbc4f1f055ba66af7b9df17daf3ca45b49b0e7d6dc013fd10b6",
+      "owner": "Landometer",
+      "creator": "CityMETER public explorer screenshot",
+      "approvalStatus": "approved",
+      "publicationBasis": "Owner requested documentary screenshots for dataset heroes and summary articles, and authorized publishing these websites in this conversation.",
+      "ownerApproval": {
+        "status": "approved",
+        "approvedAt": "2026-10-10",
+        "scope": "CityMETER catalog/summary documentary image; page link preview of this same article",
+        "sourceRef": "Current owner instructions: capture highlights, real-area findings, publish CityMETER."
+      },
+      "approvedRoles": [
+        "dataset-summary-snapshot",
+        "dataset-catalog-hero",
+        "article-social-preview"
+      ],
+      "prohibitedRoles": [
+        "portrait",
+        "identity",
+        "testimonial",
+        "statutory-risk-evidence"
+      ],
+      "metadataStripped": true,
+      "exifPresent": false,
+      "xmpPresent": false,
+      "iccProfilePresent": false,
+      "alt": {
+        "th": "บางรัก · ราคาเสนอเช่าและผลตอบแทนที่คำนวณจากประกาศ · รุ่น V3 มกราคม 2567",
+        "en": "Bang Rak · asking rents and listing-derived yields · V3 January 2024"
+      },
+      "recipe": {
+        "sourceSha256": "bdf128c3c0b70dbc4f1f055ba66af7b9df17daf3ca45b49b0e7d6dc013fd10b6",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "encoding": {
+          "quality": 84,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "none",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 70008,
+        "sha256": "a5a00c2f81c60dc59d30a2fa66f52b0b9a312879769db4104f9de913423a69b9",
+        "pillowVersion": "12.3.0"
+      },
+      "review": {
+        "crop": "none; complete selected explorer view retained",
+        "privacy": "No private account panels, messages or portraits; public geographic map only.",
+        "truth": "No generative edits or documentary retouching; source map colours retained.",
+        "credit": "CityMETER / underlying data attribution in article sources.",
+        "visual": "Source reviewed at 1710×907 before encoding; rendered responsive check follows."
+      }
+    },
+    {
+      "assetId": "citymeter-story-dwr-bangkok-20261010",
+      "datasetCode": "flood-forecast-depth",
+      "path": "media/story-snapshots/dwr-bangkok-20261010-1710.webp",
+      "mediaType": "image/webp",
+      "width": 1710,
+      "height": 907,
+      "bytes": 276466,
+      "sha256": "c4a7fc8e307ba2347acbe1176d8a23d450730621354d6bb832571adc23429c3c",
+      "sourceUrl": "https://landometer.com/v3/citymeter/BKK?d=flood-forecast-depth",
+      "sourceSha256": "dc0e3d84fb159eb775eb680e3a20152d4e0411a4eb2076ceaba503a323d3ff54",
+      "owner": "Landometer",
+      "creator": "CityMETER public explorer screenshot",
+      "approvalStatus": "approved",
+      "publicationBasis": "Owner requested documentary screenshots for dataset heroes and summary articles, and authorized publishing these websites in this conversation.",
+      "ownerApproval": {
+        "status": "approved",
+        "approvedAt": "2026-10-10",
+        "scope": "CityMETER catalog/summary documentary image; page link preview of this same article",
+        "sourceRef": "Current owner instructions: capture highlights, real-area findings, publish CityMETER."
+      },
+      "approvedRoles": [
+        "dataset-summary-snapshot",
+        "dataset-catalog-hero",
+        "article-social-preview"
+      ],
+      "prohibitedRoles": [
+        "portrait",
+        "identity",
+        "testimonial",
+        "statutory-risk-evidence"
+      ],
+      "metadataStripped": true,
+      "exifPresent": false,
+      "xmpPresent": false,
+      "iccProfilePresent": false,
+      "alt": {
+        "th": "กรุงเทพฯ · แบบจำลองพยากรณ์น้ำท่วม วันที่ 10 ตุลาคม 2569",
+        "en": "Bangkok · modelled flood forecast for 10 October 2026"
+      },
+      "recipe": {
+        "sourceSha256": "dc0e3d84fb159eb775eb680e3a20152d4e0411a4eb2076ceaba503a323d3ff54",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "encoding": {
+          "quality": 84,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "none",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 276466,
+        "sha256": "c4a7fc8e307ba2347acbe1176d8a23d450730621354d6bb832571adc23429c3c",
+        "pillowVersion": "12.3.0"
+      },
+      "review": {
+        "crop": "none; complete selected explorer view retained",
+        "privacy": "No private account panels, messages or portraits; public geographic map only.",
+        "truth": "No generative edits or documentary retouching; source map colours retained.",
+        "credit": "CityMETER / underlying data attribution in article sources.",
+        "visual": "Source reviewed at 1710×907 before encoding; rendered responsive check follows."
+      }
+    },
+    {
+      "assetId": "citymeter-story-google-flood-nakhonpathom-20261010",
+      "datasetCode": "flash-flood-risk",
+      "path": "media/story-snapshots/google-flood-nakhonpathom-20261010-1710.webp",
+      "mediaType": "image/webp",
+      "width": 1710,
+      "height": 907,
+      "bytes": 261408,
+      "sha256": "5290ddcdf991538b16663a9546531d999743abee07a99ce55da0761bfb483ff7",
+      "sourceUrl": "https://landometer.com/v3/citymeter/NPT?d=flash-flood-risk",
+      "sourceSha256": "00d050af67a659b40225622691a6a9392930569b96ebab9707b7bfd4f94f7901",
+      "owner": "Landometer",
+      "creator": "CityMETER public explorer screenshot",
+      "approvalStatus": "approved",
+      "publicationBasis": "Owner requested documentary screenshots for dataset heroes and summary articles, and authorized publishing these websites in this conversation.",
+      "ownerApproval": {
+        "status": "approved",
+        "approvedAt": "2026-10-10",
+        "scope": "CityMETER catalog/summary documentary image; page link preview of this same article",
+        "sourceRef": "Current owner instructions: capture highlights, real-area findings, publish CityMETER."
+      },
+      "approvedRoles": [
+        "dataset-summary-snapshot",
+        "dataset-catalog-hero",
+        "article-social-preview"
+      ],
+      "prohibitedRoles": [
+        "portrait",
+        "identity",
+        "testimonial",
+        "statutory-risk-evidence"
+      ],
+      "metadataStripped": true,
+      "exifPresent": false,
+      "xmpPresent": false,
+      "iccProfilePresent": false,
+      "alt": {
+        "th": "นครปฐม · รอบพยากรณ์ Google วันที่ 10 ตุลาคม 2569",
+        "en": "Nakhon Pathom · Google forecast rounds on 10 October 2026"
+      },
+      "recipe": {
+        "sourceSha256": "00d050af67a659b40225622691a6a9392930569b96ebab9707b7bfd4f94f7901",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "encoding": {
+          "quality": 84,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "none",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 261408,
+        "sha256": "5290ddcdf991538b16663a9546531d999743abee07a99ce55da0761bfb483ff7",
+        "pillowVersion": "12.3.0"
+      },
+      "review": {
+        "crop": "none; complete selected explorer view retained",
+        "privacy": "No private account panels, messages or portraits; public geographic map only.",
+        "truth": "No generative edits or documentary retouching; source map colours retained.",
+        "credit": "CityMETER / underlying data attribution in article sources.",
+        "visual": "Source reviewed at 1710×907 before encoding; rendered responsive check follows."
+      }
+    },
+    {
+      "assetId": "citymeter-story-locale-lamplanao-20261010",
+      "datasetCode": "localeInsights",
+      "path": "media/story-snapshots/locale-lamplanao-20261010-1710.webp",
+      "mediaType": "image/webp",
+      "width": 1710,
+      "height": 907,
+      "bytes": 174110,
+      "sha256": "435348a440fa19e09f73252af79855c47c6ecf0b423a243a437afeb88aa010ff",
+      "sourceUrl": "https://landometer.com/v3/citymeter/BKK?d=localeInsights",
+      "sourceSha256": "41c8444d2e46e472aa52a1c785320b892c214001d97c89f58234012992d8c768",
+      "owner": "Landometer",
+      "creator": "CityMETER public explorer screenshot",
+      "approvalStatus": "approved",
+      "publicationBasis": "Owner requested documentary screenshots for dataset heroes and summary articles, and authorized publishing these websites in this conversation.",
+      "ownerApproval": {
+        "status": "approved",
+        "approvedAt": "2026-10-10",
+        "scope": "CityMETER catalog/summary documentary image; page link preview of this same article",
+        "sourceRef": "Current owner instructions: capture highlights, real-area findings, publish CityMETER."
+      },
+      "approvedRoles": [
+        "dataset-summary-snapshot",
+        "dataset-catalog-hero",
+        "article-social-preview"
+      ],
+      "prohibitedRoles": [
+        "portrait",
+        "identity",
+        "testimonial",
+        "statutory-risk-evidence"
+      ],
+      "metadataStripped": true,
+      "exifPresent": false,
+      "xmpPresent": false,
+      "iccProfilePresent": false,
+      "alt": {
+        "th": "ลำปลาเน่า เขตหนองจอก · คะแนนจากแบบจำลอง Locale Insights 48/100",
+        "en": "Lam Pla Nao, Nong Chok · Locale Insights model score 48/100"
+      },
+      "recipe": {
+        "sourceSha256": "41c8444d2e46e472aa52a1c785320b892c214001d97c89f58234012992d8c768",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "encoding": {
+          "quality": 84,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "none",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 174110,
+        "sha256": "435348a440fa19e09f73252af79855c47c6ecf0b423a243a437afeb88aa010ff",
+        "pillowVersion": "12.3.0"
+      },
+      "review": {
+        "crop": "none; complete selected explorer view retained",
+        "privacy": "No private account panels, messages or portraits; public geographic map only.",
+        "truth": "No generative edits or documentary retouching; source map colours retained.",
+        "credit": "CityMETER / underlying data attribution in article sources.",
+        "visual": "Source reviewed at 1710×907 before encoding; rendered responsive check follows."
+      }
+    },
+    {
+      "assetId": "citymeter-story-terrain-chiangmai-fabdem-20261010",
+      "datasetCode": "terrain",
+      "path": "media/story-snapshots/terrain-chiangmai-fabdem-20261010-1710.webp",
+      "mediaType": "image/webp",
+      "width": 1710,
+      "height": 907,
+      "bytes": 198578,
+      "sha256": "964fe529bd73b92c814ef92ebaecd7aaccbdcd603eaa508832dec47becfc5c13",
+      "sourceUrl": "https://landometer.com/v3/citymeter-3d/CMI/D/5001?d=terrain",
+      "sourceSha256": "7c086d7bab11baedaf430276920c4a2c6d22e88e05c11afb90bde889554e4749",
+      "owner": "Landometer",
+      "creator": "CityMETER public explorer screenshot",
+      "approvalStatus": "approved",
+      "publicationBasis": "Owner requested documentary screenshots for dataset heroes and summary articles, and authorized publishing these websites in this conversation.",
+      "ownerApproval": {
+        "status": "approved",
+        "approvedAt": "2026-10-10",
+        "scope": "CityMETER catalog/summary documentary image; page link preview of this same article",
+        "sourceRef": "Current owner instructions: capture highlights, real-area findings, publish CityMETER."
+      },
+      "approvedRoles": [
+        "dataset-summary-snapshot",
+        "dataset-catalog-hero",
+        "article-social-preview"
+      ],
+      "prohibitedRoles": [
+        "portrait",
+        "identity",
+        "testimonial",
+        "statutory-risk-evidence"
+      ],
+      "metadataStripped": true,
+      "exifPresent": false,
+      "xmpPresent": false,
+      "iccProfilePresent": false,
+      "alt": {
+        "th": "เมืองเชียงใหม่และแนวเขาด้านตะวันตก · ความสูงจาก FABDEM หน่วยเมตร",
+        "en": "Chiang Mai and its western hills · FABDEM elevation in metres"
+      },
+      "recipe": {
+        "sourceSha256": "7c086d7bab11baedaf430276920c4a2c6d22e88e05c11afb90bde889554e4749",
+        "sourceFormat": "JPEG",
+        "sourceMode": "RGB",
+        "sourceHasAlpha": false,
+        "sourceIccProfilePresent": false,
+        "sourceSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "sourceOrientation": null,
+        "sourceMetadataKeys": [
+          "jfif",
+          "jfif_density",
+          "jfif_unit",
+          "jfif_version"
+        ],
+        "orientedSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "crop": null,
+        "preResizeSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "outputFormat": "WEBP",
+        "outputMode": "RGB",
+        "outputHasAlpha": false,
+        "outputIccProfilePresent": false,
+        "outputExifPresent": false,
+        "outputXmpPresent": false,
+        "outputSize": {
+          "width": 1710,
+          "height": 907
+        },
+        "encoding": {
+          "quality": 84,
+          "method": 6,
+          "lossless": false,
+          "exact": true
+        },
+        "alphaBackground": null,
+        "resampling": "none",
+        "colorHandling": "assumed_srgb",
+        "metadataState": "stripped",
+        "bytes": 198578,
+        "sha256": "964fe529bd73b92c814ef92ebaecd7aaccbdcd603eaa508832dec47becfc5c13",
+        "pillowVersion": "12.3.0"
+      },
+      "review": {
+        "crop": "none; complete selected explorer view retained",
+        "privacy": "No private account panels, messages or portraits; public geographic map only.",
+        "truth": "No generative edits or documentary retouching; source map colours retained.",
+        "credit": "CityMETER / underlying data attribution in article sources.",
+        "visual": "Source reviewed at 1710×907 before encoding; rendered responsive check follows."
+      }
+    }
+  ]
+}

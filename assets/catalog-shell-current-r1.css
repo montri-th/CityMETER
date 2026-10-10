@@ -60,7 +60,7 @@
   --section-surface-footer: var(--ldm-foundation-surface-alt-light);
   /* Category meaning is stated in text. Quiet DS surfaces carry grouping;
      neutral borders carry separation; color never appears as a card rail. */
-  --pillar-surface-land: var(--ldm-foundation-surface-beige-tint-light);
+  --pillar-surface-land: var(--ldm-foundation-surface-card-light);
   --pillar-surface-location: var(--ldm-foundation-surface-blue-tint-light);
   --pillar-surface-living: var(--ldm-foundation-surface-soft-light);
   --pillar-accent-land: var(--ldm-series-03-fill-light);
@@ -123,7 +123,7 @@
   --section-surface-explorer: var(--ldm-foundation-surface-canvas-dark);
   --section-surface-contact: var(--ldm-foundation-surface-soft-dark);
   --section-surface-footer: var(--ldm-foundation-surface-alt-dark);
-  --pillar-surface-land: var(--ldm-foundation-surface-beige-tint-dark);
+  --pillar-surface-land: var(--ldm-foundation-surface-card-dark);
   --pillar-surface-location: var(--ldm-foundation-surface-blue-tint-dark);
   --pillar-surface-living: var(--ldm-foundation-surface-soft-dark);
   --pillar-accent-land: var(--ldm-series-03-fill-dark);

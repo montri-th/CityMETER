@@ -104,7 +104,7 @@ for (const [slug, personId, names, roles] of [
   [
     "places-of-worship",
     "I0045",
-    { th: "คิว", en: "คิว" },
+    { th: "คิว", en: "Que" },
     { th: "กำลังจัดทำ", en: "Developing" },
   ],
 ])

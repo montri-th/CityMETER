@@ -1,11 +1,11 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "scope": "montri-th/CityMETER public static catalog; does not change the map application or upstream data",
   "authority": {
     "designSystem": "0.9.7",
     "baseDocumentId": "lds-0.9.7-landometer-standalone-r1",
     "baseSha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
-    "coverage": "Catalog/detail writing, grouped masonry, latest LDS0.9.7 UI color projection and discovery; retained public shell behavior/media"
+    "coverage": "Scoped LDS 0.9.7 catalog/articles/footer/current UI surfaces and discovery; retained public shell behavior, historic immutable assets and existing media. No whole-site conformance claim."
   },
   "authoredInputs": [
     "src/catalog.json",
@@ -19,79 +19,111 @@
     "scripts/lib/catalog-qr.mjs",
     "src/runtime/summary.js",
     "src/styles/summary.css",
-    "data/dataset-preview-assets-20261010.json"
+    "data/dataset-preview-assets-20261010.json",
+    "src/dataset-stories.json",
+    "scripts/lib/summary-article.mjs",
+    "scripts/lib/public-shell.mjs",
+    "src/styles/public-footer.css",
+    "data/public-shell-assets.json",
+    "data/public-footer-social.json",
+    "data/government-source-provenance-20261010.json",
+    "data/factory-hotel-source-provenance-20261010.json",
+    "data/story-snapshot-assets-20261010.json",
+    "data/ui-icon-assets-20261010.json",
+    "scripts/lib/ui-icon.mjs",
+    "scripts/lib/ui-icon-migration.mjs",
+    "src/styles/ui-icons.css"
   ],
   "commands": {
     "generate": "npm run build",
     "check": "npm run check",
     "syncContributors": "npm run sync:contributors",
-    "install": "npm ci"
+    "install": "npm ci",
+    "checkIcons": "node scripts/validate-ui-icons.mjs"
   },
   "tasks": [
     {
       "id": "evidence",
       "dependsOn": [],
-      "action": "Read current public data view and primary source references; distinguish provider, publisher, reference candidate, period, units, denominator and missingness.",
-      "doneWhen": "Every changed factual claim has an inspectable source or is explicitly unknown."
+      "action": "Inspect the public data view and exact primary source or retained receipt. Record place, selected state, observation date, data period, unit, denominator, publisher role and whether the claim is a displayed result or external context. Separate source confirmation from deployed ingestion.",
+      "doneWhen": "Every changed factual claim has traceable evidence; private collection URLs, contact payloads, telemetry and internal notes are excluded from public inputs."
     },
     {
       "id": "copy",
       "dependsOn": [
         "evidence"
       ],
-      "action": "Edit src/catalog.json in TH/EN, preserving team intent, source facts, stable IDs and map URLs. Write executiveSummary lead, sectionTitle, reading, note, two questions and takeaway from the same record evidence. Preserve the exact data grain, denominator and material interpretation limits.",
-      "doneWhen": "No invented coverage, freshness, rights, behaviour or business outcome; branch shares have a stated subset and demand proxies stay proxies."
+      "action": "Edit factual card/source fields in src/catalog.json and independently written bilingual articles in src/dataset-stories.json. Preserve stable IDs, datasetCode, slug, operational map URLs and existing factual limits. Keep catalog cards focused on value and use; source warnings and caveats appear only in closed article source disclosures.",
+      "doneWhen": "43 unique bilingual stories join the 43 public catalog records; at least three distinct sections, a concrete place/example, supported takeaway and 3–5 minute approximate reading estimate in each locale."
     },
     {
       "id": "taxonomy",
       "dependsOn": [
-        "evidence",
         "copy"
       ],
-      "action": "Assign each record one of Land/Location/Living and exactly one semantic subgroup. Preserve subgroup order and canonical EN title order shared across locales; Flood is recurrent, observed, DWR forecast, Google forecast. Keep 24 headings scalable; no fourth Local Decisions pillar.",
-      "doneWhen": "All 43 records have valid subgroup, stable IDs and map URLs; counts 13/16/14 and no empty public subgroup."
+      "action": "Keep Land/Location/Living 13/16/14, explicit semantic subgroups and the shared English-title ordering; flood ordering remains recurrent, observed, DWR forecast, Google forecast.",
+      "doneWhen": "No hidden Business Dynamics or mb discovery entry, no fourth pillar, no broken existing slug."
     },
     {
       "id": "credits",
       "dependsOn": [
         "evidence"
       ],
-      "action": "Sync only the reviewed public Landom contributor projection and review its diff; do not infer candidate attribution or consent.",
-      "doneWhen": "Each displayed credit joins an explicit public module mapping and a usable public profile URL."
+      "action": "Sync only the reviewed public Landom projection via npm run sync:contributors, or its reviewed public file using the supported --file option. Review identity and mapping diff. Preserve all role, lifecycle, consent and publication gates.",
+      "doneWhen": "43 explicit module joins; English Que and Nine follow current owner-confirmed canonical names. No new person, role, date or consent inferred."
+    },
+    {
+      "id": "media",
+      "dependsOn": [
+        "copy"
+      ],
+      "action": "Use verified same-record previews and the five governed documentary snapshots in data/story-snapshot-assets-20261010.json. Preserve source map colors, full selected state, original capture dimensions and caption period. Recheck file/hash/role contracts.",
+      "doneWhen": "A snapshot date is not presented as data freshness; no false documentary imagery or private source path is exported."
+    },
+    {
+      "id": "icons",
+      "dependsOn": [
+        "copy"
+      ],
+      "action": "Maintain the implemented local Google Material Symbols Rounded functional icons at FILL=0, wght=300, GRAD=0 and their verified manifest. Keep official social and brand logos unchanged; retain labels, focus and accessible control states.",
+      "doneWhen": "The actual scoped controls and all declared glyphs match the local asset contract, with rendered and release evidence recorded separately.",
+      "implementationStatus": "implemented"
     },
     {
       "id": "generate",
       "dependsOn": [
         "copy",
+        "taxonomy",
         "credits",
-        "taxonomy"
+        "media",
+        "icons"
       ],
-      "action": "Run npm ci, npm run build and npm run check. Build all 43 local static SVG QR codes from each exact map URL; decode them independently. Do not edit generated files.",
-      "doneWhen": "Deterministic build, semantic/search checks and immutable-input hash checks pass."
+      "action": "From the repository root on Node >=20 run npm ci, npm run build, then npm run check. Never edit generated HTML, data/catalog.json, data/dataset-stories.json, QR or public bundles by hand. Verify the generated JS/CSS cache queries match contentVersion plus the first 12 SHA-256 characters of each asset’s current bytes in catalog and article HTML.",
+      "doneWhen": "Deterministic output, all 86 article initial-HTML contracts, independent QR decoding, contributor privacy, runtime failure and immutable-input checks pass on the reviewed head."
     },
     {
       "id": "browser-qa",
       "dependsOn": [
         "generate"
       ],
-      "action": "Inspect actual TH/EN content at 390 and 1440 CSS px, plus breakpoints 768 and 1100 CSS px. Verify 3 dedicated group lanes at wide widths, independent card heights, native source disclosures and QR, filter/reset/empty/same-hash navigation, menu/language/theme, retained decision/share/reel, keyboard and reduced-motion/observer-failure final visibility. Read summary pages in both locales at narrow/desktop, 150% Thai text and 200% native page zoom. Test direct map bypass, top/bottom actions, exact return anchor, four platform handoffs, copy failure fallback and no-JS selectable URL.",
-      "doneWhen": "No overflow, fake preview, decorative bracket/rail, missing credit/name, dead control or stale count."
+      "action": "Review actual TH/EN 390/1440 CSS px light/dark, 768/1100 group-lane breakpoints and 200% native zoom. Check direct map bypass, optional article, native use disclosure/QR, compact portraits, keyboard, touch, no-JS, reduced motion, quiet context, navbar, search, same-hash recovery, shared footer and share/copy fallbacks.",
+      "doneWhen": "Record only inspected pages/states. No overflow, obscured controls, fake image, brown card/search surface, decorative bracket or colored left rail."
     },
     {
       "id": "review",
       "dependsOn": [
         "browser-qa"
       ],
-      "action": "Open a focused PR with evidence, changed behaviour, test result and responsive screenshots; require quality CI.",
-      "doneWhen": "The exact commit and generated diff have been reviewed; CI does not deploy a PR."
+      "action": "Open a focused PR and review the exact changed source/generated diff with successful exact-head CI. Keep historical release records and immutable inputs.",
+      "doneWhen": "Reviewed head, approval and CI agree; quality CI alone does not attest deployment."
     },
     {
       "id": "publish-verify",
       "dependsOn": [
         "review"
       ],
-      "action": "After authorized merge, inspect GitHub Pages provider/source/build status, confirm deployed commit, fetch exact public artifacts and compare hashes, then check user journeys on the public URLs.",
-      "doneWhen": "Provider attestation and public bytes agree with the reviewed release; push success alone is insufficient."
+      "action": "After authorized merge verify provider source/build/deployed SHA, merge tree and public HTTP bytes/MIME/hashes for generated routes, exports, source ledgers, previews, snapshots, contributors, fonts/icons/footer and manifest. Exercise public user journeys.",
+      "doneWhen": "Provider and live assets match the reviewed build; a new release receipt records its actual visual and byte-verification scope."
     }
   ],
   "guardrails": {
@@ -128,31 +160,55 @@
       "narrow": "1 sequential group lane below 768 CSS px",
       "source": "src/catalog.json",
       "qr": "local SVG actual mapUrl, 4-module quiet zone, M correction; static before hydration",
-      "motion": "preview-only once arrival and bounded state feedback; all content/actions visible without motion",
+      "motion": "Preview-only arrival plus user-triggered masonry FLIP with a finite620ms settle and at most190ms ripple; native focus must preserve pre-toggle geometry. Reduced motion shows the final state immediately; all content/actions remain usable without animation.",
       "filterReset": "Reset button clears query and restores all pillars; deleting only the search text retains the selected pillar.",
-      "readingFocus": "Hover, keyboard focus or an open visible disclosure quiets surrounding content through a pointer-transparent veil. Clicking or focusing outside, filtering or an offscreen active card clears the quiet treatment. No blur, input-intercepting backdrop, scroll lock, tab-order change or intercepted direct action. Hover/focus activation does not move focus; Escape closes an open disclosure and returns focus to its summary. Print and forced colors remain fully visible."
+      "readingFocus": "Hover, keyboard focus or an open visible disclosure quiets surrounding content through a pointer-transparent veil. Clicking or focusing outside, filtering or an offscreen active card clears the quiet treatment. No blur, input-intercepting backdrop, scroll lock, tab-order change or intercepted direct action. Hover/focus activation does not move focus; Escape closes an open disclosure and returns focus to its summary. Print and forced colors remain fully visible.",
+      "disclosure": {
+        "label": {
+          "th": "ข้อมูลนี้ใช้ทำอะไรได้",
+          "en": "What can I use this data for?"
+        },
+        "contents": "Specific uses/questions, factual reference links, public contributor details and actual-map QR. Review statuses and interpretation caveats belong only in the optional article source disclosure.",
+        "defaultOpen": false,
+        "sourceTruth": "A link under References does not assert ingested-package lineage. Review-jargon labels use the literal hostname, with original labels/source evidence retained in the article and JSON. GD badge still requires verified lineage and a real GD Catalog reference."
+      },
+      "visual": {
+        "surfaces": "Neutral foundation card surfaces in all themes and interaction states; no beige/brown card or search surface.",
+        "pillars": {
+          "land": "series03fill",
+          "location": "series08fill",
+          "living": "series05fill"
+        },
+        "categoryNote": "Preserve each approved light/dark categorical value and visible Land/Location/Living labels; category colour is not source quality.",
+        "actionAndPortraitSize": "One component variable sets56 CSS px minimum CTA height and56px portrait; labels wrap without clipping.",
+        "gdLogo": "Original transparent PNG; no recolour, carrier, padding or image filter."
+      }
     },
     "summary": {
-      "source": "record.executiveSummary in src/catalog.json",
-      "editorialBasis": "catalog_description_and_source_review",
+      "source": "src/dataset-stories.json records joined by datasetCode; src/catalog.json remains authoritative for dataset facts, routes, sourceReview and limitations",
+      "editorialBasis": "Independent bilingual place-first narratives grounded in observed public views or explicitly labelled primary external context",
       "required": {
-        "lead": "specific reader value per locale",
-        "sectionTitle": "specific insight heading per locale",
-        "reading": "one concise evidence-based paragraph per locale",
-        "note": "brief material reader limitation per locale",
-        "questions": "two natural questions per locale",
-        "takeaway": "supported next action per locale"
+        "datasetCode": "stable exact join to public catalog",
+        "title": "natural feature title per locale",
+        "place": "named area or explicitly scoped national/source example",
+        "lead": "concrete supported finding and useful human question",
+        "findingContext": "place, period/model/selection and external-context distinction",
+        "sections": "at least three distinct sections with localized heading and paragraph arrays; references where external facts are used",
+        "action": "specific supported next action",
+        "hiddenNotes": "material caveats only in the default-closed source disclosure",
+        "evidence": "public evidence URLs with bounded observation dates; no internal notes or private paths",
+        "mapUrl": "optional grounded case URL; otherwise record.mapUrl",
+        "snapshot": "optional governed image asset with localized caption/alt"
       },
       "path": "existing localized datasets/<slug>/ routes; no additional reading layer",
       "flow": [
-        "catalog first action opens map directly",
-        "compact contributor links open public profiles",
-        "optional sibling Read summary link",
-        "summary benefit, direct map and same-record preview",
-        "specific insight and concise material note",
-        "two questions and next action with map/contact links",
-        "native source disclosure with unchanged source fields and full limitations",
-        "contributors, actual-map QR, share and exact catalog return anchors"
+        "catalog primary action opens the operational map directly",
+        "compact public contributor links sit beside the map action",
+        "optional sibling article link uses the existing localized datasets/<slug>/ route",
+        "article lead, direct map action, concrete selected-state image and finding context",
+        "independent story sections and supported next action",
+        "default-closed source and reading notes retain full unchanged record limitation and story hiddenNotes",
+        "public contributors, actual-map QR, native/explicit share, exact catalog return and shared footer"
       ],
       "share": {
         "platforms": [
@@ -165,10 +221,10 @@
         "enhancement": "native navigator.share when available; clipboard copy with focus/select fallback",
         "doesNot": "send or post automatically; no prefilled contact context claim"
       },
-      "socialImage": "Only the same record actual preview; conceptual/missing previews omit social image.",
-      "limits": "Concise material note in the visible article; unchanged full record.limitation retained in optional source disclosure.",
+      "socialImage": "Same-record approved documentary snapshot, otherwise actual record preview; conceptual/missing imagery does not establish an actual social preview.",
+      "limits": "All interpretation caveats and source-review warnings are inside the native default-closed article source disclosure. The visible finding context still names the actual period/model/unit and external-context status.",
       "layout": "Wide benefit/preview hero and 760px reading column; single column at <=940 CSS px. Dedicated src/styles/summary.css.",
-      "metadata": "Localized executiveSummary.lead is used in description, Open Graph and Twitter descriptions; identity graph remains @id/@type/name/url only.",
+      "metadata": "Localized story.lead supplies description/OG/Twitter description; story title is social title; dataset title remains browser title. Identity graph only @id/@type/name/url.",
       "theme": {
         "precedence": [
           "valid query theme=light|dark|system",
@@ -178,6 +234,22 @@
         "queryPersistence": false,
         "noJavaScript": "light HTML default",
         "storageFailure": "valid query still works; system/light fallback otherwise"
+      },
+      "renderer": "scripts/lib/summary-article.mjs",
+      "readingEstimate": {
+        "source": "articleReading in scripts/lib/summary-article.mjs",
+        "algorithm": "ICU Intl.Segmenter word-like segments over title + lead + section headings/paragraphs + action; Math.round(words / 170), minimum 1",
+        "targetMinutes": [
+          3,
+          5
+        ],
+        "excludes": [
+          "source/caveat disclosure",
+          "image captions",
+          "findingContext",
+          "footer/credits"
+        ],
+        "claim": "Approximate reading duration; no measured user-reading-time claim. Add distinct useful content, never padding to pass a count."
       }
     },
     "capturedPreviews": {
@@ -202,6 +274,41 @@
         "complete data verification",
         "source agency endorsement"
       ]
+    },
+    "storySnapshots": {
+      "manifest": "data/story-snapshot-assets-20261010.json",
+      "count": 5,
+      "datasetCodes": [
+        "rentWise",
+        "terrain",
+        "localeInsights",
+        "flood-forecast-depth",
+        "flash-flood-risk"
+      ],
+      "roles": [
+        "dataset-summary-snapshot",
+        "dataset-catalog-hero",
+        "article-social-preview"
+      ],
+      "truth": "Documentary selected-state captures; dates describe capture, not source freshness. Original map colors remain unchanged. Per-file dimensions/hash/role/approval metadata govern reuse."
+    },
+    "functionalIcons": {
+      "family": "Google Material Symbols Rounded",
+      "fill": 0,
+      "weight": 300,
+      "delivery": "Implemented using verified local Google Material Symbols Rounded assets; no network font dependency",
+      "scope": "Functional icons across the scoped public catalog/article/footer and retained public controls; official social and brand logos remain unchanged and separately governed",
+      "state": "implemented; rendered QA and release attestation remain separate evidence gates",
+      "grade": 0,
+      "axes": {
+        "FILL": 0,
+        "wght": 300,
+        "GRAD": 0
+      },
+      "manifest": "data/ui-icon-assets-20261010.json",
+      "renderer": "scripts/lib/ui-icon.mjs",
+      "migration": "scripts/lib/ui-icon-migration.mjs",
+      "stylesheet": "src/styles/ui-icons.css"
     }
   },
   "verificationScope": {
@@ -209,7 +316,7 @@
     "runtimeFixtures": {
       "script": "scripts/validate-catalog-runtime.mjs",
       "environment": "Node VM with a small DOM adapter and simulated media queries",
-      "passed": 14,
+      "passed": 18,
       "covers": [
         "observer missing or constructor/observe failure",
         "simulated reduced-motion preference and preference change",
@@ -218,7 +325,8 @@
         "single event ownership",
         "pointer/focus/touch reading context",
         "open disclosure retention and offscreen release",
-        "outside/Escape/filter cleanup without blocking native actions"
+        "outside/Escape/filter cleanup without blocking native actions",
+        "native mouse/touch/keyboard disclosure focus and bounded FLIP settle; reduced-motion final state"
       ]
     },
     "osReducedMotion": {
@@ -252,11 +360,13 @@
       "summaryStylesheet": "pass within checker scope",
       "wholePage": "inherited legacy CSS color literals and shell color-mix remain outside a full conformance claim",
       "fullConformance": false
-    }
+    },
+    "integrationNote": "Existing numerical fixture results below describe earlier recorded checks; rerun the current integrated build and record new results. They do not attest this in-progress article/icon/footer release.",
+    "finalIntegratedRelease": "pending_separate_build_browser_provider_receipts"
   },
   "discoveryModel": {
-    "catalog": "Concise grouped cards, real HTML links, native source disclosures and per-record operational QR handoff.",
-    "detailPages": "Existing stable localized URLs now contain concise executive summaries, two questions, reading guidance, exact source/period/scope/limitations and public credits in initial HTML; canonical/hreflang/sitemap kept in sync.",
+    "catalog": "Value/use focused grouped cards, native optional use/QR disclosures and direct operational map links. No source-status or caveat warning chips.",
+    "detailPages": "43 independent bilingual articles on 86 existing localized routes, in initial HTML; source/reading notes default closed; canonical/hreflang/sitemap remain consistent.",
     "operationalViews": "Exact existing mapUrl, preserving dataset, example area and 3D route.",
     "qr": "Mobile handoff to mapUrl; a QR-only page is not a replacement for useful indexable dataset content.",
     "searchReference": "https://developers.google.com/search/docs/fundamentals/get-started-developers",
@@ -280,7 +390,7 @@
         "moduleSlug": "dataset-places-of-worship",
         "personId": "I0045",
         "contributionId": "C0122",
-        "scope": "Existing owner-confirmed contribution; module binding restored. Preserve Developing status and canonical Thai nickname fallback."
+        "scope": "Existing owner-confirmed contribution; module binding restored. Preserve Developing status; canonical owner-confirmed English nickname is Que."
       }
     ],
     "preservedFields": [
@@ -289,6 +399,143 @@
       "work dates",
       "completion status",
       "consent"
+    ],
+    "confirmedEnglishNames": {
+      "I0045": {
+        "full": "Nattapat Daengkongkaew",
+        "nickname": "Que"
+      },
+      "I0038": {
+        "full": "Norraphat Rathasamuth"
+      }
+    },
+    "nameAuthority": "Current public Landom canonical approved projection; name confirmation does not grant consent or change lifecycle."
+  },
+  "publicShell": {
+    "renderer": "scripts/lib/public-shell.mjs",
+    "footerExport": "publicFooter(lang, assetBase, {kind, mapUrl?, slug?})",
+    "faviconExport": "faviconHead(assetBase)",
+    "stylesheet": "src/styles/public-footer.css",
+    "generatedStylesheet": "assets/public-footer-r1.css",
+    "assetAuthority": "data/public-shell-assets.json",
+    "socialReference": "data/public-footer-social.json",
+    "catalogOwner": "initial HTML and React K6 share identical rendered content",
+    "summaryLinks": "localized catalog card anchor and unchanged HTTPS operational map URL",
+    "supporters": "existing depa attribution and depa/dSURE Software/Digital Service Account separate marks preserved",
+    "identityScope": "unchanged approved shared portfolio icon set; no new product-specific icon-set approval",
+    "visualScope": "current foundation text, approved luminous reference footer, exact static quiet motif assets; existing text fonts and historic immutable manifests retained",
+    "validation": "node scripts/validate-public-shell.mjs; --source-only excludes build parity checks",
+    "releaseGates": "rendered locale/theme/viewport/zoom review and exact live bytes are separate from static checks"
+  },
+  "reviewedAt": "2026-10-10",
+  "integrationState": "Authored contracts updated; final integrated build, rendered QA and publication require their own receipts.",
+  "sourceReviews20261010": {
+    "floodimpact": {
+      "owner": {
+        "th": "สำนักงานพัฒนาเทคโนโลยีอวกาศและภูมิสารสนเทศ (GISTDA)",
+        "en": "Geo-Informatics and Space Technology Development Agency (GISTDA)"
+      },
+      "source": {
+        "th": "ชั้นข้อมูลน้ำท่วมย้อนหลังจาก GISTDA Disaster Platform Open API ตามต้นทางที่ทีมยืนยัน",
+        "en": "Historical flood layers from the GISTDA Disaster Platform Open API, confirmed by the team as the source."
+      },
+      "period": {
+        "th": "ช่วงปีที่หน้าใช้งานเปิดให้เลือก: 2554–2567",
+        "en": "Selectable years displayed in the explorer: 2011–2024"
+      },
+      "reviewScope": "Owner-confirmed publisher and service; annual layers, ingestion dates, completeness and licence are not inferred from confirmation.",
+      "doesNotAttest": "exact deployed ingestion, full coverage, current operation or redistribution rights"
+    },
+    "govspending": {
+      "owner": {
+        "th": "ต้นทางระบบ GFMIS; ชุดข้อมูลที่เผยแพร่ผ่าน PBO / Thaith",
+        "en": "GFMIS source records; dataset published through PBO / Thaith"
+      },
+      "source": {
+        "th": "คู่มือ PBO Budget ระบุข้อมูลเบิกจ่ายระดับรายการปี 2558–2568 จากระบบ GFMIS แยกงบหลังโอน/เปลี่ยนแปลง เบิกจ่าย และ PO หน่วยล้านบาท; ขอบเขตการจับคู่รายการกับพื้นที่ใน CityMETER ต้องอ่านแยกจากขอบเขตไฟล์ต้นทาง",
+        "en": "The PBO Budget manual describes GFMIS line items for FY2015–2025, with adjusted budgets, disbursements and PO commitments in million baht. CityMETER’s geographic matching has a separate coverage boundary from the source files."
+      },
+      "period": {
+        "th": "แหล่งอ้างอิง PBO: ปีงบประมาณ 2558–2568; ตัวเลือกบนแผนที่ช่วงเดียวกัน แต่ยังไม่ได้ตรวจเทียบครบทุกไฟล์และทุกรายการ",
+        "en": "PBO reference: fiscal years 2015–2025. The map offers the same year range; every source file and mapped item has not been reconciled."
+      },
+      "reviewScope": "Owner-supplied references and public source definitions checked; this does not attest the exact deployed ingestion, geographic matching or redistribution rights.",
+      "doesNotAttest": "exact deployed ingestion, full coverage, current operation or redistribution rights"
+    },
+    "governmentOfficer": {
+      "owner": {
+        "th": "สำนักงาน ก.พ. — กำลังคน; สำนักงาน ก.พ.ร. และกรมการปกครอง — หน่วยงาน/สถานที่; กรุงเทพมหานคร — ชุดสถานที่ใน กทม.",
+        "en": "OCSC — workforce; OPDC and DOPA — agencies/places; Bangkok Metropolitan Administration — Bangkok place datasets"
+      },
+      "source": {
+        "th": "ก.พ. เผยแพร่สถิติข้าราชการพลเรือนสามัญแยกกระทรวงและกรม; ก.พ.ร. ให้ที่อยู่และช่องทางติดต่อ; กรมการปกครองให้สถานที่ราชการและสถานที่สำคัญ 76 จังหวัด; กทม. ให้ชุดที่ตั้งหน่วยงาน ตำรวจ ไปรษณีย์ และดับเพลิง ซึ่งใช้ดูร่วมกันตามขอบเขตของแต่ละชุด",
+        "en": "OCSC publishes ordinary civil-servant statistics by ministry and department. OPDC provides agency addresses and contacts; DOPA covers government and important places in 76 provinces. Bangkok supplies office, police, post-office and fire-station locations. Read each source within its own scope."
+      },
+      "period": {
+        "th": "สถิติ ก.พ. ที่ตรวจ: 2566 และ 2567 (2023–2024); ข้อมูลที่ตั้งและเอกสารเฉพาะหน่วยงานอ้างอิงต่างปี จึงไม่ใช่ภาพกำลังคนปัจจุบันในวันเดียวกัน",
+        "en": "Checked OCSC statistics: 2023 and 2024. Location datasets and agency-specific documents have different reference dates, so this is not a single-date current staffing snapshot."
+      },
+      "reviewScope": "Public source identity, columns and reference periods checked; exact deployed release, source-to-location crosswalk and redistribution rights remain separate checks.",
+      "doesNotAttest": "exact deployed ingestion, full coverage, current operation or redistribution rights"
+    },
+    "factory": {
+      "owner": {
+        "th": "สำนักงานปลัดกระทรวงอุตสาหกรรม; ข้อมูลจากผู้ประกอบการหรือสำนักงานอุตสาหกรรมจังหวัด",
+        "en": "Office of the Permanent Secretary, Ministry of Industry; records supplied by operators or provincial industry offices"
+      },
+      "source": {
+        "th": "ชุด “ที่ตั้งประกอบกิจการโรงงาน” เผยแพร่ผ่านบัญชีข้อมูลของสำนักงานปลัดกระทรวงอุตสาหกรรม และค้นหาได้ใน GD Catalog ต้องเทียบรายการและนิยามตัวเลขกับรุ่นที่แผนที่ใช้ก่อนรวมเป็นฐานเดียวกัน",
+        "en": "Factory-location records are published through the ministry’s catalog and indexed by GD Catalog. Match the records and measure definitions to the map’s release before combining them."
+      },
+      "period": {
+        "th": "แผนที่ระบุเมษายน 2568; บัญชีต้นทางระบุปรับปรุงข้อมูล 8 กรกฎาคม 2568 และลงทะเบียน GD Catalog 4 สิงหาคม 2568 ซึ่งเป็นคนละวันที่",
+        "en": "The map identifies April 2025. Source metadata lists a data update on 8 July 2025 and GD Catalog registration on 4 August 2025; these are separate dates."
+      },
+      "reviewScope": "Exact source package and publisher verified from GD Catalog; original agency host did not resolve during this check. Production file version, field mapping and completeness were not reconciled.",
+      "doesNotAttest": "exact deployed ingestion, full coverage, current operation or redistribution rights"
+    },
+    "hotel": {
+      "owner": {
+        "th": "การท่องเที่ยวแห่งประเทศไทย; กรุงเทพมหานคร — กองยุทธศาสตร์ดิจิทัลเป็นผู้เผยแพร่ชุดโรงแรม",
+        "en": "Tourism Authority of Thailand; Bangkok Metropolitan Administration — hotel dataset published by its Digital Strategy Division"
+      },
+      "source": {
+        "th": "ททท. เผยแพร่ประเภทและที่ตั้งที่พักจากฐานข้อมูลการท่องเที่ยวเชิงการตลาด ส่วนชุด กทม. มีชื่อโรงแรม เขต พิกัด จำนวนห้อง และระดับโรงแรม ยังไม่ใช่หลักฐานว่าราคาหรือค่าฤดูกาลในแผนที่มาจากสองชุดนี้",
+        "en": "TAT publishes accommodation types and locations from its tourism marketing database. BMA records include hotel names, districts, coordinates, rooms and grades. Neither reference establishes the source of the map’s price or seasonality measures."
+      },
+      "period": {
+        "th": "บัญชี ททท. ระบุปรับปรุงข้อมูล 11 มิถุนายน 2569; ชุดโรงแรม กทม. ระบุ 23 มิถุนายน 2566 วันเหล่านี้ยังไม่ยืนยันช่วงเวลาของราคาและรายการที่แผนที่แสดง",
+        "en": "TAT metadata lists 11 June 2026; the BMA hotel resource lists 23 June 2023. These dates do not establish the period of the map’s displayed inventory or rates."
+      },
+      "reviewScope": "Official TAT metadata and BMA resource fields checked. Other supplied references are classified separately in the public provenance ledger; listing a source does not establish its production ingestion, full coverage or redistribution rights.",
+      "doesNotAttest": "exact deployed ingestion, full coverage, current operation or redistribution rights"
+    },
+    "ledgers": [
+      "data/government-source-provenance-20261010.json",
+      "data/factory-hotel-source-provenance-20261010.json"
     ]
+  },
+  "generatedAssetCaching": {
+    "implementation": "scripts/build-catalog.mjs versionPublicAssets",
+    "status": "implemented",
+    "queryPattern": "?v=<catalog.contentVersion>-<first 12 hex characters of SHA-256 of generated asset content>",
+    "algorithm": "SHA-256",
+    "digestPrefixLength": 12,
+    "assets": [
+      "index-public-catalog-r1.js",
+      "catalog-enhancements-public-r1.js",
+      "unified-navbar-public-r1.js",
+      "catalog-public-r1.js",
+      "dataset-summary-public-r1.js",
+      "catalog-public-r1.css",
+      "dataset-summary-public-r1.css",
+      "catalog-shell-current-r1.css",
+      "navbar-current-r1.css",
+      "public-footer-r1.css",
+      "ui-icons-current-r1.css"
+    ],
+    "scope": "The allowlisted generated JS/CSS URLs in Thai/English catalog and all 86 generated article HTML pages. Historical immutable assets retain their existing identities.",
+    "purpose": "Changed generated bytes change their URL even when the output filename or editorial contentVersion is reused, avoiding a warm browser cache mixing old runtime/styles with new HTML.",
+    "maintenance": "Run the deterministic builder; never hand-edit cache query values. Compare each generated asset URL against its current output bytes. Query changes do not replace provider/live-byte release attestation."
   }
 }

@@ -371,7 +371,7 @@
       openButton.setAttribute("aria-expanded", String(isOpen));
       openButton.setAttribute("aria-label", label);
       openButton.setAttribute("title", label);
-      if (icon) icon.textContent = isOpen ? "close" : "menu";
+      if (icon) icon.innerHTML = isOpen ? "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 -960 960 960\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\" class=\"cm-ui-icon\" data-ui-icon=\"close\" data-ui-fill=\"0\" data-ui-weight=\"300\"><path d=\"M480-437.85 277.08-234.92q-8.31 8.3-20.89 8.5-12.57.19-21.27-8.5-8.69-8.7-8.69-21.08 0-12.38 8.69-21.08L437.85-480 234.92-682.92q-8.3-8.31-8.5-20.89-.19-12.57 8.5-21.27 8.7-8.69 21.08-8.69 12.38 0 21.08 8.69L480-522.15l202.92-202.93q8.31-8.3 20.89-8.5 12.57-.19 21.27 8.5 8.69 8.7 8.69 21.08 0 12.38-8.69 21.08L522.15-480l202.93 202.92q8.3 8.31 8.5 20.89.19 12.57-8.5 21.27-8.7 8.69-21.08 8.69-12.38 0-21.08-8.69L480-437.85Z\"></path></svg>" : "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 -960 960 960\" fill=\"currentColor\" aria-hidden=\"true\" focusable=\"false\" class=\"cm-ui-icon\" data-ui-icon=\"menu\" data-ui-fill=\"0\" data-ui-weight=\"300\"><path d=\"M170-254.62q-12.75 0-21.37-8.63-8.63-8.62-8.63-21.38 0-12.75 8.63-21.37 8.62-8.61 21.37-8.61h620q12.75 0 21.37 8.62 8.63 8.63 8.63 21.39 0 12.75-8.63 21.37-8.62 8.61-21.37 8.61H170ZM170-450q-12.75 0-21.37-8.63-8.63-8.63-8.63-21.38 0-12.76 8.63-21.37Q157.25-510 170-510h620q12.75 0 21.37 8.63 8.63 8.63 8.63 21.38 0 12.76-8.63 21.37Q802.75-450 790-450H170Zm0-195.39q-12.75 0-21.37-8.62-8.63-8.63-8.63-21.39 0-12.75 8.63-21.37 8.62-8.61 21.37-8.61h620q12.75 0 21.37 8.63 8.63 8.62 8.63 21.38 0 12.75-8.63 21.37-8.62 8.61-21.37 8.61H170Z\"></path></svg>";
     }
 
     function dispatchState(isOpen) {
@@ -556,7 +556,7 @@
         var icon = link.querySelector(".lm-icon");
         if (active) link.setAttribute("aria-current", "location");
         else link.removeAttribute("aria-current");
-        if (icon) icon.classList.toggle("lm-icon--filled", active);
+        if (icon) icon.classList.toggle("lm-icon--active", active);
       });
     }
 

@@ -1,0 +1,66 @@
+/* Owner-requested adaptation of the reviewed public Landom footer.
+   Existing luminous atmosphere and unchanged gray quiet motif assets are
+   decorative identity, never data color. No full-system conformance claim. */
+@font-face {
+  font-family: "Material Symbols Rounded Footer";
+  src: url("./fonts/material-symbols-rounded-footer-r10.ttf") format("truetype");
+  font-display: block;
+  font-weight: 300;
+  font-style: normal;
+}
+.cm-public-footer {
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+  background: linear-gradient(135deg, #89cef6 0%, #5ecad6 50%, #6cd5b3 100%);
+  color: var(--ldm-foundation-text-primary-light, #182327);
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  text-align: left;
+}
+.cm-public-footer *, .cm-public-footer *::before, .cm-public-footer *::after { box-sizing: border-box; }
+.cm-footer-main, .cm-footer-support, .cm-footer-bottom-inner { width: min(100%, 1440px); margin-inline: auto; padding-inline: clamp(20px, 4vw, 64px); }
+.cm-footer-main { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(40px, 6vw, 104px); align-items: end; padding-block: clamp(56px, 7vw, 112px) 48px; }
+.cm-footer-label { margin: 0 0 20px; font: 400 13px/1.5 "JetBrains Mono", monospace; letter-spacing: .08em; }
+.cm-footer-contact h2 { margin: 0; max-width: 17ch; color: #11191d; font-family: "Arvo", "IBM Plex Sans Thai Looped", serif; font-size: clamp(30px, 3.8vw, 56px); font-weight: 700; line-height: 1.18; letter-spacing: -.025em; overflow-wrap: normal; }
+.cm-footer-copy { margin: 24px 0 0; max-width: 42ch; font-size: 19px; line-height: 1.65; }
+.cm-footer-contact address { margin-top: 32px; max-width: 66ch; font-size: 14px; font-style: normal; line-height: 1.75; }
+.cm-public-footer a { color: #11191d; text-decoration: underline; text-underline-offset: 5px; }
+.cm-public-footer a:focus-visible { outline: 3px solid #11191d; outline-offset: 5px; }
+.cm-footer-map { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 16px; padding: 8px 14px; border: 1px solid #5f635a; border-radius: 999px; font-weight: 600; }
+.cm-public-footer .cm-footer-map { text-decoration: none; }
+.cm-footer-map-icon { font-family: "Material Symbols Rounded Footer"; font-size: 24px; line-height: 1; font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24; font-feature-settings: "liga"; }
+.cm-footer-slice { width: 42px; height: 28px; flex: none; object-fit: contain; }
+.cm-footer-connect { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; gap: 24px; }
+.cm-footer-cultivate { display: block; width: min(100%, 260px); height: auto; }
+.cm-footer-email { max-width: 100%; font-weight: 600; font-size: clamp(22px, 2.25vw, 32px); overflow-wrap: anywhere; }
+.cm-footer-social { display: flex; gap: 8px; flex-wrap: wrap; }
+.cm-footer-social a { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 1px solid #5f635a; border-radius: 50%; }
+.cm-footer-social svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+.cm-footer-social a:hover { color: #f1f4ef; background: #11191d; }
+.cm-footer-links { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.cm-footer-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; }
+.cm-footer-support { padding-block: 16px 40px; }
+.cm-footer-support > p { margin: 0 0 12px; font-size: 14px; }
+.cm-footer-supporter-marks { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; width: fit-content; max-width: 100%; padding: 16px 24px; background: var(--ldm-foundation-surface-raised-light, #ffffff); border-radius: 16px; }
+.cm-footer-supporter-marks img { display: block; width: auto; height: 64px; max-width: 150px; object-fit: contain; }
+.cm-footer-bottom { background: #11191d; color: var(--ldm-foundation-text-secondary-dark, #c4ceca); }
+.cm-footer-bottom-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; min-height: 112px; padding-block: 24px; }
+.cm-footer-brand { flex: none; display: inline-flex; min-height: 44px; align-items: center; }
+.cm-footer-brand img { display: block; width: 168px; height: auto; }
+.cm-public-footer .cm-footer-brand:focus-visible { outline-color: #f1f4ef; }
+.cm-footer-bottom p { margin: 0; font-size: 13px; }
+.cm-footer-property { margin-left: auto !important; font-family: "JetBrains Mono", monospace; }
+@media (max-width: 800px) {
+  .cm-footer-main { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .cm-footer-connect { gap: 20px; }
+  .cm-footer-cultivate { width: 200px; }
+  .cm-footer-contact h2 { max-width: 21ch; }
+  .cm-footer-property { margin-left: 0 !important; }
+}
+@media (max-width: 400px) {
+  .cm-footer-supporter-marks { padding: 12px; gap: 12px; }
+  .cm-footer-supporter-marks img { height: 48px; max-width: 100px; }
+  .cm-footer-slice { display: none; }
+}

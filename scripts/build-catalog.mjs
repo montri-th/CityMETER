@@ -6,22 +6,38 @@ import { replaceOnce } from "./lib/patch-public.mjs";
 import { validatePreviewContract } from "./lib/preview-contract.mjs";
 import { languageForPath } from "./lib/route-language.mjs";
 import { datasetQr } from "./lib/catalog-qr.mjs";
+import { publicFooter, faviconHead } from "./lib/public-shell.mjs";
 import {
   catalogInner,
   showcaseInner,
   identityGraph,
-  detailPage,
   json,
   detailUrl,
   sourcePanel,
   esc,
 } from "./lib/catalog-render.mjs";
+import { detailPage } from "./lib/summary-article.mjs";
+import { uiIconHead } from "./lib/ui-icon.mjs";
+import { materializeUiIconsInBundle, materializeUiIconsInHtml, materializeNavbarIcons } from "./lib/ui-icon-migration.mjs";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const check = process.argv.includes("--check");
 const read = (path) => readFileSync(resolve(root, path), "utf8");
 const hash = (value) => createHash("sha256").update(value).digest("hex");
 const catalog = JSON.parse(read("src/catalog.json"));
 const projection = JSON.parse(read("data/landom-contributors.json"));
+const stories = JSON.parse(read("src/dataset-stories.json"));
+const storyByCode = new Map(stories.records.map(story => [story.datasetCode, story]));
+if (storyByCode.size !== 43 || catalog.records.some(record => !storyByCode.has(record.datasetCode))) throw Error("Expected an independently authored article for every public data view");
+const versionedPublicAssets = new Set([
+ "index-public-catalog-r1.js","catalog-enhancements-public-r1.js","unified-navbar-public-r1.js",
+ "catalog-public-r1.js","dataset-summary-public-r1.js","catalog-public-r1.css",
+ "dataset-summary-public-r1.css","catalog-shell-current-r1.css","navbar-current-r1.css",
+ "public-footer-r1.css","ui-icons-current-r1.css"
+]);
+function versionPublicAssets(html) {
+ return html.replace(/((?:src|href)="(?:[^"?]*\/)?assets\/)([^"?]+)(?:\?[^" ]*)?"/g,(whole,prefix,file)=>
+  versionedPublicAssets.has(file) ? `${prefix}${file}?v=${catalog.contentVersion}-${hash(outputs.get("assets/"+file)).slice(0,12)}"` : whole);
+}
 const outputs = new Map();
 const emit = (path, value) =>
   outputs.set(
@@ -96,6 +112,34 @@ function replaceLiteral(source, marker, value) {
   return source.slice(0, a) + json(value) + source.slice(b);
 }
 const copyFixes = [
+  ["ประชากรจดทะเบียนไม่ใช่ประชากรกลางวัน ผู้อยู่อาศัยจริง หรือข้อมูลสด", ""],
+  ["Open Buildings ไม่ใช่ทะเบียนอาคารและอาจไม่ครอบคลุมทุกสิ่งปลูกสร้าง", ""],
+  ["รายได้เพียงอย่างเดียวไม่ใช่คุณภาพบริการหรือสุขภาพการคลัง", ""],
+  ["จำนวนผู้เยี่ยมเยือนไม่ใช่จำนวนบุคคลไม่ซ้ำ และตัวเลขอาจมีการปรับปรุง", ""],
+  ["Registered population is not daytime, resident or live population", ""],
+  ["Open Buildings is not a building register and may not cover every structure", ""],
+  ["Revenue alone is not service quality or fiscal health", ""],
+  ["Visitor counts are not unique people and figures may be revised", ""],
+
+  ["สำรวจตัวอย่างอาคาร ราคา ธุรกิจ ผู้คน การเดินทาง และความเสี่ยง พร้อมดูขอบเขตและสิ่งที่ยังต้องตรวจ ก่อนเปิดพื้นที่ที่สนใจ", "มองที่ดิน เห็นตลาด เข้าใจผู้คนผ่านแผนที่ เลือกข้อมูลที่ตรงกับคำถาม แล้วเปิดดูพื้นที่ที่สนใจได้ทันที"],
+  ["Explore examples across buildings, prices, businesses, people, access and risk, with each record’s scope and checks to make before you open a place.", "See land, markets and everyday life through maps. Choose the data that fits your question and open the place you want to explore."],
+  ["แต่ละรายการบอกระดับพื้นที่ที่รองรับได้ หรือสิ่งที่ยังต้องตรวจ", "เริ่มจากภาพรวม แล้วเปิดดูรายละเอียดพื้นที่ที่สนใจ"],
+  ["Each record states the spatial level it supports or what still needs checking", "Start with the overview, then explore a place in detail"],
+  ["แต่ละรายการระบุขอบเขตแยกกัน", "เลือกเปิดข้อมูลที่ตรงกับคำถามของคุณ"],
+  ["Each record states its own scope", "Open the data that fits your question"],
+  ["ส่งชื่อพื้นที่และสิ่งที่ต้องตัดสินใจมา ทีมจะช่วยชี้ข้อมูลที่เกี่ยวข้องและสิ่งที่ยังต้องตรวจเพิ่ม", "ส่งชื่อพื้นที่และคำถามมา ทีมจะช่วยเลือกข้อมูลให้ตรงกับเรื่องที่คุณกำลังตัดสินใจ"],
+  ["Send us the place and decision. We can point you to the relevant data and what still needs checking.", "Tell us the place and your question. Our team can help you choose the data for your decision."],
+  ["เทียบอาคาร ราคา และข้อจำกัดรอบพื้นที่ เพื่อเลือกจุดที่ควรตรวจต่อก่อนลงทุน", "เทียบอาคาร ราคา และบริบทรอบพื้นที่ เพื่อเลือกทำเลที่อยากศึกษาให้ลึกขึ้น"],
+  ["Compare buildings, prices and nearby constraints to find the places worth checking before you invest.", "Compare buildings, prices and the surroundings to choose locations you want to explore further."],
+  ["ประชากรจดทะเบียน. โครงสร้างอายุ เพศ และความหนาแน่นประชากร. ประชากรจดทะเบียนไม่ใช่ประชากรกลางวัน ผู้อยู่อาศัยจริง หรือข้อมูลสด", "ประชากรตามทะเบียน: ดูโครงสร้างอายุ เพศ และความหนาแน่นบนแผนที่"],
+  ["อาคาร 3 มิติที่สวนพลู. พื้นที่อาคารรวม จำนวนอาคาร ความสูง และจำนวนชั้น. Open Buildings ไม่ใช่ทะเบียนอาคารและอาจไม่ครอบคลุมทุกสิ่งปลูกสร้าง", "อาคารสามมิติที่สวนพลู: ดูพื้นที่อาคารรวม จำนวนอาคาร ความสูง และจำนวนชั้น"],
+  ["รายได้องค์กรปกครองส่วนท้องถิ่น. เปรียบเทียบแหล่งรายได้ รายได้ต่อคน และรายได้ต่อพื้นที่. รายได้เพียงอย่างเดียวไม่ใช่คุณภาพบริการหรือสุขภาพการคลัง", "รายได้องค์กรปกครองส่วนท้องถิ่น: เปรียบเทียบแหล่งรายได้ รายได้ต่อคน และรายได้ต่อพื้นที่"],
+  ["อุปสงค์การท่องเที่ยว. ผู้เยี่ยมเยือน การใช้จ่าย ฤดูกาล และการเปรียบเทียบจังหวัด. จำนวนผู้เยี่ยมเยือนไม่ใช่จำนวนบุคคลไม่ซ้ำ และตัวเลขอาจมีการปรับปรุง", "การท่องเที่ยว: ดูผู้เยี่ยมเยือน การใช้จ่าย ฤดูกาล และเปรียบเทียบจังหวัด"],
+  ["Registered population. Age, sex and population-density structure. Registered population is not daytime, resident or live population", "Registered population: age, sex and population density on the map."],
+  ["3D buildings in Suan Plu. Gross floor area, building count, height and floors. Open Buildings is not a building register and may not cover every structure", "3D buildings in Suan Phlu: estimated floor area, building count, height and floors."],
+  ["Municipal revenue. Revenue sources, revenue per person and revenue per area. Revenue alone is not service quality or fiscal health", "Municipal revenue: compare revenue sources, revenue per person and revenue per area."],
+  ["Tourism demand. Visitors, spending, seasonality and province comparison. Visitor counts are not unique people and figures may be revised", "Tourism: explore visitors, spending, seasonality and province comparisons."],
+
   [
     "ตัวชี้วัดอาคารที่มีใน implementation จริง",
     "เห็นขนาด ความสูง และพื้นที่ใช้สอยโดยประมาณของอาคาร",
@@ -213,6 +257,10 @@ bundle = replaceSpan(
   "function _f(",
   `function L6(){const c=document.documentElement.lang==="en"?"en":"th";return p.jsx("script",{type:"application/ld+json",dangerouslySetInnerHTML:{__html:${json(graphs)}[c]}})}\n`,
 );
+// One shared footer supplies initial HTML and the React-owned footer.
+const footers = Object.fromEntries(["th", "en"].map((lang) => [lang, publicFooter(lang, lang === "th" ? "./" : "../", { kind: "catalog" })]));
+const footerContents = Object.fromEntries(Object.entries(footers).map(([lang, html]) => [lang, html.replace(/^<footer[^>]*>/, "").replace(/<\/footer>$/, "")]));
+bundle = replaceSpan(bundle, "function K6(", "function J6(", `function K6({language:f}){return p.jsx("footer",{className:"cm-public-footer","aria-labelledby":"cm-footer-title",dangerouslySetInnerHTML:{__html:${json(footerContents)}[f]}})}\n`);
 bundle = bundle.replace('["business-dynamics",1],', "");
 const [pa, pb] = literalSpan(bundle, "qn=");
 const historicalPreviews = Function(
@@ -265,7 +313,7 @@ bundle = replaceLiteral(
     ]),
   ),
 );
-bundle = fixCopy(bundle);
+bundle = materializeUiIconsInBundle(fixCopy(bundle));
 emit(bundlePath, bundle);
 let enhancer = read("assets/catalog-enhancements-ds-0.9.1-v26.js");
 enhancer = replaceOnce(
@@ -279,13 +327,15 @@ enhancer = replaceOnce(
   "// Public showcase copy is owned by the shared renderer.",
 );
 emit(enhancerPath, enhancer);
-emit(navPath, fixCopy(read("assets/unified-navbar-r7-v32.js")));
+emit(navPath, materializeNavbarIcons(fixCopy(read("assets/unified-navbar-r7-v32.js"))));
 emit("assets/catalog-public-r1.js", read("src/runtime/catalog.js"));
 emit("assets/dataset-summary-public-r1.js", read("src/runtime/summary.js"));
 emit("assets/catalog-public-r1.css", read("src/styles/catalog.css"));
 emit("assets/dataset-summary-public-r1.css", read("src/styles/summary.css"));
 emit("assets/catalog-shell-current-r1.css", read("src/styles/shell-current.css"));
 emit("assets/navbar-current-r1.css", read("src/styles/navbar-current.css"));
+emit("assets/public-footer-r1.css", read("src/styles/public-footer.css"));
+emit("assets/ui-icons-current-r1.css", read("src/styles/ui-icons.css"));
 const qrRecords = catalog.records.map((record) => {
   const path = `media/qr/datasets/${record.slug}.svg`;
   const svg = datasetQr(record.mapUrl);
@@ -306,6 +356,7 @@ const publicCatalog = {
   })),
 };
 emit("data/catalog.json", publicCatalog);
+emit("data/dataset-stories.json", stories);
 const sourceReview = {
   schemaVersion: "1.0.0",
   reviewedAt: catalog.updatedAt,
@@ -340,6 +391,12 @@ emit("data/catalog-source-review.json", sourceReview);
 for (const lang of ["th", "en"]) {
   const base = lang === "th" ? "./" : "../";
   let html = read(`src/templates/index.${lang}.html`);
+  const legacyFooter = html.match(/<footer\b[\s\S]*?<\/footer>/g) || [];
+  if (legacyFooter.length !== 1) throw Error("Expected one initial catalog footer");
+  html = replaceOnce(html, legacyFooter[0], footers[lang]);
+  const legacyIcons = html.match(/<link\b[^>]*rel="(?:icon|apple-touch-icon)"[^>]*>/g) || [];
+  if (legacyIcons.length !== 1) throw Error("Expected one historical external favicon");
+  html = replaceOnce(html, legacyIcons[0], faviconHead(base));
   html = replaceOnce(
     html,
     "{{CATALOG}}",
@@ -402,7 +459,7 @@ for (const lang of ["th", "en"]) {
     );
   html = html.replace(
     "</head>",
-    `<link rel="alternate" type="application/json" href="${base}data/catalog.json" title="CityMETER public catalog"/>\n<link rel="stylesheet" href="${base}assets/catalog-public-r1.css"/>\n<script defer src="${base}assets/catalog-public-r1.js"></script>\n</head>`,
+    `<link rel="alternate" type="application/json" href="${base}data/catalog.json" title="CityMETER public catalog"/>\n<link rel="stylesheet" href="${base}assets/catalog-public-r1.css"/>\n<link rel="stylesheet" href="${base}assets/public-footer-r1.css"/>\n<script defer src="${base}assets/catalog-public-r1.js"></script>\n</head>`,
   );
   for (const record of catalog.records) {
     const anchor = new RegExp(
@@ -414,12 +471,12 @@ for (const lang of ["th", "en"]) {
       (_match, before, after) => before + esc(record.title[lang]) + after,
     );
   }
-  html = fixCopy(html);
-  emit(lang === "th" ? "index.html" : "en/index.html", html);
+  html = materializeUiIconsInHtml(fixCopy(html)).replace("</head>",uiIconHead(base)+"</head>");
+  emit(lang === "th" ? "index.html" : "en/index.html", versionPublicAssets(html));
   for (const record of catalog.records)
     emit(
       `${lang === "en" ? "en/" : ""}datasets/${record.slug}/index.html`,
-      detailPage(catalog, record, lang, projection),
+      versionPublicAssets(detailPage(catalog, record, lang, projection, storyByCode.get(record.datasetCode))),
     );
 }
 const urls = [
@@ -444,23 +501,53 @@ emit(
 );
 const authored = [
   "src/catalog.json",
+  "src/dataset-stories.json",
   "src/templates/index.th.html",
   "src/templates/index.en.html",
   "src/runtime/catalog.js",
   "src/runtime/summary.js",
   "src/styles/catalog.css",
+  "src/styles/public-footer.css",
   "src/styles/summary.css",
   "src/styles/shell-current.css",
   "src/styles/navbar-current.css",
   "data/landom-contributors.json",
   "data/dataset-preview-assets-20261010.json",
   "scripts/lib/catalog-render.mjs",
+  "scripts/lib/summary-article.mjs",
+  "scripts/lib/public-shell.mjs",
+  "scripts/lib/ui-icon.mjs",
+  "scripts/lib/ui-icon-migration.mjs",
+  "src/styles/ui-icons.css",
+  "data/ui-icon-assets-20261010.json",
+  "data/public-footer-social.json",
+  "data/public-shell-assets.json",
+  "data/government-source-provenance-20261010.json",
+  "data/factory-hotel-source-provenance-20261010.json",
+  "data/story-snapshot-assets-20261010.json",
   "scripts/lib/patch-public.mjs",
   "scripts/lib/preview-contract.mjs",
   "scripts/lib/route-language.mjs",
   "scripts/lib/catalog-qr.mjs",
   "scripts/build-catalog.mjs",
 ];
+const uiIconAssets = JSON.parse(read("data/ui-icon-assets-20261010.json"));
+for (const asset of [...uiIconAssets.files,uiIconAssets.font,uiIconAssets.license]) {
+  const bytes = readFileSync(resolve(root,asset.path));
+  if (hash(bytes)!==asset.sha256 || (asset.bytes!==undefined && bytes.length!==asset.bytes)) throw Error(`UI icon asset drift: ${asset.path}`);
+  authored.push(asset.path);
+}
+const publicShellAssets = JSON.parse(read("data/public-shell-assets.json"));
+for (const asset of publicShellAssets.files) {
+  const bytes = readFileSync(resolve(root, asset.file));
+  if (bytes.length !== asset.bytes || hash(bytes) !== asset.sha256) throw Error(`Public shell asset drift: ${asset.file}`);
+  authored.push(asset.file);
+}
+for (const asset of JSON.parse(read("data/story-snapshot-assets-20261010.json")).assets) {
+  const bytes = readFileSync(resolve(root, asset.path));
+  if (bytes.length !== asset.bytes || hash(bytes) !== asset.sha256) throw Error(`Story snapshot drift: ${asset.path}`);
+  authored.push(asset.path);
+}
 const manifest = {
   schemaVersion: "1.0.0",
   contentVersion: catalog.contentVersion,
@@ -481,6 +568,7 @@ const manifest = {
     catalog:
       "Shared HTML renderer in initial HTML and React Q6; native search, group lanes, disclosures, static QR and bounded motion enhancement.",
     showcase: "Shared HTML renderer in initial HTML and React Y6.",
+    footer: "Shared publicFooter renderer in initial HTML, React K6, and dataset summaries; unchanged verified portfolio icons and footer assets.",
     discovery: "Shared minimal identity graph in initial HTML and React L6.",
     shell:
       "Retained public React controls and navbar; historical media and immutable assets retained.",
