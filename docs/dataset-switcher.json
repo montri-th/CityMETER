@@ -1,0 +1,3475 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "design_spec_and_local_prototype_only",
+  "reviewedAt": "2026-10-10",
+  "implementedInProduction": false,
+  "authority": {
+    "catalogPath": "src/catalog.json",
+    "catalogSha256": "e9dedd5229a5c82fab1393ecb04414ce82531d51a495d6b3a3ff3639ceda5f26",
+    "taxonomyFile": "src/catalog.json",
+    "designTokensFile": "assets/landometer-ds/v0.9.7/color-srgb-10.production.css",
+    "designAuthority": {
+      "releaseRef": "v0.9.7-owner.1",
+      "baseDocumentId": "lds-0.9.7-landometer-standalone-r1",
+      "baseSha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
+      "releaseManifestSha256": "0a936393fc1ab05f8b32110397546b2a87cc26e46f2661a712bdd2debaa58516",
+      "audienceCss": "assets/landometer-ds/v0.9.7/color-srgb-10.production.css",
+      "audienceCssSha256": "3d34924a249804c4573da5b136303141b67c47f24a3f00dd5d7b86b521d9dfc8"
+    },
+    "historicalAudit": "Owner-supplied CityMETER public dataset audit dated 2026-07-24; background document not bundled in this public repository",
+    "historicalAuditSections": [
+      "5",
+      "6"
+    ],
+    "historicalInstructionsNotAdopted": [
+      "Expose Business Dynamics",
+      "Use old dataset counts or LDS 0.8"
+    ],
+    "taxonomyJsonPointers": [
+      "/subgroups",
+      "/records"
+    ]
+  },
+  "scope": {
+    "publicResourceCount": 43,
+    "pillarCounts": {
+      "land": 13,
+      "location": 16,
+      "living": 14
+    },
+    "excludedDatasetCodes": [
+      "businessDynamics"
+    ],
+    "localPrototypeNotAProductionMap": true,
+    "noExportOrAlertPermissionClaim": true
+  },
+  "pillars": [
+    {
+      "id": "land",
+      "label": "Land",
+      "expectedCount": 13,
+      "subgroups": [
+        {
+          "id": "built-form-terrain",
+          "label": {
+            "th": "อาคารและภูมิประเทศ",
+            "en": "Built form & terrain"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "buildings",
+            "terrain-elevation"
+          ],
+          "order": 1
+        },
+        {
+          "id": "land-development",
+          "label": {
+            "th": "ที่ดินและการพัฒนา",
+            "en": "Land & development"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "registered-housing-estates"
+          ],
+          "order": 2
+        },
+        {
+          "id": "planning-regulation",
+          "label": {
+            "th": "การวางแผนและข้อกำหนด",
+            "en": "Planning & regulation"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "eia-projects"
+          ],
+          "order": 3
+        },
+        {
+          "id": "land-use",
+          "label": {
+            "th": "การใช้ที่ดิน",
+            "en": "Land use"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "crop-area-output"
+          ],
+          "order": 4
+        },
+        {
+          "id": "land-market",
+          "label": {
+            "th": "ตลาดที่ดิน",
+            "en": "Land market"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "land-appraisal",
+            "land-listing-prices"
+          ],
+          "order": 5
+        },
+        {
+          "id": "residential-market",
+          "label": {
+            "th": "ตลาดที่อยู่อาศัย",
+            "en": "Residential market"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "apartment-rent",
+            "condo-appraisal",
+            "condo-listing-prices",
+            "detached-listing-prices",
+            "townhouse-listing-prices"
+          ],
+          "order": 6
+        },
+        {
+          "id": "investment-insight",
+          "label": {
+            "th": "ข้อมูลประกอบการลงทุน",
+            "en": "Investment insight"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "condo-rent-yield"
+          ],
+          "order": 7
+        }
+      ]
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "expectedCount": 16,
+      "subgroups": [
+        {
+          "id": "business-registry",
+          "label": {
+            "th": "ทะเบียนธุรกิจ",
+            "en": "Business registry"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "registered-companies-status-capital"
+          ],
+          "order": 1
+        },
+        {
+          "id": "business-activity",
+          "label": {
+            "th": "กิจกรรมธุรกิจและอุตสาหกรรม",
+            "en": "Business activity"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "factories-workers-investment"
+          ],
+          "order": 2
+        },
+        {
+          "id": "commercial-property",
+          "label": {
+            "th": "อสังหาริมทรัพย์เชิงพาณิชย์",
+            "en": "Commercial property"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "office-buildings-rent"
+          ],
+          "order": 3
+        },
+        {
+          "id": "financial-services",
+          "label": {
+            "th": "เครือข่ายบริการทางการเงิน",
+            "en": "Financial services"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "non-bank"
+          ],
+          "order": 4
+        },
+        {
+          "id": "food-retail",
+          "label": {
+            "th": "อาหารและค้าปลีก",
+            "en": "Food & retail"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "restaurants",
+            "grocery-retail",
+            "shopping-centers"
+          ],
+          "order": 5
+        },
+        {
+          "id": "tourism-hospitality",
+          "label": {
+            "th": "การท่องเที่ยวและที่พัก",
+            "en": "Tourism & hospitality"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "hotel-market",
+            "tourism-demand-spending"
+          ],
+          "order": 6
+        },
+        {
+          "id": "mobility",
+          "label": {
+            "th": "การเดินทางและการเข้าถึง",
+            "en": "Mobility"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "fuel-stations",
+            "registered-cars",
+            "road-network-archetypes",
+            "traffic-congestion-speed"
+          ],
+          "order": 7
+        },
+        {
+          "id": "events-notices",
+          "label": {
+            "th": "เหตุการณ์และประกาศ",
+            "en": "Events & notices"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "events-notices"
+          ],
+          "order": 8
+        },
+        {
+          "id": "area-community-context",
+          "label": {
+            "th": "บริบทพื้นที่และสถานที่ชุมชน",
+            "en": "Area & community context"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "locale-insights",
+            "places-of-worship"
+          ],
+          "order": 9
+        }
+      ]
+    },
+    {
+      "id": "living",
+      "label": "Living",
+      "expectedCount": 14,
+      "subgroups": [
+        {
+          "id": "people",
+          "label": {
+            "th": "ผู้คนและประชากร",
+            "en": "People"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "population-age-sex"
+          ],
+          "order": 1
+        },
+        {
+          "id": "education",
+          "label": {
+            "th": "การศึกษา",
+            "en": "Education"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "schools-students-teachers"
+          ],
+          "order": 2
+        },
+        {
+          "id": "public-finance",
+          "label": {
+            "th": "การคลังภาครัฐและท้องถิ่น",
+            "en": "Public finance"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "government-spending",
+            "municipal-revenue"
+          ],
+          "order": 3
+        },
+        {
+          "id": "public-service",
+          "label": {
+            "th": "บริการภาครัฐ",
+            "en": "Public service"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "government-agencies-workforce"
+          ],
+          "order": 4
+        },
+        {
+          "id": "flood",
+          "label": {
+            "th": "น้ำท่วม",
+            "en": "Flood"
+          },
+          "orderMode": "flood_lifecycle",
+          "recordIds": [
+            "flood-recurrent",
+            "flood-latest-observed",
+            "flood-forecast-depth",
+            "flood-forecast-flash-flood-risk"
+          ],
+          "order": 5
+        },
+        {
+          "id": "other-hazards",
+          "label": {
+            "th": "ภัยและสัญญาณเฝ้าระวังอื่น",
+            "en": "Other hazards"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "earthquake-sensors",
+            "fire-monitoring"
+          ],
+          "order": 6
+        },
+        {
+          "id": "multi-hazard",
+          "label": {
+            "th": "ผลกระทบจากภัยหลายประเภท",
+            "en": "Multi-hazard"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "disaster-historical-impacts"
+          ],
+          "order": 7
+        },
+        {
+          "id": "event-archive",
+          "label": {
+            "th": "บันทึกเหตุการณ์ที่ผ่านมา",
+            "en": "Event archive"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "events/hat-yai-flood-2025-11",
+            "events/quake-building-inspection"
+          ],
+          "order": 8
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "buildings",
+      "datasetCode": "building",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "built-form-terrain",
+      "subgroupOrder": 1,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "อาคาร: ขอบเขต ความสูง และพื้นที่ใช้สอยโดยประมาณ",
+        "en": "Buildings: Footprints, Height & Estimated Floor Area"
+      },
+      "canonicalOrder": 1,
+      "slug": "buildings",
+      "title": {
+        "th": "อาคาร: ขอบเขต ความสูง และพื้นที่ใช้สอยโดยประมาณ",
+        "en": "Buildings: Footprints, Height & Estimated Floor Area"
+      },
+      "menuLabel": {
+        "th": "อาคาร: ขอบเขต ความสูง และพื้นที่ใช้สอยโดยประมาณ",
+        "en": "Buildings: Footprints, Height & Estimated Floor Area"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter-3d/BKK/L/8b60964e-0c26-408e-95f6-e3f46fe37d46?d=building",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/buildings/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/buildings/"
+      },
+      "aliases": [
+        "อาคาร: ขอบเขต ความสูง และพื้นที่ใช้สอยโดยประมาณ",
+        "Buildings: Footprints, Height & Estimated Floor Area",
+        "building",
+        "buildings"
+      ],
+      "description": {
+        "th": "แปลงข้อมูลอาคารให้เป็นภาพเมืองสามมิติ เห็นความหนาแน่น ความสูง และค่าประมาณพื้นที่ใช้สอยรวม เพื่อเลือกพื้นที่ศึกษาต่อ",
+        "en": "Turn available building data into a city model showing density and estimated floor area without specialist GIS skills."
+      },
+      "limitation": {
+        "th": "ข้อมูลอาคารและค่าที่อนุมานอาจคลาดเคลื่อนหรือไม่ครบทุกหลัง ใช้ศึกษารูปแบบการพัฒนา และตรวจทะเบียนหรือสำรวจจริงก่อนใช้ตัดสินใจรายอาคาร",
+        "en": "Building coverage and derived values may be incomplete or inaccurate. Use them to study development patterns, then check records or field evidence for an individual building."
+      },
+      "period": {
+        "th": "รุ่นที่มีให้เลือก: V3 พฤษภาคม 2566 และ V4 ธันวาคม 2567; ป้ายรุ่นไม่ใช่วันที่สำรวจอาคารทุกหลัง",
+        "en": "Available version labels: V3 May 2023 and V4 December 2024; these are not survey dates for every building."
+      },
+      "sourceOwner": {
+        "th": "3D-GloBFP / OpenStreetMap สำหรับ V4; Google Research สำหรับ V3",
+        "en": "3D-GloBFP / OpenStreetMap for V4; Google Research for V3"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "derived_estimates",
+      "semanticLabel": {
+        "th": "มีค่าประมาณ",
+        "en": "Includes estimates"
+      },
+      "guardrail": "Building height, floor count and floor area may include estimates."
+    },
+    {
+      "id": "terrain-elevation",
+      "datasetCode": "terrain",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "built-form-terrain",
+      "subgroupOrder": 1,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "ภูมิประเทศและระดับความสูง",
+        "en": "Terrain & Elevation"
+      },
+      "canonicalOrder": 2,
+      "slug": "terrain-elevation",
+      "title": {
+        "th": "ภูมิประเทศและระดับความสูง",
+        "en": "Terrain & Elevation"
+      },
+      "menuLabel": {
+        "th": "ภูมิประเทศและระดับความสูง",
+        "en": "Terrain & Elevation"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter-3d?d=terrain",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/terrain-elevation/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/terrain-elevation/"
+      },
+      "aliases": [
+        "ภูมิประเทศและระดับความสูง",
+        "Terrain & Elevation",
+        "terrain",
+        "terrain-elevation",
+        "Terrain",
+        "elevation",
+        "ภูมิประเทศ",
+        "ระดับความสูง"
+      ],
+      "description": {
+        "th": "อ่านรูปทรงและระดับความสูงของภูมิประเทศในมุมมองสามมิติ เพื่อทำความเข้าใจพื้นที่และเตรียมคำถามก่อนสำรวจจริง",
+        "en": "Explore terrain and elevation in 3D to understand an area and prepare questions for on-site investigation."
+      },
+      "limitation": {
+        "th": "ค่า DEM ไม่ใช่ผลสำรวจระดับที่ดินหรือผลประเมินน้ำท่วม ส่วนต่างสองแบบจำลองไม่ใช่ความสูงอาคารหรือต้นไม้ที่วัดยืนยัน และส่วนไม่มีข้อมูลไม่ใช่ 0 เมตร",
+        "en": "DEM values are not a land survey or flood-risk assessment. Differences between models are not verified building or tree heights, and no-data is not zero metres."
+      },
+      "period": {
+        "th": "รุ่นและช่วงสำรวจแตกต่างกันตาม DEM; วันที่ทำแผ่นภาพไม่ใช่วันที่สำรวจ",
+        "en": "Versions and acquisition periods differ by DEM; tile-production dates are not survey dates."
+      },
+      "sourceOwner": {
+        "th": "FABDEM — Hawker et al. / University of Bristol; Copernicus DEM; Terrain Tiles — Mapzen / AWS Open Data",
+        "en": "FABDEM — Hawker et al. / University of Bristol; Copernicus DEM; Terrain Tiles — Mapzen / AWS Open Data"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "terrain_3d",
+      "semanticLabel": {
+        "th": "มุมมอง 3D",
+        "en": "3D view"
+      },
+      "guardrail": "DEM coverage, vertical reference and licence vary by model; a terrain viewer is not an approved flood-risk assessment."
+    },
+    {
+      "id": "registered-housing-estates",
+      "datasetCode": "estate",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "land-development",
+      "subgroupOrder": 2,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "โครงการจัดสรรที่ดินจดทะเบียน",
+        "en": "Registered Housing Estates"
+      },
+      "canonicalOrder": 3,
+      "slug": "registered-housing-estates",
+      "title": {
+        "th": "โครงการจัดสรรที่ดินจดทะเบียน",
+        "en": "Registered Housing Estates"
+      },
+      "menuLabel": {
+        "th": "โครงการจัดสรรที่ดินจดทะเบียน",
+        "en": "Registered Housing Estates"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=estate",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/registered-housing-estates/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/registered-housing-estates/"
+      },
+      "aliases": [
+        "โครงการจัดสรรที่ดินจดทะเบียน",
+        "Registered Housing Estates",
+        "estate",
+        "registered-housing-estates"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลโครงการจัดสรรจากกรมที่ดินให้เป็นแผนที่ เปรียบเทียบการกระจุกตัว ประเภทที่อยู่อาศัย และผู้พัฒนาในแต่ละพื้นที่ได้ก่อนลงสำรวจ",
+        "en": "See the distribution and composition of registered housing developments before comparing neighbourhoods."
+      },
+      "limitation": {
+        "th": "เป็นโครงการจัดสรรที่อยู่ในทะเบียน ไม่ควรใช้แทนจำนวนโครงการที่อยู่อาศัยทั้งหมด",
+        "en": "This represents registered estates and should not stand in for every housing development"
+      },
+      "period": {
+        "th": "รายเดือนทั่วประเทศ; ตรวจเฉพาะส่วนจัดสรรที่ดินของ package",
+        "en": "Monthly nationwide coverage; this card uses the land-allotment part of the package."
+      },
+      "sourceOwner": {
+        "th": "กรมที่ดิน",
+        "en": "Department of Lands"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "eia-projects",
+      "datasetCode": "eiaReport",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "planning-regulation",
+      "subgroupOrder": 3,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "โครงการและรายงาน EIA",
+        "en": "EIA Projects & Reports"
+      },
+      "canonicalOrder": 4,
+      "slug": "eia-projects",
+      "title": {
+        "th": "โครงการและรายงาน EIA",
+        "en": "EIA Projects & Reports"
+      },
+      "menuLabel": {
+        "th": "โครงการและรายงาน EIA",
+        "en": "EIA Projects & Reports"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=eiaReport",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/eia-projects/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/eia-projects/"
+      },
+      "aliases": [
+        "โครงการและรายงาน EIA",
+        "EIA Projects & Reports",
+        "eiaReport",
+        "eia-projects"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลโครงการและรายงาน EIA ให้เป็นแผนที่ เห็นประวัติและประเภทโครงการรอบทำเลก่อนลงรายละเอียดในเอกสารต้นทาง",
+        "en": "Explore environmental assessment records around a location to understand its development history."
+      },
+      "limitation": {
+        "th": "ใช้ตรวจบริบทเบื้องต้น ไม่ใช่คำวินิจฉัยสิทธิพัฒนาหรือสถานะการอนุมัติ",
+        "en": "Use for initial context, not as a determination of development rights or approval status"
+      },
+      "period": {
+        "th": "ปีของโครงการและช่วงข้อมูลขึ้นอยู่กับรายการที่นำเข้า ให้ตรวจวันที่รายงานและสถานะของโครงการที่สนใจ",
+        "en": "Project years and coverage depend on the imported records; check the report date and status of the project of interest."
+      },
+      "sourceOwner": {
+        "th": "สผ. / ONEP",
+        "en": "ONEP"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "crop-area-output",
+      "datasetCode": "muenRai",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "land-use",
+      "subgroupOrder": 4,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "เกษตรกรรม: พื้นที่เพาะปลูกและผลผลิต (หมื่นไร่)",
+        "en": "Agriculture: Crop Area & Output (10,000 Rai)"
+      },
+      "canonicalOrder": 5,
+      "slug": "crop-area-output",
+      "title": {
+        "th": "เกษตรกรรม: พื้นที่เพาะปลูกและผลผลิต (หมื่นไร่)",
+        "en": "Agriculture: Crop Area & Output (10,000 Rai)"
+      },
+      "menuLabel": {
+        "th": "เกษตรกรรม: พื้นที่เพาะปลูกและผลผลิต (หมื่นไร่)",
+        "en": "Agriculture: Crop Area & Output (10,000 Rai)"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/PRE?d=muenRai",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/crop-area-output/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/crop-area-output/"
+      },
+      "aliases": [
+        "เกษตรกรรม: พื้นที่เพาะปลูกและผลผลิต (หมื่นไร่)",
+        "Agriculture: Crop Area & Output (10,000 Rai)",
+        "muenRai",
+        "crop-area-output"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลการเกษตรให้เป็นแผนที่ เห็นพื้นที่เพาะปลูก ผลผลิต และกิจกรรมเกษตรตามข้อมูลที่มี เพื่อเริ่มศึกษาแหล่งวัตถุดิบ",
+        "en": "Explore recorded agricultural activity, cultivated area and output to prepare a supply study."
+      },
+      "limitation": {
+        "th": "ตรวจหน่วย พื้นที่ และช่วงรายงานก่อนเทียบข้อมูล เดือนที่ยังรายงานไม่ครบไม่ใช่ปริมาณผลิตทั้งปี และผลผลิตที่บันทึกไม่ใช่ปริมาณที่พร้อมซื้อขายทั้งหมด",
+        "en": "Check units, area and reporting period before comparison. An incomplete reporting month is not annual output, and recorded output is not the total amount available for purchase."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "กลุ่มทะเบียนการผลิตพืช — กรมส่งเสริมการเกษตร (candidate)",
+        "en": "Department of Agricultural Extension production registry family (candidate)"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "land-appraisal",
+      "datasetCode": "deed",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "land-market",
+      "subgroupOrder": 5,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "ราคาประเมินที่ดินและโฉนด",
+        "en": "Land Appraisal & Title Deeds"
+      },
+      "canonicalOrder": 6,
+      "slug": "land-appraisal",
+      "title": {
+        "th": "ราคาประเมินที่ดินและโฉนด",
+        "en": "Land Appraisal & Title Deeds"
+      },
+      "menuLabel": {
+        "th": "ราคาประเมินที่ดินและโฉนด",
+        "en": "Land Appraisal & Title Deeds"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter-3d/CBI/D/2001?d=deed",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/land-appraisal/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/land-appraisal/"
+      },
+      "aliases": [
+        "ราคาประเมินที่ดินและโฉนด",
+        "Land Appraisal & Title Deeds",
+        "deed",
+        "land-appraisal"
+      ],
+      "description": {
+        "th": "เปลี่ยนราคาประเมินที่ดินรายแปลงให้เป็นแผนที่ เห็นโครงสร้างราคาและเปรียบเทียบทำเลก่อนตรวจรายละเอียดแปลงที่สนใจ",
+        "en": "Compare official land appraisal values across areas before checking individual parcels."
+      },
+      "limitation": {
+        "th": "ราคาประเมินไม่ใช่ราคาซื้อขาย และข้อมูลนี้ไม่แทนการตรวจเอกสารที่ดินรายแปลง",
+        "en": "Appraisal values are not transaction prices and do not replace document checks for a specific property"
+      },
+      "period": {
+        "th": "versioned/transformed parcel layer; วันปรับปรุงราคาประเมินต่างกันตามจังหวัด",
+        "en": "Versioned, transformed parcel layer; appraisal update dates vary by province."
+      },
+      "sourceOwner": {
+        "th": "กรมที่ดิน / กรมธนารักษ์",
+        "en": "Department of Lands / Treasury Department"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "land-listing-prices",
+      "datasetCode": "landoffer",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "land-market",
+      "subgroupOrder": 5,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "ราคาประกาศขายที่ดิน",
+        "en": "Land Listing Prices"
+      },
+      "canonicalOrder": 7,
+      "slug": "land-listing-prices",
+      "title": {
+        "th": "ราคาประกาศขายที่ดิน",
+        "en": "Land Listing Prices"
+      },
+      "menuLabel": {
+        "th": "ราคาประกาศขายที่ดิน",
+        "en": "Land Listing Prices"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=landoffer",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/land-listing-prices/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/land-listing-prices/"
+      },
+      "aliases": [
+        "ราคาประกาศขายที่ดิน",
+        "Land Listing Prices",
+        "landoffer",
+        "land-listing-prices"
+      ],
+      "description": {
+        "th": "เปลี่ยนประกาศขายที่ดินให้เป็นแผนที่ เปรียบเทียบราคาเสนอขาย ขนาดแปลง และราคาประเมินก่อนเลือกที่ดินไปศึกษาต่อ",
+        "en": "Compare land asking prices and official appraisal values before following up on a listing."
+      },
+      "limitation": {
+        "th": "ราคาในประกาศไม่ใช่ราคาปิดการขาย และยังไม่ทราบกฎจัดการรายการซ้ำหรือค่าผิดปกติ",
+        "en": "Listing prices are not closing prices; duplicate and outlier handling is not yet documented"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลประกาศต้นทางไม่ได้",
+        "en": "Original listing publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "apartment-rent",
+      "datasetCode": "apartment",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "residential-market",
+      "subgroupOrder": 6,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "ค่าเช่าอะพาร์ตเมนต์",
+        "en": "Apartment Rent"
+      },
+      "canonicalOrder": 8,
+      "slug": "apartment-rent",
+      "title": {
+        "th": "ค่าเช่าอะพาร์ตเมนต์",
+        "en": "Apartment Rent"
+      },
+      "menuLabel": {
+        "th": "ค่าเช่าอะพาร์ตเมนต์",
+        "en": "Apartment Rent"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=apartment",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/apartment-rent/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/apartment-rent/"
+      },
+      "aliases": [
+        "ค่าเช่าอะพาร์ตเมนต์",
+        "Apartment Rent",
+        "apartment",
+        "apartment-rent"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลอพาร์ทเมนต์กระจัดกระจาย ให้เป็นภาพจำลองตลาดเช่าระดับย่านที่บอกโครงสร้างราคาและความหนาแน่นได้ทันที",
+        "en": "Turn scattered apartment listings into a neighbourhood view of rental prices and building density."
+      },
+      "limitation": {
+        "th": "ยังไม่ควรสรุปว่าเป็นภาพตลาดเช่าทั้งหมดหรือเป็นราคาปัจจุบันทุกอาคาร",
+        "en": "Do not present this as the entire rental market or as current rent for every building"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลค่าเช่าต้นทางไม่ได้",
+        "en": "Original rental-data publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "condo-appraisal",
+      "datasetCode": "condo",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "residential-market",
+      "subgroupOrder": 6,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "ราคาประเมินคอนโดมิเนียม",
+        "en": "Condo Appraisal Prices"
+      },
+      "canonicalOrder": 9,
+      "slug": "condo-appraisal",
+      "title": {
+        "th": "ราคาประเมินคอนโดมิเนียม",
+        "en": "Condo Appraisal Prices"
+      },
+      "menuLabel": {
+        "th": "ราคาประเมินคอนโดมิเนียม",
+        "en": "Condo Appraisal Prices"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=condo",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/condo-appraisal/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/condo-appraisal/"
+      },
+      "aliases": [
+        "ราคาประเมินคอนโดมิเนียม",
+        "Condo Appraisal Prices",
+        "condo",
+        "condo-appraisal"
+      ],
+      "description": {
+        "th": "เปลี่ยนราคาประเมินคอนโดรายโครงการให้เป็นแผนที่ เห็นช่วงราคาและความแตกต่างระหว่างย่านก่อนเลือกโครงการไปศึกษาเพิ่มเติม",
+        "en": "Compare official condominium appraisal values across projects and neighbourhoods."
+      },
+      "limitation": {
+        "th": "ราคาประเมินไม่ใช่ราคาเสนอขายหรือราคาปิดธุรกรรม",
+        "en": "Appraisal values are neither listing prices nor transaction prices"
+      },
+      "period": {
+        "th": "รอบปรับปรุงต้นทางระบุทุก 4 ปี; resource ที่ตรวจปรับปรุง 14 ส.ค. 2567",
+        "en": "The source states a four-year cycle; the inspected resource was updated 14 Aug 2024."
+      },
+      "sourceOwner": {
+        "th": "กรมธนารักษ์",
+        "en": "Treasury Department"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "condo-listing-prices",
+      "datasetCode": "condoOffer",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "residential-market",
+      "subgroupOrder": 6,
+      "recordOrder": 3,
+      "currentTitle": {
+        "th": "ราคาประกาศขายคอนโดมิเนียม",
+        "en": "Condo Listing Prices"
+      },
+      "canonicalOrder": 10,
+      "slug": "condo-listing-prices",
+      "title": {
+        "th": "ราคาประกาศขายคอนโดมิเนียม",
+        "en": "Condo Listing Prices"
+      },
+      "menuLabel": {
+        "th": "ราคาประกาศขายคอนโดมิเนียม",
+        "en": "Condo Listing Prices"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=condoOffer",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/condo-listing-prices/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/condo-listing-prices/"
+      },
+      "aliases": [
+        "ราคาประกาศขายคอนโดมิเนียม",
+        "Condo Listing Prices",
+        "condoOffer",
+        "condo-listing-prices"
+      ],
+      "description": {
+        "th": "เปลี่ยนราคาประกาศขายคอนโด ให้เป็นแผนที่วิเคราะห์ที่เทียบกับราคาประเมินจากรัฐได้ในหน้าเดียว",
+        "en": "Compare condominium asking prices with official appraisal values in the same area."
+      },
+      "limitation": {
+        "th": "ราคาเสนอขายไม่ใช่ราคาปิด และยังไม่ทราบวิธีจัดการรายการซ้ำหรือค่าผิดปกติ",
+        "en": "Asking prices are not closing prices; duplicate and outlier handling is not documented"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ราคาเสนอขายเอกชน + candidate benchmark จากกรมธนารักษ์",
+        "en": "Private asking-price layer + candidate Treasury benchmark"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "detached-listing-prices",
+      "datasetCode": "detachedhouse",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "residential-market",
+      "subgroupOrder": 6,
+      "recordOrder": 4,
+      "currentTitle": {
+        "th": "ราคาประกาศขายบ้านเดี่ยว",
+        "en": "Detached Listing Prices"
+      },
+      "canonicalOrder": 11,
+      "slug": "detached-listing-prices",
+      "title": {
+        "th": "ราคาประกาศขายบ้านเดี่ยว",
+        "en": "Detached Listing Prices"
+      },
+      "menuLabel": {
+        "th": "ราคาประกาศขายบ้านเดี่ยว",
+        "en": "Detached Listing Prices"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=detachedhouse",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/detached-listing-prices/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/detached-listing-prices/"
+      },
+      "aliases": [
+        "ราคาประกาศขายบ้านเดี่ยว",
+        "Detached Listing Prices",
+        "detachedhouse",
+        "detached-listing-prices"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลบ้านเดี่ยวในตลาด ให้เป็นแผนที่โครงสร้างราคาและขนาดที่ดินเชิงพื้นที่ ที่ช่วยให้เลือกทำเลบ้านที่ใช่ได้ง่ายขึ้น",
+        "en": "Compare detached-house asking prices and plot sizes before choosing homes to visit."
+      },
+      "limitation": {
+        "th": "เป็นราคาเสนอขาย และยังไม่ทราบความครอบคลุมของแหล่งประกาศ",
+        "en": "These are asking prices, and source coverage is not yet documented"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลประกาศต้นทางไม่ได้",
+        "en": "Original listing publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "townhouse-listing-prices",
+      "datasetCode": "townhouse",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "residential-market",
+      "subgroupOrder": 6,
+      "recordOrder": 5,
+      "currentTitle": {
+        "th": "ราคาประกาศขายทาวน์เฮาส์",
+        "en": "Townhouse Listing Prices"
+      },
+      "canonicalOrder": 12,
+      "slug": "townhouse-listing-prices",
+      "title": {
+        "th": "ราคาประกาศขายทาวน์เฮาส์",
+        "en": "Townhouse Listing Prices"
+      },
+      "menuLabel": {
+        "th": "ราคาประกาศขายทาวน์เฮาส์",
+        "en": "Townhouse Listing Prices"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=townhouse",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/townhouse-listing-prices/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/townhouse-listing-prices/"
+      },
+      "aliases": [
+        "ราคาประกาศขายทาวน์เฮาส์",
+        "Townhouse Listing Prices",
+        "townhouse",
+        "townhouse-listing-prices"
+      ],
+      "description": {
+        "th": "เปลี่ยนประกาศขายทาวน์เฮ้าส์ในตลาด ให้เป็นแผนที่โครงสร้างราคาและขนาดพื้นที่ ช่วยให้เลือกบ้านที่เหมาะกับงบและความต้องการ",
+        "en": "Compare townhouse asking prices and property details to shortlist homes within a budget."
+      },
+      "limitation": {
+        "th": "ราคาเป็นราคาประกาศ ไม่ใช่ราคาซื้อขายจริง จำนวนประกาศไม่ใช่จำนวนบ้านทั้งหมด และอาจมีรายการซ้ำหรือประกาศที่ยังไม่ได้ปรับปรุง",
+        "en": "Prices are asking prices, not completed transactions. Listing counts are not the full housing stock and may contain duplicates or outdated listings."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลประกาศต้นทางไม่ได้",
+        "en": "Original listing publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "condo-rent-yield",
+      "datasetCode": "rentWise",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "investment-insight",
+      "subgroupOrder": 7,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "ค่าเช่าและผลตอบแทนคอนโดมิเนียม (RentWise)",
+        "en": "Condo Rent & Yield (RentWise)"
+      },
+      "canonicalOrder": 13,
+      "slug": "condo-rent-yield",
+      "title": {
+        "th": "ค่าเช่าและผลตอบแทนคอนโดมิเนียม (RentWise)",
+        "en": "Condo Rent & Yield (RentWise)"
+      },
+      "menuLabel": {
+        "th": "ค่าเช่าและผลตอบแทนคอนโดมิเนียม (RentWise)",
+        "en": "Condo Rent & Yield (RentWise)"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=rentWise",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/condo-rent-yield/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/condo-rent-yield/"
+      },
+      "aliases": [
+        "ค่าเช่าและผลตอบแทนคอนโดมิเนียม (RentWise)",
+        "Condo Rent & Yield (RentWise)",
+        "rentWise",
+        "condo-rent-yield"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลค่าเช่าคอนโดให้เป็นแผนที่ เปรียบเทียบราคาและตัวชี้วัดผลตอบแทนเบื้องต้นก่อนศึกษาห้องหรือโครงการที่สนใจ",
+        "en": "Compare condominium asking rents and return estimates before checking investment assumptions."
+      },
+      "limitation": {
+        "th": "ผลตอบแทนเป็นค่าประมาณจากประกาศ ไม่ใช่ผลตอบแทนที่รับประกัน",
+        "en": "Yield is estimated from listings and is not a guaranteed return"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "LivingInsider / ข้อมูลประกาศเอกชน",
+        "en": "LivingInsider / private listings"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "registered-companies-status-capital",
+      "datasetCode": "company",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "business-registry",
+      "subgroupOrder": 1,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "บริษัทจดทะเบียน: สถานะและทุน",
+        "en": "Registered Companies: Status & Capital"
+      },
+      "canonicalOrder": 14,
+      "slug": "registered-companies-status-capital",
+      "title": {
+        "th": "บริษัทจดทะเบียน: สถานะและทุน",
+        "en": "Registered Companies: Status & Capital"
+      },
+      "menuLabel": {
+        "th": "บริษัทจดทะเบียน: สถานะและทุน",
+        "en": "Registered Companies: Status & Capital"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=company",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/registered-companies-status-capital/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/registered-companies-status-capital/"
+      },
+      "aliases": [
+        "บริษัทจดทะเบียน: สถานะและทุน",
+        "Registered Companies: Status & Capital",
+        "company",
+        "registered-companies-status-capital"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลนิติบุคคลให้เป็นภาพรวมธุรกิจในแต่ละย่าน เห็นประเภทธุรกิจ สถานะทะเบียน และทุนจดทะเบียน เพื่อศึกษาคู่แข่ง คู่ค้า และตลาดที่ควรลงสำรวจ",
+        "en": "Map registered businesses, registration status and capital to study potential competitors, partners and local markets."
+      },
+      "limitation": {
+        "th": "ไม่ใช่ Business Dynamics และยังไม่ควรสรุปว่าเป็นนิติบุคคลทั้งหมดในประเทศ",
+        "en": "This is separate from Business Dynamics and should not be presented as every legal entity in Thailand"
+      },
+      "period": {
+        "th": "CityMETER snapshot 2024-04 ถึง 2025-04; ต้องตรวจชื่อ resource ไม่อนุมานชนิดเหตุการณ์จาก package ID อย่างเดียว",
+        "en": "CityMETER snapshot: Apr 2024–Apr 2025; verify each resource title rather than inferring event type from package ID alone."
+      },
+      "sourceOwner": {
+        "th": "กรมพัฒนาธุรกิจการค้า",
+        "en": "Department of Business Development"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "factories-workers-investment",
+      "datasetCode": "factory",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "business-activity",
+      "subgroupOrder": 2,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "โรงงาน แรงงาน และการลงทุน",
+        "en": "Factories, Workers & Investment"
+      },
+      "canonicalOrder": 15,
+      "slug": "factories-workers-investment",
+      "title": {
+        "th": "โรงงาน แรงงาน และการลงทุน",
+        "en": "Factories, Workers & Investment"
+      },
+      "menuLabel": {
+        "th": "โรงงาน แรงงาน และการลงทุน",
+        "en": "Factories, Workers & Investment"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=factory",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/factories-workers-investment/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/factories-workers-investment/"
+      },
+      "aliases": [
+        "โรงงาน แรงงาน และการลงทุน",
+        "Factories, Workers & Investment",
+        "factory",
+        "factories-workers-investment"
+      ],
+      "description": {
+        "th": "เปลี่ยนทะเบียนโรงงานทั่วประเทศ ให้เป็นแผนที่กิจกรรมอุตสาหกรรมเชิงพื้นที่ที่ช่วยสแกนข้อมูลแรงงานและการลงทุนระดับย่าน",
+        "en": "Explore registered factories, workforce figures and investment data to understand industrial areas."
+      },
+      "limitation": {
+        "th": "ยังไม่ทราบนิยาม แหล่งข้อมูล และความครอบคลุมของทะเบียนที่แสดง",
+        "en": "Definitions, source, and registry coverage are not yet documented on the public page"
+      },
+      "period": {
+        "th": "หน้าแสดงข้อมูลเดือนเมษายน 2568; ตรวจวันอ้างอิงของแต่ละตัวเลขก่อนเปรียบเทียบ",
+        "en": "The view identifies April 2025; check the reference date of each measure before comparison."
+      },
+      "sourceOwner": {
+        "th": "สำนักงานปลัดกระทรวงอุตสาหกรรม — แหล่งสถิติอ้างอิง; กรมโรงงานอุตสาหกรรม — ทะเบียนโรงงานที่เกี่ยวข้อง",
+        "en": "Office of the Permanent Secretary, Ministry of Industry — statistical reference; Department of Industrial Works — related factory register"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "office-buildings-rent",
+      "datasetCode": "office",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "commercial-property",
+      "subgroupOrder": 3,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "อาคารสำนักงานและค่าเช่า",
+        "en": "Office Buildings & Rent"
+      },
+      "canonicalOrder": 16,
+      "slug": "office-buildings-rent",
+      "title": {
+        "th": "อาคารสำนักงานและค่าเช่า",
+        "en": "Office Buildings & Rent"
+      },
+      "menuLabel": {
+        "th": "อาคารสำนักงานและค่าเช่า",
+        "en": "Office Buildings & Rent"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=office",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/office-buildings-rent/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/office-buildings-rent/"
+      },
+      "aliases": [
+        "อาคารสำนักงานและค่าเช่า",
+        "Office Buildings & Rent",
+        "office",
+        "office-buildings-rent"
+      ],
+      "description": {
+        "th": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
+        "en": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate."
+      },
+      "limitation": {
+        "th": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ และราคาเสนอเช่าไม่ใช่ค่าเช่าที่ทำสัญญาแล้ว",
+        "en": "The evidenced scope is Bangkok, and asking rent is not contracted rent"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลอาคารสำนักงานต้นทางไม่ได้",
+        "en": "Original office-inventory publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "non-bank",
+      "datasetCode": "nonBank",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "financial-services",
+      "subgroupOrder": 4,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "เครือข่ายสาขาและสำนักงาน Non-bank",
+        "en": "Non-bank Branch & Office Networks"
+      },
+      "canonicalOrder": 17,
+      "slug": "non-bank",
+      "title": {
+        "th": "เครือข่ายสาขาและสำนักงาน Non-bank",
+        "en": "Non-bank Branch & Office Networks"
+      },
+      "menuLabel": {
+        "th": "เครือข่ายสาขาและสำนักงาน Non-bank",
+        "en": "Non-bank Branch & Office Networks"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=nonBank",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/non-bank/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/non-bank/"
+      },
+      "aliases": [
+        "เครือข่ายสาขาและสำนักงาน Non-bank",
+        "Non-bank Branch & Office Networks",
+        "nonBank",
+        "non-bank",
+        "Non-bank",
+        "สาขา Non-bank",
+        "นอนแบงก์"
+      ],
+      "description": {
+        "th": "มองเห็นเครือข่ายสาขาและสำนักงานผู้ให้กู้ Non-bank เพื่อวางกลยุทธ์ตลาดและสำรวจพื้นที่ให้บริการต่ออย่างมีบริบท",
+        "en": "Explore non-bank lender branches and offices to inform market strategy and further research into local service networks."
+      },
+      "limitation": {
+        "th": "ไม่พบการจับคู่ชื่อหรือชิปใบอนุญาตไม่ได้แปลว่าไม่มีใบอนุญาต หมวดใบอนุญาตซ้อนกันได้ จำนวนสาขาไม่ใช่ยอดสินเชื่อ ความต้องการสินเชื่อ หรือความเสี่ยงหนี้",
+        "en": "An unmatched name or missing licence chip does not mean unlicensed. Licence categories can overlap. Branch counts are not loan volume, credit demand or debt risk."
+      },
+      "period": {
+        "th": "แฟ้มสาขา DBD ไม่ทราบวันข้อมูล; พิโก 18 กันยายน 2569; ใบอนุญาต ธปท. 23 กันยายน 2569",
+        "en": "DBD branch vintage unknown; Pico 18 September 2026; BOT licence information 23 September 2026."
+      },
+      "sourceOwner": {
+        "th": "กรมพัฒนาธุรกิจการค้า / สำนักงานเศรษฐกิจการคลัง / ธนาคารแห่งประเทศไทย ตามบทบาทข้อมูล",
+        "en": "DBD / Fiscal Policy Office / Bank of Thailand, by source role"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "restaurants",
+      "datasetCode": "restaurant",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "food-retail",
+      "subgroupOrder": 5,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา",
+        "en": "Restaurants: Density, Ratings & Price"
+      },
+      "canonicalOrder": 18,
+      "slug": "restaurants",
+      "title": {
+        "th": "ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา",
+        "en": "Restaurants: Density, Ratings & Price"
+      },
+      "menuLabel": {
+        "th": "ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา",
+        "en": "Restaurants: Density, Ratings & Price"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=restaurant",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/restaurants/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/restaurants/"
+      },
+      "aliases": [
+        "ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา",
+        "Restaurants: Density, Ratings & Price",
+        "restaurant",
+        "restaurants"
+      ],
+      "description": {
+        "th": "เปลี่ยนพิกัดร้านอาหารให้เป็นภาพรวมระดับย่าน เห็นประเภทร้าน คะแนนรีวิว และช่วงราคาก่อนเลือกทำเลไปศึกษาเพิ่มเติม",
+        "en": "See restaurant types, ratings and price ranges across a neighbourhood before studying a site."
+      },
+      "limitation": {
+        "th": "จำนวนร้านและรีวิวไม่ใช่อุปสงค์หรือจำนวนลูกค้า และยังไม่ทราบแหล่งกับวันที่รวบรวม",
+        "en": "Restaurant and review counts are not demand or customer counts; source and collection date are not documented"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลสถานที่และรีวิวต้นทางไม่ได้",
+        "en": "Original place and review-data publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "grocery-retail",
+      "datasetCode": "grocery",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "food-retail",
+      "subgroupOrder": 5,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "ร้านค้าปลีกและค้าส่ง",
+        "en": "Retail & Wholesale Networks"
+      },
+      "canonicalOrder": 19,
+      "slug": "grocery-retail",
+      "title": {
+        "th": "ร้านค้าปลีกและค้าส่ง",
+        "en": "Retail & Wholesale Networks"
+      },
+      "menuLabel": {
+        "th": "ร้านค้าปลีกและค้าส่ง",
+        "en": "Retail & Wholesale Networks"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=grocery",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/grocery-retail/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/grocery-retail/"
+      },
+      "aliases": [
+        "ร้านค้าปลีกและค้าส่ง",
+        "Retail & Wholesale Networks",
+        "grocery",
+        "grocery-retail",
+        "Grocery",
+        "ค้าปลีก",
+        "ค้าส่ง"
+      ],
+      "description": {
+        "th": "เห็นเครือข่ายร้านค้าปลีกและค้าส่งในพื้นที่เดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกย่านที่ควรลงสำรวจต่อ",
+        "en": "See retail and wholesale networks across an area to inform market strategy and decide where to investigate next."
+      },
+      "limitation": {
+        "th": "จำนวนสาขาและสัดส่วนในฐานข้อมูลไม่ใช่ยอดขาย ส่วนแบ่งรายได้ หรือความต้องการซื้อจริง ต้องตรวจสถานะสาขาและพื้นที่ขายก่อนใช้วางแผน",
+        "en": "Store counts and count shares are not sales, revenue share or observed demand. Verify operating status and floor area before planning."
+      },
+      "period": {
+        "th": "เว็บไซต์บางแบรนด์ตรวจ 29–30 กันยายน 2569; ฐานเดิมนำเข้า 12 พฤษภาคม 2567 โดยไม่ทราบวันเก็บต้นทาง",
+        "en": "Selected locators checked 29–30 September 2026; legacy data imported 12 May 2024 with original collection dates unknown."
+      },
+      "sourceOwner": {
+        "th": "เว็บไซต์สาขาของแต่ละแบรนด์ และฐาน CityMETER เดิม",
+        "en": "Brand store locators and the legacy CityMETER inventory"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "shopping-centers",
+      "datasetCode": "shoppingCenter",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "food-retail",
+      "subgroupOrder": 5,
+      "recordOrder": 3,
+      "currentTitle": {
+        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "en": "Shopping Centres, Markets & Retail Sites"
+      },
+      "canonicalOrder": 20,
+      "slug": "shopping-centers",
+      "title": {
+        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "en": "Shopping Centres, Markets & Retail Sites"
+      },
+      "menuLabel": {
+        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "en": "Shopping Centres, Markets & Retail Sites"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=shoppingCenter",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/shopping-centers/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/shopping-centers/"
+      },
+      "aliases": [
+        "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "Shopping Centres, Markets & Retail Sites",
+        "shoppingCenter",
+        "shopping-centers"
+      ],
+      "description": {
+        "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
+        "en": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations."
+      },
+      "limitation": {
+        "th": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
+        "en": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts."
+      },
+      "period": {
+        "th": "แหล่งข้อมูลในรุ่นที่ตรวจมีวันที่ 28 พฤษภาคม–20 กรกฎาคม 2569; รายแห่งอาจต่างกัน",
+        "en": "Sources in the inspected release are dated 28 May–20 July 2026; dates vary by site."
+      },
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลศูนย์การค้าต้นทางไม่ได้",
+        "en": "Original shopping-center inventory publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "hotel-market",
+      "datasetCode": "hotel",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "tourism-hospitality",
+      "subgroupOrder": 6,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "en": "Hotel Supply, Rates & Seasonality"
+      },
+      "canonicalOrder": 21,
+      "slug": "hotel-market",
+      "title": {
+        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "en": "Hotel Supply, Rates & Seasonality"
+      },
+      "menuLabel": {
+        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "en": "Hotel Supply, Rates & Seasonality"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=hotel",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/hotel-market/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/hotel-market/"
+      },
+      "aliases": [
+        "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "Hotel Supply, Rates & Seasonality",
+        "hotel",
+        "hotel-market"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
+        "en": "Compare hotel locations, room supply and listed prices to understand accommodation around a site."
+      },
+      "limitation": {
+        "th": "ยังไม่ทราบแหล่ง วิธีคำนวณ และความครอบคลุม จึงไม่ควรใช้แทนอัตราเข้าพักหรือยอดจอง",
+        "en": "Source, method, and coverage are not documented, so this should not stand in for occupancy or bookings"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "การท่องเที่ยวแห่งประเทศไทย — TAT Accommodation (candidate)",
+        "en": "Tourism Authority of Thailand — Accommodation (candidate)"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "tourism-demand-spending",
+      "datasetCode": "tourism",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "tourism-hospitality",
+      "subgroupOrder": 6,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย",
+        "en": "Tourism Demand: Visitors & Spending"
+      },
+      "canonicalOrder": 22,
+      "slug": "tourism-demand-spending",
+      "title": {
+        "th": "ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย",
+        "en": "Tourism Demand: Visitors & Spending"
+      },
+      "menuLabel": {
+        "th": "ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย",
+        "en": "Tourism Demand: Visitors & Spending"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=tourism",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/tourism-demand-spending/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/tourism-demand-spending/"
+      },
+      "aliases": [
+        "ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย",
+        "Tourism Demand: Visitors & Spending",
+        "tourism",
+        "tourism-demand-spending"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลการท่องเที่ยวจากหลายหน่วยงานให้เป็นแผนที่ เห็นแนวโน้มนักท่องเที่ยว การใช้จ่าย และแหล่งท่องเที่ยวเพื่อเลือกพื้นที่ศึกษาหรือพัฒนาต่อ",
+        "en": "Compare reported tourism volumes, spending and destinations to choose markets and seasons for further study."
+      },
+      "limitation": {
+        "th": "ต้องยืนยันนิยามผู้เยี่ยมเยือน ค่าใช้จ่าย วิธีแยกตลาด และนโยบายปรับปรุงตัวเลขก่อนสรุปเชิงนโยบาย",
+        "en": "Visitor and spending definitions, market split, and revision policy need confirmation before policy use"
+      },
+      "period": {
+        "th": "ข้อมูลสรุปรายเดือนและจังหวัด อ่านเดือน ปี และหน่วยของตัวเลขที่เลือก ข้อมูลอาจได้รับการปรับปรุงภายหลัง",
+        "en": "Monthly and provincial summaries. Read the selected month, year and units; figures may be revised later."
+      },
+      "sourceOwner": {
+        "th": "กระทรวงการท่องเที่ยวและกีฬา / การท่องเที่ยวแห่งประเทศไทย",
+        "en": "Ministry of Tourism and Sports / Tourism Authority of Thailand"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "fuel-stations",
+      "datasetCode": "gasStation",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "mobility",
+      "subgroupOrder": 7,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง",
+        "en": "Fuel Stations: Count, Density & Fuel Types"
+      },
+      "canonicalOrder": 23,
+      "slug": "fuel-stations",
+      "title": {
+        "th": "สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง",
+        "en": "Fuel Stations: Count, Density & Fuel Types"
+      },
+      "menuLabel": {
+        "th": "สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง",
+        "en": "Fuel Stations: Count, Density & Fuel Types"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=gasStation",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/fuel-stations/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/fuel-stations/"
+      },
+      "aliases": [
+        "สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง",
+        "Fuel Stations: Count, Density & Fuel Types",
+        "gasStation",
+        "fuel-stations"
+      ],
+      "description": {
+        "th": "เห็นการกระจายตัวและสัดส่วนจำนวนสถานีบริการแต่ละแบรนด์ เพื่อศึกษาภูมิทัศน์ตลาดและเลือกพื้นที่ลงสำรวจ",
+        "en": "Compare station locations and brand shares of recorded station counts to study local networks and plan fieldwork."
+      },
+      "limitation": {
+        "th": "ฐานปัจจุบันมีทั้งน้ำมันและก๊าซ และมีรายการไม่ทราบแบรนด์ สัดส่วนจำนวนสถานีไม่ใช่ส่วนแบ่งยอดขาย ต้องยืนยันประเภท สถานะเปิดบริการ และรายการซ้ำก่อนใช้วางแผน",
+        "en": "The current inventory mixes fuel and gas stations and includes unknown brands. Station-count share is not sales market share. Check station type, operating status and duplicates before planning."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลสถานีต้นทางทั้งหมดไม่ได้",
+        "en": "Original station-data publishers are not yet fully verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "fuel_network",
+      "semanticLabel": {
+        "th": "จำนวนและประเภทเชื้อเพลิง",
+        "en": "Count & fuel types"
+      },
+      "guardrail": "Current titles do not promise every station is operational or the latest target cleaning has shipped."
+    },
+    {
+      "id": "registered-cars",
+      "datasetCode": "cars",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "mobility",
+      "subgroupOrder": 7,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "รถยนต์จดทะเบียน",
+        "en": "Registered Cars"
+      },
+      "canonicalOrder": 24,
+      "slug": "registered-cars",
+      "title": {
+        "th": "รถยนต์จดทะเบียน",
+        "en": "Registered Cars"
+      },
+      "menuLabel": {
+        "th": "รถยนต์จดทะเบียน",
+        "en": "Registered Cars"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=cars",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/registered-cars/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/registered-cars/"
+      },
+      "aliases": [
+        "รถยนต์จดทะเบียน",
+        "Registered Cars",
+        "cars",
+        "registered-cars"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลรถจดทะเบียนครั้งแรกให้เป็นแผนที่รายจังหวัด เห็นสัดส่วนแบรนด์ ประเภทรถ และแนวโน้ม เพื่อวางแผนตลาดและเครือข่ายบริการให้ตรงพื้นที่",
+        "en": "Compare first-time vehicle registrations and brand shares within the selected records to plan local marketing and service networks."
+      },
+      "limitation": {
+        "th": "จำนวนนี้เป็นการจดทะเบียนครั้งแรกตามตัวกรอง สัดส่วนแบรนด์ใช้ฐานรายการที่เลือก ไม่ใช่จำนวนรถใช้งานทั้งหมด กำลังซื้อ หรือพฤติกรรมเดินทาง",
+        "en": "Counts represent first-time registrations within the filters. Brand shares use selected records, not the active fleet, purchasing power or travel behaviour."
+      },
+      "period": {
+        "th": "มีตัวเลือกเดือนและปีตั้งแต่ 2563; อ่านเดือนล่าสุดจากหน้าข้อมูลและระบุแบรนด์ที่เลือกเมื่อเทียบสัดส่วน",
+        "en": "Month and year selections start in 2020; read the latest available month on the data view and state the selected brands when comparing shares."
+      },
+      "sourceOwner": {
+        "th": "กรมการขนส่งทางบก",
+        "en": "Department of Land Transport"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "registration",
+      "semanticLabel": {
+        "th": "ข้อมูลทะเบียน",
+        "en": "Registration"
+      },
+      "guardrail": "Registration measures are not the complete vehicle fleet or observed road traffic."
+    },
+    {
+      "id": "road-network-archetypes",
+      "datasetCode": "roadDna",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "mobility",
+      "subgroupOrder": 7,
+      "recordOrder": 3,
+      "currentTitle": {
+        "th": "รูปแบบโครงข่ายถนน",
+        "en": "Road Network Archetypes"
+      },
+      "canonicalOrder": 25,
+      "slug": "road-network-archetypes",
+      "title": {
+        "th": "รูปแบบโครงข่ายถนน",
+        "en": "Road Network Archetypes"
+      },
+      "menuLabel": {
+        "th": "รูปแบบโครงข่ายถนน",
+        "en": "Road Network Archetypes"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=roadDna",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/road-network-archetypes/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/road-network-archetypes/"
+      },
+      "aliases": [
+        "รูปแบบโครงข่ายถนน",
+        "Road Network Archetypes",
+        "roadDna",
+        "road-network-archetypes"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลเส้นถนนบนแผนที่ ให้เป็นโปรไฟล์โครงสร้างของพื้นที่ ที่ช่วยให้เห็นรูปแบบการเชื่อมต่อของเมืองและประเมินศักยภาพทำเลได้ง่ายขึ้น",
+        "en": "Turn road networks into an area profile to understand urban connections and study a location."
+      },
+      "limitation": {
+        "th": "รูปแบบโครงข่ายไม่ใช่การจราจรจริงหรือคะแนนการเข้าถึง และต้องแสดงสถานะความเชื่อมั่นเมื่อมี",
+        "en": "A network archetype is not observed traffic or an access score; show the confidence state when available"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "CityMETER derived model",
+        "en": "CityMETER derived model"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "network_pattern",
+      "semanticLabel": {
+        "th": "รูปแบบโครงข่าย",
+        "en": "Network pattern"
+      },
+      "guardrail": "Network pattern is not measured traffic."
+    },
+    {
+      "id": "traffic-congestion-speed",
+      "datasetCode": "traffic",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "mobility",
+      "subgroupOrder": 7,
+      "recordOrder": 4,
+      "currentTitle": {
+        "th": "การจราจร: ความติดขัดและความเร็ว",
+        "en": "Traffic: Congestion & Speed"
+      },
+      "canonicalOrder": 26,
+      "slug": "traffic-congestion-speed",
+      "title": {
+        "th": "การจราจร: ความติดขัดและความเร็ว",
+        "en": "Traffic: Congestion & Speed"
+      },
+      "menuLabel": {
+        "th": "การจราจร: ความติดขัดและความเร็ว",
+        "en": "Traffic: Congestion & Speed"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=traffic",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/traffic-congestion-speed/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/traffic-congestion-speed/"
+      },
+      "aliases": [
+        "การจราจร: ความติดขัดและความเร็ว",
+        "Traffic: Congestion & Speed",
+        "traffic",
+        "traffic-congestion-speed"
+      ],
+      "description": {
+        "th": "เห็นความเร็วและความติดขัดในช่วงที่มีข้อมูล เพื่อเข้าใจการเข้าถึงทำเลก่อนวางแผนหน้าร้าน การให้บริการ และการลงสำรวจตลาด",
+        "en": "Explore available speed and congestion data to study access to a site and plan services and market visits."
+      },
+      "limitation": {
+        "th": "ข้อมูลที่ล่าช้าหรือเชื่อมต่อไม่ได้ไม่เท่ากับการจราจรคล่อง และยังไม่มี SLA บนหน้าสาธารณะ",
+        "en": "A delayed or unavailable feed does not mean free-flow traffic, and no public update SLA is stated"
+      },
+      "period": {
+        "th": "อ่านเวลาของข้อมูลและช่วงย้อนหลังที่หน้าใช้งาน ข้อมูลที่ขาดหรือเก่าไม่ใช่หลักฐานว่าถนนโล่ง",
+        "en": "Read the timestamp and available history on the data view. Missing or old records do not establish free-flow traffic."
+      },
+      "sourceOwner": {
+        "th": "TomTom Traffic — CityMETER ประมวลผลและแสดงผล",
+        "en": "TomTom Traffic — processed and presented by CityMETER"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "events-notices",
+      "datasetCode": "trafficIncident",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "events-notices",
+      "subgroupOrder": 8,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "เหตุการณ์และประกาศในพื้นที่",
+        "en": "City Events & Notices"
+      },
+      "canonicalOrder": 27,
+      "slug": "events-notices",
+      "title": {
+        "th": "เหตุการณ์และประกาศในพื้นที่",
+        "en": "City Events & Notices"
+      },
+      "menuLabel": {
+        "th": "เหตุการณ์และประกาศในพื้นที่",
+        "en": "City Events & Notices"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=trafficIncident",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/events-notices/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/events-notices/"
+      },
+      "aliases": [
+        "เหตุการณ์และประกาศในพื้นที่",
+        "City Events & Notices",
+        "trafficIncident",
+        "events-notices",
+        "Traffic Incident",
+        "Traffic Incidents",
+        "รายงานเหตุการณ์"
+      ],
+      "description": {
+        "th": "เลือกพื้นที่และช่วงเวลา แล้วเห็นว่ามีรายงานเรื่องใดบ้าง เพื่อเลือกหลักฐานที่ควรเปิดดูต่อและวางแผนงานในพื้นที่ได้ดีขึ้น",
+        "en": "Explore local reports and notices by area and time, then open the evidence that matters to your work."
+      },
+      "limitation": {
+        "th": "จำนวนรายงานไม่ใช่จำนวนเหตุจริงหรือปริมาณจราจร ประวัติที่เริ่มเก่าไม่ได้ยืนยันว่าครบทุกช่วง และการไม่พบรายงานไม่ได้แปลว่าไม่มีเหตุ",
+        "en": "Report counts are not unique events or traffic volume. An early historical record does not prove continuous coverage, and no report does not mean no event."
+      },
+      "period": {
+        "th": "เลือกช่วงล่าสุดหรือประวัติที่มีในฐานข้อมูลได้ เวลาเริ่มต้นและความครบถ้วนต้องอ่านตามช่วงที่เลือก",
+        "en": "Choose recent or historical periods available in the database. Read the start date and coverage for the selected period."
+      },
+      "sourceOwner": {
+        "th": "ต้นทางรายงานตามรายการ — ยังยืนยันผู้เผยแพร่แต่ละรายงานได้ไม่ครบ",
+        "en": "Original report sources vary by record; not every report publisher is verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "locale-insights",
+      "datasetCode": "localeInsights",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "area-community-context",
+      "subgroupOrder": 9,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "Locale Insights: บริบทย่าน",
+        "en": "Locale Insights"
+      },
+      "canonicalOrder": 28,
+      "slug": "locale-insights",
+      "title": {
+        "th": "Locale Insights: บริบทย่าน",
+        "en": "Locale Insights"
+      },
+      "menuLabel": {
+        "th": "Locale Insights: บริบทย่าน",
+        "en": "Locale Insights"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=localeInsights",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/locale-insights/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/locale-insights/"
+      },
+      "aliases": [
+        "Locale Insights: บริบทย่าน",
+        "Locale Insights",
+        "localeInsights",
+        "locale-insights"
+      ],
+      "description": {
+        "th": "รวมข้อมูลสำคัญของแต่ละพื้นที่ ให้เป็นแผนที่โปรไฟล์ทำเลในหน้าเดียว ที่ช่วยให้เห็นจุดเด่น จุดด้อย และภาพรวมของแต่ละย่านได้ชัดเจนขึ้น",
+        "en": "Bring key neighbourhood context into one view to compare the strengths, gaps and character of each area."
+      },
+      "limitation": {
+        "th": "ใช้เป็นบริบทตั้งต้นสำหรับวางแผนบริการ ลงพื้นที่ พูดคุยกับชุมชน และจัดลำดับงาน ต้องเชื่อม locale_id กับขอบเขตปกครองหรือบริการที่ตรวจแล้วก่อนรวมยอด ไม่ใช้แทนประชากรทางการ พฤติกรรมจริง เกณฑ์สิทธิ หรือการประเมินความเสี่ยง",
+        "en": "Use as contextual input for service planning, field validation, engagement and prioritisation. Link locale_id to verified administrative or service boundaries before aggregation. It is not official population, observed behaviour, eligibility or risk determination."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "CityMETER derived / LLM-assisted contextual layer",
+        "en": "CityMETER derived / LLM-assisted contextual layer"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "contextual_prior",
+      "semanticLabel": {
+        "th": "บริบทเพื่อศึกษาต่อ",
+        "en": "Context for further study"
+      },
+      "guardrail": "Contextual prior only; not official population, behaviour, eligibility, statutory boundaries or risk. Crosswalk locale_id before aggregation."
+    },
+    {
+      "id": "places-of-worship",
+      "datasetCode": "placeOfWorship",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "area-community-context",
+      "subgroupOrder": 9,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "ศาสนสถานในพื้นที่",
+        "en": "Places of Worship"
+      },
+      "canonicalOrder": 29,
+      "slug": "places-of-worship",
+      "title": {
+        "th": "ศาสนสถานในพื้นที่",
+        "en": "Places of Worship"
+      },
+      "menuLabel": {
+        "th": "ศาสนสถานในพื้นที่",
+        "en": "Places of Worship"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=placeOfWorship",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/places-of-worship/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/places-of-worship/"
+      },
+      "aliases": [
+        "ศาสนสถานในพื้นที่",
+        "Places of Worship",
+        "placeOfWorship",
+        "places-of-worship",
+        "ศาสนสถาน"
+      ],
+      "description": {
+        "th": "รู้จักศาสนสถานในพื้นที่ผ่านแผนที่ เพื่อเริ่มทำความเข้าใจบริบทชุมชนและเตรียมการพูดคุยในพื้นที่อย่างรอบด้าน",
+        "en": "Explore places of worship on a map to understand local context and prepare for conversations with communities."
+      },
+      "limitation": {
+        "th": "ไม่มีหมุดไม่ได้แปลว่าไม่มีศาสนสถาน อัตราส่วนประชากรต่อแห่งไม่ใช่ความจุ จำนวนผู้ใช้บริการ หรือจำนวนผู้นับถือศาสนา",
+        "en": "A missing point does not mean no place exists. Population per site is not capacity, attendance or religious affiliation."
+      },
+      "period": {
+        "th": "วันข้อมูลต่างกันตามรายการ ไม่กำหนดวันเดียวแทนทั้งฐาน",
+        "en": "Reference dates vary by record; no single date represents the entire inventory."
+      },
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลต้นทางของแต่ละรายการได้ไม่ครบ",
+        "en": "Original publishers are not yet fully verified for each record"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "population-age-sex",
+      "datasetCode": "population",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "people",
+      "subgroupOrder": 1,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "ประชากรตามอายุและเพศ",
+        "en": "Population by Age & Sex"
+      },
+      "canonicalOrder": 30,
+      "slug": "population-age-sex",
+      "title": {
+        "th": "ประชากรตามอายุและเพศ",
+        "en": "Population by Age & Sex"
+      },
+      "menuLabel": {
+        "th": "ประชากรตามอายุและเพศ",
+        "en": "Population by Age & Sex"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=population",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/population-age-sex/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/population-age-sex/"
+      },
+      "aliases": [
+        "ประชากรตามอายุและเพศ",
+        "Population by Age & Sex",
+        "population",
+        "population-age-sex"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลทะเบียนราษฎรให้เป็นแผนที่ประชากรตามอายุและเพศ ช่วยเปรียบเทียบพื้นที่และวางแผนบริการให้ตรงกับคนที่ต้องดูแล",
+        "en": "See the age and sex structure of registered populations on a map to compare areas and plan services."
+      },
+      "limitation": {
+        "th": "ไม่ใช่ประชากรกลางวัน รายได้ สิทธิรับบริการ หรือหลักฐานพฤติกรรมของคนในพื้นที่",
+        "en": "This is not daytime population, income, service eligibility, or evidence of local behaviour"
+      },
+      "period": {
+        "th": "มีตัวเลือกตั้งแต่ 2556; แสดงเดือนอ้างอิงตามข้อมูลที่เลือก ไม่ใช่จำนวนประชากรขณะนี้",
+        "en": "Selections start in 2013. Use the reference month shown for the selected data, not a claim of the population at this moment."
+      },
+      "sourceOwner": {
+        "th": "สำนักบริหารการทะเบียน กรมการปกครอง",
+        "en": "Bureau of Registration Administration, Department of Provincial Administration"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "schools-students-teachers",
+      "datasetCode": "school",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "education",
+      "subgroupOrder": 2,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "canonicalOrder": 31,
+      "slug": "schools-students-teachers",
+      "title": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "menuLabel": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/"
+      },
+      "aliases": [
+        "โรงเรียน นักเรียน และครู",
+        "Schools, Students & Teachers",
+        "school",
+        "schools-students-teachers"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+        "en": "See the distribution, levels and types of schools on a map to compare local provision."
+      },
+      "limitation": {
+        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "กระทรวงศึกษาธิการ (candidate)",
+        "en": "Ministry of Education (candidate)"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "government-spending",
+      "datasetCode": "govspending",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "public-finance",
+      "subgroupOrder": 3,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "งบประมาณและการเบิกจ่ายภาครัฐ",
+        "en": "Government Budget & Disbursement"
+      },
+      "canonicalOrder": 32,
+      "slug": "government-spending",
+      "title": {
+        "th": "งบประมาณและการเบิกจ่ายภาครัฐ",
+        "en": "Government Budget & Disbursement"
+      },
+      "menuLabel": {
+        "th": "งบประมาณและการเบิกจ่ายภาครัฐ",
+        "en": "Government Budget & Disbursement"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=govspending",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/government-spending/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/government-spending/"
+      },
+      "aliases": [
+        "งบประมาณและการเบิกจ่ายภาครัฐ",
+        "Government Budget & Disbursement",
+        "govspending",
+        "government-spending",
+        "Government Spending",
+        "งบประมาณ",
+        "การเบิกจ่าย",
+        "การใช้จ่ายภาครัฐ"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลงบประมาณและการเบิกจ่ายให้เป็นภาพเชิงพื้นที่ เพื่อเห็นว่าเงินถูกจัดสรรและเบิกจ่ายอย่างไร ก่อนติดตามโครงการต่อ",
+        "en": "Compare budget allocations and recorded disbursements by area to prepare questions about public spending."
+      },
+      "limitation": {
+        "th": "รายการที่จับคู่พื้นที่ได้ไม่ใช่งบทั้งหมดของประเทศ การจัดสรรและเบิกจ่ายเป็นคนละขั้น และตัวเงินไม่บอกผลสำเร็จ คุณภาพบริการ หรือความคุ้มค่าโดยลำพัง",
+        "en": "Mapped items are not total national spending. Allocation and disbursement are different stages; amounts alone do not establish outcomes, service quality or value for money."
+      },
+      "period": {
+        "th": "ปีงบประมาณ 2558–2568 ตามรายการที่มี; ความครบถ้วนของตำแหน่งต่างกันตามปี",
+        "en": "Fiscal years 2015–2025 for available records; spatial completeness differs by year."
+      },
+      "sourceOwner": {
+        "th": "ยังยืนยันหน่วยงานผู้เผยแพร่ข้อมูลต้นทางไม่ได้",
+        "en": "Original publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "municipal-revenue",
+      "datasetCode": "municipality",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "public-finance",
+      "subgroupOrder": 3,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "รายได้องค์กรปกครองส่วนท้องถิ่น",
+        "en": "Municipal Revenue"
+      },
+      "canonicalOrder": 33,
+      "slug": "municipal-revenue",
+      "title": {
+        "th": "รายได้องค์กรปกครองส่วนท้องถิ่น",
+        "en": "Municipal Revenue"
+      },
+      "menuLabel": {
+        "th": "รายได้องค์กรปกครองส่วนท้องถิ่น",
+        "en": "Municipal Revenue"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=municipality",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/municipal-revenue/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/municipal-revenue/"
+      },
+      "aliases": [
+        "รายได้องค์กรปกครองส่วนท้องถิ่น",
+        "Municipal Revenue",
+        "municipality",
+        "municipal-revenue"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลรายได้องค์กรปกครองส่วนท้องถิ่นให้เป็นแผนที่ เปรียบเทียบพื้นที่และแนวโน้มรายปีเพื่อเตรียมแผนบริการและงบประมาณ",
+        "en": "Compare local-government revenue over time to prepare better questions about public resources."
+      },
+      "limitation": {
+        "th": "รายได้ไม่ใช่คุณภาพบริการหรือศักยภาพการคลังทั้งหมด และต้องอ่านปีบัญชีกับนิยามตัวหาร",
+        "en": "Revenue is not overall service quality or fiscal capacity; read it with the accounting year and denominator definitions"
+      },
+      "period": {
+        "th": "หน้า CityMETER ที่ตรวจมีปีงบประมาณ 2560–2567 ส่วนบัญชีต้นทาง DLA มีถึงปี 2568 ตรวจปีที่เลือกก่อนใช้ ไม่ถือว่าปีใหม่ถูกนำเข้าแล้วโดยอัตโนมัติ",
+        "en": "The inspected CityMETER view offers fiscal years 2017–2024; the upstream DLA catalogue extends to 2025. Check the selected year; a newer source release does not establish that it has been imported."
+      },
+      "sourceOwner": {
+        "th": "กรมส่งเสริมการปกครองท้องถิ่น",
+        "en": "Department of Local Administration"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "government-agencies-workforce",
+      "datasetCode": "governmentOfficer",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "public-service",
+      "subgroupOrder": 4,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "หน่วยงานรัฐและบุคลากร",
+        "en": "Government Agencies & Workforce"
+      },
+      "canonicalOrder": 34,
+      "slug": "government-agencies-workforce",
+      "title": {
+        "th": "หน่วยงานรัฐและบุคลากร",
+        "en": "Government Agencies & Workforce"
+      },
+      "menuLabel": {
+        "th": "หน่วยงานรัฐและบุคลากร",
+        "en": "Government Agencies & Workforce"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=governmentOfficer",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/government-agencies-workforce/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/government-agencies-workforce/"
+      },
+      "aliases": [
+        "หน่วยงานรัฐและบุคลากร",
+        "Government Agencies & Workforce",
+        "governmentOfficer",
+        "government-agencies-workforce"
+      ],
+      "description": {
+        "th": "รวมข้อมูลหน่วยงานรัฐและบุคลากรบนแผนที่ เพื่อเห็นการกระจายตัวของบริการและเลือกพื้นที่ศึกษาต่อ",
+        "en": "Explore government offices and reported personnel to understand the public-service presence in an area."
+      },
+      "limitation": {
+        "th": "ความครอบคลุมข้อมูลติดต่อไม่ใช่ความพร้อมหรือคุณภาพบริการ และนิยามตัวหารยังต้องยืนยัน",
+        "en": "Contact coverage is not service availability or quality, and denominator definitions still need confirmation"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ข้อมูลจากหลายแหล่ง — ยังยืนยันผู้เผยแพร่ของแต่ละส่วนได้ไม่ครบ",
+        "en": "Multiple sources; publishers are not yet fully verified for every part"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "flood-recurrent",
+      "datasetCode": "floodimpact",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "flood",
+      "subgroupOrder": 5,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "น้ำท่วมซ้ำซาก",
+        "en": "Flood: Recurrent"
+      },
+      "canonicalOrder": 35,
+      "slug": "flood-recurrent",
+      "title": {
+        "th": "น้ำท่วมซ้ำซาก",
+        "en": "Flood: Recurrent"
+      },
+      "menuLabel": {
+        "th": "น้ำท่วมซ้ำซาก",
+        "en": "Flood: Recurrent"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/AYA/D/1408?d=floodimpact",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/flood-recurrent/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/flood-recurrent/"
+      },
+      "aliases": [
+        "น้ำท่วมซ้ำซาก",
+        "Flood: Recurrent",
+        "floodimpact",
+        "flood-recurrent"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลน้ำท่วมย้อนหลังให้เป็นแผนที่ เห็นพื้นที่ที่เคยตรวจพบน้ำท่วมและการเกิดซ้ำในแต่ละปี ก่อนศึกษาทำเลต่อ",
+        "en": "Compare areas where flooding was observed in past years before studying a location further."
+      },
+      "limitation": {
+        "th": "ประวัติย้อนหลังไม่ใช่สภาพปัจจุบันหรือการคาดการณ์ และไม่ใช้แทนการกำหนดความเสี่ยงตามกฎหมาย",
+        "en": "Historical recurrence is neither current conditions nor a forecast and does not replace a statutory risk determination"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "GISTDA disaster layers (candidate)",
+        "en": "GISTDA disaster layers (candidate)"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "historical",
+      "semanticLabel": {
+        "th": "ย้อนหลัง",
+        "en": "Historical"
+      },
+      "guardrail": "Historic recurrence is not a present flood observation."
+    },
+    {
+      "id": "flood-latest-observed",
+      "datasetCode": "floodrecent",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "flood",
+      "subgroupOrder": 5,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "น้ำท่วมที่ตรวจพบล่าสุด",
+        "en": "Flood: Latest Observed"
+      },
+      "canonicalOrder": 36,
+      "slug": "flood-latest-observed",
+      "title": {
+        "th": "น้ำท่วมที่ตรวจพบล่าสุด",
+        "en": "Flood: Latest Observed"
+      },
+      "menuLabel": {
+        "th": "น้ำท่วมที่ตรวจพบล่าสุด",
+        "en": "Flood: Latest Observed"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=floodrecent",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/flood-latest-observed/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/flood-latest-observed/"
+      },
+      "aliases": [
+        "น้ำท่วมที่ตรวจพบล่าสุด",
+        "Flood: Latest Observed",
+        "floodrecent",
+        "flood-latest-observed"
+      ],
+      "description": {
+        "th": "เปลี่ยนพื้นที่น้ำท่วมที่ดาวเทียมตรวจพบให้เป็นแผนที่ อ่านวันที่ของภาพและบริบทลุ่มน้ำ เพื่อทบทวนเหตุการณ์และวางประเด็นศึกษาต่อ",
+        "en": "Review satellite-observed flood areas for a selected date and study their watershed context."
+      },
+      "limitation": {
+        "th": "ข้อมูลที่ตรวจพบล่าสุดเป็นภาพตามวันที่ระบุ ไม่ใช่สถานการณ์สด",
+        "en": "The latest observed layer is a dated snapshot, not present conditions"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "GISTDA flood boundary (candidate)",
+        "en": "GISTDA flood boundary (candidate)"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "observed",
+      "semanticLabel": {
+        "th": "ตรวจพบ",
+        "en": "Observed"
+      },
+      "guardrail": "Latest available observation is not a guarantee of current conditions; read acquisition time."
+    },
+    {
+      "id": "flood-forecast-depth",
+      "datasetCode": "flood-forecast-depth",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "flood",
+      "subgroupOrder": 5,
+      "recordOrder": 3,
+      "currentTitle": {
+        "th": "คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ",
+        "en": "Flood: Forecast Depth by DWR"
+      },
+      "canonicalOrder": 37,
+      "slug": "flood-forecast-depth",
+      "title": {
+        "th": "คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ",
+        "en": "Flood: Forecast Depth by DWR"
+      },
+      "menuLabel": {
+        "th": "คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ",
+        "en": "Flood: Forecast Depth by DWR"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=flood-forecast-depth",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/flood-forecast-depth/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/flood-forecast-depth/"
+      },
+      "aliases": [
+        "คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ",
+        "Flood: Forecast Depth by DWR",
+        "flood-forecast-depth"
+      ],
+      "description": {
+        "th": "เห็นความลึกน้ำท่วมที่แบบจำลองคาดการณ์ในพื้นที่และช่วงเวลาที่เลือก เพื่อเตรียมคำถามและติดตามสถานการณ์ต่อ",
+        "en": "Read modelled flood depth for a forecast period and check the model context before planning."
+      },
+      "limitation": {
+        "th": "ผลโมเดลไม่ใช่คำยืนยันเหตุการณ์ และต้องแสดงเวลาออกรัน แหล่งข้อมูล วิธี และข้อจำกัด",
+        "en": "Model output is not confirmation of an event; show run time, source, method, and limitations"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "กรมทรัพยากรน้ำ — forecast layer; exact public package ยังไม่ยืนยัน",
+        "en": "Department of Water Resources forecast layer; exact public package not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "forecast_depth",
+      "semanticLabel": {
+        "th": "คาดการณ์ความลึก · DWR",
+        "en": "Forecast depth · DWR"
+      },
+      "guardrail": "A modelled depth forecast is not a measured water level."
+    },
+    {
+      "id": "flood-forecast-flash-flood-risk",
+      "datasetCode": "flash-flood-risk",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "flood",
+      "subgroupOrder": 5,
+      "recordOrder": 4,
+      "currentTitle": {
+        "th": "น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google",
+        "en": "Flood: Flash Flood: 24-hour Risk by Google"
+      },
+      "canonicalOrder": 38,
+      "slug": "flood-forecast-flash-flood-risk",
+      "title": {
+        "th": "น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google",
+        "en": "Flood: Flash Flood: 24-hour Risk by Google"
+      },
+      "menuLabel": {
+        "th": "น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google",
+        "en": "Flood: Flash Flood: 24-hour Risk by Google"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=flash-flood-risk",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/flood-forecast-flash-flood-risk/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/flood-forecast-flash-flood-risk/"
+      },
+      "aliases": [
+        "น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google",
+        "Flood: Flash Flood: 24-hour Risk by Google",
+        "flash-flood-risk",
+        "flood-forecast-flash-flood-risk"
+      ],
+      "description": {
+        "th": "นำข้อมูลคาดการณ์น้ำท่วมฉับพลันมาอ่านในบริบทพื้นที่ เพื่อเตรียมตรวจสถานการณ์และติดตามประกาศเตือนภัยที่เกี่ยวข้อง",
+        "en": "Read flash-flood forecast information for an area alongside its issue time and validity window."
+      },
+      "limitation": {
+        "th": "เป็นสัญญาณจากโมเดล ไม่ใช่คำยืนยันว่าจะเกิดเหตุ และต้องคงป้ายสถานะการทดลองไว้",
+        "en": "This is a model signal, not confirmation that an event will occur; retain the experimental status"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "Google Flood Forecasting",
+        "en": "Google Flood Forecasting"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "forecast_flash_flood",
+      "semanticLabel": {
+        "th": "คาดการณ์ 24 ชม. · Google",
+        "en": "24-hour forecast · Google"
+      },
+      "guardrail": "Flash-flood risk is not interchangeable with DWR modelled depth; validity must be read from the current view."
+    },
+    {
+      "id": "earthquake-sensors",
+      "datasetCode": "quake",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "other-hazards",
+      "subgroupOrder": 6,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "เครือข่ายเซนเซอร์แผ่นดินไหว",
+        "en": "Earthquake Sensor Network"
+      },
+      "canonicalOrder": 39,
+      "slug": "earthquake-sensors",
+      "title": {
+        "th": "เครือข่ายเซนเซอร์แผ่นดินไหว",
+        "en": "Earthquake Sensor Network"
+      },
+      "menuLabel": {
+        "th": "เครือข่ายเซนเซอร์แผ่นดินไหว",
+        "en": "Earthquake Sensor Network"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=quake",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/earthquake-sensors/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/earthquake-sensors/"
+      },
+      "aliases": [
+        "เครือข่ายเซนเซอร์แผ่นดินไหว",
+        "Earthquake Sensor Network",
+        "quake",
+        "earthquake-sensors"
+      ],
+      "description": {
+        "th": "เห็นค่าการสั่นที่สถานีรายงาน รู้ว่าข้อมูลแทนช่วงเวลาใด และเลือกตรวจพื้นที่ต่อได้อย่างมีหลักฐาน",
+        "en": "See what seismic stations report, when they report it, and what to check next."
+      },
+      "limitation": {
+        "th": "อ่านสถานี หน่วย และเวลาของค่าที่แสดง ข้อมูลที่เก่าไม่ใช่การเฝ้าระวังขณะนี้ และค่าการสั่นไม่รับรองความปลอดภัยของอาคาร",
+        "en": "Read station, units and timestamps together. Old readings are not current monitoring, and shaking measurements do not certify building safety."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "TMD event feed ร่วมกับ RUGON / USGS",
+        "en": "TMD event feed with RUGON / USGS"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "fire-monitoring",
+      "datasetCode": "fire",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "other-hazards",
+      "subgroupOrder": 6,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "การติดตามสถานการณ์ไฟ",
+        "en": "Fire Monitoring"
+      },
+      "canonicalOrder": 40,
+      "slug": "fire-monitoring",
+      "title": {
+        "th": "การติดตามสถานการณ์ไฟ",
+        "en": "Fire Monitoring"
+      },
+      "menuLabel": {
+        "th": "การติดตามสถานการณ์ไฟ",
+        "en": "Fire Monitoring"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=fire",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/fire-monitoring/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/fire-monitoring/"
+      },
+      "aliases": [
+        "การติดตามสถานการณ์ไฟ",
+        "Fire Monitoring",
+        "fire",
+        "fire-monitoring"
+      ],
+      "description": {
+        "th": "เปลี่ยนจุดความร้อนจากดาวเทียมให้เป็นแผนที่ที่อ่านร่วมกับขอบเขตพื้นที่และเวลาตรวจพบ เพื่อเลือกจุดติดตามและตรวจสอบต่อ",
+        "en": "View satellite hotspots by area and observation time to support further checks."
+      },
+      "limitation": {
+        "th": "จุดความร้อนเป็นสัญญาณตรวจจับของดาวเทียม ไม่ใช่ไฟป่าทุกเหตุ พื้นที่เสียหาย หรือปริมาณ PM2.5 ต้องอ่านเวลาตรวจพบและยืนยันกับรายงานภาคสนาม",
+        "en": "Hotspots are satellite detections, not every wildfire, burned area or PM2.5 measurement. Read detection time and check field reports."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "NASA VIIRS / FIRMS",
+        "en": "NASA VIIRS / FIRMS"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "disaster-historical-impacts",
+      "datasetCode": "disaster",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "multi-hazard",
+      "subgroupOrder": 7,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "ผลกระทบจากสาธารณภัยในอดีต",
+        "en": "Disaster: Historical Impacts"
+      },
+      "canonicalOrder": 41,
+      "slug": "disaster-historical-impacts",
+      "title": {
+        "th": "ผลกระทบจากสาธารณภัยในอดีต",
+        "en": "Disaster: Historical Impacts"
+      },
+      "menuLabel": {
+        "th": "ผลกระทบจากสาธารณภัยในอดีต",
+        "en": "Disaster: Historical Impacts"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=disaster",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/disaster-historical-impacts/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/disaster-historical-impacts/"
+      },
+      "aliases": [
+        "ผลกระทบจากสาธารณภัยในอดีต",
+        "Disaster: Historical Impacts",
+        "disaster",
+        "disaster-historical-impacts"
+      ],
+      "description": {
+        "th": "เปลี่ยนสถิติสาธารณภัยย้อนหลังระดับหมู่บ้าน ให้เป็นแผนที่วิเคราะห์พื้นที่ที่เคยได้รับผลกระทบ เพื่อการวางแผนป้องกันอย่างมีหลักฐานรองรับ",
+        "en": "Turn village-level disaster history into a map of past impacts to support evidence-based preparedness."
+      },
+      "limitation": {
+        "th": "ผลกระทบย้อนหลังไม่ใช่ความเสี่ยงปัจจุบัน และยังต้องระบุช่วงเวลา แหล่งข้อมูล และข้อจำกัดการรายงาน",
+        "en": "Historical impacts are not current risk; period, source, and reporting limitations still need documentation"
+      },
+      "period": {
+        "th": "CSV รายปี 2557–2567; ข้อมูลล่าสุดที่ยืนยันคือปี 2567",
+        "en": "Annual CSVs for 2014–2024; latest verified data year is 2024."
+      },
+      "sourceOwner": {
+        "th": "กรมป้องกันและบรรเทาสาธารณภัย",
+        "en": "Department of Disaster Prevention and Mitigation"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": "historical_impacts",
+      "semanticLabel": {
+        "th": "ผลกระทบย้อนหลัง",
+        "en": "Historical impacts"
+      },
+      "guardrail": "Recorded impacts do not establish future hazard probability."
+    },
+    {
+      "id": "events/hat-yai-flood-2025-11",
+      "datasetCode": "hatyaiflood",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "event-archive",
+      "subgroupOrder": 8,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568",
+        "en": "Hat Yai Flood Reports — 24–27 Nov 2025"
+      },
+      "canonicalOrder": 42,
+      "slug": "events-hat-yai-flood-2025-11",
+      "title": {
+        "th": "รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568",
+        "en": "Hat Yai Flood Reports — 24–27 Nov 2025"
+      },
+      "menuLabel": {
+        "th": "รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568",
+        "en": "Hat Yai Flood Reports — 24–27 Nov 2025"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/SKA/D/9011?d=hatyaiflood",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/events-hat-yai-flood-2025-11/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/events-hat-yai-flood-2025-11/"
+      },
+      "aliases": [
+        "รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568",
+        "Hat Yai Flood Reports — 24–27 Nov 2025",
+        "hatyaiflood",
+        "events-hat-yai-flood-2025-11"
+      ],
+      "description": {
+        "th": "รวมรายงานน้ำท่วมหาดใหญ่ 24–27 พฤศจิกายน 2568 ไว้บนแผนที่ เพื่อย้อนดูเหตุการณ์และบทเรียนการช่วยเหลือในแต่ละพื้นที่",
+        "en": "Review mapped flood reports from Hat Yai, 24–27 November 2025, to learn from the response."
+      },
+      "limitation": {
+        "th": "เป็นคลังเหตุการณ์เฉพาะหาดใหญ่ ไม่ใช่ชั้นข้อมูลน้ำท่วมทั่วไปหรือการประเมินผลกระทบทั้งหมด",
+        "en": "This is a Hat Yai event archive, not a reusable flood layer or a full impact assessment"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "Thai PBS / ThaiHelp case reports",
+        "en": "Thai PBS / ThaiHelp case reports"
+      },
+      "resourceClass": "CreativeWork",
+      "semanticKind": "event_archive",
+      "semanticLabel": {
+        "th": "บันทึก 24–27 พ.ย. 2568",
+        "en": "Archive · 24–27 Nov 2025"
+      },
+      "guardrail": "A dated event archive, not a live flood status."
+    },
+    {
+      "id": "events/quake-building-inspection",
+      "datasetCode": "quakeSafe",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "event-archive",
+      "subgroupOrder": 8,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "QuakeSafe: สถานะการตรวจสอบอาคาร",
+        "en": "QuakeSafe: Building Inspection Status"
+      },
+      "canonicalOrder": 43,
+      "slug": "events-quake-building-inspection",
+      "title": {
+        "th": "QuakeSafe: สถานะการตรวจสอบอาคาร",
+        "en": "QuakeSafe: Building Inspection Status"
+      },
+      "menuLabel": {
+        "th": "QuakeSafe: สถานะการตรวจสอบอาคาร",
+        "en": "QuakeSafe: Building Inspection Status"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=quakeSafe",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/events-quake-building-inspection/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/events-quake-building-inspection/"
+      },
+      "aliases": [
+        "QuakeSafe: สถานะการตรวจสอบอาคาร",
+        "QuakeSafe: Building Inspection Status",
+        "quakeSafe",
+        "events-quake-building-inspection"
+      ],
+      "description": {
+        "th": "รวมสถานะจากรายงานตรวจอาคารหลังแผ่นดินไหวไว้บนแผนที่ เพื่อค้นอาคารและติดตามรายละเอียดการตรวจจากผู้รับผิดชอบ",
+        "en": "Review dated building inspection reports after an earthquake and check the original assessment."
+      },
+      "limitation": {
+        "th": "ไม่ใช่เครือข่ายเซนเซอร์ ใบรับรองโครงสร้าง หรือฐานตรวจอาคารปัจจุบันทุกแห่ง",
+        "en": "This is not a sensor network, structural certification, or a current inventory of every inspected building"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "BMA Building Inspection Dashboard — exact record lineage ยังไม่ยืนยัน",
+        "en": "BMA Building Inspection Dashboard — exact record lineage not yet verified"
+      },
+      "resourceClass": "CreativeWork",
+      "semanticKind": "inspection_archive",
+      "semanticLabel": {
+        "th": "บันทึกการตรวจอาคาร",
+        "en": "Inspection archive"
+      },
+      "guardrail": "Inspection status is not a safety certificate or a live earthquake sensor."
+    }
+  ],
+  "interaction": {
+    "surface": "native modal dialog containing search, labelled filter buttons, headings and ul/li with ordinary buttons and links",
+    "noNestedAccordion": true,
+    "state": [
+      "committedDatasetId",
+      "previewDatasetId",
+      "browsePillar",
+      "searchQuery",
+      "isOpen",
+      "invokerElement"
+    ],
+    "prototypeCommit": "previewDatasetId only; no map state or network request",
+    "productionCommit": "existing authorised onChange after a dataset row is explicitly selected; search and filter are local UI state",
+    "cancel": "Escape or close returns focus without modifying committedDatasetId",
+    "emptySearch": "restore previous browsePillar",
+    "searchScope": "all 43 public records while a non-empty search query exists; pillar filter disabled and scope visibly stated",
+    "resultGrouping": "preserve canonical pillar/subgroup/lifecycle order among matching records",
+    "ranking": "no hidden re-ranking across semantic groups; exact/token matching only",
+    "searchNormalization": [
+      "Unicode NFKC",
+      "case-insensitive",
+      "collapse whitespace",
+      "preserve Thai combining marks",
+      "AND across whitespace-delimited query tokens"
+    ],
+    "searchFields": [
+      "title.th",
+      "title.en",
+      "aliases",
+      "datasetCode",
+      "id",
+      "pillar label",
+      "subgroup label"
+    ],
+    "notSearchFields": [
+      "unverified source fields",
+      "private task or contributor data"
+    ],
+    "focus": "search on open; browser native dialog focus containment; Tab/Shift+Tab follow controls; Escape closes; restore invoker",
+    "keyboardPolicy": "ordinary buttons/links, not simulated tree or arrow-key listbox; typing never commits",
+    "prototypeLinkBehavior": "real map anchor opens a new tab only when explicitly activated, rel=noopener; preview button stays local"
+  },
+  "presentation": {
+    "desktopMaxWidthPx": 760,
+    "desktopViewportMarginPx": 16,
+    "mobile": "single-column responsive dialog; max block-size calc(100dvh - 16px), sticky header, one scrollable result region",
+    "minTargetPx": 44,
+    "rowHeight": "auto; full title wraps; no line clamp for provider, forecast horizon or event date",
+    "selectedState": "neutral surface and explicit selected text; same text weight and icon stroke; visible keyboard outline",
+    "foundationTokens": [
+      {
+        "key": "surface.canvas",
+        "tokenPath": "machine.tokens.foundation[\"surface.canvas\"]",
+        "registryPath": "values.foundation[\"surface.canvas\"]",
+        "light": "#F6F7F3",
+        "dark": "#11191D",
+        "cssLight": "--ldm-foundation-surface-canvas-light",
+        "cssDark": "--ldm-foundation-surface-canvas-dark"
+      },
+      {
+        "key": "surface.alt",
+        "tokenPath": "machine.tokens.foundation[\"surface.alt\"]",
+        "registryPath": "values.foundation[\"surface.alt\"]",
+        "light": "#EEF1EE",
+        "dark": "#172126",
+        "cssLight": "--ldm-foundation-surface-alt-light",
+        "cssDark": "--ldm-foundation-surface-alt-dark"
+      },
+      {
+        "key": "surface.card",
+        "tokenPath": "machine.tokens.foundation[\"surface.card\"]",
+        "registryPath": "values.foundation[\"surface.card\"]",
+        "light": "#FCFCFA",
+        "dark": "#20292D",
+        "cssLight": "--ldm-foundation-surface-card-light",
+        "cssDark": "--ldm-foundation-surface-card-dark"
+      },
+      {
+        "key": "surface.raised",
+        "tokenPath": "machine.tokens.foundation[\"surface.raised\"]",
+        "registryPath": "values.foundation[\"surface.raised\"]",
+        "light": "#FFFFFF",
+        "dark": "#293337",
+        "cssLight": "--ldm-foundation-surface-raised-light",
+        "cssDark": "--ldm-foundation-surface-raised-dark"
+      },
+      {
+        "key": "surface.soft",
+        "tokenPath": "machine.tokens.foundation[\"surface.soft\"]",
+        "registryPath": "values.foundation[\"surface.soft\"]",
+        "light": "#E5E9E6",
+        "dark": "#2B3534",
+        "cssLight": "--ldm-foundation-surface-soft-light",
+        "cssDark": "--ldm-foundation-surface-soft-dark"
+      },
+      {
+        "key": "surface.blueTint",
+        "tokenPath": "machine.tokens.foundation[\"surface.blueTint\"]",
+        "registryPath": "values.foundation[\"surface.blueTint\"]",
+        "light": "#E2E9ED",
+        "dark": "#18333E",
+        "cssLight": "--ldm-foundation-surface-blue-tint-light",
+        "cssDark": "--ldm-foundation-surface-blue-tint-dark"
+      },
+      {
+        "key": "surface.beigeTint",
+        "tokenPath": "machine.tokens.foundation[\"surface.beigeTint\"]",
+        "registryPath": "values.foundation[\"surface.beigeTint\"]",
+        "light": "#F2F1DF",
+        "dark": "#2C2A22",
+        "cssLight": "--ldm-foundation-surface-beige-tint-light",
+        "cssDark": "--ldm-foundation-surface-beige-tint-dark"
+      },
+      {
+        "key": "text.primary",
+        "tokenPath": "machine.tokens.foundation[\"text.primary\"]",
+        "registryPath": "values.foundation[\"text.primary\"]",
+        "light": "#182327",
+        "dark": "#F1F4EF",
+        "cssLight": "--ldm-foundation-text-primary-light",
+        "cssDark": "--ldm-foundation-text-primary-dark"
+      },
+      {
+        "key": "text.secondary",
+        "tokenPath": "machine.tokens.foundation[\"text.secondary\"]",
+        "registryPath": "values.foundation[\"text.secondary\"]",
+        "light": "#5F635A",
+        "dark": "#C4CECA",
+        "cssLight": "--ldm-foundation-text-secondary-light",
+        "cssDark": "--ldm-foundation-text-secondary-dark"
+      },
+      {
+        "key": "text.metadata",
+        "tokenPath": "machine.tokens.foundation[\"text.metadata\"]",
+        "registryPath": "values.foundation[\"text.metadata\"]",
+        "light": "#5C6A61",
+        "dark": "#A6B5B1",
+        "cssLight": "--ldm-foundation-text-metadata-light",
+        "cssDark": "--ldm-foundation-text-metadata-dark"
+      },
+      {
+        "key": "text.muted",
+        "tokenPath": "machine.tokens.foundation[\"text.muted\"]",
+        "registryPath": "values.foundation[\"text.muted\"]",
+        "light": "#7B877D",
+        "dark": "#8D9D99",
+        "cssLight": "--ldm-foundation-text-muted-light",
+        "cssDark": "--ldm-foundation-text-muted-dark"
+      },
+      {
+        "key": "text.disabled",
+        "tokenPath": "machine.tokens.foundation[\"text.disabled\"]",
+        "registryPath": "values.foundation[\"text.disabled\"]",
+        "light": "#A7B3A9",
+        "dark": "#71817D",
+        "cssLight": "--ldm-foundation-text-disabled-light",
+        "cssDark": "--ldm-foundation-text-disabled-dark"
+      },
+      {
+        "key": "border.hairline",
+        "tokenPath": "machine.tokens.foundation[\"border.hairline\"]",
+        "registryPath": "values.foundation[\"border.hairline\"]",
+        "light": "#DCE1DD",
+        "dark": "#33403D",
+        "cssLight": "--ldm-foundation-border-hairline-light",
+        "cssDark": "--ldm-foundation-border-hairline-dark"
+      },
+      {
+        "key": "border.default",
+        "tokenPath": "machine.tokens.foundation[\"border.default\"]",
+        "registryPath": "values.foundation[\"border.default\"]",
+        "light": "#C9D0CB",
+        "dark": "#46524F",
+        "cssLight": "--ldm-foundation-border-default-light",
+        "cssDark": "--ldm-foundation-border-default-dark"
+      },
+      {
+        "key": "border.emphasis",
+        "tokenPath": "machine.tokens.foundation[\"border.emphasis\"]",
+        "registryPath": "values.foundation[\"border.emphasis\"]",
+        "light": "#7D877F",
+        "dark": "#7C8A84",
+        "cssLight": "--ldm-foundation-border-emphasis-light",
+        "cssDark": "--ldm-foundation-border-emphasis-dark"
+      },
+      {
+        "key": "interaction.accent",
+        "tokenPath": "machine.tokens.foundation[\"interaction.accent\"]",
+        "registryPath": "values.foundation[\"interaction.accent\"]",
+        "light": "#176B82",
+        "dark": "#68C4E2",
+        "cssLight": "--ldm-foundation-interaction-accent-light",
+        "cssDark": "--ldm-foundation-interaction-accent-dark"
+      },
+      {
+        "key": "interaction.focus.ring",
+        "tokenPath": "machine.tokens.foundation[\"interaction.focus.ring\"]",
+        "registryPath": "values.foundation[\"interaction.focus.ring\"]",
+        "light": "#176B82",
+        "dark": "#68C4E2",
+        "cssLight": "--ldm-foundation-interaction-focus-ring-light",
+        "cssDark": "--ldm-foundation-interaction-focus-ring-dark"
+      }
+    ],
+    "fonts": "LDS 0.9.7 Bai Jamjuree 400/600 UI; script-aware Arvo / IBM Plex Sans Thai Looped display; embedded licensed current assets in standalone prototype",
+    "domainIcons": "visible text fallback until approved assets exist",
+    "noVirtualizationAt43": true,
+    "embeddedFontAssets": [
+      {
+        "file": "bai-jamjuree-thai-400-normal.woff2",
+        "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9",
+        "license": "OFL-1.1"
+      },
+      {
+        "file": "bai-jamjuree-latin-400-normal.woff2",
+        "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19",
+        "license": "OFL-1.1"
+      },
+      {
+        "file": "bai-jamjuree-thai-600-normal.woff2",
+        "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32",
+        "license": "OFL-1.1"
+      },
+      {
+        "file": "bai-jamjuree-latin-600-normal.woff2",
+        "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f",
+        "license": "OFL-1.1"
+      },
+      {
+        "file": "ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+        "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c",
+        "license": "OFL-1.1"
+      },
+      {
+        "file": "arvo-latin-700-normal.woff2",
+        "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37",
+        "license": "OFL-1.1"
+      }
+    ]
+  },
+  "icons": {
+    "contract": {
+      "family": "Material Symbols Rounded",
+      "axes": {
+        "FILL": 0,
+        "wght": 300,
+        "GRAD": 0
+      },
+      "approvedNavAsset": "build-kit/assets/material-symbols-rounded-nav-300.woff2",
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657",
+      "approvedGlyphs": [
+        "open_in_new",
+        "menu",
+        "close",
+        "light_mode",
+        "dark_mode",
+        "contrast",
+        "groups"
+      ],
+      "safeSemanticMapping": {
+        "external_action": "open_in_new",
+        "open_navigation": "menu",
+        "close_overlay": "close",
+        "theme_light": "light_mode",
+        "theme_dark": "dark_mode",
+        "theme_system": "contrast",
+        "contributors": "groups"
+      },
+      "subgroupIcons": null,
+      "subgroupFallback": "Visible subgroup text labels. No approved current glyphs for factories, terrain, finance, worship or individual hazards were found in this subset; do not infer approval from font availability or generate substitutes.",
+      "approvedNavAssetScope": "Path within the LDS 0.9.7 distribution; not a file shipped by this proposal in the public repository. Domain icon candidates remain unapproved."
+    },
+    "candidates": [
+      {
+        "id": "subgroup.built-form-terrain",
+        "subgroupId": "built-form-terrain",
+        "candidateGlyph": "landscape",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "อาคารและภูมิประเทศ",
+          "en": "Built form & terrain"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.land-development",
+        "subgroupId": "land-development",
+        "candidateGlyph": "domain",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "ที่ดินและการพัฒนา",
+          "en": "Land & development"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.planning-regulation",
+        "subgroupId": "planning-regulation",
+        "candidateGlyph": "rule",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "การวางแผนและข้อกำหนด",
+          "en": "Planning & regulation"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.land-use",
+        "subgroupId": "land-use",
+        "candidateGlyph": "agriculture",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "การใช้ที่ดิน",
+          "en": "Land use"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.land-market",
+        "subgroupId": "land-market",
+        "candidateGlyph": "sell",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "ตลาดที่ดิน",
+          "en": "Land market"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.residential-market",
+        "subgroupId": "residential-market",
+        "candidateGlyph": "home",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "ตลาดที่อยู่อาศัย",
+          "en": "Residential market"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.investment-insight",
+        "subgroupId": "investment-insight",
+        "candidateGlyph": "query_stats",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "ข้อมูลประกอบการลงทุน",
+          "en": "Investment insight"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.business-registry",
+        "subgroupId": "business-registry",
+        "candidateGlyph": "business",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "ทะเบียนธุรกิจ",
+          "en": "Business registry"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.business-activity",
+        "subgroupId": "business-activity",
+        "candidateGlyph": "factory",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "กิจกรรมธุรกิจและอุตสาหกรรม",
+          "en": "Business activity"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.commercial-property",
+        "subgroupId": "commercial-property",
+        "candidateGlyph": "apartment",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "อสังหาริมทรัพย์เชิงพาณิชย์",
+          "en": "Commercial property"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.financial-services",
+        "subgroupId": "financial-services",
+        "candidateGlyph": "account_balance",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "เครือข่ายบริการทางการเงิน",
+          "en": "Financial services"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.food-retail",
+        "subgroupId": "food-retail",
+        "candidateGlyph": "storefront",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "อาหารและค้าปลีก",
+          "en": "Food & retail"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.tourism-hospitality",
+        "subgroupId": "tourism-hospitality",
+        "candidateGlyph": "travel_explore",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "การท่องเที่ยวและที่พัก",
+          "en": "Tourism & hospitality"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.mobility",
+        "subgroupId": "mobility",
+        "candidateGlyph": "route",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "การเดินทางและการเข้าถึง",
+          "en": "Mobility"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.events-notices",
+        "subgroupId": "events-notices",
+        "candidateGlyph": "event_note",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "เหตุการณ์และประกาศ",
+          "en": "Events & notices"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.area-community-context",
+        "subgroupId": "area-community-context",
+        "candidateGlyph": "location_on",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "บริบทพื้นที่และสถานที่ชุมชน",
+          "en": "Area & community context"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.people",
+        "subgroupId": "people",
+        "candidateGlyph": "groups",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "ผู้คนและประชากร",
+          "en": "People"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.education",
+        "subgroupId": "education",
+        "candidateGlyph": "school",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "การศึกษา",
+          "en": "Education"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.public-finance",
+        "subgroupId": "public-finance",
+        "candidateGlyph": "payments",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "การคลังภาครัฐและท้องถิ่น",
+          "en": "Public finance"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.public-service",
+        "subgroupId": "public-service",
+        "candidateGlyph": "account_balance",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "บริการภาครัฐ",
+          "en": "Public service"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.flood",
+        "subgroupId": "flood",
+        "candidateGlyph": "water",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "น้ำท่วม",
+          "en": "Flood"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.other-hazards",
+        "subgroupId": "other-hazards",
+        "candidateGlyph": "monitoring",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "ภัยและสัญญาณเฝ้าระวังอื่น",
+          "en": "Other hazards"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.multi-hazard",
+        "subgroupId": "multi-hazard",
+        "candidateGlyph": "history",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "ผลกระทบจากภัยหลายประเภท",
+          "en": "Multi-hazard"
+        },
+        "prototypeUsesGlyph": false
+      },
+      {
+        "id": "subgroup.event-archive",
+        "subgroupId": "event-archive",
+        "candidateGlyph": "inventory_2",
+        "family": "Material Symbols Rounded",
+        "axes": {
+          "FILL": 0,
+          "wght": 300,
+          "GRAD": 0
+        },
+        "status": "candidate_requires_semantic_approval_and_asset_binding",
+        "fallback": {
+          "th": "บันทึกเหตุการณ์ที่ผ่านมา",
+          "en": "Event archive"
+        },
+        "prototypeUsesGlyph": false
+      }
+    ],
+    "candidateNotApproved": true,
+    "productionGate": "verify glyph presence, approved semantic use, asset hash, licence, optical-size choice and both themes before rendering; otherwise retain text",
+    "prohibited": [
+      "emoji substitute",
+      "filled selected icons",
+      "arbitrary MUI icon because dependency exists",
+      "domain icon alone without label"
+    ]
+  },
+  "routing": {
+    "mapUrls": "copy canonical catalog mapUrl exactly; preserve 3D, named area, query and hash",
+    "terrain": "3D-only target from current catalog",
+    "language": "TH/EN titles and catalog details supported; operational map links preserve their existing supported language policy",
+    "areaState": "preserve shared area only if compatibility is confirmed; never carry dataset-specific dates/filters blindly",
+    "sources": "selection must show source/period for the committed dataset; editorial reviewedAt is not observation time"
+  },
+  "semanticRules": {
+    "floodOrder": [
+      "floodimpact",
+      "floodrecent",
+      "flood-forecast-depth",
+      "flash-flood-risk"
+    ],
+    "archivesSeparate": [
+      "hatyaiflood",
+      "quakeSafe"
+    ],
+    "cityEventsNotTrafficSpeed": true,
+    "localDecisions": "optional future action tags, never a fourth dataset pillar or proof that export/alerts exist",
+    "localeInsights": "contextual prior only; crosswalk locale_id to verified municipality/community/service boundary before aggregation; official administrative, hazard and operational evidence primary within scope",
+    "unknownPeriod": "retain null; show check current map period, never now/zero/complete"
+  },
+  "accessibilityReferences": [
+    "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+    "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/"
+  ],
+  "acceptanceTests": [
+    {
+      "id": "SW-01",
+      "scenario": "Open chooser, type น้ำท่วม; five flood-related records appear, including a separately labelled dated Hat Yai archive; clear restores the previous pillar filter.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-02",
+      "scenario": "Search flood in Thai mode and น้ำท่วม in English mode; both return the same five IDs, grouped by semantics. Search traffic also finds the retained Traffic Incident alias for Events & Notices, without changing its broader title.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-03",
+      "scenario": "Search a no-match string; status says no matching names, offers clear; selected record and map remain unchanged.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-04",
+      "scenario": "Open with keyboard, reach search, filters, preview button and real link; Escape returns focus to opener and does not change selection. Focus remains inside modal.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-05",
+      "scenario": "Preview DWR forecast, Google flash flood and Hat Yai archive; each keeps provider, horizon or event dates and its limitation. No generic live badge is added.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-06",
+      "scenario": "Prototype selecting a preview changes only the local summary; external map opens only through its explicit link. No data API requests, login or permissions are simulated.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-07",
+      "scenario": "All 43 IDs appear once; counts 13/16/14; hidden businessDynamics absent in search, list and counts. Two archives count as catalog resources, not new data feeds.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-08",
+      "scenario": "At widths 320, 390 and 1280 CSS px, both languages and 200% text zoom: long names wrap, no clipped provider/date, all actions >=44px, no horizontal scroll or coloured selection rail.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-09",
+      "scenario": "Curated building/deed 3D or named-area links remain byte-for-byte catalog URLs; terrain opens its 3D URL; language switching does not append an unsupported lang=en to maps.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-10",
+      "scenario": "Operational integration only: rapid A→B selection plus delayed A response leaves B selected and painted; failures keep previous valid view and a visible retry; no stale source/period labels.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-11",
+      "scenario": "Native screen-reader check reads dialog name, selected state, result count and descriptive external links; no menu/tree/listbox role is applied to this list.",
+      "status": "requires_implementation_or_visual_check"
+    },
+    {
+      "id": "SW-12",
+      "scenario": "Check source date unavailable vs measured zero: prototype says read the available period on the map and never invents a timestamp or completeness claim.",
+      "status": "requires_implementation_or_visual_check"
+    }
+  ],
+  "verification": {
+    "inventory": "43 unique catalog IDs and exact map URLs checked by generator",
+    "browserVisualReview": "Record prototype browser checks separately from catalog and operational-map checks; acceptance-test scenarios are not passed-test claims.",
+    "prototypeProductionParity": "not claimed",
+    "iconAssetSubset": "current approved navigation subset reviewed; domain candidates not approved",
+    "buildOrDeploy": "none",
+    "reducedMotion": "No OS-level reduced-motion test is claimed for this proposal. Catalog runtime VM fixtures do not verify this separate chooser prototype."
+  }
+}

@@ -288,7 +288,8 @@ for (const lang of ["th", "en"])
     assert(!html.includes("Connects 38 views"));
     assert(!html.includes("มุมมองข้อมูลเมือง 38 รายการ"));
     assert(html.includes("assets/unified-navbar-public-r1.js"));
-    assert(html.includes("assets/unified-navbar-r7-ds-0.9.1-v34.css"));
+    assert(html.includes("assets/navbar-current-r1.css"));
+    assert(html.includes("assets/catalog-shell-current-r1.css"));
     assert(html.includes("assets/citymeter-ds-0.9.1-approach-reveal-v1.js"));
     assert(html.includes("media/reel/citymeter-proof-v3-poster.webp"));
     assert(html.includes('data-ds-version="0.9.7"'));
