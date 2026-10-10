@@ -163,12 +163,19 @@ for (const r of catalog.records) {
     assert(r.aliases.length >= 2);
   });
   test("real preview or explicit absence " + r.id, () => {
+    assert.equal(r.preview.available, true);
+    assert(existsSync(resolve(root, r.preview.path)));
+    assert(existsSync(resolve(root, r.preview.largePath)));
     if (newIds.includes(r.id)) {
-      assert.equal(r.preview.available, false);
-      assert.equal(r.preview.path, null);
-    } else {
-      assert.equal(r.preview.available, true);
-      assert(existsSync(resolve(root, r.preview.path)));
+      assert.equal(r.preview.conceptual, false);
+      assert.equal(
+        r.preview.path,
+        `media/previews-current/${r.slug}-20261010.webp`,
+      );
+      assert.equal(
+        r.preview.largePath,
+        `media/previews-current/${r.slug}-20261010-large.webp`,
+      );
     }
   });
   test("source references and privacy " + r.id, () => {
@@ -271,8 +278,8 @@ const previewRecords = catalog.records.map((r) => ({
 const approvedPreviews = catalog.records
   .filter((r) => r.preview.available)
   .map((r) => ({ id: r.id }));
-test("preview guard accepts 37 real previews and six explicit absences", () => {
-  assert.equal(approvedPreviews.length, 37);
+test("preview guard accepts all 43 real previews", () => {
+  assert.equal(approvedPreviews.length, 43);
   validatePreviewContract(previewRecords, approvedPreviews);
   const start = bundle.indexOf("const CitymeterValidatePreviewContract=");
   const end = bundle.indexOf("const rc=Object.freeze", start);
@@ -290,11 +297,14 @@ test("preview guard rejects missing real preview", () =>
 test("preview guard rejects fake preview for a no-preview record", () =>
   assert.throws(
     () =>
-      validatePreviewContract(previewRecords, [
-        ...approvedPreviews,
-        { id: "grocery-retail" },
-      ]),
-    /extra=grocery-retail/,
+      validatePreviewContract(
+        [
+          ...previewRecords,
+          { id: "fixture-without-preview", previewAvailable: false },
+        ],
+        [...approvedPreviews, { id: "fixture-without-preview" }],
+      ),
+    /extra=fixture-without-preview/,
   ));
 test("preview guard rejects duplicate preview", () =>
   assert.throws(
@@ -305,6 +315,125 @@ test("preview guard rejects duplicate preview", () =>
       ]),
     /preview config mismatch/,
   ));
+
+function webpDimensions(bytes) {
+  assert.equal(bytes.toString("ascii", 0, 4), "RIFF");
+  assert.equal(bytes.toString("ascii", 8, 12), "WEBP");
+  assert.equal(
+    bytes.readUInt32LE(4) + 8,
+    bytes.length,
+    "Truncated WebP container",
+  );
+  let dimensions;
+  for (let offset = 12; offset + 8 <= bytes.length; ) {
+    const kind = bytes.toString("ascii", offset, offset + 4);
+    const size = bytes.readUInt32LE(offset + 4),
+      data = offset + 8;
+    assert(data + size <= bytes.length, "Invalid WebP chunk extent");
+    assert(
+      !["EXIF", "XMP ", "ICCP"].includes(kind),
+      "Preview metadata must remain stripped",
+    );
+    if (kind === "VP8X")
+      dimensions = [
+        bytes.readUIntLE(data + 4, 3) + 1,
+        bytes.readUIntLE(data + 7, 3) + 1,
+      ];
+    else if (kind === "VP8 ") {
+      assert.equal(
+        bytes.subarray(data + 3, data + 6).toString("hex"),
+        "9d012a",
+      );
+      dimensions ||= [
+        bytes.readUInt16LE(data + 6) & 0x3fff,
+        bytes.readUInt16LE(data + 8) & 0x3fff,
+      ];
+    } else if (kind === "VP8L") {
+      assert.equal(bytes[data], 0x2f);
+      const packed = bytes.readUInt32LE(data + 1);
+      dimensions ||= [(packed & 0x3fff) + 1, ((packed >>> 14) & 0x3fff) + 1];
+    }
+    offset = data + size + (size % 2);
+  }
+  assert(dimensions, "No WebP image frame");
+  return dimensions;
+}
+const capturedPreviews = data("data/dataset-preview-assets-20261010.json");
+test("new dataset previews have 12 public asset receipts without private capture paths", () => {
+  assert.equal(capturedPreviews.assets.length, 12);
+  assert.equal(
+    new Set(capturedPreviews.assets.map((asset) => asset.path)).size,
+    12,
+  );
+  assert(
+    !/\/Users\/|\/home\/|\/private\/|\/tmp\/|outputs\/|sourceCapture|contacts_internal|private telemetry/i.test(
+      JSON.stringify(capturedPreviews),
+    ),
+    "Keep local recipes and capture paths in private evidence, not the public manifest",
+  );
+});
+for (const id of newIds) {
+  const record = catalog.records.find((r) => r.id === id);
+  const pair = capturedPreviews.assets.filter((asset) =>
+    [record.preview.path, record.preview.largePath].includes(asset.path),
+  );
+  test("capture provenance and two image sizes " + id, () => {
+    assert.equal(pair.length, 2);
+    assert.equal(new Set(pair.map((asset) => asset.sourceSha256)).size, 1);
+    for (const asset of pair) {
+      assert.match(asset.sourceSha256, /^[a-f0-9]{64}$/);
+      assert.equal(asset.sourceUrl, record.mapUrl);
+      const source = new URL(asset.sourceUrl);
+      assert.equal(source.protocol, "https:");
+      assert.equal(source.hostname, "landometer.com");
+      assert.deepEqual([...source.searchParams.keys()], ["d"]);
+      assert.equal(source.searchParams.get("d"), record.datasetCode);
+      assert.equal(asset.url, catalog.canonicalBase + asset.path);
+      assert.equal(asset.approval.status, "authorized");
+      assert.equal(asset.approval.date, "2026-10-10");
+      assert(asset.approvedRoles.includes("dataset-card-preview"));
+      assert(asset.approvedRoles.includes("dataset-summary-preview"));
+      assert(asset.prohibitedRoles.includes("current-operational-status"));
+      assert(asset.prohibitedRoles.includes("source-agency-endorsement"));
+      assert.equal(asset.capturedAt, "2026-10-10");
+      assert(asset.selectedState.length > 0);
+      assert(asset.privacyReview.length > 0);
+      assert.equal(asset.mimeType, "image/webp");
+      const bytes = readFileSync(resolve(root, asset.path));
+      assert.equal(bytes.length, asset.byteLength);
+      assert.equal(
+        createHash("sha256").update(bytes).digest("hex"),
+        asset.sha256,
+      );
+      assert.deepEqual(webpDimensions(bytes), [asset.width, asset.height]);
+      assert.deepEqual(
+        [asset.width, asset.height],
+        asset.path === record.preview.path ? [641, 319] : [1200, 597],
+      );
+    }
+    // Optional private-local evidence: CI verifies public receipts/derived bytes;
+    // the release operator can also verify original capture bytes without publishing them.
+    if (process.env.CITYMETER_PREVIEW_SOURCE_DIR) {
+      const capture = resolve(
+        process.env.CITYMETER_PREVIEW_SOURCE_DIR,
+        record.slug + ".jpg",
+      );
+      assert(
+        existsSync(capture),
+        "Requested original screenshot verification needs " + record.slug,
+      );
+      assert.equal(
+        createHash("sha256").update(readFileSync(capture)).digest("hex"),
+        pair[0].sourceSha256,
+      );
+    }
+  });
+}
+console.log(
+  process.env.CITYMETER_PREVIEW_SOURCE_DIR
+    ? "Original screenshot hashes checked from the explicitly supplied local source directory."
+    : "Original screenshot files are not distributed; source hashes checked for receipt parity only.",
+);
 
 for (const lang of ["th", "en"])
   test("initial and hydrated sections identical " + lang, () => {

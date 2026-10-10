@@ -5,12 +5,19 @@
   window.__citymeterPublicCatalog = true;
   const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)");
   const coarse = window.matchMedia?.("(pointer: coarse)");
+  const hover = window.matchMedia?.("(hover: hover) and (pointer: fine)");
   const active = new Set();
   const landed = new Set();
   let observer;
   let observerFailed = false;
   let pendingDetails;
   let sequence = 0;
+  let hoveredCard = null;
+  let focusedCard = null;
+  let quietCard = null;
+  let quietSuppressed = false;
+  let keyboardMode = true;
+  const openedCards = [];
   const normalize = (value) =>
     String(value)
       .normalize("NFKC")
@@ -20,6 +27,49 @@
   const cards = (section) => [
     ...section.querySelectorAll('[data-catalog-owner="public-registry"]'),
   ];
+  const eligibleCard = (node) => {
+    const card = node?.closest?.('[data-catalog-owner="public-registry"]');
+    return card?.isConnected && !card.hidden ? card : null;
+  };
+  const visibleAttentionCard = (node) => {
+    const card = eligibleCard(node);
+    if (!card) return null;
+    const rect = card.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight ? card : null;
+  };
+  function setQuietCard(card) {
+    if (quietCard === card) return;
+    quietCard?.removeAttribute("data-catalog-focused");
+    quietCard = card;
+    if (card) {
+      card.setAttribute("data-catalog-focused", "");
+      document.documentElement?.setAttribute("data-catalog-focus", "active");
+    } else document.documentElement?.removeAttribute("data-catalog-focus");
+  }
+  function syncQuiet() {
+    // Direct focus/hover temporarily owns attention. An open disclosure resumes
+    // when the pointer leaves, and never collapses because of pointer movement.
+    const open = [...openedCards]
+      .reverse()
+      .find(
+        (card) =>
+          visibleAttentionCard(card)?.querySelector(".catalog-details")?.open,
+      );
+    setQuietCard(
+      quietSuppressed
+        ? null
+        : visibleAttentionCard(focusedCard) ||
+            visibleAttentionCard(hoveredCard) ||
+            open ||
+            null,
+    );
+  }
+  function clearQuiet() {
+    hoveredCard = null;
+    focusedCard = null;
+    quietSuppressed = true;
+    setQuietCard(null);
+  }
   const near = (rect) =>
     rect.bottom >= -120 && rect.top <= window.innerHeight + 120;
   function settle() {
@@ -168,6 +218,7 @@
     if (empty) empty.hidden = count !== 0;
     moveFrom(snapshot);
     enhance(section);
+    syncQuiet();
   }
   function reset(section) {
     const search = section.querySelector("[data-catalog-search]");
@@ -189,9 +240,22 @@
     // Native anchor activation must also work when its hash is unchanged.
     // Restore a filtered-out target before the browser follows the link.
     const anchor = event.target.closest?.('a[href^="#dataset-"]');
-    if (anchor && !event.defaultPrevented && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey && event.button === 0) {
-      const target = document.getElementById(anchor.getAttribute("href").slice(1));
-      if (target?.matches('[data-catalog-owner="public-registry"]') && target.hidden) {
+    if (
+      anchor &&
+      !event.defaultPrevented &&
+      !event.ctrlKey &&
+      !event.metaKey &&
+      !event.altKey &&
+      !event.shiftKey &&
+      event.button === 0
+    ) {
+      const target = document.getElementById(
+        anchor.getAttribute("href").slice(1),
+      );
+      if (
+        target?.matches('[data-catalog-owner="public-registry"]') &&
+        target.hidden
+      ) {
         const section = target.closest("#datasets");
         reset(section);
         apply(section);
@@ -218,9 +282,11 @@
     if (event.type === "keydown" && !["Enter", " "].includes(event.key)) return;
     const summary = event.target.closest?.(".catalog-details > summary");
     if (!summary) return;
+    const section = summary.closest("#datasets");
+    if (!section) return;
     pendingDetails = {
       details: summary.parentElement,
-      snapshot: capture(summary.closest("#datasets")),
+      snapshot: capture(section),
     };
   }
   document.addEventListener("pointerdown", captureDetails, true);
@@ -229,6 +295,14 @@
     "toggle",
     (event) => {
       if (!event.target.matches?.(".catalog-details")) return;
+      const card = eligibleCard(event.target);
+      if (card) {
+        const index = openedCards.indexOf(card);
+        if (index >= 0) openedCards.splice(index, 1);
+        if (event.target.open) openedCards.push(card);
+        quietSuppressed = false;
+      }
+      syncQuiet();
       const pending = pendingDetails;
       pendingDetails = null;
       if (pending?.details === event.target) moveFrom(pending.snapshot);
@@ -263,6 +337,14 @@
   function ready() {
     enhance();
     followHash();
+    // Hydration and history restore may replace nodes or restore native open.
+    for (const card of cards(document.querySelector("#datasets") || document))
+      if (
+        card.querySelector(".catalog-details")?.open &&
+        !openedCards.includes(card)
+      )
+        openedCards.push(card);
+    syncQuiet();
   }
   if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", ready, { once: true });
@@ -271,15 +353,98 @@
     once: true,
   });
   document.addEventListener("citymeter:catalog-ready", ready);
+  let quietFrame = 0;
+  const auditAttention = () => {
+    if (quietFrame) return;
+    quietFrame = requestAnimationFrame(() => {
+      quietFrame = 0;
+      syncQuiet();
+    });
+  };
+  window.addEventListener("scroll", auditAttention, { passive: true });
+  window.addEventListener("resize", auditAttention, { passive: true });
   window.addEventListener("hashchange", followHash);
   window.addEventListener("pageshow", ready);
-  window.addEventListener("pagehide", settle);
-  window.addEventListener("beforeprint", settle);
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState !== "visible") settle();
+  window.addEventListener("pagehide", () => {
+    settle();
+    clearQuiet();
   });
+  window.addEventListener("beforeprint", () => {
+    settle();
+    clearQuiet();
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "visible") {
+      settle();
+      clearQuiet();
+    }
+  });
+  document.addEventListener("pointerover", (event) => {
+    if (event.pointerType !== "mouse" || !hover?.matches || coarse?.matches)
+      return;
+    const card = eligibleCard(event.target);
+    if (!card) return;
+    hoveredCard = card;
+    quietSuppressed = false;
+    syncQuiet();
+  });
+  document.addEventListener("pointerout", (event) => {
+    if (event.pointerType !== "mouse" || !hover?.matches || coarse?.matches)
+      return;
+    if (eligibleCard(event.target) === eligibleCard(event.relatedTarget))
+      return;
+    hoveredCard = eligibleCard(event.relatedTarget);
+    syncQuiet();
+  });
+  document.addEventListener(
+    "pointerdown",
+    (event) => {
+      keyboardMode = false;
+      focusedCard = null;
+      if (event.pointerType !== "mouse") hoveredCard = null;
+      const card = eligibleCard(event.target);
+      if (!card) {
+        clearQuiet();
+        return;
+      }
+      quietSuppressed = false;
+      syncQuiet();
+    },
+    true,
+  );
   document.addEventListener("focusin", (event) => {
     if (event.target.closest?.("#datasets")) settle();
+    const card = eligibleCard(event.target);
+    focusedCard = keyboardMode ? card : null;
+    quietSuppressed = !card;
+    syncQuiet();
+  });
+  document.addEventListener("focusout", (event) => {
+    const next = eligibleCard(event.relatedTarget);
+    if (next === focusedCard) return;
+    focusedCard = keyboardMode ? next : null;
+    // Focus moving elsewhere must never leave the next keyboard target dimmed.
+    if (event.relatedTarget && !next) quietSuppressed = true;
+    syncQuiet();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Tab") keyboardMode = true;
+    if (event.key !== "Escape") return;
+    const card = eligibleCard(event.target);
+    const details = card?.querySelector(".catalog-details");
+    if (!details?.open) return;
+    details.open = false;
+    details.querySelector("summary")?.focus();
+    event.preventDefault();
+    // toggle settles the open-card list; preserve ordinary focus feedback.
+  });
+  hover?.addEventListener?.("change", () => {
+    hoveredCard = null;
+    syncQuiet();
+  });
+  coarse?.addEventListener?.("change", () => {
+    hoveredCard = null;
+    syncQuiet();
   });
   reduced?.addEventListener?.("change", () => {
     settle();

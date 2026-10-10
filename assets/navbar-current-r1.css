@@ -70,11 +70,11 @@ html {
   height: var(--lm-nav-height);
   border-bottom: 1px solid var(--lm-border-hairline);
   background: var(--lm-surface-canvas);
-  background-color: color-mix(in srgb, var(--lm-surface-canvas) 92%, transparent);
+  background-color: var(--lm-surface-canvas);
   color: var(--lm-text-primary);
   font-family: "Bai Jamjuree", Tahoma, sans-serif;
-  -webkit-backdrop-filter: blur(10px) saturate(1.2);
-  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   transition:
     height var(--lm-motion-duration-emphasis) var(--lm-motion-ease-state),
     background-color var(--lm-motion-duration-emphasis) var(--lm-motion-ease-state),
@@ -108,12 +108,12 @@ html {
 .lm-site-header.is-calm {
   height: var(--lm-nav-calm-height);
   border-bottom-color: color-mix(in srgb, var(--lm-border-hairline) 20%, transparent);
-  background-color: color-mix(in srgb, var(--lm-surface-canvas) 26%, transparent);
+  background-color: var(--lm-surface-canvas);
 }
 
 .lm-site-header.is-calm .lm-nav-row {
   width: 100%;
-  opacity: .9;
+  opacity: 1;
   transform: scale(1);
 }
 

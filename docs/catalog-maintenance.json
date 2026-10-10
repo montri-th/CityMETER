@@ -17,7 +17,9 @@
     "src/styles/shell-current.css",
     "src/styles/navbar-current.css",
     "scripts/lib/catalog-qr.mjs",
-    "src/runtime/summary.js"
+    "src/runtime/summary.js",
+    "src/styles/summary.css",
+    "data/dataset-preview-assets-20261010.json"
   ],
   "commands": {
     "generate": "npm run build",
@@ -37,7 +39,7 @@
       "dependsOn": [
         "evidence"
       ],
-      "action": "Edit src/catalog.json in TH/EN, retaining team intent and natural voice. Add cross-language aliases. Preserve stable IDs/map URLs and source scope. For each new executiveSummary, write two natural questions per language and one short reading paragraph based only on the same record evidence; keep team-provided statements before drafting.",
+      "action": "Edit src/catalog.json in TH/EN, preserving team intent, source facts, stable IDs and map URLs. Write executiveSummary lead, sectionTitle, reading, note, two questions and takeaway from the same record evidence. Preserve the exact data grain, denominator and material interpretation limits.",
       "doneWhen": "No invented coverage, freshness, rights, behaviour or business outcome; branch shares have a stated subset and demand proxies stay proxies."
     },
     {
@@ -127,23 +129,30 @@
       "source": "src/catalog.json",
       "qr": "local SVG actual mapUrl, 4-module quiet zone, M correction; static before hydration",
       "motion": "preview-only once arrival and bounded state feedback; all content/actions visible without motion",
-      "filterReset": "Reset button clears query and restores all pillars; deleting only the search text retains the selected pillar."
+      "filterReset": "Reset button clears query and restores all pillars; deleting only the search text retains the selected pillar.",
+      "readingFocus": "Hover, keyboard focus or an open visible disclosure quiets sibling content; release on outside click, Escape, filtering or offscreen active card. No backdrop, scroll lock, tab-order change or intercepted direct action; print/forced colors remain fully visible."
     },
     "summary": {
       "source": "record.executiveSummary in src/catalog.json",
       "editorialBasis": "catalog_description_and_source_review",
       "required": {
-        "questions": "2 natural questions per locale",
-        "reading": "one concise evidence-based paragraph per locale"
+        "lead": "specific reader value per locale",
+        "sectionTitle": "specific insight heading per locale",
+        "reading": "one concise evidence-based paragraph per locale",
+        "note": "brief material reader limitation per locale",
+        "questions": "two natural questions per locale",
+        "takeaway": "supported next action per locale"
       },
       "path": "existing localized datasets/<slug>/ routes; no additional reading layer",
       "flow": [
-        "catalog direct map CTA (first action)",
-        "optional Read summary link",
-        "summary top and bottom direct map action",
-        "bottom team contact (existing contact page)",
-        "top and bottom back to exact catalog card anchor",
-        "share localized canonical summary URL"
+        "catalog first action opens map directly",
+        "compact contributor links open public profiles",
+        "optional sibling Read summary link",
+        "summary benefit, direct map and same-record preview",
+        "specific insight and concise material note",
+        "two questions and next action with map/contact links",
+        "native source disclosure with unchanged source fields and full limitations",
+        "contributors, actual-map QR, share and exact catalog return anchors"
       ],
       "share": {
         "platforms": [
@@ -157,7 +166,42 @@
         "doesNot": "send or post automatically; no prefilled contact context claim"
       },
       "socialImage": "Only the same record actual preview; conceptual/missing previews omit social image.",
-      "limits": "Visible before preview; exact existing record.limitation retained"
+      "limits": "Concise material note in the visible article; unchanged full record.limitation retained in optional source disclosure.",
+      "layout": "Wide benefit/preview hero and 760px reading column; single column at <=940 CSS px. Dedicated src/styles/summary.css.",
+      "metadata": "Localized executiveSummary.lead is used in description, Open Graph and Twitter descriptions; identity graph remains @id/@type/name/url only.",
+      "theme": {
+        "precedence": [
+          "valid query theme=light|dark|system",
+          "valid stored lds-theme or legacy citymeter-theme",
+          "system preference"
+        ],
+        "queryPersistence": false,
+        "noJavaScript": "light HTML default",
+        "storageFailure": "valid query still works; system/light fallback otherwise"
+      }
+    },
+    "capturedPreviews": {
+      "records": 6,
+      "files": 12,
+      "smallDimensions": [
+        641,
+        319
+      ],
+      "largeDimensions": [
+        1200,
+        597
+      ],
+      "manifest": "data/dataset-preview-assets-20261010.json",
+      "captionFields": [
+        "preview.focusLabel[locale]",
+        "preview.capture.stateLabel[locale]",
+        "preview.capture.note[locale]"
+      ],
+      "doesNotEstablish": [
+        "data freshness",
+        "complete data verification",
+        "source agency endorsement"
+      ]
     }
   },
   "verificationScope": {
@@ -165,13 +209,16 @@
     "runtimeFixtures": {
       "script": "scripts/validate-catalog-runtime.mjs",
       "environment": "Node VM with a small DOM adapter and simulated media queries",
-      "passed": 8,
+      "passed": 14,
       "covers": [
         "observer missing or constructor/observe failure",
         "simulated reduced-motion preference and preference change",
         "same-hash filtered anchor recovery",
         "modified-click preservation",
-        "single event ownership"
+        "single event ownership",
+        "pointer/focus/touch reading context",
+        "open disclosure retention and offscreen release",
+        "outside/Escape/filter cleanup without blocking native actions"
       ]
     },
     "osReducedMotion": {
@@ -198,7 +245,13 @@
       "script": "scripts/validate-catalog-summary.mjs",
       "pagesChecked": 86,
       "sharingCases": 6,
-      "scope": "initial HTML map/back/source/credit/share contracts and Node VM clipboard/native-share handling; not completed posts or OS share panel validation"
+      "scope": "86 initial HTML value/metadata/map/back/source/full-limit/credit/QR/share contracts; 8 VM theme precedence fixtures; 6 VM clipboard/native-share fixtures. Not completed posts or native OS share-panel validation.",
+      "themeCases": 8
+    },
+    "ldsStaticCheck": {
+      "summaryStylesheet": "pass within checker scope",
+      "wholePage": "inherited legacy CSS color literals and shell color-mix remain outside a full conformance claim",
+      "fullConformance": false
     }
   },
   "discoveryModel": {

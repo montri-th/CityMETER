@@ -104,12 +104,12 @@
   align-items: start;
 }
 .catalog-card.dataset-card {
-  display: flex;
+  display: flex !important;
+  position: relative;
   flex-direction: column;
   min-width: 0;
   padding: 0;
   margin: 0 !important;
-  display: flex !important;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -544,8 +544,8 @@
   .catalog-detail-main .catalog-source dl {
     grid-template-columns: 1fr;
   }
-  .catalog-actions .button {
-    width: 100%;
+  .catalog-card .catalog-actions .button {
+    width: auto;
   }
   .catalog-detail-header {
     padding: 16px 20px;
@@ -640,7 +640,9 @@
   margin-bottom: 16px;
 }
 .catalog-preview-link {
+  position: relative;
   display: block;
+  background: var(--canvas);
   color: var(--text);
   text-decoration: none;
   overflow: hidden;
@@ -649,7 +651,9 @@
   margin: 0;
 }
 .catalog-preview-link .catalog-preview img {
-  aspect-ratio: 16/10;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: var(--canvas);
   border: 0;
   border-radius: 0;
   transition: transform 200ms cubic-bezier(0.2, 0, 0, 1);
@@ -747,9 +751,7 @@
   .catalog-card.dataset-card:is(:hover, :focus-within) {
     transform: translateY(-2px);
   }
-  .catalog-preview-link:is(:hover, :focus-visible) img {
-    transform: scale(1.025);
-  }
+  /* Documentary map/UI previews retain their original geometry. */
 }
 @media (min-width: 768px) and (max-width: 1099px) {
   .catalog-grid {
@@ -795,5 +797,192 @@
   .catalog-card.dataset-card {
     break-inside: avoid;
     transform: none !important;
+  }
+}
+
+/* The card is a direct map handoff, with an optional native disclosure. */
+.catalog-preview-feature {
+  display: block;
+  position: relative;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  margin: 12px 16px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--card);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+.catalog-card-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.catalog-pill {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.catalog-pill-pillar {
+  color: var(--text);
+  background: var(--card);
+  font-weight: 600;
+}
+.catalog-pill-source {
+  color: var(--text-secondary);
+}
+.catalog-pill-source[data-source-status="verified-lineage"] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.catalog-pill-period {
+  color: var(--text-secondary);
+}
+.catalog-card .catalog-tags {
+  margin-block: 16px;
+}
+.catalog-card .catalog-tags li {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+}
+.catalog-card .catalog-actions {
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.catalog-card .catalog-map-link {
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  background: transparent;
+  font-size: 15px;
+  font-weight: 600;
+  gap: 10px;
+  box-shadow: none;
+}
+.catalog-map-link:hover {
+  background: var(--card);
+}
+.catalog-credit-avatars {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  margin-inline-start: auto;
+}
+.catalog-credit-avatars a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 999px;
+}
+.catalog-credit-avatars img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.catalog-credit-name {
+  padding: 5px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+}
+.catalog-summary-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 8px;
+}
+.catalog-card .catalog-details {
+  margin-top: 12px;
+  padding-top: 12px;
+}
+.catalog-card .catalog-details > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  color: var(--accent);
+}
+.catalog-card .catalog-details > summary::-webkit-details-marker {
+  display: none;
+}
+.catalog-card .catalog-details > summary::after {
+  content: "+";
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  margin-inline-start: auto;
+}
+.catalog-card .catalog-details[open] > summary::after {
+  content: "−";
+}
+.catalog-gd-badge {
+  width: 40px;
+  height: 48px;
+  object-fit: contain;
+  flex: 0 0 40px;
+  background: var(--ldm-foundation-surface-card-light);
+  padding: 4px;
+  border-radius: 6px;
+}
+/* A pointer-transparent, theme-aware veil quiets the page, never its navigation.
+   The active card keeps its exact source pixels and normal contrast. */
+html[data-catalog-focus="active"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: var(--canvas);
+  opacity: 0.64;
+}
+.catalog-card[data-catalog-focused] {
+  z-index: 41;
+  border-color: var(--focus-ring);
+}
+.catalog-card.dataset-card[data-catalog-focused] {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .catalog-card .catalog-map-link,
+  .catalog-preview-feature,
+  html[data-catalog-focus="active"] body::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+@media print, (forced-colors: active) {
+  html[data-catalog-focus="active"] body::after {
+    display: none;
   }
 }
