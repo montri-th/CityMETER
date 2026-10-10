@@ -16,7 +16,8 @@
     "data/landom-contributors.json",
     "src/styles/shell-current.css",
     "src/styles/navbar-current.css",
-    "scripts/lib/catalog-qr.mjs"
+    "scripts/lib/catalog-qr.mjs",
+    "src/runtime/summary.js"
   ],
   "commands": {
     "generate": "npm run build",
@@ -36,7 +37,7 @@
       "dependsOn": [
         "evidence"
       ],
-      "action": "Edit src/catalog.json in TH/EN, retaining team intent and natural voice. Add cross-language aliases. Preserve stable IDs/map URLs and source scope.",
+      "action": "Edit src/catalog.json in TH/EN, retaining team intent and natural voice. Add cross-language aliases. Preserve stable IDs/map URLs and source scope. For each new executiveSummary, write two natural questions per language and one short reading paragraph based only on the same record evidence; keep team-provided statements before drafting.",
       "doneWhen": "No invented coverage, freshness, rights, behaviour or business outcome; branch shares have a stated subset and demand proxies stay proxies."
     },
     {
@@ -71,7 +72,7 @@
       "dependsOn": [
         "generate"
       ],
-      "action": "Inspect actual TH/EN content at 390 and 1440 CSS px, plus breakpoints 768 and 1100 CSS px. Verify 3 dedicated group lanes at wide widths, independent card heights, native source disclosures and QR, filter/reset/empty/same-hash navigation, menu/language/theme, retained decision/share/reel, keyboard and reduced-motion/observer-failure final visibility.",
+      "action": "Inspect actual TH/EN content at 390 and 1440 CSS px, plus breakpoints 768 and 1100 CSS px. Verify 3 dedicated group lanes at wide widths, independent card heights, native source disclosures and QR, filter/reset/empty/same-hash navigation, menu/language/theme, retained decision/share/reel, keyboard and reduced-motion/observer-failure final visibility. Read summary pages in both locales at narrow/desktop, 150% Thai text and 200% native page zoom. Test direct map bypass, top/bottom actions, exact return anchor, four platform handoffs, copy failure fallback and no-JS selectable URL.",
       "doneWhen": "No overflow, fake preview, decorative bracket/rail, missing credit/name, dead control or stale count."
     },
     {
@@ -127,6 +128,36 @@
       "qr": "local SVG actual mapUrl, 4-module quiet zone, M correction; static before hydration",
       "motion": "preview-only once arrival and bounded state feedback; all content/actions visible without motion",
       "filterReset": "Reset button clears query and restores all pillars; deleting only the search text retains the selected pillar."
+    },
+    "summary": {
+      "source": "record.executiveSummary in src/catalog.json",
+      "editorialBasis": "catalog_description_and_source_review",
+      "required": {
+        "questions": "2 natural questions per locale",
+        "reading": "one concise evidence-based paragraph per locale"
+      },
+      "path": "existing localized datasets/<slug>/ routes; no additional reading layer",
+      "flow": [
+        "catalog direct map CTA (first action)",
+        "optional Read summary link",
+        "summary top and bottom direct map action",
+        "bottom team contact (existing contact page)",
+        "top and bottom back to exact catalog card anchor",
+        "share localized canonical summary URL"
+      ],
+      "share": {
+        "platforms": [
+          "LINE",
+          "Facebook",
+          "LinkedIn",
+          "X"
+        ],
+        "noJavaScript": "real links plus selectable readonly canonical URL",
+        "enhancement": "native navigator.share when available; clipboard copy with focus/select fallback",
+        "doesNot": "send or post automatically; no prefilled contact context claim"
+      },
+      "socialImage": "Only the same record actual preview; conceptual/missing previews omit social image.",
+      "limits": "Visible before preview; exact existing record.limitation retained"
     }
   },
   "verificationScope": {
@@ -162,11 +193,17 @@
         "token/hash checks"
       ]
     },
-    "chooserAndOperationalMap": "Catalog checks do not establish dataset-switcher prototype or operational-map integration behavior."
+    "chooserAndOperationalMap": "Catalog checks do not establish dataset-switcher prototype or operational-map integration behavior.",
+    "summaryFixtures": {
+      "script": "scripts/validate-catalog-summary.mjs",
+      "pagesChecked": 86,
+      "sharingCases": 6,
+      "scope": "initial HTML map/back/source/credit/share contracts and Node VM clipboard/native-share handling; not completed posts or OS share panel validation"
+    }
   },
   "discoveryModel": {
     "catalog": "Concise grouped cards, real HTML links, native source disclosures and per-record operational QR handoff.",
-    "detailPages": "Stable localized URLs with per-record title, description, source, period, scope and limitations; canonical/hreflang/sitemap kept in sync.",
+    "detailPages": "Existing stable localized URLs now contain concise executive summaries, two questions, reading guidance, exact source/period/scope/limitations and public credits in initial HTML; canonical/hreflang/sitemap kept in sync.",
     "operationalViews": "Exact existing mapUrl, preserving dataset, example area and 3D route.",
     "qr": "Mobile handoff to mapUrl; a QR-only page is not a replacement for useful indexable dataset content.",
     "searchReference": "https://developers.google.com/search/docs/fundamentals/get-started-developers",

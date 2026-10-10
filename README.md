@@ -1,6 +1,6 @@
 # CityMETER marketing showcase
 
-Current catalog release: 2026-10-10 masonry r2. The catalog renders 43 records in three independent Land / Location / Living lanes, with24 semantic subgroups, native source disclosures and a static QR to each exact data-view URL. Current UI colors resolve LDS0.9.7 roles; earlier release notes below are retained history.
+Current catalog release: 2026-10-10 masonry and executive summaries r3. The catalog renders 43 records in three independent Land / Location / Living lanes, with 24 semantic subgroups, native source disclosures and a static QR to each exact data-view URL. Every data view also has an optional bilingual executive summary with direct map actions, references, credits and sharing links. Current UI colors resolve LDS0.9.7 roles; earlier release notes below are retained history.
 
 Edit and validate with [the maintainer guide](docs/catalog-maintenance.md) and [machine plan](docs/catalog-maintenance.json). The [dataset switcher specification](docs/dataset-switcher.md) is a proposal for the map application, not an installed feature.
 

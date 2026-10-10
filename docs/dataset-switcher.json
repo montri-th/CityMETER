@@ -5,7 +5,7 @@
   "implementedInProduction": false,
   "authority": {
     "catalogPath": "src/catalog.json",
-    "catalogSha256": "a04fec010e6fb8d43c21b7da5d7bb496c213a8cf514e8104122b98c780a8b6ba",
+    "catalogSha256": "e9dedd5229a5c82fab1393ecb04414ce82531d51a495d6b3a3ff3639ceda5f26",
     "taxonomyFile": "src/catalog.json",
     "designTokensFile": "assets/landometer-ds/v0.9.7/color-srgb-10.production.css",
     "designAuthority": {

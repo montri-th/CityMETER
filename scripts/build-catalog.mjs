@@ -273,6 +273,7 @@ enhancer = replaceOnce(
 emit(enhancerPath, enhancer);
 emit(navPath, fixCopy(read("assets/unified-navbar-r7-v32.js")));
 emit("assets/catalog-public-r1.js", read("src/runtime/catalog.js"));
+emit("assets/dataset-summary-public-r1.js", read("src/runtime/summary.js"));
 emit("assets/catalog-public-r1.css", read("src/styles/catalog.css"));
 emit("assets/catalog-shell-current-r1.css", read("src/styles/shell-current.css"));
 emit("assets/navbar-current-r1.css", read("src/styles/navbar-current.css"));
@@ -380,7 +381,7 @@ for (const lang of ["th", "en"]) {
     )
     .replace(
       'content="ui-20260905-ds091-public-v6"',
-      'content="2026-10-10-catalog-masonry-r2"',
+      'content="2026-10-10-catalog-masonry-summary-r3"',
     )
     .replace(
       /    <meta name="(?:landometer:release-receipt|citymeter:release-receipt|citymeter:contributor-[^"]+)"[^>]*>\n/g,
@@ -437,6 +438,7 @@ const authored = [
   "src/templates/index.th.html",
   "src/templates/index.en.html",
   "src/runtime/catalog.js",
+  "src/runtime/summary.js",
   "src/styles/catalog.css",
   "src/styles/shell-current.css",
   "src/styles/navbar-current.css",

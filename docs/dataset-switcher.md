@@ -181,7 +181,7 @@ Local Decisions เป็นแนวช่วยค้นคำถามขอ�
 
 ## หลักฐานและข้อจำกัดการตรวจ
 
-- Catalog source: [src/catalog.json](../src/catalog.json) SHA-256 `a04fec010e6fb8d43c21b7da5d7bb496c213a8cf514e8104122b98c780a8b6ba`
+- Catalog source: [src/catalog.json](../src/catalog.json) SHA-256 `e9dedd5229a5c82fab1393ecb04414ce82531d51a495d6b3a3ff3639ceda5f26`
 - Taxonomy source: `subgroups` และ `records[].subgroup` ใน catalog ต้นทางเดียวกัน; รายการที่ใช้ในข้อเสนอนี้อยู่ใน `pillars` และ `records` ของ [ข้อเสนอ JSON](dataset-switcher.json)
 - Historical background: CityMETER public dataset audit วันที่ 24 กรกฎาคม 2026 §§5–6 เป็นเอกสารอ้างอิงที่เจ้าของงานให้มาและไม่ได้รวมใน repository นี้ ใช้เฉพาะแนวจัดกลุ่มที่สรุปไว้ข้างต้นและยังสอดคล้องปัจจุบัน
 - LDS base: `lds-0.9.7-landometer-standalone-r1`, SHA-256 `d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96`; ตรวจ rule ที่เกี่ยวกับ typography, icons, controls และ foundation tokens สำหรับชิ้นนี้ ไม่อ้างว่าทั้งไซต์ผ่าน LDS
