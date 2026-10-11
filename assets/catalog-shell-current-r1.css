@@ -63,9 +63,9 @@
   --pillar-surface-land: var(--ldm-foundation-surface-card-light);
   --pillar-surface-location: var(--ldm-foundation-surface-blue-tint-light);
   --pillar-surface-living: var(--ldm-foundation-surface-soft-light);
-  --pillar-accent-land: var(--ldm-series-03-fill-light);
-  --pillar-accent-location: var(--ldm-series-08-fill-light);
-  --pillar-accent-living: var(--ldm-series-05-fill-light);
+  --pillar-accent-land: var(--ldm-series-04-fill-light);
+  --pillar-accent-location: var(--ldm-series-07-fill-light);
+  --pillar-accent-living: var(--ldm-series-01-fill-light);
   --pillar-accent-ink: var(--ldm-foundation-text-primary-light);
   --pillar-text-primary: var(--ldm-foundation-text-primary-light);
   --pillar-text-secondary: var(--ldm-foundation-text-secondary-light);
@@ -126,9 +126,9 @@
   --pillar-surface-land: var(--ldm-foundation-surface-card-dark);
   --pillar-surface-location: var(--ldm-foundation-surface-blue-tint-dark);
   --pillar-surface-living: var(--ldm-foundation-surface-soft-dark);
-  --pillar-accent-land: var(--ldm-series-03-fill-dark);
-  --pillar-accent-location: var(--ldm-series-08-fill-dark);
-  --pillar-accent-living: var(--ldm-series-05-fill-dark);
+  --pillar-accent-land: var(--ldm-series-04-fill-dark);
+  --pillar-accent-location: var(--ldm-series-07-fill-dark);
+  --pillar-accent-living: var(--ldm-series-01-fill-dark);
   --pillar-accent-ink: var(--ldm-foundation-text-primary-dark);
   --pillar-text-primary: var(--ldm-foundation-text-primary-dark);
   --pillar-text-secondary: var(--ldm-foundation-text-secondary-dark);
@@ -1637,3 +1637,95 @@ html[data-lm-approach="armed"] [data-lm-reveal-role]:focus-within {
     will-change: auto !important;
   }
 }
+
+/* Claude handoff, owner-selected scope, 2026-10-11.
+   Foundation/categorical/atmosphere aliases resolve to the pinned LDS 0.9.7
+   projection. Elevation compositions are local handoff values, not new DS tokens. */
+:root {
+  --surface-canvas: var(--ldm-foundation-surface-canvas-light);
+  --surface-alt: var(--ldm-foundation-surface-alt-light);
+  --surface-card: var(--ldm-foundation-surface-card-light);
+  --surface-raised: var(--ldm-foundation-surface-raised-light);
+  --surface-soft: var(--ldm-foundation-surface-soft-light);
+  --surface-blue-tint: var(--ldm-foundation-surface-blue-tint-light);
+  --text-primary: var(--ldm-foundation-text-primary-light);
+  --text-metadata: var(--ldm-foundation-text-metadata-light);
+  --text-muted: var(--ldm-foundation-text-muted-light);
+  --border-hairline: var(--ldm-foundation-border-hairline-light);
+  --border-default: var(--ldm-foundation-border-default-light);
+  --border-emphasis: var(--ldm-foundation-border-emphasis-light);
+  --interaction-accent: var(--ldm-foundation-interaction-accent-light);
+  --interaction-focus: var(--ldm-foundation-interaction-focus-ring-light);
+  --series-04-fill: var(--ldm-series-04-fill-light);
+  --series-04-ink: var(--ldm-series-04-ink-light);
+  --series-07-fill: var(--ldm-series-07-fill-light);
+  --series-07-ink: var(--ldm-series-07-ink-light);
+  --series-01-fill: var(--ldm-series-01-fill-light);
+  --series-01-ink: var(--ldm-series-01-ink-light);
+  --elevation-xs: 0 1px 2px rgba(30,34,48,.08);
+  --elevation-sm: 0 4px 12px rgba(30,34,48,.10);
+  --elevation-md: 0 12px 32px rgba(30,34,48,.14);
+  --elevation-lg: 0 24px 64px rgba(30,34,48,.18);
+  --atmosphere-measure-deep: var(--ldm-atmosphere-gradient-measure-deep);
+  --atmosphere-measure: var(--atmosphere-measure-deep);
+  --atmosphere-measure-primary: #FFFFFF;
+  --atmosphere-measure-secondary: #F1F4EF;
+  --atmosphere-measure-separator: #F1F4EF;
+  --atmosphere-measure-focus-inner: #182327;
+  --atmosphere-measure-focus-outer: #FFFFFF;
+  --atmosphere-cultivate: var(--atmosphere-measure-deep);
+  --atmosphere-cultivate-primary: #FFFFFF;
+  --atmosphere-cultivate-secondary: #F1F4EF;
+  --atmosphere-cultivate-separator: #F1F4EF;
+  --atmosphere-cultivate-focus-inner: #182327;
+  --atmosphere-cultivate-focus-outer: #FFFFFF;
+  --section-surface-decision: var(--surface-canvas);
+  --section-surface-showcase: var(--surface-canvas);
+  --section-surface-explorer: var(--surface-alt);
+  --section-surface-contact: var(--surface-canvas);
+  --section-surface-footer: var(--surface-alt);
+  --pillar-surface-land: var(--surface-card);
+  --pillar-surface-location: var(--surface-card);
+  --pillar-surface-living: var(--surface-card);
+  --pillar-accent-land: var(--series-04-fill);
+  --pillar-accent-location: var(--series-07-fill);
+  --pillar-accent-living: var(--series-01-fill);
+}
+:root[data-theme="dark"] {
+  --surface-canvas: var(--ldm-foundation-surface-canvas-dark);
+  --surface-alt: var(--ldm-foundation-surface-alt-dark);
+  --surface-card: var(--ldm-foundation-surface-card-dark);
+  --surface-raised: var(--ldm-foundation-surface-raised-dark);
+  --surface-soft: var(--ldm-foundation-surface-soft-dark);
+  --surface-blue-tint: var(--ldm-foundation-surface-blue-tint-dark);
+  --text-primary: var(--ldm-foundation-text-primary-dark);
+  --text-metadata: var(--ldm-foundation-text-metadata-dark);
+  --text-muted: var(--ldm-foundation-text-muted-dark);
+  --border-hairline: var(--ldm-foundation-border-hairline-dark);
+  --border-default: var(--ldm-foundation-border-default-dark);
+  --border-emphasis: var(--ldm-foundation-border-emphasis-dark);
+  --interaction-accent: var(--ldm-foundation-interaction-accent-dark);
+  --interaction-focus: var(--ldm-foundation-interaction-focus-ring-dark);
+  --series-04-fill: var(--ldm-series-04-fill-dark);
+  --series-04-ink: var(--ldm-series-04-ink-dark);
+  --series-07-fill: var(--ldm-series-07-fill-dark);
+  --series-07-ink: var(--ldm-series-07-ink-dark);
+  --series-01-fill: var(--ldm-series-01-fill-dark);
+  --series-01-ink: var(--ldm-series-01-ink-dark);
+  --atmosphere-measure: var(--atmosphere-measure-deep);
+  --atmosphere-measure-primary: #FFFFFF;
+  --atmosphere-measure-secondary: #F1F4EF;
+  --atmosphere-measure-separator: #F1F4EF;
+  --atmosphere-measure-focus-inner: #182327;
+  --atmosphere-measure-focus-outer: #FFFFFF;
+  --atmosphere-cultivate: var(--atmosphere-measure-deep);
+  --atmosphere-cultivate-primary: #FFFFFF;
+  --atmosphere-cultivate-secondary: #F1F4EF;
+  --atmosphere-cultivate-separator: #F1F4EF;
+  --atmosphere-cultivate-focus-inner: #182327;
+  --atmosphere-cultivate-focus-outer: #FFFFFF;
+}
+[data-pillar="land"], [data-group="land"] { --catalog-pillar-fill: var(--series-04-fill); --catalog-pillar-ink: var(--series-04-ink); }
+[data-pillar="location"], [data-group="location"] { --catalog-pillar-fill: var(--series-07-fill); --catalog-pillar-ink: var(--series-07-ink); }
+[data-pillar="living"], [data-group="living"] { --catalog-pillar-fill: var(--series-01-fill); --catalog-pillar-ink: var(--series-01-ink); }
+.catalog-pillar-cue { color: var(--catalog-pillar-fill); }

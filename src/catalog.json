@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "contentVersion": "2026-10-10-human-impact-identity-r6",
+  "contentVersion": "2026-10-11-claude-handoff-r1",
   "canonicalBase": "https://montri-th.github.io/CityMETER/",
-  "updatedAt": "2026-10-10",
+  "updatedAt": "2026-10-11",
   "authority": {
     "dsVersion": "0.9.7",
     "baseDocumentId": "lds-0.9.7-landometer-standalone-r1",

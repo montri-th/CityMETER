@@ -206,6 +206,12 @@
   function localeDestination(language) {
     var target = language === "en" ? "en" : "th";
     var url = new URL(window.location.href);
+    var articleRoute = /^(.*?)(?:en\/)?datasets\/([^/]+)\/(?:index\.html)?$/.exec(url.pathname);
+    if (articleRoute) {
+      url.pathname = articleRoute[1] + (target === "en" ? "en/" : "") + "datasets/" + articleRoute[2] + "/";
+      url.searchParams.set("lang", target);
+      return url.href;
+    }
     var basePath = url.pathname
       .replace(/\/en(?:\/(?:index\.html)?)?$/i, "/")
       .replace(/\/index\.html$/i, "/");
@@ -302,6 +308,8 @@
     });
   }
 
+  var explicitTheme = normalizedTheme(new URLSearchParams(window.location.search).get("theme"));
+  if (explicitTheme) root.dataset.themePreference = explicitTheme;
   installPreferences();
 
   if ("MutationObserver" in window) {

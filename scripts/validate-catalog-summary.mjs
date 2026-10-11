@@ -3,7 +3,10 @@ import { readFileSync } from "node:fs";
 import vm from "node:vm";
 import { card, detailUrl, esc, shareLinks, sourcePanel, contributors } from "./lib/catalog-render.mjs";
 
-import { detailPage, articleReading } from "./lib/summary-article.mjs";
+import { detailPage, articleReading, articleFacts, articleNavigation } from "./lib/summary-article.mjs";
+import { validateSummaryRuntime } from "./validate-summary-runtime.mjs";
+import { articleFactProjection } from "./lib/article-facts.mjs";
+const sourceOnly = process.argv.includes("--source-only");
 const stories = JSON.parse(readFileSync(new URL("../src/dataset-stories.json", import.meta.url), "utf8"));
 const storyByCode = new Map(stories.records.map(s => [s.datasetCode,s]));
 const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
@@ -15,9 +18,9 @@ for (const r of catalog.records) {
   assert(story && story.sections.length >= 3, `${r.id}: independent feature absent`);
   for (const lang of ["th", "en"]) {
     const path = `${lang === "en" ? "en/" : ""}datasets/${r.slug}/index.html`;
-    const html = read(path);
+    const html = sourceOnly ? detailPage(catalog,r,lang,projection,story,stories.records) : read(path);
     const body = html.split("<body")[1].replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "");
-    const disclosure = body.match(/<details class="summary-source-details">([\s\S]*?)<\/details>/)?.[0];
+    const disclosure = body.match(/<details class="summary-source-details"[^>]*>([\s\S]*?)<\/details>/)?.[0];
     assert(disclosure, `${r.id}: optional provenance absent`);
     const mainReading = body.replace(disclosure, "");
     assert(body.includes('<article class="catalog-summary"'));
@@ -28,21 +31,56 @@ for (const r of catalog.records) {
       for (const ref of section.references || []) assert(body.includes(`href="${esc(ref.url)}"`));
     }
     const reading = articleReading(story, lang);
-    assert(reading.minutes >= 3 && reading.minutes <= 5, `${r.id}/${lang}: ${reading.words} words, ${reading.minutes} minutes`);
+    const readingText=[story.lead[lang],...story.sections.flatMap(s=>[s.heading[lang],...s.paragraphs[lang]])].join(" ");
+    const exactWords=[...new Intl.Segmenter(lang,{granularity:"word"}).segment(readingText)].filter(s=>s.isWordLike).length;
+    assert.equal(reading.words,exactWords);
+    assert.equal(reading.minutes,Math.max(1,Math.round(exactWords/170)));
     assert(body.includes(`data-reading-words="${reading.words}"`));
     assert(html.includes(`<meta name="description" content="${esc(story.lead[lang])}"/>`));
     const firstMap = body.indexOf(`href="${esc(story.mapUrl || r.mapUrl)}"`);
-    assert(firstMap > 0 && body.indexOf('<details class="summary-source-details">') > firstMap);
-    assert(!body.includes('<details class="summary-source-details" open'));
+    assert(firstMap > 0 && body.indexOf('<details class="summary-source-details"') > firstMap);
+    assert(!/^<details[^>]*\sopen(?:[\s=>])/.test(disclosure));
     assert(disclosure.includes(sourcePanel(r, lang, 3)));
     assert(disclosure.includes(esc(r.limitation[lang])));
     assert(!mainReading.includes(esc(r.limitation[lang])), `${r.id}: caveat escaped its disclosure`);
     assert(!mainReading.includes(esc(r.executiveSummary.note[lang])), `${r.id}: old reader warning remains visible`);
     assert(!mainReading.includes('catalog-source-status'));
-    assert(body.includes(contributors(r, lang, projection)));
-    assert(body.includes(`media/qr/datasets/${r.slug}.svg`));
+    assert(disclosure.includes(contributors(r, lang, projection)));
+    assert(disclosure.includes(`media/qr/datasets/${r.slug}.svg`));
+    assert(disclosure.match(/<img[^>]+media\/qr[^>]+loading="lazy"/));
     const image = story.snapshot || r.preview;
     if (image.available || image.path) assert(body.includes(esc(image.largePath || image.path)));
+    assert(body.includes('<main id="main-content">'));
+    assert.equal((body.match(/<main\b/g)||[]).length,1);
+    assert(body.includes('class="summary-facts"'));
+    assert.equal((body.match(/class="summary-fact"/g)||[]).length,4);
+    for(const fact of articleFacts(r,lang)) if(fact.value) assert(body.includes(esc(fact.value)));
+    for(let i=0;i<story.sections.length;i++) {
+      assert(body.includes(`id="s${i+1}" data-toc="s${i+1}"`));
+      assert(body.includes(`href="#s${i+1}" data-toc-link="s${i+1}"`));
+    }
+    assert(/href="#sources"[^>]*data-open-sources/.test(body));
+    assert(body.includes('href="#share"'));
+    assert(body.includes('data-reading-progress hidden'));
+    assert(!mainReading.includes('catalog-status'));
+    const nav=articleNavigation(catalog,r,stories.records);
+    assert.equal(nav.related.length,3);
+    assert(new Set(nav.related.map(x=>x.record.datasetCode)).size===3);
+    for(const related of nav.related) {
+      assert.equal(related.record.group,r.group);
+      assert.notEqual(related.record.datasetCode,r.datasetCode);
+      assert(body.includes(esc(related.story.title[lang])));
+      assert(body.includes(`href="${detailUrl(catalog,related.record,lang)}"`));
+    }
+    assert(body.includes(`href="${detailUrl(catalog,nav.previous.record,lang)}" rel="prev"`));
+    assert(body.includes(`href="${detailUrl(catalog,nav.next.record,lang)}" rel="next"`));
+    assert(!body.includes('CityMETER Article.dc.html'));
+    const figure=body.match(/<figure class="catalog-preview summary-preview">([\s\S]*?)<\/figure>/)?.[0];
+    assert(figure);
+    assert(figure.includes('class="summary-image-stage"'));
+    if(story.snapshot)assert(figure.includes(esc(story.snapshot.caption[lang])));
+    else if(r.preview.conceptual)assert(figure.includes(lang==='th'?'ภาพประกอบเรื่องนี้':'Illustration for this story'));
+    else assert(figure.includes(lang==='th'?'มุมมองข้อมูลใน CityMETER':'A view inside CityMETER'));
     const canonical = detailUrl(catalog, r, lang);
     assert(html.includes(`<link rel="canonical" href="${canonical}"/>`));
     assert(html.includes(`<meta property="og:url" content="${canonical}"/>`));
@@ -87,35 +125,40 @@ assert.equal(themeFixture("", { "citymeter-theme": "dark" }, false), "dark");
 assert.equal(themeFixture("", {}, true), "dark");
 assert.equal(themeFixture("?theme=dark", {}, false, true), "dark");
 assert.equal(themeFixture("?theme=system", {}, true, true, false), "light");
-// Sharing error handling: no navigation or success claim when clipboard fails or user cancels.
-const runtime = read("src/runtime/summary.js");
-function fixture(navigator) {
-  const controls = Object.fromEntries(["status", "input", "copy", "native"].map((key) => [key, { hidden: true, textContent: "", listeners: {}, addEventListener(type, fn) { this.listeners[type] = fn; }, focus() { this.focused = true; }, select() { this.selected = true; } }]));
-  const panel = { dataset: { shareUrl: "https://example.com/en/datasets/test/", shareTitle: "Test", copySuccess: "copied", copyFallback: "copy-failed", shareSuccess: "opened", shareFallback: "share-failed" }, querySelector: (q) => controls[q === "input" ? "input" : q.includes("native") ? "native" : q.includes("copy") ? "copy" : "status"] };
-  vm.runInNewContext(runtime, { document: { querySelector: () => panel }, navigator });
-  return controls;
+// All 43 concise projections are individually authored and bound to source fields.
+assert.deepEqual(Object.keys(articleFactProjection).sort(),catalog.records.map(r=>r.datasetCode).sort());
+for(const r of catalog.records) {
+  const facts=articleFactProjection[r.datasetCode];
+  assert.match(facts.sourceSha256,/^[a-f0-9]{64}$/);
+  for(const key of ['period','scope','grain','publisher']) {
+    if(facts[key]===null)continue;
+    assert.deepEqual(Object.keys(facts[key]).sort(),['en','th']);
+    for(const lang of ['th','en']) {
+      assert(facts[key][lang].length>0&&facts[key][lang].length<=100,`${r.datasetCode}/${key}: concise field length`);
+      assert(!/ยังไม่|ไม่ใช่|ต้องตรวจ|candidate|not (?:yet |fully )?(?:verified|confirmed|stated)|unknown|does not/i.test(facts[key][lang]),`${r.datasetCode}/${key}: source warning outside disclosure`);
+    }
+  }
+  for(const lang of ['th','en']) assert.equal(articleFacts(r,lang).length,4);
 }
-const missing = fixture({});
-assert.equal(missing.native.hidden, true);
-await missing.copy.listeners.click();
-assert.equal(missing.status.textContent, "copy-failed");
-assert(missing.input.focused && missing.input.selected);
-let written;
-const success = fixture({ clipboard: { writeText: async (url) => { written = url; } } });
-await success.copy.listeners.click();
-assert.equal(written, "https://example.com/en/datasets/test/");
-assert.equal(success.status.textContent, "copied");
-const denied = fixture({ clipboard: { writeText: async () => { throw new Error("Denied"); } } });
-await denied.copy.listeners.click();
-assert.equal(denied.status.textContent, "copy-failed");
-const cancelled = fixture({ share: async () => { throw { name: "AbortError" }; } });
-await cancelled.native.listeners.click();
-assert.equal(cancelled.status.textContent, "");
-const failed = fixture({ share: async () => { throw new Error("Failed"); } });
-await failed.native.listeners.click();
-assert.equal(failed.status.textContent, "share-failed");
-assert(failed.input.selected);
-const nativeSuccess = fixture({ share: async () => {} });
-await nativeSuccess.native.listeners.click();
-assert.equal(nativeSuccess.status.textContent, "opened");
-console.log(`PASS ${pages} initial place-led 3–5 minute articles, direct map/back/source/credit/QR/share contracts plus 8 theme-precedence and 6 sharing failure/success fixtures.`);
+const officer=catalog.records.find(r=>r.datasetCode==='governmentOfficer');
+assert.deepEqual(articleFacts(officer,'th').map(f=>f.value),[
+  '2566–2567 (สถิติกำลังคน)','ข้อมูลที่ตั้ง 76 จังหวัดและกรุงเทพมหานคร','ที่ตั้งหน่วยงาน · สถิติระดับกระทรวง/กรม','ก.พ. · ก.พ.ร. · กรมการปกครอง · กทม.'
+]);
+assert(articleFacts(catalog.records.find(r=>r.datasetCode==='landoffer'),'en').filter(f=>!f.value&&f.more).length===3);
+assert(articleFacts(catalog.records.find(r=>r.datasetCode==='cars'),'en')[2].value.includes('selected types and brands'));
+assert(articleFacts(catalog.records.find(r=>r.datasetCode==='building'),'en')[2].value.includes('estimated'));
+assert(articleFacts(catalog.records.find(r=>r.datasetCode==='govspending'),'en')[1].value.includes('matched'));
+assert.equal(articleFacts(catalog.records.find(r=>r.datasetCode==='school'),'en')[3].value,'');
+assert.equal(articleFacts(catalog.records.find(r=>r.datasetCode==='quakeSafe'),'en')[3].value,'');
+const changed=structuredClone(officer);changed.sourceReview.period.th='New data period';
+assert.throws(()=>articleFacts(changed,'th'),/Source facts changed; review concise article facts/);
+const first=articleNavigation(catalog,catalog.records[0],stories.records);
+assert.notEqual(first.previous.record.datasetCode,catalog.records[0].datasetCode);
+const css=read('src/styles/summary.css');
+assert(css.includes('object-fit:contain'));
+assert(!css.includes('object-fit:cover'));
+assert(!css.includes('line-clamp'));
+assert(css.includes('--atmosphere-measure-deep'));
+assert(css.includes('@media(prefers-reduced-motion:reduce)'));
+const runtimeChecks=await validateSummaryRuntime();
+console.log(`PASS ${pages} ${sourceOnly?'source-rendered':'initial HTML'} articles: exact ICU reading time, fact/source/credit/QR/share, complete finding images, TOC and related/pager contracts; 8 theme and ${runtimeChecks} runtime fixtures.`);

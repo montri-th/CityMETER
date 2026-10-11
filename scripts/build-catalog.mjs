@@ -16,6 +16,7 @@ import {
   sourcePanel,
   esc,
 } from "./lib/catalog-render.mjs";
+import { attachArticleNavbar, navbarArticleRoutes } from "./lib/article-navbar.mjs";
 import { detailPage } from "./lib/summary-article.mjs";
 import { uiIconHead } from "./lib/ui-icon.mjs";
 import { materializeUiIconsInBundle, materializeUiIconsInHtml, materializeNavbarIcons } from "./lib/ui-icon-migration.mjs";
@@ -32,7 +33,7 @@ const versionedPublicAssets = new Set([
  "index-public-catalog-r1.js","catalog-enhancements-public-r1.js","unified-navbar-public-r1.js",
  "catalog-public-r1.js","dataset-summary-public-r1.js","catalog-public-r1.css",
  "dataset-summary-public-r1.css","catalog-shell-current-r1.css","navbar-current-r1.css",
- "public-footer-r1.css","ui-icons-current-r1.css"
+ "public-footer-r1.css","ui-icons-current-r1.css","catalog-layout-public-r1.js"
 ]);
 function versionPublicAssets(html) {
  return html.replace(/((?:src|href)="(?:[^"?]*\/)?assets\/)([^"?]+)(?:\?[^" ]*)?"/g,(whole,prefix,file)=>
@@ -313,6 +314,10 @@ bundle = replaceLiteral(
     ]),
   ),
 );
+// Explicit shared links must select their theme before the retained React shell
+// initializes. Storage remains a fallback, and unavailable storage is harmless.
+bundle = replaceSpan(bundle, "function _6(){", "function D6(",
+  'function _6(){if(typeof window>"u")return"system";const query=new URLSearchParams(window.location.search).get("theme");if(query==="auto")return"system";if(wf.has(query))return query;try{const c=window.localStorage.getItem("lds-theme")||window.localStorage.getItem("citymeter-theme"),f=c==="auto"?"system":c;return wf.has(f)?f:"system"}catch(_){return"system"}}');
 bundle = materializeUiIconsInBundle(fixCopy(bundle));
 emit(bundlePath, bundle);
 let enhancer = read("assets/catalog-enhancements-ds-0.9.1-v26.js");
@@ -327,12 +332,13 @@ enhancer = replaceOnce(
   "// Public showcase copy is owned by the shared renderer.",
 );
 emit(enhancerPath, enhancer);
-emit(navPath, materializeNavbarIcons(fixCopy(read("assets/unified-navbar-r7-v32.js"))));
+emit(navPath, materializeNavbarIcons(navbarArticleRoutes(fixCopy(read("assets/unified-navbar-r7-v32.js")))));
 emit("assets/catalog-public-r1.js", read("src/runtime/catalog.js"));
 emit("assets/dataset-summary-public-r1.js", read("src/runtime/summary.js"));
-emit("assets/catalog-public-r1.css", read("src/styles/catalog.css"));
+emit("assets/catalog-public-r1.css", read("src/styles/catalog.css") + "\n" + read("src/styles/catalog-layout-handoff.css") + "\n" + read("src/styles/catalog-color-handoff.css"));
+emit("assets/catalog-layout-public-r1.js", read("src/runtime/catalog-layout.js"));
 emit("assets/dataset-summary-public-r1.css", read("src/styles/summary.css"));
-emit("assets/catalog-shell-current-r1.css", read("src/styles/shell-current.css"));
+emit("assets/catalog-shell-current-r1.css", read("src/styles/shell-current.css") + "\n" + read("src/styles/handoff-tokens.css"));
 emit("assets/navbar-current-r1.css", read("src/styles/navbar-current.css"));
 emit("assets/public-footer-r1.css", read("src/styles/public-footer.css"));
 emit("assets/ui-icons-current-r1.css", read("src/styles/ui-icons.css"));
@@ -459,7 +465,7 @@ for (const lang of ["th", "en"]) {
     );
   html = html.replace(
     "</head>",
-    `<link rel="alternate" type="application/json" href="${base}data/catalog.json" title="CityMETER public catalog"/>\n<link rel="stylesheet" href="${base}assets/catalog-public-r1.css"/>\n<link rel="stylesheet" href="${base}assets/public-footer-r1.css"/>\n<script defer src="${base}assets/catalog-public-r1.js"></script>\n</head>`,
+    `<link rel="alternate" type="application/json" href="${base}data/catalog.json" title="CityMETER public catalog"/>\n<link rel="stylesheet" href="${base}assets/catalog-public-r1.css"/>\n<link rel="stylesheet" href="${base}assets/public-footer-r1.css"/>\n<script defer src="${base}assets/catalog-public-r1.js"></script><script defer src="${base}assets/catalog-layout-public-r1.js"></script>\n</head>`,
   );
   for (const record of catalog.records) {
     const anchor = new RegExp(
@@ -476,7 +482,7 @@ for (const lang of ["th", "en"]) {
   for (const record of catalog.records)
     emit(
       `${lang === "en" ? "en/" : ""}datasets/${record.slug}/index.html`,
-      versionPublicAssets(detailPage(catalog, record, lang, projection, storyByCode.get(record.datasetCode))),
+      versionPublicAssets(attachArticleNavbar(detailPage(catalog, record, lang, projection, storyByCode.get(record.datasetCode), stories.records), lang, record.slug)),
     );
 }
 const urls = [
@@ -507,6 +513,13 @@ const authored = [
   "src/runtime/catalog.js",
   "src/runtime/summary.js",
   "src/styles/catalog.css",
+  "src/styles/catalog-layout-handoff.css",
+  "src/styles/catalog-color-handoff.css",
+  "src/styles/handoff-tokens.css",
+  "src/runtime/catalog-layout.js",
+  "scripts/lib/article-navbar.mjs",
+  "scripts/lib/article-facts.mjs",
+  "scripts/lib/article-facts.json",
   "src/styles/public-footer.css",
   "src/styles/summary.css",
   "src/styles/shell-current.css",

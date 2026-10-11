@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "node scripts/build-catalog.mjs",
-    "check": "node scripts/build-catalog.mjs --check && node scripts/validate-catalog.mjs && node scripts/validate-catalog-layout.mjs && node scripts/validate-catalog-runtime.mjs && node scripts/validate-catalog-summary.mjs && node scripts/validate-public-shell.mjs && node scripts/validate-ui-icons.mjs",
+    "check": "node scripts/build-catalog.mjs --check && node scripts/validate-catalog.mjs && node scripts/validate-catalog-layout.mjs && node scripts/validate-catalog-runtime.mjs && node scripts/validate-catalog-summary.mjs && node scripts/validate-public-shell.mjs && node scripts/validate-ui-icons.mjs && node scripts/validate-summary-runtime.mjs && node scripts/validate-handoff-integration.mjs",
     "sync:contributors": "node scripts/sync-public-contributors.mjs"
   },
   "dependencies": {
