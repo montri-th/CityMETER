@@ -1,0 +1,627 @@
+{
+  "building": {
+    "sourceSha256": "9f4d91280d5a6938150ebc5a3f65db530295e5b42c8e5e84217adafb1f73ef8b",
+    "period": {
+      "th": "V3 พ.ค. 2566 · V4 ธ.ค. 2567",
+      "en": "V3 May 2023 · V4 Dec 2024"
+    },
+    "scope": {
+      "th": "พื้นที่ที่มีข้อมูลในแต่ละรุ่น",
+      "en": "Areas covered by each version"
+    },
+    "grain": {
+      "th": "รายอาคาร · ความสูงและพื้นที่ใช้สอยโดยประมาณ",
+      "en": "Buildings · estimated height and floor area"
+    },
+    "publisher": {
+      "th": "V4: 3D-GloBFP / OSM · V3: Google Research",
+      "en": "V4: 3D-GloBFP / OSM · V3: Google Research"
+    }
+  },
+  "terrain": {
+    "sourceSha256": "309ae02359c1f43569a851e130c0def1ca0f4bd06d1c902fb10995e3e3eeb937",
+    "period": {
+      "th": "ตามรุ่นของแบบจำลองระดับความสูง",
+      "en": "By elevation-model version"
+    },
+    "scope": {
+      "th": "ตามพื้นที่ของแต่ละแบบจำลอง",
+      "en": "Coverage of each elevation model"
+    },
+    "grain": {
+      "th": "ระดับความสูงจำลอง · ส่วนต่าง GLO-30 ลบ FABDEM",
+      "en": "Modelled elevations · GLO-30 minus FABDEM"
+    },
+    "publisher": {
+      "th": "FABDEM / Bristol · Copernicus · Mapzen Terrain Tiles",
+      "en": "FABDEM / Bristol · Copernicus · Mapzen Terrain Tiles"
+    }
+  },
+  "estate": {
+    "sourceSha256": "e7a47c983ba56b6ca7cc36c25a8e918ff29b85683f30c19868da3869f617997f",
+    "period": {
+      "th": "รายเดือน (ชุดจัดสรรที่ดิน)",
+      "en": "Monthly land-allotment records"
+    },
+    "scope": null,
+    "grain": {
+      "th": "โครงการจดทะเบียน · จำนวนแปลง · ผู้พัฒนา",
+      "en": "Registered developments · plots · developers"
+    },
+    "publisher": {
+      "th": "กรมที่ดิน",
+      "en": "Department of Lands"
+    }
+  },
+  "eiaReport": {
+    "sourceSha256": "8b2b466ddf5e0fce95b52f09c58672281a09e9ded4ad34ea5f52eab6f3b357e6",
+    "period": {
+      "th": "ตามปีของรายงานแต่ละโครงการ",
+      "en": "Report year of each project"
+    },
+    "scope": null,
+    "grain": {
+      "th": "รายโครงการ · IEE / EIA / EHIA",
+      "en": "Projects · IEE / EIA / EHIA"
+    },
+    "publisher": {
+      "th": "สำนักงานนโยบายและแผนทรัพยากรธรรมชาติและสิ่งแวดล้อม",
+      "en": "ONEP"
+    }
+  },
+  "muenRai": {
+    "sourceSha256": "300c3fd69f1c7b6fc161aa9766741f67bc9c7ca6aff205f0f3296f7758ebda37",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "พื้นที่ · กิจกรรมเกษตร · เดือนหรือปีที่เลือก",
+      "en": "Area · agricultural activity · selected month or year"
+    },
+    "publisher": null
+  },
+  "deed": {
+    "sourceSha256": "ce501c9d3253b36422c5d8483a534a4da5724c45c090a4fa3aa50cb4263e9ad3",
+    "period": {
+      "th": "รอบปรับปรุงราคาประเมินของแต่ละจังหวัด",
+      "en": "Provincial appraisal update cycles"
+    },
+    "scope": null,
+    "grain": {
+      "th": "แปลงที่ดิน · สถิติราคาประเมิน",
+      "en": "Parcels · appraisal-value summaries"
+    },
+    "publisher": {
+      "th": "กรมที่ดิน · กรมธนารักษ์",
+      "en": "Department of Lands · Treasury Department"
+    }
+  },
+  "landoffer": {
+    "sourceSha256": "5e2b37505ba8a3396b1708b3b75d713a2157dc35c1e2a4c36c9fca273e134aa0",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "รายประกาศ · ราคาเสนอขาย · ขนาดแปลง",
+      "en": "Listings · asking prices · plot sizes"
+    },
+    "publisher": null
+  },
+  "apartment": {
+    "sourceSha256": "733a303fe61080a78e04c91cd79d4cffefe973c20dc6e28195fd70d71e22ddff",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "รายอพาร์ทเมนต์ · ช่วงค่าเช่าประกาศ",
+      "en": "Apartments · advertised rental ranges"
+    },
+    "publisher": null
+  },
+  "condo": {
+    "sourceSha256": "bcf9e24c3c155906ab59e8d97646eb43eb994cc9bc2190b16a298698a07824b1",
+    "period": {
+      "th": "ต้นทางปรับปรุง 14 ส.ค. 2567",
+      "en": "Source updated 14 Aug 2024"
+    },
+    "scope": null,
+    "grain": {
+      "th": "อาคารหรือโครงการ · ราคาประเมินต่อตร.ม.",
+      "en": "Buildings or projects · appraisal per m²"
+    },
+    "publisher": {
+      "th": "กรมธนารักษ์",
+      "en": "Treasury Department"
+    }
+  },
+  "condoOffer": {
+    "sourceSha256": "03f4f7d2fc20da97854800edc9dbbec93cb1c1e73f08e311f7667e2895f5bf45",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "รายคอนโด · ราคาเสนอขายเทียบราคาประเมิน",
+      "en": "Condominium records · asking-to-appraisal comparisons"
+    },
+    "publisher": null
+  },
+  "detachedhouse": {
+    "sourceSha256": "c6dfd765135442aa17fc330493a65442831f7d39116da6dfe4bc5c3b1a7e5643",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "รายประกาศ · ราคาเสนอขาย · ขนาดที่ดิน",
+      "en": "Listings · asking prices · land area"
+    },
+    "publisher": null
+  },
+  "townhouse": {
+    "sourceSha256": "7311032688e9eee71b59cfe927becca8ec31ae2612feae4124865640b29670a1",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "รายประกาศ · สถิติราคาเสนอขายในพื้นที่",
+      "en": "Listings · area asking-price summaries"
+    },
+    "publisher": null
+  },
+  "rentWise": {
+    "sourceSha256": "905afcdd7eaabe4e9f517c7b7de52eb75e018e625c037f53f334957fade6cc77",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "ประกาศเช่า · ผลตอบแทนที่คำนวณจากประกาศ",
+      "en": "Rental listings · listing-derived yield"
+    },
+    "publisher": {
+      "th": "LivingInsider · ข้อมูลประกาศเอกชน",
+      "en": "LivingInsider · private listings"
+    }
+  },
+  "company": {
+    "sourceSha256": "f52e71b307920136b2c05f6df337c39ec9cccba96ffbb173e893c54485f76cdc",
+    "period": {
+      "th": "เม.ย. 2567–เม.ย. 2568 (รุ่นข้อมูล CityMETER)",
+      "en": "Apr 2024–Apr 2025 (CityMETER snapshot)"
+    },
+    "scope": null,
+    "grain": {
+      "th": "นิติบุคคล · สถานะทะเบียน · ประเภทธุรกิจ",
+      "en": "Legal entities · registration status · activity"
+    },
+    "publisher": {
+      "th": "กรมพัฒนาธุรกิจการค้า",
+      "en": "Department of Business Development"
+    }
+  },
+  "factory": {
+    "sourceSha256": "e7e96d338acb8572f5974318a63ff0777938def5b9fc507839cdc1dd9c439249",
+    "period": {
+      "th": "เมษายน 2568 (ช่วงข้อมูลบนแผนที่)",
+      "en": "April 2025 (map data period)"
+    },
+    "scope": {
+      "th": "รายการต้นทางแยกตามจังหวัด",
+      "en": "Source records organised by province"
+    },
+    "grain": {
+      "th": "รายโรงงาน · แรงงานและทุนที่รายงาน",
+      "en": "Factory records · reported workforce and capital"
+    },
+    "publisher": {
+      "th": "สำนักงานปลัดกระทรวงอุตสาหกรรม",
+      "en": "Office of the Permanent Secretary, Ministry of Industry"
+    }
+  },
+  "office": {
+    "sourceSha256": "aece1a75cacb8492ffd9538246076b9246c5b34a78d289f941f81233e9aa3e20",
+    "period": null,
+    "scope": {
+      "th": "กรุงเทพมหานคร",
+      "en": "Bangkok"
+    },
+    "grain": {
+      "th": "รายอาคารสำนักงาน · ช่วงราคาเสนอเช่า",
+      "en": "Office buildings · asking-rent ranges"
+    },
+    "publisher": null
+  },
+  "nonBank": {
+    "sourceSha256": "5695fac461e99ca2076bfc63a893b8f118fb0c21b799cc3c306758e8d49c96d6",
+    "period": {
+      "th": "พิโก 18 ก.ย. 2569 · ใบอนุญาต ธปท. 23 ก.ย. 2569",
+      "en": "Pico: 18 Sep 2026 · BOT licences: 23 Sep 2026"
+    },
+    "scope": {
+      "th": "ผู้ให้กู้ในแฟ้มสาขาและสำนักงานพิโกที่มีข้อมูล",
+      "en": "Lenders in the branch file and recorded Pico offices"
+    },
+    "grain": {
+      "th": "สาขา · สำนักงาน · บริษัท · ประเภทใบอนุญาต",
+      "en": "Branches · offices · companies · licence categories"
+    },
+    "publisher": {
+      "th": "DBD · สศค. · ธปท. ตามบทบาทข้อมูล",
+      "en": "DBD · FPO · BOT, by source role"
+    }
+  },
+  "restaurant": {
+    "sourceSha256": "38d5c69915c4d83a9ceb740477bed7ac09f62989bdf5c145d50d8d1429a9dea8",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "รายร้าน · ประเภท · ราคา · คะแนนรีวิวที่มี",
+      "en": "Recorded restaurants · categories · prices · available ratings"
+    },
+    "publisher": null
+  },
+  "grocery": {
+    "sourceSha256": "02ad29b1a857e274e6be303787a0f164a272a9ceb410835780bcb4d64cbdd9e6",
+    "period": {
+      "th": "บางแบรนด์ตรวจ 29–30 ก.ย. 2569 · ฐานเดิมนำเข้า พ.ค. 2567",
+      "en": "Selected locators checked Sep 2026 · legacy import May 2024"
+    },
+    "scope": {
+      "th": "เครือข่ายค้าปลีก ค้าส่ง และร้านขายยาที่มีในฐาน",
+      "en": "Selected retail, wholesale and pharmacy chains"
+    },
+    "grain": {
+      "th": "สาขา · แบรนด์ · พื้นที่ขายประมาณตามประเภท",
+      "en": "Stores · brands · floor area estimated by store type"
+    },
+    "publisher": {
+      "th": "เว็บไซต์สาขาของแบรนด์ · ฐาน CityMETER เดิม",
+      "en": "Brand store locators · legacy CityMETER inventory"
+    }
+  },
+  "shoppingCenter": {
+    "sourceSha256": "e2b30903bbe079d2d9ed948796a4a00a1ee36a1a884289a984cd65324bccc536",
+    "period": {
+      "th": "วันที่แหล่งข้อมูลรายแห่ง: พ.ค.–ก.ค. 2569",
+      "en": "Site-source dates: May–Jul 2026"
+    },
+    "scope": null,
+    "grain": {
+      "th": "รายพื้นที่ค้าปลีก · GFA / GLA · ผู้เช่าที่บันทึก",
+      "en": "Retail sites · recorded GFA / GLA and tenants"
+    },
+    "publisher": null
+  },
+  "hotel": {
+    "sourceSha256": "5c95486a5f71d9d14751edd20ca332e889f6667c6267481c23df14d738f128b2",
+    "period": null,
+    "scope": {
+      "th": "ชุดที่พัก ททท. · ชุดโรงแรมสมาชิกสมาคมฯ ใน กทม.",
+      "en": "TAT accommodation · Bangkok hotel-association members"
+    },
+    "grain": {
+      "th": "รายที่พัก · จำนวนห้องที่บันทึก · ราคาประกาศ",
+      "en": "Properties · recorded rooms · advertised rates"
+    },
+    "publisher": {
+      "th": "ททท. · กทม. (กองยุทธศาสตร์ดิจิทัล)",
+      "en": "TAT · BMA Digital Strategy Division"
+    }
+  },
+  "tourism": {
+    "sourceSha256": "07dcd62f8046d75c15eb09f8b6d3fe423316c369d6ae75cfdc7698c3ae2d60f3",
+    "period": {
+      "th": "เดือนและปีที่เลือก",
+      "en": "Selected month and year"
+    },
+    "scope": null,
+    "grain": {
+      "th": "สถิติสรุปรายจังหวัด",
+      "en": "Provincial statistical summaries"
+    },
+    "publisher": {
+      "th": "กระทรวงการท่องเที่ยวและกีฬา · ททท.",
+      "en": "Ministry of Tourism and Sports · TAT"
+    }
+  },
+  "gasStation": {
+    "sourceSha256": "e70495eddf2c96a420708039a02867b194d6e38e0f523654db3153686c4b6fd5",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "รายสถานี · แบรนด์ · จำนวนและความหนาแน่น",
+      "en": "Stations · brands · counts and density"
+    },
+    "publisher": null
+  },
+  "cars": {
+    "sourceSha256": "53f6382d69d35c98f5d19ad522b535f7e7c99f7e7af6e76107b6312cebf63935",
+    "period": {
+      "th": "รายเดือนและปี · มีตัวเลือกตั้งแต่ 2563",
+      "en": "Month and year · selections from 2020"
+    },
+    "scope": null,
+    "grain": {
+      "th": "จดทะเบียนครั้งแรก · จังหวัด · ประเภทรถและแบรนด์ที่เลือก",
+      "en": "First registrations · province · selected types and brands"
+    },
+    "publisher": {
+      "th": "กรมการขนส่งทางบก",
+      "en": "Department of Land Transport"
+    }
+  },
+  "roadDna": {
+    "sourceSha256": "d2f8452841d5105d1b813b308d0852ca55de37ed8e3291ab437b1c4a46a73fd6",
+    "period": null,
+    "scope": {
+      "th": "มุมมองกรุงเทพมหานครที่เปิดตรวจ",
+      "en": "Inspected Bangkok view"
+    },
+    "grain": null,
+    "publisher": {
+      "th": "CityMETER — แบบจำลองที่ประมวลผลต่อ",
+      "en": "CityMETER — derived model"
+    }
+  },
+  "traffic": {
+    "sourceSha256": "25989847a8594fa325bfa0cef5e52522b7e137fba6bf4164ef37f9bb040fe284",
+    "period": {
+      "th": "เวลาที่แสดงในหน้าข้อมูล",
+      "en": "Timestamp displayed in the data view"
+    },
+    "scope": {
+      "th": "เส้นทางข้อมูลกรุงเทพมหานคร",
+      "en": "Bangkok data route"
+    },
+    "grain": null,
+    "publisher": {
+      "th": "TomTom Traffic · CityMETER ประมวลผล",
+      "en": "TomTom Traffic · processed by CityMETER"
+    }
+  },
+  "trafficIncident": {
+    "sourceSha256": "f2d931accc208afa47fbacd50617d52909003d703d69d6ffd1b42603f4824a0c",
+    "period": {
+      "th": "ช่วงล่าสุดหรือช่วงประวัติที่เลือก",
+      "en": "Selected recent or historical period"
+    },
+    "scope": {
+      "th": "พื้นที่และช่วงเวลาที่มีรายงานในฐาน",
+      "en": "Areas and periods with reports in the database"
+    },
+    "grain": {
+      "th": "รายงาน · ประเภท พิกัด และเวลาที่บันทึก",
+      "en": "Reports · recorded category, location and time"
+    },
+    "publisher": null
+  },
+  "localeInsights": {
+    "sourceSha256": "98e2a4bf1028a31935cb68aa45477354e7e3b509424dede9969ce634730c6aeb",
+    "period": null,
+    "scope": {
+      "th": "มุมมองตั้งต้นในกรุงเทพมหานคร",
+      "en": "Default Bangkok view"
+    },
+    "grain": {
+      "th": "หน่วย locale · บริบทพื้นที่ที่ประมวลผลต่อ",
+      "en": "Locale units · derived area context"
+    },
+    "publisher": {
+      "th": "CityMETER — บริบทพื้นที่ที่ใช้ LLM ช่วยประมวลผล",
+      "en": "CityMETER — LLM-assisted contextual layer"
+    }
+  },
+  "placeOfWorship": {
+    "sourceSha256": "e1aa97ba941d1797fcf8f5abc60914ea5fbcab3a81cfd7a676d00ae594c9b695",
+    "period": {
+      "th": "วันอ้างอิงของแต่ละรายการ",
+      "en": "Reference date of each record"
+    },
+    "scope": {
+      "th": "รายการพุทธ อิสลาม คริสต์ และซิกข์ที่เผยแพร่ได้",
+      "en": "Publishable Buddhist, Muslim, Christian and Sikh records"
+    },
+    "grain": {
+      "th": "รายสถานที่ · รายการที่มีพิกัดและคุณภาพตำแหน่ง",
+      "en": "Places · mapped records and coordinate quality"
+    },
+    "publisher": null
+  },
+  "population": {
+    "sourceSha256": "f50f3be6d721c661940cf2206ca6f4a0196f0affc4ca16d14d1a067984f4126a",
+    "period": {
+      "th": "รายเดือน · มีตัวเลือกตั้งแต่ 2556",
+      "en": "Monthly · selections from 2013"
+    },
+    "scope": null,
+    "grain": {
+      "th": "ประชากรตามทะเบียน · พื้นที่ อายุ และเพศ",
+      "en": "Registered population · area, age and sex"
+    },
+    "publisher": {
+      "th": "สำนักบริหารการทะเบียน กรมการปกครอง",
+      "en": "BORA, Department of Provincial Administration"
+    }
+  },
+  "school": {
+    "sourceSha256": "ad6c438327e9192e6f945d1f75f6d480e08342b87ea733d8c18b7b6cddf4a233",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "สถานศึกษา · นักเรียน ครู และห้องเรียนตามรุ่นข้อมูล",
+      "en": "Schools · students, teachers and rooms by data version"
+    },
+    "publisher": null
+  },
+  "govspending": {
+    "sourceSha256": "02629125d558f59b5c607b09d765c27891b2107942d2655fa827cd7c0150b635",
+    "period": {
+      "th": "ปีงบประมาณ 2558–2568",
+      "en": "Fiscal years 2015–2025"
+    },
+    "scope": {
+      "th": "รายการที่จับคู่กับพื้นที่ได้",
+      "en": "Line items matched to geographic areas"
+    },
+    "grain": {
+      "th": "งบประมาณและเบิกจ่าย · หน่วยงาน/โครงการ · ล้านบาท",
+      "en": "Budget and disbursement · agency/project · million THB"
+    },
+    "publisher": {
+      "th": "GFMIS ต้นทาง · PBO / Thaith เผยแพร่",
+      "en": "GFMIS source records · published by PBO / Thaith"
+    }
+  },
+  "municipality": {
+    "sourceSha256": "557d70df7a7d1fa030249fdf86e36878c6db3ade160ea665144a913261cd9b55",
+    "period": {
+      "th": "ปีงบประมาณ 2560–2567 ใน CityMETER",
+      "en": "FY2017–2024 in CityMETER"
+    },
+    "scope": null,
+    "grain": {
+      "th": "ราย อปท. · ปีงบประมาณ · ค่าสรุปต่อคน/พื้นที่",
+      "en": "Local authorities · fiscal year · per-person/area summaries"
+    },
+    "publisher": {
+      "th": "กรมส่งเสริมการปกครองท้องถิ่น",
+      "en": "Department of Local Administration"
+    }
+  },
+  "governmentOfficer": {
+    "sourceSha256": "a86adacd7173d66e806b9349e7a1aa875b6da571d74c7c5eedbd77929bd4304a",
+    "period": {
+      "th": "2566–2567 (สถิติกำลังคน)",
+      "en": "2023–2024 (workforce statistics)"
+    },
+    "scope": {
+      "th": "ข้อมูลที่ตั้ง 76 จังหวัดและกรุงเทพมหานคร",
+      "en": "Location records for 76 provinces and Bangkok"
+    },
+    "grain": {
+      "th": "ที่ตั้งหน่วยงาน · สถิติระดับกระทรวง/กรม",
+      "en": "Agency locations · ministry/department statistics"
+    },
+    "publisher": {
+      "th": "ก.พ. · ก.พ.ร. · กรมการปกครอง · กทม.",
+      "en": "OCSC · OPDC · DOPA · BMA"
+    }
+  },
+  "floodimpact": {
+    "sourceSha256": "9736a78f7f09232e0c27099edb23c838b04c6a91431e3e2f7da2122fcb9bb4bd",
+    "period": {
+      "th": "ปีที่เปิดให้เลือก: 2554–2567",
+      "en": "Selectable years: 2011–2024"
+    },
+    "scope": null,
+    "grain": {
+      "th": "พื้นที่ตรวจพบน้ำท่วม · จำนวนปีที่พบ",
+      "en": "Observed flood extent · years with detections"
+    },
+    "publisher": {
+      "th": "GISTDA",
+      "en": "GISTDA"
+    }
+  },
+  "floodrecent": {
+    "sourceSha256": "16792801bfff6267ef11c9c885c65fefdd02af50ddded7c6be76dca6db1eb7ff",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "พื้นที่น้ำท่วมตามวันตรวจพบ · ข้อมูลซ้อนทับ",
+      "en": "Flood extent by observation date · spatial overlays"
+    },
+    "publisher": null
+  },
+  "flood-forecast-depth": {
+    "sourceSha256": "e5a28998638706efb160ed5be313bb9ab4d2284769449d451cdd0028092065f2",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "เปรียบเทียบค่าคาดการณ์รายจังหวัด",
+      "en": "Provincial forecast comparisons"
+    },
+    "publisher": {
+      "th": "กรมทรัพยากรน้ำ — ข้อมูลคาดการณ์",
+      "en": "Department of Water Resources — forecast layer"
+    }
+  },
+  "flash-flood-risk": {
+    "sourceSha256": "a98e97d178b7be54d8bbee627cb949ff4cb94c02b7671c993e39d3bdb13943b8",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "เปรียบเทียบค่าคาดการณ์รายจังหวัด",
+      "en": "Provincial forecast comparisons"
+    },
+    "publisher": {
+      "th": "Google Flood Forecasting",
+      "en": "Google Flood Forecasting"
+    }
+  },
+  "quake": {
+    "sourceSha256": "c6742c1d101a446481f36f30dbaf9e98fb98dfd84e40a196e9aa35cf5da7ad50",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "รายสถานี · ค่าตรวจวัด หน่วย และเวลา",
+      "en": "Stations · readings, units and timestamps"
+    },
+    "publisher": {
+      "th": "กรมอุตุนิยมวิทยา · RUGON · USGS",
+      "en": "TMD · RUGON · USGS"
+    }
+  },
+  "fire": {
+    "sourceSha256": "206f27b3d34bea21066198119b815d52ecdacfc36bf131c4c929adfc85407201",
+    "period": null,
+    "scope": null,
+    "grain": {
+      "th": "จุดความร้อนจากดาวเทียมตามช่วงที่เลือก",
+      "en": "Satellite hotspots within the selected period"
+    },
+    "publisher": {
+      "th": "NASA VIIRS / FIRMS",
+      "en": "NASA VIIRS / FIRMS"
+    }
+  },
+  "disaster": {
+    "sourceSha256": "3387013f9ffdc2bebe08c72446228cfd4ecbbe7d895c5d6de3be39dc8c55a048",
+    "period": {
+      "th": "รายปี 2557–2567",
+      "en": "Annual records, 2014–2024"
+    },
+    "scope": null,
+    "grain": {
+      "th": "รายงานภัยและผลกระทบ · สรุปตามพื้นที่/ปี",
+      "en": "Disaster and impact reports · area/year summaries"
+    },
+    "publisher": {
+      "th": "กรมป้องกันและบรรเทาสาธารณภัย",
+      "en": "Department of Disaster Prevention and Mitigation"
+    }
+  },
+  "hatyaiflood": {
+    "sourceSha256": "c0182fbb88f46be08a7e3a1a46dab9268dd1997687162e50fbe2c287481593cc",
+    "period": {
+      "th": "24–27 พฤศจิกายน 2568 (คลังเหตุการณ์)",
+      "en": "24–27 Nov 2025 (event archive)"
+    },
+    "scope": {
+      "th": "เหตุการณ์น้ำท่วมหาดใหญ่",
+      "en": "Hat Yai flood event"
+    },
+    "grain": {
+      "th": "รายงานตามวันที่บันทึก",
+      "en": "Reports by recorded date"
+    },
+    "publisher": {
+      "th": "Thai PBS / ThaiHelp",
+      "en": "Thai PBS / ThaiHelp"
+    }
+  },
+  "quakeSafe": {
+    "sourceSha256": "e84759cf98b11ae41faa4e6307ecc2bf6341a12393d9842cb454305d081f2388",
+    "period": null,
+    "scope": {
+      "th": "คลังตรวจสอบอาคารในกรุงเทพมหานคร",
+      "en": "Bangkok building-inspection archive"
+    },
+    "grain": {
+      "th": "รายอาคาร · สถานะตรวจสอบที่รายงาน",
+      "en": "Buildings · reported inspection status"
+    },
+    "publisher": null
+  }
+}

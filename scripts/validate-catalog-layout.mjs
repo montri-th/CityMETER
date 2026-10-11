@@ -212,7 +212,7 @@ assert(
   !cardCss.includes("surface-beige-tint"),
   "Card surfaces must remain neutral",
 );
-for (const slot of ["03", "08", "05"])
+for (const slot of ["04", "07", "01"])
   for (const theme of ["light", "dark"])
     assert(
       cardCss.includes(`var(--ldm-series-${slot}-fill-${theme})`),

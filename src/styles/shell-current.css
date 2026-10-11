@@ -63,9 +63,9 @@
   --pillar-surface-land: var(--ldm-foundation-surface-card-light);
   --pillar-surface-location: var(--ldm-foundation-surface-blue-tint-light);
   --pillar-surface-living: var(--ldm-foundation-surface-soft-light);
-  --pillar-accent-land: var(--ldm-series-03-fill-light);
-  --pillar-accent-location: var(--ldm-series-08-fill-light);
-  --pillar-accent-living: var(--ldm-series-05-fill-light);
+  --pillar-accent-land: var(--ldm-series-04-fill-light);
+  --pillar-accent-location: var(--ldm-series-07-fill-light);
+  --pillar-accent-living: var(--ldm-series-01-fill-light);
   --pillar-accent-ink: var(--ldm-foundation-text-primary-light);
   --pillar-text-primary: var(--ldm-foundation-text-primary-light);
   --pillar-text-secondary: var(--ldm-foundation-text-secondary-light);
@@ -126,9 +126,9 @@
   --pillar-surface-land: var(--ldm-foundation-surface-card-dark);
   --pillar-surface-location: var(--ldm-foundation-surface-blue-tint-dark);
   --pillar-surface-living: var(--ldm-foundation-surface-soft-dark);
-  --pillar-accent-land: var(--ldm-series-03-fill-dark);
-  --pillar-accent-location: var(--ldm-series-08-fill-dark);
-  --pillar-accent-living: var(--ldm-series-05-fill-dark);
+  --pillar-accent-land: var(--ldm-series-04-fill-dark);
+  --pillar-accent-location: var(--ldm-series-07-fill-dark);
+  --pillar-accent-living: var(--ldm-series-01-fill-dark);
   --pillar-accent-ink: var(--ldm-foundation-text-primary-dark);
   --pillar-text-primary: var(--ldm-foundation-text-primary-dark);
   --pillar-text-secondary: var(--ldm-foundation-text-secondary-dark);

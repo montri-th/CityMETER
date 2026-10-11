@@ -1,0 +1,27 @@
+/* Owner accepted the handoff color treatment, keeping current geometry and motion. */
+.hero-section, .hero { background: var(--atmosphere-measure-deep); color: #FFFFFF; }
+.hero-section :is(h1, h2, h3), .hero :is(h1, h2, h3) { color: #FFFFFF; }
+.hero-section :is(.hero-lead, .hero-description, .hero-support, .eyebrow, .hero-note), .hero :is(.hero-lead, .hero-description, .hero-support, .eyebrow, .hero-note) { color: #F1F4EF; }
+.hero .button-accent, .hero-section .button-accent { background: #FFFFFF; border-color: #FFFFFF; color: #182327; }
+.hero-text-link { color: #F1F4EF; }
+.intent-tab.is-active, .intent-tab[aria-selected="true"] { background: var(--surface-raised); border-color: var(--border-emphasis); box-shadow: var(--elevation-sm); color: var(--accent); }
+.intent-proof { background: var(--surface-card); border-color: var(--border-hairline); box-shadow: var(--elevation-sm); }
+.showcase-atmosphere { background: transparent; color: var(--text); }
+.showcase-atmosphere :is(h2, p, .eyebrow) { color: inherit; }
+.catalog-showcase-card, .dataset-card { background: var(--surface-card); border-color: var(--border-hairline); }
+.catalog-showcase-subgroup, .catalog-tags li { color: var(--text-secondary); }
+.catalog-tags li { background: var(--surface-soft); border-color: var(--border-hairline); }
+.catalog-count { color: var(--text-metadata); }
+.catalog-layout-handoff .catalog-toolbar { background: color-mix(in srgb, var(--surface-alt) 92%, transparent); border-color: var(--border-hairline); }
+.catalog-filter button[aria-pressed="true"] { background: var(--surface-raised); color: var(--accent); border-color: var(--border-emphasis); font-weight: 600; }
+.catalog-lane-heading { background: var(--surface-card); border-color: var(--border-hairline); box-shadow: var(--elevation-xs); }
+.contact-panel { background: var(--surface-card); border-color: var(--border-hairline); }
+.handoff-section { background: var(--atmosphere-measure-deep); color: #FFFFFF; }
+.handoff-section :is(h2, h3) { color: #FFFFFF; }
+.handoff-section :is(p, .eyebrow, .handoff-note) { color: #F1F4EF; }
+.handoff-section .button-accent { background: #FFFFFF; color: #182327; border-color: #FFFFFF; }
+.handoff-section :is(.inline-action, .button-outline) { color: #F1F4EF; border-color: currentColor; }
+.hero :focus-visible, .hero-section :focus-visible, .handoff-section :focus-visible { outline: 3px solid #182327; outline-offset: 3px; box-shadow: 0 0 0 6px #FFFFFF; }
+
+.catalog-card.dataset-card, .catalog-card .catalog-tags li, .catalog-showcase-grid .catalog-showcase-card, .catalog-layout-handoff .catalog-lane-heading { border-color: var(--border-hairline); }
+.catalog-examples-handoff { padding-block: clamp(56px, 6vw, 88px); }
