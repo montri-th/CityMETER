@@ -1,5 +1,15 @@
 # CityMETER marketing showcase
 
+## เริ่มงานสำหรับ intern และ AI agent — 11 ตุลาคม 2026
+
+เปิด [Handoff + Implementation Plan ฉบับรวม r2](docs/unified-handoff/2026-10-11/CityMETER_Landom_Unified_Handoff_Implementation_Plan_2026-10-11.md) ก่อนแก้ **CityMETER Catalog, Article หรือ Landom** เอกสารเดียวรวมข้อกำหนดที่ต้องรักษา ขั้นตอน T00–T12, acceptance checks, inventory 43 dataset และ prompts สำหรับ coding agent
+
+- สำหรับเครื่องมือ: [JSON ฉบับเดียวกัน](docs/unified-handoff/2026-10-11/CityMETER_Landom_Unified_Handoff_Implementation_Plan_2026-10-11.json)
+- ไฟล์อ้างอิง ภาพ และวิธีตรวจแพ็ก: [เริ่มจากไฟล์นี้](docs/unified-handoff/2026-10-11/README.md)
+- ฉบับคู่กันใน [Landom](https://github.com/montri-th/Landom/tree/main/docs/unified-handoff/2026-10-11)
+
+อ่าน baseline และ D01–D15 แล้วเลือกเฉพาะ task ที่ตรงงาน ไม่ต้องทำส่วนที่เผยแพร่แล้วใหม่ ฉบับนี้รวมคำยืนยันว่า **Locale Insight เวอร์ชันล่าสุดเอิร์ธ (CEDT) พัฒนาต่อจากอิ๋ง** โดยคงเครดิตงานเดิม; baseline hashes และ receipts เก่าแยกจากการเผยแพร่เครดิตใหม่
+
 Current catalog release: 2026-10-10 masonry and executive summaries r3. The catalog renders 43 records in three independent Land / Location / Living lanes, with 24 semantic subgroups, native source disclosures and a static QR to each exact data-view URL. Every data view also has an optional bilingual executive summary with direct map actions, references, credits and sharing links. Current UI colors resolve LDS0.9.7 roles; earlier release notes below are retained history.
 
 Edit and validate with [the maintainer guide](docs/catalog-maintenance.md) and [machine plan](docs/catalog-maintenance.json). The [dataset switcher specification](docs/dataset-switcher.md) is a proposal for the map application, not an installed feature.
