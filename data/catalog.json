@@ -5148,6 +5148,29 @@
               "en": "Profile portrait of Ing"
             }
           }
+        },
+        {
+          "personId": "I0034",
+          "nickname": {
+            "th": "เอิร์ธ",
+            "en": "Earth"
+          },
+          "contributionRole": {
+            "th": "พัฒนาต่อ",
+            "en": "Continued development"
+          },
+          "profileUrl": {
+            "th": "https://montri-th.github.io/Landom/?person=I0034&lang=th",
+            "en": "https://montri-th.github.io/Landom/en/?person=I0034&lang=en"
+          },
+          "portrait": {
+            "url": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg",
+            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0034.jpg?v=a6309a173e1d",
+            "alt": {
+              "th": "ภาพโปรไฟล์ของเอิร์ธ",
+              "en": "Profile portrait of Earth"
+            }
+          }
         }
       ]
     },
