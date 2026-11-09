@@ -65,7 +65,7 @@
       "dependsOn": [
         "copy"
       ],
-      "action": "Keep Land/Location/Living 13/16/14, explicit semantic subgroups and the shared English-title ordering; flood ordering remains recurrent, observed, DWR forecast, Google forecast.",
+      "action": "Keep Land/Location/Living 16/14/13 as the dataset registry (R01_DATASETS dataset_group) groups them; when the registry regroups a dataset, move its card, never the registry, explicit semantic subgroups and the shared English-title ordering; flood ordering remains recurrent, observed, DWR forecast, Google forecast.",
       "doneWhen": "No hidden Business Dynamics or mb discovery entry, no fourth pillar, no broken existing slug."
     },
     {

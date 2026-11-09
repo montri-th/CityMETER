@@ -77,6 +77,24 @@
       "sha256": "6fe85470ab364474dc08f178180eb3831b19120c60f39b99c61209006b46aab8"
     },
     {
+      "id": "hotel-market",
+      "url": "https://landometer.com/v3/citymeter?d=hotel",
+      "file": "media/qr/datasets/hotel-market.svg",
+      "sha256": "a3186dde21a7754ca9154697ec22c757bad1e3f163517d0507800cfaf47b297b"
+    },
+    {
+      "id": "office-buildings-rent",
+      "url": "https://landometer.com/v3/citymeter/BKK?d=office",
+      "file": "media/qr/datasets/office-buildings-rent.svg",
+      "sha256": "a537ae52974851f180f89a64a5f5cfeadcf2dfc174a60b88af707fe0ca25560b"
+    },
+    {
+      "id": "shopping-centers",
+      "url": "https://landometer.com/v3/citymeter?d=shoppingCenter",
+      "file": "media/qr/datasets/shopping-centers.svg",
+      "sha256": "eb821a1950f71c703d338b1e8afdaf27d8984608616e1bbd3f9a8a9f3e306aff"
+    },
+    {
       "id": "condo-rent-yield",
       "url": "https://landometer.com/v3/citymeter/BKK?d=rentWise",
       "file": "media/qr/datasets/condo-rent-yield.svg",
@@ -95,12 +113,6 @@
       "sha256": "4011477e5a8a0eef816e45e2e3b9c348b8c2273f46829298c14f5b1e4a6efb03"
     },
     {
-      "id": "office-buildings-rent",
-      "url": "https://landometer.com/v3/citymeter/BKK?d=office",
-      "file": "media/qr/datasets/office-buildings-rent.svg",
-      "sha256": "a537ae52974851f180f89a64a5f5cfeadcf2dfc174a60b88af707fe0ca25560b"
-    },
-    {
       "id": "non-bank",
       "url": "https://landometer.com/v3/citymeter?d=nonBank",
       "file": "media/qr/datasets/non-bank.svg",
@@ -117,18 +129,6 @@
       "url": "https://landometer.com/v3/citymeter?d=grocery",
       "file": "media/qr/datasets/grocery-retail.svg",
       "sha256": "eb9085b8158f36018fe240c02f61efbcd31892afae5d14e4e1f6d64764e2775f"
-    },
-    {
-      "id": "shopping-centers",
-      "url": "https://landometer.com/v3/citymeter?d=shoppingCenter",
-      "file": "media/qr/datasets/shopping-centers.svg",
-      "sha256": "eb821a1950f71c703d338b1e8afdaf27d8984608616e1bbd3f9a8a9f3e306aff"
-    },
-    {
-      "id": "hotel-market",
-      "url": "https://landometer.com/v3/citymeter?d=hotel",
-      "file": "media/qr/datasets/hotel-market.svg",
-      "sha256": "a3186dde21a7754ca9154697ec22c757bad1e3f163517d0507800cfaf47b297b"
     },
     {
       "id": "tourism-demand-spending",
@@ -167,6 +167,12 @@
       "sha256": "ba25243a3a96420fc3311992ba8e97e16224e782c0c44a777776d1d5684598b5"
     },
     {
+      "id": "schools-students-teachers",
+      "url": "https://landometer.com/v3/citymeter?d=school",
+      "file": "media/qr/datasets/schools-students-teachers.svg",
+      "sha256": "c29775c615729d8d50d312be27a053eb727ed9b6dace1d68f2ee0cefcb4e864c"
+    },
+    {
       "id": "locale-insights",
       "url": "https://landometer.com/v3/citymeter/BKK?d=localeInsights",
       "file": "media/qr/datasets/locale-insights.svg",
@@ -183,12 +189,6 @@
       "url": "https://landometer.com/v3/citymeter?d=population",
       "file": "media/qr/datasets/population-age-sex.svg",
       "sha256": "7567bdcf6f6393575131d2b4c669e2b446cd6c3961f8581ea2ae8fac156f4351"
-    },
-    {
-      "id": "schools-students-teachers",
-      "url": "https://landometer.com/v3/citymeter?d=school",
-      "file": "media/qr/datasets/schools-students-teachers.svg",
-      "sha256": "c29775c615729d8d50d312be27a053eb727ed9b6dace1d68f2ee0cefcb4e864c"
     },
     {
       "id": "government-spending",

@@ -128,6 +128,20 @@
           "order": 6
         },
         {
+          "id": "commercial-property",
+          "label": {
+            "th": "อสังหาริมทรัพย์เชิงพาณิชย์",
+            "en": "Commercial property"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "hotel-market",
+            "office-buildings-rent",
+            "shopping-centers"
+          ],
+          "order": 7
+        },
+        {
           "id": "investment-insight",
           "label": {
             "th": "ข้อมูลประกอบการลงทุน",
@@ -137,7 +151,7 @@
           "recordIds": [
             "condo-rent-yield"
           ],
-          "order": 7
+          "order": 8
         }
       ]
     },
@@ -171,18 +185,6 @@
           "order": 2
         },
         {
-          "id": "commercial-property",
-          "label": {
-            "th": "อสังหาริมทรัพย์เชิงพาณิชย์",
-            "en": "Commercial property"
-          },
-          "orderMode": "en_title_ascending",
-          "recordIds": [
-            "office-buildings-rent"
-          ],
-          "order": 3
-        },
-        {
           "id": "financial-services",
           "label": {
             "th": "เครือข่ายบริการทางการเงิน",
@@ -192,7 +194,7 @@
           "recordIds": [
             "non-bank"
           ],
-          "order": 4
+          "order": 3
         },
         {
           "id": "food-retail",
@@ -203,10 +205,9 @@
           "orderMode": "en_title_ascending",
           "recordIds": [
             "restaurants",
-            "grocery-retail",
-            "shopping-centers"
+            "grocery-retail"
           ],
-          "order": 5
+          "order": 4
         },
         {
           "id": "tourism-hospitality",
@@ -216,10 +217,9 @@
           },
           "orderMode": "en_title_ascending",
           "recordIds": [
-            "hotel-market",
             "tourism-demand-spending"
           ],
-          "order": 6
+          "order": 5
         },
         {
           "id": "mobility",
@@ -234,7 +234,7 @@
             "road-network-archetypes",
             "traffic-congestion-speed"
           ],
-          "order": 7
+          "order": 6
         },
         {
           "id": "events-notices",
@@ -245,6 +245,18 @@
           "orderMode": "en_title_ascending",
           "recordIds": [
             "events-notices"
+          ],
+          "order": 7
+        },
+        {
+          "id": "education",
+          "label": {
+            "th": "การศึกษา",
+            "en": "Education"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "schools-students-teachers"
           ],
           "order": 8
         },
@@ -281,18 +293,6 @@
           "order": 1
         },
         {
-          "id": "education",
-          "label": {
-            "th": "การศึกษา",
-            "en": "Education"
-          },
-          "orderMode": "en_title_ascending",
-          "recordIds": [
-            "schools-students-teachers"
-          ],
-          "order": 2
-        },
-        {
           "id": "public-finance",
           "label": {
             "th": "การคลังภาครัฐและท้องถิ่น",
@@ -303,7 +303,7 @@
             "government-spending",
             "municipal-revenue"
           ],
-          "order": 3
+          "order": 2
         },
         {
           "id": "public-service",
@@ -315,7 +315,7 @@
           "recordIds": [
             "government-agencies-workforce"
           ],
-          "order": 4
+          "order": 3
         },
         {
           "id": "flood",
@@ -330,7 +330,7 @@
             "flood-forecast-depth",
             "flood-forecast-flash-flood-risk"
           ],
-          "order": 5
+          "order": 4
         },
         {
           "id": "other-hazards",
@@ -343,7 +343,7 @@
             "earthquake-sensors",
             "fire-monitoring"
           ],
-          "order": 6
+          "order": 5
         },
         {
           "id": "multi-hazard",
@@ -355,7 +355,7 @@
           "recordIds": [
             "disaster-historical-impacts"
           ],
-          "order": 7
+          "order": 6
         },
         {
           "id": "event-archive",
@@ -368,7 +368,7 @@
             "events/hat-yai-flood-2025-11",
             "events/quake-building-inspection"
           ],
-          "order": 8
+          "order": 7
         }
       ]
     }
@@ -1015,18 +1015,174 @@
       "guardrail": null
     },
     {
+      "id": "hotel-market",
+      "datasetCode": "hotel",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "commercial-property",
+      "subgroupOrder": 7,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "en": "Hotel Supply, Rates & Seasonality"
+      },
+      "canonicalOrder": 13,
+      "slug": "hotel-market",
+      "title": {
+        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "en": "Hotel Supply, Rates & Seasonality"
+      },
+      "menuLabel": {
+        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "en": "Hotel Supply, Rates & Seasonality"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=hotel",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/hotel-market/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/hotel-market/"
+      },
+      "aliases": [
+        "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "Hotel Supply, Rates & Seasonality",
+        "hotel",
+        "hotel-market"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
+        "en": "Compare hotel locations, room supply and listed prices to understand accommodation around a site."
+      },
+      "limitation": {
+        "th": "ยังไม่ทราบแหล่ง วิธีคำนวณ และความครอบคลุม จึงไม่ควรใช้แทนอัตราเข้าพักหรือยอดจอง",
+        "en": "Source, method, and coverage are not documented, so this should not stand in for occupancy or bookings"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "การท่องเที่ยวแห่งประเทศไทย — TAT Accommodation (candidate)",
+        "en": "Tourism Authority of Thailand — Accommodation (candidate)"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "office-buildings-rent",
+      "datasetCode": "office",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "commercial-property",
+      "subgroupOrder": 7,
+      "recordOrder": 2,
+      "currentTitle": {
+        "th": "อาคารสำนักงานและค่าเช่า",
+        "en": "Office Buildings & Rent"
+      },
+      "canonicalOrder": 14,
+      "slug": "office-buildings-rent",
+      "title": {
+        "th": "อาคารสำนักงานและค่าเช่า",
+        "en": "Office Buildings & Rent"
+      },
+      "menuLabel": {
+        "th": "อาคารสำนักงานและค่าเช่า",
+        "en": "Office Buildings & Rent"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=office",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/office-buildings-rent/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/office-buildings-rent/"
+      },
+      "aliases": [
+        "อาคารสำนักงานและค่าเช่า",
+        "Office Buildings & Rent",
+        "office",
+        "office-buildings-rent"
+      ],
+      "description": {
+        "th": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
+        "en": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate."
+      },
+      "limitation": {
+        "th": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ และราคาเสนอเช่าไม่ใช่ค่าเช่าที่ทำสัญญาแล้ว",
+        "en": "The evidenced scope is Bangkok, and asking rent is not contracted rent"
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลอาคารสำนักงานต้นทางไม่ได้",
+        "en": "Original office-inventory publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
+      "id": "shopping-centers",
+      "datasetCode": "shoppingCenter",
+      "pillar": "land",
+      "pillarOrder": 1,
+      "subgroup": "commercial-property",
+      "subgroupOrder": 7,
+      "recordOrder": 3,
+      "currentTitle": {
+        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "en": "Shopping Centres, Markets & Retail Sites"
+      },
+      "canonicalOrder": 15,
+      "slug": "shopping-centers",
+      "title": {
+        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "en": "Shopping Centres, Markets & Retail Sites"
+      },
+      "menuLabel": {
+        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "en": "Shopping Centres, Markets & Retail Sites"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=shoppingCenter",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/shopping-centers/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/shopping-centers/"
+      },
+      "aliases": [
+        "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "Shopping Centres, Markets & Retail Sites",
+        "shoppingCenter",
+        "shopping-centers"
+      ],
+      "description": {
+        "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
+        "en": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations."
+      },
+      "limitation": {
+        "th": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
+        "en": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts."
+      },
+      "period": {
+        "th": "แหล่งข้อมูลในรุ่นที่ตรวจมีวันที่ 28 พฤษภาคม–20 กรกฎาคม 2569; รายแห่งอาจต่างกัน",
+        "en": "Sources in the inspected release are dated 28 May–20 July 2026; dates vary by site."
+      },
+      "sourceOwner": {
+        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลศูนย์การค้าต้นทางไม่ได้",
+        "en": "Original shopping-center inventory publisher not yet verified"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
       "id": "condo-rent-yield",
       "datasetCode": "rentWise",
       "pillar": "land",
       "pillarOrder": 1,
       "subgroup": "investment-insight",
-      "subgroupOrder": 7,
+      "subgroupOrder": 8,
       "recordOrder": 1,
       "currentTitle": {
         "th": "ค่าเช่าและผลตอบแทนคอนโดมิเนียม (RentWise)",
         "en": "Condo Rent & Yield (RentWise)"
       },
-      "canonicalOrder": 13,
+      "canonicalOrder": 16,
       "slug": "condo-rent-yield",
       "title": {
         "th": "ค่าเช่าและผลตอบแทนคอนโดมิเนียม (RentWise)",
@@ -1077,7 +1233,7 @@
         "th": "บริษัทจดทะเบียน: สถานะและทุน",
         "en": "Registered Companies: Status & Capital"
       },
-      "canonicalOrder": 14,
+      "canonicalOrder": 17,
       "slug": "registered-companies-status-capital",
       "title": {
         "th": "บริษัทจดทะเบียน: สถานะและทุน",
@@ -1131,7 +1287,7 @@
         "th": "โรงงาน แรงงาน และการลงทุน",
         "en": "Factories, Workers & Investment"
       },
-      "canonicalOrder": 15,
+      "canonicalOrder": 18,
       "slug": "factories-workers-investment",
       "title": {
         "th": "โรงงาน แรงงาน และการลงทุน",
@@ -1174,69 +1330,18 @@
       "guardrail": null
     },
     {
-      "id": "office-buildings-rent",
-      "datasetCode": "office",
-      "pillar": "location",
-      "pillarOrder": 2,
-      "subgroup": "commercial-property",
-      "subgroupOrder": 3,
-      "recordOrder": 1,
-      "currentTitle": {
-        "th": "อาคารสำนักงานและค่าเช่า",
-        "en": "Office Buildings & Rent"
-      },
-      "canonicalOrder": 16,
-      "slug": "office-buildings-rent",
-      "title": {
-        "th": "อาคารสำนักงานและค่าเช่า",
-        "en": "Office Buildings & Rent"
-      },
-      "menuLabel": {
-        "th": "อาคารสำนักงานและค่าเช่า",
-        "en": "Office Buildings & Rent"
-      },
-      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=office",
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/office-buildings-rent/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/office-buildings-rent/"
-      },
-      "aliases": [
-        "อาคารสำนักงานและค่าเช่า",
-        "Office Buildings & Rent",
-        "office",
-        "office-buildings-rent"
-      ],
-      "description": {
-        "th": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
-        "en": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate."
-      },
-      "limitation": {
-        "th": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ และราคาเสนอเช่าไม่ใช่ค่าเช่าที่ทำสัญญาแล้ว",
-        "en": "The evidenced scope is Bangkok, and asking rent is not contracted rent"
-      },
-      "period": null,
-      "sourceOwner": {
-        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลอาคารสำนักงานต้นทางไม่ได้",
-        "en": "Original office-inventory publisher not yet verified"
-      },
-      "resourceClass": "Dataset",
-      "semanticKind": null,
-      "semanticLabel": null,
-      "guardrail": null
-    },
-    {
       "id": "non-bank",
       "datasetCode": "nonBank",
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "financial-services",
-      "subgroupOrder": 4,
+      "subgroupOrder": 3,
       "recordOrder": 1,
       "currentTitle": {
         "th": "เครือข่ายสาขาและสำนักงาน Non-bank",
         "en": "Non-bank Branch & Office Networks"
       },
-      "canonicalOrder": 17,
+      "canonicalOrder": 19,
       "slug": "non-bank",
       "title": {
         "th": "เครือข่ายสาขาและสำนักงาน Non-bank",
@@ -1287,13 +1392,13 @@
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "food-retail",
-      "subgroupOrder": 5,
+      "subgroupOrder": 4,
       "recordOrder": 1,
       "currentTitle": {
         "th": "ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา",
         "en": "Restaurants: Density, Ratings & Price"
       },
-      "canonicalOrder": 18,
+      "canonicalOrder": 20,
       "slug": "restaurants",
       "title": {
         "th": "ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา",
@@ -1338,13 +1443,13 @@
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "food-retail",
-      "subgroupOrder": 5,
+      "subgroupOrder": 4,
       "recordOrder": 2,
       "currentTitle": {
         "th": "ร้านค้าปลีกและค้าส่ง",
         "en": "Retail & Wholesale Networks"
       },
-      "canonicalOrder": 19,
+      "canonicalOrder": 21,
       "slug": "grocery-retail",
       "title": {
         "th": "ร้านค้าปลีกและค้าส่ง",
@@ -1390,118 +1495,13 @@
       "guardrail": null
     },
     {
-      "id": "shopping-centers",
-      "datasetCode": "shoppingCenter",
-      "pillar": "location",
-      "pillarOrder": 2,
-      "subgroup": "food-retail",
-      "subgroupOrder": 5,
-      "recordOrder": 3,
-      "currentTitle": {
-        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
-        "en": "Shopping Centres, Markets & Retail Sites"
-      },
-      "canonicalOrder": 20,
-      "slug": "shopping-centers",
-      "title": {
-        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
-        "en": "Shopping Centres, Markets & Retail Sites"
-      },
-      "menuLabel": {
-        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
-        "en": "Shopping Centres, Markets & Retail Sites"
-      },
-      "mapUrl": "https://landometer.com/v3/citymeter?d=shoppingCenter",
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/shopping-centers/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/shopping-centers/"
-      },
-      "aliases": [
-        "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
-        "Shopping Centres, Markets & Retail Sites",
-        "shoppingCenter",
-        "shopping-centers"
-      ],
-      "description": {
-        "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
-        "en": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations."
-      },
-      "limitation": {
-        "th": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
-        "en": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts."
-      },
-      "period": {
-        "th": "แหล่งข้อมูลในรุ่นที่ตรวจมีวันที่ 28 พฤษภาคม–20 กรกฎาคม 2569; รายแห่งอาจต่างกัน",
-        "en": "Sources in the inspected release are dated 28 May–20 July 2026; dates vary by site."
-      },
-      "sourceOwner": {
-        "th": "ยังยืนยันผู้เผยแพร่ข้อมูลศูนย์การค้าต้นทางไม่ได้",
-        "en": "Original shopping-center inventory publisher not yet verified"
-      },
-      "resourceClass": "Dataset",
-      "semanticKind": null,
-      "semanticLabel": null,
-      "guardrail": null
-    },
-    {
-      "id": "hotel-market",
-      "datasetCode": "hotel",
-      "pillar": "location",
-      "pillarOrder": 2,
-      "subgroup": "tourism-hospitality",
-      "subgroupOrder": 6,
-      "recordOrder": 1,
-      "currentTitle": {
-        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
-        "en": "Hotel Supply, Rates & Seasonality"
-      },
-      "canonicalOrder": 21,
-      "slug": "hotel-market",
-      "title": {
-        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
-        "en": "Hotel Supply, Rates & Seasonality"
-      },
-      "menuLabel": {
-        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
-        "en": "Hotel Supply, Rates & Seasonality"
-      },
-      "mapUrl": "https://landometer.com/v3/citymeter?d=hotel",
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/hotel-market/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/hotel-market/"
-      },
-      "aliases": [
-        "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
-        "Hotel Supply, Rates & Seasonality",
-        "hotel",
-        "hotel-market"
-      ],
-      "description": {
-        "th": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
-        "en": "Compare hotel locations, room supply and listed prices to understand accommodation around a site."
-      },
-      "limitation": {
-        "th": "ยังไม่ทราบแหล่ง วิธีคำนวณ และความครอบคลุม จึงไม่ควรใช้แทนอัตราเข้าพักหรือยอดจอง",
-        "en": "Source, method, and coverage are not documented, so this should not stand in for occupancy or bookings"
-      },
-      "period": null,
-      "sourceOwner": {
-        "th": "การท่องเที่ยวแห่งประเทศไทย — TAT Accommodation (candidate)",
-        "en": "Tourism Authority of Thailand — Accommodation (candidate)"
-      },
-      "resourceClass": "Dataset",
-      "semanticKind": null,
-      "semanticLabel": null,
-      "guardrail": null
-    },
-    {
       "id": "tourism-demand-spending",
       "datasetCode": "tourism",
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "tourism-hospitality",
-      "subgroupOrder": 6,
-      "recordOrder": 2,
+      "subgroupOrder": 5,
+      "recordOrder": 1,
       "currentTitle": {
         "th": "ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย",
         "en": "Tourism Demand: Visitors & Spending"
@@ -1554,7 +1554,7 @@
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "mobility",
-      "subgroupOrder": 7,
+      "subgroupOrder": 6,
       "recordOrder": 1,
       "currentTitle": {
         "th": "สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง",
@@ -1608,7 +1608,7 @@
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "mobility",
-      "subgroupOrder": 7,
+      "subgroupOrder": 6,
       "recordOrder": 2,
       "currentTitle": {
         "th": "รถยนต์จดทะเบียน",
@@ -1665,7 +1665,7 @@
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "mobility",
-      "subgroupOrder": 7,
+      "subgroupOrder": 6,
       "recordOrder": 3,
       "currentTitle": {
         "th": "รูปแบบโครงข่ายถนน",
@@ -1719,7 +1719,7 @@
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "mobility",
-      "subgroupOrder": 7,
+      "subgroupOrder": 6,
       "recordOrder": 4,
       "currentTitle": {
         "th": "การจราจร: ความติดขัดและความเร็ว",
@@ -1773,7 +1773,7 @@
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "events-notices",
-      "subgroupOrder": 8,
+      "subgroupOrder": 7,
       "recordOrder": 1,
       "currentTitle": {
         "th": "เหตุการณ์และประกาศในพื้นที่",
@@ -1825,6 +1825,57 @@
       "guardrail": null
     },
     {
+      "id": "schools-students-teachers",
+      "datasetCode": "school",
+      "pillar": "location",
+      "pillarOrder": 2,
+      "subgroup": "education",
+      "subgroupOrder": 8,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "canonicalOrder": 28,
+      "slug": "schools-students-teachers",
+      "title": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "menuLabel": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/"
+      },
+      "aliases": [
+        "โรงเรียน นักเรียน และครู",
+        "Schools, Students & Teachers",
+        "school",
+        "schools-students-teachers"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+        "en": "See the distribution, levels and types of schools on a map to compare local provision."
+      },
+      "limitation": {
+        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "กระทรวงศึกษาธิการ (candidate)",
+        "en": "Ministry of Education (candidate)"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
       "id": "locale-insights",
       "datasetCode": "localeInsights",
       "pillar": "location",
@@ -1836,7 +1887,7 @@
         "th": "Locale Insights: บริบทย่าน",
         "en": "Locale Insights"
       },
-      "canonicalOrder": 28,
+      "canonicalOrder": 29,
       "slug": "locale-insights",
       "title": {
         "th": "Locale Insights: บริบทย่าน",
@@ -1890,7 +1941,7 @@
         "th": "ศาสนสถานในพื้นที่",
         "en": "Places of Worship"
       },
-      "canonicalOrder": 29,
+      "canonicalOrder": 30,
       "slug": "places-of-worship",
       "title": {
         "th": "ศาสนสถานในพื้นที่",
@@ -1945,7 +1996,7 @@
         "th": "ประชากรตามอายุและเพศ",
         "en": "Population by Age & Sex"
       },
-      "canonicalOrder": 30,
+      "canonicalOrder": 31,
       "slug": "population-age-sex",
       "title": {
         "th": "ประชากรตามอายุและเพศ",
@@ -1988,63 +2039,12 @@
       "guardrail": null
     },
     {
-      "id": "schools-students-teachers",
-      "datasetCode": "school",
-      "pillar": "living",
-      "pillarOrder": 3,
-      "subgroup": "education",
-      "subgroupOrder": 2,
-      "recordOrder": 1,
-      "currentTitle": {
-        "th": "โรงเรียน นักเรียน และครู",
-        "en": "Schools, Students & Teachers"
-      },
-      "canonicalOrder": 31,
-      "slug": "schools-students-teachers",
-      "title": {
-        "th": "โรงเรียน นักเรียน และครู",
-        "en": "Schools, Students & Teachers"
-      },
-      "menuLabel": {
-        "th": "โรงเรียน นักเรียน และครู",
-        "en": "Schools, Students & Teachers"
-      },
-      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/"
-      },
-      "aliases": [
-        "โรงเรียน นักเรียน และครู",
-        "Schools, Students & Teachers",
-        "school",
-        "schools-students-teachers"
-      ],
-      "description": {
-        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
-        "en": "See the distribution, levels and types of schools on a map to compare local provision."
-      },
-      "limitation": {
-        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
-        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
-      },
-      "period": null,
-      "sourceOwner": {
-        "th": "กระทรวงศึกษาธิการ (candidate)",
-        "en": "Ministry of Education (candidate)"
-      },
-      "resourceClass": "Dataset",
-      "semanticKind": null,
-      "semanticLabel": null,
-      "guardrail": null
-    },
-    {
       "id": "government-spending",
       "datasetCode": "govspending",
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "public-finance",
-      "subgroupOrder": 3,
+      "subgroupOrder": 2,
       "recordOrder": 1,
       "currentTitle": {
         "th": "งบประมาณและการเบิกจ่ายภาครัฐ",
@@ -2102,7 +2102,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "public-finance",
-      "subgroupOrder": 3,
+      "subgroupOrder": 2,
       "recordOrder": 2,
       "currentTitle": {
         "th": "รายได้องค์กรปกครองส่วนท้องถิ่น",
@@ -2156,7 +2156,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "public-service",
-      "subgroupOrder": 4,
+      "subgroupOrder": 3,
       "recordOrder": 1,
       "currentTitle": {
         "th": "หน่วยงานรัฐและบุคลากร",
@@ -2207,7 +2207,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "flood",
-      "subgroupOrder": 5,
+      "subgroupOrder": 4,
       "recordOrder": 1,
       "currentTitle": {
         "th": "น้ำท่วมซ้ำซาก",
@@ -2261,7 +2261,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "flood",
-      "subgroupOrder": 5,
+      "subgroupOrder": 4,
       "recordOrder": 2,
       "currentTitle": {
         "th": "น้ำท่วมที่ตรวจพบล่าสุด",
@@ -2315,7 +2315,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "flood",
-      "subgroupOrder": 5,
+      "subgroupOrder": 4,
       "recordOrder": 3,
       "currentTitle": {
         "th": "คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ",
@@ -2368,7 +2368,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "flood",
-      "subgroupOrder": 5,
+      "subgroupOrder": 4,
       "recordOrder": 4,
       "currentTitle": {
         "th": "น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google",
@@ -2422,7 +2422,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "other-hazards",
-      "subgroupOrder": 6,
+      "subgroupOrder": 5,
       "recordOrder": 1,
       "currentTitle": {
         "th": "เครือข่ายเซนเซอร์แผ่นดินไหว",
@@ -2473,7 +2473,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "other-hazards",
-      "subgroupOrder": 6,
+      "subgroupOrder": 5,
       "recordOrder": 2,
       "currentTitle": {
         "th": "การติดตามสถานการณ์ไฟ",
@@ -2524,7 +2524,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "multi-hazard",
-      "subgroupOrder": 7,
+      "subgroupOrder": 6,
       "recordOrder": 1,
       "currentTitle": {
         "th": "ผลกระทบจากสาธารณภัยในอดีต",
@@ -2581,7 +2581,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "event-archive",
-      "subgroupOrder": 8,
+      "subgroupOrder": 7,
       "recordOrder": 1,
       "currentTitle": {
         "th": "รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568",
@@ -2635,7 +2635,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "event-archive",
-      "subgroupOrder": 8,
+      "subgroupOrder": 7,
       "recordOrder": 2,
       "currentTitle": {
         "th": "QuakeSafe: สถานะการตรวจสอบอาคาร",
@@ -3435,7 +3435,7 @@
     },
     {
       "id": "SW-07",
-      "scenario": "All 43 IDs appear once; counts 13/16/14; hidden businessDynamics absent in search, list and counts. Two archives count as catalog resources, not new data feeds.",
+      "scenario": "All 43 IDs appear once; counts 16/14/13; hidden businessDynamics absent in search, list and counts. Two archives count as catalog resources, not new data feeds.",
       "status": "requires_implementation_or_visual_check"
     },
     {
@@ -3471,5 +3471,9 @@
     "iconAssetSubset": "current approved navigation subset reviewed; domain candidates not approved",
     "buildOrDeploy": "none",
     "reducedMotion": "No OS-level reduced-motion test is claimed for this proposal. Catalog runtime VM fixtures do not verify this separate chooser prototype."
+  },
+  "taxonomyRevision": {
+    "date": "2026-11-09",
+    "note": "Hotel, Office and Shopping Centres moved to Land (subgroup Commercial property, which moved with them) and School to Location (subgroup Education), as the dataset registry R01_DATASETS groups them (owner: “ใช้ตามทะเบียนทั้งหมด”); counts 16/14/13."
   }
 }

@@ -42,7 +42,9 @@ const copy = {
     dev: (hub) => [
       `ทุกเดโมใช้ชุดโค้ดกลาง ${hub.shell.name} ${hub.shell.version} ไบต์เดียวกัน รายการและกลุ่มบนหน้านี้ตรงกับตัวเลือกชุดข้อมูลบนหัวเว็บของเดโม (${hub.shell.list})`,
       "ที่อยู่หน้าเว็บของเดโม: d (รหัสชุดข้อมูล) · at (พื้นที่ เช่น BKK/D/1039 ตรงกับ /v3/citymeter/BKK/D/1039 ของ production) · e (สิ่งที่เปิด) · n (เครือข่าย) · f.* (ตัวกรอง) · focus · view · v3d · cam",
-      `กลุ่ม Land · Location · Living ตามทะเบียนชุดข้อมูล (${hub.registry.tab} อ่าน ${hub.registry.readAtTh}) ซึ่งต่างจากหมวดของแค็ตตาล็อกนี้ ${hub.catalogDiffers.length} ชุด: ${hub.catalogDiffers.map((d) => `${d.name} (แค็ตตาล็อก ${d.catalog})`).join(" · ")}`,
+      hub.catalogDiffers.length
+        ? `กลุ่ม Land · Location · Living ตามทะเบียนชุดข้อมูล (${hub.registry.tab} อ่าน ${hub.registry.readAtTh}) ซึ่งต่างจากหมวดของแค็ตตาล็อกนี้ ${hub.catalogDiffers.length} ชุด: ${hub.catalogDiffers.map((d) => `${d.name} (แค็ตตาล็อก ${d.catalog})`).join(" · ")}`
+        : `กลุ่ม Land · Location · Living ตามทะเบียนชุดข้อมูล (${hub.registry.tab} อ่าน ${hub.registry.readAtTh}) ตรงกับหมวดของแค็ตตาล็อกนี้ทุกชุดที่มีหน้าในแค็ตตาล็อก`,
       "คำถามของแต่ละชุดคัดตรงจาก meta description ของหน้าเดโม",
       "search engine ไม่เก็บหน้าเดโมและหน้านี้ (noindex)",
     ],
@@ -82,7 +84,9 @@ const copy = {
     dev: (hub) => [
       `Every demo runs the same bytes of the shared code ${hub.shell.name} ${hub.shell.version}; the list and groups on this page match the dataset picker in the demos' header (${hub.shell.list}).`,
       "Demo address: d (dataset code) · at (area, e.g. BKK/D/1039, which is /v3/citymeter/BKK/D/1039 in production) · e (the thing open) · n (a network) · f.* (filters) · focus · view · v3d · cam.",
-      `Land · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}), which differs from this catalog's lenses for ${hub.catalogDiffers.length} datasets: ${hub.catalogDiffers.map((d) => `${d.name} (catalog: ${d.catalog})`).join(" · ")}.`,
+      hub.catalogDiffers.length
+        ? `Land · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}), which differs from this catalog's lenses for ${hub.catalogDiffers.length} datasets: ${hub.catalogDiffers.map((d) => `${d.name} (catalog: ${d.catalog})`).join(" · ")}.`
+        : `Land · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}), as this catalog's lenses do for every demo with a catalog page.`,
       "Each question is quoted from the demo page's meta description (Thai); the English line under it is a draft.",
       "Search engines do not index the demos or this page (noindex).",
     ],
@@ -189,5 +193,5 @@ export function demoHubJson(hub, catalog) {
 
 export function demoHubLlms(hub, catalog) {
   const j = demoHubJson(hub, catalog);
-  return `# CityMETER demos\n\nPrototype web apps on GitHub Pages, one per dataset, ${hub.demos.length} in all. They are noindex, nofollow and in Thai; they are not the production CityMETER. Every demo runs the same bytes of ${hub.shell.name} ${hub.shell.version}.\n\n- [Thai hub](${j.pages.th})\n- [English hub](${j.pages.en})\n- [Structured list](${catalog.canonicalBase}${HUB_PATHS.th}demos.json)\n\n## Address\nThe address is the production grammar: \`d\` dataset code, \`at\` area (a production path such as BKK/D/1039, the same as https://landometer.com/v3/citymeter/BKK/D/1039), \`e\` the thing open, \`n\` a network, \`f.*\` filters, then \`focus\`, \`view\`, \`v3d\`, \`cam\`. A demo opens the deepest level of \`at\` it carries. Opening a level adds one browser history entry; filters and view replace it.\n\n## Demos\n${j.demos.map((d) => `- [${d.name}](${d.url}) · ${d.group} · code ${d.code ? `\`${d.code}\`` : "none in the registry yet"}: ${d.question.th} (draft English: ${d.questionDraft.en})`).join("\n")}\n\n## Groups\nLand · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}); this catalog files some of the same datasets under other lenses: ${catalogDiffers(hub, catalog).map((d) => `${d.name} (catalog: ${d.catalog})`).join(", ")}.\n`;
+  return `# CityMETER demos\n\nPrototype web apps on GitHub Pages, one per dataset, ${hub.demos.length} in all. They are noindex, nofollow and in Thai; they are not the production CityMETER. Every demo runs the same bytes of ${hub.shell.name} ${hub.shell.version}.\n\n- [Thai hub](${j.pages.th})\n- [English hub](${j.pages.en})\n- [Structured list](${catalog.canonicalBase}${HUB_PATHS.th}demos.json)\n\n## Address\nThe address is the production grammar: \`d\` dataset code, \`at\` area (a production path such as BKK/D/1039, the same as https://landometer.com/v3/citymeter/BKK/D/1039), \`e\` the thing open, \`n\` a network, \`f.*\` filters, then \`focus\`, \`view\`, \`v3d\`, \`cam\`. A demo opens the deepest level of \`at\` it carries. Opening a level adds one browser history entry; filters and view replace it.\n\n## Demos\n${j.demos.map((d) => `- [${d.name}](${d.url}) · ${d.group} · code ${d.code ? `\`${d.code}\`` : "none in the registry yet"}: ${d.question.th} (draft English: ${d.questionDraft.en})`).join("\n")}\n\n## Groups\nLand · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}); ${catalogDiffers(hub, catalog).length ? `this catalog files some of the same datasets under other lenses: ${catalogDiffers(hub, catalog).map((d) => `${d.name} (catalog: ${d.catalog})`).join(", ")}` : "this catalog uses the same lenses for every demo with a catalog page"}.\n`;
 }

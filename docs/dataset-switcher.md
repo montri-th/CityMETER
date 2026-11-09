@@ -2,9 +2,11 @@
 
 **สถานะ:** ข้อเสนอการออกแบบและต้นแบบภายใน วันที่ 10 ตุลาคม 2026 ยังไม่ได้ติดตั้งในหน้าแผนที่จริง
 
+**ปรับหมวด 9 พฤศจิกายน 2026:** ย้ายโรงแรม อาคารสำนักงาน และศูนย์การค้าไป Land (หมวดย่อยอสังหาริมทรัพย์เชิงพาณิชย์ย้ายไปด้วย) และโรงเรียนไป Location (หมวดย่อยการศึกษา) ตามกลุ่มในทะเบียนชุดข้อมูล `R01_DATASETS` ที่เจ้าของตัดสินให้ใช้ทั้งหมด จำนวนเป็น Land 16, Location 14, Living 13 ตาราง ข้อความ และ [ข้อเสนอสำหรับ agent](dataset-switcher.json) ด้านล่างปรับตามแล้ว ส่วนอื่นของข้อเสนอคงเดิม
+
 เปลี่ยนเมนูพับยาวเป็นหน้าต่างเลือกข้อมูลที่ค้นหาได้ มี Land / Location / Living เป็นตัวกรอง และแสดงหมวดย่อยเป็นหัวข้อในรายการเดียว ผู้ใช้เห็นชื่อเต็ม เปรียบเทียบความหมาย และเลือกข้อมูลได้โดยไม่ต้องเปิดเมนูหลายชั้น
 
-เอกสารใน repo นี้ใช้ [ข้อเสนอสำหรับ agent/ทีมพัฒนา](dataset-switcher.json) และอ่านข้อมูลหมวดจาก [catalog ต้นทาง](../src/catalog.json) สี UI จาก [LDS 0.9.7 audience CSS](../assets/landometer-ds/v0.9.7/color-srgb-10.production.css) ส่วนต้นแบบ HTML และบันทึกตรวจ taxonomy อยู่ในชุด handoff ที่ส่งให้เจ้าของงาน มี 43 รายการ: Land 13, Location 16, Living 14 รวมคลังเหตุการณ์ 2 รายการ โดยไม่นำ Business Dynamics ที่ยังซ่อนอยู่มาเปิดเผย
+เอกสารใน repo นี้ใช้ [ข้อเสนอสำหรับ agent/ทีมพัฒนา](dataset-switcher.json) และอ่านข้อมูลหมวดจาก [catalog ต้นทาง](../src/catalog.json) สี UI จาก [LDS 0.9.7 audience CSS](../assets/landometer-ds/v0.9.7/color-srgb-10.production.css) ส่วนต้นแบบ HTML และบันทึกตรวจ taxonomy อยู่ในชุด handoff ที่ส่งให้เจ้าของงาน มี 43 รายการ: Land 16, Location 14, Living 13 รวมคลังเหตุการณ์ 2 รายการ โดยไม่นำ Business Dynamics ที่ยังซ่อนอยู่มาเปิดเผย
 
 ## แนวทางที่คงไว้และปรับให้ทันปัจจุบัน
 
@@ -17,7 +19,7 @@
 ```text
 เลือกข้อมูล / Choose data                           ปิด / Close
 ค้นชื่อข้อมูล ไทยหรืออังกฤษ …                        ล้าง / Clear
-ทั้งหมด 43      Land 13      Location 16      Living 14
+ทั้งหมด 43      Land 16      Location 14      Living 13
 พบ 43 รายการ / 43 results
 Land · อาคารและภูมิประเทศ
   อาคาร: ขอบเขต ความสูง และพื้นที่ใช้สอยโดยประมาณ
@@ -43,7 +45,7 @@ Living · บันทึกเหตุการณ์ที่ผ่านม�
 
 ## หมวดและรายการครบ 43
 
-### Land · 13 รายการ
+### Land · 16 รายการ
 
 | หมวดย่อย TH / EN | ชื่อรายการปัจจุบัน (เรียงแล้ว) |
 |---|---|
@@ -53,28 +55,28 @@ Living · บันทึกเหตุการณ์ที่ผ่านม�
 | การใช้ที่ดิน / Land use | เกษตรกรรม: พื้นที่เพาะปลูกและผลผลิต (หมื่นไร่) / Agriculture: Crop Area & Output (10,000 Rai) |
 | ตลาดที่ดิน / Land market | ราคาประเมินที่ดินและโฉนด / Land Appraisal & Title Deeds<br>ราคาประกาศขายที่ดิน / Land Listing Prices |
 | ตลาดที่อยู่อาศัย / Residential market | ค่าเช่าอะพาร์ตเมนต์ / Apartment Rent<br>ราคาประเมินคอนโดมิเนียม / Condo Appraisal Prices<br>ราคาประกาศขายคอนโดมิเนียม / Condo Listing Prices<br>ราคาประกาศขายบ้านเดี่ยว / Detached Listing Prices<br>ราคาประกาศขายทาวน์เฮาส์ / Townhouse Listing Prices |
+| อสังหาริมทรัพย์เชิงพาณิชย์ / Commercial property | โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล / Hotel Supply, Rates & Seasonality<br>อาคารสำนักงานและค่าเช่า / Office Buildings & Rent<br>ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก / Shopping Centres, Markets & Retail Sites |
 | ข้อมูลประกอบการลงทุน / Investment insight | ค่าเช่าและผลตอบแทนคอนโดมิเนียม (RentWise) / Condo Rent & Yield (RentWise) |
 
-### Location · 16 รายการ
+### Location · 14 รายการ
 
 | หมวดย่อย TH / EN | ชื่อรายการปัจจุบัน (เรียงแล้ว) |
 |---|---|
 | ทะเบียนธุรกิจ / Business registry | บริษัทจดทะเบียน: สถานะและทุน / Registered Companies: Status & Capital |
 | กิจกรรมธุรกิจและอุตสาหกรรม / Business activity | โรงงาน แรงงาน และการลงทุน / Factories, Workers & Investment |
-| อสังหาริมทรัพย์เชิงพาณิชย์ / Commercial property | อาคารสำนักงานและค่าเช่า / Office Buildings & Rent |
 | เครือข่ายบริการทางการเงิน / Financial services | เครือข่ายสาขาและสำนักงาน Non-bank / Non-bank Branch & Office Networks |
-| อาหารและค้าปลีก / Food & retail | ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา / Restaurants: Density, Ratings & Price<br>ร้านค้าปลีกและค้าส่ง / Retail & Wholesale Networks<br>ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก / Shopping Centres, Markets & Retail Sites |
-| การท่องเที่ยวและที่พัก / Tourism & hospitality | โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล / Hotel Supply, Rates & Seasonality<br>ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย / Tourism Demand: Visitors & Spending |
+| อาหารและค้าปลีก / Food & retail | ร้านอาหาร: ความหนาแน่น คะแนนรีวิว และระดับราคา / Restaurants: Density, Ratings & Price<br>ร้านค้าปลีกและค้าส่ง / Retail & Wholesale Networks |
+| การท่องเที่ยวและที่พัก / Tourism & hospitality | ความต้องการท่องเที่ยว: จำนวนนักท่องเที่ยวและค่าใช้จ่าย / Tourism Demand: Visitors & Spending |
 | การเดินทางและการเข้าถึง / Mobility | สถานีบริการเชื้อเพลิง: จำนวน ความหนาแน่น และประเภทเชื้อเพลิง / Fuel Stations: Count, Density & Fuel Types<br>รถยนต์จดทะเบียน / Registered Cars<br>รูปแบบโครงข่ายถนน / Road Network Archetypes<br>การจราจร: ความติดขัดและความเร็ว / Traffic: Congestion & Speed |
 | เหตุการณ์และประกาศ / Events & notices | เหตุการณ์และประกาศในพื้นที่ / City Events & Notices |
+| การศึกษา / Education | โรงเรียน นักเรียน และครู / Schools, Students & Teachers |
 | บริบทพื้นที่และสถานที่ชุมชน / Area & community context | Locale Insights: บริบทย่าน / Locale Insights<br>ศาสนสถานในพื้นที่ / Places of Worship |
 
-### Living · 14 รายการ
+### Living · 13 รายการ
 
 | หมวดย่อย TH / EN | ชื่อรายการปัจจุบัน (เรียงแล้ว) |
 |---|---|
 | ผู้คนและประชากร / People | ประชากรตามอายุและเพศ / Population by Age & Sex |
-| การศึกษา / Education | โรงเรียน นักเรียน และครู / Schools, Students & Teachers |
 | การคลังภาครัฐและท้องถิ่น / Public finance | งบประมาณและการเบิกจ่ายภาครัฐ / Government Budget & Disbursement<br>รายได้องค์กรปกครองส่วนท้องถิ่น / Municipal Revenue |
 | บริการภาครัฐ / Public service | หน่วยงานรัฐและบุคลากร / Government Agencies & Workforce |
 | น้ำท่วม / Flood | น้ำท่วมซ้ำซาก / Flood: Recurrent<br>น้ำท่วมที่ตรวจพบล่าสุด / Flood: Latest Observed<br>คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ / Flood: Forecast Depth by DWR<br>น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google / Flood: Flash Flood: 24-hour Risk by Google |
@@ -157,7 +159,7 @@ Local Decisions เป็นแนวช่วยค้นคำถามขอ�
 
 ## ลำดับงานสำหรับ intern / coding agent
 
-1. ผูก current public catalog และ taxonomy เป็นข้อมูลชุดเดียว ตรวจ ID ทั้ง 43, จำนวน 13/16/14 และ exclusion Business Dynamics โดยไม่คัดลอก source code ของแอป private ไป public repo
+1. ผูก current public catalog และ taxonomy เป็นข้อมูลชุดเดียว ตรวจ ID ทั้ง 43, จำนวน 16/14/13 และ exclusion Business Dynamics โดยไม่คัดลอก source code ของแอป private ไป public repo
 2. สร้าง chooser component กับ state local และ semantic list ก่อน เมื่อนำไปใช้ในแอปแผนที่ ให้ตรวจ component และ API เปลี่ยน dataset รุ่นปัจจุบันกับผู้ดูแลแอปก่อนผูก state; repository สาธารณะนี้ไม่ได้เก็บ implementation ของแอปแผนที่
 3. เพิ่มการค้น TH/EN/alias และทดสอบคำว่า น้ำท่วม, flood, traffic, ภูมิประเทศ, non-bank, คำที่ไม่พบ พร้อมรักษาลำดับ family
 4. ผูกการเลือกกับ shared state ของแผนที่เดิม พร้อมทดสอบคำขอล่าช้าและโหลดล้มเหลว; อย่าใช้ผลผ่านต้นแบบนี้แทนการทดสอบ integration
@@ -172,7 +174,7 @@ Local Decisions เป็นแนวช่วยค้นคำถามขอ�
 - **SW-04** — Open with keyboard, reach search, filters, preview button and real link; Escape returns focus to opener and does not change selection. Focus remains inside modal.
 - **SW-05** — Preview DWR forecast, Google flash flood and Hat Yai archive; each keeps provider, horizon or event dates and its limitation. No generic live badge is added.
 - **SW-06** — Prototype selecting a preview changes only the local summary; external map opens only through its explicit link. No data API requests, login or permissions are simulated.
-- **SW-07** — All 43 IDs appear once; counts 13/16/14; hidden businessDynamics absent in search, list and counts. Two archives count as catalog resources, not new data feeds.
+- **SW-07** — All 43 IDs appear once; counts 16/14/13; hidden businessDynamics absent in search, list and counts. Two archives count as catalog resources, not new data feeds.
 - **SW-08** — At widths 320, 390 and 1280 CSS px, both languages and 200% text zoom: long names wrap, no clipped provider/date, all actions >=44px, no horizontal scroll or coloured selection rail.
 - **SW-09** — Curated building/deed 3D or named-area links remain byte-for-byte catalog URLs; terrain opens its 3D URL; language switching does not append an unsupported lang=en to maps.
 - **SW-10** — Operational integration only: rapid A→B selection plus delayed A response leaves B selected and painted; failures keep previous valid view and a visible retry; no stale source/period labels.

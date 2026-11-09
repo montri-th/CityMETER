@@ -26,4 +26,4 @@ The address is the production grammar: `d` dataset code, `at` area (a production
 - [Transit](https://montri-th.github.io/transit/) · Living · code `transit`: ทำเลนี้ไปถึงด้วยระบบรางได้แค่ไหน (draft English: How well can rail transit reach this location?)
 
 ## Groups
-Land · Location · Living follow the dataset registry (R01_DATASETS, read 2026-11-08); this catalog files some of the same datasets under other lenses: Hotel (catalog: Location), Office (catalog: Location), Shopping Center (catalog: Location), School (catalog: Living).
+Land · Location · Living follow the dataset registry (R01_DATASETS, read 2026-11-08); this catalog uses the same lenses for every demo with a catalog page.

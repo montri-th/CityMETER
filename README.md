@@ -18,7 +18,7 @@ Edit and validate with [the maintainer guide](docs/catalog-maintenance.md) and [
 
 ## แค็ตตาล็อกปัจจุบัน — 2026-10-10
 
-งานแค็ตตาล็อกใหม่ใช้ **LDS 0.9.7** เป็นฐาน: 43 รายการ (Land 13 / Location 16 / Living 14), หน้ารายละเอียดไทย–อังกฤษ 86 หน้า, ที่มา/ช่วงเวลา/ข้อจำกัดใน HTML และ [public JSON](data/catalog.json) พร้อมเครดิตจาก [public Landom projection](https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json) รายการ Business Dynamics ไม่อยู่ใน public catalog นี้
+งานแค็ตตาล็อกใหม่ใช้ **LDS 0.9.7** เป็นฐาน: 43 รายการ (Land 16 / Location 14 / Living 13 ตามกลุ่มในทะเบียนชุดข้อมูลตั้งแต่ 9 พ.ย. 2026), หน้ารายละเอียดไทย–อังกฤษ 86 หน้า, ที่มา/ช่วงเวลา/ข้อจำกัดใน HTML และ [public JSON](data/catalog.json) พร้อมเครดิตจาก [public Landom projection](https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json) รายการ Business Dynamics ไม่อยู่ใน public catalog นี้
 
 แก้เนื้อหาที่ `src/catalog.json` แล้วรัน `npm run build` และ `npm run check` ด้วย Node 20 ขึ้นไป ไม่ต้องติดตั้ง dependency อ่าน [คู่มือ intern](docs/catalog-maintenance.md) และ [ขั้นตอนสำหรับ agent](docs/catalog-maintenance.json) ก่อนแก้แหล่งข้อมูลหรือ attribution CI ตรวจ PR/main แต่ไม่ deploy จาก PR; การเผยแพร่ยังใช้ GitHub Pages `main` / root เดิม
 

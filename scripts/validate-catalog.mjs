@@ -47,9 +47,9 @@ test("43 unique public records and 3 peer groups", () => {
   assert.deepEqual(
     catalog.groups.map((g) => [g.id, g.count]),
     [
-      ["land", 13],
-      ["location", 16],
-      ["living", 14],
+      ["land", 16],
+      ["location", 14],
+      ["living", 13],
     ],
   );
   for (const g of catalog.groups)
