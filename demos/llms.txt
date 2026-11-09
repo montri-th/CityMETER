@@ -1,6 +1,6 @@
 # CityMETER demos
 
-Prototype web apps on GitHub Pages, one per dataset, 14 in all. They are noindex, nofollow and in Thai, except that Hotel, Office, Factory, Hospital, Pharmacy, Restaurants, School and Government Office also read in English (a draft translation) with `?lang=en`; they are not the production CityMETER. Every demo runs the same bytes of citymeter-shell 0.5.3.
+Prototype web apps on GitHub Pages, one per dataset, 15 in all. They are noindex, nofollow and in Thai, except that Hotel, Industrial Estate, Office, Factory, Hospital, Pharmacy, Restaurants, School and Government Office also read in English (a draft translation) with `?lang=en`; they are not the production CityMETER. Every demo runs the same bytes of citymeter-shell 0.5.4.
 
 - [Thai hub](https://montri-th.github.io/CityMETER/demos/)
 - [English hub](https://montri-th.github.io/CityMETER/en/demos/)
@@ -11,6 +11,7 @@ The address is the production grammar: `d` dataset code, `at` area (a production
 
 ## Demos
 - [Hotel](https://montri-th.github.io/hotel/) · Land · code `hotel` · [in English](https://montri-th.github.io/hotel/?lang=en): ห้องพักกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are hotel rooms concentrated, and how close are they to rail transit?)
+- [Industrial Estate](https://montri-th.github.io/factory/industrialestate/) · Land · code `industrialEstate` · [in English](https://montri-th.github.io/factory/industrialestate/?lang=en): นิคมอุตสาหกรรมอยู่ตรงไหน ใครพัฒนา และในทำเนียบมีใครบ้าง (draft English: Where are the industrial estates, who develops them, and who is in their directory?)
 - [Office](https://montri-th.github.io/office/) · Land · code `office` · [in English](https://montri-th.github.io/office/?lang=en): สำนักงานกระจุกอยู่ตรงไหน ค่าเช่าที่ประกาศเท่าไร และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are offices concentrated, what rents are advertised, and how close are they to rail transit?)
 - [Shopping Center](https://montri-th.github.io/shoppingcenter/) · Land · code `shoppingCenter`: ย่านไหนมีพื้นที่ค้าปลีกแบบไหน ของใคร มีร้านอะไรอยู่ข้างใน และอะไรกำลังจะเปิด (draft English: Which areas have which kinds of retail space, run by whom, with which shops inside, and what is about to open?)
 - [Camera Shops](https://montri-th.github.io/camera/) · Location · code `cameraShops`: ถ้าจะเปิดร้านกล้องที่นี่ จะอยู่ข้างใคร (draft English: If you open a camera shop here, who are your neighbours?)
