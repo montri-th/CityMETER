@@ -8,9 +8,9 @@
   },
   "shell": {
     "name": "citymeter-shell",
-    "version": "0.4.3",
+    "version": "0.5.0",
     "list": "js/shell/datasets.js",
-    "sha256": "8afcbe6e33daf5f28bc75f8e352db3be4139f9281d54ee28d87da1a14d7d7c96",
+    "sha256": "0c0c32bfe8f9964a3bdd029201ba84b89c5b2a5e6642fa3b3f84752f30d50d57",
     "demos": 14
   },
   "registry": {
@@ -23,11 +23,12 @@
     "readAtTh": "8 พ.ย. 2569"
   },
   "sources": {
-    "list": "citymeter-shell 0.4.3 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
+    "list": "citymeter-shell 0.5.0 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
     "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-08",
     "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness has no code in the registry yet",
     "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft",
-    "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09"
+    "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09",
+    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0"
   },
   "address": {
     "grammar": "d · at · e · n · f.* · focus · view · v3d · cam",
@@ -64,6 +65,9 @@
       "group": "Land",
       "code": "hotel",
       "url": "https://montri-th.github.io/hotel/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "ห้องพักกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน"
       },
@@ -85,6 +89,11 @@
       "group": "Land",
       "code": "office",
       "url": "https://montri-th.github.io/office/",
+      "languages": [
+        "th",
+        "en"
+      ],
+      "urlEn": "https://montri-th.github.io/office/?lang=en",
       "question": {
         "th": "สำนักงานกระจุกอยู่ตรงไหน ค่าเช่าที่ประกาศเท่าไร และใกล้รถไฟฟ้าแค่ไหน"
       },
@@ -106,6 +115,9 @@
       "group": "Land",
       "code": "shoppingCenter",
       "url": "https://montri-th.github.io/shoppingcenter/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "ย่านไหนมีพื้นที่ค้าปลีกแบบไหน ของใคร มีร้านอะไรอยู่ข้างใน และอะไรกำลังจะเปิด"
       },
@@ -127,6 +139,9 @@
       "group": "Location",
       "code": "cameraShops",
       "url": "https://montri-th.github.io/camera/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "ถ้าจะเปิดร้านกล้องที่นี่ จะอยู่ข้างใคร"
       },
@@ -144,6 +159,9 @@
       "group": "Location",
       "code": "factory",
       "url": "https://montri-th.github.io/factory/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "คนงานโรงงานกระจุกอยู่ตรงไหน และทำงานในอุตสาหกรรมอะไร"
       },
@@ -165,6 +183,9 @@
       "group": "Location",
       "code": null,
       "url": "https://montri-th.github.io/fitness/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "สาขาฟิตเนสกระจุกอยู่ตรงไหน และเป็นฟิตเนสแบบไหน"
       },
@@ -182,6 +203,9 @@
       "group": "Location",
       "code": "grocery",
       "url": "https://montri-th.github.io/grocery/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "ร้านกระจุกที่ไหนเมื่อเทียบกับคน"
       },
@@ -203,6 +227,9 @@
       "group": "Location",
       "code": "hospital",
       "url": "https://montri-th.github.io/hospital/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน"
       },
@@ -220,6 +247,9 @@
       "group": "Location",
       "code": "luxuryBrands",
       "url": "https://montri-th.github.io/luxurybrands/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "ถ้าจะเปิดร้านที่นี่ จะอยู่ข้างใคร"
       },
@@ -237,6 +267,9 @@
       "group": "Location",
       "code": "pharmacy",
       "url": "https://montri-th.github.io/pharmacy/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "ร้านยาแน่นที่สุดอยู่ตรงไหน และเป็นร้านแบบไหน"
       },
@@ -254,6 +287,9 @@
       "group": "Location",
       "code": "restaurant",
       "url": "https://montri-th.github.io/restaurant/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "ร้านอาหารและเครื่องดื่มแน่นที่สุดอยู่ตรงไหน เป็นร้านแบบไหน และเครือไหนอยู่แล้ว"
       },
@@ -275,6 +311,9 @@
       "group": "Location",
       "code": "school",
       "url": "https://montri-th.github.io/school/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "นักเรียนกระจุกอยู่ตรงไหน และรอบแปลงมีโรงเรียนแบบไหน"
       },
@@ -296,6 +335,9 @@
       "group": "Living",
       "code": "governmentOfficer",
       "url": "https://montri-th.github.io/governmentoffice/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "หน่วยงานรัฐกระจุกอยู่ตรงไหน และรอบแปลงมีบริการรัฐอะไรใกล้ที่สุด"
       },
@@ -317,6 +359,9 @@
       "group": "Living",
       "code": "transit",
       "url": "https://montri-th.github.io/transit/",
+      "languages": [
+        "th"
+      ],
       "question": {
         "th": "ทำเลนี้ไปถึงด้วยระบบรางได้แค่ไหน"
       },

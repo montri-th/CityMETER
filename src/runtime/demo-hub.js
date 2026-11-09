@@ -15,8 +15,10 @@
   const name = config.areas?.[at];
   status.textContent = name ? config.text.known.replace("{name}", name).replace("{at}", at) : config.text.code.replace("{at}", at);
   for (const link of document.querySelectorAll("a[data-demo]")) {
-    const url = new URL(link.getAttribute("href"), location.href);
-    url.searchParams.set("at", at);
+    // `at` first, as the demos write their address; a demo opened in English keeps `lang=en` after it.
+    const url = new URL(link.getAttribute("href"), location.href), rest = new URLSearchParams(url.search);
+    rest.delete("at");
+    url.search = `?at=${encodeURIComponent(at)}${rest.toString() ? `&${rest}` : ""}`;
     link.href = url.href.replace(/%2F/g, "/");
   }
   // The language switch keeps the area too.
