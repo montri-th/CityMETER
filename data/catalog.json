@@ -14,7 +14,7 @@
       "id": "land",
       "label": "Land",
       "thai": "ที่ดินและอสังหาริมทรัพย์",
-      "count": 13,
+      "count": 16,
       "description": "อ่านรูปแบบการพัฒนา ราคาประเมิน ราคาประกาศ และตลาดเช่า เพื่อคัดกรองพื้นที่และทรัพย์สินก่อนลงรายละเอียด",
       "summary": {
         "th": "ที่ดิน อาคาร ราคา และตลาดเช่า",
@@ -25,7 +25,7 @@
       "id": "location",
       "label": "Location",
       "thai": "ธุรกิจ ทำเล และการเข้าถึง",
-      "count": 16,
+      "count": 14,
       "description": "เห็นภูมิทัศน์ตลาด เครือข่ายธุรกิจ และบริบทการเดินทาง เพื่อวางกลยุทธ์ตลาดและเลือกพื้นที่ศึกษาความต้องการกับบริการที่มีอยู่",
       "summary": {
         "th": "ภาพตลาด เครือข่ายธุรกิจ และการเข้าถึง",
@@ -36,7 +36,7 @@
       "id": "living",
       "label": "Living",
       "thai": "ผู้คน บริการ และความเสี่ยง",
-      "count": 14,
+      "count": 13,
       "description": "อ่านประชากร บริการสาธารณะ ฐานะท้องถิ่น และสัญญาณภัย เพื่อจัดลำดับการวางแผนและการเฝ้าระวัง",
       "summary": {
         "th": "ผู้คน บริการภาครัฐ และสัญญาณภัย",
@@ -2467,6 +2467,478 @@
       ]
     },
     {
+      "id": "hotel-market",
+      "group": "land",
+      "title": {
+        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "en": "Hotel Supply, Rates & Seasonality"
+      },
+      "description": {
+        "th": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
+        "en": "Compare hotel locations, room supply and listed prices to understand accommodation around a site."
+      },
+      "tags": [
+        "hotel",
+        "adr",
+        "seasonality",
+        "ranking"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "ททท. รวบรวมที่พักหลายประเภททั่วประเทศ; ชุด กทม. ครอบคลุมโรงแรมในกรุงเทพฯ ที่ขึ้นทะเบียนกับสมาคมโรงแรมไทย ไม่ใช่ทะเบียนโรงแรมทั้งหมด",
+        "en": "TAT covers multiple accommodation types across Thailand. The BMA source covers Bangkok hotels registered with the Thai Hotels Association, not every hotel."
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "ที่พัก จำนวนห้อง และราคาที่ประกาศในฐานข้อมูล",
+        "en": "Properties, recorded room counts and advertised rates"
+      },
+      "limitation": {
+        "th": "ที่พักแต่ละแหล่งมีประเภท ขอบเขต และช่วงเวลาต่างกัน จำนวนห้องในทะเบียนไม่ใช่ห้องว่างหรือยอดจอง ส่วนแหล่งราคาและวิธีสรุปฤดูกาลของค่าที่แสดงยังต้องเทียบให้ตรง จึงใช้คำนวณอัตราเข้าพักหรือรายได้ไม่ได้",
+        "en": "Sources differ in accommodation types, coverage and dates. Registered room counts do not measure availability or bookings. The displayed rates and seasonality still need their source and method matched; they cannot establish occupancy or revenue."
+      },
+      "sourceReview": {
+        "status": "candidate",
+        "owner": {
+          "th": "การท่องเที่ยวแห่งประเทศไทย; กรุงเทพมหานคร — กองยุทธศาสตร์ดิจิทัลเป็นผู้เผยแพร่ชุดโรงแรม",
+          "en": "Tourism Authority of Thailand; Bangkok Metropolitan Administration — hotel dataset published by its Digital Strategy Division"
+        },
+        "source": {
+          "th": "ททท. เผยแพร่ประเภทและที่ตั้งที่พักจากฐานข้อมูลการท่องเที่ยวเชิงการตลาด ส่วนชุด กทม. มีชื่อโรงแรม เขต พิกัด จำนวนห้อง และระดับโรงแรม ยังไม่ใช่หลักฐานว่าราคาหรือค่าฤดูกาลในแผนที่มาจากสองชุดนี้",
+          "en": "TAT publishes accommodation types and locations from its tourism marketing database. BMA records include hotel names, districts, coordinates, rooms and grades. Neither reference establishes the source of the map’s price or seasonality measures."
+        },
+        "period": {
+          "th": "บัญชี ททท. ระบุปรับปรุงข้อมูล 11 มิถุนายน 2569; ชุดโรงแรม กทม. ระบุ 23 มิถุนายน 2566 วันเหล่านี้ยังไม่ยืนยันช่วงเวลาของราคาและรายการที่แผนที่แสดง",
+          "en": "TAT metadata lists 11 June 2026; the BMA hotel resource lists 23 June 2023. These dates do not establish the period of the map’s displayed inventory or rates."
+        },
+        "benefit": {
+          "th": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
+          "en": "Compare hotel locations, room supply and listed prices to understand accommodation around a site."
+        },
+        "reading": {
+          "th": "เริ่มจากประเภทที่พัก ตำแหน่ง และจำนวนห้องที่บันทึก แล้วตรวจวันเก็บราคา เงื่อนไขห้อง และช่วงเข้าพักก่อนเลือกคู่เทียบตลาด",
+          "en": "Start with accommodation types, locations and recorded rooms. Check price collection dates, room conditions and stay dates before choosing market comparisons."
+        },
+        "official": [
+          {
+            "label": {
+              "th": "ททท. — ชุดข้อมูลที่พัก",
+              "en": "TAT — accommodation dataset"
+            },
+            "url": "https://datacatalog.tat.or.th/dataset/accommodation"
+          },
+          {
+            "label": {
+              "th": "กรุงเทพมหานคร — โรงแรมที่ขึ้นทะเบียนกับสมาคมโรงแรมไทย",
+              "en": "BMA — hotels registered with the Thai Hotels Association"
+            },
+            "url": "https://data.bangkok.go.th/dataset/hotels"
+          },
+          {
+            "label": {
+              "th": "กรุงเทพมหานคร — รายการโรงแรมและจำนวนห้อง",
+              "en": "BMA — hotel and room-count resource"
+            },
+            "url": "https://data.bangkok.go.th/dataset/hotels/resource/d2b08c18-9071-4d5c-ae3d-bd35740a9393"
+          }
+        ],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Official TAT metadata and BMA resource fields checked. Other supplied references are classified separately in the public provenance ledger; listing a source does not establish its production ingestion, full coverage or redistribution rights."
+      },
+      "slug": "hotel-market",
+      "datasetCode": "hotel",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=hotel",
+      "preview": {
+        "available": true,
+        "path": "media/previews-v3/hotel-market.webp",
+        "largePath": "media/previews-v2/hotel-market.webp",
+        "conceptual": false,
+        "focusLabel": {
+          "th": "ห้องพัก · ADR · ฤดูกาล",
+          "en": "Rooms · ADR · seasonality"
+        }
+      },
+      "aliases": [
+        "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
+        "Hotel Supply, Rates & Seasonality",
+        "hotel",
+        "hotel-market"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "commercial-property",
+      "order": 1,
+      "executiveSummary": {
+        "editorialBasis": "catalog_description_and_source_review",
+        "lead": {
+          "th": "มองตลาดที่พักผ่านจำนวนห้อง การกระจุกตัว และระดับราคา ก่อนเลือกศึกษาทำเลที่พึ่งพานักเดินทาง",
+          "en": "Read the accommodation market through room supply, clustering and prices before studying visitor-dependent locations."
+        },
+        "sectionTitle": {
+          "th": "แยกจำนวนโรงแรมออกจากอุปทานห้องพัก",
+          "en": "A hotel count is only part of the supply picture"
+        },
+        "reading": {
+          "th": "โรงแรมจำนวนเท่ากันอาจมีจำนวนห้องต่างกันมาก การอ่านจำนวนห้องควบคู่กับราคาและตำแหน่งช่วยให้เลือกคู่เทียบได้เหมาะกว่า แล้วค่อยศึกษาช่วงเวลาและตลาดของแต่ละแห่ง",
+          "en": "Similar hotel counts can hide very different room supply. Read room numbers with prices and location to select better comparisons, then investigate their timing and market."
+        },
+        "note": {
+          "th": "ราคาเป็นข้อมูลที่ประกาศ จำนวนห้องไม่บอกอัตราเข้าพัก ยอดจอง หรือรายได้ของโรงแรม",
+          "en": "Listed prices and room counts do not establish occupancy, bookings or hotel revenue."
+        },
+        "questions": {
+          "th": [
+            "ที่พักและจำนวนห้องกระจุกตัวในส่วนไหนของพื้นที่?",
+            "โรงแรมใดเหมาะเป็นคู่เทียบสำหรับศึกษาตลาดต่อ?"
+          ],
+          "en": [
+            "Where is accommodation and room supply concentrated?",
+            "Which hotels make useful market comparisons?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกคู่เทียบแล้วตรวจราคา ช่วงเข้าพัก และสถานะห้องกับแต่ละแห่ง",
+          "en": "Select comparable properties and check prices, stay dates and room availability directly."
+        }
+      },
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/hotel-market/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/hotel-market/"
+      },
+      "contributors": [
+        {
+          "personId": "I0031",
+          "nickname": {
+            "th": "บิว",
+            "en": "Bill"
+          },
+          "contributionRole": {
+            "th": "Software development",
+            "en": "Software development"
+          },
+          "profileUrl": {
+            "th": "https://montri-th.github.io/Landom/?person=I0031&lang=th",
+            "en": "https://montri-th.github.io/Landom/en/?person=I0031&lang=en"
+          },
+          "portrait": {
+            "url": "https://montri-th.github.io/Landom/public/assets/people/I0031.jpg",
+            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0031.jpg?v=4587c8757cf8",
+            "alt": {
+              "th": "ภาพโปรไฟล์ของบิว",
+              "en": "Profile portrait of Bill"
+            }
+          }
+        },
+        {
+          "personId": "I0001",
+          "nickname": {
+            "th": "ปุ๊กกี้",
+            "en": "Pookkie"
+          },
+          "contributionRole": {
+            "th": "Software development",
+            "en": "Software development"
+          },
+          "profileUrl": {
+            "th": "https://montri-th.github.io/Landom/?person=I0001&lang=th",
+            "en": "https://montri-th.github.io/Landom/en/?person=I0001&lang=en"
+          },
+          "portrait": {
+            "url": "https://montri-th.github.io/Landom/public/assets/people/I0001.jpg",
+            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0001.jpg?v=b264e4deec78",
+            "alt": {
+              "th": "ภาพโปรไฟล์ของปุ๊กกี้",
+              "en": "Profile portrait of Pookkie"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "office-buildings-rent",
+      "group": "land",
+      "title": {
+        "th": "อาคารสำนักงานและค่าเช่า",
+        "en": "Office Buildings & Rent"
+      },
+      "description": {
+        "th": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
+        "en": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate."
+      },
+      "tags": [
+        "office",
+        "asking-rent",
+        "height",
+        "period"
+      ],
+      "scope": {
+        "status": "evidenced",
+        "th": "กรุงเทพมหานคร",
+        "en": "Bangkok"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "อาคารสำนักงานและช่วงราคาเสนอเช่าในกรุงเทพฯ",
+        "en": "Office buildings and asking-rent ranges in Bangkok"
+      },
+      "limitation": {
+        "th": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ และราคาเสนอเช่าไม่ใช่ค่าเช่าที่ทำสัญญาแล้ว",
+        "en": "The evidenced scope is Bangkok, and asking rent is not contracted rent"
+      },
+      "sourceReview": {
+        "status": "unproven",
+        "owner": {
+          "th": "ยังยืนยันผู้เผยแพร่ข้อมูลอาคารสำนักงานต้นทางไม่ได้",
+          "en": "Original office-inventory publisher not yet verified"
+        },
+        "source": {
+          "th": "ยังไม่ระบุแหล่งบัญชีอาคารสำนักงานและราคาเสนอเช่าที่ตรวจสอบย้อนกลับได้ครบถ้วน",
+          "en": "The sources for the office inventory and asking rents are not fully documented."
+        },
+        "period": null,
+        "benefit": {
+          "th": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
+          "en": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate."
+        },
+        "reading": {
+          "th": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ ราคาเป็นราคาเสนอเช่า ไม่ใช่ค่าเช่าตามสัญญาหรือ occupancy",
+          "en": "The evidenced scope is Bangkok. Prices are asking rents, not contracted rent or occupancy."
+        },
+        "official": [],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "office-buildings-rent",
+      "datasetCode": "office",
+      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=office",
+      "preview": {
+        "available": true,
+        "path": "media/previews-v3/office-buildings-rent.webp",
+        "largePath": "media/previews-v2/office-buildings-rent.webp",
+        "conceptual": false,
+        "focusLabel": {
+          "th": "อาคารสำนักงาน · ราคาเสนอเช่า",
+          "en": "Office buildings · asking rent"
+        }
+      },
+      "aliases": [
+        "อาคารสำนักงานและค่าเช่า",
+        "Office Buildings & Rent",
+        "office",
+        "office-buildings-rent"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "commercial-property",
+      "order": 2,
+      "executiveSummary": {
+        "editorialBasis": "catalog_description_and_source_review",
+        "lead": {
+          "th": "เทียบอาคารสำนักงานในกรุงเทพฯ จากราคาเสนอเช่าและทำเล ก่อนเลือกอาคารไปดูรายละเอียด",
+          "en": "Compare Bangkok office buildings by asking rent and location before arranging a closer look."
+        },
+        "sectionTitle": {
+          "th": "วางค่าเช่าไว้ในบริบทของทำเล",
+          "en": "Put asking rent in its location context"
+        },
+        "reading": {
+          "th": "อาคารที่เสนอค่าเช่าใกล้กันอาจอยู่ในบริบททำเลต่างกัน แผนที่ช่วยจัดตัวเลือกให้อยู่ในภาพเดียว เพื่อเตรียมเปรียบเทียบเงื่อนไขและพื้นที่เช่ากับแต่ละอาคาร",
+          "en": "Buildings with similar asking rents can sit in different location contexts. The map helps organise a shortlist before comparing space and lease terms directly."
+        },
+        "note": {
+          "th": "ขอบเขตนี้คือกรุงเทพฯ ราคาเสนอเช่าไม่ใช่ค่าเช่าที่ตกลงในสัญญาหรืออัตราเช่าเต็ม",
+          "en": "This view covers Bangkok. Asking rents are not agreed lease rents or occupancy rates."
+        },
+        "questions": {
+          "th": [
+            "อาคารในช่วงค่าเช่าใกล้กันอยู่ทำเลไหนบ้าง?",
+            "อาคารใดควรติดต่อเรื่องพื้นที่และเงื่อนไขเช่า?"
+          ],
+          "en": [
+            "Where are buildings in a similar rental range?",
+            "Which buildings should you contact about space and terms?"
+          ]
+        },
+        "takeaway": {
+          "th": "สอบถามพื้นที่ว่างและเงื่อนไขล่าสุดกับอาคารในรายการสั้น",
+          "en": "Ask shortlisted buildings about current availability and lease terms."
+        }
+      },
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/office-buildings-rent/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/office-buildings-rent/"
+      },
+      "contributors": [
+        {
+          "personId": "I0014",
+          "nickname": {
+            "th": "มอส",
+            "en": "Mos"
+          },
+          "contributionRole": {
+            "th": "Software development",
+            "en": "Software development"
+          },
+          "profileUrl": {
+            "th": "https://montri-th.github.io/Landom/?person=I0014&lang=th",
+            "en": "https://montri-th.github.io/Landom/en/?person=I0014&lang=en"
+          },
+          "portrait": {
+            "url": "https://montri-th.github.io/Landom/public/assets/people/I0014.jpg",
+            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0014.jpg?v=ac843319c494",
+            "alt": {
+              "th": "ภาพโปรไฟล์ของมอส",
+              "en": "Profile portrait of Mos"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "shopping-centers",
+      "group": "land",
+      "title": {
+        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "en": "Shopping Centres, Markets & Retail Sites"
+      },
+      "description": {
+        "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
+        "en": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations."
+      },
+      "tags": [
+        "retail",
+        "gla",
+        "tenants",
+        "segment",
+        "density"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ",
+        "en": "A Thailand summary view is visible; source coverage is not stated"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "พื้นที่ค้าปลีกตามประเภท; GFA, GLA และจำนวนผู้เช่ามีความครบถ้วนต่างกัน",
+        "en": "Retail sites by type; GFA, GLA and tenant-count coverage differ"
+      },
+      "limitation": {
+        "th": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
+        "en": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts."
+      },
+      "sourceReview": {
+        "status": "unproven",
+        "owner": {
+          "th": "ยังยืนยันผู้เผยแพร่ข้อมูลศูนย์การค้าต้นทางไม่ได้",
+          "en": "Original shopping-center inventory publisher not yet verified"
+        },
+        "source": {
+          "th": "แหล่งข้อมูลต่างกันตามศูนย์การค้าและตัวเลข เช่น พื้นที่อาคาร พื้นที่ให้เช่า และผู้เช่า ควรอ่านที่มารายแห่งก่อนเปรียบเทียบ",
+          "en": "Sources differ by site and measure, including floor area, leasable area and tenants. Read each site’s sources before comparison."
+        },
+        "period": {
+          "th": "แหล่งข้อมูลในรุ่นที่ตรวจมีวันที่ 28 พฤษภาคม–20 กรกฎาคม 2569; รายแห่งอาจต่างกัน",
+          "en": "Sources in the inspected release are dated 28 May–20 July 2026; dates vary by site."
+        },
+        "benefit": {
+          "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
+          "en": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations."
+        },
+        "reading": {
+          "th": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
+          "en": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts."
+        },
+        "official": [],
+        "gd": [],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "shopping-centers",
+      "datasetCode": "shoppingCenter",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=shoppingCenter",
+      "preview": {
+        "available": true,
+        "path": "media/previews-v3/shopping-centers.webp",
+        "largePath": "media/previews-v2/shopping-centers.webp",
+        "conceptual": false,
+        "focusLabel": {
+          "th": "GLA · ผู้เช่า · กลุ่มตลาด",
+          "en": "GLA · tenants · segment"
+        }
+      },
+      "aliases": [
+        "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
+        "Shopping Centres, Markets & Retail Sites",
+        "shoppingCenter",
+        "shopping-centers"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "commercial-property",
+      "order": 3,
+      "executiveSummary": {
+        "editorialBasis": "catalog_description_and_source_review",
+        "lead": {
+          "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในภาพเดียว เพื่อเข้าใจทางเลือกของคนในย่านและวางโจทย์ศึกษาตลาด",
+          "en": "See shopping centres, markets and retail spaces together when studying a local retail landscape."
+        },
+        "sectionTitle": {
+          "th": "เทียบพื้นที่ค้าปลีกให้ตรงรูปแบบ",
+          "en": "Compare like kinds of retail space"
+        },
+        "reading": {
+          "th": "ศูนย์การค้าและตลาดเป็นพื้นที่ค้าปลีกต่างรูปแบบ จำนวนแห่งอย่างเดียวจึงเล่าเรื่องได้ไม่ครบ ลองอ่านประเภทควบคู่กับขนาดและข้อมูลผู้เช่าที่มี ก่อนเลือกสถานที่ไปศึกษา",
+          "en": "A market and a shopping centre offer different retail formats. Read type alongside available size and tenant information before choosing places to research."
+        },
+        "note": {
+          "th": "GFA, GLA และจำนวนผู้เช่ามีความครบต่างกัน ค่าประมาณและจำนวนแห่งไม่ใช่ยอดขายหรือจำนวนลูกค้า",
+          "en": "GFA, GLA and tenant data vary in completeness. Estimates and venue counts do not measure sales or footfall."
+        },
+        "questions": {
+          "th": [
+            "ย่านนี้มีพื้นที่ค้าปลีกรูปแบบใดบ้าง?",
+            "สถานที่ไหนควรใช้เป็นคู่เทียบที่มีลักษณะใกล้กัน?"
+          ],
+          "en": [
+            "What kinds of retail space serve this area?",
+            "Which venues make useful like-for-like comparisons?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกสถานที่รูปแบบใกล้กัน แล้วตรวจพื้นที่เช่าและผู้เช่ากับสถานที่จริง",
+          "en": "Choose comparable formats, then confirm leasable space and tenant details at the venues."
+        }
+      },
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/shopping-centers/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/shopping-centers/"
+      },
+      "contributors": [
+        {
+          "personId": "I0037",
+          "nickname": {
+            "th": "ณิชา",
+            "en": "Nicha"
+          },
+          "contributionRole": {
+            "th": "Software development",
+            "en": "Software development"
+          },
+          "profileUrl": {
+            "th": "https://montri-th.github.io/Landom/?person=I0037&lang=th",
+            "en": "https://montri-th.github.io/Landom/en/?person=I0037&lang=en"
+          },
+          "portrait": {
+            "url": "https://montri-th.github.io/Landom/public/assets/people/I0037.jpg",
+            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0037.jpg?v=226bad11daa7",
+            "alt": {
+              "th": "ภาพโปรไฟล์ของณิชา",
+              "en": "Profile portrait of Nicha"
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "condo-rent-yield",
       "group": "land",
       "title": {
@@ -3053,146 +3525,6 @@
       ]
     },
     {
-      "id": "office-buildings-rent",
-      "group": "location",
-      "title": {
-        "th": "อาคารสำนักงานและค่าเช่า",
-        "en": "Office Buildings & Rent"
-      },
-      "description": {
-        "th": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
-        "en": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate."
-      },
-      "tags": [
-        "office",
-        "asking-rent",
-        "height",
-        "period"
-      ],
-      "scope": {
-        "status": "evidenced",
-        "th": "กรุงเทพมหานคร",
-        "en": "Bangkok"
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "อาคารสำนักงานและช่วงราคาเสนอเช่าในกรุงเทพฯ",
-        "en": "Office buildings and asking-rent ranges in Bangkok"
-      },
-      "limitation": {
-        "th": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ และราคาเสนอเช่าไม่ใช่ค่าเช่าที่ทำสัญญาแล้ว",
-        "en": "The evidenced scope is Bangkok, and asking rent is not contracted rent"
-      },
-      "sourceReview": {
-        "status": "unproven",
-        "owner": {
-          "th": "ยังยืนยันผู้เผยแพร่ข้อมูลอาคารสำนักงานต้นทางไม่ได้",
-          "en": "Original office-inventory publisher not yet verified"
-        },
-        "source": {
-          "th": "ยังไม่ระบุแหล่งบัญชีอาคารสำนักงานและราคาเสนอเช่าที่ตรวจสอบย้อนกลับได้ครบถ้วน",
-          "en": "The sources for the office inventory and asking rents are not fully documented."
-        },
-        "period": null,
-        "benefit": {
-          "th": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
-          "en": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate."
-        },
-        "reading": {
-          "th": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ ราคาเป็นราคาเสนอเช่า ไม่ใช่ค่าเช่าตามสัญญาหรือ occupancy",
-          "en": "The evidenced scope is Bangkok. Prices are asking rents, not contracted rent or occupancy."
-        },
-        "official": [],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
-      },
-      "slug": "office-buildings-rent",
-      "datasetCode": "office",
-      "mapUrl": "https://landometer.com/v3/citymeter/BKK?d=office",
-      "preview": {
-        "available": true,
-        "path": "media/previews-v3/office-buildings-rent.webp",
-        "largePath": "media/previews-v2/office-buildings-rent.webp",
-        "conceptual": false,
-        "focusLabel": {
-          "th": "อาคารสำนักงาน · ราคาเสนอเช่า",
-          "en": "Office buildings · asking rent"
-        }
-      },
-      "aliases": [
-        "อาคารสำนักงานและค่าเช่า",
-        "Office Buildings & Rent",
-        "office",
-        "office-buildings-rent"
-      ],
-      "resourceClass": "Dataset",
-      "subgroup": "commercial-property",
-      "order": 1,
-      "executiveSummary": {
-        "editorialBasis": "catalog_description_and_source_review",
-        "lead": {
-          "th": "เทียบอาคารสำนักงานในกรุงเทพฯ จากราคาเสนอเช่าและทำเล ก่อนเลือกอาคารไปดูรายละเอียด",
-          "en": "Compare Bangkok office buildings by asking rent and location before arranging a closer look."
-        },
-        "sectionTitle": {
-          "th": "วางค่าเช่าไว้ในบริบทของทำเล",
-          "en": "Put asking rent in its location context"
-        },
-        "reading": {
-          "th": "อาคารที่เสนอค่าเช่าใกล้กันอาจอยู่ในบริบททำเลต่างกัน แผนที่ช่วยจัดตัวเลือกให้อยู่ในภาพเดียว เพื่อเตรียมเปรียบเทียบเงื่อนไขและพื้นที่เช่ากับแต่ละอาคาร",
-          "en": "Buildings with similar asking rents can sit in different location contexts. The map helps organise a shortlist before comparing space and lease terms directly."
-        },
-        "note": {
-          "th": "ขอบเขตนี้คือกรุงเทพฯ ราคาเสนอเช่าไม่ใช่ค่าเช่าที่ตกลงในสัญญาหรืออัตราเช่าเต็ม",
-          "en": "This view covers Bangkok. Asking rents are not agreed lease rents or occupancy rates."
-        },
-        "questions": {
-          "th": [
-            "อาคารในช่วงค่าเช่าใกล้กันอยู่ทำเลไหนบ้าง?",
-            "อาคารใดควรติดต่อเรื่องพื้นที่และเงื่อนไขเช่า?"
-          ],
-          "en": [
-            "Where are buildings in a similar rental range?",
-            "Which buildings should you contact about space and terms?"
-          ]
-        },
-        "takeaway": {
-          "th": "สอบถามพื้นที่ว่างและเงื่อนไขล่าสุดกับอาคารในรายการสั้น",
-          "en": "Ask shortlisted buildings about current availability and lease terms."
-        }
-      },
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/office-buildings-rent/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/office-buildings-rent/"
-      },
-      "contributors": [
-        {
-          "personId": "I0014",
-          "nickname": {
-            "th": "มอส",
-            "en": "Mos"
-          },
-          "contributionRole": {
-            "th": "Software development",
-            "en": "Software development"
-          },
-          "profileUrl": {
-            "th": "https://montri-th.github.io/Landom/?person=I0014&lang=th",
-            "en": "https://montri-th.github.io/Landom/en/?person=I0014&lang=en"
-          },
-          "portrait": {
-            "url": "https://montri-th.github.io/Landom/public/assets/people/I0014.jpg",
-            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0014.jpg?v=ac843319c494",
-            "alt": {
-              "th": "ภาพโปรไฟล์ของมอส",
-              "en": "Profile portrait of Mos"
-            }
-          }
-        }
-      ]
-    },
-    {
       "id": "non-bank",
       "group": "location",
       "title": {
@@ -3690,338 +4022,6 @@
       ]
     },
     {
-      "id": "shopping-centers",
-      "group": "location",
-      "title": {
-        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
-        "en": "Shopping Centres, Markets & Retail Sites"
-      },
-      "description": {
-        "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
-        "en": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations."
-      },
-      "tags": [
-        "retail",
-        "gla",
-        "tenants",
-        "segment",
-        "density"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ",
-        "en": "A Thailand summary view is visible; source coverage is not stated"
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "พื้นที่ค้าปลีกตามประเภท; GFA, GLA และจำนวนผู้เช่ามีความครบถ้วนต่างกัน",
-        "en": "Retail sites by type; GFA, GLA and tenant-count coverage differ"
-      },
-      "limitation": {
-        "th": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
-        "en": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts."
-      },
-      "sourceReview": {
-        "status": "unproven",
-        "owner": {
-          "th": "ยังยืนยันผู้เผยแพร่ข้อมูลศูนย์การค้าต้นทางไม่ได้",
-          "en": "Original shopping-center inventory publisher not yet verified"
-        },
-        "source": {
-          "th": "แหล่งข้อมูลต่างกันตามศูนย์การค้าและตัวเลข เช่น พื้นที่อาคาร พื้นที่ให้เช่า และผู้เช่า ควรอ่านที่มารายแห่งก่อนเปรียบเทียบ",
-          "en": "Sources differ by site and measure, including floor area, leasable area and tenants. Read each site’s sources before comparison."
-        },
-        "period": {
-          "th": "แหล่งข้อมูลในรุ่นที่ตรวจมีวันที่ 28 พฤษภาคม–20 กรกฎาคม 2569; รายแห่งอาจต่างกัน",
-          "en": "Sources in the inspected release are dated 28 May–20 July 2026; dates vary by site."
-        },
-        "benefit": {
-          "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
-          "en": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations."
-        },
-        "reading": {
-          "th": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
-          "en": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts."
-        },
-        "official": [],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
-      },
-      "slug": "shopping-centers",
-      "datasetCode": "shoppingCenter",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=shoppingCenter",
-      "preview": {
-        "available": true,
-        "path": "media/previews-v3/shopping-centers.webp",
-        "largePath": "media/previews-v2/shopping-centers.webp",
-        "conceptual": false,
-        "focusLabel": {
-          "th": "GLA · ผู้เช่า · กลุ่มตลาด",
-          "en": "GLA · tenants · segment"
-        }
-      },
-      "aliases": [
-        "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีก",
-        "Shopping Centres, Markets & Retail Sites",
-        "shoppingCenter",
-        "shopping-centers"
-      ],
-      "resourceClass": "Dataset",
-      "subgroup": "food-retail",
-      "order": 3,
-      "executiveSummary": {
-        "editorialBasis": "catalog_description_and_source_review",
-        "lead": {
-          "th": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในภาพเดียว เพื่อเข้าใจทางเลือกของคนในย่านและวางโจทย์ศึกษาตลาด",
-          "en": "See shopping centres, markets and retail spaces together when studying a local retail landscape."
-        },
-        "sectionTitle": {
-          "th": "เทียบพื้นที่ค้าปลีกให้ตรงรูปแบบ",
-          "en": "Compare like kinds of retail space"
-        },
-        "reading": {
-          "th": "ศูนย์การค้าและตลาดเป็นพื้นที่ค้าปลีกต่างรูปแบบ จำนวนแห่งอย่างเดียวจึงเล่าเรื่องได้ไม่ครบ ลองอ่านประเภทควบคู่กับขนาดและข้อมูลผู้เช่าที่มี ก่อนเลือกสถานที่ไปศึกษา",
-          "en": "A market and a shopping centre offer different retail formats. Read type alongside available size and tenant information before choosing places to research."
-        },
-        "note": {
-          "th": "GFA, GLA และจำนวนผู้เช่ามีความครบต่างกัน ค่าประมาณและจำนวนแห่งไม่ใช่ยอดขายหรือจำนวนลูกค้า",
-          "en": "GFA, GLA and tenant data vary in completeness. Estimates and venue counts do not measure sales or footfall."
-        },
-        "questions": {
-          "th": [
-            "ย่านนี้มีพื้นที่ค้าปลีกรูปแบบใดบ้าง?",
-            "สถานที่ไหนควรใช้เป็นคู่เทียบที่มีลักษณะใกล้กัน?"
-          ],
-          "en": [
-            "What kinds of retail space serve this area?",
-            "Which venues make useful like-for-like comparisons?"
-          ]
-        },
-        "takeaway": {
-          "th": "เลือกสถานที่รูปแบบใกล้กัน แล้วตรวจพื้นที่เช่าและผู้เช่ากับสถานที่จริง",
-          "en": "Choose comparable formats, then confirm leasable space and tenant details at the venues."
-        }
-      },
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/shopping-centers/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/shopping-centers/"
-      },
-      "contributors": [
-        {
-          "personId": "I0037",
-          "nickname": {
-            "th": "ณิชา",
-            "en": "Nicha"
-          },
-          "contributionRole": {
-            "th": "Software development",
-            "en": "Software development"
-          },
-          "profileUrl": {
-            "th": "https://montri-th.github.io/Landom/?person=I0037&lang=th",
-            "en": "https://montri-th.github.io/Landom/en/?person=I0037&lang=en"
-          },
-          "portrait": {
-            "url": "https://montri-th.github.io/Landom/public/assets/people/I0037.jpg",
-            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0037.jpg?v=226bad11daa7",
-            "alt": {
-              "th": "ภาพโปรไฟล์ของณิชา",
-              "en": "Profile portrait of Nicha"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "id": "hotel-market",
-      "group": "location",
-      "title": {
-        "th": "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
-        "en": "Hotel Supply, Rates & Seasonality"
-      },
-      "description": {
-        "th": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
-        "en": "Compare hotel locations, room supply and listed prices to understand accommodation around a site."
-      },
-      "tags": [
-        "hotel",
-        "adr",
-        "seasonality",
-        "ranking"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "ททท. รวบรวมที่พักหลายประเภททั่วประเทศ; ชุด กทม. ครอบคลุมโรงแรมในกรุงเทพฯ ที่ขึ้นทะเบียนกับสมาคมโรงแรมไทย ไม่ใช่ทะเบียนโรงแรมทั้งหมด",
-        "en": "TAT covers multiple accommodation types across Thailand. The BMA source covers Bangkok hotels registered with the Thai Hotels Association, not every hotel."
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "ที่พัก จำนวนห้อง และราคาที่ประกาศในฐานข้อมูล",
-        "en": "Properties, recorded room counts and advertised rates"
-      },
-      "limitation": {
-        "th": "ที่พักแต่ละแหล่งมีประเภท ขอบเขต และช่วงเวลาต่างกัน จำนวนห้องในทะเบียนไม่ใช่ห้องว่างหรือยอดจอง ส่วนแหล่งราคาและวิธีสรุปฤดูกาลของค่าที่แสดงยังต้องเทียบให้ตรง จึงใช้คำนวณอัตราเข้าพักหรือรายได้ไม่ได้",
-        "en": "Sources differ in accommodation types, coverage and dates. Registered room counts do not measure availability or bookings. The displayed rates and seasonality still need their source and method matched; they cannot establish occupancy or revenue."
-      },
-      "sourceReview": {
-        "status": "candidate",
-        "owner": {
-          "th": "การท่องเที่ยวแห่งประเทศไทย; กรุงเทพมหานคร — กองยุทธศาสตร์ดิจิทัลเป็นผู้เผยแพร่ชุดโรงแรม",
-          "en": "Tourism Authority of Thailand; Bangkok Metropolitan Administration — hotel dataset published by its Digital Strategy Division"
-        },
-        "source": {
-          "th": "ททท. เผยแพร่ประเภทและที่ตั้งที่พักจากฐานข้อมูลการท่องเที่ยวเชิงการตลาด ส่วนชุด กทม. มีชื่อโรงแรม เขต พิกัด จำนวนห้อง และระดับโรงแรม ยังไม่ใช่หลักฐานว่าราคาหรือค่าฤดูกาลในแผนที่มาจากสองชุดนี้",
-          "en": "TAT publishes accommodation types and locations from its tourism marketing database. BMA records include hotel names, districts, coordinates, rooms and grades. Neither reference establishes the source of the map’s price or seasonality measures."
-        },
-        "period": {
-          "th": "บัญชี ททท. ระบุปรับปรุงข้อมูล 11 มิถุนายน 2569; ชุดโรงแรม กทม. ระบุ 23 มิถุนายน 2566 วันเหล่านี้ยังไม่ยืนยันช่วงเวลาของราคาและรายการที่แผนที่แสดง",
-          "en": "TAT metadata lists 11 June 2026; the BMA hotel resource lists 23 June 2023. These dates do not establish the period of the map’s displayed inventory or rates."
-        },
-        "benefit": {
-          "th": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
-          "en": "Compare hotel locations, room supply and listed prices to understand accommodation around a site."
-        },
-        "reading": {
-          "th": "เริ่มจากประเภทที่พัก ตำแหน่ง และจำนวนห้องที่บันทึก แล้วตรวจวันเก็บราคา เงื่อนไขห้อง และช่วงเข้าพักก่อนเลือกคู่เทียบตลาด",
-          "en": "Start with accommodation types, locations and recorded rooms. Check price collection dates, room conditions and stay dates before choosing market comparisons."
-        },
-        "official": [
-          {
-            "label": {
-              "th": "ททท. — ชุดข้อมูลที่พัก",
-              "en": "TAT — accommodation dataset"
-            },
-            "url": "https://datacatalog.tat.or.th/dataset/accommodation"
-          },
-          {
-            "label": {
-              "th": "กรุงเทพมหานคร — โรงแรมที่ขึ้นทะเบียนกับสมาคมโรงแรมไทย",
-              "en": "BMA — hotels registered with the Thai Hotels Association"
-            },
-            "url": "https://data.bangkok.go.th/dataset/hotels"
-          },
-          {
-            "label": {
-              "th": "กรุงเทพมหานคร — รายการโรงแรมและจำนวนห้อง",
-              "en": "BMA — hotel and room-count resource"
-            },
-            "url": "https://data.bangkok.go.th/dataset/hotels/resource/d2b08c18-9071-4d5c-ae3d-bd35740a9393"
-          }
-        ],
-        "gd": [],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Official TAT metadata and BMA resource fields checked. Other supplied references are classified separately in the public provenance ledger; listing a source does not establish its production ingestion, full coverage or redistribution rights."
-      },
-      "slug": "hotel-market",
-      "datasetCode": "hotel",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=hotel",
-      "preview": {
-        "available": true,
-        "path": "media/previews-v3/hotel-market.webp",
-        "largePath": "media/previews-v2/hotel-market.webp",
-        "conceptual": false,
-        "focusLabel": {
-          "th": "ห้องพัก · ADR · ฤดูกาล",
-          "en": "Rooms · ADR · seasonality"
-        }
-      },
-      "aliases": [
-        "โรงแรม: จำนวนห้องพัก ราคา และฤดูกาล",
-        "Hotel Supply, Rates & Seasonality",
-        "hotel",
-        "hotel-market"
-      ],
-      "resourceClass": "Dataset",
-      "subgroup": "tourism-hospitality",
-      "order": 1,
-      "executiveSummary": {
-        "editorialBasis": "catalog_description_and_source_review",
-        "lead": {
-          "th": "มองตลาดที่พักผ่านจำนวนห้อง การกระจุกตัว และระดับราคา ก่อนเลือกศึกษาทำเลที่พึ่งพานักเดินทาง",
-          "en": "Read the accommodation market through room supply, clustering and prices before studying visitor-dependent locations."
-        },
-        "sectionTitle": {
-          "th": "แยกจำนวนโรงแรมออกจากอุปทานห้องพัก",
-          "en": "A hotel count is only part of the supply picture"
-        },
-        "reading": {
-          "th": "โรงแรมจำนวนเท่ากันอาจมีจำนวนห้องต่างกันมาก การอ่านจำนวนห้องควบคู่กับราคาและตำแหน่งช่วยให้เลือกคู่เทียบได้เหมาะกว่า แล้วค่อยศึกษาช่วงเวลาและตลาดของแต่ละแห่ง",
-          "en": "Similar hotel counts can hide very different room supply. Read room numbers with prices and location to select better comparisons, then investigate their timing and market."
-        },
-        "note": {
-          "th": "ราคาเป็นข้อมูลที่ประกาศ จำนวนห้องไม่บอกอัตราเข้าพัก ยอดจอง หรือรายได้ของโรงแรม",
-          "en": "Listed prices and room counts do not establish occupancy, bookings or hotel revenue."
-        },
-        "questions": {
-          "th": [
-            "ที่พักและจำนวนห้องกระจุกตัวในส่วนไหนของพื้นที่?",
-            "โรงแรมใดเหมาะเป็นคู่เทียบสำหรับศึกษาตลาดต่อ?"
-          ],
-          "en": [
-            "Where is accommodation and room supply concentrated?",
-            "Which hotels make useful market comparisons?"
-          ]
-        },
-        "takeaway": {
-          "th": "เลือกคู่เทียบแล้วตรวจราคา ช่วงเข้าพัก และสถานะห้องกับแต่ละแห่ง",
-          "en": "Select comparable properties and check prices, stay dates and room availability directly."
-        }
-      },
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/hotel-market/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/hotel-market/"
-      },
-      "contributors": [
-        {
-          "personId": "I0031",
-          "nickname": {
-            "th": "บิว",
-            "en": "Bill"
-          },
-          "contributionRole": {
-            "th": "Software development",
-            "en": "Software development"
-          },
-          "profileUrl": {
-            "th": "https://montri-th.github.io/Landom/?person=I0031&lang=th",
-            "en": "https://montri-th.github.io/Landom/en/?person=I0031&lang=en"
-          },
-          "portrait": {
-            "url": "https://montri-th.github.io/Landom/public/assets/people/I0031.jpg",
-            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0031.jpg?v=4587c8757cf8",
-            "alt": {
-              "th": "ภาพโปรไฟล์ของบิว",
-              "en": "Profile portrait of Bill"
-            }
-          }
-        },
-        {
-          "personId": "I0001",
-          "nickname": {
-            "th": "ปุ๊กกี้",
-            "en": "Pookkie"
-          },
-          "contributionRole": {
-            "th": "Software development",
-            "en": "Software development"
-          },
-          "profileUrl": {
-            "th": "https://montri-th.github.io/Landom/?person=I0001&lang=th",
-            "en": "https://montri-th.github.io/Landom/en/?person=I0001&lang=en"
-          },
-          "portrait": {
-            "url": "https://montri-th.github.io/Landom/public/assets/people/I0001.jpg",
-            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0001.jpg?v=b264e4deec78",
-            "alt": {
-              "th": "ภาพโปรไฟล์ของปุ๊กกี้",
-              "en": "Profile portrait of Pookkie"
-            }
-          }
-        }
-      ]
-    },
-    {
       "id": "tourism-demand-spending",
       "group": "location",
       "title": {
@@ -4145,7 +4145,7 @@
       ],
       "resourceClass": "Dataset",
       "subgroup": "tourism-hospitality",
-      "order": 2,
+      "order": 1,
       "executiveSummary": {
         "editorialBasis": "catalog_description_and_source_review",
         "lead": {
@@ -5013,6 +5013,176 @@
       ]
     },
     {
+      "id": "schools-students-teachers",
+      "group": "location",
+      "title": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "description": {
+        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+        "en": "See the distribution, levels and types of schools on a map to compare local provision."
+      },
+      "tags": [
+        "schools",
+        "student-teacher",
+        "distribution"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ",
+        "en": "A Thailand summary view is visible; source coverage is not stated"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "สถานศึกษา นักเรียน ครู และห้องเรียนตามรุ่นข้อมูล",
+        "en": "Schools, students, teachers and classrooms for the selected data version"
+      },
+      "limitation": {
+        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
+      },
+      "sourceReview": {
+        "status": "candidate",
+        "owner": {
+          "th": "กระทรวงศึกษาธิการ (candidate)",
+          "en": "Ministry of Education (candidate)"
+        },
+        "source": {
+          "th": "ข้อมูลเกี่ยวข้องกับทะเบียนสถานศึกษาของกระทรวงศึกษาธิการ แต่ยังต้องยืนยันรหัสโรงเรียน ชื่อ และปีข้อมูลให้ตรงกับรายการที่แสดง",
+          "en": "The data relates to Ministry of Education school records, but school codes, names and reference years still need to be matched to the displayed records."
+        },
+        "period": null,
+        "benefit": {
+          "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+          "en": "See the distribution, levels and types of schools on a map to compare local provision."
+        },
+        "reading": {
+          "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+          "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
+        },
+        "official": [],
+        "gd": [
+          {
+            "label": {
+              "th": "candidate บน GD Catalog",
+              "en": "GD Catalog candidate"
+            },
+            "url": "https://gdcatalog.go.th/dataset/gdpublish-dataset-15_43"
+          }
+        ],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "schools-students-teachers",
+      "datasetCode": "school",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
+      "preview": {
+        "available": true,
+        "path": "media/previews-v3/schools-students-teachers.webp",
+        "largePath": "media/previews-v2/schools-students-teachers.webp",
+        "conceptual": false,
+        "focusLabel": {
+          "th": "โรงเรียน · นักเรียน · ครู",
+          "en": "Schools · students · teachers"
+        }
+      },
+      "aliases": [
+        "โรงเรียน นักเรียน และครู",
+        "Schools, Students & Teachers",
+        "school",
+        "schools-students-teachers"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "education",
+      "order": 1,
+      "executiveSummary": {
+        "editorialBasis": "catalog_description_and_source_review",
+        "lead": {
+          "th": "เห็นการกระจายตัวของสถานศึกษา พร้อมบริบทนักเรียน ครู และห้องเรียน เพื่อเริ่มวางแผนบริการการศึกษาในพื้นที่",
+          "en": "Explore where schools are located alongside student, teacher and classroom records when planning local education services."
+        },
+        "sectionTitle": {
+          "th": "เริ่มจากโรงเรียนที่มี แล้วค่อยดูโจทย์ของพื้นที่",
+          "en": "Start with the schools, then examine local needs"
+        },
+        "reading": {
+          "th": "แยกตามระดับชั้นและประเภทสถานศึกษาเพื่อให้การเปรียบเทียบตรงคำถาม จากนั้นอ่านจำนวนนักเรียน ครู และห้องเรียนร่วมกัน ช่วยเลือกโรงเรียนหรือพื้นที่ที่จะไปศึกษาเงื่อนไขการให้บริการต่อ",
+          "en": "Compare matching education levels and school types. Reading student, teacher and classroom figures together helps identify schools or areas where a closer look would be useful."
+        },
+        "note": {
+          "th": "ข้อมูลแต่ละรายการอาจครบไม่เท่ากัน และจำนวนครูหรือห้องเรียนไม่ได้บอกคุณภาพการสอนหรือที่นั่งว่างรับนักเรียน",
+          "en": "Record completeness varies. Teacher and classroom counts do not establish teaching quality or available places."
+        },
+        "questions": {
+          "th": [
+            "โรงเรียนระดับและประเภทที่สนใจกระจายอยู่ตรงไหน?",
+            "มีรายการใดควรสอบถามจำนวนนักเรียน ครู หรือห้องเรียนเพิ่ม?"
+          ],
+          "en": [
+            "Where are schools of the relevant level and type located?",
+            "Which student, teacher or classroom figures need follow-up?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกกลุ่มโรงเรียนที่เทียบกันได้ แล้วตรวจปีและรายละเอียดกับสถานศึกษาก่อนวางแผน",
+          "en": "Choose comparable schools and confirm the year and details with them before planning."
+        }
+      },
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/"
+      },
+      "contributors": [
+        {
+          "personId": "I0006",
+          "nickname": {
+            "th": "ทีโน่",
+            "en": "Teno"
+          },
+          "contributionRole": {
+            "th": "Software development",
+            "en": "Software development"
+          },
+          "profileUrl": {
+            "th": "https://montri-th.github.io/Landom/?person=I0006&lang=th",
+            "en": "https://montri-th.github.io/Landom/en/?person=I0006&lang=en"
+          },
+          "portrait": {
+            "url": "https://montri-th.github.io/Landom/public/assets/people/I0006.jpg",
+            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0006.jpg?v=fb74b9e3d780",
+            "alt": {
+              "th": "ภาพโปรไฟล์ของทีโน่",
+              "en": "Profile portrait of Teno"
+            }
+          }
+        },
+        {
+          "personId": "S0001",
+          "nickname": {
+            "th": "โอ๊ต",
+            "en": "Oat"
+          },
+          "contributionRole": {
+            "th": "Software development",
+            "en": "Software development"
+          },
+          "profileUrl": {
+            "th": "https://montri-th.github.io/Landom/?person=S0001&lang=th",
+            "en": "https://montri-th.github.io/Landom/en/?person=S0001&lang=en"
+          },
+          "portrait": {
+            "url": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg",
+            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg?v=157773940636",
+            "alt": {
+              "th": "ภาพโปรไฟล์ของโอ๊ต",
+              "en": "Profile portrait of Oat"
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "locale-insights",
       "group": "location",
       "title": {
@@ -5520,176 +5690,6 @@
             "en": "https://montri-th.github.io/Landom/en/?person=S0007&lang=en"
           },
           "portrait": null
-        }
-      ]
-    },
-    {
-      "id": "schools-students-teachers",
-      "group": "living",
-      "title": {
-        "th": "โรงเรียน นักเรียน และครู",
-        "en": "Schools, Students & Teachers"
-      },
-      "description": {
-        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
-        "en": "See the distribution, levels and types of schools on a map to compare local provision."
-      },
-      "tags": [
-        "schools",
-        "student-teacher",
-        "distribution"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ",
-        "en": "A Thailand summary view is visible; source coverage is not stated"
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "สถานศึกษา นักเรียน ครู และห้องเรียนตามรุ่นข้อมูล",
-        "en": "Schools, students, teachers and classrooms for the selected data version"
-      },
-      "limitation": {
-        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
-        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
-      },
-      "sourceReview": {
-        "status": "candidate",
-        "owner": {
-          "th": "กระทรวงศึกษาธิการ (candidate)",
-          "en": "Ministry of Education (candidate)"
-        },
-        "source": {
-          "th": "ข้อมูลเกี่ยวข้องกับทะเบียนสถานศึกษาของกระทรวงศึกษาธิการ แต่ยังต้องยืนยันรหัสโรงเรียน ชื่อ และปีข้อมูลให้ตรงกับรายการที่แสดง",
-          "en": "The data relates to Ministry of Education school records, but school codes, names and reference years still need to be matched to the displayed records."
-        },
-        "period": null,
-        "benefit": {
-          "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
-          "en": "See the distribution, levels and types of schools on a map to compare local provision."
-        },
-        "reading": {
-          "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
-          "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
-        },
-        "official": [],
-        "gd": [
-          {
-            "label": {
-              "th": "candidate บน GD Catalog",
-              "en": "GD Catalog candidate"
-            },
-            "url": "https://gdcatalog.go.th/dataset/gdpublish-dataset-15_43"
-          }
-        ],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
-      },
-      "slug": "schools-students-teachers",
-      "datasetCode": "school",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
-      "preview": {
-        "available": true,
-        "path": "media/previews-v3/schools-students-teachers.webp",
-        "largePath": "media/previews-v2/schools-students-teachers.webp",
-        "conceptual": false,
-        "focusLabel": {
-          "th": "โรงเรียน · นักเรียน · ครู",
-          "en": "Schools · students · teachers"
-        }
-      },
-      "aliases": [
-        "โรงเรียน นักเรียน และครู",
-        "Schools, Students & Teachers",
-        "school",
-        "schools-students-teachers"
-      ],
-      "resourceClass": "Dataset",
-      "subgroup": "education",
-      "order": 1,
-      "executiveSummary": {
-        "editorialBasis": "catalog_description_and_source_review",
-        "lead": {
-          "th": "เห็นการกระจายตัวของสถานศึกษา พร้อมบริบทนักเรียน ครู และห้องเรียน เพื่อเริ่มวางแผนบริการการศึกษาในพื้นที่",
-          "en": "Explore where schools are located alongside student, teacher and classroom records when planning local education services."
-        },
-        "sectionTitle": {
-          "th": "เริ่มจากโรงเรียนที่มี แล้วค่อยดูโจทย์ของพื้นที่",
-          "en": "Start with the schools, then examine local needs"
-        },
-        "reading": {
-          "th": "แยกตามระดับชั้นและประเภทสถานศึกษาเพื่อให้การเปรียบเทียบตรงคำถาม จากนั้นอ่านจำนวนนักเรียน ครู และห้องเรียนร่วมกัน ช่วยเลือกโรงเรียนหรือพื้นที่ที่จะไปศึกษาเงื่อนไขการให้บริการต่อ",
-          "en": "Compare matching education levels and school types. Reading student, teacher and classroom figures together helps identify schools or areas where a closer look would be useful."
-        },
-        "note": {
-          "th": "ข้อมูลแต่ละรายการอาจครบไม่เท่ากัน และจำนวนครูหรือห้องเรียนไม่ได้บอกคุณภาพการสอนหรือที่นั่งว่างรับนักเรียน",
-          "en": "Record completeness varies. Teacher and classroom counts do not establish teaching quality or available places."
-        },
-        "questions": {
-          "th": [
-            "โรงเรียนระดับและประเภทที่สนใจกระจายอยู่ตรงไหน?",
-            "มีรายการใดควรสอบถามจำนวนนักเรียน ครู หรือห้องเรียนเพิ่ม?"
-          ],
-          "en": [
-            "Where are schools of the relevant level and type located?",
-            "Which student, teacher or classroom figures need follow-up?"
-          ]
-        },
-        "takeaway": {
-          "th": "เลือกกลุ่มโรงเรียนที่เทียบกันได้ แล้วตรวจปีและรายละเอียดกับสถานศึกษาก่อนวางแผน",
-          "en": "Choose comparable schools and confirm the year and details with them before planning."
-        }
-      },
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/"
-      },
-      "contributors": [
-        {
-          "personId": "I0006",
-          "nickname": {
-            "th": "ทีโน่",
-            "en": "Teno"
-          },
-          "contributionRole": {
-            "th": "Software development",
-            "en": "Software development"
-          },
-          "profileUrl": {
-            "th": "https://montri-th.github.io/Landom/?person=I0006&lang=th",
-            "en": "https://montri-th.github.io/Landom/en/?person=I0006&lang=en"
-          },
-          "portrait": {
-            "url": "https://montri-th.github.io/Landom/public/assets/people/I0006.jpg",
-            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/I0006.jpg?v=fb74b9e3d780",
-            "alt": {
-              "th": "ภาพโปรไฟล์ของทีโน่",
-              "en": "Profile portrait of Teno"
-            }
-          }
-        },
-        {
-          "personId": "S0001",
-          "nickname": {
-            "th": "โอ๊ต",
-            "en": "Oat"
-          },
-          "contributionRole": {
-            "th": "Software development",
-            "en": "Software development"
-          },
-          "profileUrl": {
-            "th": "https://montri-th.github.io/Landom/?person=S0001&lang=th",
-            "en": "https://montri-th.github.io/Landom/en/?person=S0001&lang=en"
-          },
-          "portrait": {
-            "url": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg",
-            "versionedUrl": "https://montri-th.github.io/Landom/public/assets/people/S0001.jpg?v=157773940636",
-            "alt": {
-              "th": "ภาพโปรไฟล์ของโอ๊ต",
-              "en": "Profile portrait of Oat"
-            }
-          }
         }
       ]
     },
@@ -7623,13 +7623,23 @@
       "orderMode": "en_title_ascending"
     },
     {
+      "id": "commercial-property",
+      "group": "land",
+      "label": {
+        "th": "อสังหาริมทรัพย์เชิงพาณิชย์",
+        "en": "Commercial property"
+      },
+      "order": 7,
+      "orderMode": "en_title_ascending"
+    },
+    {
       "id": "investment-insight",
       "group": "land",
       "label": {
         "th": "ข้อมูลประกอบการลงทุน",
         "en": "Investment insight"
       },
-      "order": 7,
+      "order": 8,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7653,23 +7663,13 @@
       "orderMode": "en_title_ascending"
     },
     {
-      "id": "commercial-property",
-      "group": "location",
-      "label": {
-        "th": "อสังหาริมทรัพย์เชิงพาณิชย์",
-        "en": "Commercial property"
-      },
-      "order": 3,
-      "orderMode": "en_title_ascending"
-    },
-    {
       "id": "financial-services",
       "group": "location",
       "label": {
         "th": "เครือข่ายบริการทางการเงิน",
         "en": "Financial services"
       },
-      "order": 4,
+      "order": 3,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7679,7 +7679,7 @@
         "th": "อาหารและค้าปลีก",
         "en": "Food & retail"
       },
-      "order": 5,
+      "order": 4,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7689,7 +7689,7 @@
         "th": "การท่องเที่ยวและที่พัก",
         "en": "Tourism & hospitality"
       },
-      "order": 6,
+      "order": 5,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7699,7 +7699,7 @@
         "th": "การเดินทางและการเข้าถึง",
         "en": "Mobility"
       },
-      "order": 7,
+      "order": 6,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7708,6 +7708,16 @@
       "label": {
         "th": "เหตุการณ์และประกาศ",
         "en": "Events & notices"
+      },
+      "order": 7,
+      "orderMode": "en_title_ascending"
+    },
+    {
+      "id": "education",
+      "group": "location",
+      "label": {
+        "th": "การศึกษา",
+        "en": "Education"
       },
       "order": 8,
       "orderMode": "en_title_ascending"
@@ -7733,23 +7743,13 @@
       "orderMode": "en_title_ascending"
     },
     {
-      "id": "education",
-      "group": "living",
-      "label": {
-        "th": "การศึกษา",
-        "en": "Education"
-      },
-      "order": 2,
-      "orderMode": "en_title_ascending"
-    },
-    {
       "id": "public-finance",
       "group": "living",
       "label": {
         "th": "การคลังภาครัฐและท้องถิ่น",
         "en": "Public finance"
       },
-      "order": 3,
+      "order": 2,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7759,7 +7759,7 @@
         "th": "บริการภาครัฐ",
         "en": "Public service"
       },
-      "order": 4,
+      "order": 3,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7769,7 +7769,7 @@
         "th": "น้ำท่วม",
         "en": "Flood"
       },
-      "order": 5,
+      "order": 4,
       "orderMode": "flood_lifecycle"
     },
     {
@@ -7779,7 +7779,7 @@
         "th": "ภัยและสัญญาณเฝ้าระวังอื่น",
         "en": "Other hazards"
       },
-      "order": 6,
+      "order": 5,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7789,7 +7789,7 @@
         "th": "ผลกระทบจากภัยหลายประเภท",
         "en": "Multi-hazard"
       },
-      "order": 7,
+      "order": 6,
       "orderMode": "en_title_ascending"
     },
     {
@@ -7799,7 +7799,7 @@
         "th": "บันทึกเหตุการณ์ที่ผ่านมา",
         "en": "Event archive"
       },
-      "order": 8,
+      "order": 7,
       "orderMode": "en_title_ascending"
     }
   ],

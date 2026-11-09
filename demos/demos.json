@@ -76,7 +76,7 @@
       "catalog": {
         "code": "hotel",
         "page": "https://montri-th.github.io/CityMETER/datasets/hotel-market/",
-        "lens": "location"
+        "lens": "land"
       }
     },
     {
@@ -97,7 +97,7 @@
       "catalog": {
         "code": "office",
         "page": "https://montri-th.github.io/CityMETER/datasets/office-buildings-rent/",
-        "lens": "location"
+        "lens": "land"
       }
     },
     {
@@ -118,7 +118,7 @@
       "catalog": {
         "code": "shoppingCenter",
         "page": "https://montri-th.github.io/CityMETER/datasets/shopping-centers/",
-        "lens": "location"
+        "lens": "land"
       }
     },
     {
@@ -287,7 +287,7 @@
       "catalog": {
         "code": "school",
         "page": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
-        "lens": "living"
+        "lens": "location"
       }
     },
     {

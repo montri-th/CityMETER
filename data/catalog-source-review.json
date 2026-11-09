@@ -315,6 +315,76 @@
       "conceptualPreview": false
     },
     {
+      "id": "dataset-hotel-market",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=hotel",
+      "status": "candidate",
+      "ownerTh": "การท่องเที่ยวแห่งประเทศไทย; กรุงเทพมหานคร — กองยุทธศาสตร์ดิจิทัลเป็นผู้เผยแพร่ชุดโรงแรม",
+      "ownerEn": "Tourism Authority of Thailand; Bangkok Metropolitan Administration — hotel dataset published by its Digital Strategy Division",
+      "sourceTh": "ททท. เผยแพร่ประเภทและที่ตั้งที่พักจากฐานข้อมูลการท่องเที่ยวเชิงการตลาด ส่วนชุด กทม. มีชื่อโรงแรม เขต พิกัด จำนวนห้อง และระดับโรงแรม ยังไม่ใช่หลักฐานว่าราคาหรือค่าฤดูกาลในแผนที่มาจากสองชุดนี้",
+      "sourceEn": "TAT publishes accommodation types and locations from its tourism marketing database. BMA records include hotel names, districts, coordinates, rooms and grades. Neither reference establishes the source of the map’s price or seasonality measures.",
+      "periodTh": "บัญชี ททท. ระบุปรับปรุงข้อมูล 11 มิถุนายน 2569; ชุดโรงแรม กทม. ระบุ 23 มิถุนายน 2566 วันเหล่านี้ยังไม่ยืนยันช่วงเวลาของราคาและรายการที่แผนที่แสดง",
+      "periodEn": "TAT metadata lists 11 June 2026; the BMA hotel resource lists 23 June 2023. These dates do not establish the period of the map’s displayed inventory or rates.",
+      "benefitTh": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
+      "benefitEn": "Compare hotel locations, room supply and listed prices to understand accommodation around a site.",
+      "readingTh": "ที่พักแต่ละแหล่งมีประเภท ขอบเขต และช่วงเวลาต่างกัน จำนวนห้องในทะเบียนไม่ใช่ห้องว่างหรือยอดจอง ส่วนแหล่งราคาและวิธีสรุปฤดูกาลของค่าที่แสดงยังต้องเทียบให้ตรง จึงใช้คำนวณอัตราเข้าพักหรือรายได้ไม่ได้",
+      "readingEn": "Sources differ in accommodation types, coverage and dates. Registered room counts do not measure availability or bookings. The displayed rates and seasonality still need their source and method matched; they cannot establish occupancy or revenue.",
+      "official": [
+        {
+          "labelTh": "ททท. — ชุดข้อมูลที่พัก",
+          "labelEn": "TAT — accommodation dataset",
+          "url": "https://datacatalog.tat.or.th/dataset/accommodation"
+        },
+        {
+          "labelTh": "กรุงเทพมหานคร — โรงแรมที่ขึ้นทะเบียนกับสมาคมโรงแรมไทย",
+          "labelEn": "BMA — hotels registered with the Thai Hotels Association",
+          "url": "https://data.bangkok.go.th/dataset/hotels"
+        },
+        {
+          "labelTh": "กรุงเทพมหานคร — รายการโรงแรมและจำนวนห้อง",
+          "labelEn": "BMA — hotel and room-count resource",
+          "url": "https://data.bangkok.go.th/dataset/hotels/resource/d2b08c18-9071-4d5c-ae3d-bd35740a9393"
+        }
+      ],
+      "gd": [],
+      "conceptualPreview": false
+    },
+    {
+      "id": "dataset-office-buildings-rent",
+      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=office",
+      "status": "unproven",
+      "ownerTh": "ยังยืนยันผู้เผยแพร่ข้อมูลอาคารสำนักงานต้นทางไม่ได้",
+      "ownerEn": "Original office-inventory publisher not yet verified",
+      "sourceTh": "ยังไม่ระบุแหล่งบัญชีอาคารสำนักงานและราคาเสนอเช่าที่ตรวจสอบย้อนกลับได้ครบถ้วน",
+      "sourceEn": "The sources for the office inventory and asking rents are not fully documented.",
+      "periodTh": null,
+      "periodEn": null,
+      "benefitTh": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
+      "benefitEn": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate.",
+      "readingTh": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ และราคาเสนอเช่าไม่ใช่ค่าเช่าที่ทำสัญญาแล้ว",
+      "readingEn": "The evidenced scope is Bangkok, and asking rent is not contracted rent",
+      "official": [],
+      "gd": [],
+      "conceptualPreview": false
+    },
+    {
+      "id": "dataset-shopping-centers",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=shoppingCenter",
+      "status": "unproven",
+      "ownerTh": "ยังยืนยันผู้เผยแพร่ข้อมูลศูนย์การค้าต้นทางไม่ได้",
+      "ownerEn": "Original shopping-center inventory publisher not yet verified",
+      "sourceTh": "แหล่งข้อมูลต่างกันตามศูนย์การค้าและตัวเลข เช่น พื้นที่อาคาร พื้นที่ให้เช่า และผู้เช่า ควรอ่านที่มารายแห่งก่อนเปรียบเทียบ",
+      "sourceEn": "Sources differ by site and measure, including floor area, leasable area and tenants. Read each site’s sources before comparison.",
+      "periodTh": "แหล่งข้อมูลในรุ่นที่ตรวจมีวันที่ 28 พฤษภาคม–20 กรกฎาคม 2569; รายแห่งอาจต่างกัน",
+      "periodEn": "Sources in the inspected release are dated 28 May–20 July 2026; dates vary by site.",
+      "benefitTh": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
+      "benefitEn": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations.",
+      "readingTh": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
+      "readingEn": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts.",
+      "official": [],
+      "gd": [],
+      "conceptualPreview": false
+    },
+    {
       "id": "dataset-condo-rent-yield",
       "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=rentWise",
       "status": "other-source",
@@ -419,24 +489,6 @@
       "conceptualPreview": false
     },
     {
-      "id": "dataset-office-buildings-rent",
-      "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=office",
-      "status": "unproven",
-      "ownerTh": "ยังยืนยันผู้เผยแพร่ข้อมูลอาคารสำนักงานต้นทางไม่ได้",
-      "ownerEn": "Original office-inventory publisher not yet verified",
-      "sourceTh": "ยังไม่ระบุแหล่งบัญชีอาคารสำนักงานและราคาเสนอเช่าที่ตรวจสอบย้อนกลับได้ครบถ้วน",
-      "sourceEn": "The sources for the office inventory and asking rents are not fully documented.",
-      "periodTh": null,
-      "periodEn": null,
-      "benefitTh": "รวมข้อมูลอาคารสำนักงานในกรุงเทพฯ ให้เห็นราคาเสนอเช่าและบริบททำเลในแผนที่เดียว เพื่อเลือกอาคารที่จะศึกษารายละเอียดต่อ",
-      "benefitEn": "Compare Bangkok office buildings, asking rents and location context before choosing properties to investigate.",
-      "readingTh": "ขอบเขตที่ยืนยันได้คือกรุงเทพฯ และราคาเสนอเช่าไม่ใช่ค่าเช่าที่ทำสัญญาแล้ว",
-      "readingEn": "The evidenced scope is Bangkok, and asking rent is not contracted rent",
-      "official": [],
-      "gd": [],
-      "conceptualPreview": false
-    },
-    {
       "id": "dataset-non-bank",
       "citymeterUrl": "https://landometer.com/v3/citymeter?d=nonBank",
       "status": "other-source",
@@ -512,58 +564,6 @@
           "labelTh": "Tops — ค้นหาสาขา",
           "labelEn": "Tops store locator",
           "url": "https://corporate.tops.co.th/store/"
-        }
-      ],
-      "gd": [],
-      "conceptualPreview": false
-    },
-    {
-      "id": "dataset-shopping-centers",
-      "citymeterUrl": "https://landometer.com/v3/citymeter?d=shoppingCenter",
-      "status": "unproven",
-      "ownerTh": "ยังยืนยันผู้เผยแพร่ข้อมูลศูนย์การค้าต้นทางไม่ได้",
-      "ownerEn": "Original shopping-center inventory publisher not yet verified",
-      "sourceTh": "แหล่งข้อมูลต่างกันตามศูนย์การค้าและตัวเลข เช่น พื้นที่อาคาร พื้นที่ให้เช่า และผู้เช่า ควรอ่านที่มารายแห่งก่อนเปรียบเทียบ",
-      "sourceEn": "Sources differ by site and measure, including floor area, leasable area and tenants. Read each site’s sources before comparison.",
-      "periodTh": "แหล่งข้อมูลในรุ่นที่ตรวจมีวันที่ 28 พฤษภาคม–20 กรกฎาคม 2569; รายแห่งอาจต่างกัน",
-      "periodEn": "Sources in the inspected release are dated 28 May–20 July 2026; dates vary by site.",
-      "benefitTh": "เห็นศูนย์การค้า ตลาด และพื้นที่ค้าปลีกในบริบททำเลเดียวกัน เพื่อวางกลยุทธ์ตลาดและเลือกสถานที่ศึกษาต่อ",
-      "benefitEn": "Compare shopping centres, markets and retail sites in one area to plan market research and shortlist locations.",
-      "readingTh": "รายการครอบคลุมหลายรูปแบบพื้นที่ค้าปลีก ข้อมูล GFA, GLA และผู้เช่าไม่ครบเท่ากัน ต้องแยกค่าประมาณจากค่าที่มีแหล่งยืนยัน และไม่ใช้จำนวนแห่งแทนยอดขายหรือจำนวนลูกค้า",
-      "readingEn": "The inventory includes several retail-site types. GFA, GLA and tenant coverage differ; distinguish estimates from sourced measurements. Site counts are not sales or customer counts.",
-      "official": [],
-      "gd": [],
-      "conceptualPreview": false
-    },
-    {
-      "id": "dataset-hotel-market",
-      "citymeterUrl": "https://landometer.com/v3/citymeter?d=hotel",
-      "status": "candidate",
-      "ownerTh": "การท่องเที่ยวแห่งประเทศไทย; กรุงเทพมหานคร — กองยุทธศาสตร์ดิจิทัลเป็นผู้เผยแพร่ชุดโรงแรม",
-      "ownerEn": "Tourism Authority of Thailand; Bangkok Metropolitan Administration — hotel dataset published by its Digital Strategy Division",
-      "sourceTh": "ททท. เผยแพร่ประเภทและที่ตั้งที่พักจากฐานข้อมูลการท่องเที่ยวเชิงการตลาด ส่วนชุด กทม. มีชื่อโรงแรม เขต พิกัด จำนวนห้อง และระดับโรงแรม ยังไม่ใช่หลักฐานว่าราคาหรือค่าฤดูกาลในแผนที่มาจากสองชุดนี้",
-      "sourceEn": "TAT publishes accommodation types and locations from its tourism marketing database. BMA records include hotel names, districts, coordinates, rooms and grades. Neither reference establishes the source of the map’s price or seasonality measures.",
-      "periodTh": "บัญชี ททท. ระบุปรับปรุงข้อมูล 11 มิถุนายน 2569; ชุดโรงแรม กทม. ระบุ 23 มิถุนายน 2566 วันเหล่านี้ยังไม่ยืนยันช่วงเวลาของราคาและรายการที่แผนที่แสดง",
-      "periodEn": "TAT metadata lists 11 June 2026; the BMA hotel resource lists 23 June 2023. These dates do not establish the period of the map’s displayed inventory or rates.",
-      "benefitTh": "เปลี่ยนข้อมูลโรงแรมและที่พักให้เป็นแผนที่ เห็นจำนวนห้องพัก การกระจุกตัว และระดับราคาที่มี ก่อนศึกษาทำเลที่พึ่งพานักเดินทาง",
-      "benefitEn": "Compare hotel locations, room supply and listed prices to understand accommodation around a site.",
-      "readingTh": "ที่พักแต่ละแหล่งมีประเภท ขอบเขต และช่วงเวลาต่างกัน จำนวนห้องในทะเบียนไม่ใช่ห้องว่างหรือยอดจอง ส่วนแหล่งราคาและวิธีสรุปฤดูกาลของค่าที่แสดงยังต้องเทียบให้ตรง จึงใช้คำนวณอัตราเข้าพักหรือรายได้ไม่ได้",
-      "readingEn": "Sources differ in accommodation types, coverage and dates. Registered room counts do not measure availability or bookings. The displayed rates and seasonality still need their source and method matched; they cannot establish occupancy or revenue.",
-      "official": [
-        {
-          "labelTh": "ททท. — ชุดข้อมูลที่พัก",
-          "labelEn": "TAT — accommodation dataset",
-          "url": "https://datacatalog.tat.or.th/dataset/accommodation"
-        },
-        {
-          "labelTh": "กรุงเทพมหานคร — โรงแรมที่ขึ้นทะเบียนกับสมาคมโรงแรมไทย",
-          "labelEn": "BMA — hotels registered with the Thai Hotels Association",
-          "url": "https://data.bangkok.go.th/dataset/hotels"
-        },
-        {
-          "labelTh": "กรุงเทพมหานคร — รายการโรงแรมและจำนวนห้อง",
-          "labelEn": "BMA — hotel and room-count resource",
-          "url": "https://data.bangkok.go.th/dataset/hotels/resource/d2b08c18-9071-4d5c-ae3d-bd35740a9393"
         }
       ],
       "gd": [],
@@ -739,6 +739,30 @@
       "conceptualPreview": false
     },
     {
+      "id": "dataset-schools-students-teachers",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=school",
+      "status": "candidate",
+      "ownerTh": "กระทรวงศึกษาธิการ (candidate)",
+      "ownerEn": "Ministry of Education (candidate)",
+      "sourceTh": "ข้อมูลเกี่ยวข้องกับทะเบียนสถานศึกษาของกระทรวงศึกษาธิการ แต่ยังต้องยืนยันรหัสโรงเรียน ชื่อ และปีข้อมูลให้ตรงกับรายการที่แสดง",
+      "sourceEn": "The data relates to Ministry of Education school records, but school codes, names and reference years still need to be matched to the displayed records.",
+      "periodTh": null,
+      "periodEn": null,
+      "benefitTh": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+      "benefitEn": "See the distribution, levels and types of schools on a map to compare local provision.",
+      "readingTh": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+      "readingEn": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places.",
+      "official": [],
+      "gd": [
+        {
+          "labelTh": "candidate บน GD Catalog",
+          "labelEn": "GD Catalog candidate",
+          "url": "https://gdcatalog.go.th/dataset/gdpublish-dataset-15_43"
+        }
+      ],
+      "conceptualPreview": false
+    },
+    {
       "id": "dataset-locale-insights",
       "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=localeInsights",
       "status": "derived",
@@ -800,30 +824,6 @@
           "labelTh": "GD Catalog",
           "labelEn": "GD Catalog",
           "url": "https://gdcatalog.go.th/dataset/gdpublish-statbyagemonth-66"
-        }
-      ],
-      "conceptualPreview": false
-    },
-    {
-      "id": "dataset-schools-students-teachers",
-      "citymeterUrl": "https://landometer.com/v3/citymeter?d=school",
-      "status": "candidate",
-      "ownerTh": "กระทรวงศึกษาธิการ (candidate)",
-      "ownerEn": "Ministry of Education (candidate)",
-      "sourceTh": "ข้อมูลเกี่ยวข้องกับทะเบียนสถานศึกษาของกระทรวงศึกษาธิการ แต่ยังต้องยืนยันรหัสโรงเรียน ชื่อ และปีข้อมูลให้ตรงกับรายการที่แสดง",
-      "sourceEn": "The data relates to Ministry of Education school records, but school codes, names and reference years still need to be matched to the displayed records.",
-      "periodTh": null,
-      "periodEn": null,
-      "benefitTh": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
-      "benefitEn": "See the distribution, levels and types of schools on a map to compare local provision.",
-      "readingTh": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
-      "readingEn": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places.",
-      "official": [],
-      "gd": [
-        {
-          "labelTh": "candidate บน GD Catalog",
-          "labelEn": "GD Catalog candidate",
-          "url": "https://gdcatalog.go.th/dataset/gdpublish-dataset-15_43"
         }
       ],
       "conceptualPreview": false
