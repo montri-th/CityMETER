@@ -1,6 +1,6 @@
 # CityMETER demos
 
-Prototype web apps on GitHub Pages, one per dataset, 14 in all. They are noindex, nofollow and in Thai, except that Office also reads in English (a draft translation) with `?lang=en`; they are not the production CityMETER. Every demo runs the same bytes of citymeter-shell 0.5.0.
+Prototype web apps on GitHub Pages, one per dataset, 14 in all. They are noindex, nofollow and in Thai, except that Hotel, Office and Hospital also read in English (a draft translation) with `?lang=en`; they are not the production CityMETER. Every demo runs the same bytes of citymeter-shell 0.5.1.
 
 - [Thai hub](https://montri-th.github.io/CityMETER/demos/)
 - [English hub](https://montri-th.github.io/CityMETER/en/demos/)
@@ -10,14 +10,14 @@ Prototype web apps on GitHub Pages, one per dataset, 14 in all. They are noindex
 The address is the production grammar: `d` dataset code, `at` area (a production path such as BKK/D/1039, the same as https://landometer.com/v3/citymeter/BKK/D/1039), `e` the thing open, `n` a network, `f.*` filters, then `focus`, `view`, `v3d`, `cam`. A demo opens the deepest level of `at` it carries. Opening a level adds one browser history entry; filters and view replace it.
 
 ## Demos
-- [Hotel](https://montri-th.github.io/hotel/) · Land · code `hotel`: ห้องพักกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are hotel rooms concentrated, and how close are they to rail transit?)
+- [Hotel](https://montri-th.github.io/hotel/) · Land · code `hotel` · [in English](https://montri-th.github.io/hotel/?lang=en): ห้องพักกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are hotel rooms concentrated, and how close are they to rail transit?)
 - [Office](https://montri-th.github.io/office/) · Land · code `office` · [in English](https://montri-th.github.io/office/?lang=en): สำนักงานกระจุกอยู่ตรงไหน ค่าเช่าที่ประกาศเท่าไร และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are offices concentrated, what rents are advertised, and how close are they to rail transit?)
 - [Shopping Center](https://montri-th.github.io/shoppingcenter/) · Land · code `shoppingCenter`: ย่านไหนมีพื้นที่ค้าปลีกแบบไหน ของใคร มีร้านอะไรอยู่ข้างใน และอะไรกำลังจะเปิด (draft English: Which areas have which kinds of retail space, run by whom, with which shops inside, and what is about to open?)
 - [Camera Shops](https://montri-th.github.io/camera/) · Location · code `cameraShops`: ถ้าจะเปิดร้านกล้องที่นี่ จะอยู่ข้างใคร (draft English: If you open a camera shop here, who are your neighbours?)
 - [Factory](https://montri-th.github.io/factory/) · Location · code `factory`: คนงานโรงงานกระจุกอยู่ตรงไหน และทำงานในอุตสาหกรรมอะไร (draft English: Where are factory workers concentrated, and in which industries do they work?)
 - [Fitness](https://montri-th.github.io/fitness/) · Location · code none in the registry yet: สาขาฟิตเนสกระจุกอยู่ตรงไหน และเป็นฟิตเนสแบบไหน (draft English: Where are fitness branches concentrated, and what kind of fitness are they?)
 - [Grocery](https://montri-th.github.io/grocery/) · Location · code `grocery`: ร้านกระจุกที่ไหนเมื่อเทียบกับคน (draft English: Where do stores cluster compared with where people are?)
-- [Hospital](https://montri-th.github.io/hospital/) · Location · code `hospital`: เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are healthcare beds concentrated, and how close are they to rail transit?)
+- [Hospital](https://montri-th.github.io/hospital/) · Location · code `hospital` · [in English](https://montri-th.github.io/hospital/?lang=en): เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are healthcare beds concentrated, and how close are they to rail transit?)
 - [Luxury Brands](https://montri-th.github.io/luxurybrands/) · Location · code `luxuryBrands`: ถ้าจะเปิดร้านที่นี่ จะอยู่ข้างใคร (draft English: If you open a store here, who are your neighbours?)
 - [Pharmacy](https://montri-th.github.io/pharmacy/) · Location · code `pharmacy`: ร้านยาแน่นที่สุดอยู่ตรงไหน และเป็นร้านแบบไหน (draft English: Where are pharmacies densest, and what kind of pharmacy are they?)
 - [Restaurants](https://montri-th.github.io/restaurant/) · Location · code `restaurant`: ร้านอาหารและเครื่องดื่มแน่นที่สุดอยู่ตรงไหน เป็นร้านแบบไหน และเครือไหนอยู่แล้ว (draft English: Where are restaurants and drink places densest, what kind are they, and which chains are already there?)

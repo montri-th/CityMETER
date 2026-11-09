@@ -11,6 +11,9 @@ export const HUB_PATHS = { th: "demos/", en: "en/demos/" };
 // L locale) and its id. The demos clamp it to the levels they carry.
 export const AT_PATTERN = "^[A-Z]{2,4}(?:/(?:D|S|M)/[0-9]{2,10}|/L/[0-9a-f-]{36})?$";
 
+/** "A", "A and B", "A, B and C" (Thai: "A, B และ C"): the demos that read in English, as one phrase. */
+const listOf = (names, and) => (names.length > 1 ? `${names.slice(0, -1).join(", ")} ${and} ${names.at(-1)}` : names[0] || "");
+
 const copy = {
   th: {
     title: "เดโม CityMETER 14 ชุดข้อมูล",
@@ -21,7 +24,7 @@ const copy = {
     notes: [
       "เดโมเป็นต้นแบบสำหรับทดลองและพัฒนาต่อ ไม่ใช่ CityMETER ฉบับใช้งานจริง",
       "อ่านที่มา ช่วงเวลา และข้อจำกัดในหน้าเดโมแต่ละชุดก่อนใช้ตัวเลข",
-      "หน้าเดโมยังเป็นภาษาไทย ยกเว้น Office ที่อ่านเป็นภาษาอังกฤษได้ด้วย (คำแปลฉบับร่าง)",
+      (english) => `หน้าเดโมยังเป็นภาษาไทย ยกเว้น ${listOf(english, "และ")} ที่อ่านเป็นภาษาอังกฤษได้ด้วย (คำแปลฉบับร่าง)`,
     ],
     areaTitle: "พื้นที่ที่จะเปิด",
     areaNone: "ยังไม่ได้เลือกพื้นที่ ลิงก์จะเปิดหน้าแรกของแต่ละเดโม",
@@ -63,7 +66,7 @@ const copy = {
     notes: [
       "The demos are prototypes for trials and further development, not the production CityMETER.",
       "Read each demo's sources, period and limitations before using its numbers.",
-      "The demos are in Thai for now; Office also reads in English (a draft translation), and its link here opens it in English. The English lines on this page are drafts.",
+      (english) => `The demos are in Thai for now; ${listOf(english, "and")} also ${english.length > 1 ? "read" : "reads"} in English (a draft translation), and ${english.length > 1 ? "their links" : "its link"} here ${english.length > 1 ? "open them" : "opens it"} in English. The English lines on this page are drafts.`,
     ],
     areaTitle: "Area to open",
     areaNone: "No area chosen: the links open each demo's start page.",
@@ -168,7 +171,7 @@ export function demoHubPage(hub, catalog, lang) {
 <body class="catalog-detail-page demo-hub-page" id="top"><a class="hub-skip" href="#main-content">${lang === "th" ? "ข้ามไปเนื้อหา" : "Skip to content"}</a>
 <header class="hub-header"><a class="hub-logo" href="${base}${lang === "en" ? "en/" : ""}"><img src="${base}media/landometer-logo-horizontal.png" width="172" height="47" alt="Landometer"/></a><nav aria-label="${t.nav}"><a href="${base}${lang === "en" ? "en/" : ""}#datasets">${t.catalogHome}</a><a href="${base}${HUB_PATHS[other]}" hreflang="${other}" lang="${other}" data-hub-lang>${t.other}</a></nav></header>
 <main id="main-content" class="hub-main">
-<section class="hub-hero" aria-labelledby="hub-title"><p class="eyebrow">${esc(t.eyebrow)}</p><h1 id="hub-title">${esc(t.h1)}</h1><p class="hub-lead">${esc(t.lead(hub.demos.length))}</p><ul class="hub-notes">${t.notes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul></section>
+<section class="hub-hero" aria-labelledby="hub-title"><p class="eyebrow">${esc(t.eyebrow)}</p><h1 id="hub-title">${esc(t.h1)}</h1><p class="hub-lead">${esc(t.lead(hub.demos.length))}</p><ul class="hub-notes">${t.notes.map((n) => `<li>${esc(typeof n === "function" ? n(hub.demos.filter((d) => (d.languages || []).includes("en")).map((d) => d.name)) : n)}</li>`).join("")}</ul></section>
 <section class="hub-area-panel" aria-labelledby="hub-area-title"><h2 id="hub-area-title">${t.areaTitle}</h2><p id="hub-area-status" class="hub-area-status" role="status">${esc(t.areaNone)}</p><ul class="hub-area-list">${areas}</ul><p class="hub-hint">${esc(t.areaHint)}</p></section>
 ${groups}
 <section class="hub-dev" aria-labelledby="hub-dev-title"><h2 id="hub-dev-title">${t.devTitle}</h2><ul>${t.dev(ctx).map((p) => `<li>${esc(p)}</li>`).join("")}</ul><p><a href="${base}${HUB_PATHS.th}demos.json">${t.json}</a> · <a href="${base}${HUB_PATHS.th}llms.txt">llms.txt</a></p></section>
@@ -197,5 +200,5 @@ export function demoHubJson(hub, catalog) {
 
 export function demoHubLlms(hub, catalog) {
   const j = demoHubJson(hub, catalog);
-  return `# CityMETER demos\n\nPrototype web apps on GitHub Pages, one per dataset, ${hub.demos.length} in all. They are noindex, nofollow and in Thai, except that ${hub.demos.filter((d) => (d.languages || []).includes("en")).map((d) => d.name).join(", ") || "none"} also reads in English (a draft translation) with \`?lang=en\`; they are not the production CityMETER. Every demo runs the same bytes of ${hub.shell.name} ${hub.shell.version}.\n\n- [Thai hub](${j.pages.th})\n- [English hub](${j.pages.en})\n- [Structured list](${catalog.canonicalBase}${HUB_PATHS.th}demos.json)\n\n## Address\nThe address is the production grammar: \`d\` dataset code, \`at\` area (a production path such as BKK/D/1039, the same as https://landometer.com/v3/citymeter/BKK/D/1039), \`e\` the thing open, \`n\` a network, \`f.*\` filters, then \`focus\`, \`view\`, \`v3d\`, \`cam\`. A demo opens the deepest level of \`at\` it carries. Opening a level adds one browser history entry; filters and view replace it.\n\n## Demos\n${j.demos.map((d) => `- [${d.name}](${d.url}) · ${d.group} · code ${d.code ? `\`${d.code}\`` : "none in the registry yet"}${d.urlEn ? ` · [in English](${d.urlEn})` : ""}: ${d.question.th} (draft English: ${d.questionDraft.en})`).join("\n")}\n\n## Groups\nLand · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}); ${catalogDiffers(hub, catalog).length ? `this catalog files some of the same datasets under other lenses: ${catalogDiffers(hub, catalog).map((d) => `${d.name} (catalog: ${d.catalog})`).join(", ")}` : "this catalog uses the same lenses for every demo with a catalog page"}.\n`;
+  return `# CityMETER demos\n\nPrototype web apps on GitHub Pages, one per dataset, ${hub.demos.length} in all. They are noindex, nofollow and in Thai, except that ${((en) => `${listOf(en, "and") || "none"} also ${en.length > 1 ? "read" : "reads"}`)(hub.demos.filter((d) => (d.languages || []).includes("en")).map((d) => d.name))} in English (a draft translation) with \`?lang=en\`; they are not the production CityMETER. Every demo runs the same bytes of ${hub.shell.name} ${hub.shell.version}.\n\n- [Thai hub](${j.pages.th})\n- [English hub](${j.pages.en})\n- [Structured list](${catalog.canonicalBase}${HUB_PATHS.th}demos.json)\n\n## Address\nThe address is the production grammar: \`d\` dataset code, \`at\` area (a production path such as BKK/D/1039, the same as https://landometer.com/v3/citymeter/BKK/D/1039), \`e\` the thing open, \`n\` a network, \`f.*\` filters, then \`focus\`, \`view\`, \`v3d\`, \`cam\`. A demo opens the deepest level of \`at\` it carries. Opening a level adds one browser history entry; filters and view replace it.\n\n## Demos\n${j.demos.map((d) => `- [${d.name}](${d.url}) · ${d.group} · code ${d.code ? `\`${d.code}\`` : "none in the registry yet"}${d.urlEn ? ` · [in English](${d.urlEn})` : ""}: ${d.question.th} (draft English: ${d.questionDraft.en})`).join("\n")}\n\n## Groups\nLand · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}); ${catalogDiffers(hub, catalog).length ? `this catalog files some of the same datasets under other lenses: ${catalogDiffers(hub, catalog).map((d) => `${d.name} (catalog: ${d.catalog})`).join(", ")}` : "this catalog uses the same lenses for every demo with a catalog page"}.\n`;
 }
