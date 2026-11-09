@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "readAt": "2026-11-09",
+  "readAt": "2026-11-10",
   "robots": "noindex, nofollow",
   "pages": {
     "th": "https://montri-th.github.io/CityMETER/demos/",
@@ -8,10 +8,10 @@
   },
   "shell": {
     "name": "citymeter-shell",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "list": "js/shell/datasets.js",
-    "sha256": "9ced43ee061c6d1af0f1d01607401dbf4973e8b5dac77ca82b349957486d6e67",
-    "demos": 14
+    "sha256": "067d621af042774b5071a3541ec623973edab66005ef1b33029b241b7688aaab",
+    "demos": 15
   },
   "registry": {
     "tab": "R01_DATASETS",
@@ -28,7 +28,9 @@
     "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness has no code in the registry yet",
     "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft",
     "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09",
-    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1); School since 0.5.0, Government Office since 0.7.0 and Factory since 0.5.0 (citymeter-shell 0.5.2); Pharmacy since 0.3.0 and Restaurants since 0.11.0 (citymeter-shell 0.5.3)"
+    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1); School since 0.5.0, Government Office since 0.7.0 and Factory since 0.5.0 (citymeter-shell 0.5.2); Pharmacy since 0.3.0 and Restaurants since 0.11.0 (citymeter-shell 0.5.3); Industrial Estate since its release 1.0.0 (citymeter-shell 0.5.4)",
+    "pages": "a demo kept inside another demo's repository has its own path on GitHub Pages (`pages`): Industrial Estate lives in the factory repository at factory/industrialestate/ (citymeter-shell 0.5.4)",
+    "groupsEstate": "Industrial Estate: registry research.TH.industrial_estates, group Land, read 2026-11-10"
   },
   "address": {
     "grammar": "d · at · e · n · f.* · focus · view · v3d · cam",
@@ -84,6 +86,29 @@
         "page": "https://montri-th.github.io/CityMETER/datasets/hotel-market/",
         "lens": "land"
       }
+    },
+    {
+      "path": "industrialestate",
+      "pages": "factory/industrialestate",
+      "name": "Industrial Estate",
+      "group": "Land",
+      "code": "industrialEstate",
+      "url": "https://montri-th.github.io/factory/industrialestate/",
+      "languages": [
+        "th",
+        "en"
+      ],
+      "urlEn": "https://montri-th.github.io/factory/industrialestate/?lang=en",
+      "question": {
+        "th": "นิคมอุตสาหกรรมอยู่ตรงไหน ใครพัฒนา และในทำเนียบมีใครบ้าง"
+      },
+      "questionDraft": {
+        "en": "Where are the industrial estates, who develops them, and who is in their directory?"
+      },
+      "summary": {
+        "th": "แผนที่นิคม สวน และเขตอุตสาหกรรม พร้อมทำเนียบ กนอ. โลโก้ผู้พัฒนา และโรงงานรอบนิคม"
+      },
+      "catalog": null
     },
     {
       "path": "office",

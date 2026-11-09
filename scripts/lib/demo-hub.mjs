@@ -16,8 +16,8 @@ const listOf = (names, and) => (names.length > 1 ? `${names.slice(0, -1).join(",
 
 const copy = {
   th: {
-    title: "เดโม CityMETER 14 ชุดข้อมูล",
-    description: "เปิดเดโม CityMETER ทั้ง 14 ชุดข้อมูลที่พื้นที่เดียวกัน: เลือกพื้นที่ครั้งเดียว แล้วทุกลิงก์จะเปิดพื้นที่นั้น",
+    title: "เดโม CityMETER 15 ชุดข้อมูล",
+    description: "เปิดเดโม CityMETER ทั้ง 15 ชุดข้อมูลที่พื้นที่เดียวกัน: เลือกพื้นที่ครั้งเดียว แล้วทุกลิงก์จะเปิดพื้นที่นั้น",
     eyebrow: "CityMETER · เดโม",
     h1: "เดโม CityMETER",
     lead: (n) => `${n} ชุดข้อมูลในรูปแบบต้นแบบบน GitHub Pages ใช้รหัสพื้นที่ชุดเดียวกับ CityMETER บน landometer.com เลือกพื้นที่ที่นี่ครั้งเดียว แล้วลิงก์เดโมทุกชุดด้านล่างจะเปิดพื้นที่นั้น`,
@@ -58,8 +58,8 @@ const copy = {
     other: "English",
   },
   en: {
-    title: "CityMETER demos: 14 datasets",
-    description: "Open all 14 CityMETER demos at the same area: pick an area once and every link opens it.",
+    title: "CityMETER demos: 15 datasets",
+    description: "Open all 15 CityMETER demos at the same area: pick an area once and every link opens it.",
     eyebrow: "CityMETER · demos",
     h1: "CityMETER demos",
     lead: (n) => `${n} datasets as prototypes on GitHub Pages, using the same area codes as CityMETER on landometer.com. Pick an area here once, and every demo link below opens that area.`,
@@ -111,6 +111,7 @@ export function checkDemoHub(hub, catalog) {
   const byCode = new Map(catalog.records.map((r) => [r.datasetCode, r]));
   for (const d of hub.demos) {
     if (!/^[a-z]+$/.test(d.path) || paths.has(d.path)) fail(`bad or repeated path ${d.path}`);
+    if (d.pages !== undefined && !new RegExp(`^[a-z]+/${d.path}$`).test(d.pages)) fail(`${d.path}: pages must be <repository>/${d.path}`);
     paths.add(d.path);
     if (!groups.has(d.group)) fail(`${d.path}: group ${d.group}`);
     if (d.code !== null && !/^[A-Za-z]+$/.test(d.code)) fail(`${d.path}: code`);
@@ -130,8 +131,11 @@ function catalogDiffers(hub, catalog) {
     .map((d) => ({ name: d.name, catalog: lens[byCode.get(d.catalog).group] || byCode.get(d.catalog).group }));
 }
 
+/** A demo's path on GitHub Pages: its own, or for a demo kept inside another demo's repository its folder there
+ * (`pages`, citymeter-shell 0.5.4: Industrial Estate at factory/industrialestate/). */
+export const demoPagesPath = (d) => d.pages || d.path;
 /** A demo's start page in a hub language: English only for a demo that declares it (citymeter-shell 0.5.0 `?lang=en`). */
-export const demoUrl = (hub, d, lang = "th") => `${hub.origin}/${d.path}/${lang === "en" && (d.languages || []).includes("en") ? "?lang=en" : ""}`;
+export const demoUrl = (hub, d, lang = "th") => `${hub.origin}/${demoPagesPath(d)}/${lang === "en" && (d.languages || []).includes("en") ? "?lang=en" : ""}`;
 
 function demoCard(d, lang, hub, catalog, base) {
   const t = copy[lang], byCode = new Map(catalog.records.map((r) => [r.datasetCode, r]));
@@ -190,7 +194,7 @@ export function demoHubJson(hub, catalog) {
     address: { grammar: "d · at · e · n · f.* · focus · view · v3d · cam", at: AT_PATTERN, example: `${hub.origin}/hotel/?at=BKK/D/1039`, production: "https://landometer.com/v3/citymeter/BKK/D/1039?d=hotel" },
     areas: hub.areas,
     demos: hub.demos.map((d) => ({
-      path: d.path, name: d.name, group: d.group, code: d.code, url: `${hub.origin}/${d.path}/`, languages: d.languages || ["th"],
+      path: d.path, ...(d.pages ? { pages: d.pages } : {}), name: d.name, group: d.group, code: d.code, url: `${hub.origin}/${demoPagesPath(d)}/`, languages: d.languages || ["th"],
       ...((d.languages || []).includes("en") ? { urlEn: demoUrl(hub, d, "en") } : {}),
       question: d.question, questionDraft: d.questionDraft, summary: d.summary,
       catalog: d.catalog ? { code: d.catalog, page: `${catalog.canonicalBase}datasets/${byCode.get(d.catalog).slug}/`, lens: byCode.get(d.catalog).group } : null,

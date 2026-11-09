@@ -24,7 +24,8 @@ for (const [lang, path] of [["th", "demos/index.html"], ["en", "en/demos/index.h
   ok(links.length === hub.demos.length && new Set(links.map((l) => l[0])).size === hub.demos.length, `${path}: every demo once`);
   for (const [demo, href] of links) {
     const english = lang === "en" && (hub.demos.find((d) => d.path === demo).languages || []).includes("en");
-    ok(href === `${hub.origin}/${demo}/${english ? "?lang=en" : ""}`, `${path}: ${demo} start page${english ? " in English" : ""}`);
+    const pages = hub.demos.find((d) => d.path === demo).pages || demo;
+    ok(href === `${hub.origin}/${pages}/${english ? "?lang=en" : ""}`, `${path}: ${demo} start page${english ? " in English" : ""}`);
   }
   for (const d of hub.demos) {
     const card = html.slice(html.indexOf(`data-demo-card="${d.path}"`), html.indexOf("</li>", html.indexOf(`data-demo-card="${d.path}"`)));
@@ -42,9 +43,9 @@ for (const [lang, path] of [["th", "demos/index.html"], ["en", "en/demos/index.h
 }
 ok(!read("sitemap.xml").includes("/demos/"), "the hub stays out of the sitemap");
 ok(list.robots === "noindex, nofollow" && list.demos.length === hub.demos.length, "demos.json lists every demo");
-for (const d of list.demos) ok(d.url === `${hub.origin}/${d.path}/` && ["Land", "Location", "Living"].includes(d.group) && Array.isArray(d.languages) && d.languages[0] === "th"
+for (const d of list.demos) ok(d.url === `${hub.origin}/${d.pages || d.path}/` && ["Land", "Location", "Living"].includes(d.group) && Array.isArray(d.languages) && d.languages[0] === "th"
   && (d.languages.includes("en") ? d.urlEn === `${d.url}?lang=en` : !("urlEn" in d)), `demos.json: ${d.path}`);
 const llms = read("demos/llms.txt");
-for (const d of hub.demos) ok(llms.includes(`(${hub.origin}/${d.path}/)`), `demos/llms.txt: ${d.path}`);
+for (const d of hub.demos) ok(llms.includes(`(${hub.origin}/${d.pages || d.path}/)`), `demos/llms.txt: ${d.path}`);
 ok(read("llms.txt").includes("demos/llms.txt"), "llms.txt points to the demo list");
 console.log(`PASS demo hub: ${checks} checks; ${hub.demos.length} demos, TH/EN pages noindex and out of the sitemap.`);
