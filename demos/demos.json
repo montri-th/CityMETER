@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "1.0.0",
+  "readAt": "2026-11-09",
+  "robots": "noindex, nofollow",
+  "pages": {
+    "th": "https://montri-th.github.io/CityMETER/demos/",
+    "en": "https://montri-th.github.io/CityMETER/en/demos/"
+  },
+  "shell": {
+    "name": "citymeter-shell",
+    "version": "0.4.3",
+    "list": "js/shell/datasets.js",
+    "sha256": "8afcbe6e33daf5f28bc75f8e352db3be4139f9281d54ee28d87da1a14d7d7c96",
+    "demos": 14
+  },
+  "registry": {
+    "tab": "R01_DATASETS",
+    "fields": [
+      "dataset_group",
+      "demo_web_url"
+    ],
+    "readAt": "2026-11-08",
+    "readAtTh": "8 พ.ย. 2569"
+  },
+  "sources": {
+    "list": "citymeter-shell 0.4.3 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
+    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-08",
+    "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness has no code in the registry yet",
+    "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft",
+    "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09"
+  },
+  "address": {
+    "grammar": "d · at · e · n · f.* · focus · view · v3d · cam",
+    "at": "^[A-Z]{2,4}(?:/(?:D|S|M)/[0-9]{2,10}|/L/[0-9a-f-]{36})?$",
+    "example": "https://montri-th.github.io/hotel/?at=BKK/D/1039",
+    "production": "https://landometer.com/v3/citymeter/BKK/D/1039?d=hotel"
+  },
+  "areas": [
+    {
+      "at": "BKK",
+      "th": "กรุงเทพมหานคร"
+    },
+    {
+      "at": "BKK/D/1007",
+      "th": "เขตปทุมวัน"
+    },
+    {
+      "at": "BKK/D/1039",
+      "th": "เขตวัฒนา"
+    },
+    {
+      "at": "CBI",
+      "th": "ชลบุรี"
+    },
+    {
+      "at": "SPK",
+      "th": "สมุทรปราการ"
+    }
+  ],
+  "demos": [
+    {
+      "path": "hotel",
+      "name": "Hotel",
+      "group": "Land",
+      "code": "hotel",
+      "url": "https://montri-th.github.io/hotel/",
+      "question": {
+        "th": "ห้องพักกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน"
+      },
+      "questionDraft": {
+        "en": "Where are hotel rooms concentrated, and how close are they to rail transit?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของห้องพักทั่วประเทศ รายเขต/อำเภอ เครือโรงแรม และคู่เทียบรอบ 2 กม."
+      },
+      "catalog": {
+        "code": "hotel",
+        "page": "https://montri-th.github.io/CityMETER/datasets/hotel-market/",
+        "lens": "location"
+      }
+    },
+    {
+      "path": "office",
+      "name": "Office",
+      "group": "Land",
+      "code": "office",
+      "url": "https://montri-th.github.io/office/",
+      "question": {
+        "th": "สำนักงานกระจุกอยู่ตรงไหน ค่าเช่าที่ประกาศเท่าไร และใกล้รถไฟฟ้าแค่ไหน"
+      },
+      "questionDraft": {
+        "en": "Where are offices concentrated, what rents are advertised, and how close are they to rail transit?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของสำนักงานทั่วประเทศ รายเขต/อำเภอ องค์กร และค่าเช่ารอบ 1 กม."
+      },
+      "catalog": {
+        "code": "office",
+        "page": "https://montri-th.github.io/CityMETER/datasets/office-buildings-rent/",
+        "lens": "location"
+      }
+    },
+    {
+      "path": "shoppingcenter",
+      "name": "Shopping Center",
+      "group": "Land",
+      "code": "shoppingCenter",
+      "url": "https://montri-th.github.io/shoppingcenter/",
+      "question": {
+        "th": "ย่านไหนมีพื้นที่ค้าปลีกแบบไหน ของใคร มีร้านอะไรอยู่ข้างใน และอะไรกำลังจะเปิด"
+      },
+      "questionDraft": {
+        "en": "Which areas have which kinds of retail space, run by whom, with which shops inside, and what is about to open?"
+      },
+      "summary": {
+        "th": "ศูนย์การค้า ตลาด และพื้นที่ค้าปลีกของไทยบนแผนที่ 3 มิติ"
+      },
+      "catalog": {
+        "code": "shoppingCenter",
+        "page": "https://montri-th.github.io/CityMETER/datasets/shopping-centers/",
+        "lens": "location"
+      }
+    },
+    {
+      "path": "camera",
+      "name": "Camera Shops",
+      "group": "Location",
+      "code": "cameraShops",
+      "url": "https://montri-th.github.io/camera/",
+      "question": {
+        "th": "ถ้าจะเปิดร้านกล้องที่นี่ จะอยู่ข้างใคร"
+      },
+      "questionDraft": {
+        "en": "If you open a camera shop here, who are your neighbours?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของร้านกล้องในไทย: ย่าน ศูนย์การค้า และสาขา พร้อมหลักฐานทุกรายการ"
+      },
+      "catalog": null
+    },
+    {
+      "path": "factory",
+      "name": "Factory",
+      "group": "Location",
+      "code": "factory",
+      "url": "https://montri-th.github.io/factory/",
+      "question": {
+        "th": "คนงานโรงงานกระจุกอยู่ตรงไหน และทำงานในอุตสาหกรรมอะไร"
+      },
+      "questionDraft": {
+        "en": "Where are factory workers concentrated, and in which industries do they work?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของทะเบียนโรงงานทุกขนาดของ กรอ. รายเขต/อำเภอ"
+      },
+      "catalog": {
+        "code": "factory",
+        "page": "https://montri-th.github.io/CityMETER/datasets/factories-workers-investment/",
+        "lens": "location"
+      }
+    },
+    {
+      "path": "fitness",
+      "name": "Fitness",
+      "group": "Location",
+      "code": null,
+      "url": "https://montri-th.github.io/fitness/",
+      "question": {
+        "th": "สาขาฟิตเนสกระจุกอยู่ตรงไหน และเป็นฟิตเนสแบบไหน"
+      },
+      "questionDraft": {
+        "en": "Where are fitness branches concentrated, and what kind of fitness are they?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของสาขาฟิตเนสและสตูดิโอทั่วประเทศ ระดับเขต/อำเภอ พร้อมบริษัทเบื้องหลังแบรนด์และที่มาของทุกตัวเลข"
+      },
+      "catalog": null
+    },
+    {
+      "path": "grocery",
+      "name": "Grocery",
+      "group": "Location",
+      "code": "grocery",
+      "url": "https://montri-th.github.io/grocery/",
+      "question": {
+        "th": "ร้านกระจุกที่ไหนเมื่อเทียบกับคน"
+      },
+      "questionDraft": {
+        "en": "Where do stores cluster compared with where people are?"
+      },
+      "summary": {
+        "th": "แผนที่ร้านสะดวกซื้อ ซูเปอร์มาร์เก็ต ไฮเปอร์มาร์เก็ต ค้าส่ง และร้านขายยา 17 แบรนด์ทั่วไทย ตั้งแต่ระดับประเทศถึง อปท. และย่าน"
+      },
+      "catalog": {
+        "code": "grocery",
+        "page": "https://montri-th.github.io/CityMETER/datasets/grocery-retail/",
+        "lens": "location"
+      }
+    },
+    {
+      "path": "hospital",
+      "name": "Hospital",
+      "group": "Location",
+      "code": "hospital",
+      "url": "https://montri-th.github.io/hospital/",
+      "question": {
+        "th": "เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน"
+      },
+      "questionDraft": {
+        "en": "Where are healthcare beds concentrated, and how close are they to rail transit?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของสถานพยาบาลทั่วประเทศ รายเขต/อำเภอ สังกัด มาตรฐาน ราคาแล็บ และคู่เทียบ"
+      },
+      "catalog": null
+    },
+    {
+      "path": "luxurybrands",
+      "name": "Luxury Brands",
+      "group": "Location",
+      "code": "luxuryBrands",
+      "url": "https://montri-th.github.io/luxurybrands/",
+      "question": {
+        "th": "ถ้าจะเปิดร้านที่นี่ จะอยู่ข้างใคร"
+      },
+      "questionDraft": {
+        "en": "If you open a store here, who are your neighbours?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของแบรนด์หรูในไทย: ย่าน ศูนย์การค้า และสาขา พร้อมหลักฐานทุกรายการ"
+      },
+      "catalog": null
+    },
+    {
+      "path": "pharmacy",
+      "name": "Pharmacy",
+      "group": "Location",
+      "code": "pharmacy",
+      "url": "https://montri-th.github.io/pharmacy/",
+      "question": {
+        "th": "ร้านยาแน่นที่สุดอยู่ตรงไหน และเป็นร้านแบบไหน"
+      },
+      "questionDraft": {
+        "en": "Where are pharmacies densest, and what kind of pharmacy are they?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของร้านยาที่มีใบอนุญาต ขย1 ทั่วประเทศ ระดับแขวง/ตำบล พร้อมที่มาของทุกตัวเลข"
+      },
+      "catalog": null
+    },
+    {
+      "path": "restaurant",
+      "name": "Restaurants",
+      "group": "Location",
+      "code": "restaurant",
+      "url": "https://montri-th.github.io/restaurant/",
+      "question": {
+        "th": "ร้านอาหารและเครื่องดื่มแน่นที่สุดอยู่ตรงไหน เป็นร้านแบบไหน และเครือไหนอยู่แล้ว"
+      },
+      "questionDraft": {
+        "en": "Where are restaurants and drink places densest, what kind are they, and which chains are already there?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของร้านในชุดข้อมูล CityMETER Restaurants และสาขาเครือทั่วประเทศ ระดับแขวง/ตำบล พร้อมที่มาของทุกตัวเลข"
+      },
+      "catalog": {
+        "code": "restaurant",
+        "page": "https://montri-th.github.io/CityMETER/datasets/restaurants/",
+        "lens": "location"
+      }
+    },
+    {
+      "path": "school",
+      "name": "School",
+      "group": "Location",
+      "code": "school",
+      "url": "https://montri-th.github.io/school/",
+      "question": {
+        "th": "นักเรียนกระจุกอยู่ตรงไหน และรอบแปลงมีโรงเรียนแบบไหน"
+      },
+      "questionDraft": {
+        "en": "Where are students concentrated, and what kinds of schools are around a plot?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของสถานศึกษาทั่วประเทศ รายเขต/อำเภอ สังกัด ค่าเรียน และคู่เทียบรอบ 2 กม."
+      },
+      "catalog": {
+        "code": "school",
+        "page": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
+        "lens": "living"
+      }
+    },
+    {
+      "path": "governmentoffice",
+      "name": "Government Office",
+      "group": "Living",
+      "code": "governmentOfficer",
+      "url": "https://montri-th.github.io/governmentoffice/",
+      "question": {
+        "th": "หน่วยงานรัฐกระจุกอยู่ตรงไหน และรอบแปลงมีบริการรัฐอะไรใกล้ที่สุด"
+      },
+      "questionDraft": {
+        "en": "Where are government agencies concentrated, and which public services are nearest to a plot?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของทุกจุดในชุดข้อมูลหน่วยงานรัฐของ CityMETER ทั่วประเทศ รายเขต/อำเภอ หมวด ประเภท บุคลากรที่บันทึก และสำนักงานที่ย้ายหรือเปิดใหม่"
+      },
+      "catalog": {
+        "code": "governmentOfficer",
+        "page": "https://montri-th.github.io/CityMETER/datasets/government-agencies-workforce/",
+        "lens": "living"
+      }
+    },
+    {
+      "path": "transit",
+      "name": "Transit",
+      "group": "Living",
+      "code": "transit",
+      "url": "https://montri-th.github.io/transit/",
+      "question": {
+        "th": "ทำเลนี้ไปถึงด้วยระบบรางได้แค่ไหน"
+      },
+      "questionDraft": {
+        "en": "How well can rail transit reach this location?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของระบบขนส่งสาธารณะในไทย: สายราง สถานี จุดเปลี่ยนสาย สายที่กำลังก่อสร้าง และอาคารของสถานีใหญ่ พร้อมหลักฐานทุกรายการ"
+      },
+      "catalog": null
+    }
+  ]
+}

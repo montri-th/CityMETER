@@ -18,6 +18,7 @@ import {
 } from "./lib/catalog-render.mjs";
 import { attachArticleNavbar, navbarArticleRoutes } from "./lib/article-navbar.mjs";
 import { detailPage } from "./lib/summary-article.mjs";
+import { demoHubPage, demoHubJson, demoHubLlms, checkDemoHub, HUB_PATHS } from "./lib/demo-hub.mjs";
 import { uiIconHead } from "./lib/ui-icon.mjs";
 import { materializeUiIconsInBundle, materializeUiIconsInHtml, materializeNavbarIcons } from "./lib/ui-icon-migration.mjs";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -29,11 +30,15 @@ const projection = JSON.parse(read("data/landom-contributors.json"));
 const stories = JSON.parse(read("src/dataset-stories.json"));
 const storyByCode = new Map(stories.records.map(story => [story.datasetCode, story]));
 if (storyByCode.size !== 43 || catalog.records.some(record => !storyByCode.has(record.datasetCode))) throw Error("Expected an independently authored article for every public data view");
+// The demo hub (noindex): every CityMETER demo on GitHub Pages, one area handed to all of them.
+const demoHub = JSON.parse(read("src/demo-hub.json"));
+checkDemoHub(demoHub, catalog);
 const versionedPublicAssets = new Set([
  "index-public-catalog-r1.js","catalog-enhancements-public-r1.js","unified-navbar-public-r1.js",
  "catalog-public-r1.js","dataset-summary-public-r1.js","catalog-public-r1.css",
  "dataset-summary-public-r1.css","catalog-shell-current-r1.css","navbar-current-r1.css",
- "public-footer-r1.css","ui-icons-current-r1.css","catalog-layout-public-r1.js"
+ "public-footer-r1.css","ui-icons-current-r1.css","catalog-layout-public-r1.js",
+ "demo-hub-public-r1.js","demo-hub-public-r1.css"
 ]);
 function versionPublicAssets(html) {
  return html.replace(/((?:src|href)="(?:[^"?]*\/)?assets\/)([^"?]+)(?:\?[^" ]*)?"/g,(whole,prefix,file)=>
@@ -342,6 +347,8 @@ emit("assets/catalog-shell-current-r1.css", read("src/styles/shell-current.css")
 emit("assets/navbar-current-r1.css", read("src/styles/navbar-current.css"));
 emit("assets/public-footer-r1.css", read("src/styles/public-footer.css"));
 emit("assets/ui-icons-current-r1.css", read("src/styles/ui-icons.css"));
+emit("assets/demo-hub-public-r1.js", read("src/runtime/demo-hub.js"));
+emit("assets/demo-hub-public-r1.css", read("src/styles/demo-hub.css"));
 const qrRecords = catalog.records.map((record) => {
   const path = `media/qr/datasets/${record.slug}.svg`;
   const svg = datasetQr(record.mapUrl);
@@ -485,6 +492,10 @@ for (const lang of ["th", "en"]) {
       versionPublicAssets(attachArticleNavbar(detailPage(catalog, record, lang, projection, storyByCode.get(record.datasetCode), stories.records), lang, record.slug)),
     );
 }
+for (const lang of ["th", "en"]) emit(`${HUB_PATHS[lang]}index.html`, versionPublicAssets(demoHubPage(demoHub, catalog, lang)));
+emit(`${HUB_PATHS.th}demos.json`, demoHubJson(demoHub, catalog));
+emit(`${HUB_PATHS.th}llms.txt`, demoHubLlms(demoHub, catalog));
+// The demo hub stays out of the sitemap: it and the demos are noindex.
 const urls = [
   "",
   "en/",
@@ -503,7 +514,7 @@ emit(
 );
 emit(
   "llms.txt",
-  `# CityMETER\n\nCityMETER brings 43 public data views into three peer lenses: Land, Location and Living. Read source, period, unit, coverage and limitations before using a view for a decision.\n\n- [Thai catalog](${catalog.canonicalBase})\n- [English catalog](${catalog.canonicalBase}en/)\n- [Structured catalog](${catalog.canonicalBase}data/catalog.json): bilingual descriptions, source references, unknowns, map start URLs and public contributors.\n- [Public contributor projection](${projection.canonicalUrl})\n\n## Interpretation\nObserved branch or registration shares describe their selected records, not sales, revenue or the whole market. Demand proxies are not observed demand. Locale Insight is a contextual prior for planning and validation, not official population, eligibility, legal boundary, risk or observed behaviour. Missing data is not zero. Historical event archives are CreativeWork records; they are not live incident feeds. Source-review dates are editorial checks, not ingestion timestamps, freshness guarantees or data licences.\n\n## Data views\n${catalog.records.map((r) => `- [${r.title.en}](${detailUrl(catalog, r, "en")}): ${r.description.en}`).join("\n")}\n`,
+  `# CityMETER\n\nCityMETER brings 43 public data views into three peer lenses: Land, Location and Living. Read source, period, unit, coverage and limitations before using a view for a decision.\n\n- [Thai catalog](${catalog.canonicalBase})\n- [English catalog](${catalog.canonicalBase}en/)\n- [Structured catalog](${catalog.canonicalBase}data/catalog.json): bilingual descriptions, source references, unknowns, map start URLs and public contributors.\n- [Public contributor projection](${projection.canonicalUrl})\n- [CityMETER demos](${catalog.canonicalBase}${HUB_PATHS.th}llms.txt): ${demoHub.demos.length} prototype web apps on GitHub Pages, one per dataset, noindex and in Thai, sharing one area address.\n\n## Interpretation\nObserved branch or registration shares describe their selected records, not sales, revenue or the whole market. Demand proxies are not observed demand. Locale Insight is a contextual prior for planning and validation, not official population, eligibility, legal boundary, risk or observed behaviour. Missing data is not zero. Historical event archives are CreativeWork records; they are not live incident feeds. Source-review dates are editorial checks, not ingestion timestamps, freshness guarantees or data licences.\n\n## Data views\n${catalog.records.map((r) => `- [${r.title.en}](${detailUrl(catalog, r, "en")}): ${r.description.en}`).join("\n")}\n`,
 );
 const authored = [
   "src/catalog.json",
@@ -543,6 +554,10 @@ const authored = [
   "scripts/lib/route-language.mjs",
   "scripts/lib/catalog-qr.mjs",
   "scripts/build-catalog.mjs",
+  "src/demo-hub.json",
+  "src/runtime/demo-hub.js",
+  "src/styles/demo-hub.css",
+  "scripts/lib/demo-hub.mjs",
 ];
 const uiIconAssets = JSON.parse(read("data/ui-icon-assets-20261010.json"));
 for (const asset of [...uiIconAssets.files,uiIconAssets.font,uiIconAssets.license]) {
@@ -585,6 +600,7 @@ const manifest = {
     discovery: "Shared minimal identity graph in initial HTML and React L6.",
     shell:
       "Retained public React controls and navbar; historical media and immutable assets retained.",
+    demos: "Static noindex hub pages (TH/EN), demos.json and llms.txt from src/demo-hub.json; a small script hands ?at= to every demo link.",
   },
 };
 emit("data/catalog-build.json", manifest);

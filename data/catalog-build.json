@@ -54,7 +54,11 @@
     "scripts/lib/preview-contract.mjs": "2be6afa92e3cca4fb26b3568e24c4948f6acd21eebbeb3420901d05dd5fd8b34",
     "scripts/lib/route-language.mjs": "4bcf9ab1d087c8f1982f838b2a6aaa9e08a8cb2c67867bdde210b49ef10466df",
     "scripts/lib/catalog-qr.mjs": "5262dde65a1e06b2bc501d4cc398d7092c8e406c1ddf0b56477abaefc92e3e21",
-    "scripts/build-catalog.mjs": "6c34c771f53860ae7aa4efa84cdc67f570062652efbd25782be1379fe5a544cb",
+    "scripts/build-catalog.mjs": "c3b9e28352301dedb45bb890ae5e47c3284e7e8dd34375f9b64b8d564e54feac",
+    "src/demo-hub.json": "e5d1bf2e7d08372c1561739302bb6dcd56973e9115f419b2f4299b435132f1f1",
+    "src/runtime/demo-hub.js": "dc2058cbd5e3853508959e6f01b723cf2bb4e24b4a06ee726a189c2498aeee73",
+    "src/styles/demo-hub.css": "3396e9fadae35804e053f90ffa3fe470eca0b5da256fe6f8be7a1fc503770633",
+    "scripts/lib/demo-hub.mjs": "b7a35ab43256d61694998cad7f396e1b89c6b5ec0afa487a7c676cbed796600c",
     "assets/ui-icons/material-symbols-rounded-20261010/add_wght300_20px.svg": "ed61cd39486cedb8d8c223d60f5589eb7a46672f66145fc412397fa29218c4d1",
     "assets/ui-icons/material-symbols-rounded-20261010/add_wght300_24px.svg": "c19a2ca40c926a80879e52b8ba92bac9f123c3724149597adbaa5f3ecf142deb",
     "assets/ui-icons/material-symbols-rounded-20261010/apartment_wght300_20px.svg": "8d3cbfa9d010685e414106eb6dafbc06d60ecb650248bbc0934850307eb34615",
@@ -152,6 +156,8 @@
     "assets/navbar-current-r1.css": "7cb5c308ee1e6e9dd5fd6d13d2cd31961ded26952b9c1926b8f772c59c9b3869",
     "assets/public-footer-r1.css": "7545f48727755cfe842821bdda75cc896ef82bf869d6057ac9179df9a9216787",
     "assets/ui-icons-current-r1.css": "10476da11edcdcc1af04a109fcf8a003c98986583cff711aaee22681ca5867ae",
+    "assets/demo-hub-public-r1.js": "dc2058cbd5e3853508959e6f01b723cf2bb4e24b4a06ee726a189c2498aeee73",
+    "assets/demo-hub-public-r1.css": "3396e9fadae35804e053f90ffa3fe470eca0b5da256fe6f8be7a1fc503770633",
     "media/qr/datasets/buildings.svg": "5da72e9fd96e659ce77bf22fc46598b2d40a3679555d692c32f24a8a848a0e90",
     "media/qr/datasets/terrain-elevation.svg": "781e033c4c4c164fd53941d09f029116ab3f024dd482bd5786784a5aaf83042d",
     "media/qr/datasets/registered-housing-estates.svg": "e7f227efabd83c1a0b6b5ebc0c00c0b87808be2fd426940036a2c3f12b6db994",
@@ -287,9 +293,13 @@
     "en/datasets/disaster-historical-impacts/index.html": "fcda26502ed650c4e9e819696caf8ac25d9b2307340ed6e1860eadb2efe90a8f",
     "en/datasets/events-hat-yai-flood-2025-11/index.html": "6631fa1e00acc17cc0711b7db613b273eb87c614b5205d3773a074937d4cf1ca",
     "en/datasets/events-quake-building-inspection/index.html": "2a4a9db5c600873d87c4794e7aa5688b0eb431174a685cc1be33f9adef2d518b",
+    "demos/index.html": "79b9fca5e1ed72fa439649f820c82ab4ecb01146c6fa6e3911b32d325a4d2361",
+    "en/demos/index.html": "daa39e8b13d01bb446ba2ecbdd96cf1102d7374fbee0239018eea181a2e0447c",
+    "demos/demos.json": "08286bd0fce1d4e10bfea26b96a525b91fd19ff37429b7fa0718af27798b11ef",
+    "demos/llms.txt": "f21bcf00c93757372691a76ae0c5d3f21c02a4cf74e6ad5f5dc2fbd35a6ca86d",
     "sitemap.xml": "b19838d2f5ca43a381654fe14128fea1ed6057a8413c11f94a0b0767a1685a13",
     "robots.txt": "cfb45d8b72d1d6391a6846917e35f40f8480ab6ef2c898ddb4ec1fd39eab7753",
-    "llms.txt": "e12a08bc12815c6d6673f706f86cdde4cdf25fff024b474a358e30f79840b301"
+    "llms.txt": "73da3408952c7a2fceb6bfc0675fc6a7ba449f337e0483317459ced7f0e6c4ec"
   },
   "counts": {
     "publicRecords": 43,
@@ -305,6 +315,7 @@
     "showcase": "Shared HTML renderer in initial HTML and React Y6.",
     "footer": "Shared publicFooter renderer in initial HTML, React K6, and dataset summaries; unchanged verified portfolio icons and footer assets.",
     "discovery": "Shared minimal identity graph in initial HTML and React L6.",
-    "shell": "Retained public React controls and navbar; historical media and immutable assets retained."
+    "shell": "Retained public React controls and navbar; historical media and immutable assets retained.",
+    "demos": "Static noindex hub pages (TH/EN), demos.json and llms.txt from src/demo-hub.json; a small script hands ?at= to every demo link."
   }
 }

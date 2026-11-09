@@ -15,8 +15,9 @@
 | ที่มาภาครัฐ/โรงงาน/โรงแรม | `data/government-source-provenance-20261010.json`, `data/factory-hotel-source-provenance-20261010.json` | public evidence ledger |
 | ภาพแค็ตตาล็อกใหม่ 6 ชุด/12 ไฟล์ | `data/dataset-preview-assets-20261010.json` | ตรวจตาม hash/ขนาด/บทบาท |
 | ภาพประกอบบทความจากหน้าใช้งาน 5 ภาพ | `data/story-snapshot-assets-20261010.json` | ตรวจตาม hash/ขนาด/บทบาท |
+| หน้ารวมเดโม CityMETER 14 ชุด (noindex) `demos/`, `en/demos/`, `demos/demos.json`, `demos/llms.txt` | `src/demo-hub.json` (รายการและกลุ่มตาม `js/shell/datasets.js` ของเดโม คำถามคัดจาก meta description ของหน้าเดโม) | `scripts/lib/demo-hub.mjs`, ตรวจด้วย `scripts/validate-demo-hub.mjs` |
 
-ไม่แก้ `index.html`, `en/index.html`, `datasets/`, `en/datasets/`, `data/catalog.json`, `data/dataset-stories.json`, QR หรือ public bundles ด้วยมือ ให้สร้างใหม่ผ่าน `scripts/build-catalog.mjs` เก็บ baseline ที่ตรึง hash และประวัติ release เดิมไว้
+ไม่แก้ `index.html`, `en/index.html`, `datasets/`, `en/datasets/`, `demos/`, `en/demos/`, `data/catalog.json`, `data/dataset-stories.json`, QR หรือ public bundles ด้วยมือ ให้สร้างใหม่ผ่าน `scripts/build-catalog.mjs` เก็บ baseline ที่ตรึง hash และประวัติ release เดิมไว้
 
 ## คนใช้เดินทางอย่างไร
 

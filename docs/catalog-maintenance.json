@@ -32,7 +32,11 @@
     "data/ui-icon-assets-20261010.json",
     "scripts/lib/ui-icon.mjs",
     "scripts/lib/ui-icon-migration.mjs",
-    "src/styles/ui-icons.css"
+    "src/styles/ui-icons.css",
+    "src/demo-hub.json",
+    "scripts/lib/demo-hub.mjs",
+    "src/runtime/demo-hub.js",
+    "src/styles/demo-hub.css"
   ],
   "commands": {
     "generate": "npm run build",
@@ -309,6 +313,20 @@
       "renderer": "scripts/lib/ui-icon.mjs",
       "migration": "scripts/lib/ui-icon-migration.mjs",
       "stylesheet": "src/styles/ui-icons.css"
+    },
+    "demoHub": {
+      "pages": [
+        "demos/index.html",
+        "en/demos/index.html"
+      ],
+      "data": [
+        "demos/demos.json",
+        "demos/llms.txt"
+      ],
+      "source": "src/demo-hub.json",
+      "robots": "noindex, nofollow; not in sitemap.xml (owner 2026-11-08: demo pages stay out of search engines)",
+      "contract": "Lists every CityMETER demo on GitHub Pages once, grouped Land/Location/Living by the dataset registry as the demos' dataset picker (citymeter-shell js/shell/datasets.js); questions quoted from each demo's meta description; ?at=<production area path> is handed to every demo link by src/runtime/demo-hub.js; without JavaScript the links open each start page.",
+      "check": "node scripts/validate-demo-hub.mjs"
     }
   },
   "verificationScope": {
