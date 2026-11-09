@@ -8,9 +8,9 @@
   },
   "shell": {
     "name": "citymeter-shell",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "list": "js/shell/datasets.js",
-    "sha256": "0c0c32bfe8f9964a3bdd029201ba84b89c5b2a5e6642fa3b3f84752f30d50d57",
+    "sha256": "61fc1a327f8f6e92a1e41f34c156dd3f28f7e393d03128e2f9db9f72a6cdb0eb",
     "demos": 14
   },
   "registry": {
@@ -23,12 +23,12 @@
     "readAtTh": "8 พ.ย. 2569"
   },
   "sources": {
-    "list": "citymeter-shell 0.5.0 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
+    "list": "citymeter-shell 0.5.1 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
     "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-08",
     "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness has no code in the registry yet",
     "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft",
     "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09",
-    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0"
+    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1)"
   },
   "address": {
     "grammar": "d · at · e · n · f.* · focus · view · v3d · cam",
@@ -66,8 +66,10 @@
       "code": "hotel",
       "url": "https://montri-th.github.io/hotel/",
       "languages": [
-        "th"
+        "th",
+        "en"
       ],
+      "urlEn": "https://montri-th.github.io/hotel/?lang=en",
       "question": {
         "th": "ห้องพักกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน"
       },
@@ -228,8 +230,10 @@
       "code": "hospital",
       "url": "https://montri-th.github.io/hospital/",
       "languages": [
-        "th"
+        "th",
+        "en"
       ],
+      "urlEn": "https://montri-th.github.io/hospital/?lang=en",
       "question": {
         "th": "เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน"
       },
