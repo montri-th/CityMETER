@@ -167,12 +167,6 @@
       "sha256": "ba25243a3a96420fc3311992ba8e97e16224e782c0c44a777776d1d5684598b5"
     },
     {
-      "id": "schools-students-teachers",
-      "url": "https://landometer.com/v3/citymeter?d=school",
-      "file": "media/qr/datasets/schools-students-teachers.svg",
-      "sha256": "c29775c615729d8d50d312be27a053eb727ed9b6dace1d68f2ee0cefcb4e864c"
-    },
-    {
       "id": "locale-insights",
       "url": "https://landometer.com/v3/citymeter/BKK?d=localeInsights",
       "file": "media/qr/datasets/locale-insights.svg",
@@ -189,6 +183,12 @@
       "url": "https://landometer.com/v3/citymeter?d=population",
       "file": "media/qr/datasets/population-age-sex.svg",
       "sha256": "7567bdcf6f6393575131d2b4c669e2b446cd6c3961f8581ea2ae8fac156f4351"
+    },
+    {
+      "id": "schools-students-teachers",
+      "url": "https://landometer.com/v3/citymeter?d=school",
+      "file": "media/qr/datasets/schools-students-teachers.svg",
+      "sha256": "c29775c615729d8d50d312be27a053eb727ed9b6dace1d68f2ee0cefcb4e864c"
     },
     {
       "id": "government-spending",
