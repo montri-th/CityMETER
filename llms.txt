@@ -39,10 +39,10 @@ Observed branch or registration shares describe their selected records, not sale
 - [Road Network Archetypes](https://montri-th.github.io/CityMETER/en/datasets/road-network-archetypes/): Turn road networks into an area profile to understand urban connections and study a location.
 - [Traffic: Congestion & Speed](https://montri-th.github.io/CityMETER/en/datasets/traffic-congestion-speed/): Explore available speed and congestion data to study access to a site and plan services and market visits.
 - [City Events & Notices](https://montri-th.github.io/CityMETER/en/datasets/events-notices/): Explore local reports and notices by area and time, then open the evidence that matters to your work.
-- [Schools, Students & Teachers](https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/): See the distribution, levels and types of schools on a map to compare local provision.
 - [Locale Insights](https://montri-th.github.io/CityMETER/en/datasets/locale-insights/): Bring key neighbourhood context into one view to compare the strengths, gaps and character of each area.
 - [Places of Worship](https://montri-th.github.io/CityMETER/en/datasets/places-of-worship/): Explore places of worship on a map to understand local context and prepare for conversations with communities.
 - [Population by Age & Sex](https://montri-th.github.io/CityMETER/en/datasets/population-age-sex/): See the age and sex structure of registered populations on a map to compare areas and plan services.
+- [Schools, Students & Teachers](https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/): See the distribution, levels and types of schools on a map to compare local provision.
 - [Government Budget & Disbursement](https://montri-th.github.io/CityMETER/en/datasets/government-spending/): Compare budget allocations and recorded disbursements by area to prepare questions about public spending.
 - [Municipal Revenue](https://montri-th.github.io/CityMETER/en/datasets/municipal-revenue/): Compare local-government revenue over time to prepare better questions about public resources.
 - [Government Agencies & Workforce](https://montri-th.github.io/CityMETER/en/datasets/government-agencies-workforce/): Find agencies and service locations, then read agency-level workforce context to prepare coordination and service planning.

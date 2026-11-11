@@ -25,7 +25,7 @@
       "id": "location",
       "label": "Location",
       "thai": "ธุรกิจ ทำเล และการเข้าถึง",
-      "count": 14,
+      "count": 13,
       "description": "เห็นภูมิทัศน์ตลาด เครือข่ายธุรกิจ และบริบทการเดินทาง เพื่อวางกลยุทธ์ตลาดและเลือกพื้นที่ศึกษาความต้องการกับบริการที่มีอยู่",
       "summary": {
         "th": "ภาพตลาด เครือข่ายธุรกิจ และการเข้าถึง",
@@ -36,7 +36,7 @@
       "id": "living",
       "label": "Living",
       "thai": "ผู้คน บริการ และความเสี่ยง",
-      "count": 13,
+      "count": 14,
       "description": "อ่านประชากร บริการสาธารณะ ฐานะท้องถิ่น และสัญญาณภัย เพื่อจัดลำดับการวางแผนและการเฝ้าระวัง",
       "summary": {
         "th": "ผู้คน บริการภาครัฐ และสัญญาณภัย",
@@ -4005,124 +4005,6 @@
       }
     },
     {
-      "id": "schools-students-teachers",
-      "group": "location",
-      "title": {
-        "th": "โรงเรียน นักเรียน และครู",
-        "en": "Schools, Students & Teachers"
-      },
-      "description": {
-        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
-        "en": "See the distribution, levels and types of schools on a map to compare local provision."
-      },
-      "tags": [
-        "schools",
-        "student-teacher",
-        "distribution"
-      ],
-      "scope": {
-        "status": "partial",
-        "th": "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ",
-        "en": "A Thailand summary view is visible; source coverage is not stated"
-      },
-      "granularity": {
-        "status": "evidenced",
-        "th": "สถานศึกษา นักเรียน ครู และห้องเรียนตามรุ่นข้อมูล",
-        "en": "Schools, students, teachers and classrooms for the selected data version"
-      },
-      "limitation": {
-        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
-        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
-      },
-      "sourceReview": {
-        "status": "candidate",
-        "owner": {
-          "th": "กระทรวงศึกษาธิการ (candidate)",
-          "en": "Ministry of Education (candidate)"
-        },
-        "source": {
-          "th": "ข้อมูลเกี่ยวข้องกับทะเบียนสถานศึกษาของกระทรวงศึกษาธิการ แต่ยังต้องยืนยันรหัสโรงเรียน ชื่อ และปีข้อมูลให้ตรงกับรายการที่แสดง",
-          "en": "The data relates to Ministry of Education school records, but school codes, names and reference years still need to be matched to the displayed records."
-        },
-        "period": null,
-        "benefit": {
-          "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
-          "en": "See the distribution, levels and types of schools on a map to compare local provision."
-        },
-        "reading": {
-          "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
-          "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
-        },
-        "official": [],
-        "gd": [
-          {
-            "label": {
-              "th": "candidate บน GD Catalog",
-              "en": "GD Catalog candidate"
-            },
-            "url": "https://gdcatalog.go.th/dataset/gdpublish-dataset-15_43"
-          }
-        ],
-        "reviewedAt": "2026-10-10",
-        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
-      },
-      "slug": "schools-students-teachers",
-      "datasetCode": "school",
-      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
-      "preview": {
-        "available": true,
-        "path": "media/previews-v3/schools-students-teachers.webp",
-        "largePath": "media/previews-v2/schools-students-teachers.webp",
-        "conceptual": false,
-        "focusLabel": {
-          "th": "โรงเรียน · นักเรียน · ครู",
-          "en": "Schools · students · teachers"
-        }
-      },
-      "aliases": [
-        "โรงเรียน นักเรียน และครู",
-        "Schools, Students & Teachers",
-        "school",
-        "schools-students-teachers"
-      ],
-      "resourceClass": "Dataset",
-      "subgroup": "education",
-      "order": 1,
-      "executiveSummary": {
-        "editorialBasis": "catalog_description_and_source_review",
-        "lead": {
-          "th": "เห็นการกระจายตัวของสถานศึกษา พร้อมบริบทนักเรียน ครู และห้องเรียน เพื่อเริ่มวางแผนบริการการศึกษาในพื้นที่",
-          "en": "Explore where schools are located alongside student, teacher and classroom records when planning local education services."
-        },
-        "sectionTitle": {
-          "th": "เริ่มจากโรงเรียนที่มี แล้วค่อยดูโจทย์ของพื้นที่",
-          "en": "Start with the schools, then examine local needs"
-        },
-        "reading": {
-          "th": "แยกตามระดับชั้นและประเภทสถานศึกษาเพื่อให้การเปรียบเทียบตรงคำถาม จากนั้นอ่านจำนวนนักเรียน ครู และห้องเรียนร่วมกัน ช่วยเลือกโรงเรียนหรือพื้นที่ที่จะไปศึกษาเงื่อนไขการให้บริการต่อ",
-          "en": "Compare matching education levels and school types. Reading student, teacher and classroom figures together helps identify schools or areas where a closer look would be useful."
-        },
-        "note": {
-          "th": "ข้อมูลแต่ละรายการอาจครบไม่เท่ากัน และจำนวนครูหรือห้องเรียนไม่ได้บอกคุณภาพการสอนหรือที่นั่งว่างรับนักเรียน",
-          "en": "Record completeness varies. Teacher and classroom counts do not establish teaching quality or available places."
-        },
-        "questions": {
-          "th": [
-            "โรงเรียนระดับและประเภทที่สนใจกระจายอยู่ตรงไหน?",
-            "มีรายการใดควรสอบถามจำนวนนักเรียน ครู หรือห้องเรียนเพิ่ม?"
-          ],
-          "en": [
-            "Where are schools of the relevant level and type located?",
-            "Which student, teacher or classroom figures need follow-up?"
-          ]
-        },
-        "takeaway": {
-          "th": "เลือกกลุ่มโรงเรียนที่เทียบกันได้ แล้วตรวจปีและรายละเอียดกับสถานศึกษาก่อนวางแผน",
-          "en": "Choose comparable schools and confirm the year and details with them before planning."
-        }
-      }
-    },
-    {
       "id": "locale-insights",
       "group": "location",
       "title": {
@@ -4488,6 +4370,124 @@
         "takeaway": {
           "th": "เลือกเดือนและขอบเขตพื้นที่ให้ตรงกัน แล้วคุยกับผู้ให้บริการและชุมชนเพื่อเติมภาพการใช้งานจริง",
           "en": "Compare the same month and boundaries, then speak with service providers and communities about actual use."
+        }
+      }
+    },
+    {
+      "id": "schools-students-teachers",
+      "group": "living",
+      "title": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "description": {
+        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+        "en": "See the distribution, levels and types of schools on a map to compare local provision."
+      },
+      "tags": [
+        "schools",
+        "student-teacher",
+        "distribution"
+      ],
+      "scope": {
+        "status": "partial",
+        "th": "มีหน้าสรุประดับประเทศไทย แต่ขอบเขตข้อมูลต้นทางยังไม่ระบุ",
+        "en": "A Thailand summary view is visible; source coverage is not stated"
+      },
+      "granularity": {
+        "status": "evidenced",
+        "th": "สถานศึกษา นักเรียน ครู และห้องเรียนตามรุ่นข้อมูล",
+        "en": "Schools, students, teachers and classrooms for the selected data version"
+      },
+      "limitation": {
+        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
+      },
+      "sourceReview": {
+        "status": "candidate",
+        "owner": {
+          "th": "กระทรวงศึกษาธิการ (candidate)",
+          "en": "Ministry of Education (candidate)"
+        },
+        "source": {
+          "th": "ข้อมูลเกี่ยวข้องกับทะเบียนสถานศึกษาของกระทรวงศึกษาธิการ แต่ยังต้องยืนยันรหัสโรงเรียน ชื่อ และปีข้อมูลให้ตรงกับรายการที่แสดง",
+          "en": "The data relates to Ministry of Education school records, but school codes, names and reference years still need to be matched to the displayed records."
+        },
+        "period": null,
+        "benefit": {
+          "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+          "en": "See the distribution, levels and types of schools on a map to compare local provision."
+        },
+        "reading": {
+          "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+          "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
+        },
+        "official": [],
+        "gd": [
+          {
+            "label": {
+              "th": "candidate บน GD Catalog",
+              "en": "GD Catalog candidate"
+            },
+            "url": "https://gdcatalog.go.th/dataset/gdpublish-dataset-15_43"
+          }
+        ],
+        "reviewedAt": "2026-10-10",
+        "reviewScope": "Source identity and reference checks; current ingestion, completeness and rights are not established by this editorial date."
+      },
+      "slug": "schools-students-teachers",
+      "datasetCode": "school",
+      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
+      "preview": {
+        "available": true,
+        "path": "media/previews-v3/schools-students-teachers.webp",
+        "largePath": "media/previews-v2/schools-students-teachers.webp",
+        "conceptual": false,
+        "focusLabel": {
+          "th": "โรงเรียน · นักเรียน · ครู",
+          "en": "Schools · students · teachers"
+        }
+      },
+      "aliases": [
+        "โรงเรียน นักเรียน และครู",
+        "Schools, Students & Teachers",
+        "school",
+        "schools-students-teachers"
+      ],
+      "resourceClass": "Dataset",
+      "subgroup": "education",
+      "order": 1,
+      "executiveSummary": {
+        "editorialBasis": "catalog_description_and_source_review",
+        "lead": {
+          "th": "เห็นการกระจายตัวของสถานศึกษา พร้อมบริบทนักเรียน ครู และห้องเรียน เพื่อเริ่มวางแผนบริการการศึกษาในพื้นที่",
+          "en": "Explore where schools are located alongside student, teacher and classroom records when planning local education services."
+        },
+        "sectionTitle": {
+          "th": "เริ่มจากโรงเรียนที่มี แล้วค่อยดูโจทย์ของพื้นที่",
+          "en": "Start with the schools, then examine local needs"
+        },
+        "reading": {
+          "th": "แยกตามระดับชั้นและประเภทสถานศึกษาเพื่อให้การเปรียบเทียบตรงคำถาม จากนั้นอ่านจำนวนนักเรียน ครู และห้องเรียนร่วมกัน ช่วยเลือกโรงเรียนหรือพื้นที่ที่จะไปศึกษาเงื่อนไขการให้บริการต่อ",
+          "en": "Compare matching education levels and school types. Reading student, teacher and classroom figures together helps identify schools or areas where a closer look would be useful."
+        },
+        "note": {
+          "th": "ข้อมูลแต่ละรายการอาจครบไม่เท่ากัน และจำนวนครูหรือห้องเรียนไม่ได้บอกคุณภาพการสอนหรือที่นั่งว่างรับนักเรียน",
+          "en": "Record completeness varies. Teacher and classroom counts do not establish teaching quality or available places."
+        },
+        "questions": {
+          "th": [
+            "โรงเรียนระดับและประเภทที่สนใจกระจายอยู่ตรงไหน?",
+            "มีรายการใดควรสอบถามจำนวนนักเรียน ครู หรือห้องเรียนเพิ่ม?"
+          ],
+          "en": [
+            "Where are schools of the relevant level and type located?",
+            "Which student, teacher or classroom figures need follow-up?"
+          ]
+        },
+        "takeaway": {
+          "th": "เลือกกลุ่มโรงเรียนที่เทียบกันได้ แล้วตรวจปีและรายละเอียดกับสถานศึกษาก่อนวางแผน",
+          "en": "Choose comparable schools and confirm the year and details with them before planning."
         }
       }
     },
@@ -6140,23 +6140,13 @@
       "orderMode": "en_title_ascending"
     },
     {
-      "id": "education",
-      "group": "location",
-      "label": {
-        "th": "การศึกษา",
-        "en": "Education"
-      },
-      "order": 8,
-      "orderMode": "en_title_ascending"
-    },
-    {
       "id": "area-community-context",
       "group": "location",
       "label": {
         "th": "บริบทพื้นที่และสถานที่ชุมชน",
         "en": "Area & community context"
       },
-      "order": 9,
+      "order": 8,
       "orderMode": "en_title_ascending"
     },
     {
@@ -6170,13 +6160,23 @@
       "orderMode": "en_title_ascending"
     },
     {
+      "id": "education",
+      "group": "living",
+      "label": {
+        "th": "การศึกษา",
+        "en": "Education"
+      },
+      "order": 2,
+      "orderMode": "en_title_ascending"
+    },
+    {
       "id": "public-finance",
       "group": "living",
       "label": {
         "th": "การคลังภาครัฐและท้องถิ่น",
         "en": "Public finance"
       },
-      "order": 2,
+      "order": 3,
       "orderMode": "en_title_ascending"
     },
     {
@@ -6186,7 +6186,7 @@
         "th": "บริการภาครัฐ",
         "en": "Public service"
       },
-      "order": 3,
+      "order": 4,
       "orderMode": "en_title_ascending"
     },
     {
@@ -6196,7 +6196,7 @@
         "th": "น้ำท่วม",
         "en": "Flood"
       },
-      "order": 4,
+      "order": 5,
       "orderMode": "flood_lifecycle"
     },
     {
@@ -6206,7 +6206,7 @@
         "th": "ภัยและสัญญาณเฝ้าระวังอื่น",
         "en": "Other hazards"
       },
-      "order": 5,
+      "order": 6,
       "orderMode": "en_title_ascending"
     },
     {
@@ -6216,7 +6216,7 @@
         "th": "ผลกระทบจากภัยหลายประเภท",
         "en": "Multi-hazard"
       },
-      "order": 6,
+      "order": 7,
       "orderMode": "en_title_ascending"
     },
     {
@@ -6226,7 +6226,7 @@
         "th": "บันทึกเหตุการณ์ที่ผ่านมา",
         "en": "Event archive"
       },
-      "order": 7,
+      "order": 8,
       "orderMode": "en_title_ascending"
     }
   ],

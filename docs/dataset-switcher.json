@@ -33,8 +33,8 @@
   "scope": {
     "publicResourceCount": 43,
     "pillarCounts": {
-      "land": 13,
-      "location": 16,
+      "land": 16,
+      "location": 13,
       "living": 14
     },
     "excludedDatasetCodes": [
@@ -47,7 +47,7 @@
     {
       "id": "land",
       "label": "Land",
-      "expectedCount": 13,
+      "expectedCount": 16,
       "subgroups": [
         {
           "id": "built-form-terrain",
@@ -158,7 +158,7 @@
     {
       "id": "location",
       "label": "Location",
-      "expectedCount": 16,
+      "expectedCount": 13,
       "subgroups": [
         {
           "id": "business-registry",
@@ -249,18 +249,6 @@
           "order": 7
         },
         {
-          "id": "education",
-          "label": {
-            "th": "การศึกษา",
-            "en": "Education"
-          },
-          "orderMode": "en_title_ascending",
-          "recordIds": [
-            "schools-students-teachers"
-          ],
-          "order": 8
-        },
-        {
           "id": "area-community-context",
           "label": {
             "th": "บริบทพื้นที่และสถานที่ชุมชน",
@@ -271,7 +259,7 @@
             "locale-insights",
             "places-of-worship"
           ],
-          "order": 9
+          "order": 8
         }
       ]
     },
@@ -293,6 +281,18 @@
           "order": 1
         },
         {
+          "id": "education",
+          "label": {
+            "th": "การศึกษา",
+            "en": "Education"
+          },
+          "orderMode": "en_title_ascending",
+          "recordIds": [
+            "schools-students-teachers"
+          ],
+          "order": 2
+        },
+        {
           "id": "public-finance",
           "label": {
             "th": "การคลังภาครัฐและท้องถิ่น",
@@ -303,7 +303,7 @@
             "government-spending",
             "municipal-revenue"
           ],
-          "order": 2
+          "order": 3
         },
         {
           "id": "public-service",
@@ -315,7 +315,7 @@
           "recordIds": [
             "government-agencies-workforce"
           ],
-          "order": 3
+          "order": 4
         },
         {
           "id": "flood",
@@ -330,7 +330,7 @@
             "flood-forecast-depth",
             "flood-forecast-flash-flood-risk"
           ],
-          "order": 4
+          "order": 5
         },
         {
           "id": "other-hazards",
@@ -343,7 +343,7 @@
             "earthquake-sensors",
             "fire-monitoring"
           ],
-          "order": 5
+          "order": 6
         },
         {
           "id": "multi-hazard",
@@ -355,7 +355,7 @@
           "recordIds": [
             "disaster-historical-impacts"
           ],
-          "order": 6
+          "order": 7
         },
         {
           "id": "event-archive",
@@ -368,7 +368,7 @@
             "events/hat-yai-flood-2025-11",
             "events/quake-building-inspection"
           ],
-          "order": 7
+          "order": 8
         }
       ]
     }
@@ -1825,63 +1825,12 @@
       "guardrail": null
     },
     {
-      "id": "schools-students-teachers",
-      "datasetCode": "school",
-      "pillar": "location",
-      "pillarOrder": 2,
-      "subgroup": "education",
-      "subgroupOrder": 8,
-      "recordOrder": 1,
-      "currentTitle": {
-        "th": "โรงเรียน นักเรียน และครู",
-        "en": "Schools, Students & Teachers"
-      },
-      "canonicalOrder": 28,
-      "slug": "schools-students-teachers",
-      "title": {
-        "th": "โรงเรียน นักเรียน และครู",
-        "en": "Schools, Students & Teachers"
-      },
-      "menuLabel": {
-        "th": "โรงเรียน นักเรียน และครู",
-        "en": "Schools, Students & Teachers"
-      },
-      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
-      "detailUrl": {
-        "th": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
-        "en": "https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/"
-      },
-      "aliases": [
-        "โรงเรียน นักเรียน และครู",
-        "Schools, Students & Teachers",
-        "school",
-        "schools-students-teachers"
-      ],
-      "description": {
-        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
-        "en": "See the distribution, levels and types of schools on a map to compare local provision."
-      },
-      "limitation": {
-        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
-        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
-      },
-      "period": null,
-      "sourceOwner": {
-        "th": "กระทรวงศึกษาธิการ (candidate)",
-        "en": "Ministry of Education (candidate)"
-      },
-      "resourceClass": "Dataset",
-      "semanticKind": null,
-      "semanticLabel": null,
-      "guardrail": null
-    },
-    {
       "id": "locale-insights",
       "datasetCode": "localeInsights",
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "area-community-context",
-      "subgroupOrder": 9,
+      "subgroupOrder": 8,
       "recordOrder": 1,
       "currentTitle": {
         "th": "Locale Insights: บริบทย่าน",
@@ -1935,7 +1884,7 @@
       "pillar": "location",
       "pillarOrder": 2,
       "subgroup": "area-community-context",
-      "subgroupOrder": 9,
+      "subgroupOrder": 8,
       "recordOrder": 2,
       "currentTitle": {
         "th": "ศาสนสถานในพื้นที่",
@@ -2039,12 +1988,63 @@
       "guardrail": null
     },
     {
+      "id": "schools-students-teachers",
+      "datasetCode": "school",
+      "pillar": "living",
+      "pillarOrder": 3,
+      "subgroup": "education",
+      "subgroupOrder": 2,
+      "recordOrder": 1,
+      "currentTitle": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "canonicalOrder": 28,
+      "slug": "schools-students-teachers",
+      "title": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "menuLabel": {
+        "th": "โรงเรียน นักเรียน และครู",
+        "en": "Schools, Students & Teachers"
+      },
+      "mapUrl": "https://landometer.com/v3/citymeter?d=school",
+      "detailUrl": {
+        "th": "https://montri-th.github.io/CityMETER/datasets/schools-students-teachers/",
+        "en": "https://montri-th.github.io/CityMETER/en/datasets/schools-students-teachers/"
+      },
+      "aliases": [
+        "โรงเรียน นักเรียน และครู",
+        "Schools, Students & Teachers",
+        "school",
+        "schools-students-teachers"
+      ],
+      "description": {
+        "th": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+        "en": "See the distribution, levels and types of schools on a map to compare local provision."
+      },
+      "limitation": {
+        "th": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+        "en": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places."
+      },
+      "period": null,
+      "sourceOwner": {
+        "th": "กระทรวงศึกษาธิการ (candidate)",
+        "en": "Ministry of Education (candidate)"
+      },
+      "resourceClass": "Dataset",
+      "semanticKind": null,
+      "semanticLabel": null,
+      "guardrail": null
+    },
+    {
       "id": "government-spending",
       "datasetCode": "govspending",
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "public-finance",
-      "subgroupOrder": 2,
+      "subgroupOrder": 3,
       "recordOrder": 1,
       "currentTitle": {
         "th": "งบประมาณและการเบิกจ่ายภาครัฐ",
@@ -2102,7 +2102,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "public-finance",
-      "subgroupOrder": 2,
+      "subgroupOrder": 3,
       "recordOrder": 2,
       "currentTitle": {
         "th": "รายได้องค์กรปกครองส่วนท้องถิ่น",
@@ -2156,7 +2156,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "public-service",
-      "subgroupOrder": 3,
+      "subgroupOrder": 4,
       "recordOrder": 1,
       "currentTitle": {
         "th": "หน่วยงานรัฐและบุคลากร",
@@ -2207,7 +2207,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "flood",
-      "subgroupOrder": 4,
+      "subgroupOrder": 5,
       "recordOrder": 1,
       "currentTitle": {
         "th": "น้ำท่วมซ้ำซาก",
@@ -2261,7 +2261,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "flood",
-      "subgroupOrder": 4,
+      "subgroupOrder": 5,
       "recordOrder": 2,
       "currentTitle": {
         "th": "น้ำท่วมที่ตรวจพบล่าสุด",
@@ -2315,7 +2315,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "flood",
-      "subgroupOrder": 4,
+      "subgroupOrder": 5,
       "recordOrder": 3,
       "currentTitle": {
         "th": "คาดการณ์ความลึกน้ำท่วมโดยกรมทรัพยากรน้ำ",
@@ -2368,7 +2368,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "flood",
-      "subgroupOrder": 4,
+      "subgroupOrder": 5,
       "recordOrder": 4,
       "currentTitle": {
         "th": "น้ำท่วมฉับพลัน: ความเสี่ยง 24 ชั่วโมงโดย Google",
@@ -2422,7 +2422,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "other-hazards",
-      "subgroupOrder": 5,
+      "subgroupOrder": 6,
       "recordOrder": 1,
       "currentTitle": {
         "th": "เครือข่ายเซนเซอร์แผ่นดินไหว",
@@ -2473,7 +2473,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "other-hazards",
-      "subgroupOrder": 5,
+      "subgroupOrder": 6,
       "recordOrder": 2,
       "currentTitle": {
         "th": "การติดตามสถานการณ์ไฟ",
@@ -2524,7 +2524,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "multi-hazard",
-      "subgroupOrder": 6,
+      "subgroupOrder": 7,
       "recordOrder": 1,
       "currentTitle": {
         "th": "ผลกระทบจากสาธารณภัยในอดีต",
@@ -2581,7 +2581,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "event-archive",
-      "subgroupOrder": 7,
+      "subgroupOrder": 8,
       "recordOrder": 1,
       "currentTitle": {
         "th": "รายงานน้ำท่วมหาดใหญ่ 24–27 พ.ย. 2568",
@@ -2635,7 +2635,7 @@
       "pillar": "living",
       "pillarOrder": 3,
       "subgroup": "event-archive",
-      "subgroupOrder": 7,
+      "subgroupOrder": 8,
       "recordOrder": 2,
       "currentTitle": {
         "th": "QuakeSafe: สถานะการตรวจสอบอาคาร",
@@ -3435,7 +3435,7 @@
     },
     {
       "id": "SW-07",
-      "scenario": "All 43 IDs appear once; counts 16/14/13; hidden businessDynamics absent in search, list and counts. Two archives count as catalog resources, not new data feeds.",
+      "scenario": "All 43 IDs appear once; counts 16/13/14; hidden businessDynamics absent in search, list and counts. Two archives count as catalog resources, not new data feeds.",
       "status": "requires_implementation_or_visual_check"
     },
     {
@@ -3473,7 +3473,7 @@
     "reducedMotion": "No OS-level reduced-motion test is claimed for this proposal. Catalog runtime VM fixtures do not verify this separate chooser prototype."
   },
   "taxonomyRevision": {
-    "date": "2026-11-09",
-    "note": "Hotel, Office and Shopping Centres moved to Land (subgroup Commercial property, which moved with them) and School to Location (subgroup Education), as the dataset registry R01_DATASETS groups them (owner: “ใช้ตามทะเบียนทั้งหมด”); counts 16/14/13."
+    "date": "2026-11-12",
+    "note": "Hotel, Office and Shopping Centres moved to Land (subgroup Commercial property, which moved with them) and School to Location (subgroup Education), as the dataset registry R01_DATASETS groups them (owner: “ใช้ตามทะเบียนทั้งหมด”); counts 16/14/13. On 2026-11-12 School (subgroup Education) moved from Location to Living, as the registry groups it since the owner's change of that day (CHANGE-LIVING-HEALTH-EDUCATION-20261112-01); counts 16/13/14."
   }
 }

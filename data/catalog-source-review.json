@@ -739,30 +739,6 @@
       "conceptualPreview": false
     },
     {
-      "id": "dataset-schools-students-teachers",
-      "citymeterUrl": "https://landometer.com/v3/citymeter?d=school",
-      "status": "candidate",
-      "ownerTh": "กระทรวงศึกษาธิการ (candidate)",
-      "ownerEn": "Ministry of Education (candidate)",
-      "sourceTh": "ข้อมูลเกี่ยวข้องกับทะเบียนสถานศึกษาของกระทรวงศึกษาธิการ แต่ยังต้องยืนยันรหัสโรงเรียน ชื่อ และปีข้อมูลให้ตรงกับรายการที่แสดง",
-      "sourceEn": "The data relates to Ministry of Education school records, but school codes, names and reference years still need to be matched to the displayed records.",
-      "periodTh": null,
-      "periodEn": null,
-      "benefitTh": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
-      "benefitEn": "See the distribution, levels and types of schools on a map to compare local provision.",
-      "readingTh": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
-      "readingEn": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places.",
-      "official": [],
-      "gd": [
-        {
-          "labelTh": "candidate บน GD Catalog",
-          "labelEn": "GD Catalog candidate",
-          "url": "https://gdcatalog.go.th/dataset/gdpublish-dataset-15_43"
-        }
-      ],
-      "conceptualPreview": false
-    },
-    {
       "id": "dataset-locale-insights",
       "citymeterUrl": "https://landometer.com/v3/citymeter/BKK?d=localeInsights",
       "status": "derived",
@@ -824,6 +800,30 @@
           "labelTh": "GD Catalog",
           "labelEn": "GD Catalog",
           "url": "https://gdcatalog.go.th/dataset/gdpublish-statbyagemonth-66"
+        }
+      ],
+      "conceptualPreview": false
+    },
+    {
+      "id": "dataset-schools-students-teachers",
+      "citymeterUrl": "https://landometer.com/v3/citymeter?d=school",
+      "status": "candidate",
+      "ownerTh": "กระทรวงศึกษาธิการ (candidate)",
+      "ownerEn": "Ministry of Education (candidate)",
+      "sourceTh": "ข้อมูลเกี่ยวข้องกับทะเบียนสถานศึกษาของกระทรวงศึกษาธิการ แต่ยังต้องยืนยันรหัสโรงเรียน ชื่อ และปีข้อมูลให้ตรงกับรายการที่แสดง",
+      "sourceEn": "The data relates to Ministry of Education school records, but school codes, names and reference years still need to be matched to the displayed records.",
+      "periodTh": null,
+      "periodEn": null,
+      "benefitTh": "เปลี่ยนข้อมูลสถานศึกษา ให้เป็นแผนที่วิเคราะห์การกระจายตัวของโรงเรียน ที่ช่วยให้เห็นความหนาแน่น ระดับชั้น และประเภทของสถานศึกษาในแต่ละพื้นที่ได้ชัดเจนขึ้น",
+      "benefitEn": "See the distribution, levels and types of schools on a map to compare local provision.",
+      "readingTh": "จำนวนนักเรียน ครู ห้องเรียน และอัตราส่วนอาจมีความครบถ้วนต่างกัน ให้ตรวจวิธีเฉลี่ยก่อนเทียบพื้นที่ ตัวเลขเหล่านี้ไม่ใช่คุณภาพโรงเรียนหรือที่นั่งว่าง",
+      "readingEn": "Student, teacher, classroom and ratio coverage may differ. Check the averaging method before comparison; these measures are not school quality or spare places.",
+      "official": [],
+      "gd": [
+        {
+          "labelTh": "candidate บน GD Catalog",
+          "labelEn": "GD Catalog candidate",
+          "url": "https://gdcatalog.go.th/dataset/gdpublish-dataset-15_43"
         }
       ],
       "conceptualPreview": false

@@ -48,8 +48,8 @@ test("43 unique public records and 3 peer groups", () => {
     catalog.groups.map((g) => [g.id, g.count]),
     [
       ["land", 16],
-      ["location", 14],
-      ["living", 13],
+      ["location", 13],
+      ["living", 14],
     ],
   );
   for (const g of catalog.groups)
