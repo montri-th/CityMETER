@@ -88,7 +88,7 @@ const copy = {
       `Every demo runs the same bytes of the shared code ${hub.shell.name} ${hub.shell.version}; the list and groups on this page match the dataset picker in the demos' header (${hub.shell.list}).`,
       "Demo address: d (dataset code) · at (area, e.g. BKK/D/1039, which is /v3/citymeter/BKK/D/1039 in production) · e (the thing open) · n (a network) · f.* (filters) · focus · view · v3d · cam.",
       hub.catalogDiffers.length
-        ? `Land · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}), which differs from this catalog's lenses for ${hub.catalogDiffers.length} datasets: ${hub.catalogDiffers.map((d) => `${d.name} (catalog: ${d.catalog})`).join(" · ")}.`
+        ? `Land · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}), which differs from this catalog's lenses for ${hub.catalogDiffers.length} dataset${hub.catalogDiffers.length === 1 ? "" : "s"}: ${hub.catalogDiffers.map((d) => `${d.name} (catalog: ${d.catalog})`).join(" · ")}.`
         : `Land · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}), as this catalog's lenses do for every demo with a catalog page.`,
       "Each question is quoted from the demo page's meta description (Thai); the English line under it is a draft.",
       "Search engines do not index the demos or this page (noindex).",

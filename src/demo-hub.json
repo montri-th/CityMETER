@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "readAt": "2026-11-10",
+  "readAt": "2026-11-12",
   "origin": "https://montri-th.github.io",
   "shell": {
     "name": "citymeter-shell",
-    "version": "0.5.4",
+    "version": "0.6.0",
     "list": "js/shell/datasets.js",
-    "sha256": "067d621af042774b5071a3541ec623973edab66005ef1b33029b241b7688aaab",
+    "sha256": "3793404075d7af8a8e3031468dea6fbeb5681a45ca6c1b62e67d06415ec7c7c3",
     "demos": 15
   },
   "registry": {
@@ -15,18 +15,18 @@
       "dataset_group",
       "demo_web_url"
     ],
-    "readAt": "2026-11-08",
-    "readAtTh": "8 พ.ย. 2569"
+    "readAt": "2026-11-12",
+    "readAtTh": "12 พ.ย. 2569"
   },
   "sources": {
-    "list": "citymeter-shell 0.5.1 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
-    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-08",
+    "list": "citymeter-shell 0.6.0 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
+    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-12: Hospital and School are Living since the owner's decision of that day (registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08); the other thirteen groups read the same as on 2026-11-08 and 2026-11-10",
     "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness has no code in the registry yet",
     "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft",
     "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09",
     "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1); School since 0.5.0, Government Office since 0.7.0 and Factory since 0.5.0 (citymeter-shell 0.5.2); Pharmacy since 0.3.0 and Restaurants since 0.11.0 (citymeter-shell 0.5.3); Industrial Estate since its release 1.0.0 (citymeter-shell 0.5.4)",
     "pages": "a demo kept inside another demo's repository has its own path on GitHub Pages (`pages`): Industrial Estate lives in the factory repository at factory/industrialestate/ (citymeter-shell 0.5.4)",
-    "groupsEstate": "Industrial Estate: registry research.TH.industrial_estates, group Land, read 2026-11-10"
+    "groupsEstate": "Industrial Estate: registry research.TH.industrial_estates, group Land, read 2026-11-10 and again 2026-11-12"
   },
   "areas": [
     {
@@ -197,26 +197,6 @@
       "catalog": "grocery"
     },
     {
-      "path": "hospital",
-      "name": "Hospital",
-      "group": "Location",
-      "code": "hospital",
-      "languages": [
-        "th",
-        "en"
-      ],
-      "question": {
-        "th": "เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน"
-      },
-      "questionDraft": {
-        "en": "Where are healthcare beds concentrated, and how close are they to rail transit?"
-      },
-      "summary": {
-        "th": "แผนที่ 3 มิติของสถานพยาบาลทั่วประเทศ รายเขต/อำเภอ สังกัด มาตรฐาน ราคาแล็บ และคู่เทียบ"
-      },
-      "catalog": null
-    },
-    {
       "path": "luxurybrands",
       "name": "Luxury Brands",
       "group": "Location",
@@ -273,26 +253,6 @@
       "catalog": "restaurant"
     },
     {
-      "path": "school",
-      "name": "School",
-      "group": "Location",
-      "code": "school",
-      "languages": [
-        "th",
-        "en"
-      ],
-      "question": {
-        "th": "นักเรียนกระจุกอยู่ตรงไหน และรอบแปลงมีโรงเรียนแบบไหน"
-      },
-      "questionDraft": {
-        "en": "Where are students concentrated, and what kinds of schools are around a plot?"
-      },
-      "summary": {
-        "th": "แผนที่ 3 มิติของสถานศึกษาทั่วประเทศ รายเขต/อำเภอ สังกัด ค่าเรียน และคู่เทียบรอบ 2 กม."
-      },
-      "catalog": "school"
-    },
-    {
       "path": "governmentoffice",
       "name": "Government Office",
       "group": "Living",
@@ -311,6 +271,46 @@
         "th": "แผนที่ 3 มิติของทุกจุดในชุดข้อมูลหน่วยงานรัฐของ CityMETER ทั่วประเทศ รายเขต/อำเภอ หมวด ประเภท บุคลากรที่บันทึก และสำนักงานที่ย้ายหรือเปิดใหม่"
       },
       "catalog": "governmentOfficer"
+    },
+    {
+      "path": "hospital",
+      "name": "Hospital",
+      "group": "Living",
+      "code": "hospital",
+      "languages": [
+        "th",
+        "en"
+      ],
+      "question": {
+        "th": "เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน"
+      },
+      "questionDraft": {
+        "en": "Where are healthcare beds concentrated, and how close are they to rail transit?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของสถานพยาบาลทั่วประเทศ รายเขต/อำเภอ สังกัด มาตรฐาน ราคาแล็บ และคู่เทียบ"
+      },
+      "catalog": null
+    },
+    {
+      "path": "school",
+      "name": "School",
+      "group": "Living",
+      "code": "school",
+      "languages": [
+        "th",
+        "en"
+      ],
+      "question": {
+        "th": "นักเรียนกระจุกอยู่ตรงไหน และรอบแปลงมีโรงเรียนแบบไหน"
+      },
+      "questionDraft": {
+        "en": "Where are students concentrated, and what kinds of schools are around a plot?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของสถานศึกษาทั่วประเทศ รายเขต/อำเภอ สังกัด ค่าเรียน และคู่เทียบรอบ 2 กม."
+      },
+      "catalog": "school"
     },
     {
       "path": "transit",
