@@ -1,6 +1,6 @@
 # CityMETER demos
 
-Prototype web apps on GitHub Pages, one per dataset, 15 in all. They are noindex, nofollow and in Thai, except that Hotel, Industrial Estate, Office, Factory, Hospital, Pharmacy, Restaurants, School and Government Office also read in English (a draft translation) with `?lang=en`; they are not the production CityMETER. Every demo runs the same bytes of citymeter-shell 0.5.4.
+Prototype web apps on GitHub Pages, one per dataset, 15 in all. They are noindex, nofollow and in Thai, except that Hotel, Industrial Estate, Office, Factory, Pharmacy, Restaurants, Government Office, Hospital and School also read in English (a draft translation) with `?lang=en`; they are not the production CityMETER. Every demo runs the same bytes of citymeter-shell 0.6.0.
 
 - [Thai hub](https://montri-th.github.io/CityMETER/demos/)
 - [English hub](https://montri-th.github.io/CityMETER/en/demos/)
@@ -18,13 +18,13 @@ The address is the production grammar: `d` dataset code, `at` area (a production
 - [Factory](https://montri-th.github.io/factory/) · Location · code `factory` · [in English](https://montri-th.github.io/factory/?lang=en): คนงานโรงงานกระจุกอยู่ตรงไหน และทำงานในอุตสาหกรรมอะไร (draft English: Where are factory workers concentrated, and in which industries do they work?)
 - [Fitness](https://montri-th.github.io/fitness/) · Location · code none in the registry yet: สาขาฟิตเนสกระจุกอยู่ตรงไหน และเป็นฟิตเนสแบบไหน (draft English: Where are fitness branches concentrated, and what kind of fitness are they?)
 - [Grocery](https://montri-th.github.io/grocery/) · Location · code `grocery`: ร้านกระจุกที่ไหนเมื่อเทียบกับคน (draft English: Where do stores cluster compared with where people are?)
-- [Hospital](https://montri-th.github.io/hospital/) · Location · code `hospital` · [in English](https://montri-th.github.io/hospital/?lang=en): เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are healthcare beds concentrated, and how close are they to rail transit?)
 - [Luxury Brands](https://montri-th.github.io/luxurybrands/) · Location · code `luxuryBrands`: ถ้าจะเปิดร้านที่นี่ จะอยู่ข้างใคร (draft English: If you open a store here, who are your neighbours?)
 - [Pharmacy](https://montri-th.github.io/pharmacy/) · Location · code `pharmacy` · [in English](https://montri-th.github.io/pharmacy/?lang=en): ร้านยาแน่นที่สุดอยู่ตรงไหน และเป็นร้านแบบไหน (draft English: Where are pharmacies densest, and what kind of pharmacy are they?)
 - [Restaurants](https://montri-th.github.io/restaurant/) · Location · code `restaurant` · [in English](https://montri-th.github.io/restaurant/?lang=en): ร้านอาหารและเครื่องดื่มแน่นที่สุดอยู่ตรงไหน เป็นร้านแบบไหน และเครือไหนอยู่แล้ว (draft English: Where are restaurants and drink places densest, what kind are they, and which chains are already there?)
-- [School](https://montri-th.github.io/school/) · Location · code `school` · [in English](https://montri-th.github.io/school/?lang=en): นักเรียนกระจุกอยู่ตรงไหน และรอบแปลงมีโรงเรียนแบบไหน (draft English: Where are students concentrated, and what kinds of schools are around a plot?)
 - [Government Office](https://montri-th.github.io/governmentoffice/) · Living · code `governmentOfficer` · [in English](https://montri-th.github.io/governmentoffice/?lang=en): หน่วยงานรัฐกระจุกอยู่ตรงไหน และรอบแปลงมีบริการรัฐอะไรใกล้ที่สุด (draft English: Where are government agencies concentrated, and which public services are nearest to a plot?)
+- [Hospital](https://montri-th.github.io/hospital/) · Living · code `hospital` · [in English](https://montri-th.github.io/hospital/?lang=en): เตียงสถานพยาบาลกระจุกอยู่ตรงไหน และใกล้รถไฟฟ้าแค่ไหน (draft English: Where are healthcare beds concentrated, and how close are they to rail transit?)
+- [School](https://montri-th.github.io/school/) · Living · code `school` · [in English](https://montri-th.github.io/school/?lang=en): นักเรียนกระจุกอยู่ตรงไหน และรอบแปลงมีโรงเรียนแบบไหน (draft English: Where are students concentrated, and what kinds of schools are around a plot?)
 - [Transit](https://montri-th.github.io/transit/) · Living · code `transit`: ทำเลนี้ไปถึงด้วยระบบรางได้แค่ไหน (draft English: How well can rail transit reach this location?)
 
 ## Groups
-Land · Location · Living follow the dataset registry (R01_DATASETS, read 2026-11-08); this catalog uses the same lenses for every demo with a catalog page.
+Land · Location · Living follow the dataset registry (R01_DATASETS, read 2026-11-12); this catalog files some of the same datasets under other lenses: School (catalog: Location).
