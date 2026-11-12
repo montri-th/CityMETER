@@ -1,6 +1,6 @@
 # CityMETER demos
 
-Prototype web apps on GitHub Pages, one per dataset, 16 in all. They are noindex, nofollow and in Thai, except that Hotel, Industrial Estate, Office, Factory, Pharmacy, Restaurants, Government Office, Hospital, School and University also read in English (a draft translation) with `?lang=en`; they are not the production CityMETER. Every demo runs the same bytes of citymeter-shell 0.6.0 (except: University runs 0.6.1, which is 0.6.0 with University in the dataset picker; the other demos list University in their picker once they take 0.6.1.).
+Prototype web apps on GitHub Pages, one per dataset, 16 in all. They are noindex, nofollow and in Thai, except that Hotel, Industrial Estate, Office, Factory, Pharmacy, Restaurants, Government Office, Hospital, School and University also read in English (a draft translation) with `?lang=en`; they are not the production CityMETER. Every demo runs the same bytes of citymeter-shell 0.6.1.
 
 - [Thai hub](https://montri-th.github.io/CityMETER/demos/)
 - [English hub](https://montri-th.github.io/CityMETER/en/demos/)
