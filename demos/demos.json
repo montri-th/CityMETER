@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "readAt": "2026-11-12",
+  "readAt": "2026-11-13",
   "robots": "noindex, nofollow",
   "pages": {
     "th": "https://montri-th.github.io/CityMETER/demos/",
@@ -8,16 +8,10 @@
   },
   "shell": {
     "name": "citymeter-shell",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "list": "js/shell/datasets.js",
-    "sha256": "3793404075d7af8a8e3031468dea6fbeb5681a45ca6c1b62e67d06415ec7c7c3",
-    "demos": 16,
-    "except": {
-      "path": "university",
-      "version": "0.6.1",
-      "th": "University ใช้ 0.6.1 คือ 0.6.0 ที่เพิ่ม University ในตัวเลือกชุดข้อมูล เดโมอื่นจะมี University ในตัวเลือกเมื่อรับ 0.6.1",
-      "en": "University runs 0.6.1, which is 0.6.0 with University in the dataset picker; the other demos list University in their picker once they take 0.6.1."
-    }
+    "sha256": "4250cbcde7190ad1822a73e1e0847ce78968a39199a2e0b042647f7c0dc9821c",
+    "demos": 16
   },
   "registry": {
     "tab": "R01_DATASETS",
@@ -29,7 +23,7 @@
     "readAtTh": "12 พ.ย. 2569"
   },
   "sources": {
-    "list": "citymeter-shell 0.6.0 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
+    "list": "citymeter-shell 0.6.1 js/shell/datasets.js, the dataset picker in every demo header: path, name and group; every demo on 0.6.1 since 2026-11-13 (University since 2026-11-12)",
     "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-12: Hospital and School are Living since the owner's decision of that day (registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08); the other thirteen groups read the same as on 2026-11-08 and 2026-11-10; University (research.TH.university) is Living and has a demo since 2026-11-12",
     "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness and University have no code in the registry yet",
     "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft; University's read 2026-11-12",
