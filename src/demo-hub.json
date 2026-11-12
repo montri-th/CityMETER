@@ -7,7 +7,13 @@
     "version": "0.6.0",
     "list": "js/shell/datasets.js",
     "sha256": "3793404075d7af8a8e3031468dea6fbeb5681a45ca6c1b62e67d06415ec7c7c3",
-    "demos": 15
+    "demos": 16,
+    "except": {
+      "path": "university",
+      "version": "0.6.1",
+      "th": "University ใช้ 0.6.1 คือ 0.6.0 ที่เพิ่ม University ในตัวเลือกชุดข้อมูล เดโมอื่นจะมี University ในตัวเลือกเมื่อรับ 0.6.1",
+      "en": "University runs 0.6.1, which is 0.6.0 with University in the dataset picker; the other demos list University in their picker once they take 0.6.1."
+    }
   },
   "registry": {
     "tab": "R01_DATASETS",
@@ -20,11 +26,11 @@
   },
   "sources": {
     "list": "citymeter-shell 0.6.0 js/shell/datasets.js, the dataset picker in every demo header: path, name and group",
-    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-12: Hospital and School are Living since the owner's decision of that day (registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08); the other thirteen groups read the same as on 2026-11-08 and 2026-11-10",
-    "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness has no code in the registry yet",
-    "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft",
+    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-12: Hospital and School are Living since the owner's decision of that day (registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08); the other thirteen groups read the same as on 2026-11-08 and 2026-11-10; University (research.TH.university) is Living and has a demo since 2026-11-12",
+    "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness and University have no code in the registry yet",
+    "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft; University's read 2026-11-12",
     "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09",
-    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1); School since 0.5.0, Government Office since 0.7.0 and Factory since 0.5.0 (citymeter-shell 0.5.2); Pharmacy since 0.3.0 and Restaurants since 0.11.0 (citymeter-shell 0.5.3); Industrial Estate since its release 1.0.0 (citymeter-shell 0.5.4)",
+    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1); School since 0.5.0, Government Office since 0.7.0 and Factory since 0.5.0 (citymeter-shell 0.5.2); Pharmacy since 0.3.0 and Restaurants since 0.11.0 (citymeter-shell 0.5.3); Industrial Estate since its release 1.0.0 (citymeter-shell 0.5.4); University since its release 0.1.0 (citymeter-shell 0.6.1)",
     "pages": "a demo kept inside another demo's repository has its own path on GitHub Pages (`pages`): Industrial Estate lives in the factory repository at factory/industrialestate/ (citymeter-shell 0.5.4)",
     "groupsEstate": "Industrial Estate: registry research.TH.industrial_estates, group Land, read 2026-11-10 and again 2026-11-12"
   },
@@ -325,6 +331,26 @@
       },
       "summary": {
         "th": "แผนที่ 3 มิติของระบบขนส่งสาธารณะในไทย: สายราง สถานี จุดเปลี่ยนสาย สายที่กำลังก่อสร้าง และอาคารของสถานีใหญ่ พร้อมหลักฐานทุกรายการ"
+      },
+      "catalog": null
+    },
+    {
+      "path": "university",
+      "name": "University",
+      "group": "Living",
+      "code": null,
+      "languages": [
+        "th",
+        "en"
+      ],
+      "question": {
+        "th": "นักศึกษากระจุกอยู่จังหวัดไหน และรอบแปลงมีวิทยาเขตแบบไหน"
+      },
+      "questionDraft": {
+        "en": "Which provinces hold the students, and what kind of campus is near a site?"
+      },
+      "summary": {
+        "th": "แผนที่ 3 มิติของมหาวิทยาลัยทั่วประเทศ นักศึกษาตามแฟ้ม อว. รายจังหวัด วิทยาเขต คณะ หลักสูตร และค่าธรรมเนียม"
       },
       "catalog": null
     }

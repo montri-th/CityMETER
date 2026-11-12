@@ -6,7 +6,7 @@ CityMETER brings 43 public data views into three peer lenses: Land, Location and
 - [English catalog](https://montri-th.github.io/CityMETER/en/)
 - [Structured catalog](https://montri-th.github.io/CityMETER/data/catalog.json): bilingual descriptions, source references, unknowns, map start URLs and public contributors.
 - [Public contributor projection](https://montri-th.github.io/Landom/data/generated/citymeter-contributors.json)
-- [CityMETER demos](https://montri-th.github.io/CityMETER/demos/llms.txt): 15 prototype web apps on GitHub Pages, one per dataset, noindex and in Thai, sharing one area address.
+- [CityMETER demos](https://montri-th.github.io/CityMETER/demos/llms.txt): 16 prototype web apps on GitHub Pages, one per dataset, noindex and in Thai, sharing one area address.
 
 ## Interpretation
 Observed branch or registration shares describe their selected records, not sales, revenue or the whole market. Demand proxies are not observed demand. Locale Insight is a contextual prior for planning and validation, not official population, eligibility, legal boundary, risk or observed behaviour. Missing data is not zero. Historical event archives are CreativeWork records; they are not live incident feeds. Source-review dates are editorial checks, not ingestion timestamps, freshness guarantees or data licences.
