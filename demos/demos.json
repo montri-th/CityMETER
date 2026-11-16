@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "readAt": "2026-11-13",
+  "readAt": "2026-11-16",
   "robots": "noindex, nofollow",
   "pages": {
     "th": "https://montri-th.github.io/CityMETER/demos/",
@@ -8,10 +8,10 @@
   },
   "shell": {
     "name": "citymeter-shell",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "list": "js/shell/datasets.js",
-    "sha256": "4250cbcde7190ad1822a73e1e0847ce78968a39199a2e0b042647f7c0dc9821c",
-    "demos": 16
+    "sha256": "e70c90b910e4b7d459f3805efa2dc5af24843def26982e3eb5fb27ed04ef9756",
+    "demos": 17
   },
   "registry": {
     "tab": "R01_DATASETS",
@@ -19,18 +19,22 @@
       "dataset_group",
       "demo_web_url"
     ],
-    "readAt": "2026-11-12",
-    "readAtTh": "12 พ.ย. 2569"
+    "readAt": "2026-11-16",
+    "readAtTh": "16 พ.ย. 2569",
+    "except": {
+      "th": "Commercial District อยู่กลุ่ม Location ตามคำขอของเจ้าของ (16 พ.ย. 2569) และยังไม่มีแถวในทะเบียน",
+      "en": "Commercial District is in Location by the owner's request of 2026-11-16 and has no row in the registry yet."
+    }
   },
   "sources": {
-    "list": "citymeter-shell 0.6.1 js/shell/datasets.js, the dataset picker in every demo header: path, name and group; every demo on 0.6.1 since 2026-11-13 (University since 2026-11-12)",
-    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-12: Hospital and School are Living since the owner's decision of that day (registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08); the other thirteen groups read the same as on 2026-11-08 and 2026-11-10; University (research.TH.university) is Living and has a demo since 2026-11-12",
-    "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness and University have no code in the registry yet",
-    "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft; University's read 2026-11-12",
+    "list": "citymeter-shell 0.6.2 js/shell/datasets.js, the dataset picker in every demo header: path, name and group; every demo on 0.6.2 since 2026-11-16 (0.6.2 adds Commercial District to 0.6.1's list)",
+    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-16: the sixteen registry demos read the same groups as on 2026-11-12 (Hospital and School are Living since the owner's decision of 2026-11-12, registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08; University, research.TH.university, is Living and has a demo since 2026-11-12); Commercial District (the central neighbourhood registry) is Location by the owner's request of 2026-11-16 and has no registry row in that reading",
+    "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness, University and Commercial District have no code in the registry yet",
+    "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft; University's read 2026-11-12; Commercial District's read 2026-11-16",
     "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09",
-    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1); School since 0.5.0, Government Office since 0.7.0 and Factory since 0.5.0 (citymeter-shell 0.5.2); Pharmacy since 0.3.0 and Restaurants since 0.11.0 (citymeter-shell 0.5.3); Industrial Estate since its release 1.0.0 (citymeter-shell 0.5.4); University since its release 0.1.0 (citymeter-shell 0.6.1)",
+    "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1); School since 0.5.0, Government Office since 0.7.0 and Factory since 0.5.0 (citymeter-shell 0.5.2); Pharmacy since 0.3.0 and Restaurants since 0.11.0 (citymeter-shell 0.5.3); Industrial Estate since its release 1.0.0 (citymeter-shell 0.5.4); University since its release 0.1.0 (citymeter-shell 0.6.1); Commercial District since its release 0.1.0 (citymeter-shell 0.6.2)",
     "pages": "a demo kept inside another demo's repository has its own path on GitHub Pages (`pages`): Industrial Estate lives in the factory repository at factory/industrialestate/ (citymeter-shell 0.5.4)",
-    "groupsEstate": "Industrial Estate: registry research.TH.industrial_estates, group Land, read 2026-11-10 and again 2026-11-12"
+    "groupsEstate": "Industrial Estate: registry research.TH.industrial_estates, group Land, read 2026-11-10, 2026-11-12 and 2026-11-16"
   },
   "address": {
     "grammar": "d · at · e · n · f.* · focus · view · v3d · cam",
@@ -177,6 +181,28 @@
       },
       "summary": {
         "th": "แผนที่ 3 มิติของร้านกล้องในไทย: ย่าน ศูนย์การค้า และสาขา พร้อมหลักฐานทุกรายการ"
+      },
+      "catalog": null
+    },
+    {
+      "path": "commercialdistrict",
+      "name": "Commercial District",
+      "group": "Location",
+      "code": null,
+      "url": "https://montri-th.github.io/commercialdistrict/",
+      "languages": [
+        "th",
+        "en"
+      ],
+      "urlEn": "https://montri-th.github.io/commercialdistrict/?lang=en",
+      "question": {
+        "th": "ย่านไหนเด่นเรื่องอะไร และอะไรมาด้วยกัน"
+      },
+      "questionDraft": {
+        "en": "Which neighbourhood stands out for what, and what comes together?"
+      },
+      "summary": {
+        "th": "ย่านกลาง 343 ย่านทั่วประเทศ เทียบกับ 16 ชุดข้อมูล CityMETER ทั้ง Land Location Living บนแผนที่ 3 มิติ"
       },
       "catalog": null
     },
