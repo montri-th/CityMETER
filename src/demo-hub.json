@@ -4,9 +4,9 @@
   "origin": "https://montri-th.github.io",
   "shell": {
     "name": "citymeter-shell",
-    "version": "0.6.3",
+    "version": "0.6.4",
     "list": "js/shell/datasets.js",
-    "sha256": "d2555aaf659fd73dd7ecac4ca419f65578d3f6533eea386bc8b48485be7f663d",
+    "sha256": "c5275615b0527c0e70f82a50668be66f9561c079e6f4391508562cf17a0d65c9",
     "demos": 18
   },
   "registry": {
@@ -137,6 +137,10 @@
       "name": "Shopping Center",
       "group": "Land",
       "code": "shoppingCenter",
+      "languages": [
+        "th",
+        "en"
+      ],
       "question": {
         "th": "ย่านไหนมีพื้นที่ค้าปลีกแบบไหน ของใคร มีร้านอะไรอยู่ข้างใน และอะไรกำลังจะเปิด"
       },
