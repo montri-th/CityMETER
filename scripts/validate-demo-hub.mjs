@@ -30,6 +30,11 @@ for (const [lang, path] of [["th", "demos/index.html"], ["en", "en/demos/index.h
   for (const d of hub.demos) {
     const card = html.slice(html.indexOf(`data-demo-card="${d.path}"`), html.indexOf("</li>", html.indexOf(`data-demo-card="${d.path}"`)));
     ok(card.includes(d.question.th.replaceAll("&", "&amp;")), `${path}: ${d.path} question quoted`);
+    // Registry ID and production status (2026-11-25): the card never says a demo is missing from the registry when it
+    // has a registry row, and shows a production code only where production carries the dataset.
+    const noRegistry = lang === "th" ? "ยังไม่มีในทะเบียน" : "not in the registry yet";
+    ok(d.registryId ? card.includes(`<code>${d.registryId}</code>`) && !card.includes(noRegistry) : card.includes(noRegistry), `${path}: ${d.path} registry ID`);
+    ok(card.includes(d.production ? `<code>${d.production}</code></dd>` : `<dd>${lang === "th" ? "ยังไม่มี" : "not yet"}</dd>`), `${path}: ${d.path} production status`);
     if (d.catalog) {
       const slug = catalog.records.find((r) => r.datasetCode === d.catalog).slug;
       ok(card.includes(`datasets/${slug}/`) && existsSync(resolve(root, `${lang === "en" ? "en/" : ""}datasets/${slug}/index.html`)), `${path}: ${d.path} catalog page exists`);
@@ -43,9 +48,15 @@ for (const [lang, path] of [["th", "demos/index.html"], ["en", "en/demos/index.h
 }
 ok(!read("sitemap.xml").includes("/demos/"), "the hub stays out of the sitemap");
 ok(list.robots === "noindex, nofollow" && list.demos.length === hub.demos.length, "demos.json lists every demo");
+ok(list.production?.checkedAt === hub.production.checkedAt && list.production?.page === hub.production.page, "demos.json: production check provenance");
+for (const d of list.demos) {
+  const src = hub.demos.find((h) => h.path === d.path);
+  ok(d.registryId === src.registryId && d.production === src.production && d.code === src.code, `demos.json: ${d.path} registry ID, code and production`);
+}
 for (const d of list.demos) ok(d.url === `${hub.origin}/${d.pages || d.path}/` && ["Land", "Location", "Living"].includes(d.group) && Array.isArray(d.languages) && d.languages[0] === "th"
   && (d.languages.includes("en") ? d.urlEn === `${d.url}?lang=en` : !("urlEn" in d)), `demos.json: ${d.path}`);
 const llms = read("demos/llms.txt");
 for (const d of hub.demos) ok(llms.includes(`(${hub.origin}/${d.pages || d.path}/)`), `demos/llms.txt: ${d.path}`);
+for (const d of hub.demos) ok(llms.includes(`registry ${d.registryId ? `\`${d.registryId}\`` : "none yet"} · production ${d.production ? `\`${d.production}\`` : "not yet"}`), `demos/llms.txt: ${d.path} registry and production`);
 ok(read("llms.txt").includes("demos/llms.txt"), "llms.txt points to the demo list");
 console.log(`PASS demo hub: ${checks} checks; ${hub.demos.length} demos, TH/EN pages noindex and out of the sitemap.`);

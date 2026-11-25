@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "readAt": "2026-11-18",
+  "readAt": "2026-11-25",
   "robots": "noindex, nofollow",
   "pages": {
     "th": "https://montri-th.github.io/CityMETER/demos/",
@@ -16,21 +16,30 @@
   "registry": {
     "tab": "R01_DATASETS",
     "fields": [
+      "registry_dataset_id",
       "dataset_group",
       "demo_web_url"
     ],
-    "readAt": "2026-11-18",
-    "readAtTh": "18 พ.ย. 2569"
+    "readAt": "2026-11-25",
+    "readAtTh": "25 พ.ย. 2569"
+  },
+  "production": {
+    "page": "https://landometer.com/v3/citymeter",
+    "checkedAt": "2026-11-25",
+    "checkedAtTh": "25 พ.ย. 2569",
+    "method": "each demo code opened as https://landometer.com/v3/citymeter?d=<code>: HTTP 200 with that dataset's own page title means production carries it; 404 means it does not yet. industrialEstate, cameraShops, luxuryBrands, pharmacy and transit answered 404; Commercial District, Fitness and University write no code, and commercialDistrict, fitness and university answered 404 too."
   },
   "sources": {
     "list": "citymeter-shell 0.6.4 js/shell/datasets.js, the dataset picker in every demo header: path, name and group; every demo on 0.6.4 since 2026-11-18 (0.6.4 marks Shopping Center as a demo with English on 0.6.3's list, which added Housing Estate)",
-    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-18: the seventeen demos read the same groups as on 2026-11-16 (Hospital and School are Living since the owner's decision of 2026-11-12, registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08; University, research.TH.university, is Living and has a demo since 2026-11-12); Commercial District has its row since (research.TH.commercialdistrict, Location, as the owner asked on 2026-11-16); Housing Estate (research.TH.housing_estate) is Land and has a demo since 2026-11-18",
-    "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); Fitness, University and Commercial District have no code in the registry yet; Housing Estate writes estate, the production estate layer",
+    "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-18: the seventeen demos read the same groups as on 2026-11-16 (Hospital and School are Living since the owner's decision of 2026-11-12, registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08; University, research.TH.university, is Living and has a demo since 2026-11-12); Commercial District has its row since (research.TH.commercialdistrict, Location, as the owner asked on 2026-11-16); Housing Estate (research.TH.housing_estate) is Land and has a demo since 2026-11-18; read again 2026-11-25: all eighteen demos have the same groups",
+    "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); a demo whose dataset production does not carry yet writes its own code (Industrial Estate, Camera Shops, Luxury Brands, Pharmacy, Transit) or none (Commercial District, Fitness, University); `production` holds the code only where production carries it, checked 2026-11-25 (`production` above); Housing Estate writes estate, the production estate layer",
     "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft; University's read 2026-11-12; Commercial District's read 2026-11-16; Housing Estate's read 2026-11-18",
     "areas": "area names as the demos show them in their breadcrumb for these codes, checked 2026-11-09",
     "languages": "a demo declares English with <meta name=\"citymeter:languages\" content=\"th en\"> (citymeter-shell 0.5.0): Office since its release 0.4.0; Hotel since 0.6.0 and Hospital since 0.4.0 (citymeter-shell 0.5.1); School since 0.5.0, Government Office since 0.7.0 and Factory since 0.5.0 (citymeter-shell 0.5.2); Pharmacy since 0.3.0 and Restaurants since 0.11.0 (citymeter-shell 0.5.3); Industrial Estate since its release 1.0.0 (citymeter-shell 0.5.4); University since its release 0.1.0 (citymeter-shell 0.6.1); Commercial District since its release 0.1.0 (citymeter-shell 0.6.2); Housing Estate since its release 0.1.0 (citymeter-shell 0.6.3); Shopping Center since its release 0.7.0 (citymeter-shell 0.6.4)",
     "pages": "a demo kept inside another demo's repository has its own path on GitHub Pages (`pages`): Industrial Estate lives in the factory repository at factory/industrialestate/ (citymeter-shell 0.5.4)",
-    "groupsEstate": "Industrial Estate: registry research.TH.industrial_estates, group Land, read 2026-11-10, 2026-11-12 and 2026-11-16"
+    "groupsEstate": "Industrial Estate: registry research.TH.industrial_estates, group Land, read 2026-11-10, 2026-11-12 and 2026-11-16",
+    "registryIds": "registryId is registry_dataset_id in R01_DATASETS, read 2026-11-25 for all eighteen demos (until 2026-11-25 the cards showed only the address code and said “ยังไม่มีในทะเบียน” for the three demos without one, although all three have a registry row)",
+    "summaries": "each card's summary is the demo page's meta description after its question; Commercial District's (release 0.4.0, 395 neighbourhoods) and Industrial Estate's re-read 2026-11-25 from the live pages, where they had changed since the hub quoted them"
   },
   "address": {
     "grammar": "d · at · e · n · f.* · focus · view · v3d · cam",
@@ -65,7 +74,9 @@
       "path": "hotel",
       "name": "Hotel",
       "group": "Land",
+      "registryId": "research.TH.hotel",
       "code": "hotel",
+      "production": "hotel",
       "url": "https://montri-th.github.io/hotel/",
       "languages": [
         "th",
@@ -91,7 +102,9 @@
       "path": "housingestate",
       "name": "Housing Estate",
       "group": "Land",
+      "registryId": "research.TH.housing_estate",
       "code": "estate",
+      "production": "estate",
       "url": "https://montri-th.github.io/housingestate/",
       "languages": [
         "th",
@@ -118,7 +131,9 @@
       "pages": "factory/industrialestate",
       "name": "Industrial Estate",
       "group": "Land",
+      "registryId": "research.TH.industrial_estates",
       "code": "industrialEstate",
+      "production": null,
       "url": "https://montri-th.github.io/factory/industrialestate/",
       "languages": [
         "th",
@@ -132,7 +147,7 @@
         "en": "Where are the industrial estates, who develops them, and who is in their directory?"
       },
       "summary": {
-        "th": "แผนที่นิคม สวน และเขตอุตสาหกรรม พร้อมทำเนียบ กนอ. โลโก้ผู้พัฒนา และโรงงานรอบนิคม"
+        "th": "แผนที่ 3 มิติของนิคม สวน และเขตอุตสาหกรรม พร้อมโรงงานรอบนิคม"
       },
       "catalog": null
     },
@@ -140,7 +155,9 @@
       "path": "office",
       "name": "Office",
       "group": "Land",
+      "registryId": "research.TH.office",
       "code": "office",
+      "production": "office",
       "url": "https://montri-th.github.io/office/",
       "languages": [
         "th",
@@ -166,7 +183,9 @@
       "path": "shoppingcenter",
       "name": "Shopping Center",
       "group": "Land",
+      "registryId": "research.TH.shopping",
       "code": "shoppingCenter",
+      "production": "shoppingCenter",
       "url": "https://montri-th.github.io/shoppingcenter/",
       "languages": [
         "th",
@@ -192,7 +211,9 @@
       "path": "camera",
       "name": "Camera Shops",
       "group": "Location",
+      "registryId": "research.TH.camera",
       "code": "cameraShops",
+      "production": null,
       "url": "https://montri-th.github.io/camera/",
       "languages": [
         "th"
@@ -212,7 +233,9 @@
       "path": "commercialdistrict",
       "name": "Commercial District",
       "group": "Location",
+      "registryId": "research.TH.commercialdistrict",
       "code": null,
+      "production": null,
       "url": "https://montri-th.github.io/commercialdistrict/",
       "languages": [
         "th",
@@ -226,7 +249,7 @@
         "en": "Which neighbourhood stands out for what, and what comes together?"
       },
       "summary": {
-        "th": "ย่านกลาง 343 ย่านทั่วประเทศ เทียบกับ 16 ชุดข้อมูล CityMETER ทั้ง Land Location Living บนแผนที่ 3 มิติ"
+        "th": "ย่านกลาง 395 ย่านทั่วประเทศ รวมย่านที่พัก 37 ย่าน เทียบกับ 16 ชุดข้อมูล CityMETER ทั้ง Land Location Living บนแผนที่ 3 มิติ"
       },
       "catalog": null
     },
@@ -234,7 +257,9 @@
       "path": "factory",
       "name": "Factory",
       "group": "Location",
+      "registryId": "research.TH.factory",
       "code": "factory",
+      "production": "factory",
       "url": "https://montri-th.github.io/factory/",
       "languages": [
         "th",
@@ -260,7 +285,9 @@
       "path": "fitness",
       "name": "Fitness",
       "group": "Location",
+      "registryId": "research.TH.fitness",
       "code": null,
+      "production": null,
       "url": "https://montri-th.github.io/fitness/",
       "languages": [
         "th"
@@ -280,7 +307,9 @@
       "path": "grocery",
       "name": "Grocery",
       "group": "Location",
+      "registryId": "research.TH.grocery",
       "code": "grocery",
+      "production": "grocery",
       "url": "https://montri-th.github.io/grocery/",
       "languages": [
         "th"
@@ -304,7 +333,9 @@
       "path": "luxurybrands",
       "name": "Luxury Brands",
       "group": "Location",
+      "registryId": "research.TH.luxury",
       "code": "luxuryBrands",
+      "production": null,
       "url": "https://montri-th.github.io/luxurybrands/",
       "languages": [
         "th"
@@ -324,7 +355,9 @@
       "path": "pharmacy",
       "name": "Pharmacy",
       "group": "Location",
+      "registryId": "research.TH.pharmacy",
       "code": "pharmacy",
+      "production": null,
       "url": "https://montri-th.github.io/pharmacy/",
       "languages": [
         "th",
@@ -346,7 +379,9 @@
       "path": "restaurant",
       "name": "Restaurants",
       "group": "Location",
+      "registryId": "research.TH.restaurants",
       "code": "restaurant",
+      "production": "restaurant",
       "url": "https://montri-th.github.io/restaurant/",
       "languages": [
         "th",
@@ -372,7 +407,9 @@
       "path": "governmentoffice",
       "name": "Government Office",
       "group": "Living",
+      "registryId": "research.TH.government_office",
       "code": "governmentOfficer",
+      "production": "governmentOfficer",
       "url": "https://montri-th.github.io/governmentoffice/",
       "languages": [
         "th",
@@ -398,7 +435,9 @@
       "path": "hospital",
       "name": "Hospital",
       "group": "Living",
+      "registryId": "research.TH.hospital",
       "code": "hospital",
+      "production": "hospital",
       "url": "https://montri-th.github.io/hospital/",
       "languages": [
         "th",
@@ -420,7 +459,9 @@
       "path": "school",
       "name": "School",
       "group": "Living",
+      "registryId": "research.TH.school",
       "code": "school",
+      "production": "school",
       "url": "https://montri-th.github.io/school/",
       "languages": [
         "th",
@@ -446,7 +487,9 @@
       "path": "transit",
       "name": "Transit",
       "group": "Living",
+      "registryId": "research.TH.transit",
       "code": "transit",
+      "production": null,
       "url": "https://montri-th.github.io/transit/",
       "languages": [
         "th"
@@ -466,7 +509,9 @@
       "path": "university",
       "name": "University",
       "group": "Living",
+      "registryId": "research.TH.university",
       "code": null,
+      "production": null,
       "url": "https://montri-th.github.io/university/",
       "languages": [
         "th",

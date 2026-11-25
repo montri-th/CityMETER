@@ -38,13 +38,16 @@ const copy = {
     openName: (name) => `เปิดเดโม ${name} (เว็บ GitHub Pages)`,
     catalogLabel: "ในแค็ตตาล็อก",
     noCatalog: "ยังไม่มีหน้าในแค็ตตาล็อกนี้",
-    code: "รหัสชุดข้อมูล",
-    noCode: "ยังไม่มีในทะเบียน",
+    registryLabel: "รหัสในทะเบียน",
+    noRegistry: "ยังไม่มีในทะเบียน",
+    productionLabel: "ใน production",
+    noProduction: "ยังไม่มี",
     question: "คำถามที่ช่วยตอบ",
     devTitle: "สำหรับนักพัฒนา",
     dev: (hub) => [
       `ทุกเดโมใช้ชุดโค้ดกลาง ${hub.shell.name} ${hub.shell.version} ไบต์เดียวกัน รายการและกลุ่มบนหน้านี้ตรงกับตัวเลือกชุดข้อมูลบนหัวเว็บของเดโม (${hub.shell.list})${hub.shell.except ? ` ยกเว้น ${hub.shell.except.th}` : ""}`,
-      "ที่อยู่หน้าเว็บของเดโม: d (รหัสชุดข้อมูล) · at (พื้นที่ เช่น BKK/D/1039 ตรงกับ /v3/citymeter/BKK/D/1039 ของ production) · e (สิ่งที่เปิด) · n (เครือข่าย) · f.* (ตัวกรอง) · focus · view · v3d · cam",
+      `รหัสในทะเบียนคือ registry_dataset_id ของ ${hub.registry.tab} (อ่าน ${hub.registry.readAtTh}) · ใน production ตรวจโดยเปิด ${hub.production.page}?d=<รหัส> เมื่อ ${hub.production.checkedAtTh}: ขึ้นหน้าของชุดข้อมูลนั้นคือมี · 404 คือยังไม่มี`,
+      "ที่อยู่หน้าเว็บของเดโม: d (รหัสชุดข้อมูล: รหัสเดียวกับ production เมื่อ production มีชุดนั้น ไม่อย่างนั้นเป็นรหัสของเดโมเองหรือไม่ใส่ ดู code ใน demos.json) · at (พื้นที่ เช่น BKK/D/1039 ตรงกับ /v3/citymeter/BKK/D/1039 ของ production) · e (สิ่งที่เปิด) · n (เครือข่าย) · f.* (ตัวกรอง) · focus · view · v3d · cam",
       hub.catalogDiffers.length
         ? `กลุ่ม Land · Location · Living ตามทะเบียนชุดข้อมูล (${hub.registry.tab} อ่าน ${hub.registry.readAtTh}) ซึ่งต่างจากหมวดของแค็ตตาล็อกนี้ ${hub.catalogDiffers.length} ชุด: ${hub.catalogDiffers.map((d) => `${d.name} (แค็ตตาล็อก ${d.catalog})`).join(" · ")}${hub.registry.except ? ` · ${hub.registry.except.th}` : ""}`
         : `กลุ่ม Land · Location · Living ตามทะเบียนชุดข้อมูล (${hub.registry.tab} อ่าน ${hub.registry.readAtTh}) ตรงกับหมวดของแค็ตตาล็อกนี้ทุกชุดที่มีหน้าในแค็ตตาล็อก${hub.registry.except ? ` · ${hub.registry.except.th}` : ""}`,
@@ -80,13 +83,16 @@ const copy = {
     openName: (name) => `Open the ${name} demo (GitHub Pages site)`,
     catalogLabel: "In the catalog",
     noCatalog: "no page in this catalog yet",
-    code: "Dataset code",
-    noCode: "not in the registry yet",
+    registryLabel: "Registry ID",
+    noRegistry: "not in the registry yet",
+    productionLabel: "In production",
+    noProduction: "not yet",
     question: "Question it helps answer",
     devTitle: "For developers",
     dev: (hub) => [
       `Every demo runs the same bytes of the shared code ${hub.shell.name} ${hub.shell.version}; the list and groups on this page match the dataset picker in the demos' header (${hub.shell.list}).${hub.shell.except ? ` Except: ${hub.shell.except.en}` : ""}`,
-      "Demo address: d (dataset code) · at (area, e.g. BKK/D/1039, which is /v3/citymeter/BKK/D/1039 in production) · e (the thing open) · n (a network) · f.* (filters) · focus · view · v3d · cam.",
+      `The registry ID is registry_dataset_id in ${hub.registry.tab} (read ${hub.registry.readAt}). “In production” was checked by opening ${hub.production.page}?d=<code> on ${hub.production.checkedAt}: the dataset's own page means production carries it; 404 means not yet.`,
+      "Demo address: d (dataset code: the production code where production carries the dataset, otherwise the demo's own code or none; see code in demos.json) · at (area, e.g. BKK/D/1039, which is /v3/citymeter/BKK/D/1039 in production) · e (the thing open) · n (a network) · f.* (filters) · focus · view · v3d · cam.",
       hub.catalogDiffers.length
         ? `Land · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}), which differs from this catalog's lenses for ${hub.catalogDiffers.length} dataset${hub.catalogDiffers.length === 1 ? "" : "s"}: ${hub.catalogDiffers.map((d) => `${d.name} (catalog: ${d.catalog})`).join(" · ")}.${hub.registry.except ? ` ${hub.registry.except.en}` : ""}`
         : `Land · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}), as this catalog's lenses do for every demo with a catalog page.${hub.registry.except ? ` ${hub.registry.except.en}` : ""}`,
@@ -120,6 +126,15 @@ export function checkDemoHub(hub, catalog) {
     if (d.catalog && !byCode.has(d.catalog)) fail(`${d.path}: catalog code ${d.catalog} is not in src/catalog.json`);
     if (d.catalog && d.catalog !== d.code) fail(`${d.path}: catalog code differs from the demo code`);
   }
+  if (!/^https:\/\/\S+$/.test(hub.production?.page || "") || !/^\d{4}-\d{2}-\d{2}$/.test(hub.production?.checkedAt || "") || !hub.production?.checkedAtTh) fail("production: page, checkedAt and checkedAtTh");
+  const registryIds = new Set();
+  for (const d of hub.demos) {
+    if (!("registryId" in d) || !("production" in d)) fail(`${d.path}: registryId and production are required (null when absent)`);
+    if (d.registryId !== null && (!/^research\.TH\.[a-z_]+$/.test(d.registryId) || registryIds.has(d.registryId))) fail(`${d.path}: bad or repeated registryId ${d.registryId}`);
+    if (d.registryId) registryIds.add(d.registryId);
+    if (d.production !== null && d.production !== d.code) fail(`${d.path}: production must be null or the demo's own code`);
+    if (d.catalog && !d.production) fail(`${d.path}: a catalog page needs a production code`);
+  }
   for (const a of hub.areas) if (!new RegExp(AT_PATTERN).test(a.at) || !a.th) fail(`area ${a.at}`);
   return true;
 }
@@ -149,7 +164,7 @@ function demoCard(d, lang, hub, catalog, base) {
 <h3 class="hub-card-title">${esc(d.name)}</h3>
 <p class="hub-question" lang="th"><span class="hub-visually-hidden">${t.question}: </span>${esc(d.question.th)}</p>${draft}
 <p class="hub-summary" lang="th">${esc(d.summary.th)}</p>
-<dl class="hub-facts"><div><dt>${t.code}</dt><dd>${d.code ? `<code>${esc(d.code)}</code>` : esc(t.noCode)}</dd></div><div><dt>${t.catalogLabel}</dt><dd>${catalogFact}</dd></div></dl>
+<dl class="hub-facts"><div><dt>${t.registryLabel}</dt><dd>${d.registryId ? `<code>${esc(d.registryId)}</code>` : esc(t.noRegistry)}</dd></div><div><dt>${t.productionLabel}</dt><dd>${d.production ? `<code>${esc(d.production)}</code>` : esc(t.noProduction)}</dd></div><div><dt>${t.catalogLabel}</dt><dd>${catalogFact}</dd></div></dl>
 <div class="hub-actions"><a class="button button-accent hub-open" data-demo="${esc(d.path)}" href="${esc(url)}" aria-label="${esc(t.openName(d.name))}">${t.open}${uiIcon("arrow_forward", { size: 20 })}</a></div>
 </li>`;
 }
@@ -190,11 +205,11 @@ export function demoHubJson(hub, catalog) {
   return {
     schemaVersion: hub.schemaVersion, readAt: hub.readAt, robots: "noindex, nofollow",
     pages: { th: `${catalog.canonicalBase}${HUB_PATHS.th}`, en: `${catalog.canonicalBase}${HUB_PATHS.en}` },
-    shell: hub.shell, registry: hub.registry, sources: hub.sources,
+    shell: hub.shell, registry: hub.registry, production: hub.production, sources: hub.sources,
     address: { grammar: "d · at · e · n · f.* · focus · view · v3d · cam", at: AT_PATTERN, example: `${hub.origin}/hotel/?at=BKK/D/1039`, production: "https://landometer.com/v3/citymeter/BKK/D/1039?d=hotel" },
     areas: hub.areas,
     demos: hub.demos.map((d) => ({
-      path: d.path, ...(d.pages ? { pages: d.pages } : {}), name: d.name, group: d.group, code: d.code, url: `${hub.origin}/${demoPagesPath(d)}/`, languages: d.languages || ["th"],
+      path: d.path, ...(d.pages ? { pages: d.pages } : {}), name: d.name, group: d.group, registryId: d.registryId, code: d.code, production: d.production, url: `${hub.origin}/${demoPagesPath(d)}/`, languages: d.languages || ["th"],
       ...((d.languages || []).includes("en") ? { urlEn: demoUrl(hub, d, "en") } : {}),
       question: d.question, questionDraft: d.questionDraft, summary: d.summary,
       catalog: d.catalog ? { code: d.catalog, page: `${catalog.canonicalBase}datasets/${byCode.get(d.catalog).slug}/`, lens: byCode.get(d.catalog).group } : null,
@@ -204,5 +219,5 @@ export function demoHubJson(hub, catalog) {
 
 export function demoHubLlms(hub, catalog) {
   const j = demoHubJson(hub, catalog);
-  return `# CityMETER demos\n\nPrototype web apps on GitHub Pages, one per dataset, ${hub.demos.length} in all. They are noindex, nofollow and in Thai, except that ${((en) => `${listOf(en, "and") || "none"} also ${en.length > 1 ? "read" : "reads"}`)(hub.demos.filter((d) => (d.languages || []).includes("en")).map((d) => d.name))} in English (a draft translation) with \`?lang=en\`; they are not the production CityMETER. Every demo runs the same bytes of ${hub.shell.name} ${hub.shell.version}${hub.shell.except ? ` (except: ${hub.shell.except.en})` : ""}.\n\n- [Thai hub](${j.pages.th})\n- [English hub](${j.pages.en})\n- [Structured list](${catalog.canonicalBase}${HUB_PATHS.th}demos.json)\n\n## Address\nThe address is the production grammar: \`d\` dataset code, \`at\` area (a production path such as BKK/D/1039, the same as https://landometer.com/v3/citymeter/BKK/D/1039), \`e\` the thing open, \`n\` a network, \`f.*\` filters, then \`focus\`, \`view\`, \`v3d\`, \`cam\`. A demo opens the deepest level of \`at\` it carries. Opening a level adds one browser history entry; filters and view replace it.\n\n## Demos\n${j.demos.map((d) => `- [${d.name}](${d.url}) · ${d.group} · code ${d.code ? `\`${d.code}\`` : "none in the registry yet"}${d.urlEn ? ` · [in English](${d.urlEn})` : ""}: ${d.question.th} (draft English: ${d.questionDraft.en})`).join("\n")}\n\n## Groups\nLand · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}); ${catalogDiffers(hub, catalog).length ? `this catalog files some of the same datasets under other lenses: ${catalogDiffers(hub, catalog).map((d) => `${d.name} (catalog: ${d.catalog})`).join(", ")}` : "this catalog uses the same lenses for every demo with a catalog page"}.${hub.registry.except ? ` ${hub.registry.except.en}` : ""}\n`;
+  return `# CityMETER demos\n\nPrototype web apps on GitHub Pages, one per dataset, ${hub.demos.length} in all. They are noindex, nofollow and in Thai, except that ${((en) => `${listOf(en, "and") || "none"} also ${en.length > 1 ? "read" : "reads"}`)(hub.demos.filter((d) => (d.languages || []).includes("en")).map((d) => d.name))} in English (a draft translation) with \`?lang=en\`; they are not the production CityMETER. Every demo runs the same bytes of ${hub.shell.name} ${hub.shell.version}${hub.shell.except ? ` (except: ${hub.shell.except.en})` : ""}.\n\n- [Thai hub](${j.pages.th})\n- [English hub](${j.pages.en})\n- [Structured list](${catalog.canonicalBase}${HUB_PATHS.th}demos.json)\n\n## Address\nThe address is the production grammar: \`d\` dataset code, \`at\` area (a production path such as BKK/D/1039, the same as https://landometer.com/v3/citymeter/BKK/D/1039), \`e\` the thing open, \`n\` a network, \`f.*\` filters, then \`focus\`, \`view\`, \`v3d\`, \`cam\`. A demo opens the deepest level of \`at\` it carries. Opening a level adds one browser history entry; filters and view replace it.\n\n## Demos\n${j.demos.map((d) => `- [${d.name}](${d.url}) · ${d.group} · registry ${d.registryId ? `\`${d.registryId}\`` : "none yet"} · production ${d.production ? `\`${d.production}\`` : "not yet"}${d.code && d.code !== d.production ? ` · demo address code \`${d.code}\`` : ""}${d.urlEn ? ` · [in English](${d.urlEn})` : ""}: ${d.question.th} (draft English: ${d.questionDraft.en})`).join("\n")}\n\n## Groups\nLand · Location · Living follow the dataset registry (${hub.registry.tab}, read ${hub.registry.readAt}); ${catalogDiffers(hub, catalog).length ? `this catalog files some of the same datasets under other lenses: ${catalogDiffers(hub, catalog).map((d) => `${d.name} (catalog: ${d.catalog})`).join(", ")}` : "this catalog uses the same lenses for every demo with a catalog page"}.${hub.registry.except ? ` ${hub.registry.except.en}` : ""}\n`;
 }
