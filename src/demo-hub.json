@@ -4,7 +4,7 @@
   "origin": "https://montri-th.github.io",
   "shell": {
     "name": "citymeter-shell",
-    "version": "0.6.4",
+    "version": "0.6.5",
     "list": "js/shell/datasets.js",
     "sha256": "c5275615b0527c0e70f82a50668be66f9561c079e6f4391508562cf17a0d65c9",
     "demos": 18
@@ -26,7 +26,7 @@
     "method": "each demo code opened as https://landometer.com/v3/citymeter?d=<code>: HTTP 200 with that dataset's own page title means production carries it; 404 means it does not yet. industrialEstate, cameraShops, luxuryBrands, pharmacy and transit answered 404; Commercial District, Fitness and University write no code, and commercialDistrict, fitness and university answered 404 too."
   },
   "sources": {
-    "list": "citymeter-shell 0.6.4 js/shell/datasets.js, the dataset picker in every demo header: path, name and group; every demo on 0.6.4 since 2026-11-18 (0.6.4 marks Shopping Center as a demo with English on 0.6.3's list, which added Housing Estate)",
+    "list": "citymeter-shell 0.6.5 js/shell/datasets.js, the dataset picker in every demo header: path, name and group; every demo on 0.6.5 since 2026-11-27 (0.6.5 changes only js/shell/header.js — the language link no longer writes its words again as it is pressed, so EN can be clicked in Safari — and keeps 0.6.4's list, which marks Shopping Center as a demo with English on 0.6.3's list, which added Housing Estate)",
     "groups": "dataset registry R01_DATASETS (dataset_group, demo_web_url), read 2026-11-18: the seventeen demos read the same groups as on 2026-11-16 (Hospital and School are Living since the owner's decision of 2026-11-12, registry change CHANGE-LIVING-HEALTH-EDUCATION-20261112-01; Location in the reading of 2026-11-08; University, research.TH.university, is Living and has a demo since 2026-11-12); Commercial District has its row since (research.TH.commercialdistrict, Location, as the owner asked on 2026-11-16); Housing Estate (research.TH.housing_estate) is Land and has a demo since 2026-11-18; read again 2026-11-25: all eighteen demos have the same groups",
     "codes": "each demo's address code d, the production ?d= code (owner 2026-11-08); a demo whose dataset production does not carry yet writes its own code (Industrial Estate, Camera Shops, Luxury Brands, Pharmacy, Transit) or none (Commercial District, Fitness, University); `production` holds the code only where production carries it, checked 2026-11-25 (`production` above); Housing Estate writes estate, the production estate layer",
     "questions": "each demo page's meta description, quoted, read 2026-11-09; questionDraft.en is an unreviewed draft; University's read 2026-11-12; Commercial District's read 2026-11-16; Housing Estate's read 2026-11-18",
