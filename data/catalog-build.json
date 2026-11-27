@@ -55,7 +55,7 @@
     "scripts/lib/route-language.mjs": "4bcf9ab1d087c8f1982f838b2a6aaa9e08a8cb2c67867bdde210b49ef10466df",
     "scripts/lib/catalog-qr.mjs": "5262dde65a1e06b2bc501d4cc398d7092c8e406c1ddf0b56477abaefc92e3e21",
     "scripts/build-catalog.mjs": "c3b9e28352301dedb45bb890ae5e47c3284e7e8dd34375f9b64b8d564e54feac",
-    "src/demo-hub.json": "b30962547223ad17d85bbc7083f59745ddc732bfa17248d39302f1a3ef9c91d8",
+    "src/demo-hub.json": "e666728aef56686ab9b0186abd048717620649fbac57d6fc962d61f975dbbb85",
     "src/runtime/demo-hub.js": "13aa9367cb56a7c7027bdfea4cce11ea17aea41dfc92f3f6f70b1ab4b8023fbc",
     "src/styles/demo-hub.css": "3396e9fadae35804e053f90ffa3fe470eca0b5da256fe6f8be7a1fc503770633",
     "scripts/lib/demo-hub.mjs": "e58bc3bf88c665b397f770c898c9046868028ee297ac165ebdf9e8c075c008ca",
@@ -293,13 +293,13 @@
     "en/datasets/disaster-historical-impacts/index.html": "fcda26502ed650c4e9e819696caf8ac25d9b2307340ed6e1860eadb2efe90a8f",
     "en/datasets/events-hat-yai-flood-2025-11/index.html": "6631fa1e00acc17cc0711b7db613b273eb87c614b5205d3773a074937d4cf1ca",
     "en/datasets/events-quake-building-inspection/index.html": "2a4a9db5c600873d87c4794e7aa5688b0eb431174a685cc1be33f9adef2d518b",
-    "demos/index.html": "50a17b957d4fb36a1076a05bd927c919a3b1341126972df50172013dd28df952",
-    "en/demos/index.html": "a9a09e68549aa4c83b3bea488be10426b03efd21fb2dbc1125573a18da48e013",
-    "demos/demos.json": "795a90d2e8f15c51ead45e55ba61b44c0c5a618c23e10f1786a085e0b6cee096",
-    "demos/llms.txt": "4ec6f6d70054c32a9c7d5a17bb44c3331db7e480b28b388cc5f3b95d885256f3",
+    "demos/index.html": "82f4140bb68f1de29f41900cb07cb9defa8569572888769e4b3756cfc845a323",
+    "en/demos/index.html": "469d2c6ed8b2b7c4caf464fb97a8e0dcd83197cc3ce949db0a96a1e8eaf7c484",
+    "demos/demos.json": "3e62593302280da73e2f3d298ced5386ce14c85934dfb6d795acf843e28f52b9",
+    "demos/llms.txt": "168d80e058de5a4419e41381c9986efb9041153ec8ef57b8d02b1f0256472688",
     "sitemap.xml": "c6410b3a5e7cd9a5aa3e2952834e05bf5b311a1a05a1a93254724f7ccc420bc4",
     "robots.txt": "cfb45d8b72d1d6391a6846917e35f40f8480ab6ef2c898ddb4ec1fd39eab7753",
-    "llms.txt": "dece57d9dac7dc304a59ce0ee802ed448e9aaff27fea2cd313b44281e580be55"
+    "llms.txt": "23cebb4153708af5232b3bf21ac4f413c66126ec2a923230f1dec9ad18282c12"
   },
   "counts": {
     "publicRecords": 43,
